@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.legionforge.app.domain.ArmyListValidatorTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-07-08T23:28:20" hostname="ubuntu-4gb-fsn1-3" time="0.03">
+  <properties/>
+  <testcase name="too many commanders is invalid" classname="com.legionforge.app.domain.ArmyListValidatorTest" time="0.026"/>
+  <testcase name="valid list with commander and two corps passes" classname="com.legionforge.app.domain.ArmyListValidatorTest" time="0.0"/>
+  <testcase name="list without commander is invalid" classname="com.legionforge.app.domain.ArmyListValidatorTest" time="0.0"/>
+  <testcase name="list exceeding points limit is invalid" classname="com.legionforge.app.domain.ArmyListValidatorTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

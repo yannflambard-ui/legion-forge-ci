@@ -1,0 +1,6 @@
+R_DEF: Internal format may change without notice
+local
+color black
+mipmap ic_launcher
+string app_name
+style Theme.LegionForge
