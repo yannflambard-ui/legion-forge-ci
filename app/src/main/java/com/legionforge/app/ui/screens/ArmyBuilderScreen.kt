@@ -210,7 +210,7 @@ private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, preselec
     val isCommander = card.kind == CardKind.COMMANDER
     val requiresTarget = isUpgrade && !isCommander
     val targetUnits = if (card.kind == CardKind.LEGION_UPGRADE) entries.filter { it.card.kind == CardKind.LEGION_UNIT } else entries.filter { it.card.kind == CardKind.ARMADA_SHIP }
-    val eligibleTargets = if (card.kind == CardKind.LEGION_UPGRADE) targetUnits.filter { target -> card.upgradeSlots.firstOrNull()?.let { it in target.card.allowedUpgradeSlots } == true } else if (card.kind == CardKind.ARMADA_UPGRADE) targetUnits.filter { target -> card.upgradeSlots.any { it in target.card.allowedUpgradeSlots } } else targetUnits
+    val eligibleTargets = if (card.kind == CardKind.LEGION_UPGRADE) targetUnits.filter { target -> card.upgradeSlots.firstOrNull()?.let { it in target.card.allowedUpgradeSlots } == true } else if (card.kind == CardKind.ARMADA_UPGRADE) targetUnits.filter { target -> card.upgradeSlots.any { it in target.card.allowedUpgradeSlots } && upgradeFitsShip(card, target.card) } else targetUnits
     val preselectedTarget = eligibleTargets.firstOrNull { it.instanceId == preselectedParentId && it.card.allowedUpgradeSlots.any { slot -> slot in card.upgradeSlots } }
     var targetId by remember(card.id, eligibleTargets.size, preselectedTarget) { mutableStateOf(preselectedTarget?.instanceId ?: eligibleTargets.firstOrNull()?.instanceId) }
     var selectedSlot by remember(card.id, preselectedTarget) { mutableStateOf(

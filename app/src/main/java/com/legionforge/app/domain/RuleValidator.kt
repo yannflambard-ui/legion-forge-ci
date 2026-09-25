@@ -6,6 +6,8 @@ import com.legionforge.app.data.model.CardKind
 import com.legionforge.app.data.model.GameSystem
 import com.legionforge.app.data.model.LegionRank
 import com.legionforge.app.data.model.ListEntry
+import com.legionforge.app.data.model.canonicalShipFamily
+import com.legionforge.app.data.model.upgradeFitsShip
 
 data class RuleViolation(val code: String, val message: String)
 data class RuleValidationResult(val valid: Boolean, val totalPoints: Int, val violations: List<RuleViolation>)
@@ -88,6 +90,12 @@ class ArmadaV15Validator : RuleValidator {
         if (squadronPoints > squadronCap) violations += violation("squadron_third", "Escadrons : $squadronPoints pts, maximum $squadronCap pts (un tiers arrondi au supérieur).")
         val fleetCards = list.entries.filter { it.card.gameSystem == gameSystem }
         if (list.entries.any { it.card.gameSystem != gameSystem }) violations += violation("mixed_games", "La liste contient une carte d'un autre système.")
+        // Un vaisseau unique (amiral nommé, ex. Executor) ne peut apparaître qu'une seule fois,
+        // même sur deux coques différentes (Executor I + Executor II) — famille canonique.
+        val uniqueShips = fleetCards.filter { it.card.kind == CardKind.ARMADA_SHIP && it.card.unique }
+        if (uniqueShips.groupBy { canonicalShipFamily(it.card.name) }.any { (_, same) -> same.size > 1 }) {
+            violations += violation("unique_ship_duplicate", "Un vaisseau amiral unique ne peut être sélectionné qu'une seule fois (même famille).")
+        }
         val ships = fleetCards.filter { it.card.kind == CardKind.ARMADA_SHIP }
         val shipSlots = ships.flatMap { ship -> ship.card.allowedUpgradeSlots.map { ship.instanceId to it } }.groupBy({ it.first }, { it.second })
         ships.forEach { ship ->
@@ -100,6 +108,10 @@ class ArmadaV15Validator : RuleValidator {
                 val chosen = upgrade.chosenSlot ?: upgrade.card.upgradeSlots.firstOrNull()
                 if (chosen == null || chosen !in (shipSlots[ship.instanceId] ?: emptyList())) {
                     violations += violation("invalid_upgrade_slot", "${upgrade.card.name} ne correspond pas aux slots du châssis ${ship.card.name}.")
+                }
+                // Une upgrade unique liée à un vaisseau précis ne peut être équipée que sur ce vaisseau.
+                if (upgrade.card.linkedUnit != null && !upgradeFitsShip(upgrade.card, ship.card)) {
+                    violations += violation("linked_unit_mismatch", "${upgrade.card.name} ne peut être équipée que sur un vaisseau ${upgrade.card.linkedUnit} (pas ${ship.card.name}).")
                 }
                 // Regle 1.6.0 : un vaisseau ne peut pas equiper plus d'une copie de la meme amelioration.
                 if (installed.groupBy { it.card.id }.any { (_, arr) -> arr.size > 1 }) {

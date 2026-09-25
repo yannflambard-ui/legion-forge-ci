@@ -2638,7 +2638,9 @@
     "DEFENSIVE_RETROFIT",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -2659,7 +2661,9 @@
     "DEFENSIVE_RETROFIT",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -2689,9 +2693,11 @@
     "ION_CANNONS",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
-   "unique": false,
+   "unique": true,
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/executor-i-class-star-dreadnought.webp",
    "rulesText": null,
@@ -2719,9 +2725,11 @@
     "TURBOLASERS",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
-   "unique": false,
+   "unique": true,
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/executor-ii-class-star-dreadnought.webp",
    "rulesText": null,
@@ -2741,7 +2749,9 @@
     "SUPPORT_TEAM",
     "ORDNANCE"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -2763,7 +2773,9 @@
     "SUPPORT_TEAM",
     "ORDNANCE"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -2784,7 +2796,9 @@
     "FLEET_SUPPORT",
     "OFFENSIVE_RETROFIT"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -2805,7 +2819,9 @@
     "FLEET_SUPPORT",
     "OFFENSIVE_RETROFIT"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -2829,7 +2845,9 @@
     "ION_CANNONS",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -2853,7 +2871,9 @@
     "ION_CANNONS",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -2877,7 +2897,9 @@
     "TURBOLASERS",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -2901,7 +2923,9 @@
     "ION_CANNONS",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -2924,7 +2948,9 @@
     "EXPERIMENTAL_RETROFIT",
     "ION_CANNONS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -2948,7 +2974,9 @@
     "EXPERIMENTAL_RETROFIT",
     "ION_CANNONS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -2971,7 +2999,9 @@
     "TURBOLASERS",
     "SUPERWEAPON"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -2994,7 +3024,9 @@
     "SUPPORT_TEAM",
     "SUPERWEAPON"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3016,7 +3048,9 @@
     "OFFENSIVE_RETROFIT",
     "OFFENSIVE_RETROFIT"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3038,7 +3072,9 @@
     "WEAPONS_TEAM",
     "OFFENSIVE_RETROFIT"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3060,7 +3096,9 @@
     "OFFENSIVE_RETROFIT",
     "ORDNANCE"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3082,7 +3120,9 @@
     "OFFENSIVE_RETROFIT",
     "ION_CANNONS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3110,7 +3150,9 @@
     "TURBOLASERS",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3137,7 +3179,9 @@
     "ION_CANNONS",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3160,7 +3204,9 @@
     "ORDNANCE",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3183,7 +3229,9 @@
     "ION_CANNONS",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3206,7 +3254,9 @@
     "DEFENSIVE_RETROFIT",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3229,7 +3279,9 @@
     "DEFENSIVE_RETROFIT",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3251,7 +3303,9 @@
     "DEFENSIVE_RETROFIT",
     "ION_CANNONS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3273,7 +3327,9 @@
     "DEFENSIVE_RETROFIT",
     "ION_CANNONS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3294,7 +3350,9 @@
     "FLEET_SUPPORT",
     "OFFENSIVE_RETROFIT"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3315,7 +3373,9 @@
     "FLEET_SUPPORT",
     "OFFENSIVE_RETROFIT"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3337,7 +3397,9 @@
     "WEAPONS_TEAM",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3359,7 +3421,9 @@
     "WEAPONS_TEAM",
     "ORDNANCE"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3382,7 +3446,9 @@
     "ORDNANCE",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3405,7 +3471,9 @@
     "ORDNANCE",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3430,7 +3498,9 @@
     "ION_CANNONS",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3454,7 +3524,9 @@
     "ORDNANCE",
     "ORDNANCE"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3478,7 +3550,9 @@
     "ION_CANNONS",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3502,7 +3576,9 @@
     "TURBOLASERS",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3526,7 +3602,9 @@
     "ION_CANNONS",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3550,7 +3628,9 @@
     "TURBOLASERS",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3572,7 +3652,9 @@
     "FLEET_COMMAND",
     "ORDNANCE"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3594,7 +3676,9 @@
     "FLEET_COMMAND",
     "OFFENSIVE_RETROFIT"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3615,7 +3699,9 @@
     "SUPPORT_TEAM",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3636,7 +3722,9 @@
     "SUPPORT_TEAM",
     "TURBOLASERS"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3661,7 +3749,9 @@
     "TURBOLASERS",
     "SUPERWEAPON"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -3686,7 +3776,9 @@
     "TURBOLASERS",
     "SUPERWEAPON"
    ],
-   "allowedUpgradeSlots": [],
+   "allowedUpgradeSlots": [
+    "TITLE"
+   ],
    "commander": false,
    "unique": false,
    "imageUrl": null,
@@ -7486,7 +7578,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "mc30"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/amity",
@@ -7504,7 +7597,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "starhawk"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/annihilator",
@@ -7522,7 +7616,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "executor"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/aspiration",
@@ -7540,7 +7635,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "mc75"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/avenger",
@@ -7558,7 +7654,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "imperial destroyer"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/bright_hope",
@@ -7576,7 +7673,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/bright-hope.webp",
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "gr75"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/cataclysm",
@@ -7594,7 +7692,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "onager"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/centicore",
@@ -7612,7 +7711,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "arquitens"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/chimaera",
@@ -7630,7 +7730,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "imperial destroyer"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/concord",
@@ -7648,7 +7749,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "starhawk"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/corrupter",
@@ -7666,7 +7768,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "super star destroyer"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/corvus",
@@ -7684,7 +7787,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "raider"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/defiance",
@@ -7702,7 +7806,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "mc80"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/demolisher",
@@ -7720,7 +7825,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "gladiator"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/devastator",
@@ -7738,7 +7844,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "imperial destroyer"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/dodonnas_pride",
@@ -7756,7 +7863,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/dodonnas-pride.webp",
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "cr90"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/dominator",
@@ -7774,7 +7882,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "victory"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/eclipse",
@@ -7792,7 +7901,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "executor"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/endeavor",
@@ -7810,7 +7920,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "mc80"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/executor",
@@ -7828,7 +7939,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "executor"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/foresight",
@@ -7846,7 +7958,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "mc30"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/gallant_haven",
@@ -7864,7 +7977,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/gallant-haven.webp",
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "frigate"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/garels_honor",
@@ -7882,7 +7996,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/garels-honor.webp",
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "hammerhead"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/hand_of_justice",
@@ -7900,7 +8015,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/hand-of-justice.webp",
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "arquitens"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/harrow",
@@ -7918,7 +8034,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "victory"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/home_one",
@@ -7936,7 +8053,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/home-one.webp",
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "mc80"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/impetuous",
@@ -7954,7 +8072,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "raider"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/independence",
@@ -7972,7 +8091,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "mc80"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/insidious",
@@ -7990,7 +8110,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "gladiator"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/instigator",
@@ -8008,7 +8129,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "raider"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/interdictor",
@@ -8026,7 +8148,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "interdictor"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/jainas_light",
@@ -8044,7 +8167,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/jainas-light.webp",
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "cr90"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/liberator",
@@ -8062,7 +8186,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "cr90"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/liberty",
@@ -8080,7 +8205,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "mc80"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/mon_calamari_exodus_fleet",
@@ -8098,7 +8224,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/mon-calamari-exodus-fleet.webp",
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "mc80"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/mon_karren",
@@ -8116,7 +8243,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/mon-karren.webp",
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "mc80"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/paragon",
@@ -8134,7 +8262,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "frigate"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/phoenix_home",
@@ -8152,7 +8281,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/phoenix-home.webp",
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "pelta"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/profundity",
@@ -8170,7 +8300,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "mc75"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/pursuant",
@@ -8188,7 +8319,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "quasar"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/quantum_storm",
@@ -8206,7 +8338,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/quantum-storm.webp",
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "gr75"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/rakehell",
@@ -8224,7 +8357,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "onager"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/ravager",
@@ -8242,7 +8376,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "executor"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/redemption",
@@ -8260,7 +8395,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "nebulon frigate"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/relentless",
@@ -8278,7 +8414,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "imperial destroyer"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/salvation",
@@ -8296,7 +8433,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "nebulon frigate"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/seventh_fleet_star_destroyer",
@@ -8314,7 +8452,8 @@
    "unique": false,
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/seventh-fleet-star-destroyer.webp",
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "super star destroyer"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/sovereign",
@@ -8332,7 +8471,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "imperial destroyer"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/squall",
@@ -8350,7 +8490,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "quasar"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/stronghold",
@@ -8368,7 +8509,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "quasar"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/sunder",
@@ -8386,7 +8528,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "onager"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/suppressor",
@@ -8404,7 +8547,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "gozanti"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/tantive_iv",
@@ -8422,7 +8566,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/tantive-iv.webp",
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "cr90"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/task_force_antilles",
@@ -8440,7 +8585,8 @@
    "unique": false,
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/task-force-antilles.webp",
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "hammerhead"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/task_force_organa",
@@ -8458,7 +8604,8 @@
    "unique": false,
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/task-force-organa.webp",
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "hammerhead"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/unity",
@@ -8476,7 +8623,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "starhawk"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/vanguard",
@@ -8494,7 +8642,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "nebulon frigate"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/vector",
@@ -8512,7 +8661,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "gozanti"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/warlord",
@@ -8530,7 +8680,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "victory"
   },
   {
    "id": "armada_v15:data/upgrade-card/title/yavaris",
@@ -8548,7 +8699,8 @@
    "unique": true,
    "imageUrl": null,
    "imageAssetPath": null,
-   "rulesText": null
+   "rulesText": null,
+   "linkedUnit": "nebulon frigate"
   },
   {
    "id": "armada_v15:data/upgrade-card/turbolasers/dual_turbolaser_turrets",
@@ -18391,7 +18543,8 @@
     "TURBOLASERS",
     "WEAPONS_TEAM",
     "OFFICER",
-    "ORDNANCE"
+    "ORDNANCE",
+    "TITLE"
    ],
    "commander": false,
    "unique": false,
@@ -18414,7 +18567,8 @@
     "WEAPONS_TEAM",
     "DEFENSIVE_RETROFIT",
     "OFFICER",
-    "ORDNANCE"
+    "ORDNANCE",
+    "TITLE"
    ],
    "commander": false,
    "unique": false,
@@ -18572,7 +18726,8 @@
     "OFFENSIVE_RETROFIT",
     "TURBOLASERS",
     "SUPPORT_TEAM",
-    "OFFICER"
+    "OFFICER",
+    "TITLE"
    ],
    "commander": false,
    "unique": false,
@@ -18594,7 +18749,8 @@
     "SUPPORT_TEAM",
     "DEFENSIVE_RETROFIT",
     "OFFICER",
-    "ORDNANCE"
+    "ORDNANCE",
+    "TITLE"
    ],
    "commander": false,
    "unique": false,
@@ -18618,7 +18774,8 @@
     "WEAPONS_TEAM",
     "OFFICER",
     "FLEET_COMMAND",
-    "ORDNANCE"
+    "ORDNANCE",
+    "TITLE"
    ],
    "commander": false,
    "unique": false,
@@ -18642,7 +18799,8 @@
     "WEAPONS_TEAM",
     "DEFENSIVE_RETROFIT",
     "OFFICER",
-    "ORDNANCE"
+    "ORDNANCE",
+    "TITLE"
    ],
    "commander": false,
    "unique": false,
@@ -18664,7 +18822,8 @@
     "OFFENSIVE_RETROFIT",
     "SUPPORT_TEAM",
     "OFFICER",
-    "FLEET_SUPPORT"
+    "FLEET_SUPPORT",
+    "TITLE"
    ],
    "commander": false,
    "unique": false,
@@ -18686,7 +18845,8 @@
     "SUPPORT_TEAM",
     "DEFENSIVE_RETROFIT",
     "OFFICER",
-    "FLEET_SUPPORT"
+    "FLEET_SUPPORT",
+    "TITLE"
    ],
    "commander": false,
    "unique": false,
@@ -18709,7 +18869,8 @@
     "WEAPONS_TEAM",
     "SUPPORT_TEAM",
     "OFFICER",
-    "ORDNANCE"
+    "ORDNANCE",
+    "TITLE"
    ],
    "commander": false,
    "unique": false,
@@ -18783,7 +18944,8 @@
     "TURBOLASERS",
     "SUPPORT_TEAM",
     "OFFICER",
-    "ION_CANNONS"
+    "ION_CANNONS",
+    "TITLE"
    ],
    "commander": false,
    "unique": false,
@@ -18806,7 +18968,8 @@
     "SUPPORT_TEAM",
     "DEFENSIVE_RETROFIT",
     "OFFICER",
-    "ION_CANNONS"
+    "ION_CANNONS",
+    "TITLE"
    ],
    "commander": false,
    "unique": false,
@@ -18980,7 +19143,8 @@
    "allowedUpgradeSlots": [
     "SUPPORT_TEAM",
     "OFFICER",
-    "FLEET_SUPPORT"
+    "FLEET_SUPPORT",
+    "TITLE"
    ],
    "commander": false,
    "unique": false,
@@ -19002,7 +19166,8 @@
     "OFFENSIVE_RETROFIT",
     "TURBOLASERS",
     "DEFENSIVE_RETROFIT",
-    "OFFICER"
+    "OFFICER",
+    "TITLE"
    ],
    "commander": false,
    "unique": false,
@@ -19025,7 +19190,8 @@
     "TURBOLASERS",
     "WEAPONS_TEAM",
     "OFFICER",
-    "ORDNANCE"
+    "ORDNANCE",
+    "TITLE"
    ],
    "commander": false,
    "unique": false,
@@ -19047,7 +19213,8 @@
     "OFFENSIVE_RETROFIT",
     "TURBOLASERS",
     "WEAPONS_TEAM",
-    "OFFICER"
+    "OFFICER",
+    "TITLE"
    ],
    "commander": false,
    "unique": false,
@@ -19071,7 +19238,8 @@
     "WEAPONS_TEAM",
     "OFFICER",
     "ION_CANNONS",
-    "ORDNANCE"
+    "ORDNANCE",
+    "TITLE"
    ],
    "commander": false,
    "unique": false,
@@ -19096,7 +19264,8 @@
     "OFFICER",
     "FLEET_COMMAND",
     "ION_CANNONS",
-    "ORDNANCE"
+    "ORDNANCE",
+    "TITLE"
    ],
    "commander": false,
    "unique": false,
@@ -19117,7 +19286,8 @@
    "allowedUpgradeSlots": [
     "WEAPONS_TEAM",
     "OFFICER",
-    "ION_CANNONS"
+    "ION_CANNONS",
+    "TITLE"
    ],
    "commander": false,
    "unique": false,

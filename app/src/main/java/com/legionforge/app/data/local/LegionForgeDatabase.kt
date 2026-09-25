@@ -34,7 +34,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
         BuilderListEntity::class,
         BuilderEntryEntity::class
     ],
-    version = 6,
+    version = 7,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -53,7 +53,7 @@ abstract class LegionForgeDatabase : RoomDatabase() {
                     context.applicationContext,
                     LegionForgeDatabase::class.java,
                     "legionforge.db"
-                ).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_5_6).fallbackToDestructiveMigration().build().also { INSTANCE = it }
+                ).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_5_6, MIGRATION_6_7).fallbackToDestructiveMigration().build().also { INSTANCE = it }
             }
         }
 
@@ -65,6 +65,11 @@ abstract class LegionForgeDatabase : RoomDatabase() {
         private val MIGRATION_5_6 = object : Migration(5, 6) {
             override fun migrate(db: SupportSQLiteDatabase) {
                 db.execSQL("ALTER TABLE catalog_cards ADD COLUMN shipStats TEXT DEFAULT NULL")
+            }
+        }
+        private val MIGRATION_6_7 = object : Migration(6, 7) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE catalog_cards ADD COLUMN linkedUnit TEXT DEFAULT NULL")
             }
         }
         private val MIGRATION_2_3 = object : Migration(2, 3) {
