@@ -7,6 +7,7 @@ import com.legionforge.app.data.model.*
 import com.legionforge.app.data.repository.BuilderRepository
 import com.legionforge.app.domain.*
 import com.legionforge.app.util.CrashReporter
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -73,7 +74,7 @@ class ArmyBuilderViewModel(application: Application) : AndroidViewModel(applicat
     private fun reportSeedState() {
         if (seedReported) return
         seedReported = true
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val diag = try { repository.catalogDiagnostics() } catch (e: Exception) { "diag-error:${e.message}" }
             CrashReporter.reportEvent(
                 "Seed report: ${getVersionName()}",
@@ -85,7 +86,7 @@ class ArmyBuilderViewModel(application: Application) : AndroidViewModel(applicat
 
     private fun reportIfEmpty(system: GameSystem, cards: List<CardDefinition>) {
         if (cards.isEmpty() && !_loading.value && _catalogError.value == null) {
-            viewModelScope.launch {
+            viewModelScope.launch(Dispatchers.IO) {
                 val diag = try { repository.catalogDiagnostics() } catch (e: Exception) { "diag-error:${e.message}" }
                 CrashReporter.reportEvent(
                     "Catalogue vide: ${system.name}",

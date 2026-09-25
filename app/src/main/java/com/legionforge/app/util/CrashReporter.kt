@@ -35,7 +35,10 @@ object CrashReporter {
      * Déduplique : si le titre identique a déjà été créé, on l'ignore.
      */
     fun reportEvent(title: String, body: String) {
-        synchronized(eventLock) {
+        // Le POST réseau est exécuté sur un thread de fond dédié : reportEvent(x) peut
+        // être appelé depuis le main thread UI, et un HttpURLConnection bloquant dessus
+        // lèverait NetworkOnMainThreadException. On ne bloque jamais l'UI.
+        Thread {
             try {
                 val cleanTitle = title.take(80)
                 // Recherche d'un issue existant avec le même title (ouvrir seulement, max 5)
@@ -47,7 +50,7 @@ object CrashReporter {
                     val bodySearch = searchConn.inputStream.bufferedReader().use { it.readText() }
                     if (bodySearch.contains("\"total_count\":") && regexTotalCount(bodySearch) > 0) {
                         android.util.Log.i("CrashReporter", "issue déjà ouverte pour: $cleanTitle")
-                        return@synchronized
+                        return@Thread
                     }
                 }
 
@@ -61,16 +64,16 @@ object CrashReporter {
                 conn.setRequestProperty("Authorization", "Bearer ${BuildConfig.GITHUB_TOKEN}")
                 conn.doOutput = true
                 conn.connectTimeout = 7000
+                conn.readTimeout = 7000
                 conn.outputStream.write(jsonPayload.toByteArray())
                 val code = conn.responseCode
                 android.util.Log.i("CrashReporter", "rapport $cleanTitle posted code=$code")
             } catch (t: Throwable) {
                 android.util.Log.w("CrashReporter", "impossible d'envoyer", t)
             }
-        }
+        }.start()
     }
 
-    private val eventLock = Object()
     private fun regexTotalCount(s: String): Int =
         Regex("\"total_count\":(\\d+)").find(s)?.groupValues?.get(1)?.toIntOrNull() ?: 0
     private fun urlencode(s: String): String =
