@@ -1,6 +1,7 @@
 package com.legionforge.app.util
 
 import android.content.Context
+import com.legionforge.app.BuildConfig
 import java.io.StringWriter
 import java.io.PrintWriter
 import java.net.HttpURLConnection
@@ -57,10 +58,12 @@ object CrashReporter {
                 conn.setRequestProperty("Content-Type", "application/json")
                 conn.setRequestProperty("User-Agent", "LegionForge")
                 conn.setRequestProperty("Accept", "application/vnd.github+json")
+                conn.setRequestProperty("Authorization", "Bearer ${BuildConfig.GITHUB_TOKEN}")
                 conn.doOutput = true
                 conn.connectTimeout = 7000
                 conn.outputStream.write(jsonPayload.toByteArray())
-                android.util.Log.i("CrashReporter", "rapport $cleanTitle posted code=${conn.responseCode}")
+                val code = conn.responseCode
+                android.util.Log.i("CrashReporter", "rapport $cleanTitle posted code=$code")
             } catch (t: Throwable) {
                 android.util.Log.w("CrashReporter", "impossible d'envoyer", t)
             }

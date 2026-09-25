@@ -4,6 +4,8 @@ plugins {
     id("com.google.devtools.ksp")
 }
 
+import java.util.Properties
+
 android {
     namespace = "com.legionforge.app"
     compileSdk = 34
@@ -14,6 +16,14 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "0.1.0"
+
+        // Token fin-grained GitHub (issues:write, repo legion-forge-ci seul). Fichier gitignore (app/github_token.properties), absent du VCS.
+        val ghTokenProp = Properties().apply {
+            val f = file("github_token.properties")
+            if (f.exists()) load(f.inputStream())
+        }
+        val ghToken = ghTokenProp.getProperty("legionforge_github_token") ?: ""
+        buildConfigField("String", "GITHUB_TOKEN", "\"${ghToken.replace("\"", "\\\"")}\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -36,6 +46,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     composeOptions {

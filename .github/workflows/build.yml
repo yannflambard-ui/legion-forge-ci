@@ -10,6 +10,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,6 +30,12 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+
+      # Inject the workflow's GITHUB_TOKEN (issues:write) into BuildConfig.GITHUB_TOKEN.
+      # The file is gitignored so it never reaches VCS; the token is scoped to this repo only.
+      - name: Inject GitHub token
+        run: |
+          printf 'legionforge_github_token=%s\n' "$GITHUB_TOKEN" > app/github_token.properties
 
       - name: Build debug APK
         run: ./gradlew assembleDebug --no-daemon

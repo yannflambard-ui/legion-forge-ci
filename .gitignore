@@ -14,3 +14,4 @@ local.properties
 *.keystore
 __pycache__/
 *.pyc
+app/github_token.properties
