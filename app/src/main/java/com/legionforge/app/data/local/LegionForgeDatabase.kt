@@ -34,7 +34,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
         BuilderListEntity::class,
         BuilderEntryEntity::class
     ],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -53,10 +53,15 @@ abstract class LegionForgeDatabase : RoomDatabase() {
                     context.applicationContext,
                     LegionForgeDatabase::class.java,
                     "legionforge.db"
-                ).addMigrations(MIGRATION_1_2, MIGRATION_2_3).build().also { INSTANCE = it }
+                ).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4).fallbackToDestructiveMigration().build().also { INSTANCE = it }
             }
         }
 
+        private val MIGRATION_3_4 = object : Migration(3, 4) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE catalog_cards ADD COLUMN names TEXT DEFAULT NULL")
+            }
+        }
         private val MIGRATION_2_3 = object : Migration(2, 3) {
             override fun migrate(db: SupportSQLiteDatabase) {
                 db.execSQL("ALTER TABLE builder_entries ADD COLUMN chosenSlot TEXT DEFAULT NULL")
@@ -65,7 +70,7 @@ abstract class LegionForgeDatabase : RoomDatabase() {
 
         private val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(db: SupportSQLiteDatabase) {
-                db.execSQL("CREATE TABLE IF NOT EXISTS catalog_cards (id TEXT NOT NULL PRIMARY KEY, gameSystem TEXT NOT NULL, kind TEXT NOT NULL, name TEXT NOT NULL, points INTEGER NOT NULL, factionId TEXT NOT NULL, legionRank TEXT, upgradeSlots TEXT NOT NULL, allowedUpgradeSlots TEXT NOT NULL, commander INTEGER NOT NULL, `unique` INTEGER NOT NULL, imageUrl TEXT, imageAssetPath TEXT, rulesText TEXT)")
+                db.execSQL("CREATE TABLE IF NOT EXISTS catalog_cards (id TEXT NOT NULL PRIMARY KEY, gameSystem TEXT NOT NULL, kind TEXT NOT NULL, name TEXT NOT NULL, points INTEGER NOT NULL, factionId TEXT NOT NULL, legionRank TEXT, upgradeSlots TEXT NOT NULL, allowedUpgradeSlots TEXT NOT NULL, commander INTEGER NOT NULL, `unique` INTEGER NOT NULL, imageUrl TEXT, imageAssetPath TEXT, rulesText TEXT, names TEXT DEFAULT NULL)")
                 db.execSQL("CREATE INDEX IF NOT EXISTS index_catalog_cards_gameSystem ON catalog_cards(gameSystem)")
                 db.execSQL("CREATE INDEX IF NOT EXISTS index_catalog_cards_factionId ON catalog_cards(factionId)")
                 db.execSQL("CREATE TABLE IF NOT EXISTS builder_lists (id TEXT NOT NULL PRIMARY KEY, name TEXT NOT NULL, gameSystem TEXT NOT NULL, factionId TEXT NOT NULL, pointsLimit INTEGER NOT NULL, updatedAt INTEGER NOT NULL)")

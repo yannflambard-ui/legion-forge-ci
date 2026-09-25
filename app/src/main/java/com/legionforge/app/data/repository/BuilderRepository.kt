@@ -24,12 +24,16 @@ class BuilderRepository(context: Context) {
     fun observeLists(): Flow<List<BuilderListEntity>> = dao.observeLists()
 
     suspend fun seedCatalog(context: Context) = withContext(Dispatchers.IO) {
-        val existing = dao.cardCount()
-        if (existing >= 400) return@withContext
-        val document = context.assets.open("catalog.json").bufferedReader().use {
-            gson.fromJson(it, CatalogDocument::class.java)
-        } ?: return@withContext
-        dao.upsertCards(document.cards.map(CatalogCardEntity::from))
+        try {
+            val existing = dao.cardCount()
+            if (existing >= 400) return@withContext
+            val document = context.assets.open("catalog.json").bufferedReader().use {
+                gson.fromJson(it, CatalogDocument::class.java)
+            } ?: return@withContext
+            dao.upsertCards(document.cards.map(CatalogCardEntity::from))
+        } catch (e: Exception) {
+            android.util.Log.e("BuilderRepo", "Catalog seed failed", e)
+        }
     }
 
     suspend fun createList(name: String, system: GameSystem, factionId: String, limit: Int): BuilderListEntity {
