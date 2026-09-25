@@ -27,10 +27,15 @@ class BuilderRepository(context: Context) {
         try {
             val existing = dao.cardCount()
             if (existing >= 400) return@withContext
+            // Read and parse JSON once
             val document = context.assets.open("catalog.json").bufferedReader().use {
                 gson.fromJson(it, CatalogDocument::class.java)
             } ?: return@withContext
-            dao.upsertCards(document.cards.map(CatalogCardEntity::from))
+            // Batch insert in chunks of 200 for speed
+            val entities = document.cards.map(CatalogCardEntity::from)
+            entities.chunked(200).forEach { chunk ->
+                dao.upsertCards(chunk)
+            }
         } catch (e: Exception) {
             android.util.Log.e("BuilderRepo", "Catalog seed failed", e)
         }

@@ -20,6 +20,8 @@ class ArmyBuilderViewModel(application: Application) : AndroidViewModel(applicat
     val cards: StateFlow<List<CardDefinition>> = _cards.asStateFlow()
     private val _allLists = MutableStateFlow<List<BuilderListEntity>>(emptyList())
     val allLists: StateFlow<List<BuilderListEntity>> = _allLists.asStateFlow()
+    private val _loading = MutableStateFlow(true)
+    val loading: StateFlow<Boolean> = _loading.asStateFlow()
     private val _currentList = MutableStateFlow<BuilderListEntity?>(null)
     val currentList: StateFlow<BuilderListEntity?> = _currentList.asStateFlow()
     private val _entries = MutableStateFlow<List<ListEntry>>(emptyList())
@@ -31,7 +33,10 @@ class ArmyBuilderViewModel(application: Application) : AndroidViewModel(applicat
     private var seedJob: kotlinx.coroutines.Job? = null
 
     init {
-        seedJob = viewModelScope.launch { repository.seedCatalog(getApplication()) }
+        seedJob = viewModelScope.launch {
+            repository.seedCatalog(getApplication())
+            _loading.value = false
+        }
         viewModelScope.launch { repository.observeLists().collect { _allLists.value = it } }
     }
 

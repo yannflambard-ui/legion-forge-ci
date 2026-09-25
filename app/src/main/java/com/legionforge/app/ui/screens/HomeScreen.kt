@@ -35,6 +35,7 @@ import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
 @Composable
 fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, onSettings: () -> Unit, vm: ArmyBuilderViewModel = viewModel()) {
     val lists by vm.allLists.collectAsState()
+    val loading by vm.loading.collectAsState()
     Scaffold(topBar = {
         TopAppBar(title = { Text("LEGION FORGE", style = MaterialTheme.typography.titleLarge) },
             actions = {
@@ -50,6 +51,12 @@ fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, on
             GameTile("ARMADA", "Flottes • règles V1.5 • commandez la galaxie", "02", onClick = { onNewList(GameSystem.ARMADA_V15) })
             Text("LISTES RÉCENTES", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge)
             if (lists.isEmpty()) Text("Vos compositions sauvegardées apparaîtront ici, hors ligne.", color = Color.LightGray)
+            if (loading) {
+                Spacer(Modifier.height(40.dp))
+                LinearProgressIndicator(modifier = Modifier.fillMaxWidth().padding(horizontal = 40.dp), color = Color(0xFFFFC857))
+                Spacer(Modifier.height(8.dp))
+                Text("Chargement du catalogue hors ligne…", color = Color(0xFF9EACBC), style = MaterialTheme.typography.bodySmall, modifier = Modifier.align(Alignment.CenterHorizontally))
+            }
             lists.forEach { list ->
                 OutlinedButton(onClick = { onOpenList(list.id) }, modifier = Modifier.fillMaxWidth()) {
                     Column(Modifier.fillMaxWidth()) {
