@@ -2646,7 +2646,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/arquitens-class-command-cruiser.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":5,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":5,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Evade\",\"Brace\",\"Brace\",\"Contain\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/arquitens-class-light-cruiser",
@@ -2669,7 +2669,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/arquitens-class-light-cruiser.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":5,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":5,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Evade\",\"Brace\",\"Brace\",\"Contain\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/executor-i-class-star-dreadnought",
@@ -2701,7 +2701,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/executor-i-class-star-dreadnought.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":33,\"shield\":{\"front\":6,\"right\":5,\"left\":5,\"rear\":3},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":33,\"shield\":{\"front\":6,\"right\":5,\"left\":5,\"rear\":3},\"maxSpeed\":2,\"defenseTokens\":[\"Brace\",\"Brace\",\"Redirect\",\"Redirect\",\"Contain\",\"Contain\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/executor-ii-class-star-dreadnought",
@@ -2733,7 +2733,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/executor-ii-class-star-dreadnought.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":33,\"shield\":{\"front\":6,\"right\":5,\"left\":5,\"rear\":3},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":33,\"shield\":{\"front\":6,\"right\":5,\"left\":5,\"rear\":3},\"maxSpeed\":2,\"defenseTokens\":[\"Brace\",\"Brace\",\"Redirect\",\"Redirect\",\"Contain\",\"Contain\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/gladiator-i-class-star-destroyer",
@@ -2757,7 +2757,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/gladiator-i-class-star-destroyer.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":3,\"defenseTokens\":[\"Evade\",\"Brace\",\"Redirect\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/gladiator-ii-class-star-destroyer",
@@ -2781,7 +2781,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/gladiator-ii-class-star-destroyer.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":3,\"defenseTokens\":[\"Evade\",\"Brace\",\"Redirect\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/gozanti-class-assault-carriers",
@@ -2804,7 +2804,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/gozanti-class-assault-carriers.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":3,\"shield\":{\"front\":1,\"right\":1,\"left\":1,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":3,\"shield\":{\"front\":1,\"right\":1,\"left\":1,\"rear\":1},\"maxSpeed\":3,\"defenseTokens\":[\"Scatter\",\"Evade\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/gozanti-class-cruisers",
@@ -2827,7 +2827,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/gozanti-class-cruisers.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":3,\"shield\":{\"front\":1,\"right\":1,\"left\":1,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":3,\"shield\":{\"front\":1,\"right\":1,\"left\":1,\"rear\":1},\"maxSpeed\":3,\"defenseTokens\":[\"Scatter\",\"Evade\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/imperial-i-class-star-destroyer",
@@ -2853,7 +2853,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/imperial-i-class-star-destroyer.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":11,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":11,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Redirect\",\"Contain\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/imperial-ii-class-star-destroyer",
@@ -2879,7 +2879,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/imperial-ii-class-star-destroyer.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":11,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":11,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Redirect\",\"Contain\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/imperial-star-destroyer-cymoon-1-refit",
@@ -2905,7 +2905,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/imperial-star-destroyer-cymoon-1-refit.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":11,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":11,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Redirect\",\"Contain\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/imperial-star-destroyer-kuat-refit",
@@ -2931,7 +2931,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/imperial-star-destroyer-kuat-refit.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":11,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":11,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Redirect\",\"Contain\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/interdictor-combat-refit",
@@ -2956,7 +2956,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/interdictor-combat-refit.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":9,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":9,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":2,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Contain\",\"Contain\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/interdictor-suppression-refit",
@@ -2982,7 +2982,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/interdictor-suppression-refit.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":9,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":9,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":2,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Contain\",\"Contain\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/onager-class-star-destroyer",
@@ -3007,7 +3007,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/onager-class-star-destroyer.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":10,\"shield\":{\"front\":5,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":10,\"shield\":{\"front\":5,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":3,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Salvo\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/onager-class-testbed",
@@ -3032,7 +3032,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/onager-class-testbed.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":10,\"shield\":{\"front\":5,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":10,\"shield\":{\"front\":5,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":3,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Salvo\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/quasar-fire-i-class-cruiser-carrier",
@@ -3056,7 +3056,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/quasar-fire-i-class-cruiser-carrier.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":6,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":6,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":3,\"defenseTokens\":[\"Brace\",\"Redirect\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/quasar-fire-ii-class-cruiser-carrier",
@@ -3080,7 +3080,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/quasar-fire-ii-class-cruiser-carrier.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":6,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":6,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":3,\"defenseTokens\":[\"Brace\",\"Redirect\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/raider-i-class-corvette",
@@ -3104,7 +3104,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/raider-i-class-corvette.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":4,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":4,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":4,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":4,\"defenseTokens\":[\"Evade\",\"Evade\",\"Brace\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/raider-ii-class-corvette",
@@ -3128,7 +3128,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/raider-ii-class-corvette.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":4,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":4,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":4,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":4,\"defenseTokens\":[\"Evade\",\"Evade\",\"Brace\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/star-dreadnought-assault-prototype",
@@ -3158,7 +3158,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/star-dreadnought-assault-prototype.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":22,\"shield\":{\"front\":6,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":22,\"shield\":{\"front\":6,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":2,\"defenseTokens\":[\"Brace\",\"Brace\",\"Redirect\",\"Redirect\",\"Contain\",\"Contain\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/star-dreadnought-command-prototype",
@@ -3187,7 +3187,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/star-dreadnought-command-prototype.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":22,\"shield\":{\"front\":6,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":22,\"shield\":{\"front\":6,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":2,\"defenseTokens\":[\"Brace\",\"Brace\",\"Redirect\",\"Redirect\",\"Contain\",\"Contain\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/victory-i-class-star-destroyer",
@@ -3212,7 +3212,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/victory-i-class-star-destroyer.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":8,\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":1},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":8,\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":1},\"maxSpeed\":2,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Redirect\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/galactic-empire/victory-ii-class-star-destroyer",
@@ -3237,7 +3237,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/victory-ii-class-star-destroyer.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":8,\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":1},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":8,\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":1},\"maxSpeed\":2,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Redirect\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/assault-frigate-mark-ii-a",
@@ -3262,7 +3262,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/assault-frigate-mark-ii-a.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":6,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":6,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Evade\",\"Brace\",\"Redirect\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/assault-frigate-mark-ii-b",
@@ -3287,7 +3287,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/assault-frigate-mark-ii-b.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":6,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":6,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Evade\",\"Brace\",\"Redirect\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/cr90-corvette-a",
@@ -3311,7 +3311,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/cr90-corvette-a.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":4,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":4,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":4,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":4,\"defenseTokens\":[\"Evade\",\"Evade\",\"Redirect\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/cr90-corvette-b",
@@ -3335,7 +3335,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/cr90-corvette-b.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":4,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":4,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":4,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":4,\"defenseTokens\":[\"Evade\",\"Evade\",\"Redirect\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/gr-75-combat-retrofits",
@@ -3358,7 +3358,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/gr-75-combat-retrofits.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":3,\"shield\":{\"front\":1,\"right\":1,\"left\":1,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":3,\"shield\":{\"front\":1,\"right\":1,\"left\":1,\"rear\":1},\"maxSpeed\":3,\"defenseTokens\":[\"Scatter\",\"Evade\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/gr-75-medium-transports",
@@ -3381,7 +3381,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/gr-75-medium-transports.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":3,\"shield\":{\"front\":1,\"right\":1,\"left\":1,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":3,\"shield\":{\"front\":1,\"right\":1,\"left\":1,\"rear\":1},\"maxSpeed\":3,\"defenseTokens\":[\"Scatter\",\"Evade\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/hammerhead-scout-corvette",
@@ -3405,7 +3405,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/hammerhead-scout-corvette.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":5,\"shield\":{\"front\":2,\"right\":1,\"left\":1,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":5,\"shield\":{\"front\":2,\"right\":1,\"left\":1,\"rear\":1},\"maxSpeed\":3,\"defenseTokens\":[\"Evade\",\"Redirect\",\"Contain\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/hammerhead-torpedo-corvette",
@@ -3429,7 +3429,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/hammerhead-torpedo-corvette.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":5,\"shield\":{\"front\":2,\"right\":1,\"left\":1,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":5,\"shield\":{\"front\":2,\"right\":1,\"left\":1,\"rear\":1},\"maxSpeed\":3,\"defenseTokens\":[\"Evade\",\"Redirect\",\"Contain\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/mc30c-scout-frigate",
@@ -3454,7 +3454,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/mc30c-scout-frigate.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":4,\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":4,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":4,\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":4,\"defenseTokens\":[\"Evade\",\"Evade\",\"Redirect\",\"Redirect\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/mc30c-torpedo-frigate",
@@ -3479,7 +3479,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/mc30c-torpedo-frigate.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":4,\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":4,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":4,\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":4,\"defenseTokens\":[\"Evade\",\"Evade\",\"Redirect\",\"Redirect\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/mc75-armored-cruiser",
@@ -3506,7 +3506,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/mc75-armored-cruiser.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":9,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":3},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":9,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":3},\"maxSpeed\":3,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Contain\",\"Contain\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/mc75-ordnance-cruiser",
@@ -3532,7 +3532,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/mc75-ordnance-cruiser.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":9,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":3},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":9,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":3},\"maxSpeed\":3,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Contain\",\"Contain\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/mc80-assault-cruiser",
@@ -3558,7 +3558,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/mc80-assault-cruiser.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":8,\"shield\":{\"front\":4,\"right\":4,\"left\":4,\"rear\":3},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":8,\"shield\":{\"front\":4,\"right\":4,\"left\":4,\"rear\":3},\"maxSpeed\":2,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Redirect\",\"Contain\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/mc80-battle-cruiser",
@@ -3584,7 +3584,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/mc80-battle-cruiser.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":8,\"shield\":{\"front\":5,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":8,\"shield\":{\"front\":5,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Brace\",\"Brace\",\"Redirect\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/mc80-command-cruiser",
@@ -3610,7 +3610,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/mc80-command-cruiser.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":8,\"shield\":{\"front\":4,\"right\":4,\"left\":4,\"rear\":3},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":8,\"shield\":{\"front\":4,\"right\":4,\"left\":4,\"rear\":3},\"maxSpeed\":2,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Redirect\",\"Contain\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/mc80-star-cruiser",
@@ -3636,7 +3636,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/mc80-star-cruiser.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":8,\"shield\":{\"front\":5,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":8,\"shield\":{\"front\":5,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Brace\",\"Brace\",\"Redirect\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/modified-pelta-class-assault-ship",
@@ -3660,7 +3660,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/modified-pelta-class-assault-ship.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":2,\"defenseTokens\":[\"Evade\",\"Brace\",\"Redirect\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/modified-pelta-class-command-ship",
@@ -3684,7 +3684,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/modified-pelta-class-command-ship.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":2,\"defenseTokens\":[\"Evade\",\"Brace\",\"Redirect\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/nebulon-b-escort-frigate",
@@ -3707,7 +3707,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/nebulon-b-escort-frigate.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":1,\"left\":1,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":1,\"left\":1,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Evade\",\"Brace\",\"Brace\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/nebulon-b-support-refit",
@@ -3730,7 +3730,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/nebulon-b-support-refit.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":1,\"left\":1,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":1,\"left\":1,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Evade\",\"Brace\",\"Brace\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/starhawk-class-battleship-mark-i",
@@ -3757,7 +3757,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/starhawk-class-battleship-mark-i.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":14,\"shield\":{\"front\":6,\"right\":4,\"left\":4,\"rear\":2},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":14,\"shield\":{\"front\":6,\"right\":4,\"left\":4,\"rear\":2},\"maxSpeed\":2,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Contain\",\"Salvo\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:ship-card/rebel-alliance/starhawk-class-battleship-mark-ii",
@@ -3784,7 +3784,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/starhawk-class-battleship-mark-ii.webp",
    "rulesText": null,
-   "shipStats": "{\"hull\":14,\"shield\":{\"front\":6,\"right\":4,\"left\":4,\"rear\":2},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":14,\"shield\":{\"front\":6,\"right\":4,\"left\":4,\"rear\":2},\"maxSpeed\":2,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Contain\",\"Salvo\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/aggressor-assault-fighter",
@@ -18551,7 +18551,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/acclamator-i-class-assault-ship.webp",
    "rulesText": "{\"hull\":7,\"squadron-attack\":[0,0,2],\"command\":3,\"squadron\":3,\"engineering\":4,\"attack\":{\"front\":[3,0,2],\"right\":[2,0,1],\"left\":[2,0,1],\"rear\":[1,0,1]},\"shield\":{\"front\":4,\"right\":2,\"left\":2,\"rear\":2},\"defense-tokens\":[\"Brace\",\"Redirect\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"|\":\"|\"}},{\"position\":2,\"values\":{\"3\":\"-\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"2\":\"-\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"1\":\"1\",\"2\":\"1\",\"3\":\"-\",\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Clone.  Transport.\",\"upgrade-bar\":[\"Officer\",\"Weapons Team\",\"Offensive Retrofit\",\"Offensive Retrofit\",\"Ordnance\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
-   "shipStats": "{\"hull\":7,\"shield\":{\"front\":4,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":7,\"shield\":{\"front\":4,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Salvo\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:abd6-da81-1e67-43d6",
@@ -18575,7 +18575,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/acclamator-ii-class-assault-ship.webp",
    "rulesText": "{\"hull\":7,\"squadron-attack\":[0,1,1],\"command\":3,\"squadron\":3,\"engineering\":4,\"attack\":{\"front\":[3,1,2],\"right\":[2,0,1],\"left\":[2,0,1],\"rear\":[1,1,0]},\"shield\":{\"front\":4,\"right\":2,\"left\":2,\"rear\":2},\"defense-tokens\":[\"Brace\",\"Redirect\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"1\",\"2\":\"1\",\"3\":\"-\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"-\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"-\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Clone.  Bombard.  Transport.\",\"upgrade-bar\":[\"Officer\",\"Weapons Team\",\"Defensive Retrofit\",\"Ordnance\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
-   "shipStats": "{\"hull\":7,\"shield\":{\"front\":4,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":7,\"shield\":{\"front\":4,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Salvo\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:7298-1e72-1686-68e3",
@@ -18643,7 +18643,7 @@
    "imageUrl": null,
    "imageAssetPath": null,
    "rulesText": "{\"profileType\":\"1.4 Squadrons\",\"characteristics\":{\"Speed\":\"3\",\"Hull Value\":\"6\",\"Anti-Squadron\":\"3 Blue\",\"Battery\":\"1 Red, 1 Blue\",\"Keywords\":\"Adept 2.  Bomber.  Heavy.\",\"Defense Tokens\":\"Brace, Brace\",\"Squadron Ability\":\"During your activation, you may spend 1 defense token to ignore engagement until the end of your activation.\"}}",
-   "shipStats": "{\"hull\":6,\"speed\":3,\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:70a5-2bd9-45b2-6e39",
@@ -18734,7 +18734,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/consular-class-charger-c70.webp",
    "rulesText": "{\"hull\":4,\"squadron-attack\":[0,0,1],\"command\":1,\"squadron\":1,\"engineering\":2,\"attack\":{\"front\":[2,1,0],\"right\":[2,0,0],\"left\":[2,0,0],\"rear\":[1,1,0]},\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"defense-tokens\":[\"Evade\",\"Redirect\",\"Contain\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"2\",\"2\":\"2\",\"3\":\"1\",\"4\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"1\",\"4\":\"-\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"1\",\"4\":\"1\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"4\":\"1\",\"|\":\"|\"}}],\"max-speed\":4,\"keywords\":\"Clone.\",\"upgrade-bar\":[\"Officer\",\"Support Team\",\"Offensive Retrofit\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
-   "shipStats": "{\"hull\":4,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":4,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":4,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":4,\"defenseTokens\":[\"Evade\",\"Redirect\",\"Contain\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:4eaa-a922-354c-6fdc",
@@ -18757,7 +18757,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/consular-class-armed-cruiser.webp",
    "rulesText": "{\"hull\":4,\"squadron-attack\":[0,2,0],\"command\":1,\"squadron\":1,\"engineering\":2,\"attack\":{\"front\":[0,2,1],\"right\":[0,1,1],\"left\":[0,1,1],\"rear\":[0,1,0]},\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"defense-tokens\":[\"Evade\",\"Redirect\",\"Contain\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"2\",\"2\":\"2\",\"3\":\"1\",\"4\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"1\",\"4\":\"-\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"1\",\"4\":\"1\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"4\":\"1\",\"|\":\"|\"}}],\"max-speed\":4,\"keywords\":\"Senate.  Comms.\",\"upgrade-bar\":[\"Officer\",\"Support Team\",\"Defensive Retrofit\",\"Ordnance\"],\"profile-type\":\"1.1 Ships\"}",
-   "shipStats": "{\"hull\":4,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":4,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":4,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":4,\"defenseTokens\":[\"Evade\",\"Redirect\",\"Contain\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:be24-c216-6f4f-6299",
@@ -18782,7 +18782,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/venator-i-class-star-destroyer.webp",
    "rulesText": "{\"hull\":9,\"squadron-attack\":[0,2,0],\"command\":3,\"squadron\":3,\"engineering\":4,\"attack\":{\"front\":[3,0,3],\"right\":[1,1,2],\"left\":[1,1,2],\"rear\":[1,1,1]},\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"defense-tokens\":[\"Brace\",\"Redirect\",\"Contain\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"1\",\"2\":\"1\",\"3\":\"-\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"-\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Clone.  Jedi.  Comms.\",\"upgrade-bar\":[\"Officer\",\"Weapons Team\",\"Fleet Command\",\"Offensive Retrofit\",\"Ordnance\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
-   "shipStats": "{\"hull\":9,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":9,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Contain\",\"Salvo\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:3240-fd8a-04a3-ce98",
@@ -18807,7 +18807,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/venator-ii-class-star-destroyer.webp",
    "rulesText": "{\"hull\":9,\"squadron-attack\":[0,0,0],\"command\":3,\"squadron\":5,\"engineering\":4,\"attack\":{\"front\":[2,2,2],\"right\":[2,2,0],\"left\":[2,2,0],\"rear\":[1,1,1]},\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"defense-tokens\":[\"Brace\",\"Redirect\",\"Contain\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"1\",\"2\":\"1\",\"3\":\"-\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"-\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Clone.  Bombard\",\"upgrade-bar\":[\"Officer\",\"Weapons Team\",\"Offensive Retrofit\",\"Defensive Retrofit\",\"Ordnance\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
-   "shipStats": "{\"hull\":9,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":9,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Contain\",\"Salvo\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:6143-f5f7-e034-e96e",
@@ -18830,7 +18830,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/pelta-class-medical-frigate.webp",
    "rulesText": "{\"hull\":5,\"squadron-attack\":[0,1,0],\"command\":2,\"squadron\":2,\"engineering\":4,\"attack\":{\"front\":[2,1,0],\"right\":[1,1,0],\"left\":[1,1,0],\"rear\":[2,0,0]},\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"defense-tokens\":[\"Brace\",\"Evade\",\"Redirect\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"2\",\"2\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":2,\"keywords\":\"Clone.  Medical.\",\"upgrade-bar\":[\"Officer\",\"Support Team\",\"Fleet Support\",\"Offensive Retrofit\"],\"profile-type\":\"1.1 Ships\"}",
-   "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":2,\"defenseTokens\":[\"Brace\",\"Evade\",\"Redirect\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:e1f0-8662-e79d-5ef1",
@@ -18853,7 +18853,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/pelta-class-transport-frigate.webp",
    "rulesText": "{\"hull\":5,\"squadron-attack\":[0,1,1],\"command\":2,\"squadron\":1,\"engineering\":4,\"attack\":{\"front\":[2,0,1],\"right\":[1,0,1],\"left\":[1,0,1],\"rear\":[2,0,0]},\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"defense-tokens\":[\"Evade\",\"Brace\",\"Redirect\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"2\",\"2\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":2,\"keywords\":\"Clone.  Transport.\",\"upgrade-bar\":[\"Officer\",\"Support Team\",\"Fleet Support\",\"Defensive Retrofit\"],\"profile-type\":\"1.1 Ships\"}",
-   "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":2,\"defenseTokens\":[\"Evade\",\"Brace\",\"Redirect\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:2baf-29a0-daae-6817",
@@ -18877,7 +18877,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/victory-i-class-star-destroyer.webp",
    "rulesText": "{\"hull\":8,\"squadron-attack\":[0,1,0],\"command\":3,\"squadron\":3,\"engineering\":4,\"attack\":{\"front\":[3,0,3],\"right\":[2,0,1],\"left\":[2,0,1],\"rear\":[2,0,0]},\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":1},\"defense-tokens\":[\"Brace\",\"Redirect\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"1\",\"2\":\"-\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":2,\"keywords\":\"Clone\",\"upgrade-bar\":[\"Officer\",\"Weapons Team\",\"Support Team\",\"Offensive Retrofit\",\"Ordnance\",\"Ordnance\"],\"profile-type\":\"1.1 Ships\"}",
-   "shipStats": "{\"hull\":8,\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":1},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":8,\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":1},\"maxSpeed\":2,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Salvo\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:051f-76e7-2b0e-f5af",
@@ -18952,7 +18952,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/munificent-class-comms-frigate.webp",
    "rulesText": "{\"hull\":6,\"squadron-attack\":[1,0,0],\"command\":2,\"squadron\":3,\"engineering\":4,\"attack\":{\"front\":[2,2,0],\"right\":[3,0,0],\"left\":[3,0,0],\"rear\":[2,0,0]},\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"defense-tokens\":[\"Brace\",\"Redirect\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"1\",\"2\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"2\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":2,\"keywords\":\"Droid.  Bombard.  Comms.\",\"upgrade-bar\":[\"Officer\",\"Support Team\",\"Offensive Retrofit\",\"Ion Cannons\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
-   "shipStats": "{\"hull\":6,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":6,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":2,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Salvo\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:abd6-da81-1e67-43d6",
@@ -18976,7 +18976,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/munificent-class-star-frigate.webp",
    "rulesText": "{\"hull\":6,\"squadron-attack\":[1,0,1],\"command\":2,\"squadron\":2,\"engineering\":4,\"attack\":{\"front\":[2,2,0],\"right\":[3,0,0],\"left\":[3,0,0],\"rear\":[2,0,0]},\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"defense-tokens\":[\"Brace\",\"Redirect\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"1\",\"2\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"2\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":2,\"keywords\":\"Droid.  Bombard.  Transport.\",\"upgrade-bar\":[\"Officer\",\"Support Team\",\"Defensive Retrofit\",\"Ion Cannons\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
-   "shipStats": "{\"hull\":6,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":6,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":2,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Salvo\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:7298-1e72-1686-68e3",
@@ -19151,7 +19151,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/hardcell-class-transport.webp",
    "rulesText": "{\"hull\":5,\"squadron-attack\":[0,1,0],\"command\":1,\"squadron\":2,\"engineering\":3,\"attack\":{\"front\":[2,1,0],\"right\":[0,1,0],\"left\":[0,1,0],\"rear\":[0,0,0]},\"shield\":{\"front\":3,\"right\":1,\"left\":1,\"rear\":2},\"defense-tokens\":[\"Evade\",\"Brace\",\"Redirect\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"2\",\"2\":\"1\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"-\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Droid.  Transport.\",\"upgrade-bar\":[\"Officer\",\"Officer\",\"Support Team\",\"Fleet Support\"],\"profile-type\":\"1.1 Ships\"}",
-   "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":1,\"left\":1,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":1,\"left\":1,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Evade\",\"Brace\",\"Redirect\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:4eaa-a922-354c-6fdc",
@@ -19174,7 +19174,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/hardcell-class-battle-refit.webp",
    "rulesText": "{\"hull\":5,\"squadron-attack\":[0,1,1],\"command\":1,\"squadron\":1,\"engineering\":3,\"attack\":{\"front\":[3,0,0],\"right\":[1,0,0],\"left\":[1,0,0],\"rear\":[0,0,0]},\"shield\":{\"front\":3,\"right\":1,\"left\":1,\"rear\":2},\"defense-tokens\":[\"Evade\",\"Brace\",\"Redirect\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"2\",\"2\":\"1\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"-\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Droid.  Transport.\",\"upgrade-bar\":[\"Officer\",\"Offensive Retrofit\",\"Defensive Retrofit\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
-   "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":1,\"left\":1,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":1,\"left\":1,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Evade\",\"Brace\",\"Redirect\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:41e4-a9fd-cdc6-61d0",
@@ -19198,7 +19198,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/recusant-class-light-destroyer.webp",
    "rulesText": "{\"hull\":8,\"squadron-attack\":[0,1,0],\"command\":3,\"squadron\":2,\"engineering\":3,\"attack\":{\"front\":[4,0,2],\"right\":[3,0,1],\"left\":[3,0,1],\"rear\":[1,0,1]},\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":2},\"defense-tokens\":[\"Evade\",\"Brace\",\"Redirect\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"1\",\"2\":\"1\",\"3\":\"-\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"2\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"1\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Droid.\",\"upgrade-bar\":[\"Officer\",\"Weapons Team\",\"Offensive Retrofit\",\"Ordnance\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
-   "shipStats": "{\"hull\":8,\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":8,\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Evade\",\"Brace\",\"Redirect\",\"Salvo\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:a1f5-bad7-507a-627c",
@@ -19221,7 +19221,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/recusant-class-support-destroyer.webp",
    "rulesText": "{\"hull\":8,\"squadron-attack\":[1,0,0],\"command\":3,\"squadron\":3,\"engineering\":3,\"attack\":{\"front\":[3,2,1],\"right\":[3,1,0],\"left\":[3,1,0],\"rear\":[1,1,0]},\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":2},\"defense-tokens\":[\"Evade\",\"Brace\",\"Redirect\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"1\",\"2\":\"1\",\"3\":\"-\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"2\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"1\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Droid.\",\"upgrade-bar\":[\"Officer\",\"Weapons Team\",\"Offensive Retrofit\",\"Offensive Retrofit\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
-   "shipStats": "{\"hull\":8,\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":8,\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Evade\",\"Brace\",\"Redirect\",\"Salvo\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:7953-a4ce-f74b-c466",
@@ -19246,7 +19246,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/providence-class-dreadnought.webp",
    "rulesText": "{\"hull\":9,\"squadron-attack\":[0,1,0],\"command\":3,\"squadron\":4,\"engineering\":4,\"attack\":{\"front\":[2,1,2],\"right\":[3,1,2],\"left\":[3,1,2],\"rear\":[1,1,1]},\"shield\":{\"front\":5,\"right\":3,\"left\":3,\"rear\":2},\"defense-tokens\":[\"Brace\",\"Redirect\",\"Contain\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"2\",\"2\":\"1\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"-\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"-\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Droid.  Bombard.  Transport\",\"upgrade-bar\":[\"Officer\",\"Weapons Team\",\"Offensive Retrofit\",\"Ordnance\",\"Ion Cannon\",\"Turbolasers\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
-   "shipStats": "{\"hull\":9,\"shield\":{\"front\":5,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":9,\"shield\":{\"front\":5,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Contain\",\"Salvo\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:0083-8d4e-e272-2a09",
@@ -19272,7 +19272,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/providence-class-carrier.webp",
    "rulesText": "{\"hull\":9,\"squadron-attack\":[0,0,2],\"command\":3,\"squadron\":4,\"engineering\":4,\"attack\":{\"front\":[2,1,2],\"right\":[2,2,2],\"left\":[2,2,2],\"rear\":[1,1,1]},\"shield\":{\"front\":5,\"right\":3,\"left\":3,\"rear\":2},\"defense-tokens\":[\"Brace\",\"Redirect\",\"Contain\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"2\",\"2\":\"1\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"-\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"-\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Droid.  Comms.  Transport.\",\"upgrade-bar\":[\"Officer\",\"Defensive Retrofit\",\"Fleet Command\",\"Offensive Retrofit\",\"Ordnance\",\"Ion Cannons\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
-   "shipStats": "{\"hull\":9,\"shield\":{\"front\":5,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":9,\"shield\":{\"front\":5,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"defenseTokens\":[\"Brace\",\"Redirect\",\"Contain\",\"Salvo\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:c286-06ca-0bc0-fcc0",
@@ -19294,7 +19294,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/gozanti-class-cruiser.webp",
    "rulesText": "{\"hull\":3,\"squadron-attack\":[0,0,1],\"command\":1,\"squadron\":2,\"engineering\":2,\"attack\":{\"front\":[0,1,0],\"right\":[0,1,0],\"left\":[0,1,0],\"rear\":[0,1,0]},\"shield\":{\"front\":1,\"right\":1,\"left\":1,\"rear\":1},\"defense-tokens\":[\"Scatter\",\"Evade\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"2\",\"2\":\"1\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"-\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Droid\",\"upgrade-bar\":[\"Officer\",\"Weapons Team\",\"Ion Cannons\"],\"profile-type\":\"1.1 Ships\"}",
-   "shipStats": "{\"hull\":3,\"shield\":{\"front\":1,\"right\":1,\"left\":1,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
+   "shipStats": "{\"hull\":3,\"shield\":{\"front\":1,\"right\":1,\"left\":1,\"rear\":1},\"maxSpeed\":3,\"defenseTokens\":[\"Scatter\",\"Evade\"],\"kind\":\"SHIP\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:f633-850d-174d-c0e0",

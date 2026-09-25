@@ -146,7 +146,8 @@ private data class ArmadaStats(
     val shieldPort: Int = 0,
     val shieldStarboard: Int = 0,
     val maxSpeed: Int = 1,
-    val speed: Int = 3 // valeur fixe des squadrons
+    val speed: Int = 3, // valeur fixe des squadrons
+    val defenseTokens: List<String> = emptyList()
 )
 
 private object ArmadaStatsParser {
@@ -155,6 +156,10 @@ private object ArmadaStatsParser {
         return try {
             val o = org.json.JSONObject(shipStats)
             val shield = o.optJSONObject("shield")
+            val tokArr = o.optJSONArray("defenseTokens")
+            val tokens = buildList {
+                if (tokArr != null) for (i in 0 until tokArr.length()) add(tokArr.getString(i))
+            }
             when (kind) {
                 CardKind.ARMADA_SHIP -> ArmadaStats(
                     hull = o.optInt("hull"),
@@ -162,7 +167,8 @@ private object ArmadaStatsParser {
                     shieldRear = shield?.optInt("rear", 0) ?: 0,
                     shieldPort = shield?.optInt("left", 0) ?: 0,
                     shieldStarboard = shield?.optInt("right", 0) ?: 0,
-                    maxSpeed = o.optInt("maxSpeed", 1).coerceAtLeast(1)
+                    maxSpeed = o.optInt("maxSpeed", 1).coerceAtLeast(1),
+                    defenseTokens = tokens
                 )
                 CardKind.ARMADA_SQUADRON -> ArmadaStats(
                     hull = o.optInt("hull"),
@@ -192,8 +198,17 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
     var tokens by remember(unit.instanceId) { mutableStateOf(listOf<String>()) }
     var activeCrits by remember(unit.instanceId) { mutableStateOf(listOf<CritCard>()) }
     var usedUpgrades by remember(unit.instanceId) { mutableStateOf(setOf<String>()) }
-    val defTokenNames = remember { ArmadaDefenseToken.entries.take(4) }
-    var defTokens by remember(unit.instanceId) { mutableStateOf<Map<String, Boolean>>(defTokenNames.associate { it.name to false }) }
+    val defTokenNames = remember(unit.instanceId) {
+        val fromStats = stats?.defenseTokens.orEmpty()
+        if (fromStats.isNotEmpty()) fromStats
+        else ArmadaDefenseToken.entries.take(4).map { it.name }
+    }
+    val defTokenStates = defTokenNames.mapNotNull { name ->
+        val def = ArmadaDefenseToken.entries.firstOrNull { it.name == name.uppercase() }
+        if (def == null) null else def to name
+    }
+    // Chaque jeton (même en doublon) est une instance indépendante, clé = "name_i".
+    var defTokens by remember(unit.instanceId) { mutableStateOf<Map<String, Boolean>>(defTokenStates.mapIndexed { i, (def, _) -> "${def.name}_$i" to false }.toMap()) }
     val commander = allEntries.firstOrNull { it.card.kind == CardKind.COMMANDER || (it.card.kind == CardKind.ARMADA_UPGRADE && ArmadaSlot.COMMANDER in it.card.upgradeSlots) }
 
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -240,12 +255,13 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                 Text("JETONS DE DEFENSE", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
                 Spacer(Modifier.height(10.dp))
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    defTokens.forEach { (name, used) ->
-                        val def = ArmadaDefenseToken.entries.firstOrNull { it.name == name } ?: return@forEach
-                        Surface(onClick = { defTokens = defTokens + (name to !used) }, shape = RoundedCornerShape(14.dp), color = if (used) Color(0xFF5A2020) else Color(0xFF1A4A2A), modifier = Modifier.weight(1f)) {
+                    defTokenStates.forEachIndexed { i, (def, _) ->
+                        val key = "${def.name}_$i"
+                        val used = defTokens[key] ?: false
+                        Surface(onClick = { defTokens = defTokens + (key to !used) }, shape = RoundedCornerShape(14.dp), color = if (used) Color(0xFF5A2020) else Color(0xFF1A4A2A), modifier = Modifier.weight(1f)) {
                             Column(Modifier.padding(vertical = 12.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                                Text(def.icon, fontSize = 22.sp)
-                                Text(def.label, color = if (used) Color(0xFFFF6B6B) else Color(0xFF77D9A7), fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                                Text(def.icon, fontSize = 20.sp)
+                                Text(def.label, color = if (used) Color(0xFFFF6B6B) else Color(0xFF77D9A7), fontSize = 10.sp, fontWeight = FontWeight.Bold)
                                 Text(if (used) "UTILISE" else "PRET", color = (if (used) Color(0xFFFF6B6B) else Color(0xFF77D9A7)).copy(alpha = 0.6f), fontSize = 8.sp, fontWeight = FontWeight.Bold)
                             }
                         }
@@ -505,11 +521,11 @@ private fun MiniShield(label: String, value: Int, onInc: () -> Unit, onDec: () -
 private fun BigCounter(label: String, value: Int, max: Int, color: Color, onInc: () -> Unit, onDec: () -> Unit) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(label, color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold)
-        Spacer(Modifier.height(6.dp))
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            Surface(onClick = onDec, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(48.dp)) { Box(contentAlignment = Alignment.Center) { Text("-", color = Color.White, fontSize = 24.sp, fontWeight = FontWeight.Bold) } }
-            Text("$value", color = color, fontSize = 44.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.width(70.dp))
-            Surface(onClick = onInc, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(48.dp)) { Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 24.sp, fontWeight = FontWeight.Bold) } }
+        Spacer(Modifier.height(5.dp))
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+            Surface(onClick = onDec, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(38.dp)) { Box(contentAlignment = Alignment.Center) { Text("-", color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold) } }
+            Text("$value", color = color, fontSize = 32.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.width(54.dp))
+            Surface(onClick = onInc, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(38.dp)) { Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold) } }
         }
     }
 }

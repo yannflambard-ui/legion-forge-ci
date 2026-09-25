@@ -22,13 +22,14 @@ def norm(s):
     return n
 
 def ship_stats(rt):
-    """Extract hull/shield/maxSpeed from a BSData ship rulesText (JSON str)."""
+    """Extract hull/shield/maxSpeed/defense-tokens from a BSData ship rulesText (JSON str)."""
     try:
         d = json.loads(rt)
     except (TypeError, ValueError):
         return None
     hull = d.get("hull")
     shield = d.get("shield") or {}
+    tokens = d.get("defense-tokens") or []
     # max speed = greatest numeric key across all speed-chart rows
     max_speed = None
     for row in d.get("speed-chart-rows", []) or []:
@@ -46,6 +47,7 @@ def ship_stats(rt):
             "rear": shield.get("rear", 0),
         },
         "maxSpeed": max_speed or 1,
+        "defenseTokens": tokens,
     }
 
 def squadron_stats(rt):
