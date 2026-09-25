@@ -34,17 +34,26 @@ private val armadaCrits = listOf(
     CritCard("Structural Damage", "Tous les dégâts subis par la coque sont doublés ce tour.")
 )
 private val legionCrits = listOf(
-    CritCard("Blessure critique", "La figurine subit une blessure négligée."),
-    CritCard("Sonné", "La figurine ne peut pas effectuer d'action ce tour."),
-    CritCard("Déséquilibré", "Retirez un dé de la réserve de dés."),
-    CritCard("Statut altéré", "Appliquez un marqueur d'état à la figurine.")
+    CritCard("Blessure critique", "La figurine subit une blessure negligee."),
+    CritCard("Sonne", "La figurine ne peut pas effectuer d'action ce tour."),
+    CritCard("Desequilibre", "Retirez un de de la reserve de des."),
+    CritCard("Statut altere", "Appliquez un marqueur d'etat a la figurine.")
 )
+
+// ── defence tokens for Armada ────────────────────────────
+enum class ArmadaDefenseToken(val label: String, val icon: String) {
+    BRACE("Brace", "\uD83D\uDEE1"),
+    REDIRECT("Redirect", "\u21C4"),
+    EVADE("Evade", "\u21BA"),
+    SCATTER("Scatter", "\u2601"),
+    CONTAIN("Contain", "\u26D4")
+}
 
 // ── active effect model ─────────────────────────────────
 private enum class EffectType { COMMANDER, UPGRADE, CRIT, ABILITY }
 private data class ActiveEffect(val type: EffectType, val label: String, val desc: String, val id: String, val used: Boolean = false)
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: () -> Unit) {
     val playable = entries.filter { e ->
@@ -133,7 +142,7 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
     var activeCrits by remember(unit.instanceId) { mutableStateOf(listOf<CritCard>()) }
     var usedUpgrades by remember(unit.instanceId) { mutableStateOf(setOf<String>()) }
     val defTokenNames = remember { ArmadaDefenseToken.entries.take(4) }
-    var defTokens by remember(unit.instanceId) { mutableStateOf(defTokenNames.associate { it.name to false }) }
+    var defTokens by remember(unit.instanceId) { mutableStateOf<Map<String, Boolean>>(defTokenNames.associate { it.name to false }) }
     val commander = allEntries.firstOrNull { it.card.kind == CardKind.COMMANDER || (it.card.kind == CardKind.ARMADA_UPGRADE && ArmadaSlot.COMMANDER in it.card.upgradeSlots) }
     val maxHp = 15
 
@@ -312,7 +321,7 @@ private fun EffectsPanel(
                 Surface(
                     onClick = { selectedEffect = if (selectedEffect == eff) null else eff },
                     shape = RoundedCornerShape(12.dp),
-                    color = when { eff.used -> Color(0xFF1A1A2A); eff.type == EffectType.CRIT -> Color(0xFF3B2224); else -> Color(0xFF1E2A3A) },
+                    color = when { eff.used -> Color(0xFF1A1A2A); eff.type == EffectType.CRIT -> Color(0xFF3B2224); eff.type == EffectType.ABILITY -> Color(0xFF1E3A2A); else -> Color(0xFF1E2A3A) },
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Column(Modifier.padding(12.dp)) {
@@ -326,7 +335,7 @@ private fun EffectsPanel(
                                         if (eff.used) { Spacer(Modifier.width(6.dp)); Surface(shape = RoundedCornerShape(4.dp), color = Color(0xFF3A3A4A)) { Text("ACTIVEE", Modifier.padding(horizontal = 5.dp, vertical = 2.dp), color = Color(0xFF5A6A7A), fontSize = 8.sp, fontWeight = FontWeight.Bold) } }
                                     }
                                     Text(
-                                        when (eff.type) { EffectType.COMMANDER -> "Commandant"; EffectType.UPGRADE -> "Amelioration"; EffectType.CRIT -> "Degat critique" },
+                                        when (eff.type) { EffectType.COMMANDER -> "Commandant"; EffectType.UPGRADE -> "Amelioration"; EffectType.CRIT -> "Degat critique"; EffectType.ABILITY -> "Capacite" },
                                         color = (if (eff.used) Color(0xFF5A6A7A) else iconColor).copy(alpha = 0.6f), fontSize = 10.sp
                                     )
                                 }
