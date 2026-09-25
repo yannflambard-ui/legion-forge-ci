@@ -13,6 +13,7 @@ import com.legionforge.app.ui.screens.ArmyBuilderScreen
 import com.legionforge.app.ui.screens.CardDetailScreen
 import com.legionforge.app.ui.screens.FactionPickerScreen
 import com.legionforge.app.ui.screens.HomeScreen
+import com.legionforge.app.ui.screens.SearchScreen
 import com.legionforge.app.ui.screens.SettingsScreen
 import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination

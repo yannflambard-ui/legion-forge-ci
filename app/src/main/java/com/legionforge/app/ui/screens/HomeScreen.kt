@@ -44,21 +44,26 @@ fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, on
     val loading by vm.loading.collectAsState()
     val catalogError by vm.catalogError.collectAsState()
     Scaffold(topBar = {
-        TopAppBar(title = { Text("LEGION FORGE", style = MaterialTheme.typography.titleLarge) },
-            actions = {
-                IconButton(onClick = onSearch) {
-                    Text("\uD83D\uDD0E", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium)
+            TopAppBar(title = { Text("LEGION FORGE", style = MaterialTheme.typography.titleLarge) },
+                actions = {
+                    IconButton(onClick = onSettings) {
+                        Text("\u2699", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium)
+                    }
+                })
+        }) { pad ->
+            Column(Modifier.fillMaxSize().background(Brush.verticalGradient(listOf(Color(0xFF111827), Color(0xFF080B12)))).padding(pad).padding(horizontal = 20.dp, vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
+                // Barre de recherche compacte, bien visible
+                Card(onClick = onSearch, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(14.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
+                    Row(Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) {
+                        Text("\uD83D\uDD0E", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium)
+                        Spacer(Modifier.width(10.dp))
+                        Text("Rechercher une carte, un mot-clé, une règle…", color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodyMedium)
+                    }
                 }
-                IconButton(onClick = onSettings) {
-                    Text("\u2699", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium)
-                }
-            })
-    }) { pad ->
-        Column(Modifier.fillMaxSize().background(Brush.verticalGradient(listOf(Color(0xFF111827), Color(0xFF080B12)))).padding(pad).padding(20.dp), verticalArrangement = Arrangement.spacedBy(18.dp)) {
-            Text("PRÉPAREZ LA BATAILLE", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge)
-            Text("Vos listes.\nVotre stratégie.", style = MaterialTheme.typography.headlineLarge, color = Color.White)
-            GameTile("LEGION", "Armées • règles V2 • 1 000 points", "01", GameSystem.LEGION_V2, onClick = { onNewList(GameSystem.LEGION_V2) })
-            GameTile("ARMADA", "Flottes • règles V1.5 • commandez la galaxie", "02", GameSystem.ARMADA_V15, onClick = { onNewList(GameSystem.ARMADA_V15) })
+                Text("PRÉPAREZ LA BATAILLE", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge)
+                Text("Vos listes.\nVotre stratégie.", style = MaterialTheme.typography.headlineLarge, color = Color.White)
+                GameTile("LEGION", "Armées • règles V2 • 1 000 points", "01", GameSystem.LEGION_V2, onClick = { onNewList(GameSystem.LEGION_V2) })
+                GameTile("ARMADA", "Flottes • règles V1.5 • commandez la galaxie", "02", GameSystem.ARMADA_V15, onClick = { onNewList(GameSystem.ARMADA_V15) })
             Text("LISTES RÉCENTES", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge)
             if (lists.isEmpty()) Text("Vos compositions sauvegardées apparaîtront ici, hors ligne.", color = Color.LightGray)
             if (loading) {
