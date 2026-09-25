@@ -1,6 +1,7 @@
 package com.legionforge.app.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -28,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -51,8 +54,8 @@ fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, on
         Column(Modifier.fillMaxSize().background(Brush.verticalGradient(listOf(Color(0xFF111827), Color(0xFF080B12)))).padding(pad).padding(20.dp), verticalArrangement = Arrangement.spacedBy(18.dp)) {
             Text("PRÉPAREZ LA BATAILLE", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge)
             Text("Vos listes.\nVotre stratégie.", style = MaterialTheme.typography.headlineLarge, color = Color.White)
-            GameTile("LEGION", "Armées • règles V2 • 1 000 points", "01", onClick = { onNewList(GameSystem.LEGION_V2) })
-            GameTile("ARMADA", "Flottes • règles V1.5 • commandez la galaxie", "02", onClick = { onNewList(GameSystem.ARMADA_V15) })
+            GameTile("LEGION", "Armées • règles V2 • 1 000 points", "01", GameSystem.LEGION_V2, onClick = { onNewList(GameSystem.LEGION_V2) })
+            GameTile("ARMADA", "Flottes • règles V1.5 • commandez la galaxie", "02", GameSystem.ARMADA_V15, onClick = { onNewList(GameSystem.ARMADA_V15) })
             Text("LISTES RÉCENTES", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge)
             if (lists.isEmpty()) Text("Vos compositions sauvegardées apparaîtront ici, hors ligne.", color = Color.LightGray)
             if (loading) {
@@ -84,10 +87,15 @@ fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, on
 }
 
 @Composable
-private fun GameTile(title: String, subtitle: String, number: String, onClick: () -> Unit) {
+private fun GameTile(title: String, subtitle: String, number: String, system: GameSystem, onClick: () -> Unit) {
     Card(onClick = onClick, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
-        Row(Modifier.fillMaxWidth().padding(20.dp), horizontalArrangement = Arrangement.SpaceBetween) {
-            Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(7.dp)) {
+        Row(Modifier.fillMaxWidth().padding(20.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+            Image(
+                painter = painterResource(gameIconRes(system)),
+                contentDescription = "Icône $title",
+                modifier = Modifier.size(68.dp)
+            )
+            Column(Modifier.weight(1f).padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(7.dp)) {
                 Text(title, color = Color(0xFFFFC857), style = MaterialTheme.typography.titleLarge)
                 Text(subtitle, color = Color(0xFFCFD6E2), style = MaterialTheme.typography.bodyMedium)
                 Button(onClick = onClick) { Text("NOUVELLE LISTE  →") }
