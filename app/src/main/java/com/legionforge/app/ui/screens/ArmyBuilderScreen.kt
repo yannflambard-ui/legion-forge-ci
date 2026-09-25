@@ -36,7 +36,7 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
     var filterRank by remember { mutableStateOf<String?>(null) }
     var filterMaxPts by remember { mutableStateOf<Int?>(null) }
     var filterKeyword by remember { mutableStateOf<String?>(null) }
-    var filtersExpanded by remember { mutableStateOf(false) }
+    var filtersMenuOpen by remember { mutableStateOf(false) }
     LaunchedEffect(listId) { viewModel.openList(listId) }
     val game = list?.gameSystem?.let { runCatching { GameSystem.valueOf(it) }.getOrNull() } ?: GameSystem.LEGION_V2
     val allowedKinds = if (game == GameSystem.LEGION_V2) setOf(CardKind.LEGION_UNIT, CardKind.LEGION_UPGRADE) else setOf(CardKind.ARMADA_SHIP, CardKind.ARMADA_SQUADRON, CardKind.ARMADA_UPGRADE, CardKind.COMMANDER)
@@ -163,29 +163,35 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                     }
                 }
             } else {
-                OutlinedTextField(value = search, onValueChange = { search = it }, modifier = Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 6.dp), placeholder = { Text("Rechercher une carte…") }, singleLine = true)
-                // Filtres compacts et repliables : une rangée de petits chips à lettres
-                Row(Modifier.fillMaxWidth().padding(horizontal = 14.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    TextButton(onClick = { filtersExpanded = !filtersExpanded }) {
-                        Text(if (filtersExpanded) "Filtres ▾" else "Filtres ▸", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
-                    }
-                    if (filterRank != null || filterMaxPts != null || filterKeyword != null) {
-                        Text("${additions.size} résultat(s)", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall)
-                    }
-                }
-                if (filtersExpanded) {
-                    // Rang/type : petits chips à lettre (C=Commandant, O=Opérative…)
-                    Row(Modifier.fillMaxWidth().padding(horizontal = 14.dp), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                        val ranks = if (game == GameSystem.LEGION_V2) listOf("COMMANDER" to "C", "OPERATIVE" to "O", "CORPS" to "Co", "SPECIAL_FORCES" to "FS", "SUPPORT" to "S", "HEAVY" to "H") else listOf("ARMADA_SHIP" to "V", "ARMADA_SQUADRON" to "E", "COMMANDER" to "Cmd")
-                        ranks.forEach { (r, abbr) ->
-                            FilterChip(selected = filterRank == r, onClick = { filterRank = if (filterRank == r) null else r }, label = { Text(abbr, fontSize = 10.sp) })
+                Row(Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 6.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    OutlinedTextField(value = search, onValueChange = { search = it }, modifier = Modifier.weight(1f), placeholder = { Text("Rechercher une carte…") }, singleLine = true, textStyle = MaterialTheme.typography.bodyMedium)
+                    // Bouton filtre compact à droite de la barre de recherche
+                    Box {
+                        Surface(onClick = { filtersMenuOpen = true }, shape = RoundedCornerShape(10.dp), color = if (filterRank != null || filterMaxPts != null || filterKeyword != null) Color(0xFFFFC857) else Color(0xFF2A3A4A)) {
+                            Text("\u2699", Modifier.padding(horizontal = 12.dp, vertical = 12.dp), color = if (filterRank != null || filterMaxPts != null || filterKeyword != null) Color(0xFF0A0E15) else Color(0xFFFFC857), fontSize = 16.sp, fontWeight = FontWeight.Bold)
                         }
-                    }
-                    Row(Modifier.fillMaxWidth().padding(horizontal = 14.dp), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
-                        listOf(50, 100, 200).forEach { maxPts ->
-                            FilterChip(selected = filterMaxPts == maxPts, onClick = { filterMaxPts = if (filterMaxPts == maxPts) null else maxPts }, label = { Text("≤$maxPts", fontSize = 10.sp) })
+                        DropdownMenu(expanded = filtersMenuOpen, onDismissRequest = { filtersMenuOpen = false }) {
+                            // Rang/type : petits chips à lettre
+                            val ranks = if (game == GameSystem.LEGION_V2) listOf("COMMANDER" to "C", "OPERATIVE" to "O", "CORPS" to "Co", "SPECIAL_FORCES" to "FS", "SUPPORT" to "S", "HEAVY" to "H") else listOf("ARMADA_SHIP" to "V", "ARMADA_SQUADRON" to "E", "COMMANDER" to "Cmd")
+                            Text("RANG / TYPE", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp))
+                            Row(Modifier.padding(horizontal = 12.dp), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                                ranks.forEach { (r, abbr) ->
+                                    FilterChip(selected = filterRank == r, onClick = { filterRank = if (filterRank == r) null else r }, label = { Text(abbr, fontSize = 10.sp) })
+                                }
+                            }
+                            HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 6.dp))
+                            Text("POINTS MAX", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp))
+                            Row(Modifier.padding(horizontal = 12.dp), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                                listOf(50, 100, 200).forEach { maxPts ->
+                                    FilterChip(selected = filterMaxPts == maxPts, onClick = { filterMaxPts = if (filterMaxPts == maxPts) null else maxPts }, label = { Text("≤$maxPts", fontSize = 10.sp) })
+                                }
+                            }
+                            HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 6.dp))
+                            OutlinedTextField(value = filterKeyword ?: "", onValueChange = { filterKeyword = it.ifBlank { null } }, modifier = Modifier.padding(horizontal = 12.dp).width(180.dp), placeholder = { Text("Mot-clé (Pierce…)", fontSize = 12.sp) }, singleLine = true, textStyle = MaterialTheme.typography.bodySmall)
+                            if (filterRank != null || filterMaxPts != null || filterKeyword != null) {
+                                TextButton(onClick = { filterRank = null; filterMaxPts = null; filterKeyword = null }, modifier = Modifier.padding(horizontal = 8.dp)) { Text("Effacer les filtres", color = Color(0xFFFF927F), style = MaterialTheme.typography.labelSmall) }
+                            }
                         }
-                        OutlinedTextField(value = filterKeyword ?: "", onValueChange = { filterKeyword = it.ifBlank { null } }, modifier = Modifier.weight(1f), placeholder = { Text("Mot-clé", fontSize = 10.sp) }, singleLine = true, textStyle = MaterialTheme.typography.bodySmall)
                     }
                 }
                 LazyColumn(Modifier.weight(1f), contentPadding = PaddingValues(horizontal = 14.dp, vertical = 4.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
