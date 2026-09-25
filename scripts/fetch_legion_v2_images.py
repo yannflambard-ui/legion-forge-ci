@@ -20,21 +20,24 @@ def slug(s): return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", (s or "").lowe
 
 def main():
     bundle = json.loads(BUNDLE.read_text())
-    # imageName par (type, cardName) -> nom exact sur le CDN
+    # imageName par (type, cardName DE BASE) -> nom exact sur le CDN.
+    # Le nom composé ('Wookiee Warriors (Freedom Fighters)') matche le cardName de base
+    # du bundle en retirant la partie entre parenthèses.
+    def strip_title(n): return re.split(r"\s*\(", n or "", 1)[0].strip()
     byname: dict[tuple, str] = {}
     for c in bundle:
         nm = (c.get("imageName") or "").strip()
         if nm:
-            byname[(c.get("cardType"), c.get("cardName").lower())] = nm
+            byname[(c.get("cardType"), (c.get("cardName") or "").lower())] = nm
 
     doc = json.loads(CATALOG.read_text())
     cards = doc["cards"]
     leg = [c for c in cards if c["gameSystem"] == "LEGION_V2"]
-    todo = []
     import requests
     def worker(c):
         typ = "unit" if c["kind"] == "LEGION_UNIT" else "upgrade"
-        nm = byname.get((typ, c["name"].lower()))
+        base = strip_title(c["name"]).lower()
+        nm = byname.get((typ, base)) or byname.get((typ, c["name"].lower()))
         if not nm:
             return c["name"], "no-imageName", None
         fac = slug(c["factionId"])
