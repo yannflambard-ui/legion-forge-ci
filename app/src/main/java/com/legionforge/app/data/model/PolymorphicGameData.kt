@@ -84,7 +84,7 @@ data class CatalogCardEntity(
         fun from(card: CardDefinition) = CatalogCardEntity(
             card.id, card.gameSystem.name, card.kind.name, card.name, card.points, card.factionId,
             card.legionRank?.name, card.upgradeSlots.joinToString(",") { it.name },
-            card.allowedUpgradeSlots.joinToString(",") { it.name }, card.unique,
+            card.allowedUpgradeSlots.joinToString(",") { it.name }, card.commander, card.unique,
             card.imageUrl, card.imageAssetPath, card.rulesText, toJsonNames(card.names)
         )
         private fun parseSlots(value: String) = value.split(',').filter(String::isNotBlank).map(ArmadaSlot::valueOf)
