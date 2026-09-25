@@ -73,6 +73,21 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                         val counts = entries.filter { it.card.kind == CardKind.LEGION_UNIT }.groupBy { it.card.legionRank }.mapValues { (_, items) -> items.sumOf { it.quantity } }
                         Text("C ${counts[LegionRank.COMMANDER] ?: 0}/1–2   •   T ${counts[LegionRank.CORPS] ?: 0}/3–6   •   FS ${counts[LegionRank.SPECIAL_FORCES] ?: 0}/0–3", color = Color.LightGray, style = MaterialTheme.typography.labelSmall)
                     }
+                    // Bouton play global : actif (vert) uniquement si la liste est valide.
+                    val listValid = validation.violations.isEmpty() && entries.isNotEmpty()
+                    val firstPlayable = entries.firstOrNull { it.parentInstanceId == null && (it.card.kind == CardKind.LEGION_UNIT || it.card.kind == CardKind.ARMADA_SHIP) }
+                    Button(
+                        onClick = { if (firstPlayable != null) onPlayCard(listId, firstPlayable.instanceId) },
+                        enabled = listValid && firstPlayable != null,
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(14.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = if (listValid) Color(0xFF1E7A3C) else Color(0xFF2A3A4A),
+                            contentColor = if (listValid) Color.White else Color(0xFF718096)
+                        )
+                    ) {
+                        Text(if (listValid) "▶  JOUER LA LISTE" else "▶  LISTE INVALIDE", fontWeight = FontWeight.Bold)
+                    }
                 }
             }
             if (validation.violations.isNotEmpty()) {
@@ -116,10 +131,6 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                                 selectedParentId = entry.instanceId
                                 selectedTab = 1
                             }
-                        }, onPlay = {
-                            if (!isChild && (entry.card.kind == CardKind.LEGION_UNIT || entry.card.kind == CardKind.ARMADA_SHIP)) {
-                                onPlayCard(listId, entry.instanceId)
-                            }
                         })
                     }
                 }
@@ -135,7 +146,7 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
 }
 
 @Composable
-private fun BuilderEntryCard(entry: ListEntry, isChild: Boolean = false, onRemove: () -> Unit, onSelectParent: () -> Unit = {}, onPlay: () -> Unit = {}) {
+private fun BuilderEntryCard(entry: ListEntry, isChild: Boolean = false, onRemove: () -> Unit, onSelectParent: () -> Unit = {}) {
     val isSelectable = !isChild && (entry.card.kind == CardKind.LEGION_UNIT || entry.card.kind == CardKind.ARMADA_SHIP)
     Card(Modifier
         .fillMaxWidth()
@@ -151,11 +162,6 @@ private fun BuilderEntryCard(entry: ListEntry, isChild: Boolean = false, onRemov
                 if (entry.parentInstanceId != null) Text("↳ ${entry.chosenSlot?.name?.replace('_', ' ') ?: "amélioration liée"}", color = Color(0xFF77D9A7), style = MaterialTheme.typography.labelSmall)
                 if (entry.card.kind == CardKind.LEGION_UNIT || entry.card.kind == CardKind.ARMADA_SHIP) {
                     if (entry.card.allowedUpgradeSlots.isNotEmpty()) Text("Slots : ${entry.card.allowedUpgradeSlots.joinToString { it.name.lowercase().replace('_', ' ') }}", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, maxLines = 2)
-                }
-            }
-            if (!isChild && (entry.card.kind == CardKind.LEGION_UNIT || entry.card.kind == CardKind.ARMADA_SHIP)) {
-                IconButton(onClick = onPlay, modifier = Modifier.size(36.dp)) {
-                    Text("▶", color = Color(0xFF77D9A7), fontSize = 16.sp)
                 }
             }
             TextButton(onClick = onRemove) { Text("RETIRER", color = Color(0xFFFF927F), style = MaterialTheme.typography.labelSmall) }
