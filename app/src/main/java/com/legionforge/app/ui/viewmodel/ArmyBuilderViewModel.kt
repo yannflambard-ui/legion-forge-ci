@@ -9,7 +9,6 @@ import com.legionforge.app.domain.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.withLock
 import java.util.UUID
@@ -106,8 +105,15 @@ class ArmyBuilderViewModel(application: Application) : AndroidViewModel(applicat
             _currentList.value = list
             val system = GameSystem.valueOf(list.gameSystem)
             catalogCollector?.cancel()
-            _cards.value = repository.observeCards(system, list.factionId).first()
-            watchEntries(list)
+            // Collect continu (pas .first()) : si le seed n'est pas fini, la liste
+            // se remplit dès que Room invalide la table quand les cartes arrivent.
+            catalogCollector = viewModelScope.launch {
+                repository.observeCards(system, list.factionId).collect { cards ->
+                    _cards.value = cards
+                    recalculate()
+                    _currentList.value?.takeIf { it.factionId == list.factionId }?.let(::watchEntries)
+                }
+            }
         }
     }
 

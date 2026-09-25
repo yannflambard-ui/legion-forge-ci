@@ -56,6 +56,8 @@ class BuilderRepository(context: Context) {
             android.util.Log.i("Repo", "seedCatalog: done - ${entities.size} cards inserted")
         } catch (e: Exception) {
             android.util.Log.e("Repo", "seedCatalog FAILED", e)
+            // Rethrow pour que le ViewModel puisse afficher l'erreur au lieu d'un écran vide.
+            throw e
         }
     }
 
