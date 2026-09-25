@@ -68,11 +68,28 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                         .filter { mp == null || it.points <= mp }
                         .filter { kw == null || it.legionStats?.contains(kw, ignoreCase = true) == true }
                 }
+    // Bouton play global : actif (vert) uniquement si la liste est valide.
+    val listValid = validation.violations.isEmpty() && entries.isNotEmpty()
+    val firstPlayable = entries.firstOrNull { it.parentInstanceId == null && (it.card.kind == CardKind.LEGION_UNIT || it.card.kind == CardKind.ARMADA_SHIP) }
     Scaffold(topBar = {
         TopAppBar(title = { Column {
             Text(list?.name ?: "Nouvelle liste", style = MaterialTheme.typography.titleLarge)
             Text("${game.label()}  •  ${list?.factionId.orEmpty()}", style = MaterialTheme.typography.labelSmall, color = Color(0xFFFFC857))
-        } }, navigationIcon = { TextButton(onClick = onBack) { Text("‹") } })
+        } }, navigationIcon = { TextButton(onClick = onBack) { Text("‹") } },
+            actions = {
+                // Bouton play compact dans la barre du haut, à droite du titre
+                Button(
+                    onClick = { if (firstPlayable != null) onPlayCard(listId, firstPlayable.instanceId) },
+                    enabled = listValid && firstPlayable != null,
+                    shape = RoundedCornerShape(10.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = if (listValid) Color(0xFF1E7A3C) else Color(0xFF2A3A4A),
+                        contentColor = if (listValid) Color.White else Color(0xFF718096)
+                    )
+                ) {
+                    Text(if (listValid) "\u25B6 JOUER" else "\u25B6 INVALIDE", fontWeight = FontWeight.Bold, fontSize = 12.sp)
+                }
+            })
     }) { pad ->
         Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).padding(pad)) {
             val total = validation.totalPoints
@@ -94,21 +111,6 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                     } else {
                         val counts = entries.filter { it.card.kind == CardKind.LEGION_UNIT }.groupBy { it.card.legionRank }.mapValues { (_, items) -> items.sumOf { it.quantity } }
                         Text("C ${counts[LegionRank.COMMANDER] ?: 0}/1–2   •   T ${counts[LegionRank.CORPS] ?: 0}/3–6   •   FS ${counts[LegionRank.SPECIAL_FORCES] ?: 0}/0–3", color = Color.LightGray, style = MaterialTheme.typography.labelSmall)
-                    }
-                    // Bouton play global : actif (vert) uniquement si la liste est valide.
-                    val listValid = validation.violations.isEmpty() && entries.isNotEmpty()
-                    val firstPlayable = entries.firstOrNull { it.parentInstanceId == null && (it.card.kind == CardKind.LEGION_UNIT || it.card.kind == CardKind.ARMADA_SHIP) }
-                    Button(
-                        onClick = { if (firstPlayable != null) onPlayCard(listId, firstPlayable.instanceId) },
-                        enabled = listValid && firstPlayable != null,
-                        modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(14.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = if (listValid) Color(0xFF1E7A3C) else Color(0xFF2A3A4A),
-                            contentColor = if (listValid) Color.White else Color(0xFF718096)
-                        )
-                    ) {
-                        Text(if (listValid) "▶  JOUER LA LISTE" else "▶  LISTE INVALIDE", fontWeight = FontWeight.Bold)
                     }
                 }
             }
