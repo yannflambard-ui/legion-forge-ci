@@ -66,8 +66,9 @@ fun LegionForgeNavHost(navController: NavHostController = rememberNavController(
         composable(Routes.CARD_DETAIL, arguments = listOf(navArgument("listId") { type = NavType.StringType }, navArgument("entryInstanceId") { type = NavType.StringType })) { entry ->
             val lid = entry.arguments?.getString("listId") ?: return@composable
             val eid = entry.arguments?.getString("entryInstanceId") ?: return@composable
-            val unit = vm.entries.value.firstOrNull { it.instanceId == eid }
-            if (unit != null) CardDetailScreen(unit, vm.entries.value, onBack = { navController.popBackStack() })
+            val allEntries = vm.entries.value
+            val idx = allEntries.indexOfFirst { it.instanceId == eid }.coerceAtLeast(0)
+            CardDetailScreen(entries = allEntries, initialIndex = idx, onBack = { navController.popBackStack() })
         }
     }
 }
