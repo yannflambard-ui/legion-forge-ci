@@ -1507,27 +1507,6 @@
       "kind": "LEGION_UNIT",
       "name": "LAAT/le Patrol Transport",
       "points": 90,
-      "factionId": "empire",
-      "legionRank": "HEAVY",
-      "upgradeSlots": [],
-      "allowedUpgradeSlots": [
-        "COMMS",
-        "ORDNANCE",
-        "OTHER"
-      ],
-      "commander": false,
-      "unique": false,
-      "imageUrl": null,
-      "imageAssetPath": "cards/swl/republic/laat-le-patrol-transport.webp",
-      "rulesText": null,
-      "legionStats": "{\"health\":8,\"courage\":6,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Armor\",\"Arsenal\",\"Cover\",\"Hover\",\"Immune: Blast\",\"Immune: Melee\",\"Immune: Range 1 Weapons\",\"Transport\"],\"weapons\":[{\"name\":\"Twin Laser Cannons\",\"range\":{\"min\":1,\"max\":3},\"dice\":{\"red\":2,\"black\":2,\"white\":0}}],\"upgradeBar\":[\"pilot\",\"ordnance\",\"ordnance\",\"comms\"]}"
-    },
-    {
-      "id": "legion_v2:lhq2/laat-le-patrol-transport:8434a454",
-      "gameSystem": "LEGION_V2",
-      "kind": "LEGION_UNIT",
-      "name": "LAAT/le Patrol Transport",
-      "points": 90,
       "factionId": "republic",
       "legionRank": "HEAVY",
       "upgradeSlots": [],
@@ -1541,7 +1520,7 @@
       "imageUrl": null,
       "imageAssetPath": "cards/swl/republic/laat-le-patrol-transport.webp",
       "rulesText": null,
-      "legionStats": "{\"health\":8,\"courage\":6,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Armor\",\"Arsenal\",\"Cover\",\"Hover\",\"Strafe\",\"Immune: Blast\",\"Immune: Melee\",\"Immune: Range 1 Weapons\",\"Transport\",\"Fixed\",\"Impact\"],\"weapons\":[{\"name\":\"Twin Laser Cannons\",\"range\":{\"min\":1,\"max\":3},\"dice\":{\"red\":2,\"black\":2,\"white\":0}}],\"upgradeBar\":[\"pilot\",\"ordnance\",\"ordnance\",\"comms\"]}"
+      "legionStats": "{\"health\":8,\"courage\":6,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Armor\",\"Arsenal\",\"Cover\",\"Hover\",\"Immune: Blast\",\"Immune: Melee\",\"Immune: Range 1 Weapons\",\"Transport\"],\"weapons\":[{\"name\":\"Twin Laser Cannons\",\"range\":{\"min\":1,\"max\":3},\"dice\":{\"red\":2,\"black\":2,\"white\":0}}],\"upgradeBar\":[\"pilot\",\"ordnance\",\"ordnance\",\"comms\"]}"
     },
     {
       "id": "legion_v2:lhq2/wookiee-warriors-kashyyyk-defenders",

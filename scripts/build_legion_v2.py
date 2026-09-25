@@ -44,6 +44,12 @@ def faction_id(f):
     f = (f or "").strip().lower()
     return FACTION.get(f, "neutral")
 
+# Corrections de faction (erreurs de données du bundle LegionHQ V2).
+# Le LAAT/le Patrol Transport est un transport républicain (Clone Wars), jamais impérial.
+FACTION_OVERRIDES = {
+    ("laat/le patrol transport", "empire"): "republic",
+}
+
 def make_legion_stats(c):
     """Structured JSON (mirror ArmadaStatsParser pattern)."""
     stats = c.get("stats") or {}
@@ -102,32 +108,45 @@ def build():
 
     for c in units:
         name = make_name(c)
+        raw_fac = faction_id(c.get("faction"))
+        fac = FACTION_OVERRIDES.get((name.lower(), raw_fac), raw_fac)
         new_legion.append({
-            "id": unique_id(c, seen, name), "gameSystem": "LEGION_V2", "kind": "LEGION_UNIT",
-            "name": name, "points": int(c.get("cost") or 0),
-            "factionId": faction_id(c.get("faction")), "legionRank": RANK.get(c.get("rank")),
-            "upgradeSlots": [], "allowedUpgradeSlots": sorted({SLOT.get(s, "OTHER") for s in c.get("upgradeBar", [])}),
-            "commander": c.get("rank") == "commander", "unique": bool(c.get("isUnique")),
-            "imageUrl": None, "imageAssetPath": f"cards/swl/{slug(faction_id(c.get('faction')))}/{slug(name)}.webp",
-            "rulesText": None, "legionStats": json.dumps(make_legion_stats(c), ensure_ascii=False, separators=(",", ":")),
-        })
+        "id": unique_id(c, seen, name), "gameSystem": "LEGION_V2", "kind": "LEGION_UNIT",
+        "name": name, "points": int(c.get("cost") or 0),
+        "factionId": fac, "legionRank": RANK.get(c.get("rank")),
+        "upgradeSlots": [], "allowedUpgradeSlots": sorted({SLOT.get(s, "OTHER") for s in c.get("upgradeBar", [])}),
+        "commander": c.get("rank") == "commander", "unique": bool(c.get("isUnique")),
+        "imageUrl": None, "imageAssetPath": f"cards/swl/{slug(fac)}/{slug(name)}.webp",
+        "rulesText": None, "legionStats": json.dumps(make_legion_stats(c), ensure_ascii=False, separators=(",", ":")),
+            })
         counts["units"] += 1
     for c in upgrades:
         name = make_name(c)
         slot = SLOT.get((c.get("cardSubtype") or "").strip().lower(), "OTHER")
         new_legion.append({
-            "id": unique_id(c, seen, name), "gameSystem": "LEGION_V2", "kind": "LEGION_UPGRADE",
-            "name": name, "points": int(c.get("cost") or 0),
-            "factionId": faction_id(c.get("faction") or "neutral"), "legionRank": None,
+        "id": unique_id(c, seen, name), "gameSystem": "LEGION_V2", "kind": "LEGION_UPGRADE",
+        "name": name, "points": int(c.get("cost") or 0),
+        "factionId": faction_id(c.get("faction") or "neutral"), "legionRank": None,
             "upgradeSlots": [slot], "allowedUpgradeSlots": [],
             "commander": False, "unique": False,
-            "imageUrl": None, "imageAssetPath": f"cards/swl/{slug(faction_id(c.get('faction') or 'neutral'))}/{slug(name)}.webp",
+        "imageUrl": None, "imageAssetPath": f"cards/swl/{slug(faction_id(c.get('faction') or 'neutral'))}/{slug(name)}.webp",
             "rulesText": json.dumps({"requirements": c.get("requirements"), "tts": c.get("ttsName")}, ensure_ascii=False) if c.get("requirements") or c.get("ttsName") else None,
             "legionStats": None,
         })
         counts["upgrades"] += 1
     # counterparts: include as units with rank OPERATIVE? keep simple: skip ambiguity
     counts["counterparts_skipped"] = len(counterparts)
+
+    # Déduplication stricte (nom|points|faction|kind) : après les overrides de faction,
+    # deux entrées identiques (ex LAAT/le republic) ne doivent pas coexister.
+    seen_key = set()
+    dedup = []
+    for c in new_legion:
+        k = (c["name"].lower(), c["points"], c["factionId"], c["kind"])
+        if k not in seen_key:
+            seen_key.add(k)
+            dedup.append(c)
+    new_legion = dedup
 
     # carry Armada unchanged
     old = json.loads(CATALOG.read_text())
