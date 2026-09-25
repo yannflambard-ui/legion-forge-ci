@@ -48,6 +48,8 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
     // When a parent unit is selected, show ONLY the upgrades that fit in that parent's
     // slots (and, for Armada, that match the ship family via linkedUnit). No other ships,
     // squadrons or commanders — the catalogue is scoped to the selected parent.
+    // Without a selection: show ONLY the units/ships/squadrons/commanders — upgrades are
+    // hidden until a unit or ship is selected.
     val selectedParent = entries.firstOrNull { it.instanceId == selectedParentId }
     val filteredAdditions = if (selectedParent != null) {
         cards.filter { it.kind in allowedKinds && matchesFaction(it) }.filter { c ->
@@ -59,7 +61,7 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                 else -> false
             }
         }
-    } else cards.filter { it.kind in allowedKinds && matchesFaction(it) }
+    } else cards.filter { it.kind in allowedKinds && matchesFaction(it) && it.kind != CardKind.LEGION_UPGRADE && it.kind != CardKind.ARMADA_UPGRADE }
     val additions = filteredAdditions
                 .filter { it.name.contains(search, ignoreCase = true) || it.factionId.contains(search, ignoreCase = true) }
                 .let { list ->
