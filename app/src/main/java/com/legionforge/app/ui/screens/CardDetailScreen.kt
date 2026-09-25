@@ -589,19 +589,24 @@ private fun HealthBar(ratio: Float, current: Int, max: Int) {
 
 @Composable
 private fun DefenseTokenDisc(def: ArmadaDefenseToken, used: Boolean, onClick: () -> Unit) {
-    val readyColor = Color(0xFF1A4A2A)
-    val usedColor = Color(0xFF5A2020)
     val ringColor = if (used) Color(0xFFFF6B6B) else Color(0xFF77D9A7)
+    // Les jetons de defense officiels (render fandom, 100x52) : vert = PRET, rouge = UTILISE.
+    val tokenFile = "tokens/${def.name.lowercase()}_${if (used) "exhausted" else "ready"}.webp"
     Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Surface(
             onClick = onClick,
             shape = CircleShape,
-            color = if (used) usedColor else readyColor,
+            color = Color(0xFF192330),
             modifier = Modifier.size(52.dp),
             border = androidx.compose.foundation.BorderStroke(3.dp, ringColor)
         ) {
-            Box(contentAlignment = Alignment.Center) {
-                Text(def.icon, fontSize = 22.sp)
+            Box(contentAlignment = Alignment.Center, modifier = Modifier.padding(3.dp)) {
+                AsyncImage(
+                    model = "file:///android_asset/$tokenFile",
+                    contentDescription = def.label,
+                    modifier = Modifier.fillMaxSize().clip(CircleShape),
+                    contentScale = ContentScale.Crop
+                )
             }
         }
         Text(def.label, color = ringColor, fontSize = 9.sp, fontWeight = FontWeight.Bold)
