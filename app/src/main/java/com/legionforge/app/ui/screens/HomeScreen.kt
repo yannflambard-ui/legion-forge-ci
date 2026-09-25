@@ -52,7 +52,7 @@ fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, on
                     }
                 })
         }) { pad ->
-            Column(Modifier.fillMaxSize().background(Brush.verticalGradient(listOf(Color(0xFF111827), Color(0xFF080B12)))).padding(pad).padding(horizontal = 20.dp, vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
+            Column(Modifier.fillMaxSize().background(Brush.verticalGradient(listOf(Color(0xFF111827), Color(0xFF080B12)))).padding(pad).padding(horizontal = 16.dp, vertical = 8.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 // Barre de recherche compacte, bien visible
                 Card(onClick = onSearch, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(14.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
                     Row(Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -98,13 +98,13 @@ fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, on
 @Composable
 private fun GameTile(title: String, subtitle: String, number: String, system: GameSystem, onClick: () -> Unit) {
     Card(onClick = onClick, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
-        Row(Modifier.fillMaxWidth().padding(20.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+        Row(Modifier.fillMaxWidth().padding(14.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
             Image(
                 painter = painterResource(gameIconRes(system)),
                 contentDescription = "Icône $title",
-                modifier = Modifier.size(68.dp)
+                modifier = Modifier.size(48.dp)
             )
-            Column(Modifier.weight(1f).padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(7.dp)) {
+            Column(Modifier.weight(1f).padding(horizontal = 12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(title, color = Color(0xFFFFC857), style = MaterialTheme.typography.titleLarge)
                 Text(subtitle, color = Color(0xFFCFD6E2), style = MaterialTheme.typography.bodyMedium)
                 Button(onClick = onClick) { Text("NOUVELLE LISTE  →") }
