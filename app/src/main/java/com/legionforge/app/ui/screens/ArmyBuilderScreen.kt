@@ -100,12 +100,23 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, viewModel: ArmyBuilder
             if (selectedTab == 0) {
                 LazyColumn(Modifier.weight(1f), contentPadding = PaddingValues(14.dp), verticalArrangement = Arrangement.spacedBy(9.dp)) {
                     if (entries.isEmpty()) item { Text("Votre force est vide. Ouvrez le catalogue pour ajouter vos premières cartes.", color = Color.LightGray, modifier = Modifier.padding(16.dp)) }
-                    items(entries, key = { it.instanceId }) { entry -> BuilderEntryCard(entry, onRemove = { viewModel.remove(entry) }, onSelectParent = {
-                        if (entry.card.kind == CardKind.LEGION_UNIT || entry.card.kind == CardKind.ARMADA_SHIP) {
-                            selectedParentId = entry.instanceId
-                            selectedTab = 1
-                        }
-                    }) }
+                    // Group entries hierarchically: parents first, then their upgrades indented
+                    val parents = entries.filter { it.parentInstanceId == null }
+                    val allParentIds = parents.map { it.instanceId }.toSet()
+                    val grouped = parents.flatMap { parent ->
+                        val children = entries.filter { it.parentInstanceId == parent.instanceId }
+                        listOf(parent to false) + children.map { it to true }
+                    }
+                    val orphans = entries.filter { it.parentInstanceId != null && it.parentInstanceId !in allParentIds }
+                    val displayList = grouped + orphans.map { it to false }
+                    items(displayList, key = { (e, _) -> e.instanceId }) { (entry, isChild) ->
+                        BuilderEntryCard(entry, isChild, onRemove = { viewModel.remove(entry) }, onSelectParent = {
+                            if (entry.card.kind == CardKind.LEGION_UNIT || entry.card.kind == CardKind.ARMADA_SHIP) {
+                                selectedParentId = entry.instanceId
+                                selectedTab = 1
+                            }
+                        })
+                    }
                 }
             } else {
                 OutlinedTextField(value = search, onValueChange = { search = it }, modifier = Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 8.dp), placeholder = { Text("Rechercher une carte…") }, singleLine = true)
@@ -119,15 +130,20 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, viewModel: ArmyBuilder
 }
 
 @Composable
-private fun BuilderEntryCard(entry: ListEntry, onRemove: () -> Unit, onSelectParent: () -> Unit = {}) {
-    val isSelectable = entry.card.kind == CardKind.LEGION_UNIT || entry.card.kind == CardKind.ARMADA_SHIP
-    Card(Modifier.fillMaxWidth().then(if (isSelectable) Modifier.clickable { onSelectParent() } else Modifier), shape = RoundedCornerShape(15.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF18212D))) {
+private fun BuilderEntryCard(entry: ListEntry, isChild: Boolean = false, onRemove: () -> Unit, onSelectParent: () -> Unit = {}) {
+    val isSelectable = !isChild && (entry.card.kind == CardKind.LEGION_UNIT || entry.card.kind == CardKind.ARMADA_SHIP)
+    Card(Modifier
+        .fillMaxWidth()
+        .then(if (isSelectable) Modifier.clickable { onSelectParent() } else Modifier)
+        .then(if (isChild) Modifier.padding(start = 28.dp) else Modifier),
+        shape = RoundedCornerShape(if (isChild) 10.dp else 15.dp),
+        colors = CardDefaults.cardColors(containerColor = if (isChild) Color(0xFF1E2A3A) else Color(0xFF18212D))) {
         Row(Modifier.fillMaxWidth().padding(10.dp), horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
             CardArtwork(entry.card, Modifier.size(width = 64.dp, height = 88.dp))
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
                 Text(entry.card.name, color = Color.White, style = MaterialTheme.typography.titleSmall)
                 Text("${entry.card.points * entry.quantity} pts  •  ${entry.card.legionRank?.name?.replace('_', ' ') ?: entry.card.kind.name.replace('_', ' ')}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelSmall)
-                if (entry.parentInstanceId != null) Text("↳ ${entry.chosenSlot?.name?.replace('_', ' ') ?: "amélioration liée"}", color = Color.LightGray, style = MaterialTheme.typography.labelSmall)
+                if (entry.parentInstanceId != null) Text("↳ ${entry.chosenSlot?.name?.replace('_', ' ') ?: "amélioration liée"}", color = Color(0xFF77D9A7), style = MaterialTheme.typography.labelSmall)
                 if (entry.card.kind == CardKind.LEGION_UNIT || entry.card.kind == CardKind.ARMADA_SHIP) {
                     if (entry.card.allowedUpgradeSlots.isNotEmpty()) Text("Slots : ${entry.card.allowedUpgradeSlots.joinToString { it.name.lowercase().replace('_', ' ') }}", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, maxLines = 2)
                 }
