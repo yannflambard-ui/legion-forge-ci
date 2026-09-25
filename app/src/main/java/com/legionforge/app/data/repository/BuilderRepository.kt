@@ -37,12 +37,15 @@ class BuilderRepository(context: Context) {
             val counts = dao.cardCountBySystem().associate { it.gameSystem to it.cnt }
             val legionCount = counts[GameSystem.LEGION_V2.name] ?: 0
             val armadaCount = counts[GameSystem.ARMADA_V15.name] ?: 0
-            android.util.Log.i("Repo", "seedCatalog: LEGION=$legionCount, ARMADA=$armadaCount")
-            if (legionCount >= 190 && armadaCount >= 40) {
-                seedLog = "skip: déjà peuplé (LEGION=$legionCount, ARMADA=$armadaCount)"
+            val missingStats = dao.armadaUnitsWithoutStats()
+            android.util.Log.i("Repo", "seedCatalog: LEGION=$legionCount, ARMADA=$armadaCount, missingStats=$missingStats")
+            // Re-seed dès qu'un système manque OU si des vaisseaux Armada n'ont pas de stats
+            // (base existante migrée avant l'ajout du champ shipStats).
+            if (legionCount >= 190 && armadaCount >= 40 && missingStats == 0) {
+                seedLog = "skip: déjà peuplé (LEGION=$legionCount, ARMADA=$armadaCount, missingStats=$missingStats)"
                 return@withContext
             }
-            logProbe("reseed", "forge (L=$legionCount A=$armadaCount)")
+            logProbe("reseed", "forge (L=$legionCount A=$armadaCount missingStats=$missingStats)")
             val json = try { context.assets.open("catalog.json").bufferedReader().use { it.readText() } }
             catch (e: Exception) { seedLog = "ERREUR lecture asset: ${e.message}"; throw e }
             logProbe("assetChars", json.length)

@@ -19,14 +19,15 @@
 
 ## Catalogue (seed)
 - Sources : `assets/catalog.json` (974 cartes : 624 LEGION_V2 + 350 ARMADA_V15). Attributions dans `assets/CATALOG_SOURCES.md`.
-- `BuilderRepository.seedCatalog` : seed si LEGION<190 OU ARMADA<40 (comptage par gameSystem). Ne coupe plus sur un `cardCount()>=400` global (ça laissait une vieille DB périmée sans les cartes du bon gameSystem → "Catalogue vide" sans erreur).
+- **Stats Armada (mode partie)** : les vaisseaux/escadrons de `catalog.json` n'ont pas de stats dans rulesText. Elles sont injectées depuis `assets/armada_bsdata_catalog.json` (dataset BSData = « Armada Fleet Builder ») dans un champ JSON `shipStats` (hull, boucliers front/right/left/rear, maxSpeed) sur chaque carte, par `scripts/enrich_armada_stats.py` (match normalisé nom+faction, fuzzy : « Boba Fett (Slave I) », typo BSData « Dreadought »). Appelé en fin de `build_catalog.py` (flag `--skip-stats`). `BuilderRepository.seedCatalog` force un re-seed si des vaisseaux manquent de stats (`armadaUnitsWithoutStats()`), pas seulement si un système est vide.
+- `BuilderRepository.seedCatalog` : seed si LEGION<190 OU ARMADA<40 OU des vaisseaux Armada sans stats (comptage par gameSystem). Ne coupe plus sur un `cardCount()>=400` global (ça laissait une vieille DB périmée sans les cartes du bon gameSystem → "Catalogue vide" sans erreur).
 - `CatalogJsonImporter` : import versionné hors-ligne (schemaVersion==1, IDs uniques, points>=0, nom non vide).
 - `observeCards(system, factionId)` : `WHERE gameSystem=:system AND (factionId=:factionId OR factionId='neutral')`.
 - **Référence Armada** : Rules Reference Guide 1.6.0 (janv 2025, AMG) + Errata 5.5 — https://atomicmassgames.com/swarmadadocs/. Dégâts critiques réservés aux vaisseaux (squadrons ne peuvent ni résoudre ni subir de critiques). Contraintes flotte : ≤1/3 pts en escadrons (arrondi sup), pas d'upgrade dupliquée sur un même vaisseau, 1 seul commandant.
 - **PIÈGE Gson+Kotlin (cause racine du catalogue vide)** : Gson n'applique PAS les valeurs par défaut Kotlin. Un champ absent du JSON reste `null` (défaut JVM), pas `emptyMap()`. `CardDefinition.names` était `= emptyMap()` mais Gson le laissait null → `toJsonNames` faisait `names.isEmpty()` → NPE sur les 974 cartes → 0 mappées → catalogue vide (LEGION + Armada). Fix : `toJsonNames(names: Map<String,String>?)` avec null-check. Toujours null-checker les champs à défaut Kotlin après un `Gson().fromJson`.
 
 ## DB
-- Room version 4 (`legionforge.db`), `fallbackToDestructiveMigration`, migrations 1→2 (catalog_cards), 2→3 (chosenSlot), 3→4 (names) puis destructif au-delà.
+- Room version 6 (`legionforge.db`), `fallbackToDestructiveMigration`, migrations 1→2 (catalog_cards), 2→3 (chosenSlot), 3→4 (names), 5→6 (shipStats) puis destructif au-delà.
 - DAO polymorphe `PolymorphicGameDao` gère Legion V2 + Armada V1.5.
 
 ## App

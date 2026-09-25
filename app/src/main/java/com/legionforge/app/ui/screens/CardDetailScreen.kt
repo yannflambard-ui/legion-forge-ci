@@ -134,20 +134,64 @@ private fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntrie
     }
 }
 
-// ═══════════════════  ARMADA SHIP  ═══════════════════════
+// // ═══════════════════  ARMADA SHIP  ═══════════════════════
+// Stats embarqués depuis le catalogue BSData ("fleet builder") dans card.shipStats (JSON).
+private data class ArmadaStats(
+    val hull: Int = 0,
+    val shieldFront: Int = 0,
+    val shieldRear: Int = 0,
+    val shieldPort: Int = 0,
+    val shieldStarboard: Int = 0,
+    val maxSpeed: Int = 1,
+    val speed: Int = 3 // valeur fixe des squadrons
+)
+
+private object ArmadaStatsParser {
+    fun parse(shipStats: String?, kind: CardKind): ArmadaStats? {
+        if (shipStats.isNullOrBlank()) return null
+        return try {
+            val o = org.json.JSONObject(shipStats)
+            val shield = o.optJSONObject("shield")
+            when (kind) {
+                CardKind.ARMADA_SHIP -> ArmadaStats(
+                    hull = o.optInt("hull"),
+                    shieldFront = shield?.optInt("front", 0) ?: 0,
+                    shieldRear = shield?.optInt("rear", 0) ?: 0,
+                    shieldPort = shield?.optInt("left", 0) ?: 0,
+                    shieldStarboard = shield?.optInt("right", 0) ?: 0,
+                    maxSpeed = o.optInt("maxSpeed", 1).coerceAtLeast(1)
+                )
+                CardKind.ARMADA_SQUADRON -> ArmadaStats(
+                    hull = o.optInt("hull"),
+                    speed = o.optInt("speed", 3).coerceAtLeast(1)
+                )
+                else -> null
+            }
+        } catch (_: Exception) { null }
+    }
+}
+
 @Composable
 private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntries: List<ListEntry>) {
     val totalPts = unit.card.points + children.sumOf { it.card.points * it.quantity }
-    var hull by remember(unit.instanceId) { mutableIntStateOf(0) }
-    var sF by remember(unit.instanceId) { mutableIntStateOf(0) }; var sR by remember(unit.instanceId) { mutableIntStateOf(0) }
-    var sP by remember(unit.instanceId) { mutableIntStateOf(0) }; var sS by remember(unit.instanceId) { mutableIntStateOf(0) }
+    val stats = remember(unit.instanceId) { ArmadaStatsParser.parse(unit.card.shipStats, CardKind.ARMADA_SHIP) }
+    // Coque + boucliers initialisés aux valeurs de base de la carte ; speed démarre à 2.
+    // La coque est un tracker de valeur restante (démarre au hull de base, descend sous les dégâts).
+    val maxHp = stats?.hull?.takeIf { it > 0 } ?: 15
+    var hull by remember(unit.instanceId) { mutableIntStateOf(maxHp) }
+    var sF by remember(unit.instanceId) { mutableIntStateOf(stats?.shieldFront ?: 0) }
+    var sR by remember(unit.instanceId) { mutableIntStateOf(stats?.shieldRear ?: 0) }
+    var sP by remember(unit.instanceId) { mutableIntStateOf(stats?.shieldPort ?: 0) }
+    var sS by remember(unit.instanceId) { mutableIntStateOf(stats?.shieldStarboard ?: 0) }
+    val maxShield = 9
+    val maxSpeed = stats?.maxSpeed ?: 3
+    var speed by remember(unit.instanceId) { mutableIntStateOf(2) }
     var tokens by remember(unit.instanceId) { mutableStateOf(listOf<String>()) }
     var activeCrits by remember(unit.instanceId) { mutableStateOf(listOf<CritCard>()) }
     var usedUpgrades by remember(unit.instanceId) { mutableStateOf(setOf<String>()) }
     val defTokenNames = remember { ArmadaDefenseToken.entries.take(4) }
     var defTokens by remember(unit.instanceId) { mutableStateOf<Map<String, Boolean>>(defTokenNames.associate { it.name to false }) }
     val commander = allEntries.firstOrNull { it.card.kind == CardKind.COMMANDER || (it.card.kind == CardKind.ARMADA_UPGRADE && ArmadaSlot.COMMANDER in it.card.upgradeSlots) }
-    val maxHp = 15
 
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         // ── ship card ──
@@ -211,13 +255,17 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text("BOUCLIERS & COQUE", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    MiniShield("AV", sF, { if (sF < 9) sF++ }, { if (sF > 0) sF-- })
-                    Row(horizontalArrangement = Arrangement.spacedBy(24.dp)) { MiniShield("BAB", sP, { if (sP < 9) sP++ }, { if (sP > 0) sP-- }); MiniShield("TRIB", sS, { if (sS < 9) sS++ }, { if (sS > 0) sS-- }) }
-                    MiniShield("ARR", sR, { if (sR < 9) sR++ }, { if (sR > 0) sR-- })
+                    MiniShield("AV", sF, { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- })
+                    Row(horizontalArrangement = Arrangement.spacedBy(24.dp)) { MiniShield("BAB", sP, { if (sP < maxShield) sP++ }, { if (sP > 0) sP-- }); MiniShield("TRIB", sS, { if (sS < maxShield) sS++ }, { if (sS > 0) sS-- }) }
+                    MiniShield("ARR", sR, { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- })
                 }
                 HorizontalDivider(color = Color(0xFF2A3A4A))
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { BigCounter("COQUE", hull, maxHp, Color(0xFFFF6B6B), { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- }) }
-                if (hull > 0) { HealthBar((1f - hull.toFloat() / maxHp).coerceIn(0f, 1f), maxHp - hull, maxHp) }
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+                    BigCounter("VITESSE", speed, maxSpeed, Color(0xFF77D9A7), { if (speed < maxSpeed) speed++ }, { if (speed > 1) speed-- })
+                    Spacer(Modifier.width(24.dp))
+                    BigCounter("COQUE", hull, maxHp, Color(0xFFFF6B6B), { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- })
+                }
+                if (hull < maxHp) { HealthBar(hull.toFloat() / maxHp, hull, maxHp) }
             }
         }
         // ── tokens ──
@@ -262,15 +310,16 @@ private fun CommanderPage(unit: ListEntry) {
 // ═══════════════════  SQUADRON  ═══════════════════════════
 @Composable
 private fun ArmadaSquadronPage(unit: ListEntry) {
-    var hull by remember(unit.instanceId) { mutableIntStateOf(0) }; var tokens by remember(unit.instanceId) { mutableStateOf(listOf<String>()) }
-    val maxHp = 8
+    val stats = remember(unit.instanceId) { ArmadaStatsParser.parse(unit.card.shipStats, CardKind.ARMADA_SQUADRON) }
+    val maxHp = stats?.hull?.takeIf { it > 0 } ?: 8
+    var hull by remember(unit.instanceId) { mutableIntStateOf(maxHp) }; var tokens by remember(unit.instanceId) { mutableStateOf(listOf<String>()) }
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         CardBlock(unit, emptyList(), unit.card.points)
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text("SUIVI ESCADRON", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { BigCounter("COQUE", hull, maxHp, Color(0xFFFF6B6B), { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- }) }
-                if (hull > 0) HealthBar((1f - hull.toFloat() / maxHp).coerceIn(0f, 1f), maxHp - hull, maxHp)
+                if (hull < maxHp) HealthBar(hull.toFloat() / maxHp, hull, maxHp)
                 TokenSection(tokens, { tokens = tokens + it }, { tokens = tokens - it })
             }
         }

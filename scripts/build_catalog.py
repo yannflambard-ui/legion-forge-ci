@@ -425,8 +425,15 @@ def main() -> None:
     parser.add_argument("--armada", type=Path, default=Path("/tmp/armada-dataset/data"))
     parser.add_argument("--output", type=Path, default=Path("app/src/main/assets/catalog.json"))
     parser.add_argument("--sources-output", type=Path, default=Path("catalogSources.json"))
+    parser.add_argument("--skip-stats", action="store_true",
+                        help="Ne pas ré-injecter les stats Armada (BSData / fleet builder) après build")
     args = parser.parse_args()
     summary = build(args.legion, args.armada, args.output, args.sources_output)
+    if not args.skip_stats:
+        # Injecte hull / boucliers / vitesse depuis armada_bsdata_catalog.json
+        # (dataset "Armada Fleet Builder") dans un champ shipStats des vaisseaux/escadrons.
+        from enrich_armada_stats import enrich
+        enrich(args.output.parent, args.output)
     print(json.dumps({"catalogPath": str(args.output), "sourceMetadataPath": str(args.sources_output),
                       "catalogCardCount": summary["catalogCardCount"],
                       "counts": summary["counts"], "excluded": summary["excluded"]}, indent=2))

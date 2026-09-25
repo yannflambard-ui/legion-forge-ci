@@ -24,6 +24,11 @@ interface PolymorphicGameDao {
     @Query("SELECT gameSystem, COUNT(*) AS cnt FROM catalog_cards GROUP BY gameSystem")
     suspend fun cardCountBySystem(): List<SystemCountRow>
 
+    /** Nombre de vaisseaux/escadrons Armada qui n'ont pas encore de stats (shipStats NULL/'').
+     *  > 0 => il faut re-seeder pour charger les stats du mode partie. */
+    @Query("SELECT COUNT(*) FROM catalog_cards WHERE gameSystem = 'ARMADA_V15' AND kind IN ('ARMADA_SHIP','ARMADA_SQUADRON') AND (shipStats IS NULL OR shipStats = '')")
+    suspend fun armadaUnitsWithoutStats(): Int
+
     data class SystemCountRow(val gameSystem: String, val cnt: Int)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
