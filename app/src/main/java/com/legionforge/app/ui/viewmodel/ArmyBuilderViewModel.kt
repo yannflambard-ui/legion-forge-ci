@@ -22,6 +22,8 @@ class ArmyBuilderViewModel(application: Application) : AndroidViewModel(applicat
     val allLists: StateFlow<List<BuilderListEntity>> = _allLists.asStateFlow()
     private val _loading = MutableStateFlow(true)
     val loading: StateFlow<Boolean> = _loading.asStateFlow()
+    private val _catalogError = MutableStateFlow<String?>(null)
+    val catalogError: StateFlow<String?> = _catalogError.asStateFlow()
     private val _currentList = MutableStateFlow<BuilderListEntity?>(null)
     val currentList: StateFlow<BuilderListEntity?> = _currentList.asStateFlow()
     private val _entries = MutableStateFlow<List<ListEntry>>(emptyList())
@@ -33,9 +35,26 @@ class ArmyBuilderViewModel(application: Application) : AndroidViewModel(applicat
     private var seedJob: kotlinx.coroutines.Job? = null
 
     init {
+        // Force loading to end after 30s even if seed hangs
+        viewModelScope.launch {
+            kotlinx.coroutines.delay(30_000)
+            if (_loading.value) {
+                android.util.Log.w("VM", "Catalog seed timed out after 30s - forcing loading=false")
+                _loading.value = false
+                _catalogError.value = "Chargement du catalogue interrompu (timeout)"
+            }
+        }
         seedJob = viewModelScope.launch {
-            repository.seedCatalog(getApplication())
-            _loading.value = false
+            try {
+                android.util.Log.i("VM", "Starting catalog seed")
+                repository.seedCatalog(getApplication())
+                android.util.Log.i("VM", "Catalog seed complete")
+            } catch (e: Exception) {
+                android.util.Log.e("VM", "Catalog seed crashed", e)
+                _catalogError.value = "Erreur: ${e.message?.take(80) ?: e.javaClass.simpleName}"
+            } finally {
+                _loading.value = false
+            }
         }
         viewModelScope.launch { repository.observeLists().collect { _allLists.value = it } }
     }

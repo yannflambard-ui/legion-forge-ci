@@ -25,19 +25,37 @@ class BuilderRepository(context: Context) {
 
     suspend fun seedCatalog(context: Context) = withContext(Dispatchers.IO) {
         try {
+            android.util.Log.i("Repo", "seedCatalog: checking cardCount")
             val existing = dao.cardCount()
-            if (existing >= 400) return@withContext
-            // Read and parse JSON once
-            val document = context.assets.open("catalog.json").bufferedReader().use {
-                gson.fromJson(it, CatalogDocument::class.java)
-            } ?: return@withContext
-            // Batch insert in chunks of 200 for speed
-            val entities = document.cards.map(CatalogCardEntity::from)
-            entities.chunked(200).forEach { chunk ->
+            android.util.Log.i("Repo", "seedCatalog: existing=$existing")
+            if (existing >= 400) {
+                android.util.Log.i("Repo", "seedCatalog: already seeded, skipping")
+                return@withContext
+            }
+            android.util.Log.i("Repo", "seedCatalog: reading catalog.json from assets")
+            val json = context.assets.open("catalog.json").bufferedReader().use { it.readText() }
+            android.util.Log.i("Repo", "seedCatalog: read ${json.length} chars, parsing with Gson")
+            val document = gson.fromJson(json, CatalogDocument::class.java)
+            if (document == null) {
+                android.util.Log.w("Repo", "seedCatalog: Gson returned null")
+                return@withContext
+            }
+            android.util.Log.i("Repo", "seedCatalog: parsed ${document.cards.size} cards")
+            val entities = document.cards.mapNotNull { card ->
+                try {
+                    CatalogCardEntity.from(card)
+                } catch (e: Exception) {
+                    android.util.Log.e("Repo", "seedCatalog: failed to map card ${card.id}", e); null
+                }
+            }
+            android.util.Log.i("Repo", "seedCatalog: mapped ${entities.size}/${document.cards.size} entities")
+            entities.chunked(200).forEachIndexed { i, chunk ->
+                android.util.Log.i("Repo", "seedCatalog: inserting chunk $i (${chunk.size})")
                 dao.upsertCards(chunk)
             }
+            android.util.Log.i("Repo", "seedCatalog: done - ${entities.size} cards inserted")
         } catch (e: Exception) {
-            android.util.Log.e("BuilderRepo", "Catalog seed failed", e)
+            android.util.Log.e("Repo", "seedCatalog FAILED", e)
         }
     }
 

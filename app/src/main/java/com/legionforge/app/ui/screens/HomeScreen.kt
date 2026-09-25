@@ -28,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.legionforge.app.data.model.GameSystem
@@ -38,6 +39,7 @@ import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
 fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, onSettings: () -> Unit, vm: ArmyBuilderViewModel = viewModel()) {
     val lists by vm.allLists.collectAsState()
     val loading by vm.loading.collectAsState()
+    val catalogError by vm.catalogError.collectAsState()
     Scaffold(topBar = {
         TopAppBar(title = { Text("LEGION FORGE", style = MaterialTheme.typography.titleLarge) },
             actions = {
@@ -58,6 +60,14 @@ fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, on
                 LinearProgressIndicator(modifier = Modifier.fillMaxWidth().padding(horizontal = 40.dp), color = Color(0xFFFFC857))
                 Spacer(Modifier.height(8.dp))
                 Text("Chargement du catalogue hors ligne…", color = Color(0xFF9EACBC), style = MaterialTheme.typography.bodySmall, modifier = Modifier.align(Alignment.CenterHorizontally))
+            }
+            if (catalogError != null) {
+                Card(Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 8.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF3B2224))) {
+                    Column(Modifier.padding(12.dp)) {
+                        Text("Erreur catalogue", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+                        Text(catalogError ?: "", color = Color(0xFFFFC7B7), style = MaterialTheme.typography.bodySmall)
+                    }
+                }
             }
             lists.forEach { list ->
                 OutlinedButton(onClick = { onOpenList(list.id) }, modifier = Modifier.fillMaxWidth()) {
