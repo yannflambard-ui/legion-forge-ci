@@ -103,6 +103,13 @@ class BuilderRepository(context: Context) {
         })
     }
 
+    /** Renomme une liste existante (le reste - contenu/faction/limite/jeu - est préservé). */
+    suspend fun renameList(list: BuilderListEntity, name: String) {
+        val trimmed = name.trim()
+        if (trimmed.isEmpty()) return
+        dao.upsertList(list.copy(name = trimmed, updatedAt = System.currentTimeMillis()))
+    }
+
     fun observeEntries(listId: String, cards: List<CardDefinition>): Flow<List<ListEntry>> {
         val byId = cards.associateBy(CardDefinition::id)
         return dao.observeEntries(listId).map { entities ->

@@ -195,6 +195,16 @@ class ArmyBuilderViewModel(application: Application) : AndroidViewModel(applicat
         persistAndValidate()
     }
 
+    /** Renomme la liste courante et la persiste. Le nom vide est ignoré. */
+    fun renameList(name: String) {
+        val trimmed = name.trim()
+        if (trimmed.isEmpty()) return
+        val list = _currentList.value ?: return
+        val renamed = list.copy(name = trimmed, updatedAt = System.currentTimeMillis())
+        _currentList.value = renamed
+        viewModelScope.launch { saveMutex.withLock { repository.renameList(list, trimmed) } }
+    }
+
     private fun persistAndValidate() {
         val list = _currentList.value ?: return
         val updated = list.copy(updatedAt = System.currentTimeMillis())

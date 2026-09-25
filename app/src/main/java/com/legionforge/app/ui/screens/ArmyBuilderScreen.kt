@@ -37,6 +37,9 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
     var filterMaxPts by remember { mutableStateOf<Int?>(null) }
     var filterKeyword by remember { mutableStateOf<String?>(null) }
     var filtersMenuOpen by remember { mutableStateOf(false) }
+    // Renommage de la liste : titre cliquable + dialog avec champ texte.
+    var renameOpen by remember { mutableStateOf(false) }
+    var renameText by remember { mutableStateOf("") }
     LaunchedEffect(listId) { viewModel.openList(listId) }
     val game = list?.gameSystem?.let { runCatching { GameSystem.valueOf(it) }.getOrNull() } ?: GameSystem.LEGION_V2
     val allowedKinds = if (game == GameSystem.LEGION_V2) setOf(CardKind.LEGION_UNIT, CardKind.LEGION_UPGRADE) else setOf(CardKind.ARMADA_SHIP, CardKind.ARMADA_SQUADRON, CardKind.ARMADA_UPGRADE, CardKind.COMMANDER)
@@ -75,7 +78,12 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
     val firstPlayable = entries.firstOrNull { it.parentInstanceId == null && (it.card.kind == CardKind.LEGION_UNIT || it.card.kind == CardKind.ARMADA_SHIP) }
     Scaffold(topBar = {
         TopAppBar(title = { Column {
-            Text(list?.name ?: "Nouvelle liste", style = MaterialTheme.typography.titleLarge)
+            TextButton(onClick = {
+                renameText = list?.name ?: ""
+                renameOpen = true
+            }) {
+                Text(list?.name ?: "Nouvelle liste", style = MaterialTheme.typography.titleLarge, color = Color.White, maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
+            }
             Text("${game.label()}  •  ${list?.factionId.orEmpty()}", style = MaterialTheme.typography.labelSmall, color = Color(0xFFFFC857))
         } }, navigationIcon = { TextButton(onClick = onBack) { Text("‹") } },
             actions = {
@@ -208,6 +216,31 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
             }
             Text("Hors ligne • catalogue sous réserve des mises à jour officielles", Modifier.align(Alignment.CenterHorizontally).padding(bottom = 6.dp), color = Color(0xFF718096), style = MaterialTheme.typography.labelSmall)
         }
+    }
+    if (renameOpen) {
+        AlertDialog(
+            onDismissRequest = { renameOpen = false },
+            title = { Text("Nommer la liste", color = Color.White) },
+            text = {
+                OutlinedTextField(
+                    value = renameText,
+                    onValueChange = { renameText = it },
+                    singleLine = true,
+                    placeholder = { Text("Nom de la liste…") },
+                    textStyle = MaterialTheme.typography.bodyMedium
+                )
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    viewModel.renameList(renameText)
+                    renameOpen = false
+                }) { Text("SAUVEGARDER", color = Color(0xFFFFC857), fontWeight = FontWeight.Bold) }
+            },
+            dismissButton = {
+                TextButton(onClick = { renameOpen = false }) { Text("ANNULER", color = Color(0xFF9EACBC)) }
+            },
+            containerColor = Color(0xFF192330)
+        )
     }
 }
 
