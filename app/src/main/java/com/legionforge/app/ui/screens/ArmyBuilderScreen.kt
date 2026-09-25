@@ -112,6 +112,10 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                         val counts = entries.filter { it.card.kind == CardKind.LEGION_UNIT }.groupBy { it.card.legionRank }.mapValues { (_, items) -> items.sumOf { it.quantity } }
                         Text("C ${counts[LegionRank.COMMANDER] ?: 0}/1–2   •   T ${counts[LegionRank.CORPS] ?: 0}/3–6   •   FS ${counts[LegionRank.SPECIAL_FORCES] ?: 0}/0–3", color = Color.LightGray, style = MaterialTheme.typography.labelSmall)
                     }
+                    // Indicateur de validité dans l'encadré des points
+                    if (entries.isNotEmpty()) {
+                        Text(if (listValid) "✓ Liste valide" else "✗ Liste invalide", color = if (listValid) Color(0xFF77D9A7) else Color(0xFFFF927F), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+                    }
                 }
             }
             if (validation.violations.isNotEmpty()) {
@@ -121,7 +125,6 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                         if (validation.violations.size > 3) Text("+ ${validation.violations.size - 3} règles à corriger", color = Color.LightGray, style = MaterialTheme.typography.labelSmall)
                     }
                 }
-            } else if (entries.isNotEmpty()) Text("✓ Liste valide", Modifier.padding(horizontal = 18.dp, vertical = 5.dp), color = Color(0xFF77D9A7))
             TabRow(selectedTabIndex = selectedTab) {
                 Tab(selectedTab == 0, onClick = { selectedTab = 0 }, text = { Text("LISTE (${entries.size})") })
                 Tab(selectedTab == 1, onClick = { selectedTab = 1 }, text = {
