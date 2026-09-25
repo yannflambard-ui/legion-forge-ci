@@ -77,17 +77,18 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
     val listValid = validation.violations.isEmpty() && entries.isNotEmpty()
     val firstPlayable = entries.firstOrNull { it.parentInstanceId == null && (it.card.kind == CardKind.LEGION_UNIT || it.card.kind == CardKind.ARMADA_SHIP) }
     Scaffold(topBar = {
-        TopAppBar(title = { Column {
-            TextButton(onClick = {
-                renameText = list?.name ?: ""
-                renameOpen = true
-            }) {
-                Text(list?.name ?: "Nouvelle liste", style = MaterialTheme.typography.titleLarge, color = Color.White, maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
-            }
-            Text("${game.label()}  •  ${list?.factionId.orEmpty()}", style = MaterialTheme.typography.labelSmall, color = Color(0xFFFFC857))
-        } }, navigationIcon = { TextButton(onClick = onBack) { Text("‹") } },
-            actions = {
-                // Bouton play compact dans la barre du haut, à droite du titre
+        TopAppBar(title = {
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Column(Modifier.weight(1f, fill = false)) {
+                    TextButton(onClick = {
+                        renameText = list?.name ?: ""
+                        renameOpen = true
+                    }) {
+                        Text(list?.name ?: "Nouvelle liste", style = MaterialTheme.typography.titleLarge, color = Color.White, maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
+                    }
+                    Text("${game.label()}  •  ${list?.factionId.orEmpty()}", style = MaterialTheme.typography.labelSmall, color = Color(0xFFFFC857))
+                }
+                // Bouton play compact à côté du nom de la liste
                 Button(
                     onClick = { if (firstPlayable != null) onPlayCard(listId, firstPlayable.instanceId) },
                     enabled = listValid && firstPlayable != null,
@@ -97,9 +98,10 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                         contentColor = if (listValid) Color.White else Color(0xFF718096)
                     )
                 ) {
-                    Text(if (listValid) "\u25B6 JOUER" else "\u25B6 INVALIDE", fontWeight = FontWeight.Bold, fontSize = 12.sp)
+                    Text("\u25B6", fontWeight = FontWeight.Bold, fontSize = 14.sp)
                 }
-            })
+            }
+        }, navigationIcon = { TextButton(onClick = onBack) { Text("‹") } })
     }) { pad ->
         Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).padding(pad)) {
             val total = validation.totalPoints
