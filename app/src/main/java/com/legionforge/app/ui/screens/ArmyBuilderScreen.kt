@@ -244,6 +244,15 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
     }
 }
 
+private fun factionLabel(factionId: String?): String = when (factionId) {
+    "rebel" -> "Rebelle"
+    "empire" -> "Empire"
+    "republic", "republics" -> "République"
+    "separatist", "separatists" -> "Séparatiste"
+    "neutral" -> "Neutre"
+    else -> factionId?.replace('-', ' ') ?: "Neutre"
+}
+
 @Composable
 private fun FactionCardColor(factionId: String?): Color = when (factionId) {
     "rebel" -> Color(0xFF4EC9E0)        // cyan
@@ -315,7 +324,7 @@ private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, preselec
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
                 Text(card.displayName(), color = Color.White, style = MaterialTheme.typography.titleSmall)
                 Text("${card.points} pts • ${card.kind.name.replace('_', ' ')}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelSmall)
-                Text(card.rulesText.orEmpty().ifBlank { "${card.factionId.replace('-', ' ')} • ${if (card.unique) "Unique" else "Standard"}" }, maxLines = 2, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall)
+                Text("${factionLabel(card.factionId)} • ${if (card.unique) "Unique" else "Standard"}", maxLines = 1, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall)
                 if (requiresTarget && eligibleTargets.isNotEmpty()) {
                     var expandedTarget by remember { mutableStateOf(false) }
                     Box {
