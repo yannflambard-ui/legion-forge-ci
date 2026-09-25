@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -33,17 +34,22 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
     LaunchedEffect(listId) { viewModel.openList(listId) }
     val game = list?.gameSystem?.let { runCatching { GameSystem.valueOf(it) }.getOrNull() } ?: GameSystem.LEGION_V2
     val allowedKinds = if (game == GameSystem.LEGION_V2) setOf(CardKind.LEGION_UNIT, CardKind.LEGION_UPGRADE) else setOf(CardKind.ARMADA_SHIP, CardKind.ARMADA_SQUADRON, CardKind.ARMADA_UPGRADE, CardKind.COMMANDER)
+    // Faction de la liste : le catalogue n'affiche que les cartes neutres ou de cette faction.
+    // (Certaines cartes Armada existent en 2 factions — ex: Ahsoka Tano rebel/republic — mais
+    // ce sont des cartes distinctes par faction, donc le filtre factionId les gère correctement.)
+    val listFaction = list?.factionId
+    fun matchesFaction(c: CardDefinition) = listFaction == null || c.factionId == listFaction || c.factionId == "neutral"
     // When a parent unit is selected, show only compatible upgrades + base units/ships
     val selectedParent = entries.firstOrNull { it.instanceId == selectedParentId }
     val filteredAdditions = if (selectedParent != null) {
         // Show upgrades that fit in the selected unit's slots + allow adding more units
-        cards.filter { it.kind in allowedKinds }.filter { c ->
+        cards.filter { it.kind in allowedKinds && matchesFaction(it) }.filter { c ->
             val isBaseUnit = if (game == GameSystem.LEGION_V2) c.kind == CardKind.LEGION_UNIT else c.kind == CardKind.ARMADA_SHIP || c.kind == CardKind.COMMANDER
             val isMatchingUpgrade = c.kind == CardKind.LEGION_UPGRADE || c.kind == CardKind.ARMADA_UPGRADE || c.kind == CardKind.ARMADA_SQUADRON
             if (isBaseUnit || c.kind == CardKind.ARMADA_SQUADRON || c.kind == CardKind.COMMANDER) true
             else isMatchingUpgrade && c.upgradeSlots.any { it in selectedParent.card.allowedUpgradeSlots }
         }
-    } else cards.filter { it.kind in allowedKinds }
+    } else cards.filter { it.kind in allowedKinds && matchesFaction(it) }
     val additions = filteredAdditions
         .filter { it.name.contains(search, ignoreCase = true) || it.factionId.contains(search, ignoreCase = true) }
     Scaffold(topBar = {
