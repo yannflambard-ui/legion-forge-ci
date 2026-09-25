@@ -42,7 +42,7 @@ fun FactionPickerScreen(system: GameSystem, onFactionSelected: (String) -> Unit,
                 Card(onClick = { onFactionSelected(faction) }, modifier = Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(containerColor = Color(0xFF192331))) {
                     Column(Modifier.padding(18.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                         Text(faction.displayName(), style = MaterialTheme.typography.titleLarge, color = Color.White)
-                        Text("$count unités / vaisseaux au catalogue  →", color = Color(0xFFFFC857))
+                        Text("$count ${if (system == GameSystem.LEGION_V2) "unités / véhicules" else "vaisseaux"} au catalogue  →", color = Color(0xFFFFC857))
                     }
                 }
             }

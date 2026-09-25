@@ -1,6 +1,7 @@
 package com.legionforge.app.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -69,7 +70,7 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                             Text("POINTS / $limit", color = Color.LightGray, style = MaterialTheme.typography.labelSmall)
                         }
                         val count = entries.filter { it.card.kind == if (game == GameSystem.LEGION_V2) CardKind.LEGION_UNIT else CardKind.ARMADA_SHIP }.sumOf { it.quantity }
-                        Text("$count ${if (game == GameSystem.LEGION_V2) "unités" else "vaisseaux"}", color = Color.White)
+                        Text("$count ${if (game == GameSystem.LEGION_V2) "unités / véhicules" else "vaisseaux"}", color = Color.White)
                     }
                     if (game == GameSystem.ARMADA_V15) {
                         val squadronPts = entries.filter { it.card.kind == CardKind.ARMADA_SQUADRON }.sumOf { it.card.points * it.quantity }
@@ -125,19 +126,25 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                     // Group entries hierarchically: parents first, then their upgrades indented
                     val parents = entries.filter { it.parentInstanceId == null }
                     val allParentIds = parents.map { it.instanceId }.toSet()
-                    val grouped = parents.flatMap { parent ->
+                    val grouped = parents.map { parent ->
                         val children = entries.filter { it.parentInstanceId == parent.instanceId }
-                        listOf(parent to false) + children.map { it to true }
+                        parent to children
                     }
                     val orphans = entries.filter { it.parentInstanceId != null && it.parentInstanceId !in allParentIds }
-                    val displayList = grouped + orphans.map { it to false }
-                    items(displayList, key = { (e, _) -> e.instanceId }) { (entry, isChild) ->
-                        BuilderEntryCard(entry, isChild, onRemove = { viewModel.remove(entry) }, onSelectParent = {
-                            if (entry.card.kind == CardKind.LEGION_UNIT || entry.card.kind == CardKind.ARMADA_SHIP) {
-                                selectedParentId = entry.instanceId
-                                selectedTab = 1
-                            }
-                        })
+                    grouped.forEach { (parent, children) ->
+                        item(key = parent.instanceId) {
+                            FactionGroup(parent, children, onRemove = { viewModel.remove(it) }, onSelectParent = {
+                                if (parent.card.kind == CardKind.LEGION_UNIT || parent.card.kind == CardKind.ARMADA_SHIP) {
+                                    selectedParentId = parent.instanceId
+                                    selectedTab = 1
+                                }
+                            })
+                        }
+                    }
+                    orphans.forEach { orphan ->
+                        item(key = orphan.instanceId) {
+                            BuilderEntryCard(orphan, isChild = true, onRemove = { viewModel.remove(orphan) })
+                        }
                     }
                 }
             } else {
@@ -152,8 +159,29 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
 }
 
 @Composable
-private fun BuilderEntryCard(entry: ListEntry, isChild: Boolean = false, onRemove: () -> Unit, onSelectParent: () -> Unit = {}) {
-    val isSelectable = !isChild && (entry.card.kind == CardKind.LEGION_UNIT || entry.card.kind == CardKind.ARMADA_SHIP)
+private fun FactionCardColor(factionId: String?): Color = when (factionId) {
+    "rebel" -> Color(0xFF4EC9E0)        // cyan
+    "empire" -> Color(0xFFFF5A5A)       // rouge impérial
+    "republic", "republics" -> Color(0xFFE8B54E) // or/jaune
+    "separatist", "separatists" -> Color(0xFF9B6DFF) // violet
+    "neutral" -> Color(0xFF9EACBC)      // gris
+    else -> Color(0xFF9EACBC)
+}
+
+@Composable
+private fun FactionGroup(parent: ListEntry, children: List<ListEntry>, onRemove: (ListEntry) -> Unit, onSelectParent: () -> Unit) {
+    val isSelectable = parent.card.kind == CardKind.LEGION_UNIT || parent.card.kind == CardKind.ARMADA_SHIP
+    val accent = FactionCardColor(parent.card.factionId)
+    Column(Modifier.fillMaxWidth().border(1.dp, accent.copy(alpha = 0.7f), RoundedCornerShape(15.dp)).padding(5.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        BuilderEntryCard(parent, isChild = false, accentColor = accent, onRemove = { onRemove(parent) }, onSelectParent = onSelectParent, isSelectable = isSelectable)
+        children.forEach { child ->
+            BuilderEntryCard(child, isChild = true, onRemove = { onRemove(child) })
+        }
+    }
+}
+
+@Composable
+private fun BuilderEntryCard(entry: ListEntry, isChild: Boolean = false, accentColor: Color = Color(0xFF9EACBC), isSelectable: Boolean = false, onRemove: () -> Unit, onSelectParent: () -> Unit = {}) {
     Card(Modifier
         .fillMaxWidth()
         .then(if (isSelectable) Modifier.clickable { onSelectParent() } else Modifier)
@@ -164,7 +192,7 @@ private fun BuilderEntryCard(entry: ListEntry, isChild: Boolean = false, onRemov
             CardArtwork(entry.card, Modifier.size(width = 64.dp, height = 88.dp))
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
                 Text(entry.card.displayName(), color = Color.White, style = MaterialTheme.typography.titleSmall)
-                Text("${entry.card.points * entry.quantity} pts  •  ${entry.card.legionRank?.name?.replace('_', ' ') ?: entry.card.kind.name.replace('_', ' ')}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelSmall)
+                Text("${entry.card.points * entry.quantity} pts  •  ${entry.card.legionRank?.name?.replace('_', ' ') ?: entry.card.kind.name.replace('_', ' ')}", color = accentColor, style = MaterialTheme.typography.labelSmall)
                 if (entry.parentInstanceId != null) Text("↳ ${entry.chosenSlot?.name?.replace('_', ' ') ?: "amélioration liée"}", color = Color(0xFF77D9A7), style = MaterialTheme.typography.labelSmall)
                 if (entry.card.kind == CardKind.LEGION_UNIT || entry.card.kind == CardKind.ARMADA_SHIP) {
                     if (entry.card.allowedUpgradeSlots.isNotEmpty()) Text("Slots : ${entry.card.allowedUpgradeSlots.joinToString { it.name.lowercase().replace('_', ' ') }}", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, maxLines = 2)
