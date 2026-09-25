@@ -92,8 +92,10 @@ data class CatalogCardEntity(
             if (value == null || value.isEmpty()) return emptyMap()
             return try { com.google.gson.Gson().fromJson(value, Map::class.java) as? Map<String, String> ?: emptyMap() } catch (_: Exception) { emptyMap() }
         }
-        private fun toJsonNames(names: Map<String, String>): String? {
-            if (names.isEmpty()) return null
+        // Gson n'applique PAS les valeurs par défaut Kotlin : un champ absent du JSON
+        // reste null (défaut JVM), pas emptyMap(). D'où le null-check obligatoire.
+        private fun toJsonNames(names: Map<String, String>?): String? {
+            if (names == null || names.isEmpty()) return null
             return try { com.google.gson.Gson().toJson(names) } catch (_: Exception) { null }
         }
     }
