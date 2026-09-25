@@ -38,14 +38,17 @@ class BuilderRepository(context: Context) {
             val legionCount = counts[GameSystem.LEGION_V2.name] ?: 0
             val armadaCount = counts[GameSystem.ARMADA_V15.name] ?: 0
             val missingStats = dao.armadaUnitsWithoutStats()
-            android.util.Log.i("Repo", "seedCatalog: LEGION=$legionCount, ARMADA=$armadaCount, missingStats=$missingStats")
-            // Re-seed dès qu'un système manque OU si des vaisseaux Armada n'ont pas de stats
-            // (base existante migrée avant l'ajout du champ shipStats).
-            if (legionCount >= 190 && armadaCount >= 40 && missingStats == 0) {
-                seedLog = "skip: déjà peuplé (LEGION=$legionCount, ARMADA=$armadaCount, missingStats=$missingStats)"
+            val armadaShips = dao.armadaShipCount()
+            android.util.Log.i("Repo", "seedCatalog: LEGION=$legionCount, ARMADA=$armadaCount, ships=$armadaShips, missingStats=$missingStats")
+            // Re-seed dès qu'un système manque, si des vaisseaux manquent de stats,
+            // ou si la base ne contient pas encore les 4 factions Armada (Republic/Sep =>
+            // le catalogue bundle contient 64 vaisseaux; une vieille base en a 46).
+            val catalogComplete = armadaShips >= 60
+            if (legionCount >= 190 && armadaCount >= 40 && missingStats == 0 && catalogComplete) {
+                seedLog = "skip: déjà peuplé (LEGION=$legionCount, ARMADA=$armadaCount, ships=$armadaShips, missingStats=$missingStats)"
                 return@withContext
             }
-            logProbe("reseed", "forge (L=$legionCount A=$armadaCount missingStats=$missingStats)")
+            logProbe("reseed", "forge (L=$legionCount A=$armadaCount ships=$armadaShips missingStats=$missingStats)")
             val json = try { context.assets.open("catalog.json").bufferedReader().use { it.readText() } }
             catch (e: Exception) { seedLog = "ERREUR lecture asset: ${e.message}"; throw e }
             logProbe("assetChars", json.length)

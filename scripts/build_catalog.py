@@ -434,6 +434,14 @@ def main() -> None:
         # (dataset "Armada Fleet Builder") dans un champ shipStats des vaisseaux/escadrons.
         from enrich_armada_stats import enrich
         enrich(args.output.parent, args.output)
+        # Ajoute Republic/Separatist (vaisseaux/escadrons/commandants) + images de cartes
+        # (miniatures colonne gauche + carte en mode partie) depuis le cache local
+        # des images Ryan Kingston. Silencieux si le cache n'est pas présent.
+        try:
+            from enrich_armada_images import main as enrich_images
+            enrich_images()
+        except Exception as e:
+            print("WARN: enrich_armada_images skipped:", e)
     print(json.dumps({"catalogPath": str(args.output), "sourceMetadataPath": str(args.sources_output),
                       "catalogCardCount": summary["catalogCardCount"],
                       "counts": summary["counts"], "excluded": summary["excluded"]}, indent=2))

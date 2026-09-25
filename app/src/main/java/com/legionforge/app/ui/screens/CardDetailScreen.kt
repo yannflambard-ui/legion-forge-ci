@@ -20,6 +20,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.layout.ContentScale
+import coil.compose.AsyncImage
 import com.legionforge.app.data.model.*
 
 // ── common crit cards ───────────────────────────────────
@@ -130,6 +132,7 @@ private fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntrie
             onRemoveCrit = { activeCrits = activeCrits - it },
             allCrits = legionCrits
         )
+        CardPlayImage(unit.card)
         Spacer(Modifier.height(20.dp))
     }
 }
@@ -288,6 +291,7 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
             onRemoveCrit = { activeCrits = activeCrits - it },
             allCrits = armadaCrits
         )
+        CardPlayImage(unit.card)
         Spacer(Modifier.height(20.dp))
     }
 }
@@ -303,6 +307,7 @@ private fun CommanderPage(unit: ListEntry) {
                 TokenSection(tokens, { tokens = tokens + it }, { tokens = tokens - it })
             }
         }
+        CardPlayImage(unit.card)
         Spacer(Modifier.height(20.dp))
     }
 }
@@ -323,11 +328,34 @@ private fun ArmadaSquadronPage(unit: ListEntry) {
                 TokenSection(tokens, { tokens = tokens + it }, { tokens = tokens - it })
             }
         }
+        CardPlayImage(unit.card)
         Spacer(Modifier.height(20.dp))
     }
 }
 
 // ═══════════════════  SHARED COMPONENTS  ═══════════════════
+
+// Affiche la carte en image (la vraie carte) en bas des pages de mode partie,
+// si une image est disponible pour cette carte (sinon rien).
+@Composable
+private fun CardPlayImage(card: CardDefinition) {
+    val source: Any? = card.imageAssetPath?.let { "file:///android_asset/$it" } ?: card.imageUrl
+    if (source != null) {
+        Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(18.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
+            Column(Modifier.fillMaxWidth().padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                Text("CARTE", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                Spacer(Modifier.height(10.dp))
+                AsyncImage(
+                    model = source,
+                    contentDescription = "Carte de ${card.displayName()}",
+                    modifier = Modifier.fillMaxWidth(0.96f).heightIn(max = 520.dp),
+                    contentScale = ContentScale.Fit
+                )
+            }
+        }
+    }
+}
+
 
 @Composable
 private fun CardBlock(unit: ListEntry, children: List<ListEntry>, totalPts: Int) {

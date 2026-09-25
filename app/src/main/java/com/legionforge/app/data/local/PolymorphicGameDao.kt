@@ -24,6 +24,11 @@ interface PolymorphicGameDao {
     @Query("SELECT gameSystem, COUNT(*) AS cnt FROM catalog_cards GROUP BY gameSystem")
     suspend fun cardCountBySystem(): List<SystemCountRow>
 
+    /** Nombre de vaisseaux Armada au catalogue. Le catalogue complet en bundle en contient 64.
+     *  Une base migrée de l'ancienne version (46 vaisseaux, pas de Republic/Sep) doit être re-seedée. */
+    @Query("SELECT COUNT(*) FROM catalog_cards WHERE gameSystem = 'ARMADA_V15' AND kind = 'ARMADA_SHIP'")
+    suspend fun armadaShipCount(): Int
+
     /** Nombre de vaisseaux/escadrons Armada qui n'ont pas encore de stats (shipStats NULL/'').
      *  > 0 => il faut re-seeder pour charger les stats du mode partie. */
     @Query("SELECT COUNT(*) FROM catalog_cards WHERE gameSystem = 'ARMADA_V15' AND kind IN ('ARMADA_SHIP','ARMADA_SQUADRON') AND (shipStats IS NULL OR shipStats = '')")
