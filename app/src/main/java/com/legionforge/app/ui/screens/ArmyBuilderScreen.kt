@@ -182,7 +182,7 @@ private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, preselec
     val addingTo = eligibleTargets.firstOrNull { it.instanceId == targetId }
     val validSelection = (!requiresTarget || addingTo != null) && (!isUpgrade || (selectedSlot != null && addingTo != null && selectedSlot in addingTo.card.allowedUpgradeSlots && (slotCounts[targetId to selectedSlot] ?: 0) < addingTo.card.allowedUpgradeSlots.count { it == selectedSlot }))
     val alreadyAdded = entries.any { it.card.id == card.id && (card.unique || card.kind == CardKind.COMMANDER) }
-    val compatibleSlotFull = eligibleSlots.isNotEmpty() && eligibleSlots.all { slot -> eligibleTargets.all { target -> (slotCounts[target.instanceId to slot] ?: 0) >= target.card.allowedUpgradeSlots.count { it == slot } } }
+    val compatibleSlotFull = isUpgrade && eligibleSlots.isNotEmpty() && eligibleSlots.all { slot -> eligibleTargets.all { target -> (slotCounts[target.instanceId to slot] ?: 0) >= target.card.allowedUpgradeSlots.count { it == slot } } }
     Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(15.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF18212D))) {
         Row(Modifier.padding(10.dp), horizontalArrangement = Arrangement.spacedBy(11.dp), verticalAlignment = Alignment.CenterVertically) {
             CardArtwork(card, Modifier.size(width = 58.dp, height = 80.dp))
