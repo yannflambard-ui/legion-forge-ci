@@ -23,51 +23,53 @@ class BuilderRepository(context: Context) {
 
     fun observeLists(): Flow<List<BuilderListEntity>> = dao.observeLists()
 
-    // Mémorise le dernier état du seed pour le diagnostic remote.
-    @Volatile private var lastSeed: String = "seed jamais exécuté"
+    // Mémoise la trace complète du seed pour le diagnostic remote (chaque étape s'ajoute).
+    @Volatile private var seedLog: String = "seed jamais exécuté"
 
     suspend fun seedCatalog(context: Context) = withContext(Dispatchers.IO) {
         try {
-            lastSeed = "seedCatalog: vérifie les comptes"
+            var probes = StringBuilder()
+            fun logProbe(name: String, value: Any?): Unit {
+                probes.append(name).append("=").append(value).append("; ")
+                seedLog = "seed: " + probes.toString()
+            }
+            logProbe("debut", "verifComptes")
             val counts = dao.cardCountBySystem().associate { it.gameSystem to it.cnt }
             val legionCount = counts[GameSystem.LEGION_V2.name] ?: 0
             val armadaCount = counts[GameSystem.ARMADA_V15.name] ?: 0
             android.util.Log.i("Repo", "seedCatalog: LEGION=$legionCount, ARMADA=$armadaCount")
             if (legionCount >= 190 && armadaCount >= 40) {
-                lastSeed = "skip: déjà peuplé (LEGION=$legionCount, ARMADA=$armadaCount)"
+                seedLog = "skip: déjà peuplé (LEGION=$legionCount, ARMADA=$armadaCount)"
                 return@withContext
             }
-            lastSeed = "reseed forcé (LEGION=$legionCount, ARMADA=$armadaCount)"
+            logProbe("reseed", "forge (L=$legionCount A=$armadaCount)")
             val json = try { context.assets.open("catalog.json").bufferedReader().use { it.readText() } }
-            catch (e: Exception) { lastSeed = "ERREUR lecture asset: ${e.message}"; throw e }
-            lastSeed = "asset lu: ${json.length} chars"
+            catch (e: Exception) { seedLog = "ERREUR lecture asset: ${e.message}"; throw e }
+            logProbe("assetChars", json.length)
             val document = try { gson.fromJson(json, CatalogDocument::class.java) }
-            catch (e: Exception) { lastSeed = "ERREUR Gson parse: ${e.message}"; throw e }
-            if (document == null) {
-                lastSeed = "ERREUR: Gson a retourné null (${json.length} chars)"
-                return@withContext
-            }
-            lastSeed = "parsed ${document.cards.size} cartes"
+            catch (e: Exception) { seedLog = "ERREUR Gson parse: ${e.message}"; throw e }
+            if (document == null) { seedLog = "ERREUR: Gson a retourné null (${json.length} chars)"; return@withContext }
+            logProbe("cartesParsees", document.cards.size)
             val entities = document.cards.mapNotNull { card ->
-                try {
-                    CatalogCardEntity.from(card)
-                } catch (e: Exception) {
+                try { CatalogCardEntity.from(card) }
+                catch (e: Exception) {
                     android.util.Log.e("Repo", "seedCatalog: failed to map card ${card.id}", e)
-                    lastSeed = "ERREUR mapping carte ${card.id}: ${e.message}"
-                    null
+                    seedLog = "ERREUR mapping carte ${card.id}: ${e.message}"; null
                 }
             }
-            lastSeed = "mappées ${entities.size}/${document.cards.size} entités"
+            logProbe("entitesMappees", entities.size)
             entities.chunked(200).forEachIndexed { i, chunk ->
                 try {
-                    dao.upsertCards(chunk)
+                    val inserted = dao.upsertCardsCounted(chunk)
+                    logProbe("chunk${i}Insert", inserted)
+                    logProbe("countApresChunk${i}", dao.cardCountBySystem().joinToString(",") { "${it.gameSystem}=${it.cnt}" })
                 } catch (e: Exception) {
-                    lastSeed = "ERREUR insert chunk $i: ${e.message}"
-                    throw e
+                    seedLog = "ERREUR insert chunk $i: ${e.message}"; throw e
                 }
             }
             val after = dao.cardCountBySystem().joinToString(", ") { "${it.gameSystem}=${it.cnt}" }
-            lastSeed = "terminé: counts {$after}"
+            logProbe("totalApresSeed", dao.cardCount())
+            logProbe("countsApresSeed", "{${after}}")
             android.util.Log.i("Repo", "seedCatalog: done - $after")
         } catch (e: Exception) {
             android.util.Log.e("Repo", "seedCatalog FAILED", e)
@@ -100,6 +102,6 @@ class BuilderRepository(context: Context) {
     suspend fun catalogDiagnostics(): String {
         val counts = dao.cardCountBySystem().joinToString(", ") { "${it.gameSystem}=${it.cnt}" }
         val total = dao.cardCount()
-        return "total=$total; countsBySystem={$counts}; seed=$lastSeed; db=${android.os.Build.MODEL} SDK=${android.os.Build.VERSION.SDK_INT}"
+        return "total=$total; countsBySystem={$counts}; seed=${seedLog.replace("\n", " | ")}; db=${android.os.Build.MODEL} SDK=${android.os.Build.VERSION.SDK_INT}"
     }
 }

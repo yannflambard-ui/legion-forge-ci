@@ -29,6 +29,11 @@ interface PolymorphicGameDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsertCards(cards: List<CatalogCardEntity>)
 
+    /** Comme upsertCards mais retourne le nombre de lignes réellement écrites/affectées.
+     *  @Insert Room renvoie les rowid (List<Long>); on les compte pour vérifier que l'écriture a réellement eu lieu. */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsertCardsCounted(cards: List<CatalogCardEntity>): List<Long>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsertList(list: BuilderListEntity)
 
