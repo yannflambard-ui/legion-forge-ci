@@ -19,7 +19,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_darth_vader.webp",
+   "imageAssetPath": "cards/swl/empire/darth-vader-170.webp",
    "rulesText": null
   },
   {
@@ -39,7 +39,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_director_orson_krennic.webp",
+   "imageAssetPath": "cards/swl/empire/director-orson-krennic.webp",
    "rulesText": null
   },
   {
@@ -81,7 +81,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_general_veers.webp",
+   "imageAssetPath": "cards/swl/empire/general-veers.webp",
    "rulesText": null
   },
   {
@@ -145,7 +145,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_iden_versio.webp",
+   "imageAssetPath": "cards/swl/empire/iden-versio.webp",
    "rulesText": null
   },
   {
@@ -169,7 +169,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_imperial_officer.webp",
+   "imageAssetPath": "cards/swl/empire/imperial-officer.webp",
    "rulesText": null
   },
   {
@@ -213,7 +213,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_shoretroopers.webp",
+   "imageAssetPath": "cards/swl/empire/shoretroopers.webp",
    "rulesText": null
   },
   {
@@ -234,7 +234,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_snowtroopers.webp",
+   "imageAssetPath": "cards/swl/empire/snowtroopers.webp",
    "rulesText": null
   },
   {
@@ -255,7 +255,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_stormtroopers.webp",
+   "imageAssetPath": "cards/swl/empire/stormtroopers-42.webp",
    "rulesText": null
   },
   {
@@ -299,7 +299,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_at-st.webp",
+   "imageAssetPath": "cards/swl/empire/at-st.webp",
    "rulesText": null
   },
   {
@@ -320,7 +320,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_imperial_dark_troopers.webp",
+   "imageAssetPath": "cards/swl/empire/imperial-dark-troopers.webp",
    "rulesText": null
   },
   {
@@ -340,7 +340,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_tx-225_gavw_occupier_tank.webp",
+   "imageAssetPath": "cards/swl/empire/tx-225-gavw-occupier-tank.webp",
    "rulesText": null
   },
   {
@@ -381,7 +381,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_darth_vader.webp",
+   "imageAssetPath": "cards/swl/empire/darth-vader-155.webp",
    "rulesText": null
   },
   {
@@ -467,7 +467,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_imperial_death_troopers.webp",
+   "imageAssetPath": "cards/swl/empire/imperial-death-troopers.webp",
    "rulesText": null
   },
   {
@@ -534,7 +534,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_scout_troopers.webp",
+   "imageAssetPath": "cards/swl/empire/scout-troopers-48.webp",
    "rulesText": null
   },
   {
@@ -552,7 +552,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_74-z_speeder_bikes.webp",
+   "imageAssetPath": "cards/swl/empire/74-z-speeder-bikes.webp",
    "rulesText": null
   },
   {
@@ -572,7 +572,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_dewback_rider.webp",
+   "imageAssetPath": "cards/swl/empire/dewback-rider.webp",
    "rulesText": null
   },
   {
@@ -591,7 +591,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_e-web_heavy_blaster_team.webp",
+   "imageAssetPath": "cards/swl/empire/e-web-heavy-blaster-team.webp",
    "rulesText": null
   },
   {
@@ -634,7 +634,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_scout_troopers_strike_team.webp",
+   "imageAssetPath": "cards/swl/empire/scout-troopers-22.webp",
    "rulesText": null
   },
   {
@@ -793,7 +793,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_chewbacca.webp",
+   "imageAssetPath": "cards/swl/rebel/chewbacca-180.webp",
    "rulesText": null
   },
   {
@@ -835,7 +835,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_boba_fett_empire.webp",
+   "imageAssetPath": "cards/swl/mercenary/boba-fett-130.webp",
    "rulesText": null
   },
   {
@@ -856,7 +856,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_boba_fett_rebel.webp",
+   "imageAssetPath": "cards/swl/mercenary/boba-fett-120.webp",
    "rulesText": null
   },
   {
@@ -876,7 +876,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_bossk.webp",
+   "imageAssetPath": "cards/swl/mercenary/bossk.webp",
    "rulesText": null
   },
   {
@@ -899,7 +899,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_cad_bane.webp",
+   "imageAssetPath": "cards/swl/mercenary/cad-bane.webp",
    "rulesText": null
   },
   {
@@ -1067,7 +1067,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_han_solo.webp",
+   "imageAssetPath": "cards/swl/rebel/han-solo-100.webp",
    "rulesText": null
   },
   {
@@ -1108,7 +1108,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_leia_organa.webp",
+   "imageAssetPath": "cards/swl/rebel/leia-organa.webp",
    "rulesText": null
   },
   {
@@ -1129,7 +1129,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_luke_skywalker.webp",
+   "imageAssetPath": "cards/swl/rebel/luke-skywalker-120.webp",
    "rulesText": null
   },
   {
@@ -1150,7 +1150,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_luke_skywalker_taun.webp",
+   "imageAssetPath": "cards/swl/rebel/luke-skywalker-110.webp",
    "rulesText": null
   },
   {
@@ -1174,7 +1174,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_rebel_officer.webp",
+   "imageAssetPath": "cards/swl/rebel/rebel-officer.webp",
    "rulesText": null
   },
   {
@@ -1195,7 +1195,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_fleet_troopers.webp",
+   "imageAssetPath": "cards/swl/rebel/fleet-troopers.webp",
    "rulesText": null
   },
   {
@@ -1217,7 +1217,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_rebel_veterans.webp",
+   "imageAssetPath": "cards/swl/rebel/rebel-veterans.webp",
    "rulesText": null
   },
   {
@@ -1260,7 +1260,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_t-47_airspeeder.webp",
+   "imageAssetPath": "cards/swl/rebel/t-47-airspeeder.webp",
    "rulesText": null
   },
   {
@@ -1283,7 +1283,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_x-34_landspeeder.webp",
+   "imageAssetPath": "cards/swl/rebel/x-34-landspeeder.webp",
    "rulesText": null
   },
   {
@@ -1326,7 +1326,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_cassian_andor.webp",
+   "imageAssetPath": "cards/swl/rebel/cassian-andor.webp",
    "rulesText": null
   },
   {
@@ -1346,7 +1346,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_chewbacca.webp",
+   "imageAssetPath": "cards/swl/rebel/chewbacca-90.webp",
    "rulesText": null
   },
   {
@@ -1367,7 +1367,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_han_solo_taun.webp",
+   "imageAssetPath": "cards/swl/rebel/han-solo-90.webp",
    "rulesText": null
   },
   {
@@ -1387,7 +1387,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_jyn_erso.webp",
+   "imageAssetPath": "cards/swl/rebel/jyn-erso.webp",
    "rulesText": null
   },
   {
@@ -1406,7 +1406,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_k-2so.webp",
+   "imageAssetPath": "cards/swl/rebel/k-2so-0.webp",
    "rulesText": null
   },
   {
@@ -1427,7 +1427,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_luke_skywalker.webp",
+   "imageAssetPath": "cards/swl/rebel/luke-skywalker-165.webp",
    "rulesText": null
   },
   {
@@ -1446,7 +1446,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_r2-d2.webp",
+   "imageAssetPath": "cards/swl/rebel/r2-d2.webp",
    "rulesText": null
   },
   {
@@ -1490,7 +1490,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_sabine_wren.webp",
+   "imageAssetPath": "cards/swl/rebel/sabine-wren.webp",
    "rulesText": null
   },
   {
@@ -1557,7 +1557,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_rebel_commandos.webp",
+   "imageAssetPath": "cards/swl/rebel/rebel-commandos-42.webp",
    "rulesText": null
   },
   {
@@ -1579,7 +1579,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_wookiee_warriors_melee.webp",
+   "imageAssetPath": "cards/swl/rebel/wookiee-warriors.webp",
    "rulesText": null
   },
   {
@@ -1599,7 +1599,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_1.4_fd_laser_cannon_team.webp",
+   "imageAssetPath": "cards/swl/rebel/1-4-fd-laser-cannon-team.webp",
    "rulesText": null
   },
   {
@@ -1618,7 +1618,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_at-rt.webp",
+   "imageAssetPath": "cards/swl/rebel/at-rt.webp",
    "rulesText": null
   },
   {
@@ -1637,7 +1637,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_tauntaun_riders.webp",
+   "imageAssetPath": "cards/swl/rebel/tauntaun-riders.webp",
    "rulesText": null
   },
   {
@@ -1698,7 +1698,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_chewbacca.webp",
+   "imageAssetPath": "cards/swl/republic/chewbacca.webp",
    "rulesText": null
   },
   {
@@ -1720,7 +1720,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_clone_captain_rex.webp",
+   "imageAssetPath": "cards/swl/republic/clone-captain-rex.webp",
    "rulesText": null
   },
   {
@@ -1827,7 +1827,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_obi-wan_kenobi.webp",
+   "imageAssetPath": "cards/swl/republic/obi-wan-kenobi-150.webp",
    "rulesText": null
   },
   {
@@ -1893,7 +1893,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_clone_trooper_infantry.webp",
+   "imageAssetPath": "cards/swl/republic/clone-trooper-infantry.webp",
    "rulesText": null
   },
   {
@@ -1915,7 +1915,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_clone_trooper_marksmen.webp",
+   "imageAssetPath": "cards/swl/republic/clone-trooper-marksmen.webp",
    "rulesText": null
   },
   {
@@ -1974,7 +1974,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_r2_d2.webp",
+   "imageAssetPath": "cards/swl/republic/r2-d2.webp",
    "rulesText": null
   },
   {
@@ -1998,7 +1998,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_arc_troopers.webp",
+   "imageAssetPath": "cards/swl/republic/arc-troopers-70.webp",
    "rulesText": null
   },
   {
@@ -2042,7 +2042,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_wookiee_warriors.webp",
+   "imageAssetPath": "cards/swl/republic/wookiee-warriors.webp",
    "rulesText": null
   },
   {
@@ -2061,7 +2061,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_barc_speeder.webp",
+   "imageAssetPath": "cards/swl/republic/barc-speeder.webp",
    "rulesText": null
   },
   {
@@ -2122,7 +2122,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_count_dooku.webp",
+   "imageAssetPath": "cards/swl/separatist/count-dooku.webp",
    "rulesText": null
   },
   {
@@ -2143,7 +2143,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_general_grievous.webp",
+   "imageAssetPath": "cards/swl/separatist/general-grievous-130.webp",
    "rulesText": null
   },
   {
@@ -2164,7 +2164,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_general_grievous_wheel_bike_warlord.webp",
+   "imageAssetPath": "cards/swl/separatist/general-grievous-150.webp",
    "rulesText": null
   },
   {
@@ -2254,7 +2254,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_super_tactical_command_droid.webp",
+   "imageAssetPath": "cards/swl/separatist/super-tactical-command-droid-70.webp",
    "rulesText": null
   },
   {
@@ -2274,7 +2274,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_t-series_tactical_droid.webp",
+   "imageAssetPath": "cards/swl/separatist/t-series-tactical-droid.webp",
    "rulesText": null
   },
   {
@@ -2294,7 +2294,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_b1_battle_droids.webp",
+   "imageAssetPath": "cards/swl/separatist/b1-battle-droids.webp",
    "rulesText": null
   },
   {
@@ -2314,7 +2314,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_b2_super_battle_droids.webp",
+   "imageAssetPath": "cards/swl/separatist/b2-super-battle-droids.webp",
    "rulesText": null
   },
   {
@@ -2354,7 +2354,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_aat_battle_tank.webp",
+   "imageAssetPath": "cards/swl/separatist/aat-battle-tank.webp",
    "rulesText": null
   },
   {
@@ -2394,7 +2394,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_persuader-class_tank_droid.webp",
+   "imageAssetPath": "cards/swl/separatist/persuader-class-tank-droid.webp",
    "rulesText": null
   },
   {
@@ -2480,7 +2480,7 @@
    "commander": true,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_super_tactical_command_droid.webp",
+   "imageAssetPath": "cards/swl/separatist/super-tactical-command-droid-60.webp",
    "rulesText": null
   },
   {
@@ -2502,7 +2502,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_bx-series_droid_commandos.webp",
+   "imageAssetPath": "cards/swl/separatist/bx-series-droid-commandos-60.webp",
    "rulesText": null
   },
   {
@@ -2563,7 +2563,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_droidekas.webp",
+   "imageAssetPath": "cards/swl/separatist/droidekas.webp",
    "rulesText": null
   },
   {
@@ -2621,7 +2621,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_stap_riders.webp",
+   "imageAssetPath": "cards/swl/separatist/stap-riders.webp",
    "rulesText": null
   },
   {
@@ -2642,7 +2642,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_arquitens-class-command-cruiser.webp",
+   "imageAssetPath": "cards/swa/empire/arquitens-class-command-cruiser.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -2663,7 +2663,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_arquitens-class-light-cruiser.webp",
+   "imageAssetPath": "cards/swa/empire/arquitens-class-light-cruiser.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -2693,7 +2693,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_ssd-executor-1.webp",
+   "imageAssetPath": "cards/swa/empire/executor-i-class-star-dreadnought.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":33,\"shield\":{\"front\":6,\"right\":5,\"left\":5,\"rear\":3},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
   },
@@ -2723,7 +2723,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_ssd-executor-2.webp",
+   "imageAssetPath": "cards/swa/empire/executor-ii-class-star-dreadnought.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":33,\"shield\":{\"front\":6,\"right\":5,\"left\":5,\"rear\":3},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
   },
@@ -2745,7 +2745,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_gladiator-i.webp",
+   "imageAssetPath": "cards/swa/empire/gladiator-i-class-star-destroyer.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -2767,7 +2767,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_gladiator-ii.webp",
+   "imageAssetPath": "cards/swa/empire/gladiator-ii-class-star-destroyer.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -2788,7 +2788,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm18-gozanti-class-assault-carriers.webp",
+   "imageAssetPath": "cards/swa/empire/gozanti-class-assault-carriers.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":3,\"shield\":{\"front\":1,\"right\":1,\"left\":1,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -2809,7 +2809,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm18-gozanti-class-cruisers.webp",
+   "imageAssetPath": "cards/swa/empire/gozanti-class-cruisers.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":3,\"shield\":{\"front\":1,\"right\":1,\"left\":1,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -2833,7 +2833,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_imperial-i-class-star-destroyer.webp",
+   "imageAssetPath": "cards/swa/empire/imperial-i-class-star-destroyer.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":11,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -2857,7 +2857,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_imperial-ii-class-star-destroyer.webp",
+   "imageAssetPath": "cards/swa/empire/imperial-ii-class-star-destroyer.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":11,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -2881,7 +2881,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_isd-cymoon-1-refit.webp",
+   "imageAssetPath": "cards/swa/empire/imperial-star-destroyer-cymoon-1-refit.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":11,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -2905,7 +2905,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_isd-kuat-refit.webp",
+   "imageAssetPath": "cards/swa/empire/imperial-star-destroyer-kuat-refit.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":11,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -2928,7 +2928,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm14-interdictor-combat-refit.webp",
+   "imageAssetPath": "cards/swa/empire/interdictor-combat-refit.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":9,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
   },
@@ -2952,7 +2952,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm16-interdictor-suppression-refit.webp",
+   "imageAssetPath": "cards/swa/empire/interdictor-suppression-refit.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":9,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
   },
@@ -2975,7 +2975,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_onager-class-star-destroyer.webp",
+   "imageAssetPath": "cards/swa/empire/onager-class-star-destroyer.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":10,\"shield\":{\"front\":5,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -2998,7 +2998,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_onager-class-testbed.webp",
+   "imageAssetPath": "cards/swa/empire/onager-class-testbed.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":10,\"shield\":{\"front\":5,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -3020,7 +3020,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm26-quasar-fire-i-class-cruiser-carrier.webp",
+   "imageAssetPath": "cards/swa/empire/quasar-fire-i-class-cruiser-carrier.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":6,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -3042,7 +3042,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm26-quasar-fire-ii-class-cruiser-carrier.webp",
+   "imageAssetPath": "cards/swa/empire/quasar-fire-ii-class-cruiser-carrier.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":6,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -3064,7 +3064,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_raider-i-class-corvette.webp",
+   "imageAssetPath": "cards/swa/empire/raider-i-class-corvette.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":4,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":4,\"kind\":\"SHIP\"}"
   },
@@ -3086,7 +3086,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_raider-ii-class-corvette.webp",
+   "imageAssetPath": "cards/swa/empire/raider-ii-class-corvette.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":4,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":4,\"kind\":\"SHIP\"}"
   },
@@ -3114,7 +3114,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_ssd-assault-prototype.webp",
+   "imageAssetPath": "cards/swa/empire/star-dreadnought-assault-prototype.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":22,\"shield\":{\"front\":6,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
   },
@@ -3141,7 +3141,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_ssd-command-prototype.webp",
+   "imageAssetPath": "cards/swa/empire/star-dreadnought-command-prototype.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":22,\"shield\":{\"front\":6,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
   },
@@ -3164,7 +3164,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_victory-i.webp",
+   "imageAssetPath": "cards/swa/empire/victory-i-class-star-destroyer.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":8,\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":1},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
   },
@@ -3187,7 +3187,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_victory-ii.webp",
+   "imageAssetPath": "cards/swa/empire/victory-ii-class-star-destroyer.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":8,\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":1},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
   },
@@ -3210,7 +3210,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_assault-frigate-mark-ii-a.webp",
+   "imageAssetPath": "cards/swa/rebel/assault-frigate-mark-ii-a.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":6,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -3233,7 +3233,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_assault-frigate-mark-ii-b.webp",
+   "imageAssetPath": "cards/swa/rebel/assault-frigate-mark-ii-b.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":6,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -3255,7 +3255,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_cr90-corvette-a.webp",
+   "imageAssetPath": "cards/swa/rebel/cr90-corvette-a.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":4,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":4,\"kind\":\"SHIP\"}"
   },
@@ -3277,7 +3277,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_cr90-corvette-b.webp",
+   "imageAssetPath": "cards/swa/rebel/cr90-corvette-b.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":4,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":4,\"kind\":\"SHIP\"}"
   },
@@ -3298,7 +3298,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm19-gr-75-combat-retrofits.webp",
+   "imageAssetPath": "cards/swa/rebel/gr-75-combat-retrofits.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":3,\"shield\":{\"front\":1,\"right\":1,\"left\":1,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -3319,7 +3319,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm19-gr-75-medium-transports.webp",
+   "imageAssetPath": "cards/swa/rebel/gr-75-medium-transports.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":3,\"shield\":{\"front\":1,\"right\":1,\"left\":1,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -3341,7 +3341,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm27-hammerhead-scout-corvette.webp",
+   "imageAssetPath": "cards/swa/rebel/hammerhead-scout-corvette.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"shield\":{\"front\":2,\"right\":1,\"left\":1,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -3363,7 +3363,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm27-hammerhead-torpedo-corvette.webp",
+   "imageAssetPath": "cards/swa/rebel/hammerhead-torpedo-corvette.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"shield\":{\"front\":2,\"right\":1,\"left\":1,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -3386,7 +3386,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_mc30c-scout-frigate.webp",
+   "imageAssetPath": "cards/swa/rebel/mc30c-scout-frigate.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":4,\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":4,\"kind\":\"SHIP\"}"
   },
@@ -3409,7 +3409,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_mc30c-torpedo-frigate.webp",
+   "imageAssetPath": "cards/swa/rebel/mc30c-torpedo-frigate.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":4,\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":4,\"kind\":\"SHIP\"}"
   },
@@ -3434,7 +3434,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_mc75-armored-cruiser.webp",
+   "imageAssetPath": "cards/swa/rebel/mc75-armored-cruiser.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":9,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":3},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -3458,7 +3458,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_mc75-ordnance-cruiser.webp",
+   "imageAssetPath": "cards/swa/rebel/mc75-ordnance-cruiser.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":9,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":3},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -3482,7 +3482,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_mc80-assault-cruiser.webp",
+   "imageAssetPath": "cards/swa/rebel/mc80-assault-cruiser.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":8,\"shield\":{\"front\":4,\"right\":4,\"left\":4,\"rear\":3},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
   },
@@ -3506,7 +3506,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm17-mc80-battle-cruiser.webp",
+   "imageAssetPath": "cards/swa/rebel/mc80-battle-cruiser.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":8,\"shield\":{\"front\":5,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -3530,7 +3530,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_mc80-command-cruiser.webp",
+   "imageAssetPath": "cards/swa/rebel/mc80-command-cruiser.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":8,\"shield\":{\"front\":4,\"right\":4,\"left\":4,\"rear\":3},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
   },
@@ -3554,7 +3554,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm17-mc80-star-cruiser.webp",
+   "imageAssetPath": "cards/swa/rebel/mc80-star-cruiser.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":8,\"shield\":{\"front\":5,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -3576,7 +3576,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_pelta-class-assault-ship.webp",
+   "imageAssetPath": "cards/swa/rebel/modified-pelta-class-assault-ship.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
   },
@@ -3598,7 +3598,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_pelta-class-command-ship.webp",
+   "imageAssetPath": "cards/swa/rebel/modified-pelta-class-command-ship.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
   },
@@ -3619,7 +3619,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_nebulon-b-escort-frigate.webp",
+   "imageAssetPath": "cards/swa/rebel/nebulon-b-escort-frigate.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":1,\"left\":1,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -3640,7 +3640,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_nebulon-b-support-refit.webp",
+   "imageAssetPath": "cards/swa/rebel/nebulon-b-support-refit.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":1,\"left\":1,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -3665,7 +3665,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_starhawk-class-battleship-mark-1.webp",
+   "imageAssetPath": "cards/swa/rebel/starhawk-class-battleship-mark-i.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":14,\"shield\":{\"front\":6,\"right\":4,\"left\":4,\"rear\":2},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
   },
@@ -3690,7 +3690,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_starhawk-class-battleship-mark-2.webp",
+   "imageAssetPath": "cards/swa/rebel/starhawk-class-battleship-mark-ii.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":14,\"shield\":{\"front\":6,\"right\":4,\"left\":4,\"rear\":2},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
   },
@@ -3707,7 +3707,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_aggressor.webp",
+   "imageAssetPath": "cards/swa/empire/aggressor-assault-fighter.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -3724,7 +3724,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_black-squadron.webp",
+   "imageAssetPath": "cards/swa/empire/black-squadron.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":3,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -3741,7 +3741,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_bobafett.webp",
+   "imageAssetPath": "cards/swa/empire/boba-fett.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":6,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -3775,7 +3775,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_captain-jonus.webp",
+   "imageAssetPath": "cards/swa/empire/captain-jonus.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -3792,7 +3792,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_ciena-ree.webp",
+   "imageAssetPath": "cards/swa/empire/ciena-ree.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":3,\"speed\":5,\"kind\":\"SQUADRON\"}"
   },
@@ -3809,7 +3809,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_colonel-jendon.webp",
+   "imageAssetPath": "cards/swa/empire/colonel-jendon.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":6,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -3860,7 +3860,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_firespray.webp",
+   "imageAssetPath": "cards/swa/empire/firespray-31.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":6,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -3877,7 +3877,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_gamma-squadron.webp",
+   "imageAssetPath": "cards/swa/empire/gamma-squadron.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -3894,7 +3894,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_gar-saxon.webp",
+   "imageAssetPath": "cards/swa/empire/gar-saxon.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":7,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -3911,7 +3911,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_hondo-ohnaka-squad.webp",
+   "imageAssetPath": "cards/swa/empire/hondo-ohnaka.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":6,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -3945,7 +3945,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_ig88.webp",
+   "imageAssetPath": "cards/swa/empire/ig-88.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"speed\":5,\"kind\":\"SQUADRON\"}"
   },
@@ -3962,7 +3962,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_ig-88b.webp",
+   "imageAssetPath": "cards/swa/empire/ig-88b.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"speed\":5,\"kind\":\"SQUADRON\"}"
   },
@@ -3979,7 +3979,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_jumpmaster-5000.webp",
+   "imageAssetPath": "cards/swa/empire/jumpmaster-5000.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":4,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -3996,7 +3996,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_lambda-class-shuttle.webp",
+   "imageAssetPath": "cards/swa/empire/lambda-class-shuttle.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":6,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -4013,7 +4013,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_maarek-stele.webp",
+   "imageAssetPath": "cards/swa/empire/maarek-stele.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":6,\"speed\":5,\"kind\":\"SQUADRON\"}"
   },
@@ -4030,7 +4030,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_major-rhymer.webp",
+   "imageAssetPath": "cards/swa/empire/major-rhymer.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -4047,7 +4047,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_mandalorian-gauntlet-fighter.webp",
+   "imageAssetPath": "cards/swa/empire/mandalorian-gauntlet-fighter.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":7,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -4081,7 +4081,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_moralo-eval.webp",
+   "imageAssetPath": "cards/swa/empire/moralo-eval.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":7,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -4098,7 +4098,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_morna-kee.webp",
+   "imageAssetPath": "cards/swa/empire/morna-kee.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":8,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -4115,7 +4115,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_saber-squadron.webp",
+   "imageAssetPath": "cards/swa/empire/saber-squadron.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":3,\"speed\":5,\"kind\":\"SQUADRON\"}"
   },
@@ -4132,7 +4132,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_soontir-fel.webp",
+   "imageAssetPath": "cards/swa/empire/soontir-fel.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":3,\"speed\":5,\"kind\":\"SQUADRON\"}"
   },
@@ -4149,7 +4149,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_tel-trevura.webp",
+   "imageAssetPath": "cards/swa/empire/tel-trevura.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":4,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -4166,7 +4166,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_tempest-squadron.webp",
+   "imageAssetPath": "cards/swa/empire/tempest-squadron.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -4183,7 +4183,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_tie-advanced-squadron.webp",
+   "imageAssetPath": "cards/swa/empire/tie-advanced-squadron.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -4200,7 +4200,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_tie-bomber-squadron.webp",
+   "imageAssetPath": "cards/swa/empire/tie-bomber-squadron.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -4217,7 +4217,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_tie-defender-squadron.webp",
+   "imageAssetPath": "cards/swa/empire/tie-defender-squadron.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":6,\"speed\":5,\"kind\":\"SQUADRON\"}"
   },
@@ -4234,7 +4234,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_tie-fighter-squadron.webp",
+   "imageAssetPath": "cards/swa/empire/tie-fighter-squadron.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":3,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -4251,7 +4251,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_tie-interceptor-squadron.webp",
+   "imageAssetPath": "cards/swa/empire/tie-interceptor-squadron.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":3,\"speed\":5,\"kind\":\"SQUADRON\"}"
   },
@@ -4268,7 +4268,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_tie-phantom-squadron.webp",
+   "imageAssetPath": "cards/swa/empire/tie-phantom-squadron.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":4,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -4285,7 +4285,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_valen-rudor.webp",
+   "imageAssetPath": "cards/swa/empire/valen-rudor.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":3,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -4302,7 +4302,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_vt-49-decimator.webp",
+   "imageAssetPath": "cards/swa/empire/vt-49-decimator.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":8,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -4336,7 +4336,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_yv-666.webp",
+   "imageAssetPath": "cards/swa/empire/yv-666.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":7,\"speed\":2,\"kind\":\"SQUADRON\"}"
   },
@@ -4353,7 +4353,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_zertik-strom.webp",
+   "imageAssetPath": "cards/swa/empire/zertik-strom.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -4370,7 +4370,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_awingsquadron.webp",
+   "imageAssetPath": "cards/swa/rebel/a-wing-squadron.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":4,\"speed\":5,\"kind\":\"SQUADRON\"}"
   },
@@ -4387,7 +4387,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_bwingsquadron.webp",
+   "imageAssetPath": "cards/swa/rebel/b-wing-squadron.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"speed\":2,\"kind\":\"SQUADRON\"}"
   },
@@ -4404,7 +4404,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_biggs-darklighter.webp",
+   "imageAssetPath": "cards/swa/rebel/biggs-darklighter.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -4421,7 +4421,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_corran-horn.webp",
+   "imageAssetPath": "cards/swa/rebel/corran-horn.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -4438,7 +4438,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_dagger-squadron.webp",
+   "imageAssetPath": "cards/swa/rebel/dagger-squadron.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"speed\":2,\"kind\":\"SQUADRON\"}"
   },
@@ -4455,7 +4455,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_dash-rendar.webp",
+   "imageAssetPath": "cards/swa/rebel/dash-rendar.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":6,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -4489,7 +4489,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_e-wing-squadron.webp",
+   "imageAssetPath": "cards/swa/rebel/e-wing-squadron.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -4506,7 +4506,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_gold-squadron.webp",
+   "imageAssetPath": "cards/swa/rebel/gold-squadron.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":6,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -4523,7 +4523,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_green-squadron.webp",
+   "imageAssetPath": "cards/swa/rebel/green-squadron.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":4,\"speed\":5,\"kind\":\"SQUADRON\"}"
   },
@@ -4540,7 +4540,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_han-solo.webp",
+   "imageAssetPath": "cards/swa/rebel/han-solo.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":7,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -4574,7 +4574,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_hwk-290.webp",
+   "imageAssetPath": "cards/swa/rebel/hwk-290.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":4,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -4591,7 +4591,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_jan-ors.webp",
+   "imageAssetPath": "cards/swa/rebel/jan-ors.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":4,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -4608,7 +4608,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_kanan-jarrus.webp",
+   "imageAssetPath": "cards/swa/rebel/kanan-jarrus.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":4,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -4625,7 +4625,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_ketsu-onyo.webp",
+   "imageAssetPath": "cards/swa/rebel/ketsu-onyo.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":4,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -4642,7 +4642,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_keyanfarlander.webp",
+   "imageAssetPath": "cards/swa/rebel/keyan-farlander.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"speed\":2,\"kind\":\"SQUADRON\"}"
   },
@@ -4659,7 +4659,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_lancer-class-pursuit-craft.webp",
+   "imageAssetPath": "cards/swa/rebel/lancer-class-pursuit-craft.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":4,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -4676,7 +4676,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_lando-calrissian-squad.webp",
+   "imageAssetPath": "cards/swa/rebel/lando-calrissian-23.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":7,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -4693,7 +4693,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_lieutenant-blount.webp",
+   "imageAssetPath": "cards/swa/rebel/lieutenant-blount.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":3,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -4710,7 +4710,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_luke-skywalker.webp",
+   "imageAssetPath": "cards/swa/rebel/luke-skywalker.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -4727,7 +4727,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_malee-hurra.webp",
+   "imageAssetPath": "cards/swa/rebel/malee-hurra.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":6,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -4744,7 +4744,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_mart-mattin.webp",
+   "imageAssetPath": "cards/swa/rebel/mart-mattin.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":6,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -4761,7 +4761,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_norra-wexley.webp",
+   "imageAssetPath": "cards/swa/rebel/norra-wexley.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":6,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -4795,7 +4795,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_rogue-squadron.webp",
+   "imageAssetPath": "cards/swa/rebel/rogue-squadron.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -4812,7 +4812,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_scurrg-h6.webp",
+   "imageAssetPath": "cards/swa/rebel/scurrg-h-6-bomber.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":6,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -4829,7 +4829,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_shara-bey.webp",
+   "imageAssetPath": "cards/swa/rebel/shara-bey.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":4,\"speed\":5,\"kind\":\"SQUADRON\"}"
   },
@@ -4846,7 +4846,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_ten-numb.webp",
+   "imageAssetPath": "cards/swa/rebel/ten-numb.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"speed\":2,\"kind\":\"SQUADRON\"}"
   },
@@ -4863,7 +4863,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_tycho.webp",
+   "imageAssetPath": "cards/swa/rebel/tycho-celchu.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":4,\"speed\":5,\"kind\":\"SQUADRON\"}"
   },
@@ -4880,7 +4880,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_vcx-100-freighter.webp",
+   "imageAssetPath": "cards/swa/rebel/vcx-100-freighter.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":8,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -4897,7 +4897,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_wedgeantilles.webp",
+   "imageAssetPath": "cards/swa/rebel/wedge-antilles-19.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -4914,7 +4914,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_xwing-squadron.webp",
+   "imageAssetPath": "cards/swa/rebel/x-wing-squadron.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":5,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -4931,7 +4931,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_ywingsquadron.webp",
+   "imageAssetPath": "cards/swa/rebel/y-wing-squadron.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":6,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -4948,7 +4948,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_yt-1300.webp",
+   "imageAssetPath": "cards/swa/rebel/yt-1300.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":7,\"speed\":2,\"kind\":\"SQUADRON\"}"
   },
@@ -4965,7 +4965,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_yt-2400.webp",
+   "imageAssetPath": "cards/swa/rebel/yt-2400.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":6,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -4982,7 +4982,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_z-95-headhunter-squadron.webp",
+   "imageAssetPath": "cards/swa/rebel/z-95-headhunter-squadron.webp",
    "rulesText": null,
    "shipStats": "{\"hull\":3,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -5001,7 +5001,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_admiral-ackbar.webp",
+   "imageAssetPath": "cards/swa/rebel/admiral-ackbar.webp",
    "rulesText": null
   },
   {
@@ -5019,7 +5019,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_admiral-konstantine.webp",
+   "imageAssetPath": "cards/swa/empire/admiral-konstantine.webp",
    "rulesText": null
   },
   {
@@ -5037,7 +5037,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_admiral-motti.webp",
+   "imageAssetPath": "cards/swa/empire/admiral-motti.webp",
    "rulesText": null
   },
   {
@@ -5055,7 +5055,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_admiral-ozzel.webp",
+   "imageAssetPath": "cards/swa/empire/admiral-ozzel-20.webp",
    "rulesText": null
   },
   {
@@ -5073,7 +5073,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_admiral-piett.webp",
+   "imageAssetPath": "cards/swa/empire/admiral-piett.webp",
    "rulesText": null
   },
   {
@@ -5091,7 +5091,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_admiral-raddus.webp",
+   "imageAssetPath": "cards/swa/rebel/admiral-raddus.webp",
    "rulesText": null
   },
   {
@@ -5109,7 +5109,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_admiral-screed.webp",
+   "imageAssetPath": "cards/swa/empire/admiral-screed.webp",
    "rulesText": null
   },
   {
@@ -5127,7 +5127,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm26-admiral-sloane.webp",
+   "imageAssetPath": "cards/swa/empire/admiral-sloane.webp",
    "rulesText": null
   },
   {
@@ -5145,7 +5145,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_commander-sato.webp",
+   "imageAssetPath": "cards/swa/rebel/commander-sato.webp",
    "rulesText": null
   },
   {
@@ -5163,7 +5163,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_darth-vader-commander.webp",
+   "imageAssetPath": "cards/swa/empire/darth-vader-36.webp",
    "rulesText": null
   },
   {
@@ -5181,7 +5181,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_emperor-palpatine.webp",
+   "imageAssetPath": "cards/swa/empire/emperor-palpatine-35.webp",
    "rulesText": null
   },
   {
@@ -5199,7 +5199,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_garm-bel-iblis.webp",
+   "imageAssetPath": "cards/swa/rebel/garm-bel-iblis.webp",
    "rulesText": null
   },
   {
@@ -5217,7 +5217,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_general-cracken.webp",
+   "imageAssetPath": "cards/swa/rebel/general-cracken.webp",
    "rulesText": null
   },
   {
@@ -5235,7 +5235,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_general-dodonna.webp",
+   "imageAssetPath": "cards/swa/rebel/general-dodonna.webp",
    "rulesText": null
   },
   {
@@ -5253,7 +5253,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_general_madine.webp",
+   "imageAssetPath": "cards/swa/rebel/general-madine.webp",
    "rulesText": null
   },
   {
@@ -5271,7 +5271,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_general-rieekan.webp",
+   "imageAssetPath": "cards/swa/rebel/general-rieekan.webp",
    "rulesText": null
   },
   {
@@ -5289,7 +5289,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_general-romodi.webp",
+   "imageAssetPath": "cards/swa/empire/general-romodi.webp",
    "rulesText": null
   },
   {
@@ -5307,7 +5307,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_general-tagge.webp",
+   "imageAssetPath": "cards/swa/empire/general-tagge.webp",
    "rulesText": null
   },
   {
@@ -5325,7 +5325,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_grand-admiral-thrawn.webp",
+   "imageAssetPath": "cards/swa/empire/grand-admiral-thrawn.webp",
    "rulesText": null
   },
   {
@@ -5343,7 +5343,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_grand-moff-tarkin.webp",
+   "imageAssetPath": "cards/swa/empire/grand-moff-tarkin.webp",
    "rulesText": null
   },
   {
@@ -5361,7 +5361,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_kyrsta-agate.webp",
+   "imageAssetPath": "cards/swa/rebel/kyrsta-agate-20.webp",
    "rulesText": null
   },
   {
@@ -5379,7 +5379,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm27-leia-organa.webp",
+   "imageAssetPath": "cards/swa/rebel/leia-organa-38.webp",
    "rulesText": null
   },
   {
@@ -5397,7 +5397,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_moff-jerjerrod.webp",
+   "imageAssetPath": "cards/swa/empire/moff-jerjerrod.webp",
    "rulesText": null
   },
   {
@@ -5415,7 +5415,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_mon-mothma.webp",
+   "imageAssetPath": "cards/swa/rebel/mon-mothma.webp",
    "rulesText": null
   },
   {
@@ -5433,7 +5433,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_advanced-projectors.webp",
+   "imageAssetPath": "cards/swa/neutral/advanced-projectors.webp",
    "rulesText": null
   },
   {
@@ -5451,7 +5451,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_cluster-bombs.webp",
+   "imageAssetPath": "cards/swa/neutral/cluster-bombs.webp",
    "rulesText": null
   },
   {
@@ -5469,7 +5469,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_early-warning-system.webp",
+   "imageAssetPath": "cards/swa/neutral/early-warning-system.webp",
    "rulesText": null
   },
   {
@@ -5487,7 +5487,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_electronic-countermeasures.webp",
+   "imageAssetPath": "cards/swa/neutral/electronic-countermeasures.webp",
    "rulesText": null
   },
   {
@@ -5505,7 +5505,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_redundant-shields.webp",
+   "imageAssetPath": "cards/swa/neutral/redundant-shields.webp",
    "rulesText": null
   },
   {
@@ -5523,7 +5523,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_reinforced-blast-doors.webp",
+   "imageAssetPath": "cards/swa/neutral/reinforced-blast-doors.webp",
    "rulesText": null
   },
   {
@@ -5541,7 +5541,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_experimental_projector.webp",
+   "imageAssetPath": "cards/swa/neutral/g-8-experimental-projector.webp",
    "rulesText": null
   },
   {
@@ -5559,7 +5559,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_g7_x_grav_well_projector.webp",
+   "imageAssetPath": "cards/swa/neutral/g7-x-grav-well-projector.webp",
    "rulesText": null
   },
   {
@@ -5577,7 +5577,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_grav-shift-reroute.webp",
+   "imageAssetPath": "cards/swa/neutral/grav-shift-reroute.webp",
    "rulesText": null
   },
   {
@@ -5595,7 +5595,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_targeting-scrambler.webp",
+   "imageAssetPath": "cards/swa/neutral/targeting-scrambler.webp",
    "rulesText": null
   },
   {
@@ -5613,7 +5613,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_all-fighters-follow-me.webp",
+   "imageAssetPath": "cards/swa/neutral/all-fighters-follow-me.webp",
    "rulesText": null
   },
   {
@@ -5631,7 +5631,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_entrapment-formation.webp",
+   "imageAssetPath": "cards/swa/neutral/entrapment-formation.webp",
    "rulesText": null
   },
   {
@@ -5649,7 +5649,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_intensify-firepower.webp",
+   "imageAssetPath": "cards/swa/neutral/intensify-firepower.webp",
    "rulesText": null
   },
   {
@@ -5667,7 +5667,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_shields-to-maximum.webp",
+   "imageAssetPath": "cards/swa/neutral/shields-to-maximum.webp",
    "rulesText": null
   },
   {
@@ -5685,7 +5685,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_take-evasive-action.webp",
+   "imageAssetPath": "cards/swa/neutral/take-evasive-action.webp",
    "rulesText": null
   },
   {
@@ -5703,7 +5703,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_bomber-command-center.webp",
+   "imageAssetPath": "cards/swa/neutral/bomber-command-center.webp",
    "rulesText": null
   },
   {
@@ -5721,7 +5721,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_comms-net.webp",
+   "imageAssetPath": "cards/swa/neutral/comms-net.webp",
    "rulesText": null
   },
   {
@@ -5739,7 +5739,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_jamming-field.webp",
+   "imageAssetPath": "cards/swa/neutral/jamming-field.webp",
    "rulesText": null
   },
   {
@@ -5757,7 +5757,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_repair-crews.webp",
+   "imageAssetPath": "cards/swa/neutral/repair-crews.webp",
    "rulesText": null
   },
   {
@@ -5775,7 +5775,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_slicer-tools.webp",
+   "imageAssetPath": "cards/swa/neutral/slicer-tools.webp",
    "rulesText": null
   },
   {
@@ -5793,7 +5793,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_heavy-ion-emplacements.webp",
+   "imageAssetPath": "cards/swa/neutral/heavy-ion-emplacements.webp",
    "rulesText": null
   },
   {
@@ -5811,7 +5811,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_ion-cannon-batteries.webp",
+   "imageAssetPath": "cards/swa/neutral/ion-cannon-batteries.webp",
    "rulesText": null
   },
   {
@@ -5829,7 +5829,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_high-capacity-ion-turbines.webp",
+   "imageAssetPath": "cards/swa/neutral/high-capacity-ion-turbines.webp",
    "rulesText": null
   },
   {
@@ -5847,7 +5847,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_leading-shots.webp",
+   "imageAssetPath": "cards/swa/neutral/leading-shots.webp",
    "rulesText": null
   },
   {
@@ -5865,7 +5865,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_ms-1-ion-cannons.webp",
+   "imageAssetPath": "cards/swa/neutral/ms-1-ion-cannons.webp",
    "rulesText": null
   },
   {
@@ -5883,7 +5883,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_nk-7-ion-cannons.webp",
+   "imageAssetPath": "cards/swa/neutral/nk-7-ion-cannons.webp",
    "rulesText": null
   },
   {
@@ -5901,7 +5901,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_overload-pulse.webp",
+   "imageAssetPath": "cards/swa/neutral/overload-pulse.webp",
    "rulesText": null
   },
   {
@@ -5919,7 +5919,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_sw-7-ion-batteries.webp",
+   "imageAssetPath": "cards/swa/neutral/sw-7-ion-batteries.webp",
    "rulesText": null
   },
   {
@@ -5937,7 +5937,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_advanced-transponder-net.webp",
+   "imageAssetPath": "cards/swa/neutral/advanced-transponder-net.webp",
    "rulesText": null
   },
   {
@@ -5955,7 +5955,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_boosted-comms.webp",
+   "imageAssetPath": "cards/swa/neutral/boosted-comms.webp",
    "rulesText": null
   },
   {
@@ -5973,7 +5973,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm26-disposable-capacitors.webp",
+   "imageAssetPath": "cards/swa/neutral/disposable-capacitors.webp",
    "rulesText": null
   },
   {
@@ -5991,7 +5991,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_expanded-hangar-bay.webp",
+   "imageAssetPath": "cards/swa/neutral/expanded-hangar-bay.webp",
    "rulesText": null
   },
   {
@@ -6009,7 +6009,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_flag-bridge.webp",
+   "imageAssetPath": "cards/swa/neutral/flag-bridge.webp",
    "rulesText": null
   },
   {
@@ -6027,7 +6027,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_hardend-bulkheads.webp",
+   "imageAssetPath": "cards/swa/neutral/hardened-bulkheads.webp",
    "rulesText": null
   },
   {
@@ -6045,7 +6045,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_phylon-q7-tractor-beams.webp",
+   "imageAssetPath": "cards/swa/neutral/phylon-q7-tractor-beams.webp",
    "rulesText": null
   },
   {
@@ -6063,7 +6063,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_point-defense-reroute.webp",
+   "imageAssetPath": "cards/swa/neutral/point-defense-reroute.webp",
    "rulesText": null
   },
   {
@@ -6081,7 +6081,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_proximity-mines.webp",
+   "imageAssetPath": "cards/swa/neutral/proximity-mines.webp",
    "rulesText": null
   },
   {
@@ -6099,7 +6099,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_quad-laser-turrets.webp",
+   "imageAssetPath": "cards/swa/neutral/quad-laser-turrets.webp",
    "rulesText": null
   },
   {
@@ -6117,7 +6117,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_rapid-launch-bays.webp",
+   "imageAssetPath": "cards/swa/neutral/rapid-launch-bays.webp",
    "rulesText": null
   },
   {
@@ -6135,7 +6135,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_reserve-hangar-deck.webp",
+   "imageAssetPath": "cards/swa/neutral/reserve-hangar-deck.webp",
    "rulesText": null
   },
   {
@@ -6153,7 +6153,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_adar-tallon.webp",
+   "imageAssetPath": "cards/swa/rebel/adar-tallon.webp",
    "rulesText": null
   },
   {
@@ -6171,7 +6171,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_admiral_chiraneau.webp",
+   "imageAssetPath": "cards/swa/empire/admiral-chiraneau.webp",
    "rulesText": null
   },
   {
@@ -6189,7 +6189,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_admiral-montferrat.webp",
+   "imageAssetPath": "cards/swa/empire/admiral-montferrat.webp",
    "rulesText": null
   },
   {
@@ -6207,7 +6207,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_admiral-ozzel-officer.webp",
+   "imageAssetPath": "cards/swa/empire/admiral-ozzel-2.webp",
    "rulesText": null
   },
   {
@@ -6225,7 +6225,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_admiral-titus.webp",
+   "imageAssetPath": "cards/swa/empire/admiral-titus.webp",
    "rulesText": null
   },
   {
@@ -6243,7 +6243,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_agent-kallus.webp",
+   "imageAssetPath": "cards/swa/empire/agent-kallus.webp",
    "rulesText": null
   },
   {
@@ -6261,7 +6261,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_ahsoka-tano.webp",
+   "imageAssetPath": "cards/swa/rebel/ahsoka-tano.webp",
    "rulesText": null
   },
   {
@@ -6279,7 +6279,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_bail-organa-2.webp",
+   "imageAssetPath": "cards/swa/rebel/bail-organa.webp",
    "rulesText": null
   },
   {
@@ -6297,7 +6297,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_captain-brunson.webp",
+   "imageAssetPath": "cards/swa/empire/captain-brunson.webp",
    "rulesText": null
   },
   {
@@ -6315,7 +6315,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_captain-needa.webp",
+   "imageAssetPath": "cards/swa/empire/captain-needa.webp",
    "rulesText": null
   },
   {
@@ -6333,7 +6333,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_captain-rex.webp",
+   "imageAssetPath": "cards/swa/rebel/captain-rex.webp",
    "rulesText": null
   },
   {
@@ -6351,7 +6351,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_chart-officer.webp",
+   "imageAssetPath": "cards/swa/neutral/chart-officer.webp",
    "rulesText": null
   },
   {
@@ -6369,7 +6369,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_commandant-aresko.webp",
+   "imageAssetPath": "cards/swa/empire/commandant-aresko.webp",
    "rulesText": null
   },
   {
@@ -6387,7 +6387,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_commander-beck.webp",
+   "imageAssetPath": "cards/swa/empire/commander-beck.webp",
    "rulesText": null
   },
   {
@@ -6405,7 +6405,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_commander-gherant.webp",
+   "imageAssetPath": "cards/swa/empire/commander-gherant.webp",
    "rulesText": null
   },
   {
@@ -6423,7 +6423,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_commander-vanto.webp",
+   "imageAssetPath": "cards/swa/empire/commander-vanto.webp",
    "rulesText": null
   },
   {
@@ -6441,7 +6441,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_commander-woldar.webp",
+   "imageAssetPath": "cards/swa/empire/commander-woldar.webp",
    "rulesText": null
   },
   {
@@ -6459,7 +6459,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_damage-control-officer.webp",
+   "imageAssetPath": "cards/swa/neutral/damage-control-officer.webp",
    "rulesText": null
   },
   {
@@ -6477,7 +6477,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_darth-vader-officer.webp",
+   "imageAssetPath": "cards/swa/empire/darth-vader-1.webp",
    "rulesText": null
   },
   {
@@ -6495,7 +6495,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_defense-liaison.webp",
+   "imageAssetPath": "cards/swa/neutral/defense-liaison.webp",
    "rulesText": null
   },
   {
@@ -6513,7 +6513,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_director-isard.webp",
+   "imageAssetPath": "cards/swa/empire/director-isard.webp",
    "rulesText": null
   },
   {
@@ -6531,7 +6531,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_director-krennic.webp",
+   "imageAssetPath": "cards/swa/empire/director-krennic.webp",
    "rulesText": null
   },
   {
@@ -6549,7 +6549,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_emperor-palpatine-officer.webp",
+   "imageAssetPath": "cards/swa/empire/emperor-palpatine-3.webp",
    "rulesText": null
   },
   {
@@ -6567,7 +6567,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_engineering-captain.webp",
+   "imageAssetPath": "cards/swa/neutral/engineering-captain.webp",
    "rulesText": null
   },
   {
@@ -6585,7 +6585,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_expert-shield-tech.webp",
+   "imageAssetPath": "cards/swa/neutral/expert-shield-tech.webp",
    "rulesText": null
   },
   {
@@ -6603,7 +6603,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_ezra-bridger.webp",
+   "imageAssetPath": "cards/swa/rebel/ezra-bridger.webp",
    "rulesText": null
   },
   {
@@ -6621,7 +6621,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_flight-commander.webp",
+   "imageAssetPath": "cards/swa/neutral/flight-commander.webp",
    "rulesText": null
   },
   {
@@ -6639,7 +6639,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_general-draven.webp",
+   "imageAssetPath": "cards/swa/rebel/general-draven.webp",
    "rulesText": null
   },
   {
@@ -6657,7 +6657,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_governor-pryce-2.webp",
+   "imageAssetPath": "cards/swa/empire/governor-pryce.webp",
    "rulesText": null
   },
   {
@@ -6675,7 +6675,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm27-hondo-ohnaka.webp",
+   "imageAssetPath": "cards/swa/neutral/hondo-ohnaka.webp",
    "rulesText": null
   },
   {
@@ -6693,7 +6693,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_iden-versio.webp",
+   "imageAssetPath": "cards/swa/empire/iden-versio.webp",
    "rulesText": null
   },
   {
@@ -6711,7 +6711,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_instructor-goran.webp",
+   "imageAssetPath": "cards/swa/empire/instructor-goran.webp",
    "rulesText": null
   },
   {
@@ -6729,7 +6729,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_intel-officer.webp",
+   "imageAssetPath": "cards/swa/neutral/intel-officer.webp",
    "rulesText": null
   },
   {
@@ -6747,7 +6747,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_kyrsta-agate-officer.webp",
+   "imageAssetPath": "cards/swa/rebel/kyrsta-agate-5.webp",
    "rulesText": null
   },
   {
@@ -6765,7 +6765,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_lando-calrissian.webp",
+   "imageAssetPath": "cards/swa/rebel/lando-calrissian-4.webp",
    "rulesText": null
   },
   {
@@ -6783,7 +6783,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_leia-organa.webp",
+   "imageAssetPath": "cards/swa/rebel/leia-organa-3.webp",
    "rulesText": null
   },
   {
@@ -6801,7 +6801,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_lira-wessex.webp",
+   "imageAssetPath": "cards/swa/empire/lira-wessex.webp",
    "rulesText": null
   },
   {
@@ -6819,7 +6819,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_major-derlin.webp",
+   "imageAssetPath": "cards/swa/rebel/major-derlin.webp",
    "rulesText": null
   },
   {
@@ -6837,7 +6837,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_minister-tua.webp",
+   "imageAssetPath": "cards/swa/empire/minister-tua.webp",
    "rulesText": null
   },
   {
@@ -6855,7 +6855,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_navigation-officer.webp",
+   "imageAssetPath": "cards/swa/neutral/navigation-officer.webp",
    "rulesText": null
   },
   {
@@ -6891,7 +6891,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_reeva-demesne.webp",
+   "imageAssetPath": "cards/swa/empire/reeva-demesne.webp",
    "rulesText": null
   },
   {
@@ -6909,7 +6909,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_sabine-wren.webp",
+   "imageAssetPath": "cards/swa/rebel/sabine-wren.webp",
    "rulesText": null
   },
   {
@@ -6927,7 +6927,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_skilled-first-officer.webp",
+   "imageAssetPath": "cards/swa/neutral/skilled-first-officer.webp",
    "rulesText": null
   },
   {
@@ -6963,7 +6963,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_support-officer.webp",
+   "imageAssetPath": "cards/swa/neutral/support-officer.webp",
    "rulesText": null
   },
   {
@@ -6981,7 +6981,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_tactical-expert.webp",
+   "imageAssetPath": "cards/swa/neutral/tactical-expert.webp",
    "rulesText": null
   },
   {
@@ -6999,7 +6999,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_taskmaster-grint.webp",
+   "imageAssetPath": "cards/swa/empire/taskmaster-grint.webp",
    "rulesText": null
   },
   {
@@ -7017,7 +7017,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm26-the-grand-inquisitor.webp",
+   "imageAssetPath": "cards/swa/empire/the-grand-inquisitor.webp",
    "rulesText": null
   },
   {
@@ -7035,7 +7035,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_toryn-farr.webp",
+   "imageAssetPath": "cards/swa/rebel/toryn-farr.webp",
    "rulesText": null
   },
   {
@@ -7053,7 +7053,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_veteran-captain.webp",
+   "imageAssetPath": "cards/swa/neutral/veteran-captain.webp",
    "rulesText": null
   },
   {
@@ -7071,7 +7071,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_walex-blissex.webp",
+   "imageAssetPath": "cards/swa/rebel/walex-blissex.webp",
    "rulesText": null
   },
   {
@@ -7089,7 +7089,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_weapons-liaison.webp",
+   "imageAssetPath": "cards/swa/neutral/weapons-liaison.webp",
    "rulesText": null
   },
   {
@@ -7107,7 +7107,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_wedge-antilles-officer.webp",
+   "imageAssetPath": "cards/swa/rebel/wedge-antilles-4.webp",
    "rulesText": null
   },
   {
@@ -7125,7 +7125,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_wing-commander.webp",
+   "imageAssetPath": "cards/swa/neutral/wing-commander.webp",
    "rulesText": null
   },
   {
@@ -7143,7 +7143,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_wulff_yularen.webp",
+   "imageAssetPath": "cards/swa/empire/wulff-yularen.webp",
    "rulesText": null
   },
   {
@@ -7161,7 +7161,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_assault-concussion-missiles.webp",
+   "imageAssetPath": "cards/swa/neutral/assault-concussion-missiles.webp",
    "rulesText": null
   },
   {
@@ -7179,7 +7179,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_assault-proton-torpedoes.webp",
+   "imageAssetPath": "cards/swa/neutral/assault-proton-torpedoes.webp",
    "rulesText": null
   },
   {
@@ -7197,7 +7197,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_expanded-launchers.webp",
+   "imageAssetPath": "cards/swa/neutral/expanded-launchers.webp",
    "rulesText": null
   },
   {
@@ -7215,7 +7215,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm27-external-racks.webp",
+   "imageAssetPath": "cards/swa/neutral/external-racks.webp",
    "rulesText": null
   },
   {
@@ -7233,7 +7233,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_flechette-torpedoes.webp",
+   "imageAssetPath": "cards/swa/neutral/flechette-torpedoes.webp",
    "rulesText": null
   },
   {
@@ -7251,7 +7251,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_ordnance-pods.webp",
+   "imageAssetPath": "cards/swa/neutral/ordnance-pods.webp",
    "rulesText": null
   },
   {
@@ -7269,7 +7269,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_rapid-reload.webp",
+   "imageAssetPath": "cards/swa/neutral/rapid-reload.webp",
    "rulesText": null
   },
   {
@@ -7287,7 +7287,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_wide-area-barrage.webp",
+   "imageAssetPath": "cards/swa/neutral/wide-area-barrage.webp",
    "rulesText": null
   },
   {
@@ -7323,7 +7323,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_orbital-bombardment-particle-cannons.webp",
+   "imageAssetPath": "cards/swa/empire/orbital-bombardment-particle-cannons.webp",
    "rulesText": null
   },
   {
@@ -7341,7 +7341,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_superheavy-composite-beam-turbolasers.webp",
+   "imageAssetPath": "cards/swa/empire/superheavy-composite-beam-turbolasers.webp",
    "rulesText": null
   },
   {
@@ -7359,7 +7359,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_auxiliary-shields-team.webp",
+   "imageAssetPath": "cards/swa/neutral/auxiliary-shields-team.webp",
    "rulesText": null
   },
   {
@@ -7377,7 +7377,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_engine-techs.webp",
+   "imageAssetPath": "cards/swa/neutral/engine-techs.webp",
    "rulesText": null
   },
   {
@@ -7395,7 +7395,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_engineering-team.webp",
+   "imageAssetPath": "cards/swa/neutral/engineering-team.webp",
    "rulesText": null
   },
   {
@@ -7413,7 +7413,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_fighter-coordination-team.webp",
+   "imageAssetPath": "cards/swa/neutral/fighter-coordination-team.webp",
    "rulesText": null
   },
   {
@@ -7431,7 +7431,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_medical-team.webp",
+   "imageAssetPath": "cards/swa/neutral/medical-team.webp",
    "rulesText": null
   },
   {
@@ -7449,7 +7449,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_nav-team.webp",
+   "imageAssetPath": "cards/swa/neutral/nav-team.webp",
    "rulesText": null
   },
   {
@@ -7467,7 +7467,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_projection-experts.webp",
+   "imageAssetPath": "cards/swa/neutral/projection-experts.webp",
    "rulesText": null
   },
   {
@@ -7575,7 +7575,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_bright-hope.webp",
+   "imageAssetPath": "cards/swa/rebel/bright-hope.webp",
    "rulesText": null
   },
   {
@@ -7755,7 +7755,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_dodonnas-pride.webp",
+   "imageAssetPath": "cards/swa/rebel/dodonnas-pride.webp",
    "rulesText": null
   },
   {
@@ -7863,7 +7863,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_gallant-haven.webp",
+   "imageAssetPath": "cards/swa/rebel/gallant-haven.webp",
    "rulesText": null
   },
   {
@@ -7881,7 +7881,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm27-garels-honor.webp",
+   "imageAssetPath": "cards/swa/rebel/garels-honor.webp",
    "rulesText": null
   },
   {
@@ -7899,7 +7899,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_hand-of-justice.webp",
+   "imageAssetPath": "cards/swa/empire/hand-of-justice.webp",
    "rulesText": null
   },
   {
@@ -7935,7 +7935,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_home-one.webp",
+   "imageAssetPath": "cards/swa/rebel/home-one.webp",
    "rulesText": null
   },
   {
@@ -8043,7 +8043,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_jainas-light.webp",
+   "imageAssetPath": "cards/swa/rebel/jainas-light.webp",
    "rulesText": null
   },
   {
@@ -8097,7 +8097,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_mon-calamari-exodus-fleet.webp",
+   "imageAssetPath": "cards/swa/rebel/mon-calamari-exodus-fleet.webp",
    "rulesText": null
   },
   {
@@ -8115,7 +8115,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_mon-karren.webp",
+   "imageAssetPath": "cards/swa/rebel/mon-karren.webp",
    "rulesText": null
   },
   {
@@ -8151,7 +8151,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_phoenix-home.webp",
+   "imageAssetPath": "cards/swa/rebel/phoenix-home.webp",
    "rulesText": null
   },
   {
@@ -8205,7 +8205,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_quantum-storm.webp",
+   "imageAssetPath": "cards/swa/rebel/quantum-storm.webp",
    "rulesText": null
   },
   {
@@ -8313,7 +8313,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_seventh-fleet.webp",
+   "imageAssetPath": "cards/swa/empire/seventh-fleet-star-destroyer.webp",
    "rulesText": null
   },
   {
@@ -8421,7 +8421,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_tantive-iv.webp",
+   "imageAssetPath": "cards/swa/rebel/tantive-iv.webp",
    "rulesText": null
   },
   {
@@ -8439,7 +8439,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm27-task-force-antilles.webp",
+   "imageAssetPath": "cards/swa/rebel/task-force-antilles.webp",
    "rulesText": null
   },
   {
@@ -8457,7 +8457,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm27-task-force-organa.webp",
+   "imageAssetPath": "cards/swa/rebel/task-force-organa.webp",
    "rulesText": null
   },
   {
@@ -8565,7 +8565,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_dual-turbolaser-turrets.webp",
+   "imageAssetPath": "cards/swa/neutral/dual-turbolaser-turrets.webp",
    "rulesText": null
   },
   {
@@ -8583,7 +8583,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_enhanced-armament.webp",
+   "imageAssetPath": "cards/swa/neutral/enhanced-armament.webp",
    "rulesText": null
   },
   {
@@ -8601,7 +8601,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_h9-turbolasers.webp",
+   "imageAssetPath": "cards/swa/neutral/h9-turbolasers.webp",
    "rulesText": null
   },
   {
@@ -8619,7 +8619,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_heavy-fire-zone.webp",
+   "imageAssetPath": "cards/swa/neutral/heavy-fire-zone.webp",
    "rulesText": null
   },
   {
@@ -8637,7 +8637,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_heavy-turbolaser-turrets.webp",
+   "imageAssetPath": "cards/swa/neutral/heavy-turbolaser-turrets.webp",
    "rulesText": null
   },
   {
@@ -8655,7 +8655,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_linked-turbolaser-towers.webp",
+   "imageAssetPath": "cards/swa/neutral/linked-turbolaser-towers.webp",
    "rulesText": null
   },
   {
@@ -8673,7 +8673,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_quad-battery-turrets.webp",
+   "imageAssetPath": "cards/swa/neutral/quad-battery-turrets.webp",
    "rulesText": null
   },
   {
@@ -8691,7 +8691,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_quad-turbolaser-cannons.webp",
+   "imageAssetPath": "cards/swa/neutral/quad-turbolaser-cannons.webp",
    "rulesText": null
   },
   {
@@ -8709,7 +8709,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_slaved-turrets.webp",
+   "imageAssetPath": "cards/swa/neutral/slaved-turrets.webp",
    "rulesText": null
   },
   {
@@ -8727,7 +8727,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_spinal-armament.webp",
+   "imageAssetPath": "cards/swa/neutral/spinal-armament.webp",
    "rulesText": null
   },
   {
@@ -8745,7 +8745,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_turbolaser-reroute-circuits.webp",
+   "imageAssetPath": "cards/swa/neutral/turbolaser-reroute-circuits.webp",
    "rulesText": null
   },
   {
@@ -8763,7 +8763,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_xi7-turbolasers.webp",
+   "imageAssetPath": "cards/swa/neutral/xi7-turbolasers.webp",
    "rulesText": null
   },
   {
@@ -8781,7 +8781,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_xx9-turbolasers.webp",
+   "imageAssetPath": "cards/swa/neutral/xx-9-turbolasers.webp",
    "rulesText": null
   },
   {
@@ -8800,7 +8800,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm27-boarding-engineers.webp",
+   "imageAssetPath": "cards/swa/neutral/boarding-engineers.webp",
    "rulesText": null
   },
   {
@@ -8819,7 +8819,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm26-boarding-troopers.webp",
+   "imageAssetPath": "cards/swa/neutral/boarding-troopers.webp",
    "rulesText": null
   },
   {
@@ -8838,7 +8838,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm27-cham-syndulla.webp",
+   "imageAssetPath": "cards/swa/rebel/cham-syndulla.webp",
    "rulesText": null
   },
   {
@@ -8857,7 +8857,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_darth-vader-officer.webp",
+   "imageAssetPath": "cards/swa/empire/darth-vader-3.webp",
    "rulesText": null
   },
   {
@@ -8876,7 +8876,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_jyn-erso.webp",
+   "imageAssetPath": "cards/swa/rebel/jyn-erso.webp",
    "rulesText": null
   },
   {
@@ -8895,7 +8895,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_shriv-suurgav.webp",
+   "imageAssetPath": "cards/swa/rebel/shriv-suurgav.webp",
    "rulesText": null
   },
   {
@@ -8913,7 +8913,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_caitken-and-shollan.webp",
+   "imageAssetPath": "cards/swa/rebel/caitken-and-shollan.webp",
    "rulesText": null
   },
   {
@@ -8931,7 +8931,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_fire-control-team.webp",
+   "imageAssetPath": "cards/swa/neutral/fire-control-team.webp",
    "rulesText": null
   },
   {
@@ -8949,7 +8949,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_flight-controllers.webp",
+   "imageAssetPath": "cards/swa/neutral/flight-controllers.webp",
    "rulesText": null
   },
   {
@@ -8967,7 +8967,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_gunnery-chief-varnillian.webp",
+   "imageAssetPath": "cards/swa/empire/gunnery-chief-varnillian.webp",
    "rulesText": null
   },
   {
@@ -8985,7 +8985,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_gunnery-team.webp",
+   "imageAssetPath": "cards/swa/neutral/gunnery-team.webp",
    "rulesText": null
   },
   {
@@ -9003,7 +9003,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_local-fire-control.webp",
+   "imageAssetPath": "cards/swa/neutral/local-fire-control.webp",
    "rulesText": null
   },
   {
@@ -9021,7 +9021,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_ordnance-experts.webp",
+   "imageAssetPath": "cards/swa/neutral/ordnance-experts.webp",
    "rulesText": null
   },
   {
@@ -9039,7 +9039,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_ruthless-strategists.webp",
+   "imageAssetPath": "cards/swa/neutral/ruthless-strategists.webp",
    "rulesText": null
   },
   {
@@ -9057,7 +9057,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_sensor-team.webp",
+   "imageAssetPath": "cards/swa/neutral/sensor-team.webp",
    "rulesText": null
   },
   {
@@ -9075,7 +9075,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_veterangunners.webp",
+   "imageAssetPath": "cards/swa/neutral/veteran-gunners.webp",
    "rulesText": null
   },
   {
@@ -9093,7 +9093,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_weapons-battery-techs.webp",
+   "imageAssetPath": "cards/swa/neutral/weapons-battery-techs.webp",
    "rulesText": null
   },
   {
@@ -9114,7 +9114,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ah.webp",
+   "imageAssetPath": "cards/swl/rebel/rebel-troopers.webp",
    "rulesText": null
   },
   {
@@ -9136,7 +9136,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_al.webp",
+   "imageAssetPath": "cards/swl/rebel/rebel-commandos-20.webp",
    "rulesText": null
   },
   {
@@ -9154,7 +9154,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ft.webp",
+   "imageAssetPath": "cards/swl/empire/df-90-mortar-trooper.webp",
    "rulesText": null
   },
   {
@@ -9176,7 +9176,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_gb.webp",
+   "imageAssetPath": "cards/swl/republic/saber-class-tank.webp",
    "rulesText": null
   },
   {
@@ -9195,7 +9195,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_if.webp",
+   "imageAssetPath": "cards/swl/rebel/mark-ii-medium-blaster-trooper.webp",
    "rulesText": null
   },
   {
@@ -9215,7 +9215,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_kw.webp",
+   "imageAssetPath": "cards/swl/republic/padme-amidala.webp",
    "rulesText": null
   },
   {
@@ -9238,7 +9238,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ky.webp",
+   "imageAssetPath": "cards/swl/republic/arc-troopers-23.webp",
    "rulesText": null
   },
   {
@@ -9260,7 +9260,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_lb.webp",
+   "imageAssetPath": "cards/swl/separatist/bx-series-droid-commandos-20.webp",
    "rulesText": null
   },
   {
@@ -9279,7 +9279,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_lv.webp",
+   "imageAssetPath": "cards/swl/rebel/k-2so-70.webp",
    "rulesText": null
   },
   {
@@ -9298,7 +9298,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_mb.webp",
+   "imageAssetPath": "cards/swl/republic/at-rt.webp",
    "rulesText": null
   },
   {
@@ -9531,7 +9531,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_sr.webp",
+   "imageAssetPath": "cards/swl/empire/stormtroopers-36.webp",
    "rulesText": null
   },
   {
@@ -9567,7 +9567,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_vj.webp",
+   "imageAssetPath": "cards/swl/mercenary/chewbacca.webp",
    "rulesText": null
   },
   {
@@ -9913,7 +9913,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Gw.webp",
+   "imageAssetPath": "cards/swl/republic/plo-koon-105.webp",
    "rulesText": null
   },
   {
@@ -10345,7 +10345,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Jo.webp",
+   "imageAssetPath": "cards/swl/shadow-collective/sabine-wren.webp",
    "rulesText": null
   },
   {
@@ -10456,7 +10456,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Mk.webp",
+   "imageAssetPath": "cards/swl/separatist/b2-super-rocket-battle-droids.webp",
    "rulesText": null
   },
   {
@@ -10478,7 +10478,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Mt.webp",
+   "imageAssetPath": "cards/swl/republic/obi-wan-kenobi-140.webp",
    "rulesText": null
   },
   {
@@ -10496,7 +10496,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_cw.webp",
+   "imageAssetPath": "cards/swl/neutral/improvised-orders.webp",
    "rulesText": null
   },
   {
@@ -10514,7 +10514,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_cz.webp",
+   "imageAssetPath": "cards/swl/neutral/strict-orders.webp",
    "rulesText": null
   },
   {
@@ -10532,7 +10532,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_da.webp",
+   "imageAssetPath": "cards/swl/neutral/recon-intel.webp",
    "rulesText": null
   },
   {
@@ -10550,7 +10550,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_db.webp",
+   "imageAssetPath": "cards/swl/neutral/emergency-stims.webp",
    "rulesText": null
   },
   {
@@ -10568,7 +10568,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_dc.webp",
+   "imageAssetPath": "cards/swl/neutral/targeting-scopes.webp",
    "rulesText": null
   },
   {
@@ -10586,7 +10586,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_dd.webp",
+   "imageAssetPath": "cards/swl/neutral/grappling-hooks.webp",
    "rulesText": null
   },
   {
@@ -10604,7 +10604,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_de.webp",
+   "imageAssetPath": "cards/swl/neutral/environmental-gear.webp",
    "rulesText": null
   },
   {
@@ -10622,7 +10622,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_df.webp",
+   "imageAssetPath": "cards/swl/neutral/tenacity.webp",
    "rulesText": null
   },
   {
@@ -10658,7 +10658,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_dh.webp",
+   "imageAssetPath": "cards/swl/neutral/duck-and-cover.webp",
    "rulesText": null
   },
   {
@@ -10676,7 +10676,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_di.webp",
+   "imageAssetPath": "cards/swl/neutral/endurance.webp",
    "rulesText": null
   },
   {
@@ -10694,7 +10694,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_dj.webp",
+   "imageAssetPath": "cards/swl/neutral/fragmentation-grenades.webp",
    "rulesText": null
   },
   {
@@ -10712,7 +10712,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_dk.webp",
+   "imageAssetPath": "cards/swl/neutral/impact-grenades.webp",
    "rulesText": null
   },
   {
@@ -10730,7 +10730,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_dl.webp",
+   "imageAssetPath": "cards/swl/neutral/concussion-grenades.webp",
    "rulesText": null
   },
   {
@@ -10748,7 +10748,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_dm.webp",
+   "imageAssetPath": "cards/swl/neutral/hq-uplink.webp",
    "rulesText": null
   },
   {
@@ -10766,7 +10766,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_dn.webp",
+   "imageAssetPath": "cards/swl/neutral/comms-jammer.webp",
    "rulesText": null
   },
   {
@@ -10784,7 +10784,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_dq.webp",
+   "imageAssetPath": "cards/swl/neutral/overcharged-generator.webp",
    "rulesText": null
   },
   {
@@ -10802,7 +10802,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_dr.webp",
+   "imageAssetPath": "cards/swl/neutral/barrage-generator.webp",
    "rulesText": null
   },
   {
@@ -10820,7 +10820,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_dt.webp",
+   "imageAssetPath": "cards/swl/neutral/force-push.webp",
    "rulesText": null
   },
   {
@@ -10838,7 +10838,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_du.webp",
+   "imageAssetPath": "cards/swl/neutral/force-reflexes.webp",
    "rulesText": null
   },
   {
@@ -10856,7 +10856,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_dv.webp",
+   "imageAssetPath": "cards/swl/neutral/saber-throw.webp",
    "rulesText": null
   },
   {
@@ -10874,7 +10874,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_dw.webp",
+   "imageAssetPath": "cards/swl/neutral/jedi-mind-trick.webp",
    "rulesText": null
   },
   {
@@ -10892,7 +10892,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_dx.webp",
+   "imageAssetPath": "cards/swl/neutral/anger.webp",
    "rulesText": null
   },
   {
@@ -10910,7 +10910,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_dy.webp",
+   "imageAssetPath": "cards/swl/neutral/force-choke.webp",
    "rulesText": null
   },
   {
@@ -10928,7 +10928,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_eb.webp",
+   "imageAssetPath": "cards/swl/neutral/the-darksaber-5.webp",
    "rulesText": null
   },
   {
@@ -10946,7 +10946,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ec.webp",
+   "imageAssetPath": "cards/swl/neutral/mpl-57-ion-trooper.webp",
    "rulesText": null
   },
   {
@@ -10964,7 +10964,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ed.webp",
+   "imageAssetPath": "cards/swl/neutral/z-6-trooper.webp",
    "rulesText": null
   },
   {
@@ -10982,7 +10982,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ee.webp",
+   "imageAssetPath": "cards/swl/neutral/bowcaster-wookiee.webp",
    "rulesText": null
   },
   {
@@ -11000,7 +11000,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ef.webp",
+   "imageAssetPath": "cards/swl/neutral/proton-charge-saboteur.webp",
    "rulesText": null
   },
   {
@@ -11018,7 +11018,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_eg.webp",
+   "imageAssetPath": "cards/swl/neutral/dh-447-sniper.webp",
    "rulesText": null
   },
   {
@@ -11036,7 +11036,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_eh.webp",
+   "imageAssetPath": "cards/swl/neutral/scatter-gun-trooper.webp",
    "rulesText": null
   },
   {
@@ -11054,7 +11054,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ei.webp",
+   "imageAssetPath": "cards/swl/neutral/mpl-57-barrage-trooper.webp",
    "rulesText": null
   },
   {
@@ -11072,7 +11072,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ej.webp",
+   "imageAssetPath": "cards/swl/neutral/dlt-19-stormtrooper.webp",
    "rulesText": null
   },
   {
@@ -11090,7 +11090,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ek.webp",
+   "imageAssetPath": "cards/swl/neutral/hh-12-stormtrooper.webp",
    "rulesText": null
   },
   {
@@ -11108,7 +11108,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_em.webp",
+   "imageAssetPath": "cards/swl/neutral/dlt-19x-sniper.webp",
    "rulesText": null
   },
   {
@@ -11126,7 +11126,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_en.webp",
+   "imageAssetPath": "cards/swl/neutral/sonic-charge-saboteur.webp",
    "rulesText": null
   },
   {
@@ -11144,7 +11144,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_eo.webp",
+   "imageAssetPath": "cards/swl/neutral/t-7-ion-snowtrooper.webp",
    "rulesText": null
   },
   {
@@ -11162,7 +11162,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ep.webp",
+   "imageAssetPath": "cards/swl/neutral/flametrooper.webp",
    "rulesText": null
   },
   {
@@ -11180,7 +11180,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_eq.webp",
+   "imageAssetPath": "cards/swl/neutral/rebel-comms-technician.webp",
    "rulesText": null
   },
   {
@@ -11198,7 +11198,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_er.webp",
+   "imageAssetPath": "cards/swl/neutral/rebel-officer.webp",
    "rulesText": null
   },
   {
@@ -11216,7 +11216,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_es.webp",
+   "imageAssetPath": "cards/swl/neutral/rebel-trooper.webp",
    "rulesText": null
   },
   {
@@ -11234,7 +11234,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_et.webp",
+   "imageAssetPath": "cards/swl/neutral/r5-astromech-droid.webp",
    "rulesText": null
   },
   {
@@ -11252,7 +11252,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_eu.webp",
+   "imageAssetPath": "cards/swl/neutral/2-1b-medical-droid.webp",
    "rulesText": null
   },
   {
@@ -11270,7 +11270,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ev.webp",
+   "imageAssetPath": "cards/swl/neutral/fleet-trooper.webp",
    "rulesText": null
   },
   {
@@ -11288,7 +11288,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ew.webp",
+   "imageAssetPath": "cards/swl/neutral/imperial-officer.webp",
    "rulesText": null
   },
   {
@@ -11306,7 +11306,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ex.webp",
+   "imageAssetPath": "cards/swl/neutral/stormtrooper.webp",
    "rulesText": null
   },
   {
@@ -11324,7 +11324,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ey.webp",
+   "imageAssetPath": "cards/swl/neutral/imperial-comms-technician.webp",
    "rulesText": null
   },
   {
@@ -11342,7 +11342,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ez.webp",
+   "imageAssetPath": "cards/swl/neutral/fx-9-medical-droid.webp",
    "rulesText": null
   },
   {
@@ -11360,7 +11360,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_fa.webp",
+   "imageAssetPath": "cards/swl/neutral/r4-astromech.webp",
    "rulesText": null
   },
   {
@@ -11378,7 +11378,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_fb.webp",
+   "imageAssetPath": "cards/swl/neutral/snowtrooper.webp",
    "rulesText": null
   },
   {
@@ -11396,7 +11396,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_fc.webp",
+   "imageAssetPath": "cards/swl/neutral/at-rt-rotary-blaster.webp",
    "rulesText": null
   },
   {
@@ -11414,7 +11414,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_fd.webp",
+   "imageAssetPath": "cards/swl/neutral/at-rt-flamethrower.webp",
    "rulesText": null
   },
   {
@@ -11432,7 +11432,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_fe.webp",
+   "imageAssetPath": "cards/swl/neutral/at-rt-laser-cannon.webp",
    "rulesText": null
   },
   {
@@ -11450,7 +11450,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ff.webp",
+   "imageAssetPath": "cards/swl/neutral/ax-108-ground-buzzer.webp",
    "rulesText": null
   },
   {
@@ -11468,7 +11468,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_fg.webp",
+   "imageAssetPath": "cards/swl/neutral/mo-dk-power-harpoon.webp",
    "rulesText": null
   },
   {
@@ -11486,7 +11486,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_fh.webp",
+   "imageAssetPath": "cards/swl/neutral/88i-twin-light-blaster.webp",
    "rulesText": null
   },
   {
@@ -11504,7 +11504,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_fi.webp",
+   "imageAssetPath": "cards/swl/neutral/at-st-mortar-launcher.webp",
    "rulesText": null
   },
   {
@@ -11522,7 +11522,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_fj.webp",
+   "imageAssetPath": "cards/swl/neutral/dw-3-grenade-launcher.webp",
    "rulesText": null
   },
   {
@@ -11540,7 +11540,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_fk.webp",
+   "imageAssetPath": "cards/swl/neutral/wedge-antilles.webp",
    "rulesText": null
   },
   {
@@ -11558,7 +11558,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_fl.webp",
+   "imageAssetPath": "cards/swl/neutral/general-weiss.webp",
    "rulesText": null
   },
   {
@@ -11576,7 +11576,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_fo.webp",
+   "imageAssetPath": "cards/swl/neutral/fear.webp",
    "rulesText": null
   },
   {
@@ -11594,7 +11594,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_fr.webp",
+   "imageAssetPath": "cards/swl/neutral/barc-ion-gunner.webp",
    "rulesText": null
   },
   {
@@ -11612,7 +11612,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_fs.webp",
+   "imageAssetPath": "cards/swl/neutral/barc-rps-6-gunner.webp",
    "rulesText": null
   },
   {
@@ -11630,7 +11630,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_fu.webp",
+   "imageAssetPath": "cards/swl/neutral/t-21b-shoretrooper.webp",
    "rulesText": null
   },
   {
@@ -11648,7 +11648,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_fv.webp",
+   "imageAssetPath": "cards/swl/neutral/rt-97c-blaster-rifle.webp",
    "rulesText": null
   },
   {
@@ -11666,7 +11666,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_fw.webp",
+   "imageAssetPath": "cards/swl/neutral/cr-24-flame-rifle.webp",
    "rulesText": null
   },
   {
@@ -11684,7 +11684,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_gj.webp",
+   "imageAssetPath": "cards/swl/neutral/overwatch.webp",
    "rulesText": null
   },
   {
@@ -11702,7 +11702,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_gl.webp",
+   "imageAssetPath": "cards/swl/neutral/dt-f16.webp",
    "rulesText": null
   },
   {
@@ -11720,7 +11720,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_gm.webp",
+   "imageAssetPath": "cards/swl/neutral/dlt-19d-trooper.webp",
    "rulesText": null
   },
   {
@@ -11738,7 +11738,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_gn.webp",
+   "imageAssetPath": "cards/swl/neutral/e-11d-focused-fire-configuration.webp",
    "rulesText": null
   },
   {
@@ -11756,7 +11756,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_go.webp",
+   "imageAssetPath": "cards/swl/neutral/imperial-hammers-elite-armor-pilot.webp",
    "rulesText": null
   },
   {
@@ -11774,7 +11774,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_gp.webp",
+   "imageAssetPath": "cards/swl/neutral/outer-rim-speeder-jockey.webp",
    "rulesText": null
   },
   {
@@ -11792,7 +11792,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_gq.webp",
+   "imageAssetPath": "cards/swl/neutral/rps-6-rocket-gunner.webp",
    "rulesText": null
   },
   {
@@ -11810,7 +11810,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_gr.webp",
+   "imageAssetPath": "cards/swl/neutral/a-300-rifle-gunner.webp",
    "rulesText": null
   },
   {
@@ -11828,7 +11828,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_gu.webp",
+   "imageAssetPath": "cards/swl/neutral/rebel-veteran.webp",
    "rulesText": null
   },
   {
@@ -11846,7 +11846,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_gz.webp",
+   "imageAssetPath": "cards/swl/neutral/first-sergeant-arbmab.webp",
    "rulesText": null
   },
   {
@@ -11864,7 +11864,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ha.webp",
+   "imageAssetPath": "cards/swl/neutral/mark-ii-medium-blaster.webp",
    "rulesText": null
   },
   {
@@ -11882,7 +11882,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_hb.webp",
+   "imageAssetPath": "cards/swl/neutral/m-45-ion-blaster.webp",
    "rulesText": null
   },
   {
@@ -11900,7 +11900,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_hc.webp",
+   "imageAssetPath": "cards/swl/neutral/pintle-mounted-dlt-19.webp",
    "rulesText": null
   },
   {
@@ -11918,7 +11918,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_hd.webp",
+   "imageAssetPath": "cards/swl/neutral/pintle-mounted-rt-97c.webp",
    "rulesText": null
   },
   {
@@ -11936,7 +11936,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_hh.webp",
+   "imageAssetPath": "cards/swl/neutral/shoretrooper.webp",
    "rulesText": null
   },
   {
@@ -11954,7 +11954,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_hn.webp",
+   "imageAssetPath": "cards/swl/neutral/b1-battle-droid.webp",
    "rulesText": null
   },
   {
@@ -11972,7 +11972,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ho.webp",
+   "imageAssetPath": "cards/swl/neutral/e-5c-b1-battle-droid.webp",
    "rulesText": null
   },
   {
@@ -11990,7 +11990,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_hp.webp",
+   "imageAssetPath": "cards/swl/neutral/z-6-clone-trooper.webp",
    "rulesText": null
   },
   {
@@ -12008,7 +12008,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_hq.webp",
+   "imageAssetPath": "cards/swl/neutral/dc-15-clone-trooper.webp",
    "rulesText": null
   },
   {
@@ -12026,7 +12026,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_hr.webp",
+   "imageAssetPath": "cards/swl/neutral/e-60r-b1-battle-droid.webp",
    "rulesText": null
   },
   {
@@ -12044,7 +12044,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_hs.webp",
+   "imageAssetPath": "cards/swl/neutral/t-21-blaster-rifle.webp",
    "rulesText": null
   },
   {
@@ -12062,7 +12062,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_hx.webp",
+   "imageAssetPath": "cards/swl/neutral/force-guidance.webp",
    "rulesText": null
   },
   {
@@ -12080,7 +12080,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_hy.webp",
+   "imageAssetPath": "cards/swl/neutral/electrobinoculars.webp",
    "rulesText": null
   },
   {
@@ -12098,7 +12098,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_hz.webp",
+   "imageAssetPath": "cards/swl/neutral/linked-targeting-array.webp",
    "rulesText": null
   },
   {
@@ -12116,7 +12116,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ib.webp",
+   "imageAssetPath": "cards/swl/neutral/smoke-grenades.webp",
    "rulesText": null
   },
   {
@@ -12134,7 +12134,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_id.webp",
+   "imageAssetPath": "cards/swl/neutral/barc-twin-laser-gunner.webp",
    "rulesText": null
   },
   {
@@ -12152,7 +12152,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ig.webp",
+   "imageAssetPath": "cards/swl/neutral/cm-0-93-trooper.webp",
    "rulesText": null
   },
   {
@@ -12170,7 +12170,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ii.webp",
+   "imageAssetPath": "cards/swl/neutral/ryder-azadi.webp",
    "rulesText": null
   },
   {
@@ -12188,7 +12188,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ij.webp",
+   "imageAssetPath": "cards/swl/neutral/hope.webp",
    "rulesText": null
   },
   {
@@ -12206,7 +12206,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_io.webp",
+   "imageAssetPath": "cards/swl/neutral/b2-super-battle-droid.webp",
    "rulesText": null
   },
   {
@@ -12224,7 +12224,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ip.webp",
+   "imageAssetPath": "cards/swl/neutral/aayla-secura.webp",
    "rulesText": null
   },
   {
@@ -12242,7 +12242,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_iq.webp",
+   "imageAssetPath": "cards/swl/neutral/t-series-tactical-droid-pilot.webp",
    "rulesText": null
   },
   {
@@ -12260,7 +12260,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_it.webp",
+   "imageAssetPath": "cards/swl/neutral/b1-security-droid.webp",
    "rulesText": null
   },
   {
@@ -12278,7 +12278,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_iu.webp",
+   "imageAssetPath": "cards/swl/neutral/dlt-20a-trooper.webp",
    "rulesText": null
   },
   {
@@ -12296,7 +12296,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_iv.webp",
+   "imageAssetPath": "cards/swl/neutral/dp-23-clone-trooper.webp",
    "rulesText": null
   },
   {
@@ -12314,7 +12314,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_iw.webp",
+   "imageAssetPath": "cards/swl/neutral/e-5s-b1-battle-droid.webp",
    "rulesText": null
   },
   {
@@ -12332,7 +12332,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ix.webp",
+   "imageAssetPath": "cards/swl/neutral/rps-6-clone-trooper.webp",
    "rulesText": null
   },
   {
@@ -12350,7 +12350,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_iy.webp",
+   "imageAssetPath": "cards/swl/neutral/rt-97c-stormtrooper.webp",
    "rulesText": null
   },
   {
@@ -12368,7 +12368,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_iz.webp",
+   "imageAssetPath": "cards/swl/neutral/sx-21-trooper.webp",
    "rulesText": null
   },
   {
@@ -12386,7 +12386,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ja.webp",
+   "imageAssetPath": "cards/swl/neutral/t-21-stormtrooper.webp",
    "rulesText": null
   },
   {
@@ -12404,7 +12404,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_jb.webp",
+   "imageAssetPath": "cards/swl/neutral/offensive-push.webp",
    "rulesText": null
   },
   {
@@ -12422,7 +12422,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_jn.webp",
+   "imageAssetPath": "cards/swl/neutral/stormtrooper-captain.webp",
    "rulesText": null
   },
   {
@@ -12440,7 +12440,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_jo.webp",
+   "imageAssetPath": "cards/swl/neutral/rebel-trooper-captain.webp",
    "rulesText": null
   },
   {
@@ -12458,7 +12458,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_jp.webp",
+   "imageAssetPath": "cards/swl/neutral/rebel-trooper-specialist.webp",
    "rulesText": null
   },
   {
@@ -12476,7 +12476,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_jq.webp",
+   "imageAssetPath": "cards/swl/neutral/stormtrooper-specialist.webp",
    "rulesText": null
   },
   {
@@ -12494,7 +12494,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_jv.webp",
+   "imageAssetPath": "cards/swl/neutral/oom-series-battle-droid.webp",
    "rulesText": null
   },
   {
@@ -12512,7 +12512,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_jw.webp",
+   "imageAssetPath": "cards/swl/neutral/radiation-cannon-b1-battle-droid.webp",
    "rulesText": null
   },
   {
@@ -12530,7 +12530,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_jx.webp",
+   "imageAssetPath": "cards/swl/neutral/clone-captain.webp",
    "rulesText": null
   },
   {
@@ -12548,7 +12548,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_jy.webp",
+   "imageAssetPath": "cards/swl/neutral/clone-specialist.webp",
    "rulesText": null
   },
   {
@@ -12566,7 +12566,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ke.webp",
+   "imageAssetPath": "cards/swl/neutral/b2-acm-battle-droid.webp",
    "rulesText": null
   },
   {
@@ -12602,7 +12602,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_kl.webp",
+   "imageAssetPath": "cards/swl/neutral/veteran-clone-pilot.webp",
    "rulesText": null
   },
   {
@@ -12620,7 +12620,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_km.webp",
+   "imageAssetPath": "cards/swl/neutral/beam-turret.webp",
    "rulesText": null
   },
   {
@@ -12638,7 +12638,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_kn.webp",
+   "imageAssetPath": "cards/swl/neutral/armor-piercing-shells.webp",
    "rulesText": null
   },
   {
@@ -12656,7 +12656,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ko.webp",
+   "imageAssetPath": "cards/swl/neutral/mortar-clone-trooper.webp",
    "rulesText": null
   },
   {
@@ -12674,7 +12674,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_kp.webp",
+   "imageAssetPath": "cards/swl/neutral/b2-ha-battle-droid.webp",
    "rulesText": null
   },
   {
@@ -12692,7 +12692,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_kq.webp",
+   "imageAssetPath": "cards/swl/neutral/lok-durd.webp",
    "rulesText": null
   },
   {
@@ -12710,7 +12710,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_kr.webp",
+   "imageAssetPath": "cards/swl/neutral/twin-laser-turret.webp",
    "rulesText": null
   },
   {
@@ -12728,7 +12728,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ks.webp",
+   "imageAssetPath": "cards/swl/neutral/plo-koon.webp",
    "rulesText": null
   },
   {
@@ -12764,7 +12764,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ku.webp",
+   "imageAssetPath": "cards/swl/neutral/high-energy-shells.webp",
    "rulesText": null
   },
   {
@@ -12782,7 +12782,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_kv.webp",
+   "imageAssetPath": "cards/swl/neutral/oom-series-droid-pilot.webp",
    "rulesText": null
   },
   {
@@ -12800,7 +12800,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_lc.webp",
+   "imageAssetPath": "cards/swl/neutral/bx-deflector-shields.webp",
    "rulesText": null
   },
   {
@@ -12818,7 +12818,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ld.webp",
+   "imageAssetPath": "cards/swl/neutral/bx-series-droid-sniper.webp",
    "rulesText": null
   },
   {
@@ -12854,7 +12854,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_lf.webp",
+   "imageAssetPath": "cards/swl/neutral/dc-15x-arc-trooper-sniper.webp",
    "rulesText": null
   },
   {
@@ -12872,7 +12872,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_lg.webp",
+   "imageAssetPath": "cards/swl/neutral/fives.webp",
    "rulesText": null
   },
   {
@@ -12890,7 +12890,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_lh.webp",
+   "imageAssetPath": "cards/swl/neutral/echo-46.webp",
    "rulesText": null
   },
   {
@@ -12908,7 +12908,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_li.webp",
+   "imageAssetPath": "cards/swl/neutral/situational-awareness.webp",
    "rulesText": null
   },
   {
@@ -12944,7 +12944,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ll.webp",
+   "imageAssetPath": "cards/swl/neutral/electro-gauntlets.webp",
    "rulesText": null
   },
   {
@@ -12962,7 +12962,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_lu.webp",
+   "imageAssetPath": "cards/swl/neutral/jyns-se-14-blaster.webp",
    "rulesText": null
   },
   {
@@ -12980,7 +12980,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_md.webp",
+   "imageAssetPath": "cards/swl/neutral/command-control-array.webp",
    "rulesText": null
   },
   {
@@ -12998,7 +12998,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_me.webp",
+   "imageAssetPath": "cards/swl/neutral/gideon-hask.webp",
    "rulesText": null
   },
   {
@@ -13016,7 +13016,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_mf.webp",
+   "imageAssetPath": "cards/swl/neutral/del-meeko.webp",
    "rulesText": null
   },
   {
@@ -13034,7 +13034,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_mh.webp",
+   "imageAssetPath": "cards/swl/neutral/ascension-cables.webp",
    "rulesText": null
   },
   {
@@ -13070,7 +13070,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_mq.webp",
+   "imageAssetPath": "cards/swl/neutral/t-series-tactical-droid.webp",
    "rulesText": null
   },
   {
@@ -13124,7 +13124,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_mz.webp",
+   "imageAssetPath": "cards/swl/neutral/t-21-special-forces-trooper.webp",
    "rulesText": null
   },
   {
@@ -13214,7 +13214,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_oa.webp",
+   "imageAssetPath": "cards/swl/neutral/clone-comms-technician.webp",
    "rulesText": null
   },
   {
@@ -13304,7 +13304,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_of.webp",
+   "imageAssetPath": "cards/swl/neutral/pk-series-worker-droid.webp",
    "rulesText": null
   },
   {
@@ -13322,7 +13322,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_og.webp",
+   "imageAssetPath": "cards/swl/neutral/ev-series-medical-droid.webp",
    "rulesText": null
   },
   {
@@ -13556,7 +13556,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_pd.webp",
+   "imageAssetPath": "cards/swl/neutral/imperial-tie-pilot.webp",
    "rulesText": null
   },
   {
@@ -13574,7 +13574,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_pe.webp",
+   "imageAssetPath": "cards/swl/neutral/clone-shock-trooper-pilot.webp",
    "rulesText": null
   },
   {
@@ -13718,7 +13718,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_qd.webp",
+   "imageAssetPath": "cards/swl/neutral/rps-6-magnaguard.webp",
    "rulesText": null
   },
   {
@@ -13862,7 +13862,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_qq.webp",
+   "imageAssetPath": "cards/swl/neutral/nose-mounted-ion-blaster.webp",
    "rulesText": null
   },
   {
@@ -13880,7 +13880,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_qr.webp",
+   "imageAssetPath": "cards/swl/neutral/nose-mounted-laser-cannon.webp",
    "rulesText": null
   },
   {
@@ -13916,7 +13916,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_qv.webp",
+   "imageAssetPath": "cards/swl/republic/twin-blaster-cannons.webp",
    "rulesText": null
   },
   {
@@ -14114,7 +14114,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_rn.webp",
+   "imageAssetPath": "cards/swl/neutral/scatter-gun-enforcer.webp",
    "rulesText": null
   },
   {
@@ -14168,7 +14168,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_rq.webp",
+   "imageAssetPath": "cards/swl/neutral/the-darksaber-maul.webp",
    "rulesText": null
   },
   {
@@ -14510,7 +14510,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_uj.webp",
+   "imageAssetPath": "cards/swl/neutral/the-darksaber-gideon.webp",
    "rulesText": null
   },
   {
@@ -14888,7 +14888,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_xn.webp",
+   "imageAssetPath": "cards/swl/neutral/dlt-20a-range-trooper.webp",
    "rulesText": null
   },
   {
@@ -14906,7 +14906,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_xo.webp",
+   "imageAssetPath": "cards/swl/neutral/t-21a-range-trooper.webp",
    "rulesText": null
   },
   {
@@ -14924,7 +14924,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_xq.webp",
+   "imageAssetPath": "cards/swl/neutral/echo-0.webp",
    "rulesText": null
   },
   {
@@ -14942,7 +14942,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_xr.webp",
+   "imageAssetPath": "cards/swl/neutral/hunter.webp",
    "rulesText": null
   },
   {
@@ -15158,7 +15158,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_yj.webp",
+   "imageAssetPath": "cards/swl/neutral/fleet-trooper-squad.webp",
    "rulesText": null
   },
   {
@@ -15194,7 +15194,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_yl.webp",
+   "imageAssetPath": "cards/swl/neutral/rebel-trooper-squad.webp",
    "rulesText": null
   },
   {
@@ -15212,7 +15212,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_yn.webp",
+   "imageAssetPath": "cards/swl/neutral/b1-battle-droid-squad.webp",
    "rulesText": null
   },
   {
@@ -15230,7 +15230,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_yo.webp",
+   "imageAssetPath": "cards/swl/neutral/b2-super-battle-droid-squad.webp",
    "rulesText": null
   },
   {
@@ -15266,7 +15266,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_yq.webp",
+   "imageAssetPath": "cards/swl/neutral/heavy-laser-cannon.webp",
    "rulesText": null
   },
   {
@@ -15284,7 +15284,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_yr.webp",
+   "imageAssetPath": "cards/swl/separatist/twin-blaster-cannons.webp",
    "rulesText": null
   },
   {
@@ -15302,7 +15302,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_ys.webp",
+   "imageAssetPath": "cards/swl/neutral/clone-trooper-infantry-squad.webp",
    "rulesText": null
   },
   {
@@ -15320,7 +15320,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_yt.webp",
+   "imageAssetPath": "cards/swl/neutral/clone-trooper-infantry.webp",
    "rulesText": null
   },
   {
@@ -15338,7 +15338,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Am.webp",
+   "imageAssetPath": "cards/swl/neutral/rebel-veteran-squad.webp",
    "rulesText": null
   },
   {
@@ -15392,7 +15392,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Ba.webp",
+   "imageAssetPath": "cards/swl/neutral/rps-6-arf-trooper.webp",
    "rulesText": null
   },
   {
@@ -15464,7 +15464,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Bl.webp",
+   "imageAssetPath": "cards/swl/neutral/strike-team-leader.webp",
    "rulesText": null
   },
   {
@@ -15698,7 +15698,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Cf.webp",
+   "imageAssetPath": "cards/swl/neutral/tip-of-the-spear.webp",
    "rulesText": null
   },
   {
@@ -15752,7 +15752,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Ci.webp",
+   "imageAssetPath": "cards/swl/neutral/seeker-droid.webp",
    "rulesText": null
   },
   {
@@ -15770,7 +15770,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Cj.webp",
+   "imageAssetPath": "cards/swl/neutral/command-and-control-uplink.webp",
    "rulesText": null
   },
   {
@@ -15788,7 +15788,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Ck.webp",
+   "imageAssetPath": "cards/swl/neutral/heavy-blaster-pistol-5.webp",
    "rulesText": null
   },
   {
@@ -15824,7 +15824,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Cm.webp",
+   "imageAssetPath": "cards/swl/neutral/z-6-riot-baton.webp",
    "rulesText": null
   },
   {
@@ -15932,7 +15932,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Cu.webp",
+   "imageAssetPath": "cards/swl/neutral/heavy-blaster-pistol-8.webp",
    "rulesText": null
   },
   {
@@ -15986,7 +15986,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Db.webp",
+   "imageAssetPath": "cards/swl/neutral/general-of-the-republic.webp",
    "rulesText": null
   },
   {
@@ -16400,7 +16400,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_El.webp",
+   "imageAssetPath": "cards/swl/neutral/clone-trooper-marksmen-squad.webp",
    "rulesText": null
   },
   {
@@ -16418,7 +16418,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Em.webp",
+   "imageAssetPath": "cards/swl/neutral/clone-trooper-marksman.webp",
    "rulesText": null
   },
   {
@@ -16472,7 +16472,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Ep.webp",
+   "imageAssetPath": "cards/swl/neutral/clone-captain-rex.webp",
    "rulesText": null
   },
   {
@@ -16490,7 +16490,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Eq.webp",
+   "imageAssetPath": "cards/swl/neutral/cassian-andor.webp",
    "rulesText": null
   },
   {
@@ -16814,7 +16814,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Ig.webp",
+   "imageAssetPath": "cards/swl/neutral/dc-15x-arc-trooper-gunner.webp",
    "rulesText": null
   },
   {
@@ -16904,7 +16904,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Il.webp",
+   "imageAssetPath": "cards/swl/neutral/jyn-erso.webp",
    "rulesText": null
   },
   {
@@ -16922,7 +16922,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Im.webp",
+   "imageAssetPath": "cards/swl/neutral/luke-skywalker.webp",
    "rulesText": null
   },
   {
@@ -16940,7 +16940,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_In.webp",
+   "imageAssetPath": "cards/swl/neutral/obi-wan-kenobi.webp",
    "rulesText": null
   },
   {
@@ -16994,7 +16994,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Iq.webp",
+   "imageAssetPath": "cards/swl/neutral/general-grievous.webp",
    "rulesText": null
   },
   {
@@ -17012,7 +17012,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Ir.webp",
+   "imageAssetPath": "cards/swl/neutral/chewbacca-40.webp",
    "rulesText": null
   },
   {
@@ -17102,7 +17102,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Ja.webp",
+   "imageAssetPath": "cards/swl/neutral/micro-grenade-launcher.webp",
    "rulesText": null
   },
   {
@@ -17246,7 +17246,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Ka.webp",
+   "imageAssetPath": "cards/swl/neutral/children-of-the-watch.webp",
    "rulesText": null
   },
   {
@@ -17282,7 +17282,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Kc.webp",
+   "imageAssetPath": "cards/swl/neutral/champion-of-the-watch.webp",
    "rulesText": null
   },
   {
@@ -17336,7 +17336,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Ki.webp",
+   "imageAssetPath": "cards/swl/neutral/personal-combat-shield.webp",
    "rulesText": null
   },
   {
@@ -17354,7 +17354,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Kj.webp",
+   "imageAssetPath": "cards/swl/neutral/flame-projector-5.webp",
    "rulesText": null
   },
   {
@@ -17372,7 +17372,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Kk.webp",
+   "imageAssetPath": "cards/swl/neutral/whipcord-launcher.webp",
    "rulesText": null
   },
   {
@@ -17408,7 +17408,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Km.webp",
+   "imageAssetPath": "cards/swl/neutral/sabine-wren.webp",
    "rulesText": null
   },
   {
@@ -17444,7 +17444,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Ko.webp",
+   "imageAssetPath": "cards/swl/shadow-collective/the-darksaber.webp",
    "rulesText": null
   },
   {
@@ -17462,7 +17462,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Kp.webp",
+   "imageAssetPath": "cards/swl/neutral/the-darksaber-10.webp",
    "rulesText": null
   },
   {
@@ -17678,7 +17678,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Le.webp",
+   "imageAssetPath": "cards/swl/neutral/flame-projector-0.webp",
    "rulesText": null
   },
   {
@@ -17696,7 +17696,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Lf.webp",
+   "imageAssetPath": "cards/swl/neutral/tools-of-the-trade-jetpack-rockets.webp",
    "rulesText": null
   },
   {
@@ -17714,7 +17714,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Lg.webp",
+   "imageAssetPath": "cards/swl/neutral/tools-of-the-trade-whipcord-launcher.webp",
    "rulesText": null
   },
   {
@@ -17912,7 +17912,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Lr.webp",
+   "imageAssetPath": "cards/swl/neutral/strong-in-the-force.webp",
    "rulesText": null
   },
   {
@@ -17948,7 +17948,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Lt.webp",
+   "imageAssetPath": "cards/swl/neutral/lying-in-wait.webp",
    "rulesText": null
   },
   {
@@ -18164,7 +18164,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Mh.webp",
+   "imageAssetPath": "cards/swl/republic/plo-koon-22.webp",
    "rulesText": null
   },
   {
@@ -18200,7 +18200,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Ml.webp",
+   "imageAssetPath": "cards/swl/neutral/b2-ha-rocket-droid.webp",
    "rulesText": null
   },
   {
@@ -18218,7 +18218,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Mm.webp",
+   "imageAssetPath": "cards/swl/neutral/b2-super-rocket-battle-droid.webp",
    "rulesText": null
   },
   {
@@ -18254,7 +18254,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Mo.webp",
+   "imageAssetPath": "cards/swl/neutral/han-solo.webp",
    "rulesText": null
   },
   {
@@ -18272,7 +18272,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/lg_Mp.webp",
+   "imageAssetPath": "cards/swl/neutral/chewbacca-0.webp",
    "rulesText": null
   },
   {
@@ -18288,7 +18288,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_delta-7.webp",
+   "imageAssetPath": "cards/swa/republic/delta-7-aethersprite-squadron.webp",
    "rulesText": "{\"profileType\":\"1.4 Squadrons\",\"characteristics\":{\"Speed\":\"4\",\"Hull Value\":\"4\",\"Anti-Squadron\":\"3 Blue, 1 Black\",\"Battery\":\"1 Blue\",\"Keywords\":\"Adept 1.  Counter 2.  Dodge 1.\"}}",
    "shipStats": "{\"hull\":4,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -18305,7 +18305,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_sqd-ahsoka-tano.webp",
+   "imageAssetPath": "cards/swa/republic/ahsoka-tano.webp",
    "rulesText": "{\"profileType\":\"1.4 Squadrons\",\"characteristics\":{\"Speed\":\"4\",\"Hull Value\":\"4\",\"Anti-Squadron\":\"3 Blue, 1 Black\",\"Battery\":\"1 Blue\",\"Keywords\":\"Adept 1.  Counter 2.  Grit\",\"Defense Tokens\":\"Brace, Scatter\",\"Squadron Ability\":\"After you move, you may choose another friendly squadron at distance 1. That squadron performs an attack against enemy squadron at distance 1 with an anti-squadron armament of 2 blue dice.\"}}",
    "shipStats": "{\"hull\":4,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -18322,7 +18322,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_kit-fisto.webp",
+   "imageAssetPath": "cards/swa/republic/kit-fisto.webp",
    "rulesText": "{\"profileType\":\"1.4 Squadrons\",\"characteristics\":{\"Speed\":\"4\",\"Hull Value\":\"4\",\"Anti-Squadron\":\"3 Blue, 1 Black\",\"Battery\":\"1 Blue\",\"Keywords\":\"Adept 2.  Counter 2.  Intel.\",\"Defense Tokens\":\"Brace, Brace\",\"Squadron Ability\":\"When you spend a defense token, you may discard it. If you do, reduce the total damage by 3 instead of resolving that token's effect.\"}}",
    "shipStats": "{\"hull\":4,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -18339,7 +18339,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_luminara-unduli.webp",
+   "imageAssetPath": "cards/swa/republic/luminara-unduli-23.webp",
    "rulesText": "{\"profileType\":\"1.4 Squadrons\",\"characteristics\":{\"Speed\":\"4\",\"Hull Value\":\"4\",\"Anti-Squadron\":\"3 Blue, 1 Black\",\"Battery\":\"1 Blue\",\"Keywords\":\"Adept 1.  Counter 2.\",\"Defense Tokens\":\"Brace, Scatter\",\"Squadron Ability\":\"While an enemy squadron at distance 1 is attacking an non-unique, friendly squadron, the attack is treated as obstructed.\"}}",
    "shipStats": "{\"hull\":4,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -18356,7 +18356,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_plo-koon.webp",
+   "imageAssetPath": "cards/swa/republic/plo-koon-24.webp",
    "rulesText": "{\"profileType\":\"1.4 Squadrons\",\"characteristics\":{\"Speed\":\"4\",\"Hull Value\":\"4\",\"Anti-Squadron\":\"3 Blue, 1 Black\",\"Battery\":\"1 Blue\",\"Keywords\":\"Adept 2.  Counter 2.\",\"Defense Tokens\":\"Brace, Scatter\",\"Squadron Ability\":\"Non-unique, friendly squadrons without counter at distance 1 gain counter 1.\"}}",
    "shipStats": "{\"hull\":4,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -18396,7 +18396,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_acclamator-1.webp",
+   "imageAssetPath": "cards/swa/republic/acclamator-i-class-assault-ship.webp",
    "rulesText": "{\"hull\":7,\"squadron-attack\":[0,0,2],\"command\":3,\"squadron\":3,\"engineering\":4,\"attack\":{\"front\":[3,0,2],\"right\":[2,0,1],\"left\":[2,0,1],\"rear\":[1,0,1]},\"shield\":{\"front\":4,\"right\":2,\"left\":2,\"rear\":2},\"defense-tokens\":[\"Brace\",\"Redirect\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"|\":\"|\"}},{\"position\":2,\"values\":{\"3\":\"-\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"2\":\"-\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"1\":\"1\",\"2\":\"1\",\"3\":\"-\",\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Clone.  Transport.\",\"upgrade-bar\":[\"Officer\",\"Weapons Team\",\"Offensive Retrofit\",\"Offensive Retrofit\",\"Ordnance\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
    "shipStats": "{\"hull\":7,\"shield\":{\"front\":4,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -18419,7 +18419,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_acclamator-2.webp",
+   "imageAssetPath": "cards/swa/republic/acclamator-ii-class-assault-ship.webp",
    "rulesText": "{\"hull\":7,\"squadron-attack\":[0,1,1],\"command\":3,\"squadron\":3,\"engineering\":4,\"attack\":{\"front\":[3,1,2],\"right\":[2,0,1],\"left\":[2,0,1],\"rear\":[1,1,0]},\"shield\":{\"front\":4,\"right\":2,\"left\":2,\"rear\":2},\"defense-tokens\":[\"Brace\",\"Redirect\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"1\",\"2\":\"1\",\"3\":\"-\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"-\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"-\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Clone.  Bombard.  Transport.\",\"upgrade-bar\":[\"Officer\",\"Weapons Team\",\"Defensive Retrofit\",\"Ordnance\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
    "shipStats": "{\"hull\":7,\"shield\":{\"front\":4,\"right\":2,\"left\":2,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -18470,7 +18470,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_btl-b.webp",
+   "imageAssetPath": "cards/swa/republic/btl-b-y-wing-squadron.webp",
    "rulesText": "{\"profileType\":\"1.4 Squadrons\",\"characteristics\":{\"Speed\":\"3\",\"Hull Value\":\"6\",\"Anti-Squadron\":\"1 Blue, 1 Black\",\"Battery\":\"1 Black\",\"Keywords\":\"Bomber.  Heavy.\"}}",
    "shipStats": "{\"hull\":6,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -18521,7 +18521,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_v-19.webp",
+   "imageAssetPath": "cards/swa/republic/v-19-torrent-squadron.webp",
    "rulesText": "{\"profileType\":\"1.4 Squadrons\",\"characteristics\":{\"Speed\":\"3\",\"Hull Value\":\"5\",\"Anti-Squadron\":\"1 Red, 2 Blue\",\"Battery\":\"1 Black\",\"Keywords\":\"Escort, Swarm\"}}",
    "shipStats": "{\"hull\":5,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -18577,7 +18577,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_consular-charger-c70.webp",
+   "imageAssetPath": "cards/swa/republic/consular-class-charger-c70.webp",
    "rulesText": "{\"hull\":4,\"squadron-attack\":[0,0,1],\"command\":1,\"squadron\":1,\"engineering\":2,\"attack\":{\"front\":[2,1,0],\"right\":[2,0,0],\"left\":[2,0,0],\"rear\":[1,1,0]},\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"defense-tokens\":[\"Evade\",\"Redirect\",\"Contain\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"2\",\"2\":\"2\",\"3\":\"1\",\"4\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"1\",\"4\":\"-\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"1\",\"4\":\"1\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"4\":\"1\",\"|\":\"|\"}}],\"max-speed\":4,\"keywords\":\"Clone.\",\"upgrade-bar\":[\"Officer\",\"Support Team\",\"Offensive Retrofit\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
    "shipStats": "{\"hull\":4,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":4,\"kind\":\"SHIP\"}"
   },
@@ -18599,7 +18599,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_consular-armed-cruiser.webp",
+   "imageAssetPath": "cards/swa/republic/consular-class-armed-cruiser.webp",
    "rulesText": "{\"hull\":4,\"squadron-attack\":[0,2,0],\"command\":1,\"squadron\":1,\"engineering\":2,\"attack\":{\"front\":[0,2,1],\"right\":[0,1,1],\"left\":[0,1,1],\"rear\":[0,1,0]},\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"defense-tokens\":[\"Evade\",\"Redirect\",\"Contain\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"2\",\"2\":\"2\",\"3\":\"1\",\"4\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"1\",\"4\":\"-\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"1\",\"4\":\"1\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"4\":\"1\",\"|\":\"|\"}}],\"max-speed\":4,\"keywords\":\"Senate.  Comms.\",\"upgrade-bar\":[\"Officer\",\"Support Team\",\"Defensive Retrofit\",\"Ordnance\"],\"profile-type\":\"1.1 Ships\"}",
    "shipStats": "{\"hull\":4,\"shield\":{\"front\":2,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":4,\"kind\":\"SHIP\"}"
   },
@@ -18623,7 +18623,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_venator-1.webp",
+   "imageAssetPath": "cards/swa/republic/venator-i-class-star-destroyer.webp",
    "rulesText": "{\"hull\":9,\"squadron-attack\":[0,2,0],\"command\":3,\"squadron\":3,\"engineering\":4,\"attack\":{\"front\":[3,0,3],\"right\":[1,1,2],\"left\":[1,1,2],\"rear\":[1,1,1]},\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"defense-tokens\":[\"Brace\",\"Redirect\",\"Contain\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"1\",\"2\":\"1\",\"3\":\"-\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"-\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Clone.  Jedi.  Comms.\",\"upgrade-bar\":[\"Officer\",\"Weapons Team\",\"Fleet Command\",\"Offensive Retrofit\",\"Ordnance\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
    "shipStats": "{\"hull\":9,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -18647,7 +18647,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_venator-2.webp",
+   "imageAssetPath": "cards/swa/republic/venator-ii-class-star-destroyer.webp",
    "rulesText": "{\"hull\":9,\"squadron-attack\":[0,0,0],\"command\":3,\"squadron\":5,\"engineering\":4,\"attack\":{\"front\":[2,2,2],\"right\":[2,2,0],\"left\":[2,2,0],\"rear\":[1,1,1]},\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"defense-tokens\":[\"Brace\",\"Redirect\",\"Contain\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"1\",\"2\":\"1\",\"3\":\"-\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"-\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Clone.  Bombard\",\"upgrade-bar\":[\"Officer\",\"Weapons Team\",\"Offensive Retrofit\",\"Defensive Retrofit\",\"Ordnance\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
    "shipStats": "{\"hull\":9,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -18669,7 +18669,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_pelta-medical-frigate.webp",
+   "imageAssetPath": "cards/swa/republic/pelta-class-medical-frigate.webp",
    "rulesText": "{\"hull\":5,\"squadron-attack\":[0,1,0],\"command\":2,\"squadron\":2,\"engineering\":4,\"attack\":{\"front\":[2,1,0],\"right\":[1,1,0],\"left\":[1,1,0],\"rear\":[2,0,0]},\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"defense-tokens\":[\"Brace\",\"Evade\",\"Redirect\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"2\",\"2\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":2,\"keywords\":\"Clone.  Medical.\",\"upgrade-bar\":[\"Officer\",\"Support Team\",\"Fleet Support\",\"Offensive Retrofit\"],\"profile-type\":\"1.1 Ships\"}",
    "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
   },
@@ -18691,7 +18691,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_pelta-transport-frigate.webp",
+   "imageAssetPath": "cards/swa/republic/pelta-class-transport-frigate.webp",
    "rulesText": "{\"hull\":5,\"squadron-attack\":[0,1,1],\"command\":2,\"squadron\":1,\"engineering\":4,\"attack\":{\"front\":[2,0,1],\"right\":[1,0,1],\"left\":[1,0,1],\"rear\":[2,0,0]},\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"defense-tokens\":[\"Evade\",\"Brace\",\"Redirect\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"2\",\"2\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":2,\"keywords\":\"Clone.  Transport.\",\"upgrade-bar\":[\"Officer\",\"Support Team\",\"Fleet Support\",\"Defensive Retrofit\"],\"profile-type\":\"1.1 Ships\"}",
    "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":2,\"left\":2,\"rear\":1},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
   },
@@ -18714,7 +18714,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_victory-ib.webp",
+   "imageAssetPath": "cards/swa/republic/victory-i-class-star-destroyer.webp",
    "rulesText": "{\"hull\":8,\"squadron-attack\":[0,1,0],\"command\":3,\"squadron\":3,\"engineering\":4,\"attack\":{\"front\":[3,0,3],\"right\":[2,0,1],\"left\":[2,0,1],\"rear\":[2,0,0]},\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":1},\"defense-tokens\":[\"Brace\",\"Redirect\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"1\",\"2\":\"-\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":2,\"keywords\":\"Clone\",\"upgrade-bar\":[\"Officer\",\"Weapons Team\",\"Support Team\",\"Offensive Retrofit\",\"Ordnance\",\"Ordnance\"],\"profile-type\":\"1.1 Ships\"}",
    "shipStats": "{\"hull\":8,\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":1},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
   },
@@ -18731,7 +18731,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_tri-fighter.webp",
+   "imageAssetPath": "cards/swa/separatist/droid-tri-fighter-squadron.webp",
    "rulesText": "{\"profileType\":\"1.4 Squadrons\",\"characteristics\":{\"Speed\":\"5\",\"Hull Value\":\"3\",\"Anti-Squadron\":\"1 Red, 2 Blue\",\"Battery\":\"1 Black\",\"Keywords\":\"AI:  Anti-Squadron 1.  Counter 2.  Swarm\"}}",
    "shipStats": "{\"hull\":3,\"speed\":5,\"kind\":\"SQUADRON\"}"
   },
@@ -18748,7 +18748,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_phlac-prototypes.webp",
+   "imageAssetPath": "cards/swa/separatist/phlac-arphocc-prototypes.webp",
    "rulesText": "{\"profileType\":\"1.4 Squadrons\",\"characteristics\":{\"Speed\":\"5\",\"Hull Value\":\"3\",\"Anti-Squadron\":\"1 Red, 1 Blue, 1 Black\",\"Battery\":\"1 Black\",\"Keywords\":\"AI:  Anti-Squadron 1.  Counter 2.  Swarm\",\"Defense Tokens\":\"Brace, Scatter\",\"Squadron Ability\":\"After an enemy squadron ends its activation at distance 1, that squadron suffers 1 damage.\"}}",
    "shipStats": "{\"hull\":3,\"speed\":5,\"kind\":\"SQUADRON\"}"
   },
@@ -18765,7 +18765,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_dis-t81.webp",
+   "imageAssetPath": "cards/swa/separatist/dis-t81.webp",
    "rulesText": "{\"profileType\":\"1.4 Squadrons\",\"characteristics\":{\"Speed\":\"5\",\"Hull Value\":\"3\",\"Anti-Squadron\":\"1 Red, 1 Blue, 1 Black\",\"Battery\":\"1 Black\",\"Keywords\":\"AI:  Anti-Squadron 1.  Counter 2.  Snipe 3.  Swarm\",\"Defense Tokens\":\"Brace, Scatter\",\"Squadron Ability\":\"Your attacks cannot be obstructed.\"}}",
    "shipStats": "{\"hull\":3,\"speed\":5,\"kind\":\"SQUADRON\"}"
   },
@@ -18788,7 +18788,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_munificent-comms-frigate.webp",
+   "imageAssetPath": "cards/swa/separatist/munificent-class-comms-frigate.webp",
    "rulesText": "{\"hull\":6,\"squadron-attack\":[1,0,0],\"command\":2,\"squadron\":3,\"engineering\":4,\"attack\":{\"front\":[2,2,0],\"right\":[3,0,0],\"left\":[3,0,0],\"rear\":[2,0,0]},\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"defense-tokens\":[\"Brace\",\"Redirect\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"1\",\"2\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"2\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":2,\"keywords\":\"Droid.  Bombard.  Comms.\",\"upgrade-bar\":[\"Officer\",\"Support Team\",\"Offensive Retrofit\",\"Ion Cannons\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
    "shipStats": "{\"hull\":6,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
   },
@@ -18811,7 +18811,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_munificent-star-frigate.webp",
+   "imageAssetPath": "cards/swa/separatist/munificent-class-star-frigate.webp",
    "rulesText": "{\"hull\":6,\"squadron-attack\":[1,0,1],\"command\":2,\"squadron\":2,\"engineering\":4,\"attack\":{\"front\":[2,2,0],\"right\":[3,0,0],\"left\":[3,0,0],\"rear\":[2,0,0]},\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"defense-tokens\":[\"Brace\",\"Redirect\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"1\",\"2\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"2\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":2,\"keywords\":\"Droid.  Bombard.  Transport.\",\"upgrade-bar\":[\"Officer\",\"Support Team\",\"Defensive Retrofit\",\"Ion Cannons\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
    "shipStats": "{\"hull\":6,\"shield\":{\"front\":4,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":2,\"kind\":\"SHIP\"}"
   },
@@ -18828,7 +18828,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_belbullab22.webp",
+   "imageAssetPath": "cards/swa/separatist/belbullab-22-starfighter-squadron.webp",
    "rulesText": "{\"profileType\":\"1.4 Squadrons\",\"characteristics\":{\"Speed\":\"4\",\"Hull Value\":\"5\",\"Anti-Squadron\":\"2 Blue, 2 Black\",\"Battery\":\"1 Blue\",\"Keywords\":\"Relay 1, Screen\"}}",
    "shipStats": "{\"hull\":5,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -18845,7 +18845,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_sqd-general-grievous.webp",
+   "imageAssetPath": "cards/swa/separatist/general-grievous-22.webp",
    "rulesText": "{\"profileType\":\"1.4 Squadrons\",\"characteristics\":{\"Speed\":\"4\",\"Hull Value\":\"5\",\"Anti-Squadron\":\"2 Blue, 2 Black\",\"Battery\":\"1 Black\",\"Keywords\":\"Relay 2, Screen\",\"Defense Tokens\":\"Brace, Brace\",\"Squadron Ability\":\"While attacking a ship or squadron with no readied defense tokens, each of your [crit] icons adds 1 damage to the damage total.\"}}",
    "shipStats": "{\"hull\":5,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -18862,7 +18862,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_wat-tambor.webp",
+   "imageAssetPath": "cards/swa/separatist/wat-tambor.webp",
    "rulesText": "{\"profileType\":\"1.4 Squadrons\",\"characteristics\":{\"Speed\":\"4\",\"Hull Value\":\"5\",\"Anti-Squadron\":\"2 Blue, 2 Black\",\"Battery\":\"1 Black\",\"Keywords\":\"Escort, Relay 1, Screen\",\"Defense Tokens\":\"Brace, Evade\"}}",
    "shipStats": "{\"hull\":5,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -18879,7 +18879,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_hyena-bombers.webp",
+   "imageAssetPath": "cards/swa/separatist/hyena-class-droid-bomber-squadron.webp",
    "rulesText": "{\"profileType\":\"1.4 Squadrons\",\"characteristics\":{\"Speed\":\"4\",\"Hull Value\":\"4\",\"Anti-Squadron\":\"2 Blue\",\"Battery\":\"1 Red\",\"Keywords\":\"AI: Battery 1.  Bomber.  Heavy.\"}}",
    "shipStats": "{\"hull\":4,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -18896,7 +18896,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_dbs-404.webp",
+   "imageAssetPath": "cards/swa/separatist/dbs-404.webp",
    "rulesText": "{\"profileType\":\"1.4 Squadrons\",\"characteristics\":{\"Speed\":\"4\",\"Hull Value\":\"4\",\"Anti-Squadron\":\"2 Blue\",\"Battery\":\"1 Red\",\"Keywords\":\"AI: Battery 1.  Bomber.  Heavy.\",\"Defense Tokens\":\"Brace, Scatter\",\"Squadron Ability\":\"While attacking, if you are touching the defender, you may suffer 1 damage to add 1 die to your attack pool of a color that is already in your attack pool.\"}}",
    "shipStats": "{\"hull\":4,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -18930,7 +18930,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_sqd-vulture-class.webp",
+   "imageAssetPath": "cards/swa/separatist/vulture-class-droid-fighter-squadron.webp",
    "rulesText": "{\"profileType\":\"1.4 Squadrons\",\"characteristics\":{\"Speed\":\"4\",\"Hull Value\":\"3\",\"Anti-Squadron\":\"1 Blue, 1 Black\",\"Battery\":\"1 Red\",\"Keywords\":\"AI: Anti-Squadron 1, Swarm\"}}",
    "shipStats": "{\"hull\":3,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -18947,7 +18947,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_dfs-311.webp",
+   "imageAssetPath": "cards/swa/separatist/dfs-311.webp",
    "rulesText": "{\"profileType\":\"1.4 Squadrons\",\"characteristics\":{\"Speed\":\"4\",\"Hull Value\":\"3\",\"Anti-Squadron\":\"1 Red, 1 Black\",\"Battery\":\"1 Red\",\"Keywords\":\"AI: Anti-Squadron 1, Intel, Swarm\",\"Defense Tokens\":\"Brace, Scatter\",\"Squadron Ability\":\"While you are defending, if the attack is obstructed, you may force the attacker to reroll 1 die of your choice.\"}}",
    "shipStats": "{\"hull\":3,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -18964,7 +18964,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_sqd-haor-chall-prototypes.webp",
+   "imageAssetPath": "cards/swa/separatist/haor-chall-prototypes.webp",
    "rulesText": "{\"profileType\":\"1.4 Squadrons\",\"characteristics\":{\"Speed\":\"4\",\"Hull Value\":\"3\",\"Anti-Squadron\":\"1 Blue, 1 Black\",\"Battery\":\"1 Red\",\"Keywords\":\"AI: Anti-Squadron 1, Swarm\",\"Defense Tokens\":\"Brace, Scatter\",\"Squadron Ability\":\"Before an enemy ship or squadron at distance 1 moves, you may preform an attack against that ship or squadron even if your are engaged.\"}}",
    "shipStats": "{\"hull\":3,\"speed\":4,\"kind\":\"SQUADRON\"}"
   },
@@ -18985,7 +18985,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_hardcell-transport.webp",
+   "imageAssetPath": "cards/swa/separatist/hardcell-class-transport.webp",
    "rulesText": "{\"hull\":5,\"squadron-attack\":[0,1,0],\"command\":1,\"squadron\":2,\"engineering\":3,\"attack\":{\"front\":[2,1,0],\"right\":[0,1,0],\"left\":[0,1,0],\"rear\":[0,0,0]},\"shield\":{\"front\":3,\"right\":1,\"left\":1,\"rear\":2},\"defense-tokens\":[\"Evade\",\"Brace\",\"Redirect\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"2\",\"2\":\"1\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"-\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Droid.  Transport.\",\"upgrade-bar\":[\"Officer\",\"Officer\",\"Support Team\",\"Fleet Support\"],\"profile-type\":\"1.1 Ships\"}",
    "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":1,\"left\":1,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -19007,7 +19007,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_hardcell-battle-refit.webp",
+   "imageAssetPath": "cards/swa/separatist/hardcell-class-battle-refit.webp",
    "rulesText": "{\"hull\":5,\"squadron-attack\":[0,1,1],\"command\":1,\"squadron\":1,\"engineering\":3,\"attack\":{\"front\":[3,0,0],\"right\":[1,0,0],\"left\":[1,0,0],\"rear\":[0,0,0]},\"shield\":{\"front\":3,\"right\":1,\"left\":1,\"rear\":2},\"defense-tokens\":[\"Evade\",\"Brace\",\"Redirect\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"2\",\"2\":\"1\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"-\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Droid.  Transport.\",\"upgrade-bar\":[\"Officer\",\"Offensive Retrofit\",\"Defensive Retrofit\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
    "shipStats": "{\"hull\":5,\"shield\":{\"front\":3,\"right\":1,\"left\":1,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -19030,7 +19030,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_recusant-light-destroyer.webp",
+   "imageAssetPath": "cards/swa/separatist/recusant-class-light-destroyer.webp",
    "rulesText": "{\"hull\":8,\"squadron-attack\":[0,1,0],\"command\":3,\"squadron\":2,\"engineering\":3,\"attack\":{\"front\":[4,0,2],\"right\":[3,0,1],\"left\":[3,0,1],\"rear\":[1,0,1]},\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":2},\"defense-tokens\":[\"Evade\",\"Brace\",\"Redirect\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"1\",\"2\":\"1\",\"3\":\"-\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"2\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"1\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Droid.\",\"upgrade-bar\":[\"Officer\",\"Weapons Team\",\"Offensive Retrofit\",\"Ordnance\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
    "shipStats": "{\"hull\":8,\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -19052,7 +19052,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_recusant-support-destroyer.webp",
+   "imageAssetPath": "cards/swa/separatist/recusant-class-support-destroyer.webp",
    "rulesText": "{\"hull\":8,\"squadron-attack\":[1,0,0],\"command\":3,\"squadron\":3,\"engineering\":3,\"attack\":{\"front\":[3,2,1],\"right\":[3,1,0],\"left\":[3,1,0],\"rear\":[1,1,0]},\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":2},\"defense-tokens\":[\"Evade\",\"Brace\",\"Redirect\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"1\",\"2\":\"1\",\"3\":\"-\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"2\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"1\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Droid.\",\"upgrade-bar\":[\"Officer\",\"Weapons Team\",\"Offensive Retrofit\",\"Offensive Retrofit\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
    "shipStats": "{\"hull\":8,\"shield\":{\"front\":3,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -19076,7 +19076,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_providence-dreadnought.webp",
+   "imageAssetPath": "cards/swa/separatist/providence-class-dreadnought.webp",
    "rulesText": "{\"hull\":9,\"squadron-attack\":[0,1,0],\"command\":3,\"squadron\":4,\"engineering\":4,\"attack\":{\"front\":[2,1,2],\"right\":[3,1,2],\"left\":[3,1,2],\"rear\":[1,1,1]},\"shield\":{\"front\":5,\"right\":3,\"left\":3,\"rear\":2},\"defense-tokens\":[\"Brace\",\"Redirect\",\"Contain\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"2\",\"2\":\"1\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"-\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"-\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Droid.  Bombard.  Transport\",\"upgrade-bar\":[\"Officer\",\"Weapons Team\",\"Offensive Retrofit\",\"Ordnance\",\"Ion Cannon\",\"Turbolasers\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
    "shipStats": "{\"hull\":9,\"shield\":{\"front\":5,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -19101,7 +19101,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_providence-carrier-b.webp",
+   "imageAssetPath": "cards/swa/separatist/providence-class-carrier.webp",
    "rulesText": "{\"hull\":9,\"squadron-attack\":[0,0,2],\"command\":3,\"squadron\":4,\"engineering\":4,\"attack\":{\"front\":[2,1,2],\"right\":[2,2,2],\"left\":[2,2,2],\"rear\":[1,1,1]},\"shield\":{\"front\":5,\"right\":3,\"left\":3,\"rear\":2},\"defense-tokens\":[\"Brace\",\"Redirect\",\"Contain\",\"Salvo\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"2\",\"2\":\"1\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"-\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"-\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Droid.  Comms.  Transport.\",\"upgrade-bar\":[\"Officer\",\"Defensive Retrofit\",\"Fleet Command\",\"Offensive Retrofit\",\"Ordnance\",\"Ion Cannons\",\"Turbolasers\"],\"profile-type\":\"1.1 Ships\"}",
    "shipStats": "{\"hull\":9,\"shield\":{\"front\":5,\"right\":3,\"left\":3,\"rear\":2},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -19122,7 +19122,7 @@
    "commander": false,
    "unique": false,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_swm18-gozanti-class-cruisers-2.webp",
+   "imageAssetPath": "cards/swa/separatist/gozanti-class-cruiser.webp",
    "rulesText": "{\"hull\":3,\"squadron-attack\":[0,0,1],\"command\":1,\"squadron\":2,\"engineering\":2,\"attack\":{\"front\":[0,1,0],\"right\":[0,1,0],\"left\":[0,1,0],\"rear\":[0,1,0]},\"shield\":{\"front\":1,\"right\":1,\"left\":1,\"rear\":1},\"defense-tokens\":[\"Scatter\",\"Evade\"],\"speed-chart-rows\":[{\"position\":1,\"values\":{\"1\":\"2\",\"2\":\"1\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":2,\"values\":{\"2\":\"1\",\"3\":\"1\",\"|\":\"|\"}},{\"position\":3,\"values\":{\"3\":\"-\",\"|\":\"|\"}},{\"position\":4,\"values\":{\"|\":\"|\"}}],\"max-speed\":3,\"keywords\":\"Droid\",\"upgrade-bar\":[\"Officer\",\"Weapons Team\",\"Ion Cannons\"],\"profile-type\":\"1.1 Ships\"}",
    "shipStats": "{\"hull\":3,\"shield\":{\"front\":1,\"right\":1,\"left\":1,\"rear\":1},\"maxSpeed\":3,\"kind\":\"SHIP\"}"
   },
@@ -19139,7 +19139,7 @@
    "commander": false,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_jango-fett-firespray.webp",
+   "imageAssetPath": "cards/swa/separatist/jango-fett.webp",
    "rulesText": "{\"profileType\":\"1.4 Squadrons\",\"characteristics\":{\"Speed\":\"3\",\"Hull Value\":\"6\",\"Anti-Squadron\":\"2 Red 1 Blue 1 Black\",\"Battery\":\"2 Blue\",\"Keywords\":\"Bomber\\nGrit\\nRogue\",\"Defense Tokens\":\"Brace, Brace\",\"Squadron Ability\":\"While attacking a unique squadron during your activation, you may deal 1 damage to another friendly squad at distance 1 of the defender. If you do, you may change 1 die to any face.\"}}",
    "shipStats": "{\"hull\":6,\"speed\":3,\"kind\":\"SQUADRON\"}"
   },
@@ -19158,7 +19158,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_obi-wan-kenobi.webp",
+   "imageAssetPath": "cards/swa/republic/obi-wan-kenobi.webp",
    "rulesText": "{\"slotCategory\":\"Commander\",\"profiles\":[{\"name\":\"Obi-Wan Kenobi\",\"type\":\"2.0 Commander\",\"characteristics\":{\"Commander Ability\":\"While a friendly ship is defending, when it spends a readied [Redirect] token, it may reduce the total damage by 1 before it suffers damage.\"}}],\"infoLinks\":[{\"name\":\"Flagship\",\"type\":\"rule\"}],\"constraints\":[{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"parent\"},{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"roster\"}]}",
    "shipStats": null
   },
@@ -19177,7 +19177,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_bail-organa-2.webp",
+   "imageAssetPath": "cards/swa/republic/bail-organa.webp",
    "rulesText": "{\"slotCategory\":\"Commander\",\"profiles\":[{\"name\":\"Bail Organa\",\"type\":\"2.0 Commander\",\"characteristics\":{\"Commander Ability\":\"When a friendly ship reveals a command, you may discard up to 1 token of each type from this card.  For each token you discard, that ship gains 1 additional command dial matching that token's type.\",\"Setup\":\"5 [Navigate] or [Repair] tokens\"}}],\"infoLinks\":[{\"name\":\"Flagship\",\"type\":\"rule\"}],\"constraints\":[{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"parent\"},{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"roster\"}]}",
    "shipStats": null
   },
@@ -19196,7 +19196,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_admiral-tarkin.webp",
+   "imageAssetPath": "cards/swa/republic/admiral-tarkin.webp",
    "rulesText": "{\"slotCategory\":\"Commander\",\"profiles\":[{\"name\":\"Admiral Tarkin\",\"type\":\"2.0 Commander\",\"characteristics\":{\"Commander Ability\":\"At the start of each Ship Phase, you may discard 1 command token from this card.  If you do, either you gain 1 matching command dial, or each friendly ship gains 1 matching command token.\",\"Setup\":\"6 Any Command Token\"}}],\"infoLinks\":[{\"name\":\"Flagship\",\"type\":\"rule\"}],\"constraints\":[{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"parent\"},{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"roster\"}]}",
    "shipStats": null
   },
@@ -19215,7 +19215,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_luminara-unduli-2.webp",
+   "imageAssetPath": "cards/swa/republic/luminara-unduli-25.webp",
    "rulesText": "{\"slotCategory\":\"Commander\",\"profiles\":[{\"name\":\"Luminara Unduli\",\"type\":\"2.0 Commander\",\"characteristics\":{\"Commander Ability\":\"While a friendly ship or unique squadron is defending, after the Spend Defense Token step, if it spent fewer than 2 defense tokens, it may either ready 1 of its defense tokens it did not spend, or choose another friendly ship at distance 1-5 and ready 1 of that ship's defense tokens.\"}}],\"infoLinks\":[{\"name\":\"Flagship\",\"type\":\"rule\"}],\"constraints\":[{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"parent\"},{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"roster\"}]}",
    "shipStats": null
   },
@@ -19234,7 +19234,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_plo-koon-2.webp",
+   "imageAssetPath": "cards/swa/republic/plo-koon-26.webp",
    "rulesText": "{\"slotCategory\":\"Commander\",\"profiles\":[{\"name\":\"Plo Koon\",\"type\":\"2.0 Commander\",\"characteristics\":{\"Commander Ability\":\"While a friendly squadron is attacking a ship that is at distance 1-3 of a friendly ship, the attacker may add 1 blue die set to an [Accuracy] icon to its attack pool.  That die cannon be rerolled or changed.\\nFriendly squadrons without Adept gain Grit while they are at distance 1 of a friendly squadron with Adept.\"}}],\"infoLinks\":[{\"name\":\"Flagship\",\"type\":\"rule\"}],\"constraints\":[{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"parent\"},{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"roster\"}]}",
    "shipStats": null
   },
@@ -19253,7 +19253,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_admiral-yularen.webp",
+   "imageAssetPath": "cards/swa/republic/admiral-yularen.webp",
    "rulesText": "{\"slotCategory\":\"Commander\",\"profiles\":[{\"name\":\"Admiral Yularen\",\"type\":\"2.0 Commander\",\"characteristics\":{\"Commander Ability\":\"When a friendly ship resolves a [Squadron] command, if it spent a [Squadron] token, it may activate 1 additional squadron.\\nWhen a friendly ship resolved a [Repair] command, it may spend engineering points on the following repair effect:\\nRepair Squadron:  Spend 2 points to choose a friendly squadron at distance 1-3.  That squadron recovers 1 hull point.\"}}],\"infoLinks\":[{\"name\":\"Flagship\",\"type\":\"rule\"}],\"constraints\":[{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"parent\"},{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"roster\"}]}",
    "shipStats": null
   },
@@ -19272,7 +19272,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_anakin-skywalker-commander.webp",
+   "imageAssetPath": "cards/swa/republic/anakin-skywalker.webp",
    "rulesText": "{\"slotCategory\":\"Commander\",\"profiles\":[{\"name\":\"Anakin Skywalker\",\"type\":\"2.0 Commander\",\"characteristics\":{\"Commander Ability\":\"While a friendly ship is attacking a ship, if the defender is at distance 1-5 of at least 2 other friendly ships, 1 other friendly ship at distance 1-5 of the defender may spend 1 defense token. If it does, the attacker may reroll up to 3 dice.\"}}],\"infoLinks\":[{\"name\":\"Flagship\",\"type\":\"rule\"}],\"constraints\":[{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"parent\"},{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"roster\"}]}",
    "shipStats": null
   },
@@ -19310,7 +19310,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_count-dooku.webp",
+   "imageAssetPath": "cards/swa/separatist/count-dooku.webp",
    "rulesText": "{\"slotCategory\":\"Commander\",\"profiles\":[{\"name\":\"Count Dooku\",\"type\":\"2.0 Commander\",\"characteristics\":{\"Commander Ability\":\"You must choose at least 2 types of command tokens for this card.\\nAt the start of each Ship Phase, you may discard 1 command token from this card.  If you do, each enemy ship gains a raid token matching that command token.\",\"Setup\":\"3 Any command tokens\"}}],\"infoLinks\":[{\"name\":\"Flagship\",\"type\":\"rule\"}],\"constraints\":[{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"parent\"},{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"roster\"}]}",
    "shipStats": null
   },
@@ -19329,7 +19329,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_general-grievous.webp",
+   "imageAssetPath": "cards/swa/separatist/general-grievous-20.webp",
    "rulesText": "{\"slotCategory\":\"Commander\",\"profiles\":[{\"name\":\"General Grievous\",\"type\":\"2.0 Commander\",\"characteristics\":{\"Commander Ability\":\"When a friendly ship or squadron is destroyed, you may choose 1 friendly ship or unique squadron at distance 1-5 of the destroyed ship or squadron.  If you do, the chosen ship or unique squadron may either ready 1 of its defense tokens or recove 1 of its discarded defense tokens and then exhaust that token.\"}}],\"infoLinks\":[{\"name\":\"Flagship\",\"type\":\"rule\"}],\"constraints\":[{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"parent\"},{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"roster\"}]}",
    "shipStats": null
   },
@@ -19348,7 +19348,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_admiral-trench.webp",
+   "imageAssetPath": "cards/swa/separatist/admiral-trench.webp",
    "rulesText": "{\"slotCategory\":\"Commander\",\"profiles\":[{\"name\":\"Admiral Trench\",\"type\":\"2.0 Commander\",\"characteristics\":{\"Commander Ability\":\"At the start of each Ship Phase, you may reveal and discard 1 command dial from this card.  If you do, until the end of the round, when a friendly ship spends only a matching command token to resolve a command, that ship resolves that command as if it had spent a dial and token of the same type instead.\",\"Setup\":\"4 Any Dial\"}}],\"infoLinks\":[{\"name\":\"Flagship\",\"type\":\"rule\"}],\"constraints\":[{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"parent\"},{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"roster\"}]}",
    "shipStats": null
   },
@@ -19367,7 +19367,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_tf-1726.webp",
+   "imageAssetPath": "cards/swa/separatist/tf-1726.webp",
    "rulesText": "{\"slotCategory\":\"Commander\",\"profiles\":[{\"name\":\"TF-1726\",\"type\":\"2.0 Commander\",\"characteristics\":{\"Commander Ability\":\"Once per activation, while a friendly ship is attacking a ship, the attacker adds 1 black die to its attack pool for each raid token the defender has, to a maximum of 2 additional dice.\"}}],\"infoLinks\":[{\"name\":\"Flagship\",\"type\":\"rule\"}],\"constraints\":[{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"parent\"},{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"roster\"}]}",
    "shipStats": null
   },
@@ -19386,7 +19386,7 @@
    "commander": true,
    "unique": true,
    "imageUrl": null,
-   "imageAssetPath": "cards/cd_mar-tuuk.webp",
+   "imageAssetPath": "cards/swa/separatist/mar-tuuk.webp",
    "rulesText": "{\"slotCategory\":\"Commander\",\"profiles\":[{\"name\":\"Mar Tuuk\",\"type\":\"2.0 Commander\",\"characteristics\":{\"Commander Ability\":\"While a friendly ship is attacking, if the defending hull zone has at least 1 shield remaining, the attacker may add 1 red die to its attack pool.\\nWhile a friendly ship is attacking a ship that has no shields remaining, after rolling attack dice, the attacker must cancel 1 attack die.\"}}],\"infoLinks\":[{\"name\":\"Flagship\",\"type\":\"rule\"}],\"constraints\":[{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"parent\"},{\"type\":\"max\",\"field\":\"selections\",\"value\":\"1.0\",\"scope\":\"roster\"}]}",
    "shipStats": null
   }

@@ -442,6 +442,12 @@ def main() -> None:
             enrich_images()
         except Exception as e:
             print("WARN: enrich_armada_images skipped:", e)
+        # Renomme les images dans la structure cards/<game>/<faction>/<nom-officiel>.webp
+        try:
+            from rename_card_images import main as rename_images
+            rename_images()
+        except Exception as e:
+            print("WARN: rename_card_images skipped:", e)
     print(json.dumps({"catalogPath": str(args.output), "sourceMetadataPath": str(args.sources_output),
                       "catalogCardCount": summary["catalogCardCount"],
                       "counts": summary["counts"], "excluded": summary["excluded"]}, indent=2))
