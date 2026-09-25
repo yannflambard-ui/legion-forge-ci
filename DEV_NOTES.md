@@ -22,6 +22,7 @@
 - `BuilderRepository.seedCatalog` : seed si LEGION<190 OU ARMADA<40 (comptage par gameSystem). Ne coupe plus sur un `cardCount()>=400` global (ça laissait une vieille DB périmée sans les cartes du bon gameSystem → "Catalogue vide" sans erreur).
 - `CatalogJsonImporter` : import versionné hors-ligne (schemaVersion==1, IDs uniques, points>=0, nom non vide).
 - `observeCards(system, factionId)` : `WHERE gameSystem=:system AND (factionId=:factionId OR factionId='neutral')`.
+- **PIÈGE Gson+Kotlin (cause racine du catalogue vide)** : Gson n'applique PAS les valeurs par défaut Kotlin. Un champ absent du JSON reste `null` (défaut JVM), pas `emptyMap()`. `CardDefinition.names` était `= emptyMap()` mais Gson le laissait null → `toJsonNames` faisait `names.isEmpty()` → NPE sur les 974 cartes → 0 mappées → catalogue vide (LEGION + Armada). Fix : `toJsonNames(names: Map<String,String>?)` avec null-check. Toujours null-checker les champs à défaut Kotlin après un `Gson().fromJson`.
 
 ## DB
 - Room version 4 (`legionforge.db`), `fallbackToDestructiveMigration`, migrations 1→2 (catalog_cards), 2→3 (chosenSlot), 3→4 (names) puis destructif au-delà.
