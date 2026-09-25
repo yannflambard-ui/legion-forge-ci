@@ -54,6 +54,9 @@ class ArmyBuilderViewModel(application: Application) : AndroidViewModel(applicat
                 _catalogError.value = "Erreur: ${e.message?.take(80) ?: e.javaClass.simpleName}"
             } finally {
                 _loading.value = false
+                // Diagnostic inconditionnel : rapporte toujours l'état réel de la DB après seed,
+                // que les données soient bonnes ou non. Indispensable pour comprendre un seed muet.
+                reportSeedState()
             }
         }
         viewModelScope.launch { repository.observeLists().collect { _allLists.value = it } }
@@ -66,6 +69,19 @@ class ArmyBuilderViewModel(application: Application) : AndroidViewModel(applicat
     }
 
     private var catalogCollector: kotlinx.coroutines.Job? = null
+
+    private fun reportSeedState() {
+        if (seedReported) return
+        seedReported = true
+        viewModelScope.launch {
+            val diag = try { repository.catalogDiagnostics() } catch (e: Exception) { "diag-error:${e.message}" }
+            CrashReporter.reportEvent(
+                "Seed report: ${getVersionName()}",
+                "État de la base après seed (rapport inconditionnel).\nApp version: ${getVersionName()}\n$diag"
+            )
+        }
+    }
+    private var seedReported = false
 
     private fun reportIfEmpty(system: GameSystem, cards: List<CardDefinition>) {
         if (cards.isEmpty() && !_loading.value && _catalogError.value == null) {
