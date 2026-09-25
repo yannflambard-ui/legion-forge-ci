@@ -1,6 +1,7 @@
 package com.legionforge.app.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -27,10 +28,22 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, viewModel: ArmyBuilder
     val validation by viewModel.validation.collectAsState()
     var search by remember { mutableStateOf("") }
     var selectedTab by remember { mutableIntStateOf(0) }
+    var selectedParentId by remember { mutableStateOf<String?>(null) }
     LaunchedEffect(listId) { viewModel.openList(listId) }
     val game = list?.gameSystem?.let { runCatching { GameSystem.valueOf(it) }.getOrNull() } ?: GameSystem.LEGION_V2
     val allowedKinds = if (game == GameSystem.LEGION_V2) setOf(CardKind.LEGION_UNIT, CardKind.LEGION_UPGRADE) else setOf(CardKind.ARMADA_SHIP, CardKind.ARMADA_SQUADRON, CardKind.ARMADA_UPGRADE, CardKind.COMMANDER)
-    val additions = cards.filter { it.kind in allowedKinds }
+    // When a parent unit is selected, show only compatible upgrades + base units/ships
+    val selectedParent = entries.firstOrNull { it.instanceId == selectedParentId }
+    val filteredAdditions = if (selectedParent != null) {
+        // Show upgrades that fit in the selected unit's slots + allow adding more units
+        cards.filter { it.kind in allowedKinds }.filter { c ->
+            val isBaseUnit = if (game == GameSystem.LEGION_V2) c.kind == CardKind.LEGION_UNIT else c.kind == CardKind.ARMADA_SHIP || c.kind == CardKind.COMMANDER
+            val isMatchingUpgrade = c.kind == CardKind.LEGION_UPGRADE || c.kind == CardKind.ARMADA_UPGRADE || c.kind == CardKind.ARMADA_SQUADRON
+            if (isBaseUnit || c.kind == CardKind.ARMADA_SQUADRON || c.kind == CardKind.COMMANDER) true
+            else isMatchingUpgrade && c.upgradeSlots.any { it in selectedParent.card.allowedUpgradeSlots }
+        }
+    } else cards.filter { it.kind in allowedKinds }
+    val additions = filteredAdditions
         .filter { it.name.contains(search, ignoreCase = true) || it.factionId.contains(search, ignoreCase = true) }
     Scaffold(topBar = {
         TopAppBar(title = { Column {
@@ -71,17 +84,33 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, viewModel: ArmyBuilder
             } else if (entries.isNotEmpty()) Text("✓ Liste valide", Modifier.padding(horizontal = 18.dp, vertical = 5.dp), color = Color(0xFF77D9A7))
             TabRow(selectedTabIndex = selectedTab) {
                 Tab(selectedTab == 0, onClick = { selectedTab = 0 }, text = { Text("LISTE (${entries.size})") })
-                Tab(selectedTab == 1, onClick = { selectedTab = 1 }, text = { Text("CATALOGUE (${additions.size})") })
+                Tab(selectedTab == 1, onClick = { selectedTab = 1 }, text = {
+                    if (selectedParent != null) Text("→ ${selectedParent.card.name.take(18)}")
+                    else Text("CATALOGUE (${additions.size})")
+                })
+            }
+            if (selectedParent != null && selectedTab == 1) {
+                Surface(modifier = Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 4.dp), shape = RoundedCornerShape(12.dp), color = Color(0xFFFFB800).copy(alpha = 0.15f)) {
+                    Row(Modifier.padding(horizontal = 14.dp, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
+                        Text("Ajout à : ${selectedParent.card.name}", color = Color(0xFFFFC857), style = MaterialTheme.typography.bodySmall)
+                        TextButton(onClick = { selectedParentId = null }) { Text("✕", color = Color.White) }
+                    }
+                }
             }
             if (selectedTab == 0) {
                 LazyColumn(Modifier.weight(1f), contentPadding = PaddingValues(14.dp), verticalArrangement = Arrangement.spacedBy(9.dp)) {
                     if (entries.isEmpty()) item { Text("Votre force est vide. Ouvrez le catalogue pour ajouter vos premières cartes.", color = Color.LightGray, modifier = Modifier.padding(16.dp)) }
-                    items(entries, key = { it.instanceId }) { entry -> BuilderEntryCard(entry, onRemove = { viewModel.remove(entry) }) }
+                    items(entries, key = { it.instanceId }) { entry -> BuilderEntryCard(entry, onRemove = { viewModel.remove(entry) }, onSelectParent = {
+                        if (entry.card.kind == CardKind.LEGION_UNIT || entry.card.kind == CardKind.ARMADA_SHIP) {
+                            selectedParentId = entry.instanceId
+                            selectedTab = 1
+                        }
+                    }) }
                 }
             } else {
                 OutlinedTextField(value = search, onValueChange = { search = it }, modifier = Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 8.dp), placeholder = { Text("Rechercher une carte…") }, singleLine = true)
                 LazyColumn(Modifier.weight(1f), contentPadding = PaddingValues(horizontal = 14.dp, vertical = 4.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    items(additions, key = { it.id }) { card -> CatalogCard(card, entries, onAdd = { parent, slot -> viewModel.add(card, parent, slot) }) }
+                    items(additions, key = { it.id }) { card -> CatalogCard(card, entries, selectedParentId, onAdd = { parent, slot -> viewModel.add(card, parent, slot) }) }
                 }
             }
             Text("Hors ligne • catalogue sous réserve des mises à jour officielles", Modifier.align(Alignment.CenterHorizontally).padding(bottom = 6.dp), color = Color(0xFF718096), style = MaterialTheme.typography.labelSmall)
@@ -90,8 +119,9 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, viewModel: ArmyBuilder
 }
 
 @Composable
-private fun BuilderEntryCard(entry: ListEntry, onRemove: () -> Unit) {
-    Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(15.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF18212D))) {
+private fun BuilderEntryCard(entry: ListEntry, onRemove: () -> Unit, onSelectParent: () -> Unit = {}) {
+    val isSelectable = entry.card.kind == CardKind.LEGION_UNIT || entry.card.kind == CardKind.ARMADA_SHIP
+    Card(Modifier.fillMaxWidth().then(if (isSelectable) Modifier.clickable { onSelectParent() } else Modifier), shape = RoundedCornerShape(15.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF18212D))) {
         Row(Modifier.fillMaxWidth().padding(10.dp), horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
             CardArtwork(entry.card, Modifier.size(width = 64.dp, height = 88.dp))
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
@@ -108,15 +138,19 @@ private fun BuilderEntryCard(entry: ListEntry, onRemove: () -> Unit) {
 }
 
 @Composable
-private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, onAdd: (String?, ArmadaSlot?) -> Unit) {
+private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, preselectedParentId: String? = null, onAdd: (String?, ArmadaSlot?) -> Unit) {
     val armadaShip = card.kind == CardKind.ARMADA_SHIP
     val isUpgrade = card.kind == CardKind.LEGION_UPGRADE || card.kind == CardKind.ARMADA_UPGRADE
     val isCommander = card.kind == CardKind.COMMANDER
     val requiresTarget = isUpgrade && !isCommander
     val targetUnits = if (card.kind == CardKind.LEGION_UPGRADE) entries.filter { it.card.kind == CardKind.LEGION_UNIT } else entries.filter { it.card.kind == CardKind.ARMADA_SHIP }
     val eligibleTargets = if (card.kind == CardKind.LEGION_UPGRADE) targetUnits.filter { target -> card.upgradeSlots.firstOrNull()?.let { it in target.card.allowedUpgradeSlots } == true } else if (card.kind == CardKind.ARMADA_UPGRADE) targetUnits.filter { target -> card.upgradeSlots.any { it in target.card.allowedUpgradeSlots } } else targetUnits
-    var targetId by remember(card.id, eligibleTargets.size) { mutableStateOf(eligibleTargets.firstOrNull()?.instanceId) }
-    var selectedSlot by remember(card.id) { mutableStateOf(card.upgradeSlots.firstOrNull()) }
+    val preselectedTarget = eligibleTargets.firstOrNull { it.instanceId == preselectedParentId && it.card.allowedUpgradeSlots.any { slot -> slot in card.upgradeSlots } }
+    var targetId by remember(card.id, eligibleTargets.size, preselectedTarget) { mutableStateOf(preselectedTarget?.instanceId ?: eligibleTargets.firstOrNull()?.instanceId) }
+    var selectedSlot by remember(card.id, preselectedTarget) { mutableStateOf(
+        if (preselectedTarget != null) card.upgradeSlots.firstOrNull { it in preselectedTarget.card.allowedUpgradeSlots } ?: card.upgradeSlots.firstOrNull()
+        else card.upgradeSlots.firstOrNull()
+    ) }
     val eligibleSlots = if (card.kind == CardKind.ARMADA_UPGRADE) card.upgradeSlots.filter { slot -> eligibleTargets.any { target -> slot in target.card.allowedUpgradeSlots } } else if (card.kind == CardKind.LEGION_UPGRADE) card.upgradeSlots.filter { slot -> eligibleTargets.any { target -> slot in target.card.allowedUpgradeSlots } } else card.upgradeSlots
     val slotCounts = entries.filter { it.parentInstanceId != null && (it.card.kind == CardKind.ARMADA_UPGRADE || it.card.kind == CardKind.LEGION_UPGRADE) }.groupBy { it.parentInstanceId to (it.chosenSlot ?: it.card.upgradeSlots.firstOrNull()) }.mapValues { (_, items) -> items.sumOf { it.quantity } }
     val addingTo = eligibleTargets.firstOrNull { it.instanceId == targetId }
