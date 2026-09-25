@@ -21,6 +21,10 @@ class BuilderRepository(context: Context) {
     fun observeCards(system: GameSystem): Flow<List<CardDefinition>> =
         dao.observeCards(system.name).map { rows -> rows.map(CatalogCardEntity::toDefinition) }
 
+    /** Recherche globale plein texte (name + règles + stats + mots-clés), tous les jeux. */
+    fun searchCards(q: String): Flow<List<CardDefinition>> =
+        dao.searchCards(q).map { rows -> rows.map(CatalogCardEntity::toDefinition) }
+
     fun observeLists(): Flow<List<BuilderListEntity>> = dao.observeLists()
 
     // Mémoise la trace complète du seed pour le diagnostic remote (chaque étape s'ajoute).

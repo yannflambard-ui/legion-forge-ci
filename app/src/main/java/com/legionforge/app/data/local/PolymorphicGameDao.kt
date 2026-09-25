@@ -18,6 +18,17 @@ interface PolymorphicGameDao {
     @Query("SELECT * FROM catalog_cards WHERE gameSystem = :system ORDER BY factionId, name")
     fun observeCards(system: String): Flow<List<CatalogCardEntity>>
 
+    /** Recherche globale plein texte sur name + rulesText + legionStats + shipStats.
+     *  Face aux règles : cherche le terme dans le texte des cartes, des stats, des mots-clés. */
+    @Query("""SELECT * FROM catalog_cards
+              WHERE name LIKE '%' || :q || '%'
+                 OR rulesText LIKE '%' || :q || '%'
+                 OR legionStats LIKE '%' || :q || '%'
+                 OR shipStats LIKE '%' || :q || '%'
+              ORDER BY CASE gameSystem WHEN 'LEGION_V2' THEN 0 ELSE 1 END, factionId, name
+              LIMIT 100""")
+    fun searchCards(q: String): Flow<List<CatalogCardEntity>>
+
     @Query("SELECT COUNT(*) FROM catalog_cards")
     suspend fun cardCount(): Int
 

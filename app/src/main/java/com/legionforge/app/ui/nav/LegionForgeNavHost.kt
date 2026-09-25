@@ -19,6 +19,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 
 object Routes {
     const val HOME = "home"
+    const val SEARCH = "search"
     const val FACTION_PICKER = "faction_picker/{system}"
     const val ARMY_BUILDER = "army_builder/{listId}"
     const val SETTINGS = "settings"
@@ -38,6 +39,18 @@ fun LegionForgeNavHost(navController: NavHostController = rememberNavController(
                 onNewList = { system -> navController.navigate(Routes.factionPicker(system)) },
                 onOpenList = { listId -> vm.openList(listId); navController.navigate(Routes.armyBuilder(listId)) },
                 onSettings = { navController.navigate(Routes.SETTINGS) },
+                onSearch = { navController.navigate(Routes.SEARCH) },
+                vm = vm
+            )
+        }
+        composable(Routes.SEARCH) {
+            SearchScreen(
+                onBack = { navController.popBackStack() },
+                onCardClick = { card ->
+                    // Ouvre la fiche carte en lecture seule s'il n'y a pas de liste courante ;
+                    // sinon retombe sur la navigation existante.
+                    navController.popBackStack()
+                },
                 vm = vm
             )
         }

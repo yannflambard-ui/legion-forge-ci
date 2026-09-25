@@ -31,6 +31,25 @@ class ArmyBuilderViewModel(application: Application) : AndroidViewModel(applicat
     val entries: StateFlow<List<ListEntry>> = _entries.asStateFlow()
     private val _validation = MutableStateFlow(RuleValidationResult(false, 0, emptyList()))
     val validation: StateFlow<RuleValidationResult> = _validation.asStateFlow()
+    private val _searchResults = MutableStateFlow<List<CardDefinition>>(emptyList())
+    val searchResults: StateFlow<List<CardDefinition>> = _searchResults.asStateFlow()
+    private val _searching = MutableStateFlow(false)
+    val searching: StateFlow<Boolean> = _searching.asStateFlow()
+    private var searchCollector: kotlinx.coroutines.Job? = null
+
+    fun searchCards(query: String) {
+        searchCollector?.cancel()
+        val q = query.trim()
+        if (q.isEmpty()) { _searchResults.value = emptyList(); _searching.value = false; return }
+        _searching.value = true
+        searchCollector = viewModelScope.launch {
+            // Recherche plein texte sur name + regles + stats + mots-cles.
+            repository.searchCards(q).collect { results ->
+                _searchResults.value = results
+                _searching.value = false
+            }
+        }
+    }
     private var entryCollector: kotlinx.coroutines.Job? = null
     private val saveMutex = kotlinx.coroutines.sync.Mutex()
     private var seedJob: kotlinx.coroutines.Job? = null

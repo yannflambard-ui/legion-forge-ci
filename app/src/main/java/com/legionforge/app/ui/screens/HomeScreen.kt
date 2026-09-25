@@ -39,13 +39,16 @@ import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
 
 @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, onSettings: () -> Unit, vm: ArmyBuilderViewModel = viewModel()) {
+fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, onSettings: () -> Unit, onSearch: () -> Unit, vm: ArmyBuilderViewModel = viewModel()) {
     val lists by vm.allLists.collectAsState()
     val loading by vm.loading.collectAsState()
     val catalogError by vm.catalogError.collectAsState()
     Scaffold(topBar = {
         TopAppBar(title = { Text("LEGION FORGE", style = MaterialTheme.typography.titleLarge) },
             actions = {
+                IconButton(onClick = onSearch) {
+                    Text("\uD83D\uDD0E", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium)
+                }
                 IconButton(onClick = onSettings) {
                     Text("\u2699", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium)
                 }
