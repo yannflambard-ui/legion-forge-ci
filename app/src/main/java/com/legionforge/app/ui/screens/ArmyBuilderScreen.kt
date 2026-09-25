@@ -40,15 +40,19 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
     // ce sont des cartes distinctes par faction, donc le filtre factionId les gère correctement.)
     val listFaction = list?.factionId
     fun matchesFaction(c: CardDefinition) = listFaction == null || c.factionId == listFaction || c.factionId == "neutral"
-    // When a parent unit is selected, show only compatible upgrades + base units/ships
+    // When a parent unit is selected, show ONLY the upgrades that fit in that parent's
+    // slots (and, for Armada, that match the ship family via linkedUnit). No other ships,
+    // squadrons or commanders — the catalogue is scoped to the selected parent.
     val selectedParent = entries.firstOrNull { it.instanceId == selectedParentId }
     val filteredAdditions = if (selectedParent != null) {
-        // Show upgrades that fit in the selected unit's slots + allow adding more units
         cards.filter { it.kind in allowedKinds && matchesFaction(it) }.filter { c ->
-            val isBaseUnit = if (game == GameSystem.LEGION_V2) c.kind == CardKind.LEGION_UNIT else c.kind == CardKind.ARMADA_SHIP || c.kind == CardKind.COMMANDER
-            val isMatchingUpgrade = c.kind == CardKind.LEGION_UPGRADE || c.kind == CardKind.ARMADA_UPGRADE || c.kind == CardKind.ARMADA_SQUADRON
-            if (isBaseUnit || c.kind == CardKind.ARMADA_SQUADRON || c.kind == CardKind.COMMANDER) true
-            else isMatchingUpgrade && c.upgradeSlots.any { it in selectedParent.card.allowedUpgradeSlots }
+            when {
+                game == GameSystem.LEGION_V2 && c.kind == CardKind.LEGION_UPGRADE ->
+                    c.upgradeSlots.any { it in selectedParent.card.allowedUpgradeSlots }
+                game == GameSystem.ARMADA_V15 && c.kind == CardKind.ARMADA_UPGRADE ->
+                    c.upgradeSlots.any { it in selectedParent.card.allowedUpgradeSlots } && upgradeFitsShip(c, selectedParent.card)
+                else -> false
+            }
         }
     } else cards.filter { it.kind in allowedKinds && matchesFaction(it) }
     val additions = filteredAdditions
