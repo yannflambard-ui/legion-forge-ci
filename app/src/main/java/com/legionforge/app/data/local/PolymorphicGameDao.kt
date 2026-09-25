@@ -21,6 +21,11 @@ interface PolymorphicGameDao {
     @Query("SELECT COUNT(*) FROM catalog_cards")
     suspend fun cardCount(): Int
 
+    @Query("SELECT gameSystem, COUNT(*) AS cnt FROM catalog_cards GROUP BY gameSystem")
+    suspend fun cardCountBySystem(): List<SystemCountRow>
+
+    data class SystemCountRow(val gameSystem: String, val cnt: Int)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsertCards(cards: List<CatalogCardEntity>)
 

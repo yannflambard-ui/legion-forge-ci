@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.legionforge.app.data.model.*
 import com.legionforge.app.data.repository.BuilderRepository
 import com.legionforge.app.domain.*
+import com.legionforge.app.util.CrashReporter
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -66,6 +67,22 @@ class ArmyBuilderViewModel(application: Application) : AndroidViewModel(applicat
 
     private var catalogCollector: kotlinx.coroutines.Job? = null
 
+    private fun reportIfEmpty(system: GameSystem, cards: List<CardDefinition>) {
+        if (cards.isEmpty() && !_loading.value && _catalogError.value == null) {
+            viewModelScope.launch {
+                val diag = try { repository.catalogDiagnostics() } catch (e: Exception) { "diag-error:${e.message}" }
+                CrashReporter.reportEvent(
+                    "Catalogue vide: ${system.name}",
+                    "Le catalogue reste vide pour ${system.name} sans erreur.\nApp version: ${getVersionName()}\n$diag"
+                )
+            }
+        }
+    }
+
+    private fun getVersionName(): String = try {
+        getApplication<Application>().packageManager.getPackageInfo(getApplication<Application>().packageName, 0).versionName ?: "?"
+    } catch (e: Exception) { "?" }
+
     fun loadCatalog(system: GameSystem, factionId: String) {
         catalogCollector?.cancel()
         catalogCollector = viewModelScope.launch {
@@ -73,6 +90,7 @@ class ArmyBuilderViewModel(application: Application) : AndroidViewModel(applicat
             repository.observeCards(system, factionId).collect { cards ->
                 _cards.value = cards
                 recalculate()
+                reportIfEmpty(system, cards)
                 _currentList.value?.takeIf { it.factionId == factionId }?.let(::watchEntries)
             }
         }
@@ -82,7 +100,10 @@ class ArmyBuilderViewModel(application: Application) : AndroidViewModel(applicat
         catalogCollector?.cancel()
         catalogCollector = viewModelScope.launch {
             awaitCatalog()
-            repository.observeCards(system).collect { cards -> _cards.value = cards }
+            repository.observeCards(system).collect { cards ->
+                _cards.value = cards
+                reportIfEmpty(system, cards)
+            }
         }
     }
 

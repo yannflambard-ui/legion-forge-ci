@@ -25,14 +25,16 @@ class BuilderRepository(context: Context) {
 
     suspend fun seedCatalog(context: Context) = withContext(Dispatchers.IO) {
         try {
-            android.util.Log.i("Repo", "seedCatalog: checking cardCount")
-            val existing = dao.cardCount()
-            android.util.Log.i("Repo", "seedCatalog: existing=$existing")
-            if (existing >= 400) {
-                android.util.Log.i("Repo", "seedCatalog: already seeded, skipping")
+            android.util.Log.i("Repo", "seedCatalog: checking counts by system")
+            val counts = dao.cardCountBySystem().associate { it.gameSystem to it.cnt }
+            val legionCount = counts[GameSystem.LEGION_V2.name] ?: 0
+            val armadaCount = counts[GameSystem.ARMADA_V15.name] ?: 0
+            android.util.Log.i("Repo", "seedCatalog: LEGION=$legionCount, ARMADA=$armadaCount")
+            if (legionCount >= 190 && armadaCount >= 40) {
+                android.util.Log.i("Repo", "seedCatalog: both systems populated, skipping")
                 return@withContext
             }
-            android.util.Log.i("Repo", "seedCatalog: reading catalog.json from assets")
+            android.util.Log.i("Repo", "seedCatalog: stale/empty, forcing full reseed (legion=$legionCount, armada=$armadaCount)")
             val json = context.assets.open("catalog.json").bufferedReader().use { it.readText() }
             android.util.Log.i("Repo", "seedCatalog: read ${json.length} chars, parsing with Gson")
             val document = gson.fromJson(json, CatalogDocument::class.java)
@@ -53,7 +55,8 @@ class BuilderRepository(context: Context) {
                 android.util.Log.i("Repo", "seedCatalog: inserting chunk $i (${chunk.size})")
                 dao.upsertCards(chunk)
             }
-            android.util.Log.i("Repo", "seedCatalog: done - ${entities.size} cards inserted")
+            val after = dao.cardCountBySystem().joinToString(", ") { "${it.gameSystem}=${it.cnt}" }
+            android.util.Log.i("Repo", "seedCatalog: done - counts now {$after}")
         } catch (e: Exception) {
             android.util.Log.e("Repo", "seedCatalog FAILED", e)
             // Rethrow pour que le ViewModel puisse afficher l'erreur au lieu d'un écran vide.
@@ -82,4 +85,10 @@ class BuilderRepository(context: Context) {
     }
 
     suspend fun getList(id: String) = dao.getList(id)
+
+    suspend fun catalogDiagnostics(): String {
+        val counts = dao.cardCountBySystem().joinToString(", ") { "${it.gameSystem}=${it.cnt}" }
+        val total = dao.cardCount()
+        return "total=$total; countsBySystem={$counts}; db=${android.os.Build.MODEL} SDK=${android.os.Build.VERSION.SDK_INT}"
+    }
 }
