@@ -86,14 +86,14 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
             TabRow(selectedTabIndex = selectedTab) {
                 Tab(selectedTab == 0, onClick = { selectedTab = 0 }, text = { Text("LISTE (${entries.size})") })
                 Tab(selectedTab == 1, onClick = { selectedTab = 1 }, text = {
-                    if (selectedParent != null) Text("→ ${selectedParent.card.name.take(18)}")
+                    if (selectedParent != null) Text("→ ${selectedParent.card.displayName().take(18)}")
                     else Text("CATALOGUE (${additions.size})")
                 })
             }
             if (selectedParent != null && selectedTab == 1) {
                 Surface(modifier = Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 4.dp), shape = RoundedCornerShape(12.dp), color = Color(0xFFFFB800).copy(alpha = 0.15f)) {
                     Row(Modifier.padding(horizontal = 14.dp, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
-                        Text("Ajout à : ${selectedParent.card.name}", color = Color(0xFFFFC857), style = MaterialTheme.typography.bodySmall)
+                        Text("Ajout à : ${selectedParent.card.displayName()}", color = Color(0xFFFFC857), style = MaterialTheme.typography.bodySmall)
                         TextButton(onClick = { selectedParentId = null }) { Text("✕", color = Color.White) }
                     }
                 }
@@ -146,7 +146,7 @@ private fun BuilderEntryCard(entry: ListEntry, isChild: Boolean = false, onRemov
         Row(Modifier.fillMaxWidth().padding(10.dp), horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
             CardArtwork(entry.card, Modifier.size(width = 64.dp, height = 88.dp))
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
-                Text(entry.card.name, color = Color.White, style = MaterialTheme.typography.titleSmall)
+                Text(entry.card.displayName(), color = Color.White, style = MaterialTheme.typography.titleSmall)
                 Text("${entry.card.points * entry.quantity} pts  •  ${entry.card.legionRank?.name?.replace('_', ' ') ?: entry.card.kind.name.replace('_', ' ')}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelSmall)
                 if (entry.parentInstanceId != null) Text("↳ ${entry.chosenSlot?.name?.replace('_', ' ') ?: "amélioration liée"}", color = Color(0xFF77D9A7), style = MaterialTheme.typography.labelSmall)
                 if (entry.card.kind == CardKind.LEGION_UNIT || entry.card.kind == CardKind.ARMADA_SHIP) {
@@ -187,7 +187,7 @@ private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, preselec
         Row(Modifier.padding(10.dp), horizontalArrangement = Arrangement.spacedBy(11.dp), verticalAlignment = Alignment.CenterVertically) {
             CardArtwork(card, Modifier.size(width = 58.dp, height = 80.dp))
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
-                Text(card.name, color = Color.White, style = MaterialTheme.typography.titleSmall)
+                Text(card.displayName(), color = Color.White, style = MaterialTheme.typography.titleSmall)
                 Text("${card.points} pts • ${card.kind.name.replace('_', ' ')}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelSmall)
                 Text(card.rulesText.orEmpty().ifBlank { "${card.factionId.replace('-', ' ')} • ${if (card.unique) "Unique" else "Standard"}" }, maxLines = 2, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall)
                 if (requiresTarget && eligibleTargets.isNotEmpty()) {
@@ -195,7 +195,7 @@ private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, preselec
                     Box {
                         TextButton(onClick = { expandedTarget = true }) { Text("Pour : ${eligibleTargets.firstOrNull { it.instanceId == targetId }?.card?.name ?: "choisir unité"}") }
                         DropdownMenu(expandedTarget, onDismissRequest = { expandedTarget = false }) {
-                            eligibleTargets.forEach { target -> DropdownMenuItem(text = { Text(target.card.name) }, onClick = { targetId = target.instanceId; expandedTarget = false }) }
+                            eligibleTargets.forEach { target -> DropdownMenuItem(text = { Text(target.card.displayName()) }, onClick = { targetId = target.instanceId; expandedTarget = false }) }
                         }
                     }
                     if (armadaShip && card.allowedUpgradeSlots.isNotEmpty()) Text("Slots : ${card.allowedUpgradeSlots.groupingBy { it }.eachCount().entries.joinToString { "${it.value}× ${it.key.name.lowercase().replace('_', ' ')}" }}", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall)
@@ -220,10 +220,10 @@ private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, preselec
 @Composable
 private fun CardArtwork(card: CardDefinition, modifier: Modifier = Modifier) {
     val source: Any? = card.imageAssetPath?.let { "file:///android_asset/$it" } ?: card.imageUrl
-    if (source != null) AsyncImage(model = source, contentDescription = "Visuel de ${card.name}", modifier = modifier, contentScale = ContentScale.Crop)
+    if (source != null) AsyncImage(model = source, contentDescription = "Visuel de ${card.displayName()}", modifier = modifier, contentScale = ContentScale.Crop)
     else Card(modifier, shape = RoundedCornerShape(10.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF253344))) {
         Box(Modifier.fillMaxSize().background(Brush.linearGradient(listOf(Color(0xFF253344), Color(0xFF111820)))), contentAlignment = Alignment.Center) {
-            Text(card.name.split(' ').take(2).joinToString("\n"), color = Color(0xFF8494A8), style = MaterialTheme.typography.labelSmall)
+            Text(card.displayName().split(' ').take(2).joinToString("\n"), color = Color(0xFF8494A8), style = MaterialTheme.typography.labelSmall)
         }
     }
 }

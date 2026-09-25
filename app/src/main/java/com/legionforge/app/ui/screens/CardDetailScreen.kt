@@ -65,7 +65,7 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
     var round by remember { mutableIntStateOf(1) }
 
     Scaffold(topBar = {
-        TopAppBar(title = { Text(if (playable.isNotEmpty()) playable[pagerState.currentPage].card.name else "Mode partie", style = MaterialTheme.typography.titleMedium) },
+        TopAppBar(title = { Text(if (playable.isNotEmpty()) playable[pagerState.currentPage].card.displayName() else "Mode partie", style = MaterialTheme.typography.titleMedium) },
             navigationIcon = { TextButton(onClick = onBack) { Text("<") } },
             actions = {
                 Surface(onClick = { if (round > 1) round-- }, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(28.dp)) {
@@ -120,7 +120,7 @@ private fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntrie
         }
         EffectsPanel(
             effects = buildList {
-                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.name, c.card.rulesText ?: "Amelioration installee", c.instanceId).copy(used = usedUpgrades.contains(c.instanceId))) }
+                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), c.card.rulesText ?: "Amelioration installee", c.instanceId).copy(used = usedUpgrades.contains(c.instanceId))) }
                 activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, c.name)) }
             },
             critSelector = { expanded, onDismiss, onSelect ->
@@ -154,7 +154,7 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.Top) {
-                    Column(Modifier.weight(1f)) { Text(unit.card.name, color = Color.White, style = MaterialTheme.typography.headlineSmall); Text("Vaisseau  •  ${unit.card.factionId.replace('-', ' ').replaceFirstChar { it.uppercase() }}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge) }
+                    Column(Modifier.weight(1f)) { Text(unit.card.displayName(), color = Color.White, style = MaterialTheme.typography.headlineSmall); Text("Vaisseau  •  ${unit.card.factionId.replace('-', ' ').replaceFirstChar { it.uppercase() }}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge) }
                     Text("${unit.card.points} pts", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleLarge)
                 }
                 if (!unit.card.rulesText.isNullOrBlank()) Text(unit.card.rulesText, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall, maxLines = 6)
@@ -164,7 +164,7 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                     Row(Modifier.fillMaxWidth().clickable { usedUpgrades = if (used) usedUpgrades - "cmd" else usedUpgrades + "cmd" }, horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                         Row(modifier = Modifier.weight(1f)) {
                             Text(if (used) "\u25CB " else "\u25C9 ", color = if (used) Color(0xFF5A6A7A) else Color(0xFFFFC857))
-                            Text(commander.card.name, color = if (used) Color(0xFF5A6A7A) else Color(0xFFFFC857), style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
+                            Text(commander.card.displayName(), color = if (used) Color(0xFF5A6A7A) else Color(0xFFFFC857), style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
                         }
                         Text("${commander.card.points} pts", color = if (used) Color(0xFF5A6A7A) else Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium)
                     }
@@ -177,7 +177,7 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                         Row(Modifier.fillMaxWidth().clickable { usedUpgrades = if (used) usedUpgrades - c.instanceId else usedUpgrades + c.instanceId }, horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                             Row(modifier = Modifier.weight(1f)) {
                                 Text(if (used) "\u25CB " else "\u25C9 ", color = if (used) Color(0xFF5A6A7A) else Color(0xFF77D9A7))
-                                Text(c.card.name, color = if (used) Color(0xFF5A6A7A) else Color.White, style = MaterialTheme.typography.bodyMedium)
+                                Text(c.card.displayName(), color = if (used) Color(0xFF5A6A7A) else Color.White, style = MaterialTheme.typography.bodyMedium)
                             }
                             Text("${c.card.points} pts", color = if (used) Color(0xFF5A6A7A) else Color(0xFFFFC857), style = MaterialTheme.typography.labelSmall)
                         }
@@ -227,9 +227,9 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
         // ── effects panel ──
         EffectsPanel(
             effects = buildList {
-                if (commander != null) add(ActiveEffect(EffectType.COMMANDER, commander.card.name, commander.card.rulesText ?: "Commandant de la flotte", "cmd_${commander.instanceId}")
+                if (commander != null) add(ActiveEffect(EffectType.COMMANDER, commander.card.displayName(), commander.card.rulesText ?: "Commandant de la flotte", "cmd_${commander.instanceId}")
                     .copy(used = usedUpgrades.contains("cmd")))
-                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.name, c.card.rulesText ?: "Amelioration installee", c.instanceId)
+                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), c.card.rulesText ?: "Amelioration installee", c.instanceId)
                     .copy(used = usedUpgrades.contains(c.instanceId))) }
                 activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, "crit_${c.name}")) }
             },
@@ -286,7 +286,7 @@ private fun CardBlock(unit: ListEntry, children: List<ListEntry>, totalPts: Int)
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.Top) {
                 Column(Modifier.weight(1f)) {
-                    Text(unit.card.name, color = Color.White, style = MaterialTheme.typography.headlineSmall)
+                    Text(unit.card.displayName(), color = Color.White, style = MaterialTheme.typography.headlineSmall)
                     val kind = unit.card.legionRank?.name?.replace('_', ' ')?.lowercase()?.replaceFirstChar { it.uppercase() } ?: unit.card.kind.name.replace('_', ' ').lowercase().replaceFirstChar { it.uppercase() }
                     Text("$kind  •  ${unit.card.factionId.replace('-', ' ').replaceFirstChar { it.uppercase() }}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge)
                 }
@@ -295,7 +295,7 @@ private fun CardBlock(unit: ListEntry, children: List<ListEntry>, totalPts: Int)
             if (!unit.card.rulesText.isNullOrBlank()) Text(unit.card.rulesText, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall, maxLines = 6)
             if (children.isNotEmpty()) {
                 HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 4.dp))
-                children.forEach { c -> Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) { Row(modifier = Modifier.weight(1f)) { Text("+ ", color = Color(0xFF77D9A7), fontWeight = FontWeight.Bold); Text(c.card.name, color = Color.White, style = MaterialTheme.typography.bodyMedium) }; Text("${c.card.points}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium) } }
+                children.forEach { c -> Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) { Row(modifier = Modifier.weight(1f)) { Text("+ ", color = Color(0xFF77D9A7), fontWeight = FontWeight.Bold); Text(c.card.displayName(), color = Color.White, style = MaterialTheme.typography.bodyMedium) }; Text("${c.card.points}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium) } }
                 HorizontalDivider(color = Color(0xFF2A3A4A))
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) { Text("Total $totalPts pts", color = Color(0xFFFFC857), fontWeight = FontWeight.Bold) }
             }
