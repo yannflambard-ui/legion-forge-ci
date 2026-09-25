@@ -102,7 +102,10 @@ fun CardDetailScreen(
 private fun GameCardPage(unit: ListEntry, children: List<ListEntry>) {
     val totalPoints = unit.card.points + children.sumOf { it.card.points * it.quantity }
     var wounds by remember(unit.instanceId) { mutableIntStateOf(0) }
-    var shields by remember(unit.instanceId) { mutableIntStateOf(0) }
+    var shieldsFront by remember(unit.instanceId) { mutableIntStateOf(0) }
+    var shieldsRear by remember(unit.instanceId) { mutableIntStateOf(0) }
+    var shieldsPort by remember(unit.instanceId) { mutableIntStateOf(0) }
+    var shieldsStarboard by remember(unit.instanceId) { mutableIntStateOf(0) }
     var tokens by remember(unit.instanceId) { mutableStateOf(listOf<String>()) }
 
     val isShip = unit.card.kind == CardKind.ARMADA_SHIP
@@ -178,24 +181,53 @@ private fun GameCardPage(unit: ListEntry, children: List<ListEntry>) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
                 Text("SUIVI DE PARTIE", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
 
-                // Health row
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
-                    BigCounter(
-                        label = if (isShip) "COQUE" else "BLESSURES",
-                        value = wounds,
-                        max = maxHp,
-                        color = Color(0xFFFF6B6B),
-                        onInc = { if (wounds < maxHp) wounds++ },
-                        onDec = { if (wounds > 0) wounds-- }
-                    )
-                    if (isShip) {
+                // Health row — Legion
+                if (!isShip) {
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
                         BigCounter(
-                            label = "BOUCLIERS",
-                            value = shields,
+                            label = "BLESSURES",
+                            value = wounds,
                             max = maxHp,
-                            color = Color(0xFF4FC3F7),
-                            onInc = { if (shields < maxHp) shields++ },
-                            onDec = { if (shields > 0) shields-- }
+                            color = Color(0xFFFF6B6B),
+                            onInc = { if (wounds < maxHp) wounds++ },
+                            onDec = { if (wounds > 0) wounds-- }
+                        )
+                    }
+                }
+
+                // Armada shield diamond: Avant / Bâbord / Tribord / Arrière
+                if (isShip) {
+                    Column(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalArrangement = Arrangement.spacedBy(4.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text("BOUCLIERS DIRECTIONNELS", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold)
+                        Spacer(Modifier.height(2.dp))
+                        // Avant
+                        MiniCounter("AV", shieldsFront, Color(0xFF4FC3F7),
+                            onInc = { if (shieldsFront < 9) shieldsFront++ },
+                            onDec = { if (shieldsFront > 0) shieldsFront-- })
+                        // Bâbord + Tribord
+                        Row(horizontalArrangement = Arrangement.spacedBy(24.dp)) {
+                            MiniCounter("BÂB", shieldsPort, Color(0xFF4FC3F7),
+                                onInc = { if (shieldsPort < 9) shieldsPort++ },
+                                onDec = { if (shieldsPort > 0) shieldsPort-- })
+                            MiniCounter("TRIB", shieldsStarboard, Color(0xFF4FC3F7),
+                                onInc = { if (shieldsStarboard < 9) shieldsStarboard++ },
+                                onDec = { if (shieldsStarboard > 0) shieldsStarboard-- })
+                        }
+                        // Arrière
+                        MiniCounter("ARR", shieldsRear, Color(0xFF4FC3F7),
+                            onInc = { if (shieldsRear < 9) shieldsRear++ },
+                            onDec = { if (shieldsRear > 0) shieldsRear-- })
+                    }
+                    Spacer(Modifier.height(8.dp))
+                    // Hull for Armada
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+                        BigCounter(
+                            label = "COQUE",
+                            value = wounds,
+                            max = maxHp,
+                            color = Color(0xFFFF6B6B),
+                            onInc = { if (wounds < maxHp) wounds++ },
+                            onDec = { if (wounds > 0) wounds-- }
                         )
                     }
                 }
@@ -275,37 +307,29 @@ private fun BigCounter(
         Text(label, color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold)
         Spacer(Modifier.height(6.dp))
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            // Minus button
-            Surface(
-                onClick = onDec,
-                shape = CircleShape,
-                color = Color(0xFF2A3A4A),
-                modifier = Modifier.size(48.dp)
-            ) {
-                Box(contentAlignment = Alignment.Center) {
-                    Text("-", color = Color.White, fontSize = 24.sp, fontWeight = FontWeight.Bold)
-                }
+            Surface(onClick = onDec, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(48.dp)) {
+                Box(contentAlignment = Alignment.Center) { Text("-", color = Color.White, fontSize = 24.sp, fontWeight = FontWeight.Bold) }
             }
-            // Value
-            Text(
-                "$value",
-                color = color,
-                fontSize = 44.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.width(70.dp)
-            )
-            // Plus button
-            Surface(
-                onClick = onInc,
-                shape = CircleShape,
-                color = Color(0xFF2A3A4A),
-                modifier = Modifier.size(48.dp)
-            ) {
-                Box(contentAlignment = Alignment.Center) {
-                    Text("+", color = Color.White, fontSize = 24.sp, fontWeight = FontWeight.Bold)
-                }
+            Text("$value", color = color, fontSize = 44.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.width(70.dp))
+            Surface(onClick = onInc, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(48.dp)) {
+                Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 24.sp, fontWeight = FontWeight.Bold) }
             }
+        }
+    }
+}
+
+@Composable
+private fun MiniCounter(label: String, value: Int, color: Color, onInc: () -> Unit, onDec: () -> Unit) {
+    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+        Surface(onClick = onDec, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(30.dp)) {
+            Box(contentAlignment = Alignment.Center) { Text("-", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) }
+        }
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text("$value", color = color, fontSize = 20.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.width(40.dp))
+            Text(label, color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+        }
+        Surface(onClick = onInc, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(30.dp)) {
+            Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) }
         }
     }
 }
