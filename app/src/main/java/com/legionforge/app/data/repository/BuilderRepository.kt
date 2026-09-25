@@ -50,14 +50,17 @@ class BuilderRepository(context: Context) {
             catch (e: Exception) { seedLog = "ERREUR Gson parse: ${e.message}"; throw e }
             if (document == null) { seedLog = "ERREUR: Gson a retourné null (${json.length} chars)"; return@withContext }
             logProbe("cartesParsees", document.cards.size)
+            var firstMappingError: String? = null
             val entities = document.cards.mapNotNull { card ->
                 try { CatalogCardEntity.from(card) }
                 catch (e: Exception) {
                     android.util.Log.e("Repo", "seedCatalog: failed to map card ${card.id}", e)
-                    seedLog = "ERREUR mapping carte ${card.id}: ${e.message}"; null
+                    if (firstMappingError == null) firstMappingError = "carte=${card.id} err=${e.message} cls=${e.javaClass.simpleName}"
+                    null
                 }
             }
             logProbe("entitesMappees", entities.size)
+            if (firstMappingError != null) logProbe("premiereErreurMapping", firstMappingError)
             entities.chunked(200).forEachIndexed { i, chunk ->
                 try {
                     val inserted = dao.upsertCardsCounted(chunk)
