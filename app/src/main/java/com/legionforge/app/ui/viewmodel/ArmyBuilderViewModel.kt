@@ -3,83 +3,122 @@ package com.legionforge.app.ui.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.legionforge.app.data.model.ArmyList
-import com.legionforge.app.data.model.ArmyUnit
-import com.legionforge.app.data.model.UnitEntity
-import com.legionforge.app.data.repository.ArmyListRepository
-import com.legionforge.app.data.repository.GameDataRepository
-import com.legionforge.app.domain.ArmyListValidator
-import com.legionforge.app.domain.ValidationResult
+import com.legionforge.app.data.model.*
+import com.legionforge.app.data.repository.BuilderRepository
+import com.legionforge.app.domain.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.withLock
+import java.util.UUID
 
-/** ViewModel du builder de liste : ajout/retrait d'unités et validation en direct. */
 class ArmyBuilderViewModel(application: Application) : AndroidViewModel(application) {
+    private val repository = BuilderRepository(application)
+    private val _cards = MutableStateFlow<List<CardDefinition>>(emptyList())
+    val cards: StateFlow<List<CardDefinition>> = _cards.asStateFlow()
+    private val _allLists = MutableStateFlow<List<BuilderListEntity>>(emptyList())
+    val allLists: StateFlow<List<BuilderListEntity>> = _allLists.asStateFlow()
+    private val _currentList = MutableStateFlow<BuilderListEntity?>(null)
+    val currentList: StateFlow<BuilderListEntity?> = _currentList.asStateFlow()
+    private val _entries = MutableStateFlow<List<ListEntry>>(emptyList())
+    val entries: StateFlow<List<ListEntry>> = _entries.asStateFlow()
+    private val _validation = MutableStateFlow(RuleValidationResult(false, 0, emptyList()))
+    val validation: StateFlow<RuleValidationResult> = _validation.asStateFlow()
+    private var entryCollector: kotlinx.coroutines.Job? = null
+    private val saveMutex = kotlinx.coroutines.sync.Mutex()
+    private var seedJob: kotlinx.coroutines.Job? = null
 
-    private val armyRepo = ArmyListRepository(application)
-    private val gameRepo = GameDataRepository(application)
+    init {
+        seedJob = viewModelScope.launch { repository.seedCatalog(getApplication()) }
+        viewModelScope.launch { repository.observeLists().collect { _allLists.value = it } }
+    }
 
-    private val _currentList = MutableStateFlow<ArmyList?>(null)
-    val currentList: StateFlow<ArmyList?> = _currentList.asStateFlow()
+    private suspend fun awaitCatalog() { seedJob?.join() }
 
-    private val _availableUnits = MutableStateFlow<List<UnitEntity>>(emptyList())
-    val availableUnits: StateFlow<List<UnitEntity>> = _availableUnits.asStateFlow()
+    private var catalogCollector: kotlinx.coroutines.Job? = null
 
-    private val _listEntries = MutableStateFlow<List<Pair<UnitEntity, Int>>>(emptyList())
-    val listEntries: StateFlow<List<Pair<UnitEntity, Int>>> = _listEntries.asStateFlow()
+    fun loadCatalog(system: GameSystem, factionId: String) {
+        catalogCollector?.cancel()
+        catalogCollector = viewModelScope.launch {
+            awaitCatalog()
+            repository.observeCards(system, factionId).collect { cards ->
+                _cards.value = cards
+                recalculate()
+                _currentList.value?.takeIf { it.factionId == factionId }?.let(::watchEntries)
+            }
+        }
+    }
 
-    private val _validation = MutableStateFlow(ValidationResult(true, 0, 1000, emptyList()))
-    val validation: StateFlow<ValidationResult> = _validation.asStateFlow()
+    fun loadAllCatalog(system: GameSystem) {
+        catalogCollector?.cancel()
+        catalogCollector = viewModelScope.launch {
+            awaitCatalog()
+            repository.observeCards(system).collect { cards -> _cards.value = cards }
+        }
+    }
 
-    fun startNewList(name: String, factionId: String) {
+    fun createList(name: String, system: GameSystem, factionId: String, limit: Int, onCreated: (String) -> Unit = {}) {
         viewModelScope.launch {
-            val list = ArmyList(name = name, factionId = factionId)
-            armyRepo.createList(list)
+            awaitCatalog()
+            val list = repository.createList(name, system, factionId, limit)
             _currentList.value = list
-            _listEntries.value = emptyList()
-            recomputeValidation()
+            _entries.value = emptyList()
+            loadCatalog(system, factionId)
+            persistAndValidate()
+            onCreated(list.id)
+        }
+    }
 
-            launch {
-                gameRepo.getUnitsForFaction(factionId).collect { units ->
-                    _availableUnits.value = units
-                }
+    fun openList(id: String) {
+        viewModelScope.launch {
+            awaitCatalog()
+            val list = repository.getList(id) ?: return@launch
+            _currentList.value = list
+            val system = GameSystem.valueOf(list.gameSystem)
+            catalogCollector?.cancel()
+            _cards.value = repository.observeCards(system, list.factionId).first()
+            watchEntries(list)
+        }
+    }
+
+    private fun watchEntries(list: BuilderListEntity) {
+        entryCollector?.cancel()
+        entryCollector = viewModelScope.launch {
+            repository.observeEntries(list.id, _cards.value).collect { loaded ->
+                _entries.value = loaded
+                recalculate()
             }
         }
     }
 
-    fun addUnit(unit: UnitEntity) {
-        val current = _listEntries.value.toMutableList()
-        val idx = current.indexOfFirst { it.first.id == unit.id }
-        if (idx >= 0) {
-            val (u, qty) = current[idx]
-            current[idx] = u to (qty + 1)
-        } else {
-            current.add(unit to 1)
-        }
-        _listEntries.value = current
-        recomputeValidation()
+    fun add(card: CardDefinition, parentId: String? = null, chosenSlot: ArmadaSlot? = null) {
+        _entries.value = _entries.value + ListEntry(UUID.randomUUID().toString(), card, parentId, 1, chosenSlot)
+        persistAndValidate()
     }
 
-    fun removeUnit(unit: UnitEntity) {
-        val current = _listEntries.value.toMutableList()
-        val idx = current.indexOfFirst { it.first.id == unit.id }
-        if (idx >= 0) {
-            val (u, qty) = current[idx]
-            if (qty <= 1) {
-                current.removeAt(idx)
-            } else {
-                current[idx] = u to (qty - 1)
-            }
-        }
-        _listEntries.value = current
-        recomputeValidation()
+    fun remove(entry: ListEntry) {
+        val removedIds = (_entries.value.filter { it.instanceId == entry.instanceId || it.parentInstanceId == entry.instanceId }).map { it.instanceId }.toSet()
+        _entries.value = _entries.value.filterNot { it.instanceId in removedIds }
+        persistAndValidate()
     }
 
-    private fun recomputeValidation() {
-        val limit = _currentList.value?.pointsLimit ?: 1000
-        _validation.value = ArmyListValidator.validate(_listEntries.value, limit)
+    private fun persistAndValidate() {
+        val list = _currentList.value ?: return
+        val updated = list.copy(updatedAt = System.currentTimeMillis())
+        _currentList.value = updated
+        val snapshot = _entries.value.toList()
+        viewModelScope.launch { saveMutex.withLock { repository.saveList(updated, snapshot) } }
+        recalculate()
     }
+
+    private fun recalculate() {
+        val list = _currentList.value ?: return
+        val system = GameSystem.valueOf(list.gameSystem)
+        val builder = BuilderList(list.id, list.name, system, list.factionId, list.pointsLimit, _entries.value)
+        _validation.value = if (system == GameSystem.LEGION_V2) LegionV2Validator().validate(builder) else ArmadaV15Validator().validate(builder)
+    }
+
+    fun cardById(id: String) = _cards.value.firstOrNull { it.id == id }
 }

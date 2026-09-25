@@ -13,6 +13,12 @@ import com.legionforge.app.data.model.OwnedUnit
 import com.legionforge.app.data.model.UnitEntity
 import com.legionforge.app.data.model.UnitKeywordCrossRef
 import com.legionforge.app.data.model.UpgradeSlot
+import com.legionforge.app.data.model.CatalogCardEntity
+import com.legionforge.app.data.model.BuilderListEntity
+import com.legionforge.app.data.model.BuilderEntryEntity
+import com.legionforge.app.data.local.PolymorphicGameDao
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Database(
     entities = [
@@ -23,15 +29,19 @@ import com.legionforge.app.data.model.UpgradeSlot
         UnitKeywordCrossRef::class,
         ArmyList::class,
         ArmyUnit::class,
-        OwnedUnit::class
+        OwnedUnit::class,
+        CatalogCardEntity::class,
+        BuilderListEntity::class,
+        BuilderEntryEntity::class
     ],
-    version = 1,
+    version = 3,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
 abstract class LegionForgeDatabase : RoomDatabase() {
     abstract fun gameDataDao(): GameDataDao
     abstract fun armyListDao(): ArmyListDao
+    abstract fun polymorphicGameDao(): PolymorphicGameDao
 
     companion object {
         @Volatile
@@ -43,7 +53,25 @@ abstract class LegionForgeDatabase : RoomDatabase() {
                     context.applicationContext,
                     LegionForgeDatabase::class.java,
                     "legionforge.db"
-                ).build().also { INSTANCE = it }
+                ).addMigrations(MIGRATION_1_2, MIGRATION_2_3).build().also { INSTANCE = it }
+            }
+        }
+
+        private val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE builder_entries ADD COLUMN chosenSlot TEXT DEFAULT NULL")
+            }
+        }
+
+        private val MIGRATION_1_2 = object : Migration(1, 2) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("CREATE TABLE IF NOT EXISTS catalog_cards (id TEXT NOT NULL PRIMARY KEY, gameSystem TEXT NOT NULL, kind TEXT NOT NULL, name TEXT NOT NULL, points INTEGER NOT NULL, factionId TEXT NOT NULL, legionRank TEXT, upgradeSlots TEXT NOT NULL, allowedUpgradeSlots TEXT NOT NULL, commander INTEGER NOT NULL, `unique` INTEGER NOT NULL, imageUrl TEXT, imageAssetPath TEXT, rulesText TEXT)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS index_catalog_cards_gameSystem ON catalog_cards(gameSystem)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS index_catalog_cards_factionId ON catalog_cards(factionId)")
+                db.execSQL("CREATE TABLE IF NOT EXISTS builder_lists (id TEXT NOT NULL PRIMARY KEY, name TEXT NOT NULL, gameSystem TEXT NOT NULL, factionId TEXT NOT NULL, pointsLimit INTEGER NOT NULL, updatedAt INTEGER NOT NULL)")
+                db.execSQL("CREATE TABLE IF NOT EXISTS builder_entries (instanceId TEXT NOT NULL PRIMARY KEY, listId TEXT NOT NULL, cardId TEXT NOT NULL, parentInstanceId TEXT, quantity INTEGER NOT NULL)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS index_builder_entries_listId ON builder_entries(listId)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS index_builder_entries_cardId ON builder_entries(cardId)")
             }
         }
     }

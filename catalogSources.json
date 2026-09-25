@@ -1,0 +1,55 @@
+{
+  "description": "Source attribution and data-rights/freshness notes for the generated offline catalog.",
+  "catalogSchemaVersion": 1,
+  "catalogPath": "app/src/main/assets/catalog.json",
+  "catalogCardCount": 527,
+  "counts": {
+    "armada_ships_included": 46,
+    "armada_ships_seen": 46,
+    "armada_squadrons_included": 76,
+    "armada_squadrons_seen": 76,
+    "armada_upgrades_included": 228,
+    "armada_upgrades_seen": 228,
+    "legion_units_included": 127,
+    "legion_units_seen": 142,
+    "legion_upgrades_included": 50,
+    "legion_upgrades_seen": 137
+  },
+  "excluded": {
+    "legion_units_invalid_points": 15,
+    "legion_upgrades_invalid_points": 87
+  },
+  "artworkPolicy": "No donor artwork is copied or linked. imageUrl and imageAssetPath are null for every card.",
+  "slotMapping": {
+    "armada": "Known donor labels map to the existing ArmadaSlot enum names; unrecognized values map to OTHER.",
+    "legion": "Recognized Legion slot labels map to same-named values in the existing ArmadaSlot enum; labels without an available equivalent map to OTHER. Exact source slot names are retained in rulesText. No Kotlin enum was modified."
+  },
+  "sources": [
+    {
+      "name": "Star Wars: Legion As Text",
+      "repository": "https://github.com/DoctorDizzee/Star-Wars-Legion-As-Text",
+      "snapshotRevision": "a2289cc26026356c0b4a6fe9a25f97f485e73186",
+      "inputs": [
+        "compiled/all_units.json",
+        "data/upgrades/**/*.json"
+      ],
+      "attribution": "DoctorDizzee / Star-Wars-Legion-As-Text; donor source rows converted into the app schema.",
+      "license": "No LICENSE file was located in the supplied checkout. Permission to redistribute the donor data is therefore unverified; obtain legal review/permission before public or commercial distribution.",
+      "freshness": "Snapshot is only as current as the supplied checkout. A May 2026 update / Legion 2.5 coverage was mentioned but not independently confirmed; points and rules can become stale."
+    },
+    {
+      "name": "star-wars-armada-data",
+      "repository": "https://github.com/rkbodenner/star-wars-armada-data",
+      "snapshotRevision": "450ec48708a67d39e24d44b1dc3be7078f55ee15",
+      "inputs": [
+        "data/ship-card/**/*.json",
+        "data/squadron-card/**/*.json",
+        "data/upgrade-card/**/*.json"
+      ],
+      "attribution": "Jeffrey M. Thompson / rkbodenner; retain the repository MIT copyright and permission notice when redistributing applicable MIT-licensed portions.",
+      "license": "Repository includes an MIT License, but its README explicitly states card text and all images are copyright/trademark Lucasfilm Ltd. Artwork/image references are omitted; MIT licensing of repository code does not establish permission to redistribute card text or other third-party content.",
+      "freshness": "The supplied data is an older snapshot (described as 2020); it may omit later changes and points/rules/errata. Verify against current authoritative material before use."
+    }
+  ],
+  "distributionCaveat": "This file is source attribution, not a legal opinion or a claim that game names/rules text are cleared for distribution. Review upstream licenses and applicable third-party rights before release."
+}

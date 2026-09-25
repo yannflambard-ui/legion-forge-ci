@@ -1,0 +1,81 @@
+{
+  "description": "Source attribution, catalogue revisions, and rights/freshness notes for the standalone BSData Armada catalog artifact.",
+  "catalogSchemaVersion": 1,
+  "sources": [
+    {
+      "name": "BSData Star Wars Armada",
+      "repository": "https://github.com/BSData/star-wars-armada",
+      "snapshotRevision": "47bfca1bddea459678568e5ee820597a433d9b41 (2026-02-03)",
+      "latestReleaseAtLookup": "1.7.8, released 2025-10-08 (release commit a63062df9002be2c30a0cde6ff77c91fc751a879)",
+      "gameSystem": {
+        "name": "Star_Wars_Armada",
+        "catalogId": "4007-48b0-a016-7a8e",
+        "revision": "41",
+        "authorName": "vadersson - initial work by Brian Black - Updates by BlueSeven",
+        "authorContact": "vadersson or vadersson109 on reddit, BGG, FFG, etc. Brian_Black on BGG or FFG forums   BlueSeven on BSData discord"
+      },
+      "catalogues": [
+        {
+          "file": "Imperial Navy.cat",
+          "factionId": "galactic-empire",
+          "catalogId": "0edc-79db-18a8-7153",
+          "catalogRevision": "56",
+          "authorName": "Brian Black with updates by vadersson, BlueSeven",
+          "authorContact": "Brian_Black on BGG and FFG Forums vadersson most places. BlueSeven on BSData discord."
+        },
+        {
+          "file": "Rebel Fleet.cat",
+          "factionId": "rebel-alliance",
+          "catalogId": "ebb6-1d9a-63f3-4ef6",
+          "catalogRevision": "55",
+          "authorName": "Brian Black with updates by vadersson, BlueSeven",
+          "authorContact": "Brian_Black on BGG and FFG Forums vadersson in lots of places BlueSeven on BSData discord"
+        },
+        {
+          "file": "Galactic Republic.cat",
+          "factionId": "galactic-republic",
+          "catalogId": "aa80-2c3e-6e78-52b4",
+          "catalogRevision": "14",
+          "authorName": "vadersson with updates by BlueSeven",
+          "authorContact": "vadersson or vadersson109 most places online BlueSeven on BSData discord"
+        },
+        {
+          "file": "Separatist Alliance.cat",
+          "factionId": "separatist-alliance",
+          "catalogId": "ae1c-e74b-aaa3-ec59",
+          "catalogRevision": "13",
+          "authorName": "vadersson with updates by BlueSeven",
+          "authorContact": "vadersson or vadersson109 most places online BlueSeven on BSData discord"
+        }
+      ],
+      "inputs": [
+        "Star_Wars_Armada.gst",
+        "Imperial Navy.cat",
+        "Rebel Fleet.cat",
+        "Galactic Republic.cat",
+        "Separatist Alliance.cat"
+      ],
+      "attribution": "Community data maintained by BSData; per-catalogue authorName and authorContact metadata are retained above. Repository README says the project is community maintained and not endorsed by BattleScribe or any publisher.",
+      "license": "No LICENSE, COPYING, or NOTICE file was located in the checked-out repository. Redistribution permission for catalogue data is unverified; obtain rights review/permission before public or commercial distribution.",
+      "freshness": "Converted from the supplied checkout commit dated 2026-02-03. The GitHub README latest-release badge resolves to 1.7.8 (2025-10-08); this checkout is a later snapshot, not a claim that a newer tagged release was verified.",
+      "deduplication": "Byte-identical upgrade definitions represented by the same name, points, slot, uniqueness, and rule profile are neutralized only when present in all four faction catalogues. Partial overlap stays faction-bound."
+    }
+  ],
+  "counts": {
+    "armada_ships_included": 66,
+    "armada_ships_seen": 66,
+    "armada_squadrons_included": 107,
+    "armada_squadrons_seen": 107,
+    "armada_upgrades_included": 313,
+    "armada_upgrades_seen": 589,
+    "armada_commanders_included": 38
+  },
+  "distributionCaveat": "This file records provenance, not a legal opinion or a claim that Star Wars names/rules text are cleared for distribution. Review upstream licenses and applicable third-party rights before release.",
+  "catalogCardCount": 486,
+  "catalogPath": "app/src/main/assets/armada_bsdata_catalog.json",
+  "artworkPolicy": "No artwork is copied or linked. imageUrl and imageAssetPath are null for every card.",
+  "slotMapping": {
+    "armada": "Ship Upgrade Bar and the nearest BSData upgrade group map to the existing ArmadaSlot enum. Title groups map to TITLE; Commander cards use COMMANDER; unsupported labels map to OTHER and are retained in rulesText. This standalone file contains only Armada cards; merge its cards array with other game catalogs to build the app-wide catalog.",
+    "legion": "Existing Legion slot mapping retained."
+  }
+}
