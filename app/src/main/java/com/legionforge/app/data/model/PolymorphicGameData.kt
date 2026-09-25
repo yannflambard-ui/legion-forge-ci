@@ -25,8 +25,13 @@ data class CardDefinition(
     val unique: Boolean = false,
     val imageUrl: String? = null,
     val imageAssetPath: String? = null,
-    val rulesText: String? = null
-)
+    val rulesText: String? = null,
+    val names: Map<String, String> = emptyMap()
+) {
+    fun displayName(locale: String = java.util.Locale.getDefault().language): String {
+        return names[locale] ?: name
+    }
+}
 
 data class CatalogDocument(
     val schemaVersion: Int = 1,
@@ -66,22 +71,31 @@ data class CatalogCardEntity(
     val unique: Boolean,
     val imageUrl: String?,
     val imageAssetPath: String?,
-    val rulesText: String?
+    val rulesText: String?,
+    val names: String? = null
 ) {
     fun toDefinition() = CardDefinition(
         id, GameSystem.valueOf(gameSystem), CardKind.valueOf(kind), name, points, factionId,
         legionRank?.let(LegionRank::valueOf), parseSlots(upgradeSlots), parseSlots(allowedUpgradeSlots),
-        commander, unique, imageUrl, imageAssetPath, rulesText
+        commander, unique, imageUrl, imageAssetPath, rulesText, parseJsonNames(names)
     )
 
     companion object {
         fun from(card: CardDefinition) = CatalogCardEntity(
             card.id, card.gameSystem.name, card.kind.name, card.name, card.points, card.factionId,
             card.legionRank?.name, card.upgradeSlots.joinToString(",") { it.name },
-            card.allowedUpgradeSlots.joinToString(",") { it.name }, card.commander, card.unique,
-            card.imageUrl, card.imageAssetPath, card.rulesText
+            card.allowedUpgradeSlots.joinToString(",") { it.name }, card.unique,
+            card.imageUrl, card.imageAssetPath, card.rulesText, toJsonNames(card.names)
         )
         private fun parseSlots(value: String) = value.split(',').filter(String::isNotBlank).map(ArmadaSlot::valueOf)
+        private fun parseJsonNames(value: String?): Map<String, String> {
+            if (value == null || value.isEmpty()) return emptyMap()
+            return try { com.google.gson.Gson().fromJson(value, Map::class.java) as? Map<String, String> ?: emptyMap() } catch (_: Exception) { emptyMap() }
+        }
+        private fun toJsonNames(names: Map<String, String>): String? {
+            if (names.isEmpty()) return null
+            return try { com.google.gson.Gson().toJson(names) } catch (_: Exception) { null }
+        }
     }
 }
 
@@ -104,4 +118,3 @@ data class BuilderEntryEntity(
     val quantity: Int,
     val chosenSlot: String? = null
 )
-

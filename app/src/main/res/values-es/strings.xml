@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Legion Forge</string>
+    <string name="btn_new_list">NUEVO EJÉRCITO</string>
+    <string name="btn_new_fleet">NUEVA FLOTA</string>
+    <string name="choose_faction">Elegir facción</string>
+    <string name="game_legion">LEGIÓN</string>
+    <string name="game_armada">ARMADA</string>
+    <string name="legion_desc">Ejércitos • reglas V2 • 1.000 pts</string>
+    <string name="armada_desc">Flotas • reglas V1.5 • domina la galaxia</string>
+    <string name="label_legion_v2">LEGIÓN V2</string>
+    <string name="label_armada_v15">ARMADA V1.5</string>
+    <string name="recent_lists">LISTAS RECIENTES</string>
+    <string name="saved_lists_hint">Tus composiciones guardadas aparecerán aquí, sin conexión.</string>
+    <string name="offline_mode">Modo offline • datos en este dispositivo</string>
+    <string name="prepare_battle">PREPARA LA BATALLA</string>
+    <string name="new_list_title">Nuevo ejército</string>
+    <string name="new_fleet_title">Nueva flota</string>
+    <string name="loading_catalog">Cargando catálogo sin conexión…</string>
+    <string name="settings">Ajustes</string>
+    <string name="language">Idioma</string>
+    <string name="lang_en">English</string>
+    <string name="lang_fr">Français</string>
+    <string name="lang_de">Deutsch</string>
+    <string name="lang_es">Español</string>
+    <string name="add_to_list">Añadir a la lista</string>
+    <string name="remove">Eliminar</string>
+    <string name="validation_points">Puntos excedidos</string>
+    <string name="validation_ok">Lista válida</string>
+    <string name="total_points">Total</string>
+    <string name="limit_pts">pts</string>
+</resources>

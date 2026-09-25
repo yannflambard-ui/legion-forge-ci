@@ -14,6 +14,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -31,9 +33,16 @@ import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
 
 @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, vm: ArmyBuilderViewModel = viewModel()) {
+fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, onSettings: () -> Unit, vm: ArmyBuilderViewModel = viewModel()) {
     val lists by vm.allLists.collectAsState()
-    Scaffold(topBar = { TopAppBar(title = { Text("LEGION FORGE", style = MaterialTheme.typography.titleLarge) }) }) { pad ->
+    Scaffold(topBar = {
+        TopAppBar(title = { Text("LEGION FORGE", style = MaterialTheme.typography.titleLarge) },
+            actions = {
+                IconButton(onClick = onSettings) {
+                    Text("\u2699", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium)
+                }
+            })
+    }) { pad ->
         Column(Modifier.fillMaxSize().background(Brush.verticalGradient(listOf(Color(0xFF111827), Color(0xFF080B12)))).padding(pad).padding(20.dp), verticalArrangement = Arrangement.spacedBy(18.dp)) {
             Text("PRÉPAREZ LA BATAILLE", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge)
             Text("Vos listes.\nVotre stratégie.", style = MaterialTheme.typography.headlineLarge, color = Color.White)

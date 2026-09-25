@@ -12,6 +12,7 @@ import com.legionforge.app.data.model.GameSystem
 import com.legionforge.app.ui.screens.ArmyBuilderScreen
 import com.legionforge.app.ui.screens.FactionPickerScreen
 import com.legionforge.app.ui.screens.HomeScreen
+import com.legionforge.app.ui.screens.SettingsScreen
 import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 
@@ -19,6 +20,7 @@ object Routes {
     const val HOME = "home"
     const val FACTION_PICKER = "faction_picker/{system}"
     const val ARMY_BUILDER = "army_builder/{listId}"
+    const val SETTINGS = "settings"
     fun factionPicker(system: GameSystem) = "faction_picker/${system.name}"
     fun armyBuilder(listId: String) = "army_builder/$listId"
 }
@@ -32,6 +34,7 @@ fun LegionForgeNavHost(navController: NavHostController = rememberNavController(
             HomeScreen(
                 onNewList = { system -> navController.navigate(Routes.factionPicker(system)) },
                 onOpenList = { listId -> vm.openList(listId); navController.navigate(Routes.armyBuilder(listId)) },
+                onSettings = { navController.navigate(Routes.SETTINGS) },
                 vm = vm
             )
         }
@@ -51,6 +54,9 @@ fun LegionForgeNavHost(navController: NavHostController = rememberNavController(
                     launchSingleTop = true
                 }
             })
+        }
+        composable(Routes.SETTINGS) {
+            SettingsScreen(onBack = { navController.popBackStack() })
         }
     }
 }
