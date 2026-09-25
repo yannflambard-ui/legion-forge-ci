@@ -60,10 +60,13 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
         }
     } else cards.filter { it.kind in allowedKinds && matchesFaction(it) }
     val additions = filteredAdditions
-            .filter { it.name.contains(search, ignoreCase = true) || it.factionId.contains(search, ignoreCase = true) }
-            .filter { filterRank == null || it.legionRank?.name == filterRank }
-            .filter { filterMaxPts == null || it.points <= filterMaxPts }
-            .filter { filterKeyword == null || it.legionStats?.contains(filterKeyword, ignoreCase = true) == true }
+                .filter { it.name.contains(search, ignoreCase = true) || it.factionId.contains(search, ignoreCase = true) }
+                .let { list ->
+                    val rk = filterRank; val mp = filterMaxPts; val kw = filterKeyword
+                    list.filter { rk == null || it.legionRank?.name == rk }
+                        .filter { mp == null || it.points <= mp }
+                        .filter { kw == null || it.legionStats?.contains(kw, ignoreCase = true) == true }
+                }
     Scaffold(topBar = {
         TopAppBar(title = { Column {
             Text(list?.name ?: "Nouvelle liste", style = MaterialTheme.typography.titleLarge)
