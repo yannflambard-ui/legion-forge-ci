@@ -125,6 +125,7 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                         if (validation.violations.size > 3) Text("+ ${validation.violations.size - 3} règles à corriger", color = Color.LightGray, style = MaterialTheme.typography.labelSmall)
                     }
                 }
+            }
             TabRow(selectedTabIndex = selectedTab) {
                 Tab(selectedTab == 0, onClick = { selectedTab = 0 }, text = { Text("LISTE (${entries.size})") })
                 Tab(selectedTab == 1, onClick = { selectedTab = 1 }, text = {
