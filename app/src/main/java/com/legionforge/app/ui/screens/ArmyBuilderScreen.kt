@@ -32,6 +32,10 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
     var search by remember { mutableStateOf("") }
     var selectedTab by remember { mutableIntStateOf(0) }
     var selectedParentId by remember { mutableStateOf<String?>(null) }
+                // Filtres catalogue (P0) : rang/type, tranche de points, mot-clé
+    var filterRank by remember { mutableStateOf<String?>(null) }
+    var filterMaxPts by remember { mutableStateOf<Int?>(null) }
+    var filterKeyword by remember { mutableStateOf<String?>(null) }
     LaunchedEffect(listId) { viewModel.openList(listId) }
     val game = list?.gameSystem?.let { runCatching { GameSystem.valueOf(it) }.getOrNull() } ?: GameSystem.LEGION_V2
     val allowedKinds = if (game == GameSystem.LEGION_V2) setOf(CardKind.LEGION_UNIT, CardKind.LEGION_UPGRADE) else setOf(CardKind.ARMADA_SHIP, CardKind.ARMADA_SQUADRON, CardKind.ARMADA_UPGRADE, CardKind.COMMANDER)
@@ -56,7 +60,10 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
         }
     } else cards.filter { it.kind in allowedKinds && matchesFaction(it) }
     val additions = filteredAdditions
-        .filter { it.name.contains(search, ignoreCase = true) || it.factionId.contains(search, ignoreCase = true) }
+            .filter { it.name.contains(search, ignoreCase = true) || it.factionId.contains(search, ignoreCase = true) }
+            .filter { filterRank == null || it.legionRank?.name == filterRank }
+            .filter { filterMaxPts == null || it.points <= filterMaxPts }
+            .filter { filterKeyword == null || it.legionStats?.contains(filterKeyword, ignoreCase = true) == true }
     Scaffold(topBar = {
         TopAppBar(title = { Column {
             Text(list?.name ?: "Nouvelle liste", style = MaterialTheme.typography.titleLarge)
@@ -153,9 +160,22 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                 }
             } else {
                 OutlinedTextField(value = search, onValueChange = { search = it }, modifier = Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 8.dp), placeholder = { Text("Rechercher une carte…") }, singleLine = true)
+                // Filtres catalogue (P0) : rang/type, points max, mot-clé
+                Row(Modifier.fillMaxWidth().padding(horizontal = 14.dp), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    val ranks = if (game == GameSystem.LEGION_V2) listOf("COMMANDER", "OPERATIVE", "CORPS", "SPECIAL_FORCES", "SUPPORT", "HEAVY") else listOf("ARMADA_SHIP", "ARMADA_SQUADRON", "COMMANDER")
+                    ranks.forEach { r ->
+                        FilterChip(selected = filterRank == r, onClick = { filterRank = if (filterRank == r) null else r }, label = { Text(r.replace('_', ' ').lowercase().replaceFirstChar { it.uppercase() }, fontSize = 10.sp) })
+                                    }
+                                }
+                Row(Modifier.fillMaxWidth().padding(horizontal = 14.dp), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    listOf(50, 100, 200).forEach { maxPts ->
+                        FilterChip(selected = filterMaxPts == maxPts, onClick = { filterMaxPts = if (filterMaxPts == maxPts) null else maxPts }, label = { Text("≤ $maxPts pts", fontSize = 10.sp) })
+                                    }
+                    OutlinedTextField(value = filterKeyword ?: "", onValueChange = { filterKeyword = it.ifBlank { null } }, modifier = Modifier.weight(1f), placeholder = { Text("Mot-clé (Pierce, Armor…)", fontSize = 10.sp) }, singleLine = true, textStyle = MaterialTheme.typography.bodySmall)
+                                }
                 LazyColumn(Modifier.weight(1f), contentPadding = PaddingValues(horizontal = 14.dp, vertical = 4.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    items(additions, key = { it.id }) { card -> CatalogCard(card, entries, selectedParentId, onAdd = { parent, slot -> viewModel.add(card, parent, slot) }) }
-                }
+                        items(additions, key = { it.id }) { card -> CatalogCard(card, entries, selectedParentId, onAdd = { parent, slot -> viewModel.add(card, parent, slot) }) }
+                                }
             }
             Text("Hors ligne • catalogue sous réserve des mises à jour officielles", Modifier.align(Alignment.CenterHorizontally).padding(bottom = 6.dp), color = Color(0xFF718096), style = MaterialTheme.typography.labelSmall)
         }
