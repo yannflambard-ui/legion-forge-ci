@@ -2,22 +2,22 @@
   "description": "Source attribution and data-rights/freshness notes for the generated offline catalog.",
   "catalogSchemaVersion": 1,
   "catalogPath": "app/src/main/assets/catalog.json",
-  "catalogCardCount": 527,
+  "catalogCardCount": 974,
   "counts": {
     "armada_ships_included": 46,
     "armada_ships_seen": 46,
     "armada_squadrons_included": 76,
     "armada_squadrons_seen": 76,
-    "armada_upgrades_included": 228,
-    "armada_upgrades_seen": 228,
-    "legion_units_included": 127,
-    "legion_units_seen": 142,
-    "legion_upgrades_included": 50,
-    "legion_upgrades_seen": 137
+    "armada_upgrades_included": 204,
+    "armada_upgrades_seen": 204,
+    "legion_units_included": 191,
+    "legion_units_seen": 191,
+    "legion_upgrades_included": 433,
+    "legion_upgrades_seen": 433
   },
   "excluded": {
-    "legion_units_invalid_points": 15,
-    "legion_upgrades_invalid_points": 87
+    "legion_units_invalid_points": 0,
+    "legion_units_deduplicated": 123
   },
   "artworkPolicy": "No donor artwork is copied or linked. imageUrl and imageAssetPath are null for every card.",
   "slotMapping": {
