@@ -102,21 +102,114 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
 }
 
 // ═══════════════════  LEGION  ═══════════════════════════
+// Stats réels des cartes Legion v2 embarqués dans card.legionStats (JSON),
+// générés par build_legion_v2.py depuis le bundle LegionHQ V2 (2.6).
+private data class LegionWeapon(val name: String, val rangeMin: Int, val rangeMax: Int,
+                                val red: Int, val black: Int, val white: Int)
+private data class LegionStats(
+    val health: Int = 1,
+    val courage: Int = 1,
+    val speed: Int = 1,
+    val defenseDie: String = "w",        // 'r' | 'w'
+    val surgeAttack: String = "",        // 'h' crit | 'a' hit | 'b' block | '' none
+    val surgeDefense: String = "",
+    val miniCount: Int = 1,
+    val keywords: List<String> = emptyList(),
+    val weapons: List<LegionWeapon> = emptyList()
+)
+private object LegionStatsParser {
+    fun parse(legionStats: String?): LegionStats? {
+        if (legionStats.isNullOrBlank()) return null
+        return try {
+            val o = org.json.JSONObject(legionStats)
+            val wp = buildList {
+                val wa = o.optJSONArray("weapons")
+                if (wa != null) for (i in 0 until wa.length()) {
+                    val w = wa.getJSONObject(i)
+                    val rng = w.optJSONObject("range")
+                    val dice = w.optJSONObject("dice")
+                    add(LegionWeapon(
+                        w.optString("name", "Arme"),
+                        rng?.optInt("min", 0) ?: 0, rng?.optInt("max", 0) ?: 0,
+                        dice?.optInt("red", 0) ?: 0, dice?.optInt("black", 0) ?: 0, dice?.optInt("white", 0) ?: 0
+                    ))
+                }
+            }
+            val kw = buildList {
+                val ka = o.optJSONArray("keywords")
+                if (ka != null) for (i in 0 until ka.length()) add(ka.getString(i))
+            }
+            LegionStats(
+                health = o.optInt("health", 1).coerceAtLeast(1),
+                courage = o.optInt("courage", 1).coerceAtLeast(1),
+                speed = o.optInt("speed", 1).coerceAtLeast(1),
+                defenseDie = o.optString("defenseDie", "w"),
+                surgeAttack = o.optString("surgeAttack", ""),
+                surgeDefense = o.optString("surgeDefense", ""),
+                miniCount = o.optInt("miniCount", 1).coerceAtLeast(1),
+                keywords = kw,
+                weapons = wp
+            )
+        } catch (_: Exception) { null }
+    }
+}
+
 @Composable
 private fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntries: List<ListEntry>) {
     val totalPts = unit.card.points + children.sumOf { it.card.points * it.quantity }
-    var wounds by remember(unit.instanceId) { mutableIntStateOf(0) }
+    val stats = remember(unit.instanceId) { LegionStatsParser.parse(unit.card.legionStats) }
+    // Points de vie réels de l'unité = santé par figurine × nombre de figurines.
+    // Tracker de VALEUR RESTANTE : démarre plein, descend sous les dégâts (comme la coque Armada).
+    val maxHp = (stats?.health?.takeIf { it > 0 } ?: 1) * (stats?.miniCount?.takeIf { it > 0 } ?: 1)
+    var wounds by remember(unit.instanceId) { mutableIntStateOf(maxHp) }
     var tokens by remember(unit.instanceId) { mutableStateOf(listOf<String>()) }
     var activeCrits by remember(unit.instanceId) { mutableStateOf(listOf<CritCard>()) }
     var usedUpgrades by remember(unit.instanceId) { mutableStateOf(setOf<String>()) }
-    val maxHp = 12
+    val defColor = if ((stats?.defenseDie ?: "w") == "r") Color(0xFFFF6B6B) else Color.White
+
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         CardBlock(unit, children, totalPts)
+        // ── stats réelles de la carte ──
+        Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
+            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                Text("PROFIL", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                    StatChip("SANTE", "${stats?.miniCount ?: 1} × ${stats?.health ?: 1}", Color(0xFFFF6B6B))
+                    StatChip("COURAGE", "${stats?.courage ?: 1}", Color(0xFFFFC857))
+                    StatChip("VITESSE", "${stats?.speed ?: 1}", Color(0xFF4FC3F7))
+                    StatChip("DEFENSE", (stats?.defenseDie ?: "w").uppercase(), defColor)
+                }
+                if (!stats?.surgeAttack.isNullOrBlank() || !stats?.surgeDefense.isNullOrBlank()) {
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                        Text("Surge attaque: ${surgeLabel(stats?.surgeAttack)}", color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall)
+                        Text("Surge défense: ${surgeLabel(stats?.surgeDefense)}", color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall)
+                    }
+                }
+                if (stats?.keywords?.isNotEmpty() == true) {
+                    Text("Mots-clés: ${stats.keywords.joinToString(", ")}", color = Color(0xFF9EACBC), style = MaterialTheme.typography.bodySmall)
+                }
+            }
+        }
+        // ── suivi des blessures (valeur restante) ──
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
                 Text("SUIVI", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { BigCounter("BLESSURES", wounds, maxHp, Color(0xFFFF6B6B), { if (wounds < maxHp) wounds++ }, { if (wounds > 0) wounds-- }) }
-                if (wounds > 0) { val r = (1f - wounds.toFloat() / maxHp).coerceIn(0f, 1f); HealthBar(r, maxHp - wounds, maxHp) }
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { BigCounter("FIGURINES", wounds, maxHp, Color(0xFFFF6B6B), { if (wounds < maxHp) wounds++ }, { if (wounds > 0) wounds-- }) }
+                HealthBar(wounds.toFloat() / maxHp, wounds, maxHp)
+                // Armes de l'unité (range + dés)
+                if (stats?.weapons?.isNotEmpty() == true) {
+                    HorizontalDivider(color = Color(0xFF2A3A4A))
+                    Text("ARMES", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
+                    stats.weapons.forEach { w ->
+                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                            Column(Modifier.weight(1f)) {
+                                Text(w.name, color = Color.White, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
+                                Text("Portée ${w.rangeMin}-${w.rangeMax}", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall)
+                            }
+                            Text(diceText(w.red, w.black, w.white), color = Color(0xFF77D9A7), style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
+                        }
+                    }
+                }
                 TokenSection(tokens, { tokens = tokens + it }, { tokens = tokens - it })
             }
         }
@@ -135,6 +228,19 @@ private fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntrie
         CardPlayImage(unit.card)
         Spacer(Modifier.height(20.dp))
     }
+}
+
+@Composable
+private fun StatChip(label: String, value: String, color: Color) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(label, color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+        Text(value, color = color, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+    }
+}
+private fun surgeLabel(s: String?): String = when (s) { "h" -> "Critique"; "a" -> "Touché"; "b" -> "Blocage"; "r" -> "Contre-attaque"; else -> "—" }
+private fun diceText(red: Int, black: Int, white: Int): String {
+    val parts = buildList { if (red > 0) add("R$red"); if (black > 0) add("N$black"); if (white > 0) add("B$white") }
+    return if (parts.isEmpty()) "—" else parts.joinToString(" ")
 }
 
 // // ═══════════════════  ARMADA SHIP  ═══════════════════════

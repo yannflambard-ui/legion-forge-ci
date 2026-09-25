@@ -72,7 +72,8 @@ data class CardDefinition(
     val rulesText: String? = null,
     val names: Map<String, String> = emptyMap(),
     val shipStats: String? = null,
-    val linkedUnit: String? = null
+    val linkedUnit: String? = null,
+    val legionStats: String? = null
 ) {
     fun displayName(locale: String = java.util.Locale.getDefault().language): String {
         return names[locale] ?: name
@@ -120,12 +121,13 @@ data class CatalogCardEntity(
     val rulesText: String?,
     val names: String? = null,
     val shipStats: String? = null,
-    val linkedUnit: String? = null
+    val linkedUnit: String? = null,
+    val legionStats: String? = null
 ) {
     fun toDefinition() = CardDefinition(
         id, GameSystem.valueOf(gameSystem), CardKind.valueOf(kind), name, points, factionId,
         legionRank?.let(LegionRank::valueOf), parseSlots(upgradeSlots), parseSlots(allowedUpgradeSlots),
-        commander, unique, imageUrl, imageAssetPath, rulesText, parseJsonNames(names), shipStats, linkedUnit
+        commander, unique, imageUrl, imageAssetPath, rulesText, parseJsonNames(names), shipStats, linkedUnit, legionStats
     )
 
     companion object {
@@ -133,7 +135,7 @@ data class CatalogCardEntity(
             card.id, card.gameSystem.name, card.kind.name, card.name, card.points, card.factionId,
             card.legionRank?.name, card.upgradeSlots.joinToString(",") { it.name },
             card.allowedUpgradeSlots.joinToString(",") { it.name }, card.commander, card.unique,
-            card.imageUrl, card.imageAssetPath, card.rulesText, toJsonNames(card.names), card.shipStats, card.linkedUnit
+            card.imageUrl, card.imageAssetPath, card.rulesText, toJsonNames(card.names), card.shipStats, card.linkedUnit, card.legionStats
         )
         private fun parseSlots(value: String) = value.split(',').filter(String::isNotBlank).map(ArmadaSlot::valueOf)
         private fun parseJsonNames(value: String?): Map<String, String> {

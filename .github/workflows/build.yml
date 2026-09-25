@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       issues: write
-      contents: read
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -52,3 +52,31 @@ jobs:
         with:
           name: legion-forge-debug
           path: app/build/outputs/apk/debug/app-debug.apk
+
+      # ── Release notes GitHub : notes générées à chaque build master/main ──
+      - name: Create GitHub Release with release notes
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          set -e
+          VERSION="$(grep -oP 'versionName\s*=\s*"\K[^"]+' app/build.gradle.kts)"
+          TAG="v${VERSION}"
+          REPO="$GITHUB_REPOSITORY"
+          if gh release view "$TAG" --repo "$REPO" >/dev/null 2>&1; then
+            echo "Release $TAG existe deja, skip creation."
+            exit 0
+          fi
+          PREV_TAG="$(gh release list --repo "$REPO" --limit 1 --json tagName --jq '.[0].tagName // empty' 2>/dev/null || true)"
+          if [ -n "$PREV_TAG" ]; then
+            NOTES="$(gh api "/repos/$REPO/compare/$PREV_TAG...$TAG" --jq '.commits[] | "- " + (.commit.message | split("\n")[0])' 2>/dev/null || echo "Changements non listes.")"
+          else
+            NOTES="- Premiere version publique de Legion Forge v${VERSION}."
+          fi
+          printf 'Legion Forge v%s\n\n%s\n\nAPK : legion-forge-debug.apk ci-joint.\n' "$VERSION" "$NOTES" > /tmp/release_notes.txt
+          gh release create "$TAG" \
+            app/build/outputs/apk/debug/app-debug.apk \
+            --repo "$REPO" \
+            --title "Legion Forge $VERSION" \
+            --notes-file /tmp/release_notes.txt
+        env:
+          GH_TOKEN: ${{ github.token }}
