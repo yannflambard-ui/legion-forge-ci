@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -28,6 +29,8 @@ import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
 @Composable
 fun FactionPickerScreen(system: GameSystem, onFactionSelected: (String) -> Unit, vm: ArmyBuilderViewModel = viewModel()) {
     val cards by vm.cards.collectAsState()
+    val loading by vm.loading.collectAsState()
+    val error by vm.catalogError.collectAsState()
     androidx.compose.runtime.LaunchedEffect(system) { vm.loadAllCatalog(system) }
     val factionCards = cards.filter { if (system == GameSystem.LEGION_V2) it.kind == com.legionforge.app.data.model.CardKind.LEGION_UNIT else it.kind == com.legionforge.app.data.model.CardKind.ARMADA_SHIP }
     val groups = factionCards.groupBy { it.factionId }
@@ -43,7 +46,23 @@ fun FactionPickerScreen(system: GameSystem, onFactionSelected: (String) -> Unit,
                     }
                 }
             }
-            if (cards.isEmpty()) item { Text("Chargement du catalogue hors ligne…", color = Color.LightGray) }
+            if (cards.isEmpty()) {
+    if (loading) {
+        item { LinearProgressIndicator(modifier = Modifier.fillMaxWidth().padding(horizontal = 40.dp), color = Color(0xFFFFC857)) }
+        item { Text("Chargement du catalogue hors ligne…", color = Color.LightGray) }
+    }
+    if (error != null) {
+        item { Card(Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(containerColor = Color(0xFF3B2224))) {
+            Column(Modifier.padding(12.dp)) {
+                Text("Erreur catalogue", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium)
+                Text(error ?: "", color = Color(0xFFFFC7B7), style = MaterialTheme.typography.bodySmall)
+            }
+        } }
+    }
+    if (!loading && error == null) {
+        item { Text("Catalogue vide. Reessayez plus tard.", color = Color.LightGray) }
+    }
+}
         }
     }
 }

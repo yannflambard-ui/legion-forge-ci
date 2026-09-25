@@ -59,7 +59,11 @@ class ArmyBuilderViewModel(application: Application) : AndroidViewModel(applicat
         viewModelScope.launch { repository.observeLists().collect { _allLists.value = it } }
     }
 
-    private suspend fun awaitCatalog() { seedJob?.join() }
+    private suspend fun awaitCatalog() {
+        seedJob?.let {
+            kotlinx.coroutines.withTimeoutOrNull(10_000) { it.join() }
+        }
+    }
 
     private var catalogCollector: kotlinx.coroutines.Job? = null
 
