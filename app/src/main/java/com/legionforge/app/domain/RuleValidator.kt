@@ -101,6 +101,10 @@ class ArmadaV15Validator : RuleValidator {
                 if (chosen == null || chosen !in (shipSlots[ship.instanceId] ?: emptyList())) {
                     violations += violation("invalid_upgrade_slot", "${upgrade.card.name} ne correspond pas aux slots du châssis ${ship.card.name}.")
                 }
+                // Regle 1.6.0 : un vaisseau ne peut pas equiper plus d'une copie de la meme amelioration.
+                if (installed.groupBy { it.card.id }.any { (_, arr) -> arr.size > 1 }) {
+                    violations += violation("duplicate_upgrade", "${ship.card.name} ne peut pas equiper plusieurs copies de la meme amelioration.")
+                }
             }
         }
         fleetCards.filter { it.card.kind == CardKind.ARMADA_UPGRADE && it.parentInstanceId !in ships.map { ship -> ship.instanceId } }

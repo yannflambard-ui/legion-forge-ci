@@ -85,6 +85,8 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
                 when (unit.card.kind) {
                     CardKind.ARMADA_SHIP -> ArmadaShipPage(unit, children, entries)
                     CardKind.ARMADA_SQUADRON -> ArmadaSquadronPage(unit)
+                    // Degats critiques reserves aux vaisseaux capitaux (par Regle Armada). Un commandant est equipe sur un vaisseau, il n'a pas de page de degats propres.
+                    CardKind.COMMANDER -> CommanderPage(unit)
                     else -> LegionUnitPage(unit, children, entries)
                 }
             }
@@ -238,6 +240,21 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
             onRemoveCrit = { activeCrits = activeCrits - it },
             allCrits = armadaCrits
         )
+        Spacer(Modifier.height(20.dp))
+    }
+}
+// ═══════════════════  COMMANDER (pas de degats critiques, equipe sur le flagship)  ═══════════════════
+@Composable
+private fun CommanderPage(unit: ListEntry) {
+    var tokens by remember(unit.instanceId) { mutableStateOf(listOf<String>()) }
+    Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        CardBlock(unit, emptyList(), unit.card.points)
+        Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
+            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Text("COMMANDEMENT DE LA FLOTTE", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                TokenSection(tokens, { tokens = tokens + it }, { tokens = tokens - it })
+            }
+        }
         Spacer(Modifier.height(20.dp))
     }
 }
