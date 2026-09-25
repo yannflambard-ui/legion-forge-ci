@@ -10,6 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.legionforge.app.data.model.GameSystem
 import com.legionforge.app.ui.screens.ArmyBuilderScreen
+import com.legionforge.app.ui.screens.CardDetailScreen
 import com.legionforge.app.ui.screens.FactionPickerScreen
 import com.legionforge.app.ui.screens.HomeScreen
 import com.legionforge.app.ui.screens.SettingsScreen
@@ -21,8 +22,10 @@ object Routes {
     const val FACTION_PICKER = "faction_picker/{system}"
     const val ARMY_BUILDER = "army_builder/{listId}"
     const val SETTINGS = "settings"
+    const val CARD_DETAIL = "card_detail/{listId}/{entryInstanceId}"
     fun factionPicker(system: GameSystem) = "faction_picker/${system.name}"
     fun armyBuilder(listId: String) = "army_builder/$listId"
+    fun cardDetail(listId: String, entryInstanceId: String) = "card_detail/$listId/$entryInstanceId"
 }
 
 @Composable
@@ -53,10 +56,18 @@ fun LegionForgeNavHost(navController: NavHostController = rememberNavController(
                     popUpTo(navController.graph.findStartDestination().id) { saveState = false }
                     launchSingleTop = true
                 }
+            }, onPlayCard = { listId, entryId ->
+                navController.navigate(Routes.cardDetail(listId, entryId))
             })
         }
         composable(Routes.SETTINGS) {
             SettingsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Routes.CARD_DETAIL, arguments = listOf(navArgument("listId") { type = NavType.StringType }, navArgument("entryInstanceId") { type = NavType.StringType })) { entry ->
+            val lid = entry.arguments?.getString("listId") ?: return@composable
+            val eid = entry.arguments?.getString("entryInstanceId") ?: return@composable
+            val unit = vm.entries.value.firstOrNull { it.instanceId == eid }
+            if (unit != null) CardDetailScreen(unit, vm.entries.value, onBack = { navController.popBackStack() })
         }
     }
 }

@@ -21,7 +21,7 @@ import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, viewModel: ArmyBuilderViewModel = viewModel()) {
+fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, String) -> Unit = { _, _ -> }, viewModel: ArmyBuilderViewModel = viewModel()) {
     val list by viewModel.currentList.collectAsState()
     val cards by viewModel.cards.collectAsState()
     val entries by viewModel.entries.collectAsState()
@@ -115,6 +115,10 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, viewModel: ArmyBuilder
                                 selectedParentId = entry.instanceId
                                 selectedTab = 1
                             }
+                        }, onPlay = {
+                            if (!isChild && (entry.card.kind == CardKind.LEGION_UNIT || entry.card.kind == CardKind.ARMADA_SHIP)) {
+                                onPlayCard(listId, entry.instanceId)
+                            }
                         })
                     }
                 }
@@ -130,7 +134,7 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, viewModel: ArmyBuilder
 }
 
 @Composable
-private fun BuilderEntryCard(entry: ListEntry, isChild: Boolean = false, onRemove: () -> Unit, onSelectParent: () -> Unit = {}) {
+private fun BuilderEntryCard(entry: ListEntry, isChild: Boolean = false, onRemove: () -> Unit, onSelectParent: () -> Unit = {}, onPlay: () -> Unit = {}) {
     val isSelectable = !isChild && (entry.card.kind == CardKind.LEGION_UNIT || entry.card.kind == CardKind.ARMADA_SHIP)
     Card(Modifier
         .fillMaxWidth()
@@ -146,6 +150,11 @@ private fun BuilderEntryCard(entry: ListEntry, isChild: Boolean = false, onRemov
                 if (entry.parentInstanceId != null) Text("↳ ${entry.chosenSlot?.name?.replace('_', ' ') ?: "amélioration liée"}", color = Color(0xFF77D9A7), style = MaterialTheme.typography.labelSmall)
                 if (entry.card.kind == CardKind.LEGION_UNIT || entry.card.kind == CardKind.ARMADA_SHIP) {
                     if (entry.card.allowedUpgradeSlots.isNotEmpty()) Text("Slots : ${entry.card.allowedUpgradeSlots.joinToString { it.name.lowercase().replace('_', ' ') }}", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, maxLines = 2)
+                }
+            }
+            if (!isChild && (entry.card.kind == CardKind.LEGION_UNIT || entry.card.kind == CardKind.ARMADA_SHIP)) {
+                IconButton(onClick = onPlay, modifier = Modifier.size(36.dp)) {
+                    Text("▶", color = Color(0xFF77D9A7), fontSize = 16.sp)
                 }
             }
             TextButton(onClick = onRemove) { Text("RETIRER", color = Color(0xFFFF927F), style = MaterialTheme.typography.labelSmall) }
