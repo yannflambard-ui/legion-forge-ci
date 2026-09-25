@@ -42,7 +42,7 @@ private val legionCrits = listOf(
 
 // ── active effect model ─────────────────────────────────
 private enum class EffectType { COMMANDER, UPGRADE, CRIT, ABILITY }
-private data class ActiveEffect(val type: EffectType, val label: String, val desc: String, val id: String)
+private data class ActiveEffect(val type: EffectType, val label: String, val desc: String, val id: String, val used: Boolean = false)
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
@@ -52,10 +52,21 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
     }
     val safeIndex = initialIndex.coerceIn(0, (playable.size - 1).coerceAtLeast(0))
     val pagerState = rememberPagerState(pageCount = { playable.size.coerceAtLeast(1) }, initialPage = safeIndex)
+    var round by remember { mutableIntStateOf(1) }
 
     Scaffold(topBar = {
         TopAppBar(title = { Text(if (playable.isNotEmpty()) playable[pagerState.currentPage].card.name else "Mode partie", style = MaterialTheme.typography.titleMedium) },
-            navigationIcon = { TextButton(onClick = onBack) { Text("<") } }, colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF0A0E15)))
+            navigationIcon = { TextButton(onClick = onBack) { Text("<") } },
+            actions = {
+                Surface(onClick = { if (round > 1) round-- }, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(28.dp)) {
+                    Box(contentAlignment = Alignment.Center) { Text("-", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) }
+                }
+                Text(" R$round ", color = Color(0xFFFFC857), fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                Surface(onClick = { round++ }, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(28.dp)) {
+                    Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) }
+                }
+            },
+            colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF0A0E15)))
     }) { pad ->
         if (playable.isEmpty()) { Box(Modifier.fillMaxSize().padding(pad), contentAlignment = Alignment.Center) { Text("Ajoutez des unites pour utiliser le mode partie", color = Color.Gray) }; return@Scaffold }
         Box(Modifier.fillMaxSize().padding(pad)) {
@@ -83,6 +94,7 @@ private fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntrie
     var wounds by remember(unit.instanceId) { mutableIntStateOf(0) }
     var tokens by remember(unit.instanceId) { mutableStateOf(listOf<String>()) }
     var activeCrits by remember(unit.instanceId) { mutableStateOf(listOf<CritCard>()) }
+    var usedUpgrades by remember(unit.instanceId) { mutableStateOf(setOf<String>()) }
     val maxHp = 12
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         CardBlock(unit, children, totalPts)
@@ -96,7 +108,7 @@ private fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntrie
         }
         EffectsPanel(
             effects = buildList {
-                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.name, c.card.rulesText ?: "Amelioration", c.instanceId)) }
+                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.name, c.card.rulesText ?: "Amelioration installee", c.instanceId).copy(used = usedUpgrades.contains(c.instanceId))) }
                 activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, c.name)) }
             },
             critSelector = { expanded, onDismiss, onSelect ->
@@ -119,6 +131,7 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
     var sP by remember(unit.instanceId) { mutableIntStateOf(0) }; var sS by remember(unit.instanceId) { mutableIntStateOf(0) }
     var tokens by remember(unit.instanceId) { mutableStateOf(listOf<String>()) }
     var activeCrits by remember(unit.instanceId) { mutableStateOf(listOf<CritCard>()) }
+    var usedUpgrades by remember(unit.instanceId) { mutableStateOf(setOf<String>()) }
     val defTokenNames = remember { ArmadaDefenseToken.entries.take(4) }
     var defTokens by remember(unit.instanceId) { mutableStateOf(defTokenNames.associate { it.name to false }) }
     val commander = allEntries.firstOrNull { it.card.kind == CardKind.COMMANDER || (it.card.kind == CardKind.ARMADA_UPGRADE && ArmadaSlot.COMMANDER in it.card.upgradeSlots) }
@@ -134,13 +147,29 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                 }
                 if (!unit.card.rulesText.isNullOrBlank()) Text(unit.card.rulesText, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall, maxLines = 6)
                 if (commander != null) {
+                    val used = usedUpgrades.contains("cmd")
                     HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 2.dp))
-                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) { Row(modifier = Modifier.weight(1f)) { Text("\uD83C\uDFC6 ", color = Color(0xFFFFC857)); Text(commander.card.name, color = Color(0xFFFFC857), style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold) }; Text("${commander.card.points} pts", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium) }
+                    Row(Modifier.fillMaxWidth().clickable { usedUpgrades = if (used) usedUpgrades - "cmd" else usedUpgrades + "cmd" }, horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                        Row(modifier = Modifier.weight(1f)) {
+                            Text(if (used) "\u25CB " else "\u25C9 ", color = if (used) Color(0xFF5A6A7A) else Color(0xFFFFC857))
+                            Text(commander.card.name, color = if (used) Color(0xFF5A6A7A) else Color(0xFFFFC857), style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
+                        }
+                        Text("${commander.card.points} pts", color = if (used) Color(0xFF5A6A7A) else Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium)
+                    }
                 }
                 if (children.isNotEmpty()) {
                     HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 4.dp))
-                    Text("Ameliorations", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold)
-                    children.forEach { c -> Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) { Row(modifier = Modifier.weight(1f)) { Text("+ ", color = Color(0xFF77D9A7), fontWeight = FontWeight.Bold); Text(c.card.name, color = Color.White, style = MaterialTheme.typography.bodyMedium) }; Text("${c.card.points} pts", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelSmall) } }
+                    Text("Ameliorations  (cliquez pour activer/désactiver)", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold)
+                    children.forEach { c ->
+                        val used = usedUpgrades.contains(c.instanceId)
+                        Row(Modifier.fillMaxWidth().clickable { usedUpgrades = if (used) usedUpgrades - c.instanceId else usedUpgrades + c.instanceId }, horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                            Row(modifier = Modifier.weight(1f)) {
+                                Text(if (used) "\u25CB " else "\u25C9 ", color = if (used) Color(0xFF5A6A7A) else Color(0xFF77D9A7))
+                                Text(c.card.name, color = if (used) Color(0xFF5A6A7A) else Color.White, style = MaterialTheme.typography.bodyMedium)
+                            }
+                            Text("${c.card.points} pts", color = if (used) Color(0xFF5A6A7A) else Color(0xFFFFC857), style = MaterialTheme.typography.labelSmall)
+                        }
+                    }
                 }
                 HorizontalDivider(color = Color(0xFF2A3A4A))
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) { Text("Total $totalPts pts", color = Color(0xFFFFC857), fontWeight = FontWeight.Bold) }
@@ -186,8 +215,10 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
         // ── effects panel ──
         EffectsPanel(
             effects = buildList {
-                if (commander != null) add(ActiveEffect(EffectType.COMMANDER, commander.card.name, commander.card.rulesText ?: "Commandant de la flotte", "cmd_${commander.instanceId}"))
-                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.name, c.card.rulesText ?: "Amelioration installee", c.instanceId)) }
+                if (commander != null) add(ActiveEffect(EffectType.COMMANDER, commander.card.name, commander.card.rulesText ?: "Commandant de la flotte", "cmd_${commander.instanceId}")
+                    .copy(used = usedUpgrades.contains("cmd")))
+                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.name, c.card.rulesText ?: "Amelioration installee", c.instanceId)
+                    .copy(used = usedUpgrades.contains(c.instanceId))) }
                 activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, "crit_${c.name}")) }
             },
             critSelector = { expanded, onDismiss, onSelect ->
@@ -281,19 +312,22 @@ private fun EffectsPanel(
                 Surface(
                     onClick = { selectedEffect = if (selectedEffect == eff) null else eff },
                     shape = RoundedCornerShape(12.dp),
-                    color = when (eff.type) { EffectType.CRIT -> Color(0xFF3B2224) else -> Color(0xFF1E2A3A) },
+                    color = when { eff.used -> Color(0xFF1A1A2A); eff.type == EffectType.CRIT -> Color(0xFF3B2224); else -> Color(0xFF1E2A3A) },
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Column(Modifier.padding(12.dp)) {
                         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
-                                Box(Modifier.size(24.dp).clip(CircleShape).background(iconColor.copy(alpha = 0.2f)), contentAlignment = Alignment.Center) { Text(icon, fontSize = 13.sp, fontWeight = FontWeight.Bold, color = iconColor) }
+                                Box(Modifier.size(24.dp).clip(CircleShape).background(if (eff.used) Color(0xFF3A3A4A) else iconColor.copy(alpha = 0.2f)), contentAlignment = Alignment.Center) { Text(icon, fontSize = 13.sp, fontWeight = FontWeight.Bold, color = if (eff.used) Color(0xFF5A6A7A) else iconColor) }
                                 Spacer(Modifier.width(8.dp))
                                 Column {
-                                    Text(eff.label, color = Color.White, style = MaterialTheme.typography.bodyMedium, fontWeight = if (eff.type == EffectType.CRIT) FontWeight.Bold else FontWeight.Normal)
+                                    Row(verticalAlignment = Alignment.CenterVertically) {
+                                        Text(eff.label, color = if (eff.used) Color(0xFF5A6A7A) else Color.White, style = MaterialTheme.typography.bodyMedium, fontWeight = if (eff.type == EffectType.CRIT) FontWeight.Bold else FontWeight.Normal)
+                                        if (eff.used) { Spacer(Modifier.width(6.dp)); Surface(shape = RoundedCornerShape(4.dp), color = Color(0xFF3A3A4A)) { Text("ACTIVEE", Modifier.padding(horizontal = 5.dp, vertical = 2.dp), color = Color(0xFF5A6A7A), fontSize = 8.sp, fontWeight = FontWeight.Bold) } }
+                                    }
                                     Text(
                                         when (eff.type) { EffectType.COMMANDER -> "Commandant"; EffectType.UPGRADE -> "Amelioration"; EffectType.CRIT -> "Degat critique" },
-                                        color = iconColor.copy(alpha = 0.6f), fontSize = 10.sp
+                                        color = (if (eff.used) Color(0xFF5A6A7A) else iconColor).copy(alpha = 0.6f), fontSize = 10.sp
                                     )
                                 }
                             }
