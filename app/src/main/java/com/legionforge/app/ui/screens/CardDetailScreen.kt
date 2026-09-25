@@ -360,17 +360,11 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
             Column(Modifier.padding(16.dp)) {
                 Text("JETONS DE DEFENSE", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
                 Spacer(Modifier.height(10.dp))
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                     defTokenStates.forEachIndexed { i, (def, _) ->
                         val key = "${def.name}_$i"
                         val used = defTokens[key] ?: false
-                        Surface(onClick = { defTokens = defTokens + (key to !used) }, shape = RoundedCornerShape(14.dp), color = if (used) Color(0xFF5A2020) else Color(0xFF1A4A2A), modifier = Modifier.weight(1f)) {
-                            Column(Modifier.padding(vertical = 12.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                                Text(def.icon, fontSize = 20.sp)
-                                Text(def.label, color = if (used) Color(0xFFFF6B6B) else Color(0xFF77D9A7), fontSize = 10.sp, fontWeight = FontWeight.Bold)
-                                Text(if (used) "UTILISE" else "PRET", color = (if (used) Color(0xFFFF6B6B) else Color(0xFF77D9A7)).copy(alpha = 0.6f), fontSize = 8.sp, fontWeight = FontWeight.Bold)
-                            }
-                        }
+                        DefenseTokenDisc(def, used, onClick = { defTokens = defTokens + (key to !used) })
                     }
                 }
             }
@@ -591,6 +585,28 @@ private fun HealthBar(ratio: Float, current: Int, max: Int) {
     val barColor = when { ratio > 0.66f -> Color(0xFF77D9A7); ratio > 0.33f -> Color(0xFFFFC857); else -> Color(0xFFFF6B6B) }
     LinearProgressIndicator(progress = { ratio }, modifier = Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(4.dp)), color = barColor, trackColor = Color(0xFF2A3A4A))
     Box(Modifier.fillMaxWidth()) { Text("$current / $max", color = barColor, style = MaterialTheme.typography.labelSmall, modifier = Modifier.align(Alignment.CenterEnd)) }
+}
+
+@Composable
+private fun DefenseTokenDisc(def: ArmadaDefenseToken, used: Boolean, onClick: () -> Unit) {
+    val readyColor = Color(0xFF1A4A2A)
+    val usedColor = Color(0xFF5A2020)
+    val ringColor = if (used) Color(0xFFFF6B6B) else Color(0xFF77D9A7)
+    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Surface(
+            onClick = onClick,
+            shape = CircleShape,
+            color = if (used) usedColor else readyColor,
+            modifier = Modifier.size(52.dp),
+            border = androidx.compose.foundation.BorderStroke(3.dp, ringColor)
+        ) {
+            Box(contentAlignment = Alignment.Center) {
+                Text(def.icon, fontSize = 22.sp)
+            }
+        }
+        Text(def.label, color = ringColor, fontSize = 9.sp, fontWeight = FontWeight.Bold)
+        Text(if (used) "UTILISE" else "PRET", color = ringColor.copy(alpha = 0.7f), fontSize = 8.sp, fontWeight = FontWeight.Bold)
+    }
 }
 
 @Composable
