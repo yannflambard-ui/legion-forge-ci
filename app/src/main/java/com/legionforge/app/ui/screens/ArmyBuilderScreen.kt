@@ -3,6 +3,7 @@ package com.legionforge.app.ui.screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -20,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.legionforge.app.data.model.*
@@ -337,12 +339,13 @@ private fun FactionGroup(parent: ListEntry, children: List<ListEntry>, onRemove:
 private fun BuilderEntryCard(entry: ListEntry, isChild: Boolean = false, accentColor: Color = Color(0xFF9EACBC), isSelectable: Boolean = false, onRemove: () -> Unit, onSelectParent: () -> Unit = {}) {
     Card(Modifier
         .fillMaxWidth()
+        .swipeAction(onSwipeLeft = onRemove)
         .then(if (isSelectable) Modifier.clickable { onSelectParent() } else Modifier)
         .then(if (isChild) Modifier.padding(start = 28.dp) else Modifier),
         shape = RoundedCornerShape(if (isChild) 10.dp else 15.dp),
         colors = CardDefaults.cardColors(containerColor = if (isChild) Color(0xFF1E2A3A) else Color(0xFF18212D))) {
         Row(Modifier.fillMaxWidth().padding(10.dp), horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
-            CardArtwork(entry.card, Modifier.size(width = 64.dp, height = 88.dp))
+            CardArtwork(entry.card, Modifier.width(64.dp))
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
                 Text(entry.card.displayName(), color = Color.White, style = MaterialTheme.typography.titleSmall)
                 Text("${entry.card.points * entry.quantity} pts  •  ${entry.card.legionRank?.name?.replace('_', ' ') ?: kindLabel(entry.card.kind)}", color = accentColor, style = MaterialTheme.typography.labelSmall)
@@ -351,7 +354,7 @@ private fun BuilderEntryCard(entry: ListEntry, isChild: Boolean = false, accentC
                     if (entry.card.allowedUpgradeSlots.isNotEmpty()) Text("Slots : ${entry.card.allowedUpgradeSlots.joinToString { it.name.lowercase().replace('_', ' ') }}", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, maxLines = 2)
                 }
             }
-            TextButton(onClick = onRemove) { Text("RETIRER", color = Color(0xFFFF927F), style = MaterialTheme.typography.labelSmall) }
+            Text("←", color = Color(0xFF5A6A7A), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
         }
     }
 }
@@ -376,9 +379,11 @@ private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, preselec
     val validSelection = (!requiresTarget || addingTo != null) && (!isUpgrade || (selectedSlot != null && addingTo != null && selectedSlot in addingTo.card.allowedUpgradeSlots && (slotCounts[targetId to selectedSlot] ?: 0) < addingTo.card.allowedUpgradeSlots.count { it == selectedSlot }))
     val alreadyAdded = entries.any { it.card.id == card.id && (card.unique || card.kind == CardKind.COMMANDER) }
     val compatibleSlotFull = isUpgrade && eligibleSlots.isNotEmpty() && eligibleSlots.all { slot -> eligibleTargets.all { target -> (slotCounts[target.instanceId to slot] ?: 0) >= target.card.allowedUpgradeSlots.count { it == slot } } }
-    Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(15.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF18212D))) {
-        Row(Modifier.padding(10.dp), horizontalArrangement = Arrangement.spacedBy(11.dp), verticalAlignment = Alignment.CenterVertically) {
-            CardArtwork(card, Modifier.size(width = 58.dp, height = 80.dp).clickable { onPreview() })
+    Card(Modifier.fillMaxWidth().swipeAction(onSwipeRight = {
+            if ((!requiresTarget || eligibleTargets.isNotEmpty()) && !alreadyAdded && !compatibleSlotFull && validSelection) onAdd(if (requiresTarget) targetId else null, selectedSlot)
+        }), shape = RoundedCornerShape(15.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF18212D))) {
+            Row(Modifier.padding(10.dp), horizontalArrangement = Arrangement.spacedBy(11.dp), verticalAlignment = Alignment.CenterVertically) {
+                CardArtwork(card, Modifier.width(58.dp).clickable { onPreview() })
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
                 Text(card.displayName(), color = Color.White, style = MaterialTheme.typography.titleSmall)
                 Text("${card.points} pts • ${kindLabel(card.kind)}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelSmall)
@@ -405,7 +410,7 @@ private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, preselec
                     if (compatibleSlotFull) Text("Tous les slots compatibles sont occupés", color = Color(0xFFFF927F), style = MaterialTheme.typography.labelSmall)
                 }
             }
-            Button(enabled = (!requiresTarget || eligibleTargets.isNotEmpty()) && !alreadyAdded && !compatibleSlotFull && validSelection, onClick = { onAdd(if (requiresTarget) targetId else null, selectedSlot) }) { Text("+") }
+            Text("\u2192", color = Color(0xFF5A6A7A), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
         }
     }
 }
@@ -413,10 +418,36 @@ private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, preselec
 @Composable
 private fun CardArtwork(card: CardDefinition, modifier: Modifier = Modifier) {
     val source: Any? = card.imageAssetPath?.let { "file:///android_asset/$it" } ?: card.imageUrl
-    if (source != null) AsyncImage(model = source, contentDescription = "Visuel de ${card.displayName()}", modifier = modifier, contentScale = ContentScale.Crop)
-    else Card(modifier, shape = RoundedCornerShape(10.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF253344))) {
+    // Les cartes unité Legion sont des bandeaux horizontaux (paysage ~1.43) ; les autres
+    // (upgrades, vaisseaux, escadrons, commandants) sont en portrait (~0.7).
+    val ratio = if (card.kind == CardKind.LEGION_UNIT) 1.43f else 0.7f
+    val sized = modifier.aspectRatio(ratio)
+    if (source != null) AsyncImage(model = source, contentDescription = "Visuel de ${card.displayName()}", modifier = sized, contentScale = ContentScale.Crop)
+    else Card(sized, shape = RoundedCornerShape(10.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF253344))) {
         Box(Modifier.fillMaxSize().background(Brush.linearGradient(listOf(Color(0xFF253344), Color(0xFF111820)))), contentAlignment = Alignment.Center) {
-            Text(card.displayName().split(' ').take(2).joinToString("\n"), color = Color(0xFF8494A8), style = MaterialTheme.typography.labelSmall)
+            Text(card.displayName().split(' ').take(2).joinToString("
+"), color = Color(0xFF8494A8), style = MaterialTheme.typography.labelSmall)
         }
     }
+}
+
+/** Détecte un swipe horizontal : onSwipeRight (vers la droite) ou onSwipeLeft (vers la gauche).
+ *  Se déclenche quand le déplacement horizontal dépasse le seuil (en px). */
+private fun Modifier.swipeAction(
+    onSwipeRight: () -> Unit = {},
+    onSwipeLeft: () -> Unit = {},
+    thresholdPx: Float = 120f
+): Modifier = pointerInput(Unit) {
+    var totalX = 0f
+    detectHorizontalDragGestures(
+        onDragStart = { totalX = 0f },
+        onHorizontalDrag = { change, dragAmount ->
+            totalX += dragAmount
+            change.consume()
+        },
+        onDragEnd = {
+            if (totalX > thresholdPx) onSwipeRight()
+            else if (totalX < -thresholdPx) onSwipeLeft()
+        }
+    )
 }
