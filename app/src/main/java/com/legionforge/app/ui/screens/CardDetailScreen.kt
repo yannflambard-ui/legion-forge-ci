@@ -29,6 +29,14 @@ import com.legionforge.app.data.model.WikiSectionEntity
 import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 
+// Retrouve la section wiki correspondant à un mot-clé/titre (insensible à la casse).
+private fun findWikiSection(wikiSections: List<WikiSectionEntity>, keyword: String): WikiSectionEntity? {
+    val k = keyword.lowercase()
+    return wikiSections.firstOrNull { s ->
+        s.title.lowercase() == k || s.keywordList().any { it.lowercase() == k }
+    }
+}
+
 // ── common crit cards ───────────────────────────────────
 data class CritCard(val name: String, val effect: String)
 private val armadaCrits = listOf(
@@ -215,8 +223,13 @@ private fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                 if (stats?.keywords?.isNotEmpty() == true) {
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                         stats.keywords.forEach { kw ->
-                            Surface(shape = RoundedCornerShape(8.dp), color = Color(0xFF2A3A4A)) {
-                                Text(com.legionforge.app.data.i18n.I18n.keyword(kw), Modifier.padding(horizontal = 10.dp, vertical = 4.dp), color = Color(0xFF77D9A7), fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                            val section = findWikiSection(wikiSections, kw)
+                            Surface(
+                                onClick = { if (section != null) onRuleClick(section) },
+                                shape = RoundedCornerShape(8.dp),
+                                color = Color(0xFF2A3A4A)
+                            ) {
+                                Text(com.legionforge.app.data.i18n.I18n.keyword(kw), Modifier.padding(horizontal = 10.dp, vertical = 4.dp), color = if (section != null) Color(0xFFFFC857) else Color(0xFF77D9A7), fontSize = 11.sp, fontWeight = FontWeight.Bold)
                             }
                         }
                     }
@@ -445,7 +458,9 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
             onIncOrder = { name ->
                 if (orderTokens.values.sum() < maxOrderStock) orderTokens = orderTokens + (name to (orderTokens[name] ?: 0) + 1)
             },
-            onDecOrder = { name -> orderTokens = orderTokens + (name to ((orderTokens[name] ?: 0) - 1).coerceAtLeast(0)) }
+            onDecOrder = { name -> orderTokens = orderTokens + (name to ((orderTokens[name] ?: 0) - 1).coerceAtLeast(0)) },
+            wikiSections = wikiSections,
+            onRuleClick = onRuleClick
         )
         // ── shields & hull ──
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
@@ -524,8 +539,13 @@ private fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionEn
                     HorizontalDivider(color = Color(0xFF2A3A4A))
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                         stats.keywords.forEach { kw ->
-                            Surface(shape = RoundedCornerShape(8.dp), color = Color(0xFF2A3A4A)) {
-                                Text(kw, Modifier.padding(horizontal = 10.dp, vertical = 4.dp), color = Color(0xFF77D9A7), fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                            val section = findWikiSection(wikiSections, kw)
+                            Surface(
+                                onClick = { if (section != null) onRuleClick(section) },
+                                shape = RoundedCornerShape(8.dp),
+                                color = Color(0xFF2A3A4A)
+                            ) {
+                                Text(kw, Modifier.padding(horizontal = 10.dp, vertical = 4.dp), color = if (section != null) Color(0xFFFFC857) else Color(0xFF77D9A7), fontSize = 11.sp, fontWeight = FontWeight.Bold)
                             }
                         }
                     }
@@ -773,7 +793,9 @@ private fun CommandDialCard(
     orderTokens: Map<String, Int>,
     maxStock: Int,
     onIncOrder: (String) -> Unit,
-    onDecOrder: (String) -> Unit
+    onDecOrder: (String) -> Unit,
+    wikiSections: List<WikiSectionEntity> = emptyList(),
+    onRuleClick: (WikiSectionEntity) -> Unit = {}
 ) {
     Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -794,7 +816,13 @@ private fun CommandDialCard(
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 ArmadaCommandOrder.entries.forEach { order ->
                     val count = orderTokens[order.name] ?: 0
-                    OrderTokenDisc(order, count, onClick = { onIncOrder(order.name) }, onDec = { onDecOrder(order.name) })
+                    OrderTokenDisc(
+                        order = order,
+                        count = count,
+                        onWikiClick = { findWikiSection(wikiSections, order.label)?.let(onRuleClick) },
+                        onInc = { onIncOrder(order.name) },
+                        onDec = { onDecOrder(order.name) }
+                    )
                 }
             }
         }
@@ -826,10 +854,10 @@ private fun CommandDialButton(order: ArmadaCommandOrder, selected: Boolean, onCl
 }
 
 @Composable
-private fun OrderTokenDisc(order: ArmadaCommandOrder, count: Int, onClick: () -> Unit, onDec: () -> Unit) {
+private fun OrderTokenDisc(order: ArmadaCommandOrder, count: Int, onWikiClick: () -> Unit, onInc: () -> Unit, onDec: () -> Unit) {
     Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Surface(
-            onClick = onClick,
+            onClick = onWikiClick,
             shape = CircleShape,
             color = Color(0xFF192330),
             modifier = Modifier.size(52.dp),
@@ -848,7 +876,7 @@ private fun OrderTokenDisc(order: ArmadaCommandOrder, count: Int, onClick: () ->
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
             Surface(onClick = onDec, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(20.dp)) { Box(contentAlignment = Alignment.Center) { Text("-", color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.Bold) } }
             Text("$count", color = Color(0xFF77D9A7), fontSize = 14.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.width(20.dp))
-            Surface(onClick = onClick, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(20.dp)) { Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.Bold) } }
+            Surface(onClick = onInc, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(20.dp)) { Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.Bold) } }
         }
         Text(order.label, color = Color(0xFF9EACBC), fontSize = 8.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
     }
