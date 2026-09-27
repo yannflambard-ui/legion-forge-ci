@@ -22,7 +22,7 @@ def norm(s):
     return n
 
 def ship_stats(rt):
-    """Extract hull/shield/maxSpeed/defense-tokens from a BSData ship rulesText (JSON str)."""
+    """Extract hull/shield/maxSpeed/defense-tokens/attack/speedChart from a BSData ship rulesText (JSON str)."""
     try:
         d = json.loads(rt)
     except (TypeError, ValueError):
@@ -38,6 +38,14 @@ def ship_stats(rt):
                 max_speed = int(k)
     if hull is None:
         return None
+    # Dés d'attaque par arc : {front/right/left/rear: [bleu, rouge, noir]}
+    attack = d.get("attack") or {}
+    # Matrice de manoeuvres : {vitesse: nb de manoeuvres} (les cases "-" sont ignorées)
+    speed_chart = {}
+    for row in d.get("speed-chart-rows", []) or []:
+        for k, v in (row.get("values") or {}).items():
+            if k.isdigit() and str(v).isdigit():
+                speed_chart[k] = int(v)
     return {
         "hull": hull,
         "shield": {
@@ -48,6 +56,13 @@ def ship_stats(rt):
         },
         "maxSpeed": max_speed or 1,
         "defenseTokens": tokens,
+        "attack": {
+            "front": attack.get("front", [0, 0, 0]),
+            "right": attack.get("right", [0, 0, 0]),
+            "left": attack.get("left", [0, 0, 0]),
+            "rear": attack.get("rear", [0, 0, 0]),
+        },
+        "speedChart": speed_chart,
     }
 
 # BSData upgrade-bar label -> ArmadaSlot enum name (unknown -> OTHER).

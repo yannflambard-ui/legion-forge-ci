@@ -143,4 +143,5 @@
     <string name="surge_hit">Hit</string>
     <string name="surge_block">Block</string>
     <string name="surge_counter">Counter-attack</string>
+    <string name="maneuver_matrix">MANEUVER MATRIX</string>
 </resources>

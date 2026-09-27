@@ -342,7 +342,8 @@ private data class ArmadaStats(
     val antiSquadron: List<Int> = emptyList(), // [bleu, rouge, noir]
     val battery: List<Int> = emptyList(),      // [bleu, rouge, noir]
     val keywords: List<String> = emptyList(),
-    val defenseTokens: List<String> = emptyList()
+    val defenseTokens: List<String> = emptyList(),
+    val speedChart: Map<String, Int> = emptyMap() // {vitesse: nb de manoeuvres}
 )
 
 private object ArmadaStatsParser {
@@ -362,6 +363,13 @@ private object ArmadaStatsParser {
                         val a = attack?.optJSONArray(name) ?: return emptyList()
                         return buildList { for (i in 0 until a.length()) add(a.optInt(i)) }
                     }
+                    val sc = o.optJSONObject("speedChart")
+                    val speedChart = buildMap {
+                        if (sc != null) {
+                            val it = sc.keys()
+                            while (it.hasNext()) { val k = it.next(); put(k, sc.optInt(k)) }
+                        }
+                    }
                     ArmadaStats(
                         hull = o.optInt("hull"),
                         shieldFront = shield?.optInt("front", 0) ?: 0,
@@ -376,7 +384,8 @@ private object ArmadaStatsParser {
                         attackRear = arc("rear"),
                         attackPort = arc("left"),
                         attackStarboard = arc("right"),
-                        defenseTokens = tokens
+                        defenseTokens = tokens,
+                        speedChart = speedChart
                     )
                 }
                 CardKind.ARMADA_SQUADRON -> {
@@ -476,14 +485,30 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
             wikiSections = wikiSections,
             onRuleClick = onRuleClick
         )
-        // ── shields & hull ──
+        // ── cadrans (boucliers & coque) + dés d'attaque par côté + matrice de manoeuvres ──
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(stringResource(R.string.shields_hull), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                // Boucliers directionnels avec dés d'attaque du côté correspondant (cercles bleu/rouge/noir).
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    MiniShield(stringResource(R.string.shield_front), sF, { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- })
-                    Row(horizontalArrangement = Arrangement.spacedBy(24.dp)) { MiniShield(stringResource(R.string.shield_port), sP, { if (sP < maxShield) sP++ }, { if (sP > 0) sP-- }); MiniShield(stringResource(R.string.shield_starboard), sS, { if (sS < maxShield) sS++ }, { if (sS > 0) sS-- }) }
-                    MiniShield(stringResource(R.string.shield_rear), sR, { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- })
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        MiniShield(stringResource(R.string.shield_front), sF, { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- })
+                        AttackDiceRow(stats?.attackFront)
+                    }
+                    Row(horizontalArrangement = Arrangement.spacedBy(24.dp)) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            MiniShield(stringResource(R.string.shield_port), sP, { if (sP < maxShield) sP++ }, { if (sP > 0) sP-- })
+                            AttackDiceRow(stats?.attackPort)
+                        }
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            MiniShield(stringResource(R.string.shield_starboard), sS, { if (sS < maxShield) sS++ }, { if (sS > 0) sS-- })
+                            AttackDiceRow(stats?.attackStarboard)
+                        }
+                    }
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        MiniShield(stringResource(R.string.shield_rear), sR, { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- })
+                        AttackDiceRow(stats?.attackRear)
+                    }
                 }
                 HorizontalDivider(color = Color(0xFF2A3A4A))
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
@@ -492,6 +517,22 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                     BigCounter(stringResource(R.string.hull), hull, maxHp, Color(0xFFFF6B6B), { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- })
                 }
                 if (hull < maxHp) { HealthBar(hull.toFloat() / maxHp, hull, maxHp) }
+                // Matrice de manoeuvres : nb de manoeuvres par vitesse.
+                if (stats?.speedChart?.isNotEmpty() == true) {
+                    HorizontalDivider(color = Color(0xFF2A3A4A))
+                    Text(stringResource(R.string.maneuver_matrix), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                        (1..maxSpeed).forEach { v ->
+                            val n = stats.speedChart[v.toString()] ?: 0
+                            Surface(shape = RoundedCornerShape(8.dp), color = Color(0xFF1E2A3A), modifier = Modifier.weight(1f)) {
+                                Column(Modifier.padding(vertical = 6.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                                    Text("V$v", color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+                                    Text("$n", color = if (n > 0) Color(0xFF77D9A7) else Color(0xFF5A6A7A), fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
         // ── effects panel ──
@@ -774,7 +815,6 @@ private fun DefenseTokenDisc(def: ArmadaDefenseToken, used: Boolean, onClick: ()
 private fun ShipStatsBlock(stats: ArmadaStats) {
     Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-            StatChip("HULL", stats.hull, Color(0xFFFF6B6B), modifier = Modifier.weight(1f))
             StatChip("CMD", stats.command, Color(0xFFFFC857), modifier = Modifier.weight(1f))
             StatChip("SQN", stats.squadron, Color(0xFF4FC3F7), modifier = Modifier.weight(1f))
             StatChip("ENG", stats.engineering, Color(0xFF77D9A7), modifier = Modifier.weight(1f))
@@ -808,6 +848,17 @@ private fun AttackArc(label: String, dice: List<Int>, modifier: Modifier = Modif
 private fun DiceDot(count: Int, color: Color) {
     Box(Modifier.size(14.dp).clip(CircleShape).background(color), contentAlignment = Alignment.Center) {
         Text("$count", color = Color.White, fontSize = 8.sp, fontWeight = FontWeight.Bold)
+    }
+}
+
+// Rangée de dés d'attaque d'un arc : cercles bleu/rouge/noir (comme sur la carte officielle).
+@Composable
+private fun AttackDiceRow(dice: List<Int>?) {
+    if (dice.isNullOrEmpty() || dice.all { it <= 0 }) return
+    Row(horizontalArrangement = Arrangement.spacedBy(3.dp)) {
+        if (dice.getOrNull(0) ?: 0 > 0) DiceDot(dice[0], Color(0xFF4FC3F7))
+        if (dice.getOrNull(1) ?: 0 > 0) DiceDot(dice[1], Color(0xFFFF6B6B))
+        if (dice.getOrNull(2) ?: 0 > 0) DiceDot(dice[2], Color(0xFF3A3A4A))
     }
 }
 
