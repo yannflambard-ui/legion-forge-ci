@@ -260,12 +260,11 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
 @Composable
 private fun ImagePreviewDialog(card: CardDefinition, onClose: () -> Unit) {
     val source: Any? = card.imageAssetPath?.let { "file:///android_asset/$it" } ?: card.imageUrl
-    Dialog(onDismissRequest = onClose, properties = DialogProperties(usePlatformDefaultWidth = false)) {
-        Surface(
-            onClick = onClose,
-            modifier = Modifier.fillMaxSize().background(Color(0xE6000000)),
-            color = Color.Transparent
-        ) {
+    Dialog(onDismissRequest = {}, properties = DialogProperties(usePlatformDefaultWidth = false)) {
+            Surface(
+                modifier = Modifier.fillMaxSize().background(Color(0xE6000000)),
+                color = Color.Transparent
+            ) {
             Box(contentAlignment = Alignment.Center) {
                 Column(
                     Modifier.fillMaxWidth().padding(horizontal = 16.dp),
