@@ -974,8 +974,8 @@ private fun AttackDiceRow(dice: List<Int>?, vertical: Boolean = false) {
         if (vertical) {
             // 2 colonnes côte à côte (étroit).
             Row(horizontalArrangement = Arrangement.spacedBy(3.dp), verticalAlignment = Alignment.CenterVertically) {
-                Column(horizontalArrangement = Arrangement.spacedBy(3.dp)) { g1.forEach { DiceDiamond(it) } }
-                Column(horizontalArrangement = Arrangement.spacedBy(3.dp)) { g2.forEach { DiceDiamond(it) } }
+                Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(3.dp)) { g1.forEach { DiceDiamond(it) } }
+                Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(3.dp)) { g2.forEach { DiceDiamond(it) } }
             }
         } else {
             // 2 lignes empilées.
