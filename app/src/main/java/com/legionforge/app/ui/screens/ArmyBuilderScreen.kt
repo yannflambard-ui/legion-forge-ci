@@ -425,8 +425,7 @@ private fun CardArtwork(card: CardDefinition, modifier: Modifier = Modifier) {
     if (source != null) AsyncImage(model = source, contentDescription = "Visuel de ${card.displayName()}", modifier = sized, contentScale = ContentScale.Crop)
     else Card(sized, shape = RoundedCornerShape(10.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF253344))) {
         Box(Modifier.fillMaxSize().background(Brush.linearGradient(listOf(Color(0xFF253344), Color(0xFF111820)))), contentAlignment = Alignment.Center) {
-            Text(card.displayName().split(' ').take(2).joinToString("
-"), color = Color(0xFF8494A8), style = MaterialTheme.typography.labelSmall)
+            Text(card.displayName().split(' ').take(2).joinToString("\n"), color = Color(0xFF8494A8), style = MaterialTheme.typography.labelSmall)
         }
     }
 }
