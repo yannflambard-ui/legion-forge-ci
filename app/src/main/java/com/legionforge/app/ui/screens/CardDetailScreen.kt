@@ -71,6 +71,7 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
     // Wiki des règles : chargé pour rendre les mots-clés du texte de règles cliquables.
     val wikiSections by vm.wikiSections.collectAsState()
     var ruleSection by remember { mutableStateOf<WikiSectionEntity?>(null) }
+    val onRuleClick: (WikiSectionEntity) -> Unit = { ruleSection = it }
     LaunchedEffect(Unit) { vm.loadAllWiki() }
 
     Scaffold(topBar = {
