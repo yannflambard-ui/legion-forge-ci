@@ -98,17 +98,12 @@ fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, on
 @Composable
 private fun CompactGameTile(title: String, subtitle: String, system: GameSystem, modifier: Modifier = Modifier, onClick: () -> Unit) {
     Card(onClick = onClick, modifier = modifier, shape = RoundedCornerShape(16.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
-        Column(Modifier.fillMaxWidth().padding(10.dp), verticalArrangement = Arrangement.spacedBy(2.dp), horizontalAlignment = Alignment.Start) {
+        Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
             Image(
                 painter = painterResource(gameIconRes(system)),
                 contentDescription = "Icône $title",
-                modifier = Modifier.size(32.dp)
+                modifier = Modifier.size(72.dp)
             )
-            Spacer(Modifier.height(6.dp))
-            Text(title, color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium)
-            Text(subtitle, color = Color(0xFF8F9BAD), style = MaterialTheme.typography.labelSmall)
-            Spacer(Modifier.height(4.dp))
-            Text("NOUVELLE LISTE  →", color = Color(0xFFD7DEFF), style = MaterialTheme.typography.labelMedium)
         }
     }
 }
