@@ -54,7 +54,8 @@ enum class ArmadaDefenseToken(val label: String, val icon: String) {
     REDIRECT("Redirect", "\u21C4"),
     EVADE("Evade", "\u21BA"),
     SCATTER("Scatter", "\u2601"),
-    CONTAIN("Contain", "\u26D4")
+    CONTAIN("Contain", "\u26D4"),
+    SALVO("Salvo", "\u21BA")
 }
 
 // ── command orders (roue de commandement) for Armada ────
