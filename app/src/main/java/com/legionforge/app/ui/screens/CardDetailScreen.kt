@@ -559,7 +559,7 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                 if (hull < maxHp) { HealthBar(hull.toFloat() / maxHp, hull, maxHp) }
                 // Matrice de manoeuvres : triangulaire 4x4 (comme la carte officielle).
                 // X = vitesse (1..maxSpeed), Y = position (nb de clics sur l'outil de manoeuvre).
-                // Valeur : I = 1 clic, II = 2 clics, - = 0. Cases vides (haut-droite) = bordeaux.
+                // Position 1 EN BAS, position max EN HAUT (inversé). Valeur : I = 1, II = 2, - = 0. Cases vides = bordeaux.
                 if (stats?.speedChart?.isNotEmpty() == true) {
                     HorizontalDivider(color = Color(0xFF2A3A4A))
                     Text(stringResource(R.string.maneuver_matrix), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
@@ -567,26 +567,27 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                     Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                         // En-tête : vitesses (X).
                         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                            Spacer(Modifier.width(28.dp)) // coin vide (label position)
+                            Spacer(Modifier.width(30.dp)) // coin vide (label position)
                             (1..maxSpeed).forEach { v ->
                                 Box(Modifier.weight(1f), contentAlignment = Alignment.Center) {
-                                    Text("V$v", color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+                                    Text("V$v", color = Color(0xFFFFC857), fontSize = 10.sp, fontWeight = FontWeight.Bold)
                                 }
                             }
                         }
-                        // Lignes : positions (Y).
-                        stats.speedChart.forEachIndexed { posIdx, posMap ->
+                        // Lignes : positions (Y), inversées (max en haut, 1 en bas).
+                        stats.speedChart.reversed().forEachIndexed { revIdx, posMap ->
+                            val posLabel = maxPos - revIdx
                             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically) {
-                                Box(Modifier.width(28.dp), contentAlignment = Alignment.Center) {
-                                    Text("${posIdx + 1}", color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+                                Box(Modifier.width(30.dp), contentAlignment = Alignment.Center) {
+                                    Text("$posLabel", color = Color(0xFFFFC857), fontSize = 10.sp, fontWeight = FontWeight.Bold)
                                 }
                                 (1..maxSpeed).forEach { v ->
                                     val n = posMap[v.toString()] ?: -1 // -1 = case vide (hors triangle)
                                     val cellColor = if (n < 0) Color(0xFF800000) else Color.White
                                     val cellText = when { n < 0 -> ""; n == 0 -> "-"; n == 1 -> "I"; n == 2 -> "II"; else -> "III" }
-                                    Surface(shape = RoundedCornerShape(6.dp), color = cellColor, modifier = Modifier.weight(1f).height(30.dp)) {
+                                    Surface(shape = RoundedCornerShape(6.dp), color = cellColor, modifier = Modifier.weight(1f).height(32.dp)) {
                                         Box(contentAlignment = Alignment.Center) {
-                                            Text(cellText, color = if (n < 0) Color(0xFF800000) else Color(0xFF1B2B4B), fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                                            Text(cellText, color = if (n < 0) Color(0xFF800000) else Color(0xFF1B2B4B), fontSize = 14.sp, fontWeight = FontWeight.Bold)
                                         }
                                     }
                                 }
@@ -917,59 +918,70 @@ private fun StatChip(label: String, value: Int, color: Color, modifier: Modifier
     }
 }
 
-// ── dés d'attaque : un losange par COULEUR avec le nombre de dés dedans (comme la carte officielle) ──
-// Losange plein de couleur avec le nombre de dés de cette couleur au centre.
+// ── dés d'attaque : UN losange par dé (comme la carte officielle), sans chiffre ──
+// Losange plein de couleur, un par dé de cette couleur.
 @Composable
-private fun DiceDiamond(count: Int, color: Color, size: Dp = 20.dp) {
-    Box(Modifier.size(size), contentAlignment = Alignment.Center) {
-        Canvas(Modifier.fillMaxSize()) {
-            val w = this.size.width; val h = this.size.height
-            val path = Path().apply {
-                moveTo(w / 2f, 0f)          // pointe haut
-                lineTo(w, h / 2f)           // pointe droite
-                lineTo(w / 2f, h)           // pointe bas
-                lineTo(0f, h / 2f)          // pointe gauche
-                close()
-            }
-            drawPath(path, color = color)
+private fun DiceDiamond(color: Color, size: Dp = 14.dp) {
+    Canvas(Modifier.size(size)) {
+        val w = this.size.width; val h = this.size.height
+        val path = Path().apply {
+            moveTo(w / 2f, 0f)          // pointe haut
+            lineTo(w, h / 2f)           // pointe droite
+            lineTo(w / 2f, h)           // pointe bas
+            lineTo(0f, h / 2f)          // pointe gauche
+            close()
         }
-        Text("$count", color = Color.White, fontSize = 11.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
+        drawPath(path, color = color)
     }
 }
 
-// Rangée de dés d'attaque d'un arc : UN losange par couleur avec le nombre de dés.
-// Ordre ROUGE, BLEU, NOIR. Si plus de 2 dés, répartis sur 2 lignes en équilibrant chaque couleur.
+// Dés d'attaque d'un arc : UN losange par dé, ordre ROUGE, BLEU, NOIR.
+// vertical=false (AV/ARR) : rangée horizontale, 2 lignes si >2 dés.
+// vertical=true (BAB/TRIB) : 2 colonnes pour gagner de la largeur.
 @Composable
-private fun AttackDiceRow(dice: List<Int>?) {
+private fun AttackDiceRow(dice: List<Int>?, vertical: Boolean = false) {
     if (dice.isNullOrEmpty() || dice.all { it <= 0 }) return
     val blue = dice.getOrNull(0) ?: 0
     val red = dice.getOrNull(1) ?: 0
     val black = dice.getOrNull(2) ?: 0
     val total = blue + red + black
-    // Ordre d'affichage : rouge, bleu, noir.
-    data class Die(val color: Color, val count: Int)
-    val ordered = listOf(Die(Color(0xFFFF6B6B), red), Die(Color(0xFF4FC3F7), blue), Die(Color(0xFF3A3A4A), black)).filter { it.count > 0 }
-    if (total <= 2 || ordered.size <= 1) {
-        // Une seule ligne : un losange par couleur.
-        Row(horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically) {
-            ordered.forEach { DiceDiamond(it.count, it.color) }
+    // Ordre d'affichage : rouge, bleu, noir. Un losange par dé.
+    val colors = listOf(Color(0xFFFF6B6B), Color(0xFF4FC3F7), Color(0xFF3A3A4A))
+    val counts = listOf(red, blue, black)
+    // Construit la liste des losanges (un par dé) dans l'ordre rouge/bleu/noir.
+    val all = buildList { counts.forEachIndexed { i, c -> repeat(c) { add(colors[i]) } } }
+    if (total <= 2) {
+        // Une seule rangée.
+        if (vertical) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(3.dp)) {
+                all.forEach { DiceDiamond(it) }
+            }
+        } else {
+            Row(horizontalArrangement = Arrangement.spacedBy(3.dp), verticalAlignment = Alignment.CenterVertically) {
+                all.forEach { DiceDiamond(it) }
+            }
         }
     } else {
-        // 2 lignes : répartir les dés de chaque couleur en équilibrant (moitié sur chaque ligne).
-        Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(2.dp)) {
-            val line1 = mutableListOf<Die>()
-            val line2 = mutableListOf<Die>()
-            ordered.forEach { d ->
-                val half = d.count / 2
-                val rem = d.count - half
-                if (half > 0) line1.add(Die(d.color, half))
-                if (rem > 0) line2.add(Die(d.color, rem))
+        // Répartir en 2 groupes équilibrés (moitié/moitié).
+        val g1 = mutableListOf<Color>()
+        val g2 = mutableListOf<Color>()
+        counts.forEachIndexed { i, c ->
+            val half = c / 2
+            val rem = c - half
+            repeat(half) { g1.add(colors[i]) }
+            repeat(rem) { g2.add(colors[i]) }
+        }
+        if (vertical) {
+            // 2 colonnes côte à côte (étroit).
+            Row(horizontalArrangement = Arrangement.spacedBy(3.dp), verticalAlignment = Alignment.CenterVertically) {
+                Column(horizontalArrangement = Arrangement.spacedBy(3.dp)) { g1.forEach { DiceDiamond(it) } }
+                Column(horizontalArrangement = Arrangement.spacedBy(3.dp)) { g2.forEach { DiceDiamond(it) } }
             }
-            Row(horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically) {
-                line1.forEach { DiceDiamond(it.count, it.color) }
-            }
-            Row(horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically) {
-                line2.forEach { DiceDiamond(it.count, it.color) }
+        } else {
+            // 2 lignes empilées.
+            Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(3.dp)) {
+                Row(horizontalArrangement = Arrangement.spacedBy(3.dp), verticalAlignment = Alignment.CenterVertically) { g1.forEach { DiceDiamond(it) } }
+                Row(horizontalArrangement = Arrangement.spacedBy(3.dp), verticalAlignment = Alignment.CenterVertically) { g2.forEach { DiceDiamond(it) } }
             }
         }
     }
@@ -984,10 +996,11 @@ private enum class ArcPos { ABOVE, BELOW, LEFT, RIGHT }
 // onInc1/onDec1 = 1er cadran, onInc2/onDec2 = 2e.
 @Composable
 private fun ArcCadran(pos: ArcPos, label: String, diceList: List<List<Int>?>, values: List<Int>, onInc1: () -> Unit, onDec1: () -> Unit, onInc2: () -> Unit, onDec2: () -> Unit) {
+    val isFlank = pos == ArcPos.LEFT || pos == ArcPos.RIGHT
     val rects: @Composable () -> Unit = {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
-            DiceRect(diceList.getOrNull(0))
-            if (diceList.size > 1) DiceRect(diceList.getOrNull(1))
+            DiceRect(diceList.getOrNull(0), isFlank)
+            if (diceList.size > 1) DiceRect(diceList.getOrNull(1), isFlank)
         }
     }
     val shields: @Composable () -> Unit = {
@@ -1006,17 +1019,17 @@ private fun ArcCadran(pos: ArcPos, label: String, diceList: List<List<Int>?>, va
 
 // Rectangle blanc contenant les dés d'attaque en losanges de couleur (comme le cadran de la carte).
 @Composable
-private fun DiceRect(dice: List<Int>?) {
+private fun DiceRect(dice: List<Int>?, vertical: Boolean = false) {
     Surface(
-        shape = RoundedCornerShape(10.dp),
+        shape = RoundedCornerShape(8.dp),
         color = Color(0xFFE8EDF5),   // fond blanc cassé du rectangle sur la carte
-        modifier = Modifier.defaultMinSize(minWidth = 56.dp, minHeight = 40.dp)
+        modifier = Modifier.defaultMinSize(minWidth = if (vertical) 30.dp else 44.dp, minHeight = 30.dp)
     ) {
-        Box(Modifier.padding(horizontal = 10.dp, vertical = 8.dp), contentAlignment = Alignment.Center) {
+        Box(Modifier.padding(horizontal = 6.dp, vertical = 5.dp), contentAlignment = Alignment.Center) {
             if (dice.isNullOrEmpty() || dice.all { it <= 0 }) {
-                Text("—", color = Color(0xFF9AA7B8), fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                Text("—", color = Color(0xFF9AA7B8), fontSize = 11.sp, fontWeight = FontWeight.Bold)
             } else {
-                AttackDiceRow(dice)
+                AttackDiceRow(dice, vertical)
             }
         }
     }
