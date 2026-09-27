@@ -277,7 +277,7 @@ private fun ImagePreviewDialog(card: CardDefinition, onClose: () -> Unit) {
                             AsyncImage(
                                 model = source,
                                 contentDescription = "Image de ${card.displayName()}",
-                                modifier = Modifier.fillMaxWidth().aspectRatio(cardAspectRatio(card)),
+                                modifier = Modifier.fillMaxWidth().heightIn(max = 560.dp),
                                 contentScale = ContentScale.Fit
                             )
                         } else {
