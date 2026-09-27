@@ -61,10 +61,10 @@ fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, on
                         Text("Rechercher une carte, un mot-clé, une règle…", color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodyMedium)
                     }
                 }
-                Text("PRÉPAREZ LA BATAILLE", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge)
-                Text("Vos listes.\nVotre stratégie.", style = MaterialTheme.typography.headlineLarge, color = Color.White)
-                GameTile("LEGION", "Armées • règles V2 • 1 000 points", "01", GameSystem.LEGION_V2, onClick = { onNewList(GameSystem.LEGION_V2) })
-                GameTile("ARMADA", "Flottes • règles V1.5 • commandez la galaxie", "02", GameSystem.ARMADA_V15, onClick = { onNewList(GameSystem.ARMADA_V15) })
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    CompactGameTile("LEGION", "Armées • V2 • 1000 pts", GameSystem.LEGION_V2, onClick = { onNewList(GameSystem.LEGION_V2) })
+                    CompactGameTile("ARMADA", "Flottes • V1.5", GameSystem.ARMADA_V15, onClick = { onNewList(GameSystem.ARMADA_V15) })
+                }
             Text("LISTES RÉCENTES", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge)
             if (lists.isEmpty()) Text("Vos compositions sauvegardées apparaîtront ici, hors ligne.", color = Color.LightGray)
             if (loading) {
@@ -96,20 +96,19 @@ fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, on
 }
 
 @Composable
-private fun GameTile(title: String, subtitle: String, number: String, system: GameSystem, onClick: () -> Unit) {
-    Card(onClick = onClick, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
-        Row(Modifier.fillMaxWidth().padding(14.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+private fun CompactGameTile(title: String, subtitle: String, system: GameSystem, onClick: () -> Unit) {
+    Card(onClick = onClick, modifier = Modifier.weight(1f), shape = RoundedCornerShape(16.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
+        Column(Modifier.fillMaxWidth().padding(10.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
             Image(
                 painter = painterResource(gameIconRes(system)),
                 contentDescription = "Icône $title",
-                modifier = Modifier.size(48.dp)
+                modifier = Modifier.size(32.dp)
             )
-            Column(Modifier.weight(1f).padding(horizontal = 12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                Text(title, color = Color(0xFFFFC857), style = MaterialTheme.typography.titleLarge)
-                Text(subtitle, color = Color(0xFFCFD6E2), style = MaterialTheme.typography.bodyMedium)
-                Button(onClick = onClick) { Text("NOUVELLE LISTE  →") }
-            }
-            Text(number, color = Color(0xFF46566A), style = MaterialTheme.typography.displaySmall)
+            Spacer(Modifier.height(6.dp))
+            Text(title, color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium)
+            Text(subtitle, color = Color(0xFF8F9BAD), style = MaterialTheme.typography.labelSmall)
+            Spacer(Modifier.height(4.dp))
+            Text("NOUVELLE LISTE  →", color = Color(0xFFD7DEFF), style = MaterialTheme.typography.labelMedium)
         }
     }
 }
