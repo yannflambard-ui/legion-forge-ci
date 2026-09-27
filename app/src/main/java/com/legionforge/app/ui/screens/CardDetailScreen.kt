@@ -414,6 +414,16 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                 }
                 if (stats != null) ShipStatsBlock(stats)
                 else if (!unit.card.rulesText.isNullOrBlank()) ClickableRulesText(unit.card.rulesText, wikiSections, onRuleClick, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall, maxLines = 6)
+                // Slots d'upgrade du vaisseau (icônes en bas de la carte) : pilotent les upgrades dispo dans le catalogue.
+                if (unit.card.allowedUpgradeSlots.isNotEmpty()) {
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                        unit.card.allowedUpgradeSlots.forEach { slot ->
+                            Surface(shape = RoundedCornerShape(8.dp), color = Color(0xFF1E2A3A)) {
+                                Text(slot.name.lowercase().replace('_', ' '), Modifier.padding(horizontal = 8.dp, vertical = 3.dp), color = Color(0xFF4FC3F7), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+                            }
+                        }
+                    }
+                }
                 if (commander != null) {
                     val used = usedUpgrades.contains("cmd")
                     HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 2.dp))
