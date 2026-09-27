@@ -11,12 +11,15 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.legionforge.app.data.model.*
@@ -37,6 +40,8 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
     var filterMaxPts by remember { mutableStateOf<Int?>(null) }
     var filterKeyword by remember { mutableStateOf<String?>(null) }
     var filtersMenuOpen by remember { mutableStateOf(false) }
+    // Aperçu image plein écran : clic sur une carte -> affiche l'image, clic sur l'image -> referme.
+    var previewCard by remember { mutableStateOf<CardDefinition?>(null) }
     // Renommage de la liste : titre cliquable + dialog avec champ texte.
     var renameOpen by remember { mutableStateOf(false) }
     var renameText by remember { mutableStateOf("") }
@@ -71,7 +76,7 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                     val rk = filterRank; val mp = filterMaxPts; val kw = filterKeyword
                     list.filter { rk == null || it.legionRank?.name == rk }
                         .filter { mp == null || it.points <= mp }
-                        .filter { kw == null || it.legionStats?.contains(kw, ignoreCase = true) == true }
+                        .filter { kw == null || it.name.contains(kw, ignoreCase = true) || (it.rulesText ?: "").contains(kw, ignoreCase = true) || (it.legionStats ?: "").contains(kw, ignoreCase = true) || (it.shipStats ?: "").contains(kw, ignoreCase = true) }
                 }
     // Bouton play global : actif (vert) uniquement si la liste est valide.
     val listValid = validation.violations.isEmpty() && entries.isNotEmpty()
@@ -200,7 +205,7 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                             HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 6.dp))
                             Text("POINTS MAX", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp))
                             Row(Modifier.padding(horizontal = 12.dp), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                                listOf(50, 100, 200).forEach { maxPts ->
+                                listOf(25, 50, 100).forEach { maxPts ->
                                     FilterChip(selected = filterMaxPts == maxPts, onClick = { filterMaxPts = if (filterMaxPts == maxPts) null else maxPts }, label = { Text("≤$maxPts", fontSize = 10.sp) })
                                 }
                             }
@@ -213,7 +218,7 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                     }
                 }
                 LazyColumn(Modifier.weight(1f), contentPadding = PaddingValues(horizontal = 14.dp, vertical = 4.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        items(additions, key = { it.id }) { card -> CatalogCard(card, entries, selectedParentId, onAdd = { parent, slot -> viewModel.add(card, parent, slot) }) }
+                        items(additions, key = { it.id }) { card -> CatalogCard(card, entries, selectedParentId, onAdd = { parent, slot -> viewModel.add(card, parent, slot) }, onPreview = { previewCard = card }) }
                                 }
             }
             Text("Hors ligne • catalogue sous réserve des mises à jour officielles", Modifier.align(Alignment.CenterHorizontally).padding(bottom = 6.dp), color = Color(0xFF718096), style = MaterialTheme.typography.labelSmall)
@@ -243,6 +248,47 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
             },
             containerColor = Color(0xFF192330)
         )
+    }
+    // Aperçu plein écran de l'image : clic sur une carte l'ouvre, clic sur l'image la referme.
+    previewCard?.let { card ->
+        ImagePreviewDialog(card = card, onClose = { previewCard = null })
+    }
+}
+
+@Composable
+private fun ImagePreviewDialog(card: CardDefinition, onClose: () -> Unit) {
+    val source: Any? = card.imageAssetPath?.let { "file:///android_asset/$it" } ?: card.imageUrl
+    Dialog(onDismissRequest = onClose, properties = DialogProperties(usePlatformDefaultWidth = false)) {
+        Surface(
+            onClick = onClose,
+            modifier = Modifier.fillMaxSize().background(Color(0xE6000000)),
+            color = Color.Transparent
+        ) {
+            Box(contentAlignment = Alignment.Center) {
+                Column(
+                    Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    Text(card.displayName(), color = Color.White, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, textAlign = androidx.compose.ui.text.style.TextAlign.Center)
+                    Surface(onClick = onClose, modifier = Modifier.clip(RoundedCornerShape(14.dp)), shape = RoundedCornerShape(14.dp), color = Color(0xFF18212D)) {
+                        if (source != null) {
+                            AsyncImage(
+                                model = source,
+                                contentDescription = "Image de ${card.displayName()}",
+                                modifier = Modifier.fillMaxWidth().aspectRatio(0.7f),
+                                contentScale = ContentScale.Fit
+                            )
+                        } else {
+                            Box(Modifier.fillMaxWidth().aspectRatio(0.7f).background(Brush.linearGradient(listOf(Color(0xFF253344), Color(0xFF111820)))), contentAlignment = Alignment.Center) {
+                                Text("Aucune image pour cette carte", color = Color(0xFF8494A8), style = MaterialTheme.typography.bodySmall)
+                            }
+                        }
+                    }
+                    Text("Cliquer sur l'image pour fermer", color = Color(0xFF718096), style = MaterialTheme.typography.labelSmall)
+                }
+            }
+        }
     }
 }
 
@@ -301,7 +347,7 @@ private fun BuilderEntryCard(entry: ListEntry, isChild: Boolean = false, accentC
 }
 
 @Composable
-private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, preselectedParentId: String? = null, onAdd: (String?, ArmadaSlot?) -> Unit) {
+private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, preselectedParentId: String? = null, onAdd: (String?, ArmadaSlot?) -> Unit, onPreview: () -> Unit) {
     val armadaShip = card.kind == CardKind.ARMADA_SHIP
     val isUpgrade = card.kind == CardKind.LEGION_UPGRADE || card.kind == CardKind.ARMADA_UPGRADE
     val isCommander = card.kind == CardKind.COMMANDER
@@ -322,7 +368,7 @@ private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, preselec
     val compatibleSlotFull = isUpgrade && eligibleSlots.isNotEmpty() && eligibleSlots.all { slot -> eligibleTargets.all { target -> (slotCounts[target.instanceId to slot] ?: 0) >= target.card.allowedUpgradeSlots.count { it == slot } } }
     Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(15.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF18212D))) {
         Row(Modifier.padding(10.dp), horizontalArrangement = Arrangement.spacedBy(11.dp), verticalAlignment = Alignment.CenterVertically) {
-            CardArtwork(card, Modifier.size(width = 58.dp, height = 80.dp))
+            CardArtwork(card, Modifier.size(width = 58.dp, height = 80.dp).clickable { onPreview() })
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
                 Text(card.displayName(), color = Color.White, style = MaterialTheme.typography.titleSmall)
                 Text("${card.points} pts • ${card.kind.name.replace('_', ' ')}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelSmall)
