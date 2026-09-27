@@ -94,7 +94,7 @@ enum class ArmadaCommandOrder(val label: String, val iconFile: String, val order
 
 // ── active effect model ─────────────────────────────────
 private enum class EffectType { COMMANDER, UPGRADE, CRIT, ABILITY }
-private data class ActiveEffect(val type: EffectType, val label: String, val desc: String, val id: String, val used: Boolean = false, val slot: ArmadaSlot? = null)
+private data class ActiveEffect(val type: EffectType, val label: String, val desc: String, val id: String, val used: Boolean = false, val slot: ArmadaSlot? = null, val pts: Int = 0)
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
@@ -279,7 +279,7 @@ private fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntrie
         }
         EffectsPanel(
             effects = buildList {
-                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), c.card.rulesText ?: stringResource(R.string.upgrade_installed), c.instanceId, slot = c.card.upgradeSlots.firstOrNull()).copy(used = usedUpgrades.contains(c.instanceId))) }
+                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), c.card.rulesText ?: stringResource(R.string.upgrade_installed), c.instanceId, slot = c.card.upgradeSlots.firstOrNull(), pts = c.card.points).copy(used = usedUpgrades.contains(c.instanceId))) }
                 activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, c.name)) }
             },
             critSelector = { expanded, onDismiss, onSelect ->
@@ -442,39 +442,6 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                         }
                     }
                 }
-                if (commander != null) {
-                    val used = usedUpgrades.contains("cmd")
-                    HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 2.dp))
-                    Row(Modifier.fillMaxWidth().clickable { usedUpgrades = if (used) usedUpgrades - "cmd" else usedUpgrades + "cmd" }, horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                        Row(modifier = Modifier.weight(1f)) {
-                            Text(if (used) "\u25CB " else "\u25C9 ", color = if (used) Color(0xFF5A6A7A) else Color(0xFFFFC857))
-                            Text(commander.card.displayName(), color = if (used) Color(0xFF5A6A7A) else Color(0xFFFFC857), style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
-                        }
-                        Text("${commander.card.points} pts", color = if (used) Color(0xFF5A6A7A) else Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium)
-                    }
-                }
-                if (children.isNotEmpty()) {
-                    HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 4.dp))
-                    Text(stringResource(R.string.upgrades_hint), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold)
-                    children.forEach { c ->
-                        // Le commandant est déjà affiché dans sa propre section : pas dans la liste des upgrades.
-                        if (c.card.kind == CardKind.COMMANDER) return@forEach
-                        val used = usedUpgrades.contains(c.instanceId)
-                        val (letter, badgeColor) = slotBadge(c.card.upgradeSlots.firstOrNull() ?: ArmadaSlot.OTHER)
-                        Row(Modifier.fillMaxWidth().clickable { usedUpgrades = if (used) usedUpgrades - c.instanceId else usedUpgrades + c.instanceId }, horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                            Row(modifier = Modifier.weight(1f), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                                Box(Modifier.size(20.dp).clip(CircleShape).background(badgeColor.copy(alpha = if (used) 0.25f else 0.8f)), contentAlignment = Alignment.Center) {
-                                    Text(letter, color = if (used) Color(0xFF5A6A7A) else badgeColor, fontSize = 9.sp, fontWeight = FontWeight.Bold)
-                                }
-                                Text(if (used) "\u25CB " else "\u25C9 ", color = if (used) Color(0xFF5A6A7A) else Color(0xFF77D9A7))
-                                Text(c.card.displayName(), color = if (used) Color(0xFF5A6A7A) else Color.White, style = MaterialTheme.typography.bodyMedium)
-                            }
-                            Text("${c.card.points} pts", color = if (used) Color(0xFF5A6A7A) else Color(0xFFFFC857), style = MaterialTheme.typography.labelSmall)
-                        }
-                    }
-                }
-                HorizontalDivider(color = Color(0xFF2A3A4A))
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) { Text(stringResource(R.string.total_pts, totalPts), color = Color(0xFFFFC857), fontWeight = FontWeight.Bold) }
             }
         }
         // ── defense tokens ──
@@ -525,12 +492,12 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
         // ── effects panel ──
         EffectsPanel(
             effects = buildList {
-                if (commander != null) add(ActiveEffect(EffectType.COMMANDER, commander.card.displayName(), commander.card.rulesText ?: stringResource(R.string.fleet_commander), "cmd_${commander.instanceId}")
+                if (commander != null) add(ActiveEffect(EffectType.COMMANDER, commander.card.displayName(), commander.card.rulesText ?: stringResource(R.string.fleet_commander), "cmd_${commander.instanceId}", pts = commander.card.points)
                     .copy(used = usedUpgrades.contains("cmd")))
                 children.forEach { c ->
                     // Le commandant est déjà affiché dans sa propre section (EffectType.COMMANDER) : pas dans la liste des upgrades.
                     if (c.card.kind == CardKind.COMMANDER || (c.card.kind == CardKind.ARMADA_UPGRADE && ArmadaSlot.COMMANDER in c.card.upgradeSlots)) return@forEach
-                    add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), c.card.rulesText ?: stringResource(R.string.upgrade_installed), c.instanceId, slot = c.card.upgradeSlots.firstOrNull())
+                    add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), c.card.rulesText ?: stringResource(R.string.upgrade_installed), c.instanceId, slot = c.card.upgradeSlots.firstOrNull(), pts = c.card.points)
                         .copy(used = usedUpgrades.contains(c.instanceId)))
                 }
                 activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, "crit_${c.name}")) }
@@ -731,7 +698,10 @@ private fun EffectsPanel(
                                     )
                                 }
                             }
-                            Text(if (selectedEffect == eff) "\u25B2" else "\u25BC", color = Color(0xFF9EACBC), fontSize = 12.sp)
+                            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                if (eff.pts > 0) Text("${eff.pts} pts", color = Color(0xFFFFC857), fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                                Text(if (selectedEffect == eff) "\u25B2" else "\u25BC", color = Color(0xFF9EACBC), fontSize = 12.sp)
+                            }
                         }
                         // Expanded description
                         if (selectedEffect == eff) {
@@ -939,20 +909,35 @@ private fun OrderTokenDisc(order: ArmadaCommandOrder, count: Int, onWikiClick: (
     }
 }
 
-// Jeton d'activation d'escadron : disque bleu (inactif) / rouge (actif), tap sur le disque = définition wiki.
+// Jeton d'activation d'escadron : disque plein bleu (INACTIF) / rouge (ACTIVE) comme le jeton du socle de chasseur.
+// Tap sur le disque = activer/désactiver. Petit "i" à côté = définition wiki.
 @Composable
 private fun SquadronActivationToken(activated: Boolean, onToggle: () -> Unit, onWikiClick: () -> Unit) {
     val color = if (activated) Color(0xFFFF6B6B) else Color(0xFF4FC3F7)
-    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
-        Surface(
-            onClick = onWikiClick,
-            shape = CircleShape,
-            color = Color(0xFF192330),
-            modifier = Modifier.size(52.dp),
-            border = androidx.compose.foundation.BorderStroke(3.dp, color)
-        ) {
-            Box(contentAlignment = Alignment.Center) {
-                Text(if (activated) "\u25CF" else "\u25CB", color = color, fontSize = 22.sp, fontWeight = FontWeight.Bold)
+    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            Surface(
+                onClick = onToggle,
+                shape = CircleShape,
+                color = color,
+                modifier = Modifier.size(56.dp),
+                border = androidx.compose.foundation.BorderStroke(4.dp, color.copy(alpha = 0.5f))
+            ) {
+                Box(contentAlignment = Alignment.Center) {
+                    // Silhouette de chasseur au centre du jeton (bande claire + aile).
+                    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                        Text("\u2708", color = if (activated) Color.White else Color(0xFF0A0E15), fontSize = 22.sp, fontWeight = FontWeight.Bold)
+                        Text(if (activated) "ON" else "OFF", color = if (activated) Color.White else Color(0xFF0A0E15), fontSize = 8.sp, fontWeight = FontWeight.Bold)
+                    }
+                }
+            }
+            Surface(
+                onClick = onWikiClick,
+                shape = CircleShape,
+                color = Color(0xFF2A3A4A),
+                modifier = Modifier.size(22.dp)
+            ) {
+                Box(contentAlignment = Alignment.Center) { Text("i", color = Color(0xFFFFC857), fontSize = 11.sp, fontWeight = FontWeight.Bold) }
             }
         }
         Text(if (activated) "ACTIVE" else "INACTIF", color = color, fontSize = 9.sp, fontWeight = FontWeight.Bold)

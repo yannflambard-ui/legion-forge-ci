@@ -68,7 +68,6 @@ class ArmadaV15Validator : RuleValidator {
         val violations = mutableListOf<RuleViolation>()
         val total = list.entries.sumOf { it.card.points * it.quantity }
         if (list.gameSystem != gameSystem) violations += violation("wrong_game", "La liste n'est pas une flotte Armada V1.5.")
-        if (total > list.pointsLimit) violations += violation("points_limit", "Total $total pts supérieur à la limite ${list.pointsLimit} pts.")
         val fleetEntries = list.entries.filter { it.card.gameSystem == gameSystem }
         val commanderEntries = fleetEntries.filter { it.card.kind == CardKind.COMMANDER || (it.card.kind == CardKind.ARMADA_UPGRADE && ArmadaSlot.COMMANDER in it.card.upgradeSlots) }
         val commanderCount = commanderEntries.sumOf { it.quantity }
