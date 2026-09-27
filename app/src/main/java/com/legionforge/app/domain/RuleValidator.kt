@@ -75,7 +75,6 @@ class ArmadaV15Validator : RuleValidator {
         if (commanderCount != 1) violations += violation("commander_count", "Une flotte doit contenir exactement un Commandant (actuellement $commanderCount).")
         val fleetFactionIds = fleetEntries.map { it.card.factionId }.filter { it != "neutral" && it != "mercenary" }.distinct()
         if (fleetFactionIds.size > 1) violations += violation("mixed_factions", "Une flotte ne peut pas mélanger les factions principales.")
-        if (fleetEntries.any { it.card.kind == CardKind.COMMANDER && it.parentInstanceId != null }) violations += violation("commander_parent", "Le Commandant est sélectionné pour la flotte, pas attaché à un vaisseau.")
         if (fleetEntries.filter { it.card.kind == CardKind.ARMADA_SHIP }.groupBy { it.card.name.substringBeforeLast(' ') }.any { (_, same) -> same.sumOf { it.quantity } > 1 }) violations += violation("ship_duplicate", "Une flotte ne peut sélectionner deux exemplaires d'un même type de vaisseau.")
         if (fleetEntries.filter { it.card.kind == CardKind.ARMADA_SQUADRON && it.card.unique }.groupBy { it.card.id }.any { (_, same) -> same.sumOf { it.quantity } > 1 }) violations += violation("squadron_unique", "Un escadron nommé ne peut être sélectionné qu'une fois.")
         val commanderUpgradeCount = commanderEntries.filter { it.card.kind == CardKind.ARMADA_UPGRADE }.sumOf { it.quantity }
