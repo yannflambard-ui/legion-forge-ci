@@ -301,6 +301,16 @@ private fun factionLabel(factionId: String?): String = when (factionId) {
     else -> factionId?.replace('-', ' ') ?: "Neutre"
 }
 
+/** Libellé court du type de carte affiché dans le catalogue (pas la valeur de filtre). */
+private fun kindLabel(kind: CardKind): String = when (kind) {
+    CardKind.LEGION_UNIT -> "Unité"
+    CardKind.LEGION_UPGRADE -> "Amélioration"
+    CardKind.ARMADA_SHIP -> "Vaisseau"
+    CardKind.ARMADA_SQUADRON -> "Escadron"
+    CardKind.ARMADA_UPGRADE -> "Amélioration"
+    CardKind.COMMANDER -> "Commandant"
+}
+
 @Composable
 private fun FactionCardColor(factionId: String?): Color = when (factionId) {
     "rebel" -> Color(0xFF4EC9E0)        // cyan
@@ -371,7 +381,7 @@ private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, preselec
             CardArtwork(card, Modifier.size(width = 58.dp, height = 80.dp).clickable { onPreview() })
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
                 Text(card.displayName(), color = Color.White, style = MaterialTheme.typography.titleSmall)
-                Text("${card.points} pts • ${card.kind.name.replace('_', ' ')}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelSmall)
+                Text("${card.points} pts • ${kindLabel(card.kind)}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelSmall)
                 Text("${factionLabel(card.factionId)} • ${if (card.unique) "Unique" else "Standard"}", maxLines = 1, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall)
                 if (requiresTarget && eligibleTargets.isNotEmpty()) {
                     var expandedTarget by remember { mutableStateOf(false) }
