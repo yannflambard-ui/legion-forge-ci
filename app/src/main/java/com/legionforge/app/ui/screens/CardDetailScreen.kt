@@ -93,7 +93,7 @@ enum class ArmadaCommandOrder(val label: String, val iconFile: String, val order
 
 // ── active effect model ─────────────────────────────────
 private enum class EffectType { COMMANDER, UPGRADE, CRIT, ABILITY }
-private data class ActiveEffect(val type: EffectType, val label: String, val desc: String, val id: String, val used: Boolean = false)
+private data class ActiveEffect(val type: EffectType, val label: String, val desc: String, val id: String, val used: Boolean = false, val slot: ArmadaSlot? = null)
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
@@ -278,7 +278,7 @@ private fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntrie
         }
         EffectsPanel(
             effects = buildList {
-                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), c.card.rulesText ?: stringResource(R.string.upgrade_installed), c.instanceId).copy(used = usedUpgrades.contains(c.instanceId))) }
+                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), c.card.rulesText ?: stringResource(R.string.upgrade_installed), c.instanceId, slot = c.card.upgradeSlots.firstOrNull()).copy(used = usedUpgrades.contains(c.instanceId))) }
                 activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, c.name)) }
             },
             critSelector = { expanded, onDismiss, onSelect ->
@@ -526,7 +526,7 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
             effects = buildList {
                 if (commander != null) add(ActiveEffect(EffectType.COMMANDER, commander.card.displayName(), commander.card.rulesText ?: stringResource(R.string.fleet_commander), "cmd_${commander.instanceId}")
                     .copy(used = usedUpgrades.contains("cmd")))
-                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), c.card.rulesText ?: stringResource(R.string.upgrade_installed), c.instanceId)
+                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), c.card.rulesText ?: stringResource(R.string.upgrade_installed), c.instanceId, slot = c.card.upgradeSlots.firstOrNull())
                     .copy(used = usedUpgrades.contains(c.instanceId))) }
                 activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, "crit_${c.name}")) }
             },
@@ -698,10 +698,10 @@ private fun EffectsPanel(
             Text(stringResource(R.string.no_effects), color = Color(0xFF5A6A7A), style = MaterialTheme.typography.bodySmall)
         } else {
             effects.forEach { eff ->
-                val (icon, iconColor) = when (eff.type) {
-                    EffectType.COMMANDER -> "C" to Color(0xFFFFC857)
-                    EffectType.UPGRADE -> "U" to Color(0xFF4FC3F7)
-                    EffectType.CRIT -> "\u26A1" to Color(0xFFFF6B6B)
+                val (icon, iconColor) = when {
+                    eff.type == EffectType.UPGRADE -> if (eff.slot != null) slotBadge(eff.slot) else ("U" to Color(0xFF4FC3F7))
+                    eff.type == EffectType.COMMANDER -> "C" to Color(0xFFFFC857)
+                    eff.type == EffectType.CRIT -> "\u26A1" to Color(0xFFFF6B6B)
                     else -> "?" to Color.Gray
                 }
                 Surface(
