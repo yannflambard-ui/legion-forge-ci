@@ -15,6 +15,7 @@ import com.legionforge.app.ui.screens.FactionPickerScreen
 import com.legionforge.app.ui.screens.HomeScreen
 import com.legionforge.app.ui.screens.SearchScreen
 import com.legionforge.app.ui.screens.SettingsScreen
+import com.legionforge.app.ui.screens.WikiScreen
 import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 
@@ -24,6 +25,7 @@ object Routes {
     const val FACTION_PICKER = "faction_picker/{system}"
     const val ARMY_BUILDER = "army_builder/{listId}"
     const val SETTINGS = "settings"
+    const val WIKI = "wiki"
     const val CARD_DETAIL = "card_detail/{listId}/{entryInstanceId}"
     fun factionPicker(system: GameSystem) = "faction_picker/${system.name}"
     fun armyBuilder(listId: String) = "army_builder/$listId"
@@ -41,6 +43,7 @@ fun LegionForgeNavHost(navController: NavHostController = rememberNavController(
                 onOpenList = { listId -> vm.openList(listId); navController.navigate(Routes.armyBuilder(listId)) },
                 onSettings = { navController.navigate(Routes.SETTINGS) },
                 onSearch = { navController.navigate(Routes.SEARCH) },
+                onWiki = { navController.navigate(Routes.WIKI) },
                 vm = vm
             )
         }
@@ -52,6 +55,12 @@ fun LegionForgeNavHost(navController: NavHostController = rememberNavController(
                     // sinon retombe sur la navigation existante.
                     navController.popBackStack()
                 },
+                vm = vm
+            )
+        }
+        composable(Routes.WIKI) {
+            WikiScreen(
+                onBack = { navController.popBackStack() },
                 vm = vm
             )
         }

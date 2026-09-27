@@ -23,6 +23,9 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.layout.ContentScale
 import coil.compose.AsyncImage
 import com.legionforge.app.data.model.*
+import com.legionforge.app.data.model.WikiSectionEntity
+import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 // ── common crit cards ───────────────────────────────────
 data class CritCard(val name: String, val effect: String)
@@ -58,13 +61,17 @@ private data class ActiveEffect(val type: EffectType, val label: String, val des
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: () -> Unit) {
+fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: () -> Unit, vm: ArmyBuilderViewModel = viewModel()) {
     val playable = entries.filter { e ->
         e.parentInstanceId == null && (e.card.kind == CardKind.LEGION_UNIT || e.card.kind == CardKind.ARMADA_SHIP || e.card.kind == CardKind.ARMADA_SQUADRON || e.card.kind == CardKind.COMMANDER)
     }
     val safeIndex = initialIndex.coerceIn(0, (playable.size - 1).coerceAtLeast(0))
     val pagerState = rememberPagerState(pageCount = { playable.size.coerceAtLeast(1) }, initialPage = safeIndex)
     var round by remember { mutableIntStateOf(1) }
+    // Wiki des règles : chargé pour rendre les mots-clés du texte de règles cliquables.
+    val wikiSections by vm.wikiSections.collectAsState()
+    var ruleSection by remember { mutableStateOf<WikiSectionEntity?>(null) }
+    LaunchedEffect(Unit) { vm.loadAllWiki() }
 
     Scaffold(topBar = {
         TopAppBar(title = { Text(if (playable.isNotEmpty()) playable[pagerState.currentPage].card.displayName() else "Mode partie", style = MaterialTheme.typography.titleMedium) },
@@ -85,11 +92,11 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
             HorizontalPager(state = pagerState, modifier = Modifier.fillMaxSize()) { page ->
                 val unit = playable[page]; val children = entries.filter { it.parentInstanceId == unit.instanceId }
                 when (unit.card.kind) {
-                    CardKind.ARMADA_SHIP -> ArmadaShipPage(unit, children, entries)
-                    CardKind.ARMADA_SQUADRON -> ArmadaSquadronPage(unit)
+                    CardKind.ARMADA_SHIP -> ArmadaShipPage(unit, children, entries, wikiSections, onRuleClick)
+                    CardKind.ARMADA_SQUADRON -> ArmadaSquadronPage(unit, wikiSections, onRuleClick)
                     // Degats critiques reserves aux vaisseaux capitaux (par Regle Armada). Un commandant est equipe sur un vaisseau, il n'a pas de page de degats propres.
-                    CardKind.COMMANDER -> CommanderPage(unit)
-                    else -> LegionUnitPage(unit, children, entries)
+                    CardKind.COMMANDER -> CommanderPage(unit, wikiSections, onRuleClick)
+                    else -> LegionUnitPage(unit, children, entries, wikiSections, onRuleClick)
                 }
             }
             if (playable.size > 1) {
@@ -98,6 +105,10 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
                 }
             }
         }
+    }
+    // Popup de règle : clic sur un mot-clé du texte de règles -> point de règle officiel.
+    ruleSection?.let { section ->
+        RulePopup(section = section, onClose = { ruleSection = null })
     }
 }
 
@@ -155,7 +166,7 @@ private object LegionStatsParser {
 }
 
 @Composable
-private fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntries: List<ListEntry>) {
+private fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntries: List<ListEntry>, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
     val totalPts = unit.card.points + children.sumOf { it.card.points * it.quantity }
     val stats = remember(unit.instanceId) { LegionStatsParser.parse(unit.card.legionStats) }
     // Points de vie réels de l'unité = santé par figurine × nombre de figurines.
@@ -168,7 +179,7 @@ private fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntrie
     val defColor = if ((stats?.defenseDie ?: "w") == "r") Color(0xFFFF6B6B) else Color.White
 
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        CardBlock(unit, children, totalPts)
+        CardBlock(unit, children, totalPts, wikiSections, onRuleClick)
         // ── stats réelles de la carte ──
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -287,7 +298,7 @@ private object ArmadaStatsParser {
 }
 
 @Composable
-private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntries: List<ListEntry>) {
+private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntries: List<ListEntry>, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
     val totalPts = unit.card.points + children.sumOf { it.card.points * it.quantity }
     val stats = remember(unit.instanceId) { ArmadaStatsParser.parse(unit.card.shipStats, CardKind.ARMADA_SHIP) }
     // Coque + boucliers initialisés aux valeurs de base de la carte ; speed démarre à 2.
@@ -325,7 +336,7 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                     Column(Modifier.weight(1f)) { Text(unit.card.displayName(), color = Color.White, style = MaterialTheme.typography.headlineSmall); Text("Vaisseau  •  ${unit.card.factionId.replace('-', ' ').replaceFirstChar { it.uppercase() }}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge) }
                     Text("${unit.card.points} pts", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleLarge)
                 }
-                if (!unit.card.rulesText.isNullOrBlank()) Text(unit.card.rulesText, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall, maxLines = 6)
+                if (!unit.card.rulesText.isNullOrBlank()) ClickableRulesText(unit.card.rulesText, wikiSections, onRuleClick, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall, maxLines = 6)
                 if (commander != null) {
                     val used = usedUpgrades.contains("cmd")
                     HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 2.dp))
@@ -413,10 +424,10 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
 }
 // ═══════════════════  COMMANDER (pas de degats critiques, equipe sur le flagship)  ═══════════════════
 @Composable
-private fun CommanderPage(unit: ListEntry) {
+private fun CommanderPage(unit: ListEntry, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
     var tokens by remember(unit.instanceId) { mutableStateOf(listOf<String>()) }
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        CardBlock(unit, emptyList(), unit.card.points)
+        CardBlock(unit, emptyList(), unit.card.points, wikiSections, onRuleClick)
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text("COMMANDEMENT DE LA FLOTTE", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
@@ -430,12 +441,12 @@ private fun CommanderPage(unit: ListEntry) {
 
 // ═══════════════════  SQUADRON  ═══════════════════════════
 @Composable
-private fun ArmadaSquadronPage(unit: ListEntry) {
+private fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
     val stats = remember(unit.instanceId) { ArmadaStatsParser.parse(unit.card.shipStats, CardKind.ARMADA_SQUADRON) }
     val maxHp = stats?.hull?.takeIf { it > 0 } ?: 8
     var hull by remember(unit.instanceId) { mutableIntStateOf(maxHp) }; var tokens by remember(unit.instanceId) { mutableStateOf(listOf<String>()) }
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        CardBlock(unit, emptyList(), unit.card.points)
+        CardBlock(unit, emptyList(), unit.card.points, wikiSections, onRuleClick)
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text("SUIVI ESCADRON", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
@@ -474,7 +485,7 @@ private fun CardPlayImage(card: CardDefinition) {
 
 
 @Composable
-private fun CardBlock(unit: ListEntry, children: List<ListEntry>, totalPts: Int) {
+private fun CardBlock(unit: ListEntry, children: List<ListEntry>, totalPts: Int, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
     Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.Top) {
@@ -485,7 +496,7 @@ private fun CardBlock(unit: ListEntry, children: List<ListEntry>, totalPts: Int)
                 }
                 Text("${unit.card.points} pts", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleLarge)
             }
-            if (!unit.card.rulesText.isNullOrBlank()) Text(unit.card.rulesText, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall, maxLines = 6)
+            if (!unit.card.rulesText.isNullOrBlank()) ClickableRulesText(unit.card.rulesText, wikiSections, onRuleClick, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall, maxLines = 6)
             if (children.isNotEmpty()) {
                 HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 4.dp))
                 children.forEach { c -> Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) { Row(modifier = Modifier.weight(1f)) { Text("+ ", color = Color(0xFF77D9A7), fontWeight = FontWeight.Bold); Text(c.card.displayName(), color = Color.White, style = MaterialTheme.typography.bodyMedium) }; Text("${c.card.points}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium) } }

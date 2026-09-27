@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.legionforge.app.data.model.*
 import com.legionforge.app.data.repository.BuilderRepository
+import com.legionforge.app.data.repository.WikiRepository
 import com.legionforge.app.domain.*
 import com.legionforge.app.util.CrashReporter
 import kotlinx.coroutines.Dispatchers
@@ -17,6 +18,7 @@ import java.util.UUID
 
 class ArmyBuilderViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = BuilderRepository(application)
+    private val wikiRepository = WikiRepository(application)
     private val _cards = MutableStateFlow<List<CardDefinition>>(emptyList())
     val cards: StateFlow<List<CardDefinition>> = _cards.asStateFlow()
     private val _allLists = MutableStateFlow<List<BuilderListEntity>>(emptyList())
@@ -37,6 +39,15 @@ class ArmyBuilderViewModel(application: Application) : AndroidViewModel(applicat
     val searching: StateFlow<Boolean> = _searching.asStateFlow()
     private var searchCollector: kotlinx.coroutines.Job? = null
 
+    // ── Wiki des règles officielles ──
+    private val _wikiSections = MutableStateFlow<List<WikiSectionEntity>>(emptyList())
+    val wikiSections: StateFlow<List<WikiSectionEntity>> = _wikiSections.asStateFlow()
+    private val _wikiSearchResults = MutableStateFlow<List<WikiSectionEntity>>(emptyList())
+    val wikiSearchResults: StateFlow<List<WikiSectionEntity>> = _wikiSearchResults.asStateFlow()
+    private val _wikiSearching = MutableStateFlow(false)
+    val wikiSearching: StateFlow<Boolean> = _wikiSearching.asStateFlow()
+    private var wikiSearchCollector: kotlinx.coroutines.Job? = null
+
     fun searchCards(query: String) {
         searchCollector?.cancel()
         val q = query.trim()
@@ -50,6 +61,32 @@ class ArmyBuilderViewModel(application: Application) : AndroidViewModel(applicat
             }
         }
     }
+
+    fun searchWiki(query: String) {
+        wikiSearchCollector?.cancel()
+        val q = query.trim()
+        if (q.isEmpty()) { _wikiSearchResults.value = emptyList(); _wikiSearching.value = false; return }
+        _wikiSearching.value = true
+        wikiSearchCollector = viewModelScope.launch {
+            wikiRepository.searchSections(q).collect { results ->
+                _wikiSearchResults.value = results
+                _wikiSearching.value = false
+            }
+        }
+    }
+
+    fun loadWiki(system: GameSystem) {
+        viewModelScope.launch {
+            wikiRepository.observeSections(system).collect { _wikiSections.value = it }
+        }
+    }
+
+    fun loadAllWiki() {
+        viewModelScope.launch {
+            wikiRepository.observeAllSections().collect { _wikiSections.value = it }
+        }
+    }
+
     private var entryCollector: kotlinx.coroutines.Job? = null
     private val saveMutex = kotlinx.coroutines.sync.Mutex()
     private var seedJob: kotlinx.coroutines.Job? = null
@@ -77,6 +114,14 @@ class ArmyBuilderViewModel(application: Application) : AndroidViewModel(applicat
                 // Diagnostic inconditionnel : rapporte toujours l'état réel de la DB après seed,
                 // que les données soient bonnes ou non. Indispensable pour comprendre un seed muet.
                 reportSeedState()
+            }
+        }
+        // Seed du wiki des règles (indépendant du catalogue, ne bloque pas le chargement).
+        viewModelScope.launch {
+            try {
+                wikiRepository.seedWiki(getApplication())
+            } catch (e: Exception) {
+                android.util.Log.e("VM", "Wiki seed crashed", e)
             }
         }
         viewModelScope.launch { repository.observeLists().collect { _allLists.value = it } }

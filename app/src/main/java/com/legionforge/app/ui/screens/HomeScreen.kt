@@ -40,7 +40,7 @@ import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
 
 @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, onSettings: () -> Unit, onSearch: () -> Unit, vm: ArmyBuilderViewModel = viewModel()) {
+fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, onSettings: () -> Unit, onSearch: () -> Unit, onWiki: () -> Unit, vm: ArmyBuilderViewModel = viewModel()) {
     val lists by vm.allLists.collectAsState()
     val loading by vm.loading.collectAsState()
     val catalogError by vm.catalogError.collectAsState()
@@ -64,6 +64,14 @@ fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, on
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     CompactGameTile("LEGION", "Armées • V2 • 1000 pts", GameSystem.LEGION_V2, Modifier.weight(1f), onClick = { onNewList(GameSystem.LEGION_V2) })
                     CompactGameTile("ARMADA", "Flottes • V1.5", GameSystem.ARMADA_V15, Modifier.weight(1f), onClick = { onNewList(GameSystem.ARMADA_V15) })
+                }
+                // Accès au wiki des règles officielles
+                Card(onClick = onWiki, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(14.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
+                    Row(Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) {
+                        Text("\uD83D\uDCD6", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium)
+                        Spacer(Modifier.width(10.dp))
+                        Text("Wiki des règles officielles (Armada & Legion)", color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodyMedium)
+                    }
                 }
             Text("LISTES RÉCENTES", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge)
             if (lists.isEmpty()) Text("Vos compositions sauvegardées apparaîtront ici, hors ligne.", color = Color.LightGray)

@@ -16,7 +16,9 @@ import com.legionforge.app.data.model.UpgradeSlot
 import com.legionforge.app.data.model.CatalogCardEntity
 import com.legionforge.app.data.model.BuilderListEntity
 import com.legionforge.app.data.model.BuilderEntryEntity
+import com.legionforge.app.data.model.WikiSectionEntity
 import com.legionforge.app.data.local.PolymorphicGameDao
+import com.legionforge.app.data.local.WikiDao
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
@@ -32,9 +34,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase
         OwnedUnit::class,
         CatalogCardEntity::class,
         BuilderListEntity::class,
-        BuilderEntryEntity::class
+        BuilderEntryEntity::class,
+        WikiSectionEntity::class
     ],
-    version = 8,
+    version = 9,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -42,6 +45,7 @@ abstract class LegionForgeDatabase : RoomDatabase() {
     abstract fun gameDataDao(): GameDataDao
     abstract fun armyListDao(): ArmyListDao
     abstract fun polymorphicGameDao(): PolymorphicGameDao
+    abstract fun wikiDao(): WikiDao
 
     companion object {
         @Volatile
@@ -53,7 +57,7 @@ abstract class LegionForgeDatabase : RoomDatabase() {
                     context.applicationContext,
                     LegionForgeDatabase::class.java,
                     "legionforge.db"
-                ).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8).fallbackToDestructiveMigration().build().also { INSTANCE = it }
+                ).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9).fallbackToDestructiveMigration().build().also { INSTANCE = it }
             }
         }
 
@@ -75,6 +79,12 @@ abstract class LegionForgeDatabase : RoomDatabase() {
         private val MIGRATION_7_8 = object : Migration(7, 8) {
             override fun migrate(db: SupportSQLiteDatabase) {
                 db.execSQL("ALTER TABLE catalog_cards ADD COLUMN legionStats TEXT DEFAULT NULL")
+            }
+        }
+        private val MIGRATION_8_9 = object : Migration(8, 9) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("CREATE TABLE IF NOT EXISTS wiki_sections (id TEXT NOT NULL PRIMARY KEY, gameSystem TEXT NOT NULL, title TEXT NOT NULL, keywords TEXT NOT NULL, content TEXT NOT NULL)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS index_wiki_sections_gameSystem ON wiki_sections(gameSystem)")
             }
         }
         private val MIGRATION_2_3 = object : Migration(2, 3) {
