@@ -668,12 +668,12 @@ private fun CommandDialCard(
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Text("ROUE DE COMMANDEMENT", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                CommandDialButton(ArmadaCommandOrder.NAVIGATE, selected == ArmadaCommandOrder.NAVIGATE) { onSelect(ArmadaCommandOrder.NAVIGATE) }
-                CommandDialButton(ArmadaCommandOrder.CONCENTRATE, selected == ArmadaCommandOrder.CONCENTRATE) { onSelect(ArmadaCommandOrder.CONCENTRATE) }
+                CommandDialButton(ArmadaCommandOrder.NAVIGATE, selected == ArmadaCommandOrder.NAVIGATE, modifier = Modifier.weight(1f)) { onSelect(ArmadaCommandOrder.NAVIGATE) }
+                CommandDialButton(ArmadaCommandOrder.CONCENTRATE, selected == ArmadaCommandOrder.CONCENTRATE, modifier = Modifier.weight(1f)) { onSelect(ArmadaCommandOrder.CONCENTRATE) }
             }
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                CommandDialButton(ArmadaCommandOrder.SQUADRON, selected == ArmadaCommandOrder.SQUADRON) { onSelect(ArmadaCommandOrder.SQUADRON) }
-                CommandDialButton(ArmadaCommandOrder.REPAIR, selected == ArmadaCommandOrder.REPAIR) { onSelect(ArmadaCommandOrder.REPAIR) }
+                CommandDialButton(ArmadaCommandOrder.SQUADRON, selected == ArmadaCommandOrder.SQUADRON, modifier = Modifier.weight(1f)) { onSelect(ArmadaCommandOrder.SQUADRON) }
+                CommandDialButton(ArmadaCommandOrder.REPAIR, selected == ArmadaCommandOrder.REPAIR, modifier = Modifier.weight(1f)) { onSelect(ArmadaCommandOrder.REPAIR) }
             }
             HorizontalDivider(color = Color(0xFF2A3A4A))
             Text("PIONS D'ORDRE", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
@@ -688,9 +688,9 @@ private fun CommandDialCard(
 }
 
 @Composable
-private fun CommandDialButton(order: ArmadaCommandOrder, selected: Boolean, onClick: () -> Unit) {
+private fun CommandDialButton(order: ArmadaCommandOrder, selected: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {
     val ringColor = if (selected) Color(0xFFFFC857) else Color(0xFF2A3A4A)
-    Column(Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
+    Column(modifier, horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Surface(
             onClick = onClick,
             shape = CircleShape,
