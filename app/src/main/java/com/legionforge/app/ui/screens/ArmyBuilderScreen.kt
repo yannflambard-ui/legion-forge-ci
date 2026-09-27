@@ -71,9 +71,12 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                         c.upgradeSlots.any { it in selectedParent.card.allowedUpgradeSlots } && upgradeFitsShip(c, selectedParent.card) &&
                         // Un vaisseau ne peut pas avoir 2 titles : masquer les autres titles s'il en a déjà un.
                         !(ArmadaSlot.TITLE in c.upgradeSlots && entries.any { it.parentInstanceId == selectedParent.instanceId && it.chosenSlot == ArmadaSlot.TITLE })
-                    // Commandant Armada : n'apparaît que quand on sélectionne un vaisseau capital.
+                    // Commandant Armada : n'apparaît que sur un vaisseau capital, et seulement
+                    // si la flotte n'a pas déjà de commandant (une fois choisi, les autres sont masqués).
                     game == GameSystem.ARMADA_V15 && c.kind == CardKind.COMMANDER ->
-                        selectedParent.card.kind == CardKind.ARMADA_SHIP && c.upgradeSlots.any { it in selectedParent.card.allowedUpgradeSlots }
+                        selectedParent.card.kind == CardKind.ARMADA_SHIP &&
+                            c.upgradeSlots.any { it in selectedParent.card.allowedUpgradeSlots } &&
+                            !entries.any { it.card.kind == CardKind.COMMANDER }
                     else -> false
                 }
             }
