@@ -79,8 +79,26 @@ def parse_keywords(s):
             out.append(kw)
     return out
 
+def parse_dice(s):
+    """Parse BSData dice string -> [blue, red, black]. Formats: '4 Blue', '1 Blue, 1 Black'."""
+    out = [0, 0, 0]
+    if not s:
+        return out
+    for part in str(s).split(","):
+        part = part.strip()
+        m = re.match(r"^(\d+)\s+(\w+)$", part)
+        if m:
+            n, color = int(m.group(1)), m.group(2).lower()
+            if "blue" in color:
+                out[0] += n
+            elif "red" in color:
+                out[1] += n
+            elif "black" in color:
+                out[2] += n
+    return out
+
 def squadron_stats(rt):
-    """Squadron BSData JSON has characteristics: Hull Value, Speed, Defense Tokens, Keywords."""
+    """Squadron BSData JSON has characteristics: Hull Value, Speed, Anti-Squadron, Battery, Defense Tokens, Keywords."""
     try:
         d = json.loads(rt)
     except (TypeError, ValueError):
@@ -93,6 +111,8 @@ def squadron_stats(rt):
     return {
         "hull": int(hv),
         "speed": int(sp) if sp and str(sp).isdigit() else 3,
+        "antiSquadron": parse_dice(ch.get("Anti-Squadron")),
+        "battery": parse_dice(ch.get("Battery")),
         "defenseTokens": parse_def_tokens(ch.get("Defense Tokens")),
         "keywords": parse_keywords(ch.get("Keywords")),
     }

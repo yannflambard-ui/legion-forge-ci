@@ -6446,7 +6446,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/aggressor-assault-fighter.webp",
    "rulesText": "Speed: 3\nHull Value: 5\nAnti-Squadron: 4 Blue\nBattery: 1 Black\nKeywords: Counter 1, Rogue",
-   "shipStats": "{\"hull\":5,\"speed\":3,\"defenseTokens\":[],\"keywords\":[\"Counter\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":3,\"antiSquadron\":[4,0,0],\"battery\":[0,0,1],\"defenseTokens\":[],\"keywords\":[\"Counter\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/black-squadron",
@@ -6463,7 +6463,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/black-squadron.webp",
    "rulesText": "Speed: 4\nHull Value: 3\nAnti-Squadron: 3 Blue\nBattery: 1 Blue\nKeywords: Counter 1, Escort",
-   "shipStats": "{\"hull\":3,\"speed\":4,\"defenseTokens\":[],\"keywords\":[\"Counter\",\"Escort\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":3,\"speed\":4,\"antiSquadron\":[3,0,0],\"battery\":[1,0,0],\"defenseTokens\":[],\"keywords\":[\"Counter\",\"Escort\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/boba-fett",
@@ -6480,7 +6480,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/boba-fett.webp",
    "rulesText": "Speed: 3\nHull Value: 6\nAnti-Squadron: 4 Blue\nBattery: 1 Blue, 1 Black\nKeywords: Bomber, Rogue\nDefense Tokens: 2 Brace\nSquadron Ability: When you activate, choose 1 enemy ship or squadron at distance 1. That ship or squadron suffers 1 damage.",
-   "shipStats": "{\"hull\":6,\"speed\":3,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":6,\"speed\":3,\"antiSquadron\":[4,0,0],\"battery\":[1,0,1],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/bossk",
@@ -6497,7 +6497,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/bossk.webp",
    "rulesText": "Speed: 3\nHull Value: 7\nAnti-Squadron: 4 Black\nBattery: 1 Blue, 1 Black\nKeywords: Grit, Rogue\nDefense Tokens: Brace\nSquadron Ability: While attacking, if you have 6 or fewer hull points remaining, you may add 1 blue die set to the Accuracy icon to your attack pool.",
-   "shipStats": "{\"hull\":7,\"speed\":3,\"defenseTokens\":[\"BRACE\"],\"keywords\":[\"Grit\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":7,\"speed\":3,\"antiSquadron\":[0,0,4],\"battery\":[1,0,1],\"defenseTokens\":[\"BRACE\"],\"keywords\":[\"Grit\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/captain-jonus",
@@ -6514,7 +6514,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/captain-jonus.webp",
    "rulesText": "Speed: 4\nHull Value: 5\nAnti-Squadron: 1 Black\nBattery: 1 Black\nKeywords: Bomber, Grit, Heavy\nDefense Tokens: 2 Brace\nSquadron Ability: While a friendly ship is attacking a ship at distance 1 of you, it may change 1 die to a face with an Accuracy icon.",
-   "shipStats": "{\"hull\":5,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Grit\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":4,\"antiSquadron\":[0,0,1],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Grit\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/ciena-ree",
@@ -6531,7 +6531,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/ciena-ree.webp",
    "rulesText": "Speed: 5\nHull Value: 3\nAnti-Squadron: 4 Blue\nBattery: 1 Blue\nKeywords: Counter 2, Swarm\nDefense Tokens: Brace, Scatter\nSquadron Ability: While you are defending, the attack is treated as obstructed.",
-   "shipStats": "{\"hull\":3,\"speed\":5,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Counter\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":3,\"speed\":5,\"antiSquadron\":[4,0,0],\"battery\":[1,0,0],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Counter\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/colonel-jendon",
@@ -6548,7 +6548,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/colonel-jendon.webp",
    "rulesText": "Speed: 3\nHull Value: 6\nAnti-Squadron: 2 Black\nBattery: 1 Blue\nKeywords: Heavy, Relay 2\nDefense Tokens: 2 Brace\nSquadron Ability: During your activation, instead of attacking, you may choose 1 friendly squadron at distance 1-2. That squadron may perform an attack (even if it has already activated).",
-   "shipStats": "{\"hull\":6,\"speed\":3,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Heavy\",\"Relay\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":6,\"speed\":3,\"antiSquadron\":[0,0,2],\"battery\":[1,0,0],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Heavy\",\"Relay\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/darth-vader",
@@ -6565,7 +6565,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/darth-vader.webp",
    "rulesText": "Speed: 5\nHull Value: 6\nAnti-Squadron: 1 Red, 1 Blue, 2 Black\nBattery: 2 Red\nKeywords: Adept 2, Bomber, Rogue\nDefense Tokens: Brace, Evade\nSquadron Ability: While attacking a unique squadron, each of your [Crit] icons adds 1 damage to the damage total.",
-   "shipStats": "{\"hull\":5,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Escort\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":4,\"antiSquadron\":[3,0,1],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Escort\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/dengar",
@@ -6582,7 +6582,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/dengar.webp",
    "rulesText": "Speed: 4\nHull Value: 4\nAnti-Squadron: 3 Blue\nBattery: 1 Black\nKeywords: Intel, Swarm\nDefense Tokens: Brace, Scatter\nSquadron Ability: While another friendly squadron is at distance 1-2, it has Counter 1 or increases its Counter value by 1.",
-   "shipStats": "{\"hull\":4,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Intel\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":4,\"antiSquadron\":[3,0,0],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Intel\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/firespray-31",
@@ -6599,7 +6599,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/firespray-31.webp",
    "rulesText": "Speed: 3\nHull Value: 6\nAnti-Squadron: 3 Blue\nBattery: 2 Blue\nKeywords: Bomber, Rogue",
-   "shipStats": "{\"hull\":6,\"speed\":3,\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":6,\"speed\":3,\"antiSquadron\":[3,0,0],\"battery\":[2,0,0],\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/gamma-squadron",
@@ -6616,7 +6616,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/gamma-squadron.webp",
    "rulesText": "Speed: 4\nHull Value: 5\nAnti-Squadron: 1 Black\nBattery: 1 Black\nKeywords: Bomber, Grit",
-   "shipStats": "{\"hull\":5,\"speed\":4,\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Grit\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":4,\"antiSquadron\":[0,0,1],\"battery\":[0,0,1],\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Grit\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/gar-saxon",
@@ -6633,7 +6633,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/gar-saxon.webp",
    "rulesText": "Speed: 4\nHull Value: 7\nAnti-Squadron: 2 Blue, 1 Red\nBattery: 1 Blue, 1 Black\nKeywords: Assault, Rogue\nDefense Tokens: Brace\nSquadron Ability: When an enemy squadron with Intel or Relay at distance 1 activates, it suffers 1 damage.",
-   "shipStats": "{\"hull\":7,\"speed\":4,\"defenseTokens\":[\"BRACE\"],\"keywords\":[\"Assault\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":7,\"speed\":4,\"antiSquadron\":[2,1,0],\"battery\":[1,0,1],\"defenseTokens\":[\"BRACE\"],\"keywords\":[\"Assault\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/hondo-ohnaka",
@@ -6650,7 +6650,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/hondo-ohnaka.webp",
    "rulesText": "Speed: 3\nHull Value: 6\nAnti-Squadron: 4 Blue\nBattery: 2 Blue\nKeywords: Bomber, Grit, Rogue\nDefense Tokens: 2 Brace\nSquadron Ability: During your activation, instead of attacking, you may toggle the activation slider of 1 squadron at distance 1 to the activated side. If it was already activated, you may place it anywhere at distance 1 of you.",
-   "shipStats": "{\"hull\":6,\"speed\":3,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Grit\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":6,\"speed\":3,\"antiSquadron\":[4,0,0],\"battery\":[2,0,0],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Grit\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/howlrunner",
@@ -6667,7 +6667,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/howlrunner.webp",
    "rulesText": "Speed: 4\nHull Value: 3\nAnti-Squadron: 3 Blue\nBattery: 1 Blue\nKeywords: Swarm\nDefense Tokens: Brace, Scatter\nSquadron Ability: While another friendly squadron with Swarm at distance 1 is attacking a squadron, it may add 1 blue die to its attack pool.",
-   "shipStats": "{\"hull\":3,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":3,\"speed\":4,\"antiSquadron\":[3,0,0],\"battery\":[1,0,0],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/ig-88",
@@ -6684,7 +6684,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/ig-88.webp",
    "rulesText": "Speed: 5\nHull Value: 5\nAnti-Squadron: 4 Blue\nBattery: 1 Black\nKeywords: Counter 2, Rogue\nDefense Tokens: Scatter\nSquadron Ability: You ignore the Escort and Counter keywords on enemy squadrons.",
-   "shipStats": "{\"hull\":5,\"speed\":5,\"defenseTokens\":[\"SCATTER\"],\"keywords\":[\"Counter\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":5,\"antiSquadron\":[4,0,0],\"battery\":[0,0,1],\"defenseTokens\":[\"SCATTER\"],\"keywords\":[\"Counter\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/ig-88b",
@@ -6701,7 +6701,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/ig-88b.webp",
    "rulesText": "Speed: 5\nHull Value: 5\nAnti-Squadron: 2 Blue, 2 Black\nBattery: 1 Black\nKeywords: Counter 1, Rogue\nDefense Tokens: Scatter\nSquadron Ability: At the start of the Squadron Phase, you may toggle your activation slider to the activated side.  If you do, you may perform an anti-squadron attack against each enemy squadron at distance 1.  Treat these attacks as obstructed.",
-   "shipStats": "{\"hull\":5,\"speed\":5,\"defenseTokens\":[\"SCATTER\"],\"keywords\":[\"Counter\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":5,\"antiSquadron\":[2,0,2],\"battery\":[0,0,1],\"defenseTokens\":[\"SCATTER\"],\"keywords\":[\"Counter\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/jumpmaster-5000",
@@ -6718,7 +6718,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/jumpmaster-5000.webp",
    "rulesText": "Speed: 4\nHull Value: 4\nAnti-Squadron: 2 Blue\nBattery: 1 Blue\nKeywords: Intel, Swarm",
-   "shipStats": "{\"hull\":4,\"speed\":4,\"defenseTokens\":[],\"keywords\":[\"Intel\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":4,\"antiSquadron\":[2,0,0],\"battery\":[1,0,0],\"defenseTokens\":[],\"keywords\":[\"Intel\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/lambda-class-shuttle",
@@ -6735,7 +6735,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/lambda-class-shuttle.webp",
    "rulesText": "Speed: 3\nHull Value: 6\nAnti-Squadron: 2 Black\nBattery: 1 Blue\nKeywords: Heavy, Relay 2, Strategic",
-   "shipStats": "{\"hull\":6,\"speed\":3,\"defenseTokens\":[],\"keywords\":[\"Heavy\",\"Relay\",\"Strategic\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":6,\"speed\":3,\"antiSquadron\":[0,0,2],\"battery\":[1,0,0],\"defenseTokens\":[],\"keywords\":[\"Heavy\",\"Relay\",\"Strategic\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/maarek-stele",
@@ -6752,7 +6752,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/maarek-stele.webp",
    "rulesText": "Speed: 5\nHull Value: 6\nAnti-Squadron: 2 Blue, 2 Black\nBattery: 2 Blue\nKeywords: Bomber, Grit\nDefense Tokens: 2 Brace\nSquadron Ability: When attacking, you may change 1 die to a face with a Critical icon.",
-   "shipStats": "{\"hull\":6,\"speed\":5,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Grit\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":6,\"speed\":5,\"antiSquadron\":[2,0,2],\"battery\":[2,0,0],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Grit\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/major-rhymer",
@@ -6769,7 +6769,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/major-rhymer.webp",
    "rulesText": "Speed: 4\nHull Value: 5\nAnti-Squadron: 1 Blue, 1 Black\nBattery: 1 Black\nKeywords: Bomber, Heavy\nDefense Tokens: 2 Brace\nSquadron Ability: Friendly squadrons at distance 1 can attack enemy ships at close range using all dice in their battery armament.",
-   "shipStats": "{\"hull\":5,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":4,\"antiSquadron\":[1,0,1],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/mandalorian-gauntlet-fighter",
@@ -6786,7 +6786,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/mandalorian-gauntlet-fighter.webp",
    "rulesText": "Speed: 4\nHull Value: 7\nAnti-Squadron: 2 Blue, 1 Red\nBattery: 2 Blue\nKeywords: Assault, Rogue",
-   "shipStats": "{\"hull\":7,\"speed\":4,\"defenseTokens\":[],\"keywords\":[\"Assault\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":7,\"speed\":4,\"antiSquadron\":[2,1,0],\"battery\":[2,0,0],\"defenseTokens\":[],\"keywords\":[\"Assault\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/mauler-mithel",
@@ -6803,7 +6803,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/mauler-mithel.webp",
    "rulesText": "Speed: 4\nHull Value: 3\nAnti-Squadron: 3 Blue\nBattery: 1 Blue\nKeywords: Swarm\nDefense Tokens: Brace, Scatter\nSquadron Ability: After you move, each squadron engaged with you suffers 1 damage.",
-   "shipStats": "{\"hull\":3,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":3,\"speed\":4,\"antiSquadron\":[3,0,0],\"battery\":[1,0,0],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/moralo-eval",
@@ -6820,7 +6820,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/moralo-eval.webp",
    "rulesText": "Speed: 3\nHull Value: 7\nAnti-Squadron: 2 Blue, 2 Black\nBattery: 2 Blue\nKeywords: Grit, Rogue\nDefense Tokens: Brace\nSquadron Ability: When an objective token at distance 1-2 and not on an obstacle is moved or removed from the play area, you may move up to distance 1 and attack as if you were activated.",
-   "shipStats": "{\"hull\":7,\"speed\":3,\"defenseTokens\":[\"BRACE\"],\"keywords\":[\"Grit\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":7,\"speed\":3,\"antiSquadron\":[2,0,2],\"battery\":[2,0,0],\"defenseTokens\":[\"BRACE\"],\"keywords\":[\"Grit\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/morna-kee",
@@ -6837,7 +6837,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/morna-kee.webp",
    "rulesText": "Speed: 3\nHull Value: 8\nAnti-Squadron: 3 Black\nBattery: 3 Blue\nKeywords: Counter 1, Rogue\nDefense Tokens: Brace\nSquadron Ability: While attacking, you may spend 1 defence token to reroll any number of dice in your attack pool. When you activate, you recover 1 of your discarded defence tokens.",
-   "shipStats": "{\"hull\":8,\"speed\":3,\"defenseTokens\":[\"BRACE\"],\"keywords\":[\"Counter\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":8,\"speed\":3,\"antiSquadron\":[0,0,3],\"battery\":[3,0,0],\"defenseTokens\":[\"BRACE\"],\"keywords\":[\"Counter\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/saber-squadron",
@@ -6854,7 +6854,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/saber-squadron.webp",
    "rulesText": "Speed: 5\nHull Value: 3\nAnti-Squadron: 4 Blue\nBattery: 1 Blue\nKeywords: Snipe 4, Swarm",
-   "shipStats": "{\"hull\":3,\"speed\":5,\"defenseTokens\":[],\"keywords\":[\"Snipe\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":3,\"speed\":5,\"antiSquadron\":[4,0,0],\"battery\":[1,0,0],\"defenseTokens\":[],\"keywords\":[\"Snipe\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/soontir-fel",
@@ -6871,7 +6871,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/soontir-fel.webp",
    "rulesText": "Speed: 5\nHull Value: 3\nAnti-Squadron: 4 Blue\nBattery: 1 Blue\nKeywords: Counter 2, Swarm\nDefense Tokens: Brace, Scatter\nSquadron Ability: After a squadron you are engaged with performs a non-Counter attack, it suffers 1 damage if it did not attack you.",
-   "shipStats": "{\"hull\":3,\"speed\":5,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Counter\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":3,\"speed\":5,\"antiSquadron\":[4,0,0],\"battery\":[1,0,0],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Counter\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/tel-trevura",
@@ -6888,7 +6888,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/tel-trevura.webp",
    "rulesText": "Speed: 4\nHull Value: 4\nAnti-Squadron: 3 Blue\nBattery: 1 Blue\nKeywords: Grit, Rogue\nDefense Tokens: Brace, Scatter\nSquadron Ability: While you have a readied defense token, you gain Escort.  After defending against an attack, if you discarded a defense token, you may recover up to 3 hull (even if you would be destroyed).",
-   "shipStats": "{\"hull\":4,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Grit\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":4,\"antiSquadron\":[3,0,0],\"battery\":[1,0,0],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Grit\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/tempest-squadron",
@@ -6905,7 +6905,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/tempest-squadron.webp",
    "rulesText": "Speed: 4\nHull Value: 5\nAnti-Squadron: 3 Blue\nBattery: 1 Black\nKeywords: Bomber, Escort",
-   "shipStats": "{\"hull\":5,\"speed\":4,\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Escort\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":4,\"antiSquadron\":[3,0,0],\"battery\":[0,0,1],\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Escort\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/tie-advanced-squadron",
@@ -6922,7 +6922,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/tie-advanced-squadron.webp",
    "rulesText": "Speed: 4\nHull Value: 5\nAnti-Squadron: 3 Blue\nBattery: 1 Black\nKeywords: Escort",
-   "shipStats": "{\"hull\":5,\"speed\":4,\"defenseTokens\":[],\"keywords\":[\"Escort\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":4,\"antiSquadron\":[3,0,0],\"battery\":[0,0,1],\"defenseTokens\":[],\"keywords\":[\"Escort\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/tie-bomber-squadron",
@@ -6939,7 +6939,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/tie-bomber-squadron.webp",
    "rulesText": "Speed: 4\nHull Value: 5\nAnti-Squadron: 1 Black\nBattery: 1 Black\nKeywords: Bomber, Heavy",
-   "shipStats": "{\"hull\":5,\"speed\":4,\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":4,\"antiSquadron\":[0,0,1],\"battery\":[0,0,1],\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/tie-defender-squadron",
@@ -6956,7 +6956,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/tie-defender-squadron.webp",
    "rulesText": "Speed: 5\nHull Value: 6\nAnti-Squadron: 2 Blue, 2 Black\nBattery: 1 Blue\nKeywords: Bomber",
-   "shipStats": "{\"hull\":6,\"speed\":5,\"defenseTokens\":[],\"keywords\":[\"Bomber\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":6,\"speed\":5,\"antiSquadron\":[2,0,2],\"battery\":[1,0,0],\"defenseTokens\":[],\"keywords\":[\"Bomber\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/tie-fighter-squadron",
@@ -6973,7 +6973,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/tie-fighter-squadron.webp",
    "rulesText": "Speed: 4\nHull Value: 3\nAnti-Squadron: 3 Blue\nBattery: 1 Blue\nKeywords: Swarm",
-   "shipStats": "{\"hull\":3,\"speed\":4,\"defenseTokens\":[],\"keywords\":[\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":3,\"speed\":4,\"antiSquadron\":[3,0,0],\"battery\":[1,0,0],\"defenseTokens\":[],\"keywords\":[\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/tie-interceptor-squadron",
@@ -6990,7 +6990,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/tie-interceptor-squadron.webp",
    "rulesText": "Speed: 5\nHull Value: 3\nAnti-Squadron: 4 Blue\nBattery: 1 Blue\nKeywords: Counter 2, Swarm",
-   "shipStats": "{\"hull\":3,\"speed\":5,\"defenseTokens\":[],\"keywords\":[\"Counter\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":3,\"speed\":5,\"antiSquadron\":[4,0,0],\"battery\":[1,0,0],\"defenseTokens\":[],\"keywords\":[\"Counter\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/tie-phantom-squadron",
@@ -7007,7 +7007,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/tie-phantom-squadron.webp",
    "rulesText": "Speed: 4\nHull Value: 4\nAnti-Squadron: 4 Blue\nBattery: 2 Red\nKeywords: Cloak",
-   "shipStats": "{\"hull\":4,\"speed\":4,\"defenseTokens\":[],\"keywords\":[\"Cloak\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":4,\"antiSquadron\":[4,0,0],\"battery\":[0,2,0],\"defenseTokens\":[],\"keywords\":[\"Cloak\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/valen-rudor",
@@ -7024,7 +7024,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/valen-rudor.webp",
    "rulesText": "Speed: 4\nHull Value: 3\nAnti-Squadron: 3 Black\nBattery: 1 Blue\nKeywords: Swarm\nDefense Tokens: Brace, Scatter\nSquadron Ability: While an enemy squadron is engaged with another squadron, it cannot attack you.",
-   "shipStats": "{\"hull\":3,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":3,\"speed\":4,\"antiSquadron\":[0,0,3],\"battery\":[1,0,0],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/vt-49-decimator",
@@ -7041,7 +7041,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/vt-49-decimator.webp",
    "rulesText": "Speed: 3\nHull Value: 8\nAnti-Squadron: 3 Black\nBattery: 3 Blue\nKeywords: Counter 1, Heavy, Rogue",
-   "shipStats": "{\"hull\":8,\"speed\":3,\"defenseTokens\":[],\"keywords\":[\"Counter\",\"Heavy\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":8,\"speed\":3,\"antiSquadron\":[0,0,3],\"battery\":[3,0,0],\"defenseTokens\":[],\"keywords\":[\"Counter\",\"Heavy\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/whisper",
@@ -7058,7 +7058,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/whisper.webp",
    "rulesText": "Speed: 4\nHull Value: 4\nAnti-Squadron: 4 Blue\nBattery: 2 Red\nKeywords: Cloak\nDefense Tokens: Brace, Scatter\nSquadron Ability: After defending against an attack, if you spent a defense token, you may move up to distance 1, even if you are engaged.",
-   "shipStats": "{\"hull\":4,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Cloak\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":4,\"antiSquadron\":[4,0,0],\"battery\":[0,2,0],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Cloak\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/yv-666",
@@ -7075,7 +7075,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/yv-666.webp",
    "rulesText": "Speed: 2\nHull Value: 7\nAnti-Squadron: 2 Blue, 2 Black\nBattery: 1 Blue\nKeywords: Grit, Heavy, Rogue",
-   "shipStats": "{\"hull\":7,\"speed\":2,\"defenseTokens\":[],\"keywords\":[\"Grit\",\"Heavy\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":7,\"speed\":2,\"antiSquadron\":[2,0,2],\"battery\":[1,0,0],\"defenseTokens\":[],\"keywords\":[\"Grit\",\"Heavy\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/galactic-empire/zertik-strom",
@@ -7092,7 +7092,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/empire/zertik-strom.webp",
    "rulesText": "Speed: 4\nHull Value: 5\nAnti-Squadron: 3 Red\nBattery: 1 Black\nKeywords: Escort\nDefense Tokens: 2 Brace\nSquadron Ability: While attacking, you may choose another friendly squadron at distance 1. If you do, that squadron suffers 1 damage and you may reroll any number of attack dice.",
-   "shipStats": "{\"hull\":5,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Escort\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":4,\"antiSquadron\":[0,3,0],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Escort\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/a-wing-squadron",
@@ -7109,7 +7109,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/a-wing-squadron.webp",
    "rulesText": "Speed: 5\nHull Value: 4\nAnti-Squadron: 3 Blue\nBattery: 1 Black\nKeywords: Counter 2",
-   "shipStats": "{\"hull\":4,\"speed\":5,\"defenseTokens\":[],\"keywords\":[\"Counter\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":5,\"antiSquadron\":[3,0,0],\"battery\":[0,0,1],\"defenseTokens\":[],\"keywords\":[\"Counter\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/b-wing-squadron",
@@ -7126,7 +7126,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/b-wing-squadron.webp",
    "rulesText": "Speed: 2\nHull Value: 5\nAnti-Squadron: 3 Blue\nBattery: 1 Blue, 1 Black\nKeywords: Bomber",
-   "shipStats": "{\"hull\":5,\"speed\":2,\"defenseTokens\":[],\"keywords\":[\"Bomber\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":2,\"antiSquadron\":[3,0,0],\"battery\":[1,0,1],\"defenseTokens\":[],\"keywords\":[\"Bomber\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/biggs-darklighter",
@@ -7143,7 +7143,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/biggs-darklighter.webp",
    "rulesText": "Speed: 3\nHull Value: 5\nAnti-Squadron: 4 Blue\nBattery: 1 Red\nKeywords: Bomber, Escort\nDefense Tokens: 2 Brace\nSquadron Ability: Before a friendly squadron with Escort at distance 1 suffers damage during an attack, you may reduce the total damage by 1. If you do, choose a friendly squadron with Escort at distance 1. That squadron suffers 1 damage.",
-   "shipStats": "{\"hull\":5,\"speed\":3,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Escort\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":3,\"antiSquadron\":[4,0,0],\"battery\":[0,1,0],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Escort\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/corran-horn",
@@ -7160,7 +7160,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/corran-horn.webp",
    "rulesText": "Speed: 4\nHull Value: 5\nAnti-Squadron: 4 Blue\nBattery: 1 Red\nKeywords: Bomber, Rogue, Snipe 4\nDefense Tokens: 2 Brace",
-   "shipStats": "{\"hull\":5,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Rogue\",\"Snipe\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":4,\"antiSquadron\":[4,0,0],\"battery\":[0,1,0],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Rogue\",\"Snipe\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/dagger-squadron",
@@ -7177,7 +7177,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/dagger-squadron.webp",
    "rulesText": "Speed: 2\nHull Value: 5\nAnti-Squadron: 2 Blue, 1 Black\nBattery: 1 Blue, 1 Black\nKeywords: Bomber, Swarm",
-   "shipStats": "{\"hull\":5,\"speed\":2,\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":2,\"antiSquadron\":[2,0,1],\"battery\":[1,0,1],\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/dash-rendar",
@@ -7194,7 +7194,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/dash-rendar.webp",
    "rulesText": "Speed: 4\nHull Value: 6\nAnti-Squadron: 4 Blue\nBattery: 1 Black\nKeywords: Bomber, Rogue\nDefense Tokens: 2 Brace\nSquadron Ability: While attacking, you may reroll 1 die for each enemy squadron or enemy ship at distance 1.",
-   "shipStats": "{\"hull\":6,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":6,\"speed\":4,\"antiSquadron\":[4,0,0],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/dutch-vander",
@@ -7211,7 +7211,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/dutch-vander.webp",
    "rulesText": "Speed: 3\nHull Value: 6\nAnti-Squadron: 3 Blue\nBattery: 1 Black\nKeywords: Bomber, Heavy\nDefense Tokens: 2 Brace\nSquadron Ability: When a squadron you attack suffers at least 1 damage, you may toggle its activation slider to the activated side. If it was already activated, it suffers 1 additional damage instead.",
-   "shipStats": "{\"hull\":6,\"speed\":3,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":6,\"speed\":3,\"antiSquadron\":[3,0,0],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/e-wing-squadron",
@@ -7228,7 +7228,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/e-wing-squadron.webp",
    "rulesText": "Speed: 4\nHull Value: 5\nAnti-Squadron: 4 Blue\nBattery: 1 Red\nKeywords: Bomber, Snipe 3",
-   "shipStats": "{\"hull\":5,\"speed\":4,\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Snipe\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":4,\"antiSquadron\":[4,0,0],\"battery\":[0,1,0],\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Snipe\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/gold-squadron",
@@ -7245,7 +7245,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/gold-squadron.webp",
    "rulesText": "Speed: 3\nHull Value: 6\nAnti-Squadron: 2 Blue\nBattery: 2 Blue\nKeywords: Bomber",
-   "shipStats": "{\"hull\":6,\"speed\":3,\"defenseTokens\":[],\"keywords\":[\"Bomber\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":6,\"speed\":3,\"antiSquadron\":[2,0,0],\"battery\":[2,0,0],\"defenseTokens\":[],\"keywords\":[\"Bomber\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/green-squadron",
@@ -7262,7 +7262,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/green-squadron.webp",
    "rulesText": "Speed: 5\nHull Value: 4\nAnti-Squadron: 3 Blue\nBattery: 1 Black\nKeywords: Bomber, Counter 1",
-   "shipStats": "{\"hull\":4,\"speed\":5,\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Counter\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":5,\"antiSquadron\":[3,0,0],\"battery\":[0,0,1],\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Counter\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/han-solo",
@@ -7279,7 +7279,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/han-solo.webp",
    "rulesText": "Speed: 3\nHull Value: 7\nAnti-Squadron: 2 Blue, 2 Black\nBattery: 1 Blue, 1 Black\nKeywords: Grit, Rogue\nDefense Tokens: 2 Brace\nSquadron Ability: At the start of the Ship Phase, you may activate as if you were activated by a Squadron command.",
-   "shipStats": "{\"hull\":7,\"speed\":3,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Grit\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":7,\"speed\":3,\"antiSquadron\":[2,0,2],\"battery\":[1,0,1],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Grit\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/hera-syndulla",
@@ -7296,7 +7296,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/hera-syndulla.webp",
    "rulesText": "Speed: 3\nHull Value: 5\nAnti-Squadron: 1 Red, 2 Blue, 1 Black\nBattery: 1 Black\nKeywords: Dodge 1, Bomber\nDefense Tokens: Brace, Brace\nSquadron Ability: While a friendly squadron that has escort is at distance 1-2, it has Adept 1.",
-   "shipStats": "{\"hull\":5,\"speed\":3,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Dodge\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":3,\"antiSquadron\":[2,1,1],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Dodge\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/hwk-290",
@@ -7313,7 +7313,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/hwk-290.webp",
    "rulesText": "Speed: 3\nHull Value: 4\nAnti-Squadron: 2 Blue\nBattery: 1 Blue\nKeywords: Counter 2, Intel",
-   "shipStats": "{\"hull\":4,\"speed\":3,\"defenseTokens\":[],\"keywords\":[\"Counter\",\"Intel\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":3,\"antiSquadron\":[2,0,0],\"battery\":[1,0,0],\"defenseTokens\":[],\"keywords\":[\"Counter\",\"Intel\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/jan-ors",
@@ -7330,7 +7330,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/jan-ors.webp",
    "rulesText": "Speed: 3\nHull Value: 4\nAnti-Squadron: 3 Blue\nBattery: 1 Black\nKeywords: Counter 2, Intel\nDefense Tokens: 2 Brace\nSquadron Ability: While a friendly squadron at distance 1-2 is defending, it can spend your defense tokens.",
-   "shipStats": "{\"hull\":4,\"speed\":3,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Counter\",\"Intel\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":3,\"antiSquadron\":[3,0,0],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Counter\",\"Intel\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/kanan-jarrus",
@@ -7347,7 +7347,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/kanan-jarrus.webp",
    "rulesText": "Speed: 3\nHull Value: 4\nAnti-Squadron: 1 Red, 2 Blue\nBattery: 2 Blue\nKeywords: Assault, Cloak, Rogue\nDefense Tokens: 2 Brace\nSquadron Ability: While attacking a ship, you may spend 1 die with a [Crit] icon. If you do, the defender gains 1 raid token of your choice.",
-   "shipStats": "{\"hull\":4,\"speed\":3,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Assault\",\"Cloak\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":3,\"antiSquadron\":[2,1,0],\"battery\":[2,0,0],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Assault\",\"Cloak\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/ketsu-onyo",
@@ -7364,7 +7364,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/ketsu-onyo.webp",
    "rulesText": "Speed: 4\nHull Value: 4\nAnti-Squadron: 3 Blue\nBattery: 2 Blue\nKeywords: Bomber, Grit, Rogue\nDefense Tokens: Brace, Scatter\nSquadron Ability: While an enemy squadron is at distance 1, its speed is reduced by 2 to a minimum of 1.",
-   "shipStats": "{\"hull\":4,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Bomber\",\"Grit\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":4,\"antiSquadron\":[3,0,0],\"battery\":[2,0,0],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Bomber\",\"Grit\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/keyan-farlander",
@@ -7381,7 +7381,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/keyan-farlander.webp",
    "rulesText": "Speed: 2\nHull Value: 5\nAnti-Squadron: 3 Blue\nBattery: 2 Black\nKeywords: Bomber\nDefense Tokens: 2 Brace\nSquadron Ability: While attacking a ship, if the defending hull zone has no shields, you may reroll any number of dice in your attack pool.",
-   "shipStats": "{\"hull\":5,\"speed\":2,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":2,\"antiSquadron\":[3,0,0],\"battery\":[0,0,2],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/lancer-class-pursuit-craft",
@@ -7398,7 +7398,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/lancer-class-pursuit-craft.webp",
    "rulesText": "Speed: 4\nHull Value: 4\nAnti-Squadron: 3 Blue\nBattery: 1 Black\nKeywords: Bomber, Grit, Rogue",
-   "shipStats": "{\"hull\":4,\"speed\":4,\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Grit\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":4,\"antiSquadron\":[3,0,0],\"battery\":[0,0,1],\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Grit\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/lando-calrissian",
@@ -7415,7 +7415,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/lando-calrissian-23.webp",
    "rulesText": "Speed: 3\nHull Value: 7\nAnti-Squadron: 1 Red, 2 Blue, 1 Black\nBattery: 1 Red, 1 Blue\nKeywords: Grit, Rogue\nDefense Tokens: 2 Brace\nSquadron Ability: While attacking, you may discard a defense token to set 1 die to any face. That die cannot be modified again.  While defending you may spend 1 of your defense tokens to force the attacker to reroll 1 or more dice of your choice.",
-   "shipStats": "{\"hull\":7,\"speed\":3,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Grit\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":7,\"speed\":3,\"antiSquadron\":[2,1,1],\"battery\":[1,1,0],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Grit\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/lieutenant-blount",
@@ -7432,7 +7432,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/lieutenant-blount.webp",
    "rulesText": "Speed: 3\nHull Value: 3\nAnti-Squadron: 3 Red\nBattery: 1 Red\nKeywords: Swarm\nDefense Tokens: 1 Brace, 1 Scatter\nSquadron Ability: While another friendly squadron with Swarm at distance 1 is attacking a squadron, it may reroll 1 die (in addition to any dice rerolled from Swarm).",
-   "shipStats": "{\"hull\":3,\"speed\":3,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":3,\"speed\":3,\"antiSquadron\":[0,3,0],\"battery\":[0,1,0],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/luke-skywalker",
@@ -7449,7 +7449,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/luke-skywalker.webp",
    "rulesText": "Speed: 3\nHull Value: 5\nAnti-Squadron: 4 Blue\nBattery: 1 Black\nKeywords: Bomber, Escort\nDefense Tokens: 2 Brace\nSquadron Ability: While attacking a ship, treat the defender as having no shields.",
-   "shipStats": "{\"hull\":5,\"speed\":3,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Escort\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":3,\"antiSquadron\":[4,0,0],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Escort\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/malee-hurra",
@@ -7466,7 +7466,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/malee-hurra.webp",
    "rulesText": "Speed: 3\nHull Value: 6\nAnti-Squadron: 1 Red, 1 Blue\nBattery: 2 Blue\nKeywords: Bomber, Grit\nDefense Tokens: 2 Brace\nSquadron Ability: Once per activation, while a friendly ship is attacking a ship at distance 1 of you and you are engaged by 1 or fewer squadrons, the attacker may spend 1 die to change 1 die to a face with a [Crit] icon.",
-   "shipStats": "{\"hull\":6,\"speed\":3,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Grit\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":6,\"speed\":3,\"antiSquadron\":[1,1,0],\"battery\":[2,0,0],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Grit\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/mart-mattin",
@@ -7483,7 +7483,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/mart-mattin.webp",
    "rulesText": "Speed: 4\nHull Value: 6\nAnti-Squadron: 4 Blue\nBattery: 1 Black\nKeywords: Grit, Rogue\nDefense Tokens: 2 Brace\nSquadron Ability: At the start of the Squadron Phase, you may toggle your activation slider to the activated side. If you do, you may place 1 proximity mine token at distance 1.",
-   "shipStats": "{\"hull\":6,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Grit\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":6,\"speed\":4,\"antiSquadron\":[4,0,0],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Grit\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/norra-wexley",
@@ -7500,7 +7500,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/norra-wexley.webp",
    "rulesText": "Speed: 3\nHull Value: 6\nAnti-Squadron: 3 Blue\nBattery: 1 Black\nKeywords: Bomber\nDefense Tokens: 2 Brace\nSquadron Ability: Friendly squadrons with Bomber at distance 1 gain \"[critical]: The defending hull zone loses 1 shield.\"",
-   "shipStats": "{\"hull\":6,\"speed\":3,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":6,\"speed\":3,\"antiSquadron\":[3,0,0],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/nym",
@@ -7517,7 +7517,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/nym.webp",
    "rulesText": "Speed: 3\nHull Value: 6\nAnti-Squadron: 2 Blue\nBattery: 1 Blue, 1 Black\nKeywords: Bomber, Grit\nDefense Tokens: 2 Brace\nSquadron Ability: Blue Critical: If the defender is a ship, you may choose and discard 1 of its defense tokens.",
-   "shipStats": "{\"hull\":6,\"speed\":3,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Grit\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":6,\"speed\":3,\"antiSquadron\":[2,0,0],\"battery\":[1,0,1],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Grit\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/rogue-squadron",
@@ -7534,7 +7534,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/rogue-squadron.webp",
    "rulesText": "Speed: 3\nHull Value: 5\nAnti-Squadron: 4 Blue\nBattery: 1 Red\nKeywords: Bomber, Rogue",
-   "shipStats": "{\"hull\":5,\"speed\":3,\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":3,\"antiSquadron\":[4,0,0],\"battery\":[0,1,0],\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/scurrg-h-6-bomber",
@@ -7551,7 +7551,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/scurrg-h-6-bomber.webp",
    "rulesText": "Speed: 3\nHull Value: 6\nAnti-Squadron: 2 Blue\nBattery: 1 Blue, 1 Black\nKeywords: Bomber, Grit, Heavy",
-   "shipStats": "{\"hull\":6,\"speed\":3,\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Grit\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":6,\"speed\":3,\"antiSquadron\":[2,0,0],\"battery\":[1,0,1],\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Grit\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/shara-bey",
@@ -7568,7 +7568,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/shara-bey.webp",
    "rulesText": "Speed: 5\nHull Value: 4\nAnti-Squadron: 3 Blue\nBattery: 1 Black\nKeywords: Counter 3\nDefense Tokens: Brace, Scatter\nSquadron Ability: While performing a Counter attack, each Critical icon adds 1 damage to the damage total.",
-   "shipStats": "{\"hull\":4,\"speed\":5,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Counter\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":5,\"antiSquadron\":[3,0,0],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Counter\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/ten-numb",
@@ -7585,7 +7585,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/ten-numb.webp",
    "rulesText": "Speed: 2\nHull Value: 5\nAnti-Squadron: 2 Blue, 1 Black\nBattery: 1 Blue, 1 Black\nKeywords: Bomber\nDefense Tokens: 2 Brace\nSquadron Ability: While attacking a squadron, you may spend 1 blue die with a Critical icon.  If you do, each other enemy squadron at distance 1 of the defender suffers 1 damage.",
-   "shipStats": "{\"hull\":5,\"speed\":2,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":2,\"antiSquadron\":[2,0,1],\"battery\":[1,0,1],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/tycho-celchu",
@@ -7602,7 +7602,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/tycho-celchu.webp",
    "rulesText": "Speed: 5\nHull Value: 4\nAnti-Squadron: 3 Blue\nBattery: 1 Black\nKeywords: Counter 2\nDefense Tokens: Brace, Scatter\nSquadron Ability: You are not prevented from moving or attacking ships while you are engaged.",
-   "shipStats": "{\"hull\":4,\"speed\":5,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Counter\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":5,\"antiSquadron\":[3,0,0],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Counter\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/vcx-100-freighter",
@@ -7619,7 +7619,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/vcx-100-freighter.webp",
    "rulesText": "Speed: 3\nHull Value: 8\nAnti-Squadron: 3 Blue\nBattery: 1 Blue\nKeywords: Heavy, Relay 1, Strategic",
-   "shipStats": "{\"hull\":8,\"speed\":3,\"defenseTokens\":[],\"keywords\":[\"Heavy\",\"Relay\",\"Strategic\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":8,\"speed\":3,\"antiSquadron\":[3,0,0],\"battery\":[1,0,0],\"defenseTokens\":[],\"keywords\":[\"Heavy\",\"Relay\",\"Strategic\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/wedge-antilles",
@@ -7636,7 +7636,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/wedge-antilles-19.webp",
    "rulesText": "Speed: 3\nHull Value: 5\nAnti-Squadron: 4 Blue\nBattery: 1 Black\nKeywords: Bomber, Escort\nDefense Tokens: 2 Brace\nSquadron Ability: While attacking an activated squadron, you may add 2 blue dice to your attack pool.",
-   "shipStats": "{\"hull\":5,\"speed\":3,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Escort\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":3,\"antiSquadron\":[4,0,0],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Escort\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/x-wing-squadron",
@@ -7653,7 +7653,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/x-wing-squadron.webp",
    "rulesText": "Speed: 3\nHull Value: 5\nAnti-Squadron: 4 Blue\nBattery: 1 Red\nKeywords: Bomber, Escort",
-   "shipStats": "{\"hull\":5,\"speed\":3,\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Escort\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":3,\"antiSquadron\":[4,0,0],\"battery\":[0,1,0],\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Escort\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/y-wing-squadron",
@@ -7670,7 +7670,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/y-wing-squadron.webp",
    "rulesText": "Speed: 3\nHull Value: 6\nAnti-Squadron: 2 Blue\nBattery: 1 Black\nKeywords: Bomber, Heavy",
-   "shipStats": "{\"hull\":6,\"speed\":3,\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":6,\"speed\":3,\"antiSquadron\":[2,0,0],\"battery\":[0,0,1],\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/yt-1300",
@@ -7687,7 +7687,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/yt-1300.webp",
    "rulesText": "Speed: 2\nHull Value: 7\nAnti-Squadron: 3 Blue\nBattery: 1 Blue\nKeywords: Counter 1, Escort",
-   "shipStats": "{\"hull\":7,\"speed\":2,\"defenseTokens\":[],\"keywords\":[\"Counter\",\"Escort\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":7,\"speed\":2,\"antiSquadron\":[3,0,0],\"battery\":[1,0,0],\"defenseTokens\":[],\"keywords\":[\"Counter\",\"Escort\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/yt-2400",
@@ -7704,7 +7704,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/yt-2400.webp",
    "rulesText": "Speed: 4\nHull Value: 6\nAnti-Squadron: 4 Blue\nBattery: 1 Black\nKeywords: Rogue",
-   "shipStats": "{\"hull\":6,\"speed\":4,\"defenseTokens\":[],\"keywords\":[\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":6,\"speed\":4,\"antiSquadron\":[4,0,0],\"battery\":[0,0,1],\"defenseTokens\":[],\"keywords\":[\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:squadron-card/rebel-alliance/z-95-headhunter-squadron",
@@ -7721,7 +7721,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/rebel/z-95-headhunter-squadron.webp",
    "rulesText": "Speed: 3\nHull Value: 3\nAnti-Squadron: 3 Red\nBattery: 1 Red\nKeywords: Swarm",
-   "shipStats": "{\"hull\":3,\"speed\":3,\"defenseTokens\":[],\"keywords\":[\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":3,\"speed\":3,\"antiSquadron\":[0,3,0],\"battery\":[0,1,0],\"defenseTokens\":[],\"keywords\":[\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada_v15:data/upgrade-card/commander/admiral_ackbar",
@@ -11908,7 +11908,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/delta-7-aethersprite-squadron.webp",
    "rulesText": "Speed: 4\nHull Value: 4\nAnti-Squadron: 3 Blue, 1 Black\nBattery: 1 Blue\nKeywords: Adept 1.  Counter 2.  Dodge 1.",
-   "shipStats": "{\"hull\":4,\"speed\":4,\"defenseTokens\":[],\"keywords\":[\"Adept\",\"Counter\",\"Dodge\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":4,\"antiSquadron\":[3,0,1],\"battery\":[1,0,0],\"defenseTokens\":[],\"keywords\":[\"Adept\",\"Counter\",\"Dodge\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:cd29-2920-0bdc-d7d1",
@@ -11925,7 +11925,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/ahsoka-tano.webp",
    "rulesText": "Speed: 4\nHull Value: 4\nAnti-Squadron: 3 Blue, 1 Black\nBattery: 1 Blue\nKeywords: Adept 1.  Counter 2.  Grit\nDefense Tokens: Brace, Scatter\nSquadron Ability: After you move, you may choose another friendly squadron at distance 1. That squadron performs an attack against enemy squadron at distance 1 with an anti-squadron armament of 2 blue dice.",
-   "shipStats": "{\"hull\":4,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Adept\",\"Counter\",\"Grit\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":4,\"antiSquadron\":[3,0,1],\"battery\":[1,0,0],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Adept\",\"Counter\",\"Grit\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:d3a2-4bbd-4b9a-529a",
@@ -11942,7 +11942,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/kit-fisto.webp",
    "rulesText": "Speed: 4\nHull Value: 4\nAnti-Squadron: 3 Blue, 1 Black\nBattery: 1 Blue\nKeywords: Adept 2.  Counter 2.  Intel.\nDefense Tokens: Brace, Brace\nSquadron Ability: When you spend a defense token, you may discard it. If you do, reduce the total damage by 3 instead of resolving that token's effect.",
-   "shipStats": "{\"hull\":4,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Adept\",\"Counter\",\"Intel\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":4,\"antiSquadron\":[3,0,1],\"battery\":[1,0,0],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Adept\",\"Counter\",\"Intel\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:b7b4-6ff8-5e4b-7274",
@@ -11959,7 +11959,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/luminara-unduli-23.webp",
    "rulesText": "Speed: 4\nHull Value: 4\nAnti-Squadron: 3 Blue, 1 Black\nBattery: 1 Blue\nKeywords: Adept 1.  Counter 2.\nDefense Tokens: Brace, Scatter\nSquadron Ability: While an enemy squadron at distance 1 is attacking an non-unique, friendly squadron, the attack is treated as obstructed.",
-   "shipStats": "{\"hull\":4,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Adept\",\"Counter\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":4,\"antiSquadron\":[3,0,1],\"battery\":[1,0,0],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Adept\",\"Counter\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:ddb4-6c68-ea35-a417",
@@ -11976,7 +11976,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/plo-koon-24.webp",
    "rulesText": "Speed: 4\nHull Value: 4\nAnti-Squadron: 3 Blue, 1 Black\nBattery: 1 Blue\nKeywords: Adept 2.  Counter 2.\nDefense Tokens: Brace, Scatter\nSquadron Ability: Non-unique, friendly squadrons without counter at distance 1 gain counter 1.",
-   "shipStats": "{\"hull\":4,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Adept\",\"Counter\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":4,\"antiSquadron\":[3,0,1],\"battery\":[1,0,0],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Adept\",\"Counter\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:ba90-b0f4-5f67-8c4b",
@@ -11993,7 +11993,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/anakin-skywalker-24.webp",
    "rulesText": "Speed: 4\nHull Value: 4\nAnti-Squadron: 2 Blue, 2 Black\nBattery: 1 Black\nKeywords: Adept 2, Counter 2, Dodge 1\nDefense Tokens: Brace, Scatter\nSquadron Ability: While attacking a squadron during your activation, at the end of the Resolve Damage step, you may choose up to 2 enemy squadrons at distance 1 of the defender. If the defender was damaged, the chosen squadrons suffer 1 damage.",
-   "shipStats": "{\"hull\":4,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Adept\",\"Counter\",\"Dodge\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":4,\"antiSquadron\":[2,0,2],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Adept\",\"Counter\",\"Dodge\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:1da0-310a-d8fc-25ea",
@@ -12058,7 +12058,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/arc-170-squadron.webp",
    "rulesText": "Speed: 2\nHull Value: 7\nAnti-Squadron: 1 Red, 2 Blue\nBattery: 2 Blue\nKeywords: Bomber, Counter 1",
-   "shipStats": "{\"hull\":7,\"speed\":2,\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Counter\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":7,\"speed\":2,\"antiSquadron\":[2,1,0],\"battery\":[2,0,0],\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Counter\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:a6b0-3492-cb22-0736",
@@ -12075,7 +12075,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/odd-ball.webp",
    "rulesText": "Speed: 2\nHull Value: 7\nAnti-Squadron: 2 Blue, 1 Black\nBattery: 2 Blue\nKeywords: Bomber, Counter 1\nDefense Tokens: Brace, Evade\nSquadron Ability: While attacking, if you moved during this activation, you may reroll up to 2 dice.",
-   "shipStats": "{\"hull\":7,\"speed\":2,\"defenseTokens\":[\"BRACE\",\"EVADE\"],\"keywords\":[\"Bomber\",\"Counter\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":7,\"speed\":2,\"antiSquadron\":[2,0,1],\"battery\":[2,0,0],\"defenseTokens\":[\"BRACE\",\"EVADE\"],\"keywords\":[\"Bomber\",\"Counter\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:59fc-b936-5b91-66a1",
@@ -12092,7 +12092,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/btl-b-y-wing-squadron.webp",
    "rulesText": "Speed: 3\nHull Value: 6\nAnti-Squadron: 1 Blue, 1 Black\nBattery: 1 Black\nKeywords: Bomber.  Heavy.",
-   "shipStats": "{\"hull\":6,\"speed\":3,\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":6,\"speed\":3,\"antiSquadron\":[1,0,1],\"battery\":[0,0,1],\"defenseTokens\":[],\"keywords\":[\"Bomber\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:7fe6-94b3-9ef2-90d2",
@@ -12109,7 +12109,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/anakin-skywalker-18.webp",
    "rulesText": "Speed: 3\nHull Value: 6\nAnti-Squadron: 3 Blue\nBattery: 1 Red, 1 Blue\nKeywords: Adept 2.  Bomber.  Heavy.\nDefense Tokens: Brace, Brace\nSquadron Ability: During your activation, you may spend 1 defense token to ignore engagement until the end of your activation.",
-   "shipStats": "{\"hull\":4,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Adept\",\"Counter\",\"Dodge\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":4,\"antiSquadron\":[2,0,2],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"Adept\",\"Counter\",\"Dodge\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:70a5-2bd9-45b2-6e39",
@@ -12126,7 +12126,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/matchstick.webp",
    "rulesText": "Speed: 3\nHull Value: 6\nAnti-Squadron: 1 Blue, 1 Black\nBattery: 1 Black\nKeywords: Bomber, Heavy\nDefense Tokens: Brace, Brace\nSquadron Ability: When a friendly ship resolves a squadron command, if you are in range to be activated, up to 3 of the squadrons with BOMBER it activates can be at distance 1-3 of you.",
-   "shipStats": "{\"hull\":6,\"speed\":3,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":6,\"speed\":3,\"antiSquadron\":[1,0,1],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:3b12-4d0f-41b6-4078",
@@ -12143,7 +12143,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/v-19-torrent-squadron.webp",
    "rulesText": "Speed: 3\nHull Value: 5\nAnti-Squadron: 1 Red, 2 Blue\nBattery: 1 Black\nKeywords: Escort, Swarm",
-   "shipStats": "{\"hull\":5,\"speed\":3,\"defenseTokens\":[],\"keywords\":[\"Escort\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":3,\"antiSquadron\":[2,1,0],\"battery\":[0,0,1],\"defenseTokens\":[],\"keywords\":[\"Escort\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:175e-2848-ba18-bbee",
@@ -12160,7 +12160,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/axe.webp",
    "rulesText": "Speed: 3\nHull Value: 5\nAnti-Squadron: 1 Red, 2 Blue\nBattery: 1 Black\nKeywords: Escort, Swarm\nDefense Tokens: Brace, Evade\nSquadron Ability: Before another friendly squadron at distance 1 suffers damage during an attack, you may spend 1 defense token to reduce the total damage by 1.",
-   "shipStats": "{\"hull\":5,\"speed\":3,\"defenseTokens\":[\"BRACE\",\"EVADE\"],\"keywords\":[\"Escort\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":3,\"antiSquadron\":[2,1,0],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"EVADE\"],\"keywords\":[\"Escort\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:e359-a1a1-5b38-e34e",
@@ -12177,7 +12177,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/republic/kickback.webp",
    "rulesText": "Speed: 3\nHull Value: 5\nAnti-Squadron: 1 Red, 2 Blue\nBattery: 1 Black\nKeywords: Escort, Swarm\nDefense Tokens: Brace, Brace\nSquadron Ability: After you perform an attack, you may move up to distance 1, even if you are engaged.",
-   "shipStats": "{\"hull\":5,\"speed\":3,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Escort\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":3,\"antiSquadron\":[2,1,0],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Escort\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:8795-e911-4096-002c",
@@ -12360,7 +12360,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/droid-tri-fighter-squadron.webp",
    "rulesText": "Speed: 5\nHull Value: 3\nAnti-Squadron: 1 Red, 2 Blue\nBattery: 1 Black\nKeywords: AI:  Anti-Squadron 1.  Counter 2.  Swarm",
-   "shipStats": "{\"hull\":3,\"speed\":5,\"defenseTokens\":[],\"keywords\":[\"AI\",\"Counter\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":3,\"speed\":5,\"antiSquadron\":[2,1,0],\"battery\":[0,0,1],\"defenseTokens\":[],\"keywords\":[\"AI\",\"Counter\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:d046-da89-1312-e4a9",
@@ -12377,7 +12377,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/phlac-arphocc-prototypes.webp",
    "rulesText": "Speed: 5\nHull Value: 3\nAnti-Squadron: 1 Red, 1 Blue, 1 Black\nBattery: 1 Black\nKeywords: AI:  Anti-Squadron 1.  Counter 2.  Swarm\nDefense Tokens: Brace, Scatter\nSquadron Ability: After an enemy squadron ends its activation at distance 1, that squadron suffers 1 damage.",
-   "shipStats": "{\"hull\":3,\"speed\":5,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"AI\",\"Counter\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":3,\"speed\":5,\"antiSquadron\":[1,1,1],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"AI\",\"Counter\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:addb-0db8-366a-0b5f",
@@ -12394,7 +12394,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/dis-t81.webp",
    "rulesText": "Speed: 5\nHull Value: 3\nAnti-Squadron: 1 Red, 1 Blue, 1 Black\nBattery: 1 Black\nKeywords: AI:  Anti-Squadron 1.  Counter 2.  Snipe 3.  Swarm\nDefense Tokens: Brace, Scatter\nSquadron Ability: Your attacks cannot be obstructed.",
-   "shipStats": "{\"hull\":3,\"speed\":5,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"AI\",\"Counter\",\"Snipe\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":3,\"speed\":5,\"antiSquadron\":[1,1,1],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"AI\",\"Counter\",\"Snipe\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:1da0-310a-d8fc-25ea",
@@ -12459,7 +12459,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/belbullab-22-starfighter-squadron.webp",
    "rulesText": "Speed: 4\nHull Value: 5\nAnti-Squadron: 2 Blue, 2 Black\nBattery: 1 Blue\nKeywords: Relay 1, Screen",
-   "shipStats": "{\"hull\":5,\"speed\":4,\"defenseTokens\":[],\"keywords\":[\"Relay\",\"Screen\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":4,\"antiSquadron\":[2,0,2],\"battery\":[1,0,0],\"defenseTokens\":[],\"keywords\":[\"Relay\",\"Screen\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:a6b0-3492-cb22-0736",
@@ -12476,7 +12476,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/general-grievous-22.webp",
    "rulesText": "Speed: 4\nHull Value: 5\nAnti-Squadron: 2 Blue, 2 Black\nBattery: 1 Black\nKeywords: Relay 2, Screen\nDefense Tokens: Brace, Brace\nSquadron Ability: While attacking a ship or squadron with no readied defense tokens, each of your [crit] icons adds 1 damage to the damage total.",
-   "shipStats": "{\"hull\":5,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Relay\",\"Screen\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":4,\"antiSquadron\":[2,0,2],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Relay\",\"Screen\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:1a34-db4e-b33c-4c59",
@@ -12493,7 +12493,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/wat-tambor.webp",
    "rulesText": "Speed: 4\nHull Value: 5\nAnti-Squadron: 2 Blue, 2 Black\nBattery: 1 Black\nKeywords: Escort, Relay 1, Screen\nDefense Tokens: Brace, Evade",
-   "shipStats": "{\"hull\":5,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"EVADE\"],\"keywords\":[\"Escort\",\"Relay\",\"Screen\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":5,\"speed\":4,\"antiSquadron\":[2,0,2],\"battery\":[0,0,1],\"defenseTokens\":[\"BRACE\",\"EVADE\"],\"keywords\":[\"Escort\",\"Relay\",\"Screen\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:59fc-b936-5b91-66a1",
@@ -12510,7 +12510,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/hyena-class-droid-bomber-squadron.webp",
    "rulesText": "Speed: 4\nHull Value: 4\nAnti-Squadron: 2 Blue\nBattery: 1 Red\nKeywords: AI: Battery 1.  Bomber.  Heavy.",
-   "shipStats": "{\"hull\":4,\"speed\":4,\"defenseTokens\":[],\"keywords\":[\"AI\",\"Bomber\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":4,\"antiSquadron\":[2,0,0],\"battery\":[0,1,0],\"defenseTokens\":[],\"keywords\":[\"AI\",\"Bomber\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:7fe6-94b3-9ef2-90d2",
@@ -12527,7 +12527,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/dbs-404.webp",
    "rulesText": "Speed: 4\nHull Value: 4\nAnti-Squadron: 2 Blue\nBattery: 1 Red\nKeywords: AI: Battery 1.  Bomber.  Heavy.\nDefense Tokens: Brace, Scatter\nSquadron Ability: While attacking, if you are touching the defender, you may suffer 1 damage to add 1 die to your attack pool of a color that is already in your attack pool.",
-   "shipStats": "{\"hull\":4,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"AI\",\"Bomber\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":4,\"antiSquadron\":[2,0,0],\"battery\":[0,1,0],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"AI\",\"Bomber\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:7020-f261-b304-cf50",
@@ -12544,7 +12544,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/baktoid-prototypes.webp",
    "rulesText": "Speed: 4\nHull Value: 4\nAnti-Squadron: 2 Blue\nBattery: 1 Red\nKeywords: AI: Battery 1.  Bomber.  Heavy.\nDefense Tokens: Brace, Scatter\nSquadron Ability: While attacking a ship, if another friendly squadron with BOMBER is at distance 1 of the defender, you may change 1 die to a face with a [Accuracy] icon.",
-   "shipStats": "{\"hull\":4,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"AI\",\"Bomber\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":4,\"speed\":4,\"antiSquadron\":[2,0,0],\"battery\":[0,1,0],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"AI\",\"Bomber\",\"Heavy\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:3b12-4d0f-41b6-4078",
@@ -12561,7 +12561,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/vulture-class-droid-fighter-squadron.webp",
    "rulesText": "Speed: 4\nHull Value: 3\nAnti-Squadron: 1 Blue, 1 Black\nBattery: 1 Red\nKeywords: AI: Anti-Squadron 1, Swarm",
-   "shipStats": "{\"hull\":3,\"speed\":4,\"defenseTokens\":[],\"keywords\":[\"AI\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":3,\"speed\":4,\"antiSquadron\":[1,0,1],\"battery\":[0,1,0],\"defenseTokens\":[],\"keywords\":[\"AI\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:175e-2848-ba18-bbee",
@@ -12578,7 +12578,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/dfs-311.webp",
    "rulesText": "Speed: 4\nHull Value: 3\nAnti-Squadron: 1 Red, 1 Black\nBattery: 1 Red\nKeywords: AI: Anti-Squadron 1, Intel, Swarm\nDefense Tokens: Brace, Scatter\nSquadron Ability: While you are defending, if the attack is obstructed, you may force the attacker to reroll 1 die of your choice.",
-   "shipStats": "{\"hull\":3,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"AI\",\"Intel\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":3,\"speed\":4,\"antiSquadron\":[0,1,1],\"battery\":[0,1,0],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"AI\",\"Intel\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:e359-a1a1-5b38-e34e",
@@ -12595,7 +12595,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/haor-chall-prototypes.webp",
    "rulesText": "Speed: 4\nHull Value: 3\nAnti-Squadron: 1 Blue, 1 Black\nBattery: 1 Red\nKeywords: AI: Anti-Squadron 1, Swarm\nDefense Tokens: Brace, Scatter\nSquadron Ability: Before an enemy ship or squadron at distance 1 moves, you may preform an attack against that ship or squadron even if your are engaged.",
-   "shipStats": "{\"hull\":3,\"speed\":4,\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"AI\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":3,\"speed\":4,\"antiSquadron\":[1,0,1],\"battery\":[0,1,0],\"defenseTokens\":[\"BRACE\",\"SCATTER\"],\"keywords\":[\"AI\",\"Swarm\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:separatist-alliance:8795-e911-4096-002c",
@@ -12777,7 +12777,7 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swa/separatist/jango-fett.webp",
    "rulesText": "Speed: 3\nHull Value: 6\nAnti-Squadron: 2 Red 1 Blue 1 Black\nBattery: 2 Blue\nKeywords: Bomber\nGrit\nRogue\nDefense Tokens: Brace, Brace\nSquadron Ability: While attacking a unique squadron during your activation, you may deal 1 damage to another friendly squad at distance 1 of the defender. If you do, you may change 1 die to any face.",
-   "shipStats": "{\"hull\":6,\"speed\":3,\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Grit\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
+   "shipStats": "{\"hull\":6,\"speed\":3,\"antiSquadron\":[0,0,0],\"battery\":[2,0,0],\"defenseTokens\":[\"BRACE\",\"BRACE\"],\"keywords\":[\"Bomber\",\"Grit\",\"Rogue\"],\"kind\":\"SQUADRON\"}"
   },
   {
    "id": "armada-v15:bsdata:galactic-republic:c6ff-db88-74f8-bbb7",

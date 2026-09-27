@@ -307,6 +307,8 @@ private data class ArmadaStats(
     val attackRear: List<Int> = emptyList(),
     val attackPort: List<Int> = emptyList(),
     val attackStarboard: List<Int> = emptyList(),
+    val antiSquadron: List<Int> = emptyList(), // [bleu, rouge, noir]
+    val battery: List<Int> = emptyList(),      // [bleu, rouge, noir]
     val keywords: List<String> = emptyList(),
     val defenseTokens: List<String> = emptyList()
 )
@@ -348,9 +350,15 @@ private object ArmadaStatsParser {
                 CardKind.ARMADA_SQUADRON -> {
                     val kwArr = o.optJSONArray("keywords")
                     val keywords = buildList { if (kwArr != null) for (i in 0 until kwArr.length()) add(kwArr.getString(i)) }
+                    fun diceArr(name: String): List<Int> {
+                        val a = o.optJSONArray(name) ?: return emptyList()
+                        return buildList { for (i in 0 until a.length()) add(a.optInt(i)) }
+                    }
                     ArmadaStats(
                         hull = o.optInt("hull"),
                         speed = o.optInt("speed", 3).coerceAtLeast(1),
+                        antiSquadron = diceArr("antiSquadron"),
+                        battery = diceArr("battery"),
                         defenseTokens = tokens,
                         keywords = keywords
                     )
@@ -376,6 +384,7 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
     val maxShield = 9
     val maxSpeed = stats?.maxSpeed ?: 3
     var speed by remember(unit.instanceId) { mutableIntStateOf(2) }
+    var activation by remember(unit.instanceId) { mutableIntStateOf(1) }
     var activeCrits by remember(unit.instanceId) { mutableStateOf(listOf<CritCard>()) }
     var usedUpgrades by remember(unit.instanceId) { mutableStateOf(setOf<String>()) }
     val defTokenNames = remember(unit.instanceId) {
@@ -447,6 +456,12 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                         DefenseTokenDisc(def, used, onClick = { defTokens = defTokens + (key to !used) })
                     }
                 }
+            }
+        }
+        // ── activation token ──
+        Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
+            Column(Modifier.padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                ActivationTokenDisc(activation, { if (activation < 8) activation++ }, { if (activation > 1) activation-- })
             }
         }
         // ── command dial (roue de commandement) + pions d'ordre ──
@@ -521,6 +536,7 @@ private fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionEn
     val stats = remember(unit.instanceId) { ArmadaStatsParser.parse(unit.card.shipStats, CardKind.ARMADA_SQUADRON) }
     val maxHp = stats?.hull?.takeIf { it > 0 } ?: 8
     var hull by remember(unit.instanceId) { mutableIntStateOf(maxHp) }
+    var activation by remember(unit.instanceId) { mutableIntStateOf(1) }
     // Jetons de défense des escadrons uniques (ex: "2 Brace", "Brace, Scatter").
     val defTokenNames = remember(unit.instanceId) { stats?.defenseTokens.orEmpty() }
     val defTokenStates = defTokenNames.mapNotNull { name ->
@@ -533,6 +549,27 @@ private fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionEn
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(stringResource(R.string.squadron_tracking), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    StatChip("VIT", stats?.speed ?: 0, Color(0xFF77D9A7), modifier = Modifier.weight(1f))
+                    Column(Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                        Text("ANTI-SQN", color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+                        Row(horizontalArrangement = Arrangement.spacedBy(3.dp)) {
+                            val asq = stats?.antiSquadron.orEmpty()
+                            if (asq.getOrNull(0) ?: 0 > 0) DiceDot(asq[0], Color(0xFF4FC3F7))
+                            if (asq.getOrNull(1) ?: 0 > 0) DiceDot(asq[1], Color(0xFFFF6B6B))
+                            if (asq.getOrNull(2) ?: 0 > 0) DiceDot(asq[2], Color(0xFF3A3A4A))
+                        }
+                    }
+                    Column(Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                        Text("BATTERIE", color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+                        Row(horizontalArrangement = Arrangement.spacedBy(3.dp)) {
+                            val bat = stats?.battery.orEmpty()
+                            if (bat.getOrNull(0) ?: 0 > 0) DiceDot(bat[0], Color(0xFF4FC3F7))
+                            if (bat.getOrNull(1) ?: 0 > 0) DiceDot(bat[1], Color(0xFFFF6B6B))
+                            if (bat.getOrNull(2) ?: 0 > 0) DiceDot(bat[2], Color(0xFF3A3A4A))
+                        }
+                    }
+                }
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { BigCounter(stringResource(R.string.hull), hull, maxHp, Color(0xFFFF6B6B), { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- }) }
                 if (hull < maxHp) HealthBar(hull.toFloat() / maxHp, hull, maxHp)
                 if (stats?.keywords?.isNotEmpty() == true) {
@@ -565,6 +602,12 @@ private fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionEn
                         }
                     }
                 }
+            }
+        }
+        // ── activation token ──
+        Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
+            Column(Modifier.padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                ActivationTokenDisc(activation, { if (activation < 8) activation++ }, { if (activation > 1) activation-- })
             }
         }
         CardPlayImage(unit.card)
@@ -879,6 +922,28 @@ private fun OrderTokenDisc(order: ArmadaCommandOrder, count: Int, onWikiClick: (
             Surface(onClick = onInc, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(20.dp)) { Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.Bold) } }
         }
         Text(order.label, color = Color(0xFF9EACBC), fontSize = 8.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
+    }
+}
+
+// Jeton d'activation numéroté (disque 1-8) pour suivre l'ordre d'activation.
+@Composable
+private fun ActivationTokenDisc(value: Int, onInc: () -> Unit, onDec: () -> Unit) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Surface(
+            shape = CircleShape,
+            color = Color(0xFF192330),
+            modifier = Modifier.size(52.dp),
+            border = androidx.compose.foundation.BorderStroke(3.dp, Color(0xFF4FC3F7))
+        ) {
+            Box(contentAlignment = Alignment.Center) {
+                Text("$value", color = Color(0xFF4FC3F7), fontSize = 20.sp, fontWeight = FontWeight.Bold)
+            }
+        }
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+            Surface(onClick = onDec, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(20.dp)) { Box(contentAlignment = Alignment.Center) { Text("-", color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.Bold) } }
+            Surface(onClick = onInc, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(20.dp)) { Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.Bold) } }
+        }
+        Text("ACTIVATION", color = Color(0xFF9EACBC), fontSize = 8.sp, fontWeight = FontWeight.Bold)
     }
 }
 
