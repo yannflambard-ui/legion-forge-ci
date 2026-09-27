@@ -5284,7 +5284,12 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "DEFENSIVE_RETROFIT",
+    "OFFICER",
+    "SUPPORT_TEAM",
+    "TITLE",
+    "TURBOLASERS"
    ],
    "commander": false,
    "unique": false,
@@ -5307,7 +5312,11 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "DEFENSIVE_RETROFIT",
+    "OFFICER",
+    "TITLE",
+    "TURBOLASERS"
    ],
    "commander": false,
    "unique": false,
@@ -5339,7 +5348,14 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "FLEET_COMMAND",
+    "ION_CANNONS",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": true,
@@ -5371,7 +5387,14 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "FLEET_COMMAND",
+    "ION_CANNONS",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": true,
@@ -5395,7 +5418,12 @@
     "ORDNANCE"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "OFFICER",
+    "ORDNANCE",
+    "SUPPORT_TEAM",
+    "TITLE",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -5419,7 +5447,12 @@
     "ORDNANCE"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "OFFICER",
+    "ORDNANCE",
+    "SUPPORT_TEAM",
+    "TITLE",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -5442,6 +5475,10 @@
     "OFFENSIVE_RETROFIT"
    ],
    "allowedUpgradeSlots": [
+    "COMMANDER",
+    "FLEET_SUPPORT",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
     "TITLE"
    ],
    "commander": false,
@@ -5465,6 +5502,10 @@
     "OFFENSIVE_RETROFIT"
    ],
    "allowedUpgradeSlots": [
+    "COMMANDER",
+    "FLEET_SUPPORT",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
     "TITLE"
    ],
    "commander": false,
@@ -5491,7 +5532,13 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "ION_CANNONS",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -5517,7 +5564,14 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "DEFENSIVE_RETROFIT",
+    "ION_CANNONS",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -5543,7 +5597,13 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "FLEET_COMMAND",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -5569,7 +5629,14 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "DEFENSIVE_RETROFIT",
+    "ION_CANNONS",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "ORDNANCE",
+    "TITLE",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -5594,6 +5661,12 @@
     "ION_CANNONS"
    ],
    "allowedUpgradeSlots": [
+    "COMMANDER",
+    "EXPERIMENTAL_RETROFIT",
+    "ION_CANNONS",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "SUPPORT_TEAM",
     "TITLE"
    ],
    "commander": false,
@@ -5620,6 +5693,12 @@
     "ION_CANNONS"
    ],
    "allowedUpgradeSlots": [
+    "COMMANDER",
+    "EXPERIMENTAL_RETROFIT",
+    "ION_CANNONS",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "SUPPORT_TEAM",
     "TITLE"
    ],
    "commander": false,
@@ -5645,7 +5724,12 @@
     "SUPERWEAPON"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "OFFICER",
+    "SUPERWEAPON",
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -5670,7 +5754,12 @@
     "SUPERWEAPON"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "OFFICER",
+    "SUPERWEAPON",
+    "SUPPORT_TEAM",
+    "TITLE",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -5694,7 +5783,11 @@
     "OFFENSIVE_RETROFIT"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "TITLE",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -5718,7 +5811,11 @@
     "OFFENSIVE_RETROFIT"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "TITLE",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -5742,7 +5839,12 @@
     "ORDNANCE"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "ORDNANCE",
+    "TITLE",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -5766,7 +5868,12 @@
     "ION_CANNONS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "ION_CANNONS",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "TITLE",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -5796,7 +5903,13 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "ION_CANNONS",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -5825,7 +5938,14 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "FLEET_COMMAND",
+    "ION_CANNONS",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -5850,7 +5970,13 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "ORDNANCE",
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -5875,7 +6001,13 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "ION_CANNONS",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -5900,7 +6032,13 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "DEFENSIVE_RETROFIT",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -5925,7 +6063,13 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "DEFENSIVE_RETROFIT",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -5949,7 +6093,12 @@
     "ION_CANNONS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "DEFENSIVE_RETROFIT",
+    "OFFICER",
+    "SUPPORT_TEAM",
+    "TITLE",
+    "TURBOLASERS"
    ],
    "commander": false,
    "unique": false,
@@ -5973,6 +6122,11 @@
     "ION_CANNONS"
    ],
    "allowedUpgradeSlots": [
+    "COMMANDER",
+    "DEFENSIVE_RETROFIT",
+    "ION_CANNONS",
+    "OFFICER",
+    "SUPPORT_TEAM",
     "TITLE"
    ],
    "commander": false,
@@ -5996,6 +6150,10 @@
     "OFFENSIVE_RETROFIT"
    ],
    "allowedUpgradeSlots": [
+    "COMMANDER",
+    "FLEET_SUPPORT",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
     "TITLE"
    ],
    "commander": false,
@@ -6019,6 +6177,10 @@
     "OFFENSIVE_RETROFIT"
    ],
    "allowedUpgradeSlots": [
+    "COMMANDER",
+    "FLEET_SUPPORT",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
     "TITLE"
    ],
    "commander": false,
@@ -6043,7 +6205,12 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -6067,7 +6234,12 @@
     "ORDNANCE"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "ORDNANCE",
+    "TITLE",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -6092,7 +6264,13 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "DEFENSIVE_RETROFIT",
+    "OFFICER",
+    "ORDNANCE",
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -6117,7 +6295,13 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "DEFENSIVE_RETROFIT",
+    "OFFICER",
+    "ORDNANCE",
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -6144,7 +6328,15 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "DEFENSIVE_RETROFIT",
+    "ION_CANNONS",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "ORDNANCE",
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -6170,7 +6362,13 @@
     "ORDNANCE"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "DEFENSIVE_RETROFIT",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "ORDNANCE",
+    "TITLE",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -6196,7 +6394,13 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "DEFENSIVE_RETROFIT",
+    "ION_CANNONS",
+    "OFFICER",
+    "SUPPORT_TEAM",
+    "TITLE",
+    "TURBOLASERS"
    ],
    "commander": false,
    "unique": false,
@@ -6222,7 +6426,13 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "ION_CANNONS",
+    "OFFICER",
+    "SUPPORT_TEAM",
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -6248,7 +6458,14 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "DEFENSIVE_RETROFIT",
+    "ION_CANNONS",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "SUPPORT_TEAM",
+    "TITLE",
+    "TURBOLASERS"
    ],
    "commander": false,
    "unique": false,
@@ -6274,7 +6491,13 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "ION_CANNONS",
+    "OFFICER",
+    "SUPPORT_TEAM",
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -6298,6 +6521,11 @@
     "ORDNANCE"
    ],
    "allowedUpgradeSlots": [
+    "COMMANDER",
+    "FLEET_COMMAND",
+    "OFFICER",
+    "ORDNANCE",
+    "SUPPORT_TEAM",
     "TITLE"
    ],
    "commander": false,
@@ -6322,6 +6550,11 @@
     "OFFENSIVE_RETROFIT"
    ],
    "allowedUpgradeSlots": [
+    "COMMANDER",
+    "FLEET_COMMAND",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "SUPPORT_TEAM",
     "TITLE"
    ],
    "commander": false,
@@ -6345,7 +6578,11 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "OFFICER",
+    "SUPPORT_TEAM",
+    "TITLE",
+    "TURBOLASERS"
    ],
    "commander": false,
    "unique": false,
@@ -6368,7 +6605,11 @@
     "TURBOLASERS"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "OFFICER",
+    "SUPPORT_TEAM",
+    "TITLE",
+    "TURBOLASERS"
    ],
    "commander": false,
    "unique": false,
@@ -6395,7 +6636,14 @@
     "SUPERWEAPON"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "ION_CANNONS",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "SUPERWEAPON",
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -6422,7 +6670,14 @@
     "SUPERWEAPON"
    ],
    "allowedUpgradeSlots": [
-    "TITLE"
+    "COMMANDER",
+    "ION_CANNONS",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "SUPERWEAPON",
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -12005,12 +12260,13 @@
    "legionRank": null,
    "upgradeSlots": [],
    "allowedUpgradeSlots": [
+    "COMMANDER",
     "OFFENSIVE_RETROFIT",
-    "TURBOLASERS",
-    "WEAPONS_TEAM",
     "OFFICER",
     "ORDNANCE",
-    "TITLE"
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -12029,12 +12285,13 @@
    "legionRank": null,
    "upgradeSlots": [],
    "allowedUpgradeSlots": [
-    "TURBOLASERS",
-    "WEAPONS_TEAM",
+    "COMMANDER",
     "DEFENSIVE_RETROFIT",
     "OFFICER",
     "ORDNANCE",
-    "TITLE"
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -12189,11 +12446,12 @@
    "legionRank": null,
    "upgradeSlots": [],
    "allowedUpgradeSlots": [
+    "COMMANDER",
     "OFFENSIVE_RETROFIT",
-    "TURBOLASERS",
-    "SUPPORT_TEAM",
     "OFFICER",
-    "TITLE"
+    "SUPPORT_TEAM",
+    "TITLE",
+    "TURBOLASERS"
    ],
    "commander": false,
    "unique": false,
@@ -12212,10 +12470,11 @@
    "legionRank": null,
    "upgradeSlots": [],
    "allowedUpgradeSlots": [
-    "SUPPORT_TEAM",
+    "COMMANDER",
     "DEFENSIVE_RETROFIT",
     "OFFICER",
     "ORDNANCE",
+    "SUPPORT_TEAM",
     "TITLE"
    ],
    "commander": false,
@@ -12235,13 +12494,14 @@
    "legionRank": null,
    "upgradeSlots": [],
    "allowedUpgradeSlots": [
-    "OFFENSIVE_RETROFIT",
-    "TURBOLASERS",
-    "WEAPONS_TEAM",
-    "OFFICER",
+    "COMMANDER",
     "FLEET_COMMAND",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
     "ORDNANCE",
-    "TITLE"
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -12260,13 +12520,14 @@
    "legionRank": null,
    "upgradeSlots": [],
    "allowedUpgradeSlots": [
-    "OFFENSIVE_RETROFIT",
-    "TURBOLASERS",
-    "WEAPONS_TEAM",
+    "COMMANDER",
     "DEFENSIVE_RETROFIT",
+    "OFFENSIVE_RETROFIT",
     "OFFICER",
     "ORDNANCE",
-    "TITLE"
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -12285,10 +12546,11 @@
    "legionRank": null,
    "upgradeSlots": [],
    "allowedUpgradeSlots": [
-    "OFFENSIVE_RETROFIT",
-    "SUPPORT_TEAM",
-    "OFFICER",
+    "COMMANDER",
     "FLEET_SUPPORT",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "SUPPORT_TEAM",
     "TITLE"
    ],
    "commander": false,
@@ -12308,10 +12570,11 @@
    "legionRank": null,
    "upgradeSlots": [],
    "allowedUpgradeSlots": [
-    "SUPPORT_TEAM",
+    "COMMANDER",
     "DEFENSIVE_RETROFIT",
-    "OFFICER",
     "FLEET_SUPPORT",
+    "OFFICER",
+    "SUPPORT_TEAM",
     "TITLE"
    ],
    "commander": false,
@@ -12331,12 +12594,13 @@
    "legionRank": null,
    "upgradeSlots": [],
    "allowedUpgradeSlots": [
+    "COMMANDER",
     "OFFENSIVE_RETROFIT",
-    "WEAPONS_TEAM",
-    "SUPPORT_TEAM",
     "OFFICER",
     "ORDNANCE",
-    "TITLE"
+    "SUPPORT_TEAM",
+    "TITLE",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -12406,12 +12670,13 @@
    "legionRank": null,
    "upgradeSlots": [],
    "allowedUpgradeSlots": [
-    "OFFENSIVE_RETROFIT",
-    "TURBOLASERS",
-    "SUPPORT_TEAM",
-    "OFFICER",
+    "COMMANDER",
     "ION_CANNONS",
-    "TITLE"
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
+    "SUPPORT_TEAM",
+    "TITLE",
+    "TURBOLASERS"
    ],
    "commander": false,
    "unique": false,
@@ -12430,12 +12695,13 @@
    "legionRank": null,
    "upgradeSlots": [],
    "allowedUpgradeSlots": [
-    "TURBOLASERS",
-    "SUPPORT_TEAM",
+    "COMMANDER",
     "DEFENSIVE_RETROFIT",
-    "OFFICER",
     "ION_CANNONS",
-    "TITLE"
+    "OFFICER",
+    "SUPPORT_TEAM",
+    "TITLE",
+    "TURBOLASERS"
    ],
    "commander": false,
    "unique": false,
@@ -12607,9 +12873,10 @@
    "legionRank": null,
    "upgradeSlots": [],
    "allowedUpgradeSlots": [
-    "SUPPORT_TEAM",
-    "OFFICER",
+    "COMMANDER",
     "FLEET_SUPPORT",
+    "OFFICER",
+    "SUPPORT_TEAM",
     "TITLE"
    ],
    "commander": false,
@@ -12629,11 +12896,12 @@
    "legionRank": null,
    "upgradeSlots": [],
    "allowedUpgradeSlots": [
-    "OFFENSIVE_RETROFIT",
-    "TURBOLASERS",
+    "COMMANDER",
     "DEFENSIVE_RETROFIT",
+    "OFFENSIVE_RETROFIT",
     "OFFICER",
-    "TITLE"
+    "TITLE",
+    "TURBOLASERS"
    ],
    "commander": false,
    "unique": false,
@@ -12652,12 +12920,13 @@
    "legionRank": null,
    "upgradeSlots": [],
    "allowedUpgradeSlots": [
+    "COMMANDER",
     "OFFENSIVE_RETROFIT",
-    "TURBOLASERS",
-    "WEAPONS_TEAM",
     "OFFICER",
     "ORDNANCE",
-    "TITLE"
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -12676,11 +12945,12 @@
    "legionRank": null,
    "upgradeSlots": [],
    "allowedUpgradeSlots": [
+    "COMMANDER",
     "OFFENSIVE_RETROFIT",
-    "TURBOLASERS",
-    "WEAPONS_TEAM",
     "OFFICER",
-    "TITLE"
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -12699,13 +12969,14 @@
    "legionRank": null,
    "upgradeSlots": [],
    "allowedUpgradeSlots": [
-    "OFFENSIVE_RETROFIT",
-    "TURBOLASERS",
-    "WEAPONS_TEAM",
-    "OFFICER",
+    "COMMANDER",
     "ION_CANNONS",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
     "ORDNANCE",
-    "TITLE"
+    "TITLE",
+    "TURBOLASERS",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,
@@ -12724,14 +12995,15 @@
    "legionRank": null,
    "upgradeSlots": [],
    "allowedUpgradeSlots": [
-    "OFFENSIVE_RETROFIT",
-    "TURBOLASERS",
+    "COMMANDER",
     "DEFENSIVE_RETROFIT",
-    "OFFICER",
     "FLEET_COMMAND",
     "ION_CANNONS",
+    "OFFENSIVE_RETROFIT",
+    "OFFICER",
     "ORDNANCE",
-    "TITLE"
+    "TITLE",
+    "TURBOLASERS"
    ],
    "commander": false,
    "unique": false,
@@ -12750,10 +13022,11 @@
    "legionRank": null,
    "upgradeSlots": [],
    "allowedUpgradeSlots": [
-    "WEAPONS_TEAM",
-    "OFFICER",
+    "COMMANDER",
     "ION_CANNONS",
-    "TITLE"
+    "OFFICER",
+    "TITLE",
+    "WEAPONS_TEAM"
    ],
    "commander": false,
    "unique": false,

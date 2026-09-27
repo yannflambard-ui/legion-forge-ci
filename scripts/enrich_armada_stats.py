@@ -50,6 +50,38 @@ def ship_stats(rt):
         "defenseTokens": tokens,
     }
 
+# BSData upgrade-bar label -> ArmadaSlot enum name (unknown -> OTHER).
+UPGRADE_BAR_SLOT = {
+    "Defensive Retrofit": "DEFENSIVE_RETROFIT",
+    "Experimental Retrofit": "EXPERIMENTAL_RETROFIT",
+    "Fleet Command": "FLEET_COMMAND",
+    "Fleet Support": "FLEET_SUPPORT",
+    "Ion Cannon": "ION_CANNONS",
+    "Ion Cannons": "ION_CANNONS",
+    "Offensive Retrofit": "OFFENSIVE_RETROFIT",
+    "Officer": "OFFICER",
+    "Ordnance": "ORDNANCE",
+    "Superweapon": "SUPERWEAPON",
+    "Support Team": "SUPPORT_TEAM",
+    "Turbolasers": "TURBOLASERS",
+    "Weapons Team": "WEAPONS_TEAM",
+    "Engineering Team": "ENGINEERING_TEAM",
+}
+
+def ship_upgrade_slots(rt):
+    """Map a BSData ship's upgrade-bar to ArmadaSlot enum names (TITLE + COMMANDER always included)."""
+    try:
+        d = json.loads(rt)
+    except (TypeError, ValueError):
+        return ["TITLE", "COMMANDER"]
+    bar = d.get("upgrade-bar") or []
+    slots = [UPGRADE_BAR_SLOT.get(lb, "OTHER") for lb in bar]
+    if "TITLE" not in slots:
+        slots.append("TITLE")
+    if "COMMANDER" not in slots:
+        slots.append("COMMANDER")
+    return sorted(set(slots))
+
 def parse_def_tokens(s):
     """Parse BSData 'Defense Tokens' string -> list of token names (with dupes).
     Formats: '2 Brace', 'Brace, Scatter', '1 Brace, 1 Scatter', 'Brace, Brace'."""
@@ -188,6 +220,9 @@ def enrich(assets_dir=None, catalog_path=None, bsdata_path=None):
                 continue
             st["kind"] = "SHIP"
             card["shipStats"] = json.dumps(st, separators=(",", ":"))
+            # Slots d'upgrade du vaisseau (upgrade-bar BSData + TITLE) : corrige le bug
+            # où les vaisseaux n'avaient que ['TITLE'] et n'affichaient aucun upgrade régulier.
+            card["allowedUpgradeSlots"] = ship_upgrade_slots(pick.get("rulesText"))
             added["ship"] += 1
         else:
             pick = fuzzy_pick(bs_squads, card["name"], wanted)

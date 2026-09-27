@@ -18,7 +18,6 @@ class WikiRepository(context: Context) {
     private val gson = Gson()
 
     suspend fun seedWiki(context: Context) = withContext(Dispatchers.IO) {
-        if (dao.sectionCount() > 0) return@withContext
         val json = context.assets.open("wiki.json").bufferedReader().use { it.readText() }
         val doc = gson.fromJson(json, WikiDocument::class.java)
             ?: error("Wiki JSON vide ou invalide")
@@ -32,6 +31,8 @@ class WikiRepository(context: Context) {
                 content = s.content
             )
         }
+        // Upsert systématique : permet d'ajouter de nouvelles sections (ex: keywords
+        // d'escadrons Armada) sans dépendre d'une base vide ni d'une migration destructrice.
         dao.upsertSections(entities)
     }
 

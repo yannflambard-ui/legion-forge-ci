@@ -63,16 +63,21 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
     // hidden until a unit or ship is selected.
     val selectedParent = entries.firstOrNull { it.instanceId == selectedParentId }
     val filteredAdditions = if (selectedParent != null) {
-        cards.filter { it.kind in allowedKinds && matchesFaction(it) }.filter { c ->
-            when {
-                game == GameSystem.LEGION_V2 && c.kind == CardKind.LEGION_UPGRADE ->
-                    c.upgradeSlots.any { it in selectedParent.card.allowedUpgradeSlots }
-                game == GameSystem.ARMADA_V15 && c.kind == CardKind.ARMADA_UPGRADE ->
-                    c.upgradeSlots.any { it in selectedParent.card.allowedUpgradeSlots } && upgradeFitsShip(c, selectedParent.card)
-                else -> false
+            cards.filter { it.kind in allowedKinds && matchesFaction(it) }.filter { c ->
+                when {
+                    game == GameSystem.LEGION_V2 && c.kind == CardKind.LEGION_UPGRADE ->
+                        c.upgradeSlots.any { it in selectedParent.card.allowedUpgradeSlots }
+                    game == GameSystem.ARMADA_V15 && c.kind == CardKind.ARMADA_UPGRADE ->
+                        c.upgradeSlots.any { it in selectedParent.card.allowedUpgradeSlots } && upgradeFitsShip(c, selectedParent.card) &&
+                        // Un vaisseau ne peut pas avoir 2 titles : masquer les autres titles s'il en a déjà un.
+                        !(ArmadaSlot.TITLE in c.upgradeSlots && entries.any { it.parentInstanceId == selectedParent.instanceId && it.chosenSlot == ArmadaSlot.TITLE })
+                    // Commandant Armada : n'apparaît que quand on sélectionne un vaisseau capital.
+                    game == GameSystem.ARMADA_V15 && c.kind == CardKind.COMMANDER ->
+                        selectedParent.card.kind == CardKind.ARMADA_SHIP && c.upgradeSlots.any { it in selectedParent.card.allowedUpgradeSlots }
+                    else -> false
+                }
             }
-        }
-    } else cards.filter { it.kind in allowedKinds && matchesFaction(it) && it.kind != CardKind.LEGION_UPGRADE && it.kind != CardKind.ARMADA_UPGRADE }
+        } else cards.filter { it.kind in allowedKinds && matchesFaction(it) && it.kind != CardKind.LEGION_UPGRADE && it.kind != CardKind.ARMADA_UPGRADE && it.kind != CardKind.COMMANDER }
     val additions = filteredAdditions
                 .filter { it.name.contains(search, ignoreCase = true) || it.factionId.contains(search, ignoreCase = true) }
                 .let { list ->
@@ -375,7 +380,7 @@ private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, preselec
     val armadaShip = card.kind == CardKind.ARMADA_SHIP
     val isUpgrade = card.kind == CardKind.LEGION_UPGRADE || card.kind == CardKind.ARMADA_UPGRADE
     val isCommander = card.kind == CardKind.COMMANDER
-    val requiresTarget = isUpgrade && !isCommander
+    val requiresTarget = isUpgrade || isCommander
     val targetUnits = if (card.kind == CardKind.LEGION_UPGRADE) entries.filter { it.card.kind == CardKind.LEGION_UNIT } else entries.filter { it.card.kind == CardKind.ARMADA_SHIP }
     val eligibleTargets = if (card.kind == CardKind.LEGION_UPGRADE) targetUnits.filter { target -> card.upgradeSlots.firstOrNull()?.let { it in target.card.allowedUpgradeSlots } == true } else if (card.kind == CardKind.ARMADA_UPGRADE) targetUnits.filter { target -> card.upgradeSlots.any { it in target.card.allowedUpgradeSlots } && upgradeFitsShip(card, target.card) } else targetUnits
     val preselectedTarget = eligibleTargets.firstOrNull { it.instanceId == preselectedParentId && it.card.allowedUpgradeSlots.any { slot -> slot in card.upgradeSlots } }
@@ -445,7 +450,7 @@ private fun cardAspectRatio(card: CardDefinition): Float =
     if (card.kind == CardKind.LEGION_UNIT) 1.43f else 0.7f
 
 @Composable
-private fun CardArtwork(card: CardDefinition, modifier: Modifier = Modifier) {
+fun CardArtwork(card: CardDefinition, modifier: Modifier = Modifier) {
     val source: Any? = card.imageAssetPath?.let { "file:///android_asset/$it" } ?: card.imageUrl
     val ratio = cardAspectRatio(card)
     val sized = modifier.aspectRatio(ratio)
