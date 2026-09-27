@@ -89,6 +89,8 @@ internal fun factionIconRes(faction: String): Int = when (faction) {
     "republic", "republics" -> R.drawable.ic_faction_republic
     "separatist", "separatists" -> R.drawable.ic_faction_separatist
     "neutral" -> R.drawable.ic_faction_neutral
+    "mercenary", "mercenaries" -> R.drawable.ic_faction_mercenary
+    "mandalorians", "mandalorian" -> R.drawable.ic_faction_mandalorians
     else -> R.drawable.ic_faction_empire
 }
 

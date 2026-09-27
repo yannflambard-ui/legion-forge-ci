@@ -322,6 +322,8 @@ private fun FactionCardColor(factionId: String?): Color = when (factionId) {
     "empire" -> Color(0xFFFF5A5A)       // rouge impérial
     "republic", "republics" -> Color(0xFFE8B54E) // or/jaune
     "separatist", "separatists" -> Color(0xFF9B6DFF) // violet
+    "mercenary", "mercenaries" -> Color(0xFFB8395A)  // bordeaux mercenaire
+    "mandalorians", "mandalorian" -> Color(0xFF7A8B9E) // acier mandalorien
     "neutral" -> Color(0xFF9EACBC)      // gris
     else -> Color(0xFF9EACBC)
 }
