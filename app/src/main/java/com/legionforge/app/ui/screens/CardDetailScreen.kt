@@ -1,5 +1,6 @@
 package com.legionforge.app.ui.screens
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -437,16 +438,6 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                 }
                 if (stats != null) ShipStatsBlock(stats)
                 else if (!unit.card.rulesText.isNullOrBlank()) ClickableRulesText(unit.card.rulesText, wikiSections, onRuleClick, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall, maxLines = 6)
-                // Slots d'upgrade du vaisseau (icônes en bas de la carte) : pilotent les upgrades dispo dans le catalogue.
-                if (unit.card.allowedUpgradeSlots.isNotEmpty()) {
-                    FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                        unit.card.allowedUpgradeSlots.forEach { slot ->
-                            Surface(shape = RoundedCornerShape(6.dp), color = Color(0xFF1E2A3A)) {
-                                Text(slot.name.lowercase().replace('_', ' '), Modifier.padding(horizontal = 6.dp, vertical = 2.dp), color = Color(0xFF4FC3F7), fontSize = 8.sp, fontWeight = FontWeight.Bold, maxLines = 1, overflow = TextOverflow.Ellipsis)
-                            }
-                        }
-                    }
-                }
             }
         }
         // ── defense tokens ──
@@ -778,12 +769,6 @@ private fun ShipStatsBlock(stats: ArmadaStats) {
             StatChip("CMD", stats.command, Color(0xFFFFC857), modifier = Modifier.weight(1f))
             StatChip("SQN", stats.squadron, Color(0xFF4FC3F7), modifier = Modifier.weight(1f))
             StatChip("ENG", stats.engineering, Color(0xFF77D9A7), modifier = Modifier.weight(1f))
-        }
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-            AttackArc("AV", stats.attackFront, modifier = Modifier.weight(1f))
-            AttackArc("ARR", stats.attackRear, modifier = Modifier.weight(1f))
-            AttackArc("BAB", stats.attackPort, modifier = Modifier.weight(1f))
-            AttackArc("TRIB", stats.attackStarboard, modifier = Modifier.weight(1f))
         }
     }
 }
