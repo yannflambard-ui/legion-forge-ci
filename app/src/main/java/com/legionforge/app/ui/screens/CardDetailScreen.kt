@@ -658,11 +658,12 @@ private fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionEn
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
                     BigCounter(stringResource(R.string.hull), hull, maxHp, Color(0xFFFF6B6B), { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- })
                     Spacer(Modifier.width(20.dp))
-                    // Coût de l'escadron affiché à côté de la coque.
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(stringResource(R.string.cost), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold)
-                        Text("${unit.card.points}", color = Color(0xFFFFC857), fontSize = 24.sp, fontWeight = FontWeight.Bold)
-                    }
+                    // Jeton d'activation/désactivation de l'escadron (à la place du coût, redondant avec le cadre du haut).
+                    SquadronActivationToken(
+                        activated = activated,
+                        onToggle = { activated = !activated },
+                        onWikiClick = { findWikiSection(wikiSections, "activation")?.let(onRuleClick) }
+                    )
                 }
                 if (hull < maxHp) HealthBar(hull.toFloat() / maxHp, hull, maxHp)
                 if (stats?.keywords?.isNotEmpty() == true) {
@@ -695,16 +696,6 @@ private fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionEn
                         }
                     }
                 }
-            }
-        }
-        // ── activation token ──
-        Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
-            Column(Modifier.padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                SquadronActivationToken(
-                    activated = activated,
-                    onToggle = { activated = !activated },
-                    onWikiClick = { findWikiSection(wikiSections, "activation")?.let(onRuleClick) }
-                )
             }
         }
         CardPlayImage(unit.card)
