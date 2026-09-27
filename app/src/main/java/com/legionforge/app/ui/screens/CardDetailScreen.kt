@@ -482,7 +482,7 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
             Column(Modifier.padding(16.dp)) {
                 Text(stringResource(R.string.defense_tokens), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
                 Spacer(Modifier.height(10.dp))
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     defTokenStates.forEachIndexed { i, (def, _) ->
                         val key = "${def.name}_$i"
                         val used = defTokens[key] ?: false
@@ -508,26 +508,14 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(stringResource(R.string.shields_hull), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                // Boucliers directionnels avec dés d'attaque du côté correspondant (cercles bleu/rouge/noir).
-                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        MiniShield(stringResource(R.string.shield_front), sF, { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- })
-                        AttackDiceRow(stats?.attackFront)
+                // Boucliers directionnels, dés d'attaque SOUS chaque bouclier (AV/ARR/BAB/TRIB).
+                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    ShieldWithDice(stringResource(R.string.shield_front), sF, { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- }, stats?.attackFront)
+                    Row(horizontalArrangement = Arrangement.spacedBy(28.dp)) {
+                        ShieldWithDice(stringResource(R.string.shield_port), sP, { if (sP < maxShield) sP++ }, { if (sP > 0) sP-- }, stats?.attackPort)
+                        ShieldWithDice(stringResource(R.string.shield_starboard), sS, { if (sS < maxShield) sS++ }, { if (sS > 0) sS-- }, stats?.attackStarboard)
                     }
-                    Row(horizontalArrangement = Arrangement.spacedBy(24.dp)) {
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            MiniShield(stringResource(R.string.shield_port), sP, { if (sP < maxShield) sP++ }, { if (sP > 0) sP-- })
-                            AttackDiceRow(stats?.attackPort)
-                        }
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            MiniShield(stringResource(R.string.shield_starboard), sS, { if (sS < maxShield) sS++ }, { if (sS > 0) sS-- })
-                            AttackDiceRow(stats?.attackStarboard)
-                        }
-                    }
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        MiniShield(stringResource(R.string.shield_rear), sR, { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- })
-                        AttackDiceRow(stats?.attackRear)
-                    }
+                    ShieldWithDice(stringResource(R.string.shield_rear), sR, { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- }, stats?.attackRear)
                 }
                 HorizontalDivider(color = Color(0xFF2A3A4A))
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
@@ -751,7 +739,11 @@ private fun EffectsPanel(
                         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Box(Modifier.size(24.dp).clip(CircleShape).background(if (eff.used) Color(0xFF3A3A4A) else Color(0xFF1E2A3A)), contentAlignment = Alignment.Center) {
-                                    val iconPath = if (eff.type == EffectType.UPGRADE && eff.slot != null) slotIconPath(eff.slot) else null
+                                    val iconPath = when {
+                                        eff.type == EffectType.UPGRADE && eff.slot != null -> slotIconPath(eff.slot)
+                                        eff.type == EffectType.COMMANDER -> "icons/upg_commander.webp"
+                                        else -> null
+                                    }
                                     if (iconPath != null) {
                                         AsyncImage(
                                             model = "file:///android_asset/$iconPath",
@@ -877,30 +869,39 @@ private fun AttackArc(label: String, dice: List<Int>, modifier: Modifier = Modif
 
 @Composable
 private fun DiceDot(count: Int, color: Color) {
-    // Icône de dé officielle (bleu/rouge/noir) avec le nombre de dés en surimpression.
+    // Icône de dé officielle (bleu/rouge/noir) avec le nombre de dés centré dans le losange.
     val dieFile = when (color) {
         Color(0xFF4FC3F7) -> "icons/die_blue.webp"
         Color(0xFFFF6B6B) -> "icons/die_red.webp"
         else -> "icons/die_black.webp"
     }
-    Box(Modifier.size(20.dp), contentAlignment = Alignment.Center) {
+    Box(Modifier.size(22.dp), contentAlignment = Alignment.Center) {
         AsyncImage(
             model = "file:///android_asset/$dieFile",
             contentDescription = null,
             modifier = Modifier.fillMaxSize()
         )
-        Text("$count", color = Color.White, fontSize = 9.sp, fontWeight = FontWeight.Bold)
+        Text("$count", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
     }
 }
 
-// Rangée de dés d'attaque d'un arc : cercles bleu/rouge/noir (comme sur la carte officielle).
+// Rangée de dés d'attaque d'un arc : dés bleu/rouge/noir (comme sur la carte officielle).
 @Composable
 private fun AttackDiceRow(dice: List<Int>?) {
     if (dice.isNullOrEmpty() || dice.all { it <= 0 }) return
-    Row(horizontalArrangement = Arrangement.spacedBy(3.dp)) {
+    Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
         if (dice.getOrNull(0) ?: 0 > 0) DiceDot(dice[0], Color(0xFF4FC3F7))
         if (dice.getOrNull(1) ?: 0 > 0) DiceDot(dice[1], Color(0xFFFF6B6B))
         if (dice.getOrNull(2) ?: 0 > 0) DiceDot(dice[2], Color(0xFF3A3A4A))
+    }
+}
+
+// Bouclier avec ses dés d'attaque affichés SOUS le bouclier.
+@Composable
+private fun ShieldWithDice(label: String, value: Int, onInc: () -> Unit, onDec: () -> Unit, dice: List<Int>?) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(2.dp)) {
+        MiniShield(label, value, onInc, onDec)
+        AttackDiceRow(dice)
     }
 }
 
