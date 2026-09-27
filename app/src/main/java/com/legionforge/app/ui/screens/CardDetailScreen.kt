@@ -198,7 +198,7 @@ private fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                     }
                 }
                 if (stats?.keywords?.isNotEmpty() == true) {
-                    Text("Mots-clés: ${stats.keywords.joinToString(", ")}", color = Color(0xFF9EACBC), style = MaterialTheme.typography.bodySmall)
+                    Text("Mots-clés: ${stats.keywords.joinToString(", ") { com.legionforge.app.data.i18n.I18n.keyword(it) }}", color = Color(0xFF9EACBC), style = MaterialTheme.typography.bodySmall)
                 }
             }
         }

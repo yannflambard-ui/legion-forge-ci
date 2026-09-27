@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "sections": {
+    "armada_activation": {
+      "fr": { "title": "Activation", "content": "Contenu officiel FR à venir." },
+      "de": { "title": "Aktivierung", "content": "Offizieller DE-Inhalt folgt." },
+      "es": { "title": "Activación", "content": "Contenido oficial ES próximamente." }
+    }
+  }
+}

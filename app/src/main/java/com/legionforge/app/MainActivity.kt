@@ -19,7 +19,8 @@ import com.legionforge.app.util.CrashReporter
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        CrashReporter.init(applicationContext)
+CrashReporter.init(applicationContext)
+        com.legionforge.app.data.i18n.I18n.load(applicationContext)
 
         setContent {
             LegionForgeTheme {
