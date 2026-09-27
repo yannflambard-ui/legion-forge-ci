@@ -526,8 +526,12 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
             effects = buildList {
                 if (commander != null) add(ActiveEffect(EffectType.COMMANDER, commander.card.displayName(), commander.card.rulesText ?: stringResource(R.string.fleet_commander), "cmd_${commander.instanceId}")
                     .copy(used = usedUpgrades.contains("cmd")))
-                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), c.card.rulesText ?: stringResource(R.string.upgrade_installed), c.instanceId, slot = c.card.upgradeSlots.firstOrNull())
-                    .copy(used = usedUpgrades.contains(c.instanceId))) }
+                children.forEach { c ->
+                    // Le commandant est déjà affiché dans sa propre section (EffectType.COMMANDER) : pas dans la liste des upgrades.
+                    if (c.card.kind == CardKind.COMMANDER || (c.card.kind == CardKind.ARMADA_UPGRADE && ArmadaSlot.COMMANDER in c.card.upgradeSlots)) return@forEach
+                    add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), c.card.rulesText ?: stringResource(R.string.upgrade_installed), c.instanceId, slot = c.card.upgradeSlots.firstOrNull())
+                        .copy(used = usedUpgrades.contains(c.instanceId)))
+                }
                 activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, "crit_${c.name}")) }
             },
             critSelector = { expanded, onDismiss, onSelect ->
@@ -713,7 +717,7 @@ private fun EffectsPanel(
                     Column(Modifier.padding(12.dp)) {
                         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
-                                Box(Modifier.size(24.dp).clip(CircleShape).background(if (eff.used) Color(0xFF3A3A4A) else iconColor.copy(alpha = 0.2f)), contentAlignment = Alignment.Center) { Text(icon, fontSize = 13.sp, fontWeight = FontWeight.Bold, color = if (eff.used) Color(0xFF5A6A7A) else iconColor) }
+                                Box(Modifier.size(24.dp).clip(CircleShape).background(if (eff.used) Color(0xFF3A3A4A) else Color(0xFF1E2A3A)), contentAlignment = Alignment.Center) { Text(icon, fontSize = 13.sp, fontWeight = FontWeight.Bold, color = if (eff.used) Color(0xFF5A6A7A) else iconColor) }
                                 Spacer(Modifier.width(8.dp))
                                 Column {
                                     Row(verticalAlignment = Alignment.CenterVertically) {
