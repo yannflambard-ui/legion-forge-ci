@@ -287,6 +287,7 @@ private data class ArmadaStats(
     val attackRear: List<Int> = emptyList(),
     val attackPort: List<Int> = emptyList(),
     val attackStarboard: List<Int> = emptyList(),
+    val keywords: List<String> = emptyList(),
     val defenseTokens: List<String> = emptyList()
 )
 
@@ -324,10 +325,16 @@ private object ArmadaStatsParser {
                         defenseTokens = tokens
                     )
                 }
-                CardKind.ARMADA_SQUADRON -> ArmadaStats(
-                    hull = o.optInt("hull"),
-                    speed = o.optInt("speed", 3).coerceAtLeast(1)
-                )
+                CardKind.ARMADA_SQUADRON -> {
+                    val kwArr = o.optJSONArray("keywords")
+                    val keywords = buildList { if (kwArr != null) for (i in 0 until kwArr.length()) add(kwArr.getString(i)) }
+                    ArmadaStats(
+                        hull = o.optInt("hull"),
+                        speed = o.optInt("speed", 3).coerceAtLeast(1),
+                        defenseTokens = tokens,
+                        keywords = keywords
+                    )
+                }
                 else -> null
             }
         } catch (_: Exception) { null }
@@ -492,6 +499,13 @@ private fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionEn
     val stats = remember(unit.instanceId) { ArmadaStatsParser.parse(unit.card.shipStats, CardKind.ARMADA_SQUADRON) }
     val maxHp = stats?.hull?.takeIf { it > 0 } ?: 8
     var hull by remember(unit.instanceId) { mutableIntStateOf(maxHp) }
+    // Jetons de défense des escadrons uniques (ex: "2 Brace", "Brace, Scatter").
+    val defTokenNames = remember(unit.instanceId) { stats?.defenseTokens.orEmpty() }
+    val defTokenStates = defTokenNames.mapNotNull { name ->
+        val def = ArmadaDefenseToken.entries.firstOrNull { it.name == name.uppercase() }
+        if (def == null) null else def to name
+    }
+    var defTokens by remember(unit.instanceId) { mutableStateOf<Map<String, Boolean>>(defTokenStates.mapIndexed { i, (def, _) -> "${def.name}_$i" to false }.toMap()) }
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         CardBlock(unit, emptyList(), unit.card.points, wikiSections, onRuleClick)
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
@@ -499,6 +513,31 @@ private fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionEn
                 Text(stringResource(R.string.squadron_tracking), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { BigCounter(stringResource(R.string.hull), hull, maxHp, Color(0xFFFF6B6B), { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- }) }
                 if (hull < maxHp) HealthBar(hull.toFloat() / maxHp, hull, maxHp)
+                if (stats?.keywords?.isNotEmpty() == true) {
+                    HorizontalDivider(color = Color(0xFF2A3A4A))
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                        stats.keywords.forEach { kw ->
+                            Surface(shape = RoundedCornerShape(8.dp), color = Color(0xFF2A3A4A)) {
+                                Text(kw, Modifier.padding(horizontal = 10.dp, vertical = 4.dp), color = Color(0xFF77D9A7), fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (defTokenStates.isNotEmpty()) {
+            Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
+                Column(Modifier.padding(16.dp)) {
+                    Text(stringResource(R.string.defense_tokens), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                    Spacer(Modifier.height(10.dp))
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                        defTokenStates.forEachIndexed { i, (def, _) ->
+                            val key = "${def.name}_$i"
+                            val used = defTokens[key] ?: false
+                            DefenseTokenDisc(def, used, onClick = { defTokens = defTokens + (key to !used) })
+                        }
+                    }
+                }
             }
         }
         CardPlayImage(unit.card)

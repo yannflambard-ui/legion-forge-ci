@@ -50,8 +50,30 @@ def ship_stats(rt):
         "defenseTokens": tokens,
     }
 
+def parse_def_tokens(s):
+    """Parse BSData 'Defense Tokens' string -> list of token names (with dupes).
+    Formats: '2 Brace', 'Brace, Scatter', '1 Brace, 1 Scatter', 'Brace, Brace'."""
+    if not s:
+        return []
+    out = []
+    for part in str(s).split(","):
+        part = part.strip()
+        m = re.match(r"^(\d+)\s+(.+)$", part)
+        if m:
+            count, name = int(m.group(1)), m.group(2)
+        else:
+            count, name = 1, part
+        out.extend([name.upper()] * count)
+    return out
+
+def parse_keywords(s):
+    """Parse BSData 'Keywords' string -> list of keyword names (e.g. 'Counter 1, Rogue')."""
+    if not s:
+        return []
+    return [k.strip() for k in str(s).split(",") if k.strip()]
+
 def squadron_stats(rt):
-    """Squadron BSData JSON has characteristics: Hull Value, Speed."""
+    """Squadron BSData JSON has characteristics: Hull Value, Speed, Defense Tokens, Keywords."""
     try:
         d = json.loads(rt)
     except (TypeError, ValueError):
@@ -61,7 +83,12 @@ def squadron_stats(rt):
     sp = ch.get("Speed")
     if hv is None:
         return None
-    return {"hull": int(hv), "speed": int(sp) if sp and str(sp).isdigit() else 3}
+    return {
+        "hull": int(hv),
+        "speed": int(sp) if sp and str(sp).isdigit() else 3,
+        "defenseTokens": parse_def_tokens(ch.get("Defense Tokens")),
+        "keywords": parse_keywords(ch.get("Keywords")),
+    }
 
 def faction_map():
     # main faction -> allowed bs data faction
