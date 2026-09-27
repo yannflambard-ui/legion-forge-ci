@@ -37,6 +37,23 @@ private fun findWikiSection(wikiSections: List<WikiSectionEntity>, keyword: Stri
     }
 }
 
+// Badge d'upgrade : lettre + couleur distincte par type de slot (au lieu du bleu unique).
+private fun slotBadge(slot: ArmadaSlot): Pair<String, Color> = when (slot) {
+    ArmadaSlot.COMMANDER -> "C" to Color(0xFFFFC857)
+    ArmadaSlot.OFFICER -> "O" to Color(0xFFFFB74D)
+    ArmadaSlot.TITLE -> "T" to Color(0xFFCE93D8)
+    ArmadaSlot.DEFENSIVE_RETROFIT -> "DR" to Color(0xFF4DD0E1)
+    ArmadaSlot.OFFENSIVE_RETROFIT -> "OR" to Color(0xFFFF8A65)
+    ArmadaSlot.WEAPONS_TEAM -> "W" to Color(0xFFF06292)
+    ArmadaSlot.SUPPORT_TEAM -> "S" to Color(0xFFAED581)
+    ArmadaSlot.ORDNANCE -> "ORD" to Color(0xFFFFD54F)
+    ArmadaSlot.TURBOLASERS -> "TB" to Color(0xFF64B5F6)
+    ArmadaSlot.ION_CANNONS -> "ION" to Color(0xFF90CAF9)
+    ArmadaSlot.EXPERIMENTAL_RETROFIT -> "ER" to Color(0xFFBA68C8)
+    ArmadaSlot.SUPERWEAPON -> "SW" to Color(0xFFEF5350)
+    else -> slot.name.first().toString() to Color(0xFF4FC3F7)
+}
+
 // ── common crit cards ───────────────────────────────────
 data class CritCard(val name: String, val effect: String)
 private val armadaCrits = listOf(
@@ -407,8 +424,8 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         // ── ship card ──
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
-            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.Top) {
+            Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                     Column(Modifier.weight(1f)) { Text(unit.card.displayName(), color = Color.White, style = MaterialTheme.typography.headlineSmall); Text("${stringResource(R.string.kind_ship)}  •  ${unit.card.factionId.replace('-', ' ').replaceFirstChar { it.uppercase() }}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge) }
                     Text("${unit.card.points} pts", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleLarge)
                 }
@@ -439,9 +456,15 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                     HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 4.dp))
                     Text(stringResource(R.string.upgrades_hint), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold)
                     children.forEach { c ->
+                        // Le commandant est déjà affiché dans sa propre section : pas dans la liste des upgrades.
+                        if (c.card.kind == CardKind.COMMANDER) return@forEach
                         val used = usedUpgrades.contains(c.instanceId)
+                        val (letter, badgeColor) = slotBadge(c.card.upgradeSlots.firstOrNull() ?: ArmadaSlot.OTHER)
                         Row(Modifier.fillMaxWidth().clickable { usedUpgrades = if (used) usedUpgrades - c.instanceId else usedUpgrades + c.instanceId }, horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                            Row(modifier = Modifier.weight(1f)) {
+                            Row(modifier = Modifier.weight(1f), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                                Box(Modifier.size(20.dp).clip(CircleShape).background(badgeColor.copy(alpha = if (used) 0.25f else 0.8f)), contentAlignment = Alignment.Center) {
+                                    Text(letter, color = if (used) Color(0xFF5A6A7A) else badgeColor, fontSize = 9.sp, fontWeight = FontWeight.Bold)
+                                }
                                 Text(if (used) "\u25CB " else "\u25C9 ", color = if (used) Color(0xFF5A6A7A) else Color(0xFF77D9A7))
                                 Text(c.card.displayName(), color = if (used) Color(0xFF5A6A7A) else Color.White, style = MaterialTheme.typography.bodyMedium)
                             }
@@ -769,14 +792,14 @@ private fun DefenseTokenDisc(def: ArmadaDefenseToken, used: Boolean, onClick: ()
 // ── stats du vaisseau (au lieu du JSON brut) ─────────────
 @Composable
 private fun ShipStatsBlock(stats: ArmadaStats) {
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+    Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
             StatChip("HULL", stats.hull, Color(0xFFFF6B6B), modifier = Modifier.weight(1f))
             StatChip("CMD", stats.command, Color(0xFFFFC857), modifier = Modifier.weight(1f))
             StatChip("SQN", stats.squadron, Color(0xFF4FC3F7), modifier = Modifier.weight(1f))
             StatChip("ENG", stats.engineering, Color(0xFF77D9A7), modifier = Modifier.weight(1f))
         }
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
             AttackArc("AV", stats.attackFront, modifier = Modifier.weight(1f))
             AttackArc("ARR", stats.attackRear, modifier = Modifier.weight(1f))
             AttackArc("BAB", stats.attackPort, modifier = Modifier.weight(1f))
@@ -787,18 +810,18 @@ private fun ShipStatsBlock(stats: ArmadaStats) {
 
 @Composable
 private fun StatChip(label: String, value: Int, color: Color, modifier: Modifier = Modifier) {
-    Surface(shape = RoundedCornerShape(10.dp), color = color.copy(alpha = 0.15f), modifier = modifier) {
-        Column(Modifier.padding(vertical = 6.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-            Text("$value", color = color, fontSize = 18.sp, fontWeight = FontWeight.Bold)
-            Text(label, color = color.copy(alpha = 0.8f), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+    Surface(shape = RoundedCornerShape(8.dp), color = color.copy(alpha = 0.15f), modifier = modifier) {
+        Column(Modifier.padding(vertical = 3.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+            Text("$value", color = color, fontSize = 15.sp, fontWeight = FontWeight.Bold)
+            Text(label, color = color.copy(alpha = 0.8f), fontSize = 8.sp, fontWeight = FontWeight.Bold)
         }
     }
 }
 
 @Composable
 private fun AttackArc(label: String, dice: List<Int>, modifier: Modifier = Modifier) {
-    Column(modifier, horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(2.dp)) {
-        Text(label, color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+    Column(modifier, horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(1.dp)) {
+        Text(label, color = Color(0xFF9EACBC), fontSize = 8.sp, fontWeight = FontWeight.Bold)
         Row(horizontalArrangement = Arrangement.spacedBy(3.dp)) {
             if (dice.getOrNull(0) ?: 0 > 0) DiceDot(dice[0], Color(0xFF4FC3F7))
             if (dice.getOrNull(1) ?: 0 > 0) DiceDot(dice[1], Color(0xFFFF6B6B))
@@ -809,8 +832,8 @@ private fun AttackArc(label: String, dice: List<Int>, modifier: Modifier = Modif
 
 @Composable
 private fun DiceDot(count: Int, color: Color) {
-    Box(Modifier.size(16.dp).clip(CircleShape).background(color), contentAlignment = Alignment.Center) {
-        Text("$count", color = Color.White, fontSize = 9.sp, fontWeight = FontWeight.Bold)
+    Box(Modifier.size(14.dp).clip(CircleShape).background(color), contentAlignment = Alignment.Center) {
+        Text("$count", color = Color.White, fontSize = 8.sp, fontWeight = FontWeight.Bold)
     }
 }
 
