@@ -350,6 +350,8 @@ private data class ArmadaStats(
     val shieldRear: Int = 0,
     val shieldPort: Int = 0,
     val shieldStarboard: Int = 0,
+    val shieldPortAux: Int = 0,      // vaisseaux huge : 2e cadran bâbord
+    val shieldStarboardAux: Int = 0, // vaisseaux huge : 2e cadran tribord
     val maxSpeed: Int = 1,
     val speed: Int = 3, // valeur fixe des squadrons
     val command: Int = 1, // niveau de commande = stock max de pions d'ordre
@@ -359,6 +361,8 @@ private data class ArmadaStats(
     val attackRear: List<Int> = emptyList(),
     val attackPort: List<Int> = emptyList(),
     val attackStarboard: List<Int> = emptyList(),
+    val attackPortAux: List<Int> = emptyList(),      // huge : dés bâbord auxiliaire
+    val attackStarboardAux: List<Int> = emptyList(), // huge : dés tribord auxiliaire
     val antiSquadron: List<Int> = emptyList(), // [bleu, rouge, noir]
     val battery: List<Int> = emptyList(),      // [bleu, rouge, noir]
     val keywords: List<String> = emptyList(),
@@ -404,6 +408,8 @@ private object ArmadaStatsParser {
                         shieldRear = shield?.optInt("rear", 0) ?: 0,
                         shieldPort = shield?.optInt("left", 0) ?: 0,
                         shieldStarboard = shield?.optInt("right", 0) ?: 0,
+                        shieldPortAux = shield?.optInt("left_aux", 0) ?: 0,
+                        shieldStarboardAux = shield?.optInt("right_aux", 0) ?: 0,
                         maxSpeed = o.optInt("maxSpeed", 1).coerceAtLeast(1),
                         command = o.optInt("command", 1).coerceAtLeast(1),
                         squadron = o.optInt("squadron", 0),
@@ -412,6 +418,8 @@ private object ArmadaStatsParser {
                         attackRear = arc("rear"),
                         attackPort = arc("left"),
                         attackStarboard = arc("right"),
+                        attackPortAux = arc("left_aux"),
+                        attackStarboardAux = arc("right_aux"),
                         defenseTokens = tokens,
                         speedChart = speedChart,
                         size = o.optString("size", "small")
@@ -454,8 +462,8 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
     var sS by remember(unit.instanceId) { mutableIntStateOf(stats?.shieldStarboard ?: 0) }
     // Vaisseaux "huge" (Executor, Starhawk) : 2 cadrans de bouclier par flanc (haut + bas).
     val isHuge = stats?.size == "huge"
-    var sP2 by remember(unit.instanceId) { mutableIntStateOf(if (isHuge) (stats?.shieldPort ?: 0) else 0) }
-    var sS2 by remember(unit.instanceId) { mutableIntStateOf(if (isHuge) (stats?.shieldStarboard ?: 0) else 0) }
+    var sP2 by remember(unit.instanceId) { mutableIntStateOf(if (isHuge) (stats?.shieldPortAux ?: 0) else 0) }
+    var sS2 by remember(unit.instanceId) { mutableIntStateOf(if (isHuge) (stats?.shieldStarboardAux ?: 0) else 0) }
     val maxShield = 9
     val maxSpeed = stats?.maxSpeed ?: 3
     var speed by remember(unit.instanceId) { mutableIntStateOf(2) }
@@ -525,20 +533,22 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                 // ── cadrans des 4 arcs en croix (comme sur la carte officielle) : rectangle de dés + cercle de bouclier ──
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(6.dp)) {
                     // AVANT : rectangle de dés AU-DESSUS du cercle de bouclier.
-                    ArcCadran(ArcPos.ABOVE, stringResource(R.string.shield_front), stats?.attackFront, listOf(sF), { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- }, { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- })
+                    ArcCadran(ArcPos.ABOVE, stringResource(R.string.shield_front), listOf(stats?.attackFront), listOf(sF), { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- }, { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- })
                     // Ligne centrale : BAB (gauche) | TRIB (droite). Vaisseaux huge = 2 cadrans par flanc.
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.Top) {
-                        ArcCadran(ArcPos.LEFT, stringResource(R.string.shield_port), stats?.attackPort,
+                        ArcCadran(ArcPos.LEFT, stringResource(R.string.shield_port),
+                            if (isHuge) listOf(stats?.attackPort, stats?.attackPortAux) else listOf(stats?.attackPort),
                             if (isHuge) listOf(sP, sP2) else listOf(sP),
                             { if (sP < maxShield) sP++ }, { if (sP > 0) sP-- },
                             { if (sP2 < maxShield) sP2++ }, { if (sP2 > 0) sP2-- })
-                        ArcCadran(ArcPos.RIGHT, stringResource(R.string.shield_starboard), stats?.attackStarboard,
+                        ArcCadran(ArcPos.RIGHT, stringResource(R.string.shield_starboard),
+                            if (isHuge) listOf(stats?.attackStarboard, stats?.attackStarboardAux) else listOf(stats?.attackStarboard),
                             if (isHuge) listOf(sS, sS2) else listOf(sS),
                             { if (sS < maxShield) sS++ }, { if (sS > 0) sS-- },
                             { if (sS2 < maxShield) sS2++ }, { if (sS2 > 0) sS2-- })
                     }
                     // ARRIERE : rectangle de dés EN DESSOUS du cercle de bouclier.
-                    ArcCadran(ArcPos.BELOW, stringResource(R.string.shield_rear), stats?.attackRear, listOf(sR), { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- }, { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- })
+                    ArcCadran(ArcPos.BELOW, stringResource(R.string.shield_rear), listOf(stats?.attackRear), listOf(sR), { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- }, { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- })
                 }
                 HorizontalDivider(color = Color(0xFF2A3A4A))
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
@@ -969,11 +979,17 @@ private fun AttackDiceRow(dice: List<Int>?) {
 // Position du rectangle de dés par rapport au cercle de bouclier.
 private enum class ArcPos { ABOVE, BELOW, LEFT, RIGHT }
 
-// Cadran d'un arc : rectangle de dés positionné autour du/des cercle(s) de bouclier.
-// values = liste des valeurs de bouclier (1 pour normal, 2 pour huge). onInc1/onDec1 = 1er cadran, onInc2/onDec2 = 2e.
+// Cadran d'un arc : rectangle(s) de dés positionné(s) autour du/des cercle(s) de bouclier.
+// diceList = liste des dés par cadran (1 pour normal, 2 pour huge). values = valeurs de bouclier par cadran.
+// onInc1/onDec1 = 1er cadran, onInc2/onDec2 = 2e.
 @Composable
-private fun ArcCadran(pos: ArcPos, label: String, dice: List<Int>?, values: List<Int>, onInc1: () -> Unit, onDec1: () -> Unit, onInc2: () -> Unit, onDec2: () -> Unit) {
-    val rect: @Composable () -> Unit = { DiceRect(dice) }
+private fun ArcCadran(pos: ArcPos, label: String, diceList: List<List<Int>?>, values: List<Int>, onInc1: () -> Unit, onDec1: () -> Unit, onInc2: () -> Unit, onDec2: () -> Unit) {
+    val rects: @Composable () -> Unit = {
+        Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            DiceRect(diceList.getOrNull(0))
+            if (diceList.size > 1) DiceRect(diceList.getOrNull(1))
+        }
+    }
     val shields: @Composable () -> Unit = {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
             CircleShield(label, values.getOrElse(0) { 0 }, onInc1, onDec1)
@@ -981,10 +997,10 @@ private fun ArcCadran(pos: ArcPos, label: String, dice: List<Int>?, values: List
         }
     }
     when (pos) {
-        ArcPos.ABOVE -> Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) { rect(); shields() }
-        ArcPos.BELOW -> Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) { shields(); rect() }
-        ArcPos.LEFT -> Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) { rect(); shields() }
-        ArcPos.RIGHT -> Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) { shields(); rect() }
+        ArcPos.ABOVE -> Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) { rects(); shields() }
+        ArcPos.BELOW -> Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) { shields(); rects() }
+        ArcPos.LEFT -> Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) { rects(); shields() }
+        ArcPos.RIGHT -> Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) { shields(); rects() }
     }
 }
 
