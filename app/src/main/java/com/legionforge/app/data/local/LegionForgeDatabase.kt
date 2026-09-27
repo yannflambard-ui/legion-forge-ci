@@ -37,7 +37,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
         BuilderEntryEntity::class,
         WikiSectionEntity::class
     ],
-    version = 9,
+    version = 10,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -57,7 +57,7 @@ abstract class LegionForgeDatabase : RoomDatabase() {
                     context.applicationContext,
                     LegionForgeDatabase::class.java,
                     "legionforge.db"
-                ).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9).fallbackToDestructiveMigration().build().also { INSTANCE = it }
+                ).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9, MIGRATION_9_10).fallbackToDestructiveMigration().build().also { INSTANCE = it }
             }
         }
 
@@ -85,6 +85,14 @@ abstract class LegionForgeDatabase : RoomDatabase() {
             override fun migrate(db: SupportSQLiteDatabase) {
                 db.execSQL("CREATE TABLE IF NOT EXISTS wiki_sections (id TEXT NOT NULL PRIMARY KEY, gameSystem TEXT NOT NULL, title TEXT NOT NULL, keywords TEXT NOT NULL, content TEXT NOT NULL)")
                 db.execSQL("CREATE INDEX IF NOT EXISTS index_wiki_sections_gameSystem ON wiki_sections(gameSystem)")
+            }
+        }
+        private val MIGRATION_9_10 = object : Migration(9, 10) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                // Purge wiki_sections : le seed (WikiRepository.seedWiki) se relance
+                // car sectionCount()==0 et re-importe le nouveau wiki Legion (368 sections,
+                // découpé proprement depuis le Core Rulebook officiel 2026).
+                db.execSQL("DELETE FROM wiki_sections")
             }
         }
         private val MIGRATION_2_3 = object : Migration(2, 3) {
