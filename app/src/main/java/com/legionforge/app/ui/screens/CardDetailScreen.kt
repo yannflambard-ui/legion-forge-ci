@@ -94,12 +94,16 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
         Box(Modifier.fillMaxSize().padding(pad)) {
             HorizontalPager(state = pagerState, modifier = Modifier.fillMaxSize()) { page ->
                 val unit = playable[page]; val children = entries.filter { it.parentInstanceId == unit.instanceId }
+                // Liens wiki : ne montrer que les mots-clés du jeu courant (pas de mélange Legion/Armada)
+                val unitWikiSections = remember(unit, wikiSections) {
+                    wikiSections.filter { it.gameSystem == unit.card.gameSystem.name }
+                }
                 when (unit.card.kind) {
-                    CardKind.ARMADA_SHIP -> ArmadaShipPage(unit, children, entries, wikiSections, onRuleClick)
-                    CardKind.ARMADA_SQUADRON -> ArmadaSquadronPage(unit, wikiSections, onRuleClick)
+                    CardKind.ARMADA_SHIP -> ArmadaShipPage(unit, children, entries, unitWikiSections, onRuleClick)
+                    CardKind.ARMADA_SQUADRON -> ArmadaSquadronPage(unit, unitWikiSections, onRuleClick)
                     // Degats critiques reserves aux vaisseaux capitaux (par Regle Armada). Un commandant est equipe sur un vaisseau, il n'a pas de page de degats propres.
-                    CardKind.COMMANDER -> CommanderPage(unit, wikiSections, onRuleClick)
-                    else -> LegionUnitPage(unit, children, entries, wikiSections, onRuleClick)
+                    CardKind.COMMANDER -> CommanderPage(unit, unitWikiSections, onRuleClick)
+                    else -> LegionUnitPage(unit, children, entries, unitWikiSections, onRuleClick)
                 }
             }
             if (playable.size > 1) {
@@ -331,6 +335,8 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
     // Chaque jeton (même en doublon) est une instance indépendante, clé = "name_i".
     var defTokens by remember(unit.instanceId) { mutableStateOf<Map<String, Boolean>>(defTokenStates.mapIndexed { i, (def, _) -> "${def.name}_$i" to false }.toMap()) }
     val commander = allEntries.firstOrNull { it.card.kind == CardKind.COMMANDER || (it.card.kind == CardKind.ARMADA_UPGRADE && ArmadaSlot.COMMANDER in it.card.upgradeSlots) }
+    // Jetons/marqueurs dédiés au commandant de la flotte (attaché au flagship).
+    var commanderTokens by remember(unit.instanceId) { mutableStateOf(listOf<String>()) }
 
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         // ── ship card ──
@@ -351,6 +357,8 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                         }
                         Text("${commander.card.points} pts", color = if (used) Color(0xFF5A6A7A) else Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium)
                     }
+                    // Jetons/marqueurs du commandant de la flotte
+                    TokenSection(commanderTokens, { commanderTokens = commanderTokens + it }, { commanderTokens = commanderTokens - it })
                 }
                 if (children.isNotEmpty()) {
                     HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 4.dp))
