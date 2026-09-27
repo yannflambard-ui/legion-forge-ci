@@ -21,6 +21,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 CrashReporter.init(applicationContext)
         com.legionforge.app.data.i18n.I18n.load(applicationContext)
+        // Réapplique la langue sauvegardée par l'utilisateur (Settings) à chaque ouverture.
+        val savedLang = getSharedPreferences("legionforge", MODE_PRIVATE).getString("locale", "en") ?: "en"
+        com.legionforge.app.ui.screens.setAppLocale(applicationContext, savedLang)
 
         setContent {
             LegionForgeTheme {
