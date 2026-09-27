@@ -277,11 +277,11 @@ private fun ImagePreviewDialog(card: CardDefinition, onClose: () -> Unit) {
                             AsyncImage(
                                 model = source,
                                 contentDescription = "Image de ${card.displayName()}",
-                                modifier = Modifier.fillMaxWidth().aspectRatio(0.7f),
+                                modifier = Modifier.fillMaxWidth().aspectRatio(cardAspectRatio(card)),
                                 contentScale = ContentScale.Fit
                             )
                         } else {
-                            Box(Modifier.fillMaxWidth().aspectRatio(0.7f).background(Brush.linearGradient(listOf(Color(0xFF253344), Color(0xFF111820)))), contentAlignment = Alignment.Center) {
+                            Box(Modifier.fillMaxWidth().aspectRatio(cardAspectRatio(card)).background(Brush.linearGradient(listOf(Color(0xFF253344), Color(0xFF111820)))), contentAlignment = Alignment.Center) {
                                 Text("Aucune image pour cette carte", color = Color(0xFF8494A8), style = MaterialTheme.typography.bodySmall)
                             }
                         }
@@ -425,12 +425,17 @@ private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, preselec
     }
 }
 
+/** Ratio d'affichage des cartes : les cartes unité Legion sont des bandeaux horizontaux
+ * (paysage ~1.43) ; les autres (upgrades, vaisseaux, escadrons, commandants) sont en
+ * portrait (~0.7). Le ratio suit le type de carte pour que chaque carte prenne toute
+ * la largeur dans son propre format. */
+private fun cardAspectRatio(card: CardDefinition): Float =
+    if (card.kind == CardKind.LEGION_UNIT) 1.43f else 0.7f
+
 @Composable
 private fun CardArtwork(card: CardDefinition, modifier: Modifier = Modifier) {
     val source: Any? = card.imageAssetPath?.let { "file:///android_asset/$it" } ?: card.imageUrl
-    // Les cartes unité Legion sont des bandeaux horizontaux (paysage ~1.43) ; les autres
-    // (upgrades, vaisseaux, escadrons, commandants) sont en portrait (~0.7).
-    val ratio = if (card.kind == CardKind.LEGION_UNIT) 1.43f else 0.7f
+    val ratio = cardAspectRatio(card)
     val sized = modifier.aspectRatio(ratio)
     if (source != null) AsyncImage(model = source, contentDescription = "Visuel de ${card.displayName()}", modifier = sized, contentScale = ContentScale.Crop)
     else Card(sized, shape = RoundedCornerShape(10.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF253344))) {
