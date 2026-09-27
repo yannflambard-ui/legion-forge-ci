@@ -668,12 +668,12 @@ private fun CommandDialCard(
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Text("ROUE DE COMMANDEMENT", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                CommandDialButton(ArmadaCommandOrder.NAVIGATE, selected == ArmadaCommandOrder.NAVIGATE, modifier = Modifier.weight(1f)) { onSelect(ArmadaCommandOrder.NAVIGATE) }
-                CommandDialButton(ArmadaCommandOrder.CONCENTRATE, selected == ArmadaCommandOrder.CONCENTRATE, modifier = Modifier.weight(1f)) { onSelect(ArmadaCommandOrder.CONCENTRATE) }
+                CommandDialButton(order = ArmadaCommandOrder.NAVIGATE, selected = selected == ArmadaCommandOrder.NAVIGATE, onClick = { onSelect(ArmadaCommandOrder.NAVIGATE) }, modifier = Modifier.weight(1f))
+                CommandDialButton(order = ArmadaCommandOrder.CONCENTRATE, selected = selected == ArmadaCommandOrder.CONCENTRATE, onClick = { onSelect(ArmadaCommandOrder.CONCENTRATE) }, modifier = Modifier.weight(1f))
             }
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                CommandDialButton(ArmadaCommandOrder.SQUADRON, selected == ArmadaCommandOrder.SQUADRON, modifier = Modifier.weight(1f)) { onSelect(ArmadaCommandOrder.SQUADRON) }
-                CommandDialButton(ArmadaCommandOrder.REPAIR, selected == ArmadaCommandOrder.REPAIR, modifier = Modifier.weight(1f)) { onSelect(ArmadaCommandOrder.REPAIR) }
+                CommandDialButton(order = ArmadaCommandOrder.SQUADRON, selected = selected == ArmadaCommandOrder.SQUADRON, onClick = { onSelect(ArmadaCommandOrder.SQUADRON) }, modifier = Modifier.weight(1f))
+                CommandDialButton(order = ArmadaCommandOrder.REPAIR, selected = selected == ArmadaCommandOrder.REPAIR, onClick = { onSelect(ArmadaCommandOrder.REPAIR) }, modifier = Modifier.weight(1f))
             }
             HorizontalDivider(color = Color(0xFF2A3A4A))
             Text("PIONS D'ORDRE", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
