@@ -3,10 +3,10 @@ package com.legionforge.app.ui.screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.legionforge.app.R
@@ -344,7 +343,6 @@ private fun FactionGroup(parent: ListEntry, children: List<ListEntry>, onRemove:
 private fun BuilderEntryCard(entry: ListEntry, isChild: Boolean = false, accentColor: Color = Color(0xFF9EACBC), isSelectable: Boolean = false, onRemove: () -> Unit, onSelectParent: () -> Unit = {}) {
     Card(Modifier
         .fillMaxWidth()
-        .swipeAction(onSwipeLeft = onRemove)
         .then(if (isSelectable) Modifier.clickable { onSelectParent() } else Modifier)
         .then(if (isChild) Modifier.padding(start = 28.dp) else Modifier),
         shape = RoundedCornerShape(if (isChild) 10.dp else 15.dp),
@@ -359,7 +357,15 @@ private fun BuilderEntryCard(entry: ListEntry, isChild: Boolean = false, accentC
                     if (entry.card.allowedUpgradeSlots.isNotEmpty()) Text(stringResource(R.string.slots_label, entry.card.allowedUpgradeSlots.joinToString { it.name.lowercase().replace('_', ' ') }), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, maxLines = 2)
                 }
             }
-            Text("←", color = Color(0xFF5A6A7A), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+            // Bouton − de retrait (remplace le swipe gauche)
+            Surface(
+                onClick = onRemove,
+                shape = CircleShape,
+                color = Color(0xFF3B2224),
+                modifier = Modifier.size(34.dp)
+            ) {
+                Box(contentAlignment = Alignment.Center) { Text("−", color = Color(0xFFFF927F), fontSize = 20.sp, fontWeight = FontWeight.Bold) }
+            }
         }
     }
 }
@@ -449,25 +455,4 @@ private fun CardArtwork(card: CardDefinition, modifier: Modifier = Modifier) {
             Text(card.displayName().split(' ').take(2).joinToString("\n"), color = Color(0xFF8494A8), style = MaterialTheme.typography.labelSmall)
         }
     }
-}
-
-/** Détecte un swipe horizontal : onSwipeRight (vers la droite) ou onSwipeLeft (vers la gauche).
- *  Se déclenche quand le déplacement horizontal dépasse le seuil (en px). */
-private fun Modifier.swipeAction(
-    onSwipeRight: () -> Unit = {},
-    onSwipeLeft: () -> Unit = {},
-    thresholdPx: Float = 120f
-): Modifier = pointerInput(Unit) {
-    var totalX = 0f
-    detectHorizontalDragGestures(
-        onDragStart = { totalX = 0f },
-        onHorizontalDrag = { change, dragAmount ->
-            totalX += dragAmount
-            change.consume()
-        },
-        onDragEnd = {
-            if (totalX > thresholdPx) onSwipeRight()
-            else if (totalX < -thresholdPx) onSwipeLeft()
-        }
-    )
 }
