@@ -280,6 +280,13 @@ private data class ArmadaStats(
     val shieldStarboard: Int = 0,
     val maxSpeed: Int = 1,
     val speed: Int = 3, // valeur fixe des squadrons
+    val command: Int = 1, // niveau de commande = stock max de pions d'ordre
+    val squadron: Int = 0,
+    val engineering: Int = 0,
+    val attackFront: List<Int> = emptyList(), // [bleu, rouge, noir]
+    val attackRear: List<Int> = emptyList(),
+    val attackPort: List<Int> = emptyList(),
+    val attackStarboard: List<Int> = emptyList(),
     val defenseTokens: List<String> = emptyList()
 )
 
@@ -294,15 +301,29 @@ private object ArmadaStatsParser {
                 if (tokArr != null) for (i in 0 until tokArr.length()) add(tokArr.getString(i))
             }
             when (kind) {
-                CardKind.ARMADA_SHIP -> ArmadaStats(
-                    hull = o.optInt("hull"),
-                    shieldFront = shield?.optInt("front", 0) ?: 0,
-                    shieldRear = shield?.optInt("rear", 0) ?: 0,
-                    shieldPort = shield?.optInt("left", 0) ?: 0,
-                    shieldStarboard = shield?.optInt("right", 0) ?: 0,
-                    maxSpeed = o.optInt("maxSpeed", 1).coerceAtLeast(1),
-                    defenseTokens = tokens
-                )
+                CardKind.ARMADA_SHIP -> {
+                    val attack = o.optJSONObject("attack")
+                    fun arc(name: String): List<Int> {
+                        val a = attack?.optJSONArray(name) ?: return emptyList()
+                        return buildList { for (i in 0 until a.length()) add(a.optInt(i)) }
+                    }
+                    ArmadaStats(
+                        hull = o.optInt("hull"),
+                        shieldFront = shield?.optInt("front", 0) ?: 0,
+                        shieldRear = shield?.optInt("rear", 0) ?: 0,
+                        shieldPort = shield?.optInt("left", 0) ?: 0,
+                        shieldStarboard = shield?.optInt("right", 0) ?: 0,
+                        maxSpeed = o.optInt("maxSpeed", 1).coerceAtLeast(1),
+                        command = o.optInt("command", 1).coerceAtLeast(1),
+                        squadron = o.optInt("squadron", 0),
+                        engineering = o.optInt("engineering", 0),
+                        attackFront = arc("front"),
+                        attackRear = arc("rear"),
+                        attackPort = arc("left"),
+                        attackStarboard = arc("right"),
+                        defenseTokens = tokens
+                    )
+                }
                 CardKind.ARMADA_SQUADRON -> ArmadaStats(
                     hull = o.optInt("hull"),
                     speed = o.optInt("speed", 3).coerceAtLeast(1)
@@ -328,7 +349,6 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
     val maxShield = 9
     val maxSpeed = stats?.maxSpeed ?: 3
     var speed by remember(unit.instanceId) { mutableIntStateOf(2) }
-    var tokens by remember(unit.instanceId) { mutableStateOf(listOf<String>()) }
     var activeCrits by remember(unit.instanceId) { mutableStateOf(listOf<CritCard>()) }
     var usedUpgrades by remember(unit.instanceId) { mutableStateOf(setOf<String>()) }
     val defTokenNames = remember(unit.instanceId) {
@@ -344,11 +364,10 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
     var defTokens by remember(unit.instanceId) { mutableStateOf<Map<String, Boolean>>(defTokenStates.mapIndexed { i, (def, _) -> "${def.name}_$i" to false }.toMap()) }
     // Roue de commandement : ordre courant du vaisseau (null = non défini).
     var commandOrder by remember(unit.instanceId) { mutableStateOf<ArmadaCommandOrder?>(null) }
-    // Pions d'ordre : chaque commande a un pion, PRET (false) / UTILISE (true).
-    var orderTokens by remember(unit.instanceId) { mutableStateOf<Map<String, Boolean>>(ArmadaCommandOrder.entries.associate { it.name to false }) }
+    // Pions d'ordre en stock : chaque commande a un compteur (0..N), total max = niveau de commande.
+    val maxOrderStock = stats?.command ?: 1
+    var orderTokens by remember(unit.instanceId) { mutableStateOf<Map<String, Int>>(ArmadaCommandOrder.entries.associate { it.name to 0 }) }
     val commander = allEntries.firstOrNull { it.card.kind == CardKind.COMMANDER || (it.card.kind == CardKind.ARMADA_UPGRADE && ArmadaSlot.COMMANDER in it.card.upgradeSlots) }
-    // Jetons/marqueurs dédiés au commandant de la flotte (attaché au flagship).
-    var commanderTokens by remember(unit.instanceId) { mutableStateOf(listOf<String>()) }
 
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         // ── ship card ──
@@ -358,7 +377,8 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                     Column(Modifier.weight(1f)) { Text(unit.card.displayName(), color = Color.White, style = MaterialTheme.typography.headlineSmall); Text("${stringResource(R.string.kind_ship)}  •  ${unit.card.factionId.replace('-', ' ').replaceFirstChar { it.uppercase() }}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge) }
                     Text("${unit.card.points} pts", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleLarge)
                 }
-                if (!unit.card.rulesText.isNullOrBlank()) ClickableRulesText(unit.card.rulesText, wikiSections, onRuleClick, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall, maxLines = 6)
+                if (stats != null) ShipStatsBlock(stats)
+                else if (!unit.card.rulesText.isNullOrBlank()) ClickableRulesText(unit.card.rulesText, wikiSections, onRuleClick, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall, maxLines = 6)
                 if (commander != null) {
                     val used = usedUpgrades.contains("cmd")
                     HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 2.dp))
@@ -369,8 +389,6 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                         }
                         Text("${commander.card.points} pts", color = if (used) Color(0xFF5A6A7A) else Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium)
                     }
-                    // Jetons/marqueurs du commandant de la flotte
-                    TokenSection(commanderTokens, { commanderTokens = commanderTokens + it }, { commanderTokens = commanderTokens - it })
                 }
                 if (children.isNotEmpty()) {
                     HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 4.dp))
@@ -409,7 +427,11 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
             selected = commandOrder,
             onSelect = { commandOrder = if (commandOrder == it) null else it },
             orderTokens = orderTokens,
-            onToggleOrder = { name -> orderTokens = orderTokens + (name to !(orderTokens[name] ?: false)) }
+            maxStock = maxOrderStock,
+            onIncOrder = { name ->
+                if (orderTokens.values.sum() < maxOrderStock) orderTokens = orderTokens + (name to (orderTokens[name] ?: 0) + 1)
+            },
+            onDecOrder = { name -> orderTokens = orderTokens + (name to ((orderTokens[name] ?: 0) - 1).coerceAtLeast(0)) }
         )
         // ── shields & hull ──
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
@@ -428,10 +450,6 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                 }
                 if (hull < maxHp) { HealthBar(hull.toFloat() / maxHp, hull, maxHp) }
             }
-        }
-        // ── tokens ──
-        Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
-            Column(Modifier.padding(16.dp)) { TokenSection(tokens, { tokens = tokens + it }, { tokens = tokens - it }) }
         }
         // ── effects panel ──
         EffectsPanel(
@@ -456,13 +474,11 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
 // ═══════════════════  COMMANDER (pas de degats critiques, equipe sur le flagship)  ═══════════════════
 @Composable
 private fun CommanderPage(unit: ListEntry, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
-    var tokens by remember(unit.instanceId) { mutableStateOf(listOf<String>()) }
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         CardBlock(unit, emptyList(), unit.card.points, wikiSections, onRuleClick)
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(stringResource(R.string.fleet_command), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                TokenSection(tokens, { tokens = tokens + it }, { tokens = tokens - it })
             }
         }
         CardPlayImage(unit.card)
@@ -475,7 +491,7 @@ private fun CommanderPage(unit: ListEntry, wikiSections: List<WikiSectionEntity>
 private fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
     val stats = remember(unit.instanceId) { ArmadaStatsParser.parse(unit.card.shipStats, CardKind.ARMADA_SQUADRON) }
     val maxHp = stats?.hull?.takeIf { it > 0 } ?: 8
-    var hull by remember(unit.instanceId) { mutableIntStateOf(maxHp) }; var tokens by remember(unit.instanceId) { mutableStateOf(listOf<String>()) }
+    var hull by remember(unit.instanceId) { mutableIntStateOf(maxHp) }
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         CardBlock(unit, emptyList(), unit.card.points, wikiSections, onRuleClick)
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
@@ -483,7 +499,6 @@ private fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionEn
                 Text(stringResource(R.string.squadron_tracking), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { BigCounter(stringResource(R.string.hull), hull, maxHp, Color(0xFFFF6B6B), { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- }) }
                 if (hull < maxHp) HealthBar(hull.toFloat() / maxHp, hull, maxHp)
-                TokenSection(tokens, { tokens = tokens + it }, { tokens = tokens - it })
             }
         }
         CardPlayImage(unit.card)
@@ -656,13 +671,63 @@ private fun DefenseTokenDisc(def: ArmadaDefenseToken, used: Boolean, onClick: ()
     }
 }
 
+// ── stats du vaisseau (au lieu du JSON brut) ─────────────
+@Composable
+private fun ShipStatsBlock(stats: ArmadaStats) {
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            StatChip("HULL", stats.hull, Color(0xFFFF6B6B), modifier = Modifier.weight(1f))
+            StatChip("CMD", stats.command, Color(0xFFFFC857), modifier = Modifier.weight(1f))
+            StatChip("SQN", stats.squadron, Color(0xFF4FC3F7), modifier = Modifier.weight(1f))
+            StatChip("ENG", stats.engineering, Color(0xFF77D9A7), modifier = Modifier.weight(1f))
+        }
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            AttackArc("AV", stats.attackFront, modifier = Modifier.weight(1f))
+            AttackArc("ARR", stats.attackRear, modifier = Modifier.weight(1f))
+            AttackArc("BAB", stats.attackPort, modifier = Modifier.weight(1f))
+            AttackArc("TRIB", stats.attackStarboard, modifier = Modifier.weight(1f))
+        }
+    }
+}
+
+@Composable
+private fun StatChip(label: String, value: Int, color: Color, modifier: Modifier = Modifier) {
+    Surface(shape = RoundedCornerShape(10.dp), color = color.copy(alpha = 0.15f), modifier = modifier) {
+        Column(Modifier.padding(vertical = 6.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+            Text("$value", color = color, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+            Text(label, color = color.copy(alpha = 0.8f), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+        }
+    }
+}
+
+@Composable
+private fun AttackArc(label: String, dice: List<Int>, modifier: Modifier = Modifier) {
+    Column(modifier, horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(2.dp)) {
+        Text(label, color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+        Row(horizontalArrangement = Arrangement.spacedBy(3.dp)) {
+            if (dice.getOrNull(0) ?: 0 > 0) DiceDot(dice[0], Color(0xFF4FC3F7))
+            if (dice.getOrNull(1) ?: 0 > 0) DiceDot(dice[1], Color(0xFFFF6B6B))
+            if (dice.getOrNull(2) ?: 0 > 0) DiceDot(dice[2], Color(0xFF3A3A4A))
+        }
+    }
+}
+
+@Composable
+private fun DiceDot(count: Int, color: Color) {
+    Box(Modifier.size(16.dp).clip(CircleShape).background(color), contentAlignment = Alignment.Center) {
+        Text("$count", color = Color.White, fontSize = 9.sp, fontWeight = FontWeight.Bold)
+    }
+}
+
 // ── roue de commandement (dial) + pions d'ordre ──────────
 @Composable
 private fun CommandDialCard(
     selected: ArmadaCommandOrder?,
     onSelect: (ArmadaCommandOrder) -> Unit,
-    orderTokens: Map<String, Boolean>,
-    onToggleOrder: (String) -> Unit
+    orderTokens: Map<String, Int>,
+    maxStock: Int,
+    onIncOrder: (String) -> Unit,
+    onDecOrder: (String) -> Unit
 ) {
     Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -676,11 +741,14 @@ private fun CommandDialCard(
                 CommandDialButton(order = ArmadaCommandOrder.REPAIR, selected = selected == ArmadaCommandOrder.REPAIR, onClick = { onSelect(ArmadaCommandOrder.REPAIR) }, modifier = Modifier.weight(1f))
             }
             HorizontalDivider(color = Color(0xFF2A3A4A))
-            Text("PIONS D'ORDRE", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                Text("PIONS D'ORDRE", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                Text("STOCK ${orderTokens.values.sum()} / $maxStock", color = Color(0xFF77D9A7), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+            }
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 ArmadaCommandOrder.entries.forEach { order ->
-                    val used = orderTokens[order.name] ?: false
-                    OrderTokenDisc(order, used, onClick = { onToggleOrder(order.name) })
+                    val count = orderTokens[order.name] ?: 0
+                    OrderTokenDisc(order, count, onClick = { onIncOrder(order.name) }, onDec = { onDecOrder(order.name) })
                 }
             }
         }
@@ -712,15 +780,14 @@ private fun CommandDialButton(order: ArmadaCommandOrder, selected: Boolean, onCl
 }
 
 @Composable
-private fun OrderTokenDisc(order: ArmadaCommandOrder, used: Boolean, onClick: () -> Unit) {
-    val ringColor = if (used) Color(0xFFFF6B6B) else Color(0xFF77D9A7)
+private fun OrderTokenDisc(order: ArmadaCommandOrder, count: Int, onClick: () -> Unit, onDec: () -> Unit) {
     Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Surface(
             onClick = onClick,
             shape = CircleShape,
             color = Color(0xFF192330),
             modifier = Modifier.size(52.dp),
-            border = androidx.compose.foundation.BorderStroke(3.dp, ringColor)
+            border = androidx.compose.foundation.BorderStroke(3.dp, Color(0xFF77D9A7))
         ) {
             Box(contentAlignment = Alignment.Center, modifier = Modifier.padding(3.dp)) {
                 AsyncImage(
@@ -731,8 +798,13 @@ private fun OrderTokenDisc(order: ArmadaCommandOrder, used: Boolean, onClick: ()
                 )
             }
         }
-        Text(order.label, color = ringColor, fontSize = 8.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
-        Text(if (used) "UTILISE" else "PRET", color = ringColor.copy(alpha = 0.7f), fontSize = 8.sp, fontWeight = FontWeight.Bold)
+        // Compteur de stock sous le pion (empilable, max total = niveau de commande).
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+            Surface(onClick = onDec, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(20.dp)) { Box(contentAlignment = Alignment.Center) { Text("-", color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.Bold) } }
+            Text("$count", color = Color(0xFF77D9A7), fontSize = 14.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.width(20.dp))
+            Surface(onClick = onClick, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(20.dp)) { Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.Bold) } }
+        }
+        Text(order.label, color = Color(0xFF9EACBC), fontSize = 8.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
     }
 }
 
