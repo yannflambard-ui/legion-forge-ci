@@ -66,11 +66,18 @@ def parse_def_tokens(s):
         out.extend([name.upper()] * count)
     return out
 
+ARMADA_KEYWORDS = ["AI", "Adept", "Assault", "Bomber", "Cloak", "Counter", "Dodge", "Escort", "Grit", "Heavy", "Intel", "Relay", "Rogue", "Screen", "Snipe", "Strategic", "Swarm"]
+
 def parse_keywords(s):
-    """Parse BSData 'Keywords' string -> list of keyword names (e.g. 'Counter 1, Rogue')."""
+    """Extract individual Armada keyword names from a BSData 'Keywords' string.
+    Handles all formats: 'Bomber, Rogue', 'Counter 1, Rogue', 'AI: Anti-Squadron 1. Counter 2. Snipe 3. Swarm', 'Bomber\\nGrit\\nRogue'."""
     if not s:
         return []
-    return [k.strip() for k in str(s).split(",") if k.strip()]
+    out = []
+    for kw in ARMADA_KEYWORDS:
+        if re.search(r"\b" + re.escape(kw) + r"\b", str(s), re.IGNORECASE):
+            out.append(kw)
+    return out
 
 def squadron_stats(rt):
     """Squadron BSData JSON has characteristics: Hull Value, Speed, Defense Tokens, Keywords."""

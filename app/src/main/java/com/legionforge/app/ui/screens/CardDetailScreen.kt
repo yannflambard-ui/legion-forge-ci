@@ -212,7 +212,13 @@ private fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                     }
                 }
                 if (stats?.keywords?.isNotEmpty() == true) {
-Text(stringResource(R.string.keywords_label, stats.keywords.joinToString(", ") { com.legionforge.app.data.i18n.I18n.keyword(it) }), color = Color(0xFF9EACBC), style = MaterialTheme.typography.bodySmall)
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                        stats.keywords.forEach { kw ->
+                            Surface(shape = RoundedCornerShape(8.dp), color = Color(0xFF2A3A4A)) {
+                                Text(com.legionforge.app.data.i18n.I18n.keyword(kw), Modifier.padding(horizontal = 10.dp, vertical = 4.dp), color = Color(0xFF77D9A7), fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                            }
+                        }
+                    }
                 }
             }
         }
