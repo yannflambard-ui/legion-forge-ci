@@ -379,9 +379,8 @@ private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, preselec
     val validSelection = (!requiresTarget || addingTo != null) && (!isUpgrade || (selectedSlot != null && addingTo != null && selectedSlot in addingTo.card.allowedUpgradeSlots && (slotCounts[targetId to selectedSlot] ?: 0) < addingTo.card.allowedUpgradeSlots.count { it == selectedSlot }))
     val alreadyAdded = entries.any { it.card.id == card.id && (card.unique || card.kind == CardKind.COMMANDER) }
     val compatibleSlotFull = isUpgrade && eligibleSlots.isNotEmpty() && eligibleSlots.all { slot -> eligibleTargets.all { target -> (slotCounts[target.instanceId to slot] ?: 0) >= target.card.allowedUpgradeSlots.count { it == slot } } }
-    Card(Modifier.fillMaxWidth().swipeAction(onSwipeRight = {
-            if ((!requiresTarget || eligibleTargets.isNotEmpty()) && !alreadyAdded && !compatibleSlotFull && validSelection) onAdd(if (requiresTarget) targetId else null, selectedSlot)
-        }), shape = RoundedCornerShape(15.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF18212D))) {
+    val alreadyCount = entries.filter { it.card.id == card.id }.sumOf { it.quantity }
+    Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(15.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF18212D))) {
             Row(Modifier.padding(10.dp), horizontalArrangement = Arrangement.spacedBy(11.dp), verticalAlignment = Alignment.CenterVertically) {
                 CardArtwork(card, Modifier.width(58.dp).clickable { onPreview() })
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
@@ -414,7 +413,15 @@ private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, preselec
                     if (compatibleSlotFull) Text("Tous les slots compatibles sont occupés", color = Color(0xFFFF927F), style = MaterialTheme.typography.labelSmall)
                 }
             }
-            Text("\u2192", color = Color(0xFF5A6A7A), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+            Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                Button(
+                    enabled = (!requiresTarget || eligibleTargets.isNotEmpty()) && !alreadyAdded && !compatibleSlotFull && validSelection,
+                    onClick = { onAdd(if (requiresTarget) targetId else null, selectedSlot) },
+                    shape = RoundedCornerShape(10.dp),
+                    contentPadding = PaddingValues(horizontal = 14.dp, vertical = 6.dp)
+                ) { Text("+", fontWeight = FontWeight.Bold) }
+                Text("$alreadyCount", color = if (alreadyCount > 0) Color(0xFFFFC857) else Color(0xFF5A6A7A), style = MaterialTheme.typography.labelSmall)
+            }
         }
     }
 }

@@ -62,8 +62,8 @@ fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, on
                     }
                 }
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    CompactGameTile("LEGION", "Armées • V2 • 1000 pts", GameSystem.LEGION_V2, onClick = { onNewList(GameSystem.LEGION_V2) })
-                    CompactGameTile("ARMADA", "Flottes • V1.5", GameSystem.ARMADA_V15, onClick = { onNewList(GameSystem.ARMADA_V15) })
+                    CompactGameTile("LEGION", "Armées • V2 • 1000 pts", GameSystem.LEGION_V2, Modifier.weight(1f), onClick = { onNewList(GameSystem.LEGION_V2) })
+                    CompactGameTile("ARMADA", "Flottes • V1.5", GameSystem.ARMADA_V15, Modifier.weight(1f), onClick = { onNewList(GameSystem.ARMADA_V15) })
                 }
             Text("LISTES RÉCENTES", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge)
             if (lists.isEmpty()) Text("Vos compositions sauvegardées apparaîtront ici, hors ligne.", color = Color.LightGray)
@@ -96,8 +96,8 @@ fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, on
 }
 
 @Composable
-private fun CompactGameTile(title: String, subtitle: String, system: GameSystem, onClick: () -> Unit) {
-    Card(onClick = onClick, modifier = Modifier.weight(1f), shape = RoundedCornerShape(16.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
+private fun CompactGameTile(title: String, subtitle: String, system: GameSystem, modifier: Modifier = Modifier, onClick: () -> Unit) {
+    Card(onClick = onClick, modifier = modifier, shape = RoundedCornerShape(16.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
         Column(Modifier.fillMaxWidth().padding(10.dp), verticalArrangement = Arrangement.spacedBy(2.dp), horizontalAlignment = Alignment.Start) {
             Image(
                 painter = painterResource(gameIconRes(system)),
