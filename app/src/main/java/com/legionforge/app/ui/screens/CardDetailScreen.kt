@@ -363,7 +363,7 @@ private data class ArmadaStats(
     val battery: List<Int> = emptyList(),      // [bleu, rouge, noir]
     val keywords: List<String> = emptyList(),
     val defenseTokens: List<String> = emptyList(),
-    val speedChart: Map<String, Int> = emptyMap(), // {vitesse: nb de manoeuvres}
+    val speedChart: List<Map<String, Int>> = emptyList(), // liste de positions, chaque position = {vitesse: nb de clics}
     val size: String = "small" // huge = 2 cadrans de bouclier par côté (Executor, Starhawk)
 )
 
@@ -384,11 +384,18 @@ private object ArmadaStatsParser {
                         val a = attack?.optJSONArray(name) ?: return emptyList()
                         return buildList { for (i in 0 until a.length()) add(a.optInt(i)) }
                     }
-                    val sc = o.optJSONObject("speedChart")
-                    val speedChart = buildMap {
-                        if (sc != null) {
-                            val it = sc.keys()
-                            while (it.hasNext()) { val k = it.next(); put(k, sc.optInt(k)) }
+                    val scArr = o.optJSONArray("speedChart")
+                    val speedChart = buildList {
+                        if (scArr != null) for (i in 0 until scArr.length()) {
+                            val pos = scArr.getJSONObject(i)
+                            val vals = pos.optJSONObject("values")
+                            val m = buildMap {
+                                if (vals != null) {
+                                    val it = vals.keys()
+                                    while (it.hasNext()) { val k = it.next(); put(k, vals.optInt(k)) }
+                                }
+                            }
+                            add(m)
                         }
                     }
                     ArmadaStats(
@@ -511,14 +518,13 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(stringResource(R.string.shields_hull), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                // ── cadrans des 4 arcs en croix (comme sur la carte officielle) : rectangle de dés + cercle de bouclier, vaisseau au centre ──
+                // ── cadrans des 4 arcs en croix (comme sur la carte officielle) : rectangle de dés + cercle de bouclier ──
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(6.dp)) {
                     // AVANT : rectangle de dés AU-DESSUS du cercle de bouclier.
                     ArcCadran(ArcPos.ABOVE, stringResource(R.string.shield_front), stats?.attackFront, sF, { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- })
-                    // Ligne centrale : BAB (gauche) | vaisseau (centre) | TRIB (droite).
-                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
+                    // Ligne centrale : BAB (gauche) | TRIB (droite).
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.Top) {
                         ArcCadran(ArcPos.LEFT, stringResource(R.string.shield_port), stats?.attackPort, sP, { if (sP < maxShield) sP++ }, { if (sP > 0) sP-- })
-                        ShipCenterImage(unit.card)
                         ArcCadran(ArcPos.RIGHT, stringResource(R.string.shield_starboard), stats?.attackStarboard, sS, { if (sS < maxShield) sS++ }, { if (sS > 0) sS-- })
                     }
                     // ARRIERE : rectangle de dés EN DESSOUS du cercle de bouclier.
@@ -531,17 +537,38 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                     BigCounter(stringResource(R.string.hull), hull, maxHp, Color(0xFFFF6B6B), { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- })
                 }
                 if (hull < maxHp) { HealthBar(hull.toFloat() / maxHp, hull, maxHp) }
-                // Matrice de manoeuvres : nb de manoeuvres par vitesse.
+                // Matrice de manoeuvres : triangulaire 4x4 (comme la carte officielle).
+                // X = vitesse (1..maxSpeed), Y = position (nb de clics sur l'outil de manoeuvre).
+                // Valeur : I = 1 clic, II = 2 clics, - = 0. Cases vides (haut-droite) = bordeaux.
                 if (stats?.speedChart?.isNotEmpty() == true) {
                     HorizontalDivider(color = Color(0xFF2A3A4A))
                     Text(stringResource(R.string.maneuver_matrix), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                        (1..maxSpeed).forEach { v ->
-                            val n = stats.speedChart[v.toString()] ?: 0
-                            Surface(shape = RoundedCornerShape(8.dp), color = Color(0xFF1E2A3A), modifier = Modifier.weight(1f)) {
-                                Column(Modifier.padding(vertical = 6.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                    val maxPos = stats.speedChart.size.coerceAtLeast(1)
+                    Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                        // En-tête : vitesses (X).
+                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                            Spacer(Modifier.width(28.dp)) // coin vide (label position)
+                            (1..maxSpeed).forEach { v ->
+                                Box(Modifier.weight(1f), contentAlignment = Alignment.Center) {
                                     Text("V$v", color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
-                                    Text("$n", color = if (n > 0) Color(0xFF77D9A7) else Color(0xFF5A6A7A), fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                                }
+                            }
+                        }
+                        // Lignes : positions (Y).
+                        stats.speedChart.forEachIndexed { posIdx, posMap ->
+                            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically) {
+                                Box(Modifier.width(28.dp), contentAlignment = Alignment.Center) {
+                                    Text("${posIdx + 1}", color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+                                }
+                                (1..maxSpeed).forEach { v ->
+                                    val n = posMap[v.toString()] ?: -1 // -1 = case vide (hors triangle)
+                                    val cellColor = if (n < 0) Color(0xFF800000) else Color.White
+                                    val cellText = when { n < 0 -> ""; n == 0 -> "-"; n == 1 -> "I"; n == 2 -> "II"; else -> "III" }
+                                    Surface(shape = RoundedCornerShape(6.dp), color = cellColor, modifier = Modifier.weight(1f).height(30.dp)) {
+                                        Box(contentAlignment = Alignment.Center) {
+                                            Text(cellText, color = if (n < 0) Color(0xFF800000) else Color(0xFF1B2B4B), fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -862,34 +889,37 @@ private fun StatChip(label: String, value: Int, color: Color, modifier: Modifier
     }
 }
 
-// ── dés d'attaque : un losange de couleur par dé (comme sur la carte officielle) ──
-// Losange plein de couleur (forme géométrique, PAS un dé numéroté).
+// ── dés d'attaque : un losange par COULEUR avec le nombre de dés dedans (comme la carte officielle) ──
+// Losange plein de couleur avec le nombre de dés de cette couleur au centre.
 @Composable
-private fun DiceDiamond(color: Color, size: Dp = 14.dp) {
-    Canvas(Modifier.size(size)) {
-        val w = size.toPx(); val h = size.toPx()
-        val path = Path().apply {
-            moveTo(w / 2f, 0f)          // pointe haut
-            lineTo(w, h / 2f)           // pointe droite
-            lineTo(w / 2f, h)           // pointe bas
-            lineTo(0f, h / 2f)          // pointe gauche
-            close()
+private fun DiceDiamond(count: Int, color: Color, size: Dp = 20.dp) {
+    Box(Modifier.size(size), contentAlignment = Alignment.Center) {
+        Canvas(Modifier.fillMaxSize()) {
+            val w = size.width; val h = size.height
+            val path = Path().apply {
+                moveTo(w / 2f, 0f)          // pointe haut
+                lineTo(w, h / 2f)           // pointe droite
+                lineTo(w / 2f, h)           // pointe bas
+                lineTo(0f, h / 2f)          // pointe gauche
+                close()
+            }
+            drawPath(path, color = color)
         }
-        drawPath(path, color = color)
+        Text("$count", color = Color.White, fontSize = 11.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
     }
 }
 
-// Rangée de dés d'attaque d'un arc : UN losange par dé, bleu/rouge/noir (comme la carte).
+// Rangée de dés d'attaque d'un arc : UN losange par couleur, avec le nombre de dés de cette couleur.
 @Composable
 private fun AttackDiceRow(dice: List<Int>?) {
     if (dice.isNullOrEmpty() || dice.all { it <= 0 }) return
-    Row(horizontalArrangement = Arrangement.spacedBy(3.dp), verticalAlignment = Alignment.CenterVertically) {
+    Row(horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically) {
         val blue = dice.getOrNull(0) ?: 0
         val red = dice.getOrNull(1) ?: 0
         val black = dice.getOrNull(2) ?: 0
-        repeat(blue) { DiceDiamond(Color(0xFF4FC3F7)) }
-        repeat(red) { DiceDiamond(Color(0xFFFF6B6B)) }
-        repeat(black) { DiceDiamond(Color(0xFF3A3A4A)) }
+        if (blue > 0) DiceDiamond(blue, Color(0xFF4FC3F7))
+        if (red > 0) DiceDiamond(red, Color(0xFFFF6B6B))
+        if (black > 0) DiceDiamond(black, Color(0xFF3A3A4A))
     }
 }
 
@@ -947,36 +977,6 @@ private fun CircleShield(label: String, value: Int, onInc: () -> Unit, onDec: ()
             Surface(onClick = onInc, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(26.dp)) { Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) } }
         }
         Text(label, color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
-    }
-}
-
-// Image du vaisseau agrandie au centre du cadran (comme sur la carte officielle).
-@Composable
-private fun ShipCenterImage(card: CardDefinition) {
-    val source: Any? = card.imageAssetPath?.let { "file:///android_asset/$it" } ?: card.imageUrl
-    if (source == null) {
-        // Pas d'image : silhouette générique (losange de vaisseau) pour garder le centre du cadran.
-        Box(Modifier.size(64.dp), contentAlignment = Alignment.Center) {
-            Canvas(Modifier.size(56.dp)) {
-                val w = size.width; val h = size.height
-                val path = Path().apply {
-                    moveTo(w / 2f, 0f)
-                    lineTo(w, h * 0.35f)
-                    lineTo(w, h)
-                    lineTo(0f, h)
-                    lineTo(0f, h * 0.35f)
-                    close()
-                }
-                drawPath(path, color = Color(0xFF4FC3F7).copy(alpha = 0.35f))
-            }
-        }
-    } else {
-        AsyncImage(
-            model = source,
-            contentDescription = card.displayName(),
-            modifier = Modifier.size(72.dp),
-            contentScale = ContentScale.Fit
-        )
     }
 }
 
