@@ -43,6 +43,15 @@ private fun findWikiSection(wikiSections: List<WikiSectionEntity>, keyword: Stri
     }
 }
 
+// Retire le préfixe "[Nom]\n" du rulesText (le nom est déjà affiché dans le label de l'effet).
+private fun stripBracketName(desc: String): String {
+    val t = desc.trimStart()
+    return if (t.startsWith("[")) {
+        val end = t.indexOf(']')
+        if (end > 0) t.substring(end + 1).trimStart() else t
+    } else t
+}
+
 // Badge d'upgrade : lettre + couleur distincte par type de slot (au lieu du bleu unique).
 private fun slotBadge(slot: ArmadaSlot): Pair<String, Color> = when (slot) {
     ArmadaSlot.COMMANDER -> "C" to Color(0xFFFFC857)
@@ -284,7 +293,7 @@ private fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntrie
         }
         EffectsPanel(
             effects = buildList {
-                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), c.card.rulesText ?: stringResource(R.string.upgrade_installed), c.instanceId, slot = c.card.upgradeSlots.firstOrNull(), pts = c.card.points).copy(used = usedUpgrades.contains(c.instanceId))) }
+                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), stripBracketName(c.card.rulesText ?: stringResource(R.string.upgrade_installed)), c.instanceId, slot = c.card.upgradeSlots.firstOrNull(), pts = c.card.points).copy(used = usedUpgrades.contains(c.instanceId))) }
                 activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, c.name)) }
             },
             critSelector = { expanded, onDismiss, onSelect ->
@@ -488,12 +497,12 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
         // ── effects panel ──
         EffectsPanel(
             effects = buildList {
-                if (commander != null) add(ActiveEffect(EffectType.COMMANDER, commander.card.displayName(), commander.card.rulesText ?: stringResource(R.string.fleet_commander), "cmd_${commander.instanceId}", pts = commander.card.points)
+                if (commander != null) add(ActiveEffect(EffectType.COMMANDER, commander.card.displayName(), stripBracketName(commander.card.rulesText ?: stringResource(R.string.fleet_commander)), "cmd_${commander.instanceId}", pts = commander.card.points)
                     .copy(used = usedUpgrades.contains("cmd")))
                 children.forEach { c ->
                     // Le commandant est déjà affiché dans sa propre section (EffectType.COMMANDER) : pas dans la liste des upgrades.
                     if (c.card.kind == CardKind.COMMANDER || (c.card.kind == CardKind.ARMADA_UPGRADE && ArmadaSlot.COMMANDER in c.card.upgradeSlots)) return@forEach
-                    add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), c.card.rulesText ?: stringResource(R.string.upgrade_installed), c.instanceId, slot = c.card.upgradeSlots.firstOrNull(), pts = c.card.points)
+                    add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), stripBracketName(c.card.rulesText ?: stringResource(R.string.upgrade_installed)), c.instanceId, slot = c.card.upgradeSlots.firstOrNull(), pts = c.card.points)
                         .copy(used = usedUpgrades.contains(c.instanceId)))
                 }
                 activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, "crit_${c.name}")) }
