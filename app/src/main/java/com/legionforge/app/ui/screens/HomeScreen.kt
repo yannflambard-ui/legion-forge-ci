@@ -46,7 +46,7 @@ fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, on
     val loading by vm.loading.collectAsState()
     val catalogError by vm.catalogError.collectAsState()
     Scaffold(topBar = {
-            TopAppBar(title = { Text("LEGION FORGE", style = MaterialTheme.typography.titleLarge) },
+            TopAppBar(title = { Text("SW ARMY BUILDER", style = MaterialTheme.typography.titleLarge) },
                 actions = {
                     IconButton(onClick = onSettings) {
                         Text("\u2699", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium)

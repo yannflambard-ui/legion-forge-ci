@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Legion Forge</string>
+    <string name="app_name">SW ARMY BUILDER</string>
     <string name="btn_new_list">NEW LIST</string>
     <string name="btn_new_fleet">NEW FLEET</string>
     <string name="choose_faction">Choose a faction</string>
