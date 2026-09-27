@@ -511,18 +511,19 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(stringResource(R.string.shields_hull), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                // ── cadrans des 4 arcs (comme sur la carte officielle) : rectangle de dés + cercle de bouclier ──
-                                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                                    // AVANT : rectangle de dés AU-DESSUS du cercle de bouclier.
-                                    ArcCadran(ArcPos.ABOVE, stringResource(R.string.shield_front), stats?.attackFront, sF, { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- })
-                                    // BAB / TRIB : rectangle de dés à GAUCHE / à DROITE du cercle de bouclier.
-                                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.Top) {
-                                        ArcCadran(ArcPos.LEFT, stringResource(R.string.shield_port), stats?.attackPort, sP, { if (sP < maxShield) sP++ }, { if (sP > 0) sP-- })
-                                        ArcCadran(ArcPos.RIGHT, stringResource(R.string.shield_starboard), stats?.attackStarboard, sS, { if (sS < maxShield) sS++ }, { if (sS > 0) sS-- })
-                                    }
-                                    // ARRIERE : rectangle de dés EN DESSOUS du cercle de bouclier.
-                                    ArcCadran(ArcPos.BELOW, stringResource(R.string.shield_rear), stats?.attackRear, sR, { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- })
-                                }
+                // ── cadrans des 4 arcs en croix (comme sur la carte officielle) : rectangle de dés + cercle de bouclier, vaisseau au centre ──
+                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    // AVANT : rectangle de dés AU-DESSUS du cercle de bouclier.
+                    ArcCadran(ArcPos.ABOVE, stringResource(R.string.shield_front), stats?.attackFront, sF, { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- })
+                    // Ligne centrale : BAB (gauche) | vaisseau (centre) | TRIB (droite).
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
+                        ArcCadran(ArcPos.LEFT, stringResource(R.string.shield_port), stats?.attackPort, sP, { if (sP < maxShield) sP++ }, { if (sP > 0) sP-- })
+                        ShipCenterImage(unit.card)
+                        ArcCadran(ArcPos.RIGHT, stringResource(R.string.shield_starboard), stats?.attackStarboard, sS, { if (sS < maxShield) sS++ }, { if (sS > 0) sS-- })
+                    }
+                    // ARRIERE : rectangle de dés EN DESSOUS du cercle de bouclier.
+                    ArcCadran(ArcPos.BELOW, stringResource(R.string.shield_rear), stats?.attackRear, sR, { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- })
+                }
                 HorizontalDivider(color = Color(0xFF2A3A4A))
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
                     BigCounter(stringResource(R.string.stat_speed), speed, maxSpeed, Color(0xFF77D9A7), { if (speed < maxSpeed) speed++ }, { if (speed > 1) speed-- })
@@ -946,6 +947,36 @@ private fun CircleShield(label: String, value: Int, onInc: () -> Unit, onDec: ()
             Surface(onClick = onInc, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(26.dp)) { Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) } }
         }
         Text(label, color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+    }
+}
+
+// Image du vaisseau agrandie au centre du cadran (comme sur la carte officielle).
+@Composable
+private fun ShipCenterImage(card: CardDefinition) {
+    val source: Any? = card.imageAssetPath?.let { "file:///android_asset/$it" } ?: card.imageUrl
+    if (source == null) {
+        // Pas d'image : silhouette générique (losange de vaisseau) pour garder le centre du cadran.
+        Box(Modifier.size(64.dp), contentAlignment = Alignment.Center) {
+            Canvas(Modifier.size(56.dp)) {
+                val w = size.width; val h = size.height
+                val path = Path().apply {
+                    moveTo(w / 2f, 0f)
+                    lineTo(w, h * 0.35f)
+                    lineTo(w, h)
+                    lineTo(0f, h)
+                    lineTo(0f, h * 0.35f)
+                    close()
+                }
+                drawPath(path, color = Color(0xFF4FC3F7).copy(alpha = 0.35f))
+            }
+        }
+    } else {
+        AsyncImage(
+            model = source,
+            contentDescription = card.displayName(),
+            modifier = Modifier.size(72.dp),
+            contentScale = ContentScale.Fit
+        )
     }
 }
 
