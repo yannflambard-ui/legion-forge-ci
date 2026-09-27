@@ -57,6 +57,14 @@ enum class ArmadaDefenseToken(val label: String, val icon: String) {
     CONTAIN("Contain", "\u26D4")
 }
 
+// ── command orders (roue de commandement) for Armada ────
+enum class ArmadaCommandOrder(val label: String, val iconFile: String, val orderFile: String) {
+    NAVIGATE("Navigation", "cmd_navigate.webp", "order_navigate.webp"),
+    CONCENTRATE("Concentrate Fire", "cmd_concentrate.webp", "order_concentrate.webp"),
+    SQUADRON("Squadron", "cmd_squadron.webp", "order_squadron.webp"),
+    REPAIR("Repair", "cmd_repair.webp", "order_repair.webp")
+}
+
 // ── active effect model ─────────────────────────────────
 private enum class EffectType { COMMANDER, UPGRADE, CRIT, ABILITY }
 private data class ActiveEffect(val type: EffectType, val label: String, val desc: String, val id: String, val used: Boolean = false)
@@ -334,6 +342,10 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
     }
     // Chaque jeton (même en doublon) est une instance indépendante, clé = "name_i".
     var defTokens by remember(unit.instanceId) { mutableStateOf<Map<String, Boolean>>(defTokenStates.mapIndexed { i, (def, _) -> "${def.name}_$i" to false }.toMap()) }
+    // Roue de commandement : ordre courant du vaisseau (null = non défini).
+    var commandOrder by remember(unit.instanceId) { mutableStateOf<ArmadaCommandOrder?>(null) }
+    // Pions d'ordre : chaque commande a un pion, PRET (false) / UTILISE (true).
+    var orderTokens by remember(unit.instanceId) { mutableStateOf<Map<String, Boolean>>(ArmadaCommandOrder.entries.associate { it.name to false }) }
     val commander = allEntries.firstOrNull { it.card.kind == CardKind.COMMANDER || (it.card.kind == CardKind.ARMADA_UPGRADE && ArmadaSlot.COMMANDER in it.card.upgradeSlots) }
     // Jetons/marqueurs dédiés au commandant de la flotte (attaché au flagship).
     var commanderTokens by remember(unit.instanceId) { mutableStateOf(listOf<String>()) }
@@ -392,6 +404,13 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                 }
             }
         }
+        // ── command dial (roue de commandement) + pions d'ordre ──
+        CommandDialCard(
+            selected = commandOrder,
+            onSelect = { commandOrder = if (commandOrder == it) null else it },
+            orderTokens = orderTokens,
+            onToggleOrder = { name -> orderTokens = orderTokens + (name to !(orderTokens[name] ?: false)) }
+        )
         // ── shields & hull ──
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -634,6 +653,86 @@ private fun DefenseTokenDisc(def: ArmadaDefenseToken, used: Boolean, onClick: ()
         }
         Text(def.label, color = ringColor, fontSize = 9.sp, fontWeight = FontWeight.Bold)
         Text(if (used) stringResource(R.string.used) else stringResource(R.string.ready), color = ringColor.copy(alpha = 0.7f), fontSize = 8.sp, fontWeight = FontWeight.Bold)
+    }
+}
+
+// ── roue de commandement (dial) + pions d'ordre ──────────
+@Composable
+private fun CommandDialCard(
+    selected: ArmadaCommandOrder?,
+    onSelect: (ArmadaCommandOrder) -> Unit,
+    orderTokens: Map<String, Boolean>,
+    onToggleOrder: (String) -> Unit
+) {
+    Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
+        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Text("ROUE DE COMMANDEMENT", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                CommandDialButton(ArmadaCommandOrder.NAVIGATE, selected == ArmadaCommandOrder.NAVIGATE) { onSelect(ArmadaCommandOrder.NAVIGATE) }
+                CommandDialButton(ArmadaCommandOrder.CONCENTRATE, selected == ArmadaCommandOrder.CONCENTRATE) { onSelect(ArmadaCommandOrder.CONCENTRATE) }
+            }
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                CommandDialButton(ArmadaCommandOrder.SQUADRON, selected == ArmadaCommandOrder.SQUADRON) { onSelect(ArmadaCommandOrder.SQUADRON) }
+                CommandDialButton(ArmadaCommandOrder.REPAIR, selected == ArmadaCommandOrder.REPAIR) { onSelect(ArmadaCommandOrder.REPAIR) }
+            }
+            HorizontalDivider(color = Color(0xFF2A3A4A))
+            Text("PIONS D'ORDRE", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                ArmadaCommandOrder.entries.forEach { order ->
+                    val used = orderTokens[order.name] ?: false
+                    OrderTokenDisc(order, used, onClick = { onToggleOrder(order.name) })
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun CommandDialButton(order: ArmadaCommandOrder, selected: Boolean, onClick: () -> Unit) {
+    val ringColor = if (selected) Color(0xFFFFC857) else Color(0xFF2A3A4A)
+    Column(Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Surface(
+            onClick = onClick,
+            shape = CircleShape,
+            color = if (selected) Color(0xFF2A3A4A) else Color(0xFF192330),
+            modifier = Modifier.size(64.dp),
+            border = androidx.compose.foundation.BorderStroke(3.dp, ringColor)
+        ) {
+            Box(contentAlignment = Alignment.Center, modifier = Modifier.padding(4.dp)) {
+                AsyncImage(
+                    model = "file:///android_asset/tokens/${order.iconFile}",
+                    contentDescription = order.label,
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.Fit
+                )
+            }
+        }
+        Text(order.label, color = if (selected) Color(0xFFFFC857) else Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
+    }
+}
+
+@Composable
+private fun OrderTokenDisc(order: ArmadaCommandOrder, used: Boolean, onClick: () -> Unit) {
+    val ringColor = if (used) Color(0xFFFF6B6B) else Color(0xFF77D9A7)
+    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Surface(
+            onClick = onClick,
+            shape = CircleShape,
+            color = Color(0xFF192330),
+            modifier = Modifier.size(52.dp),
+            border = androidx.compose.foundation.BorderStroke(3.dp, ringColor)
+        ) {
+            Box(contentAlignment = Alignment.Center, modifier = Modifier.padding(3.dp)) {
+                AsyncImage(
+                    model = "file:///android_asset/tokens/${order.orderFile}",
+                    contentDescription = order.label,
+                    modifier = Modifier.fillMaxSize().clip(CircleShape),
+                    contentScale = ContentScale.Crop
+                )
+            }
+        }
+        Text(order.label, color = ringColor, fontSize = 8.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
+        Text(if (used) "UTILISE" else "PRET", color = ringColor.copy(alpha = 0.7f), fontSize = 8.sp, fontWeight = FontWeight.Bold)
     }
 }
 
