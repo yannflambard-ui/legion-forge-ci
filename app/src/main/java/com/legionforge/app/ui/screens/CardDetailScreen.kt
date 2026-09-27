@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.res.stringResource
@@ -50,6 +51,24 @@ private fun stripBracketName(desc: String): String {
         val end = t.indexOf(']')
         if (end > 0) t.substring(end + 1).trimStart() else t
     } else t
+}
+
+// Icône officielle du slot d'upgrade (assets/icons/upg_*.webp), teintée par la couleur du slot.
+private fun slotIconPath(slot: ArmadaSlot): String? = when (slot) {
+    ArmadaSlot.COMMANDER -> "icons/upg_commander.webp"
+    ArmadaSlot.OFFICER -> "icons/upg_officer.webp"
+    ArmadaSlot.TITLE -> "icons/upg_title.webp"
+    ArmadaSlot.DEFENSIVE_RETROFIT -> "icons/upg_defensive.webp"
+    ArmadaSlot.OFFENSIVE_RETROFIT -> "icons/upg_offensive.webp"
+    ArmadaSlot.WEAPONS_TEAM -> "icons/upg_weapons.webp"
+    ArmadaSlot.SUPPORT_TEAM -> "icons/upg_support.webp"
+    ArmadaSlot.ORDNANCE -> "icons/upg_ordnance.webp"
+    ArmadaSlot.TURBOLASERS -> "icons/upg_turbo.webp"
+    ArmadaSlot.ION_CANNONS -> "icons/upg_ion.webp"
+    ArmadaSlot.EXPERIMENTAL_RETROFIT -> "icons/upg_experimental.webp"
+    ArmadaSlot.FLEET_COMMAND -> "icons/upg_fleetcmd.webp"
+    ArmadaSlot.FLEET_SUPPORT -> "icons/upg_fleetsup.webp"
+    else -> null
 }
 
 // Badge d'upgrade : lettre + couleur distincte par type de slot (au lieu du bleu unique).
@@ -731,7 +750,19 @@ private fun EffectsPanel(
                     Column(Modifier.padding(12.dp)) {
                         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
-                                Box(Modifier.size(24.dp).clip(CircleShape).background(if (eff.used) Color(0xFF3A3A4A) else Color(0xFF1E2A3A)), contentAlignment = Alignment.Center) { Text(icon, fontSize = 13.sp, fontWeight = FontWeight.Bold, color = if (eff.used) Color(0xFF5A6A7A) else iconColor) }
+                                Box(Modifier.size(24.dp).clip(CircleShape).background(if (eff.used) Color(0xFF3A3A4A) else Color(0xFF1E2A3A)), contentAlignment = Alignment.Center) {
+                                    val iconPath = if (eff.type == EffectType.UPGRADE && eff.slot != null) slotIconPath(eff.slot) else null
+                                    if (iconPath != null) {
+                                        AsyncImage(
+                                            model = "file:///android_asset/$iconPath",
+                                            contentDescription = eff.label,
+                                            modifier = Modifier.size(18.dp),
+                                            colorFilter = ColorFilter.tint(if (eff.used) Color(0xFF5A6A7A) else iconColor)
+                                        )
+                                    } else {
+                                        Text(icon, fontSize = 13.sp, fontWeight = FontWeight.Bold, color = if (eff.used) Color(0xFF5A6A7A) else iconColor)
+                                    }
+                                }
                                 Spacer(Modifier.width(8.dp))
                                 Column {
                                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -846,8 +877,19 @@ private fun AttackArc(label: String, dice: List<Int>, modifier: Modifier = Modif
 
 @Composable
 private fun DiceDot(count: Int, color: Color) {
-    Box(Modifier.size(14.dp).clip(CircleShape).background(color), contentAlignment = Alignment.Center) {
-        Text("$count", color = Color.White, fontSize = 8.sp, fontWeight = FontWeight.Bold)
+    // Icône de dé officielle (bleu/rouge/noir) avec le nombre de dés en surimpression.
+    val dieFile = when (color) {
+        Color(0xFF4FC3F7) -> "icons/die_blue.webp"
+        Color(0xFFFF6B6B) -> "icons/die_red.webp"
+        else -> "icons/die_black.webp"
+    }
+    Box(Modifier.size(20.dp), contentAlignment = Alignment.Center) {
+        AsyncImage(
+            model = "file:///android_asset/$dieFile",
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize()
+        )
+        Text("$count", color = Color.White, fontSize = 9.sp, fontWeight = FontWeight.Bold)
     }
 }
 
