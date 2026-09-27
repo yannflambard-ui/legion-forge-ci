@@ -362,7 +362,8 @@ private data class ArmadaStats(
     val battery: List<Int> = emptyList(),      // [bleu, rouge, noir]
     val keywords: List<String> = emptyList(),
     val defenseTokens: List<String> = emptyList(),
-    val speedChart: Map<String, Int> = emptyMap() // {vitesse: nb de manoeuvres}
+    val speedChart: Map<String, Int> = emptyMap(), // {vitesse: nb de manoeuvres}
+    val size: String = "small" // huge = 2 cadrans de bouclier par côté (Executor, Starhawk)
 )
 
 private object ArmadaStatsParser {
@@ -404,7 +405,8 @@ private object ArmadaStatsParser {
                         attackPort = arc("left"),
                         attackStarboard = arc("right"),
                         defenseTokens = tokens,
-                        speedChart = speedChart
+                        speedChart = speedChart,
+                        size = o.optString("size", "small")
                     )
                 }
                 CardKind.ARMADA_SQUADRON -> {
@@ -508,14 +510,17 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(stringResource(R.string.shields_hull), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                // Boucliers directionnels, dés d'attaque SOUS chaque bouclier (AV/ARR/BAB/TRIB).
-                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                    ShieldWithDice(stringResource(R.string.shield_front), sF, { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- }, stats?.attackFront)
-                    Row(horizontalArrangement = Arrangement.spacedBy(28.dp)) {
-                        ShieldWithDice(stringResource(R.string.shield_port), sP, { if (sP < maxShield) sP++ }, { if (sP > 0) sP-- }, stats?.attackPort)
-                        ShieldWithDice(stringResource(R.string.shield_starboard), sS, { if (sS < maxShield) sS++ }, { if (sS > 0) sS-- }, stats?.attackStarboard)
+                // ── cadrans des 4 arcs (comme sur la carte officielle) : rectangle de dés + cercle de bouclier ──
+                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    // AVANT : rectangle (dés) à gauche + cercle (bouclier) à droite, comme le cadran de la carte.
+                    ArcCadranH(stringResource(R.string.shield_front), stats?.attackFront, sF, { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- })
+                    // BAB / TRIB : rectangle (dés) au-dessus + cercle (bouclier) en dessous.
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.Top) {
+                        ArcCadranV(stringResource(R.string.shield_port), stats?.attackPort, sP, { if (sP < maxShield) sP++ }, { if (sP > 0) sP-- })
+                        ArcCadranV(stringResource(R.string.shield_starboard), stats?.attackStarboard, sS, { if (sS < maxShield) sS++ }, { if (sS > 0) sS-- })
                     }
-                    ShieldWithDice(stringResource(R.string.shield_rear), sR, { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- }, stats?.attackRear)
+                    // ARRIERE : rectangle (dés) à gauche + cercle (bouclier) à droite.
+                    ArcCadranH(stringResource(R.string.shield_rear), stats?.attackRear, sR, { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- })
                 }
                 HorizontalDivider(color = Color(0xFF2A3A4A))
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
@@ -896,12 +901,62 @@ private fun AttackDiceRow(dice: List<Int>?) {
     }
 }
 
-// Bouclier avec ses dés d'attaque affichés SOUS le bouclier.
+// ── cadrans des arcs (imité de la carte officielle) ──────────
+// Cadran HORIZONTAL (AV/ARR) : rectangle de dés à gauche + cercle de bouclier à droite.
 @Composable
-private fun ShieldWithDice(label: String, value: Int, onInc: () -> Unit, onDec: () -> Unit, dice: List<Int>?) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(2.dp)) {
-        MiniShield(label, value, onInc, onDec)
-        AttackDiceRow(dice)
+private fun ArcCadranH(label: String, dice: List<Int>?, value: Int, onInc: () -> Unit, onDec: () -> Unit) {
+    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+        DiceRect(dice)
+        CircleShield(label, value, onInc, onDec)
+    }
+}
+
+// Cadran VERTICAL (BAB/TRIB) : rectangle de dés au-dessus + cercle de bouclier en dessous.
+@Composable
+private fun ArcCadranV(label: String, dice: List<Int>?, value: Int, onInc: () -> Unit, onDec: () -> Unit) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        DiceRect(dice)
+        CircleShield(label, value, onInc, onDec)
+    }
+}
+
+// Rectangle blanc contenant les dés d'attaque en losanges de couleur (comme le cadran de la carte).
+@Composable
+private fun DiceRect(dice: List<Int>?) {
+    Surface(
+        shape = RoundedCornerShape(10.dp),
+        color = Color(0xFFE8EDF5),   // fond blanc cassé du rectangle sur la carte
+        modifier = Modifier.defaultMinSize(minWidth = 56.dp, minHeight = 40.dp)
+    ) {
+        Box(Modifier.padding(horizontal = 10.dp, vertical = 8.dp), contentAlignment = Alignment.Center) {
+            if (dice.isNullOrEmpty() || dice.all { it <= 0 }) {
+                Text("—", color = Color(0xFF9AA7B8), fontSize = 12.sp, fontWeight = FontWeight.Bold)
+            } else {
+                AttackDiceRow(dice)
+            }
+        }
+    }
+}
+
+// Cercle blanc à fine bordure bleue contenant la valeur de bouclier (comme sur la carte officielle).
+@Composable
+private fun CircleShield(label: String, value: Int, onInc: () -> Unit, onDec: () -> Unit) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+            Surface(onClick = onDec, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(26.dp)) { Box(contentAlignment = Alignment.Center) { Text("-", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) } }
+            Surface(
+                shape = CircleShape,
+                color = Color.White,
+                modifier = Modifier.size(44.dp),
+                border = androidx.compose.foundation.BorderStroke(2.dp, Color(0xFF4FC3F7))
+            ) {
+                Box(contentAlignment = Alignment.Center) {
+                    Text("$value", color = Color(0xFF1B2B4B), fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                }
+            }
+            Surface(onClick = onInc, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(26.dp)) { Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) } }
+        }
+        Text(label, color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
     }
 }
 
@@ -1065,18 +1120,6 @@ private fun TokenSection(tokens: List<String>, onAdd: (String) -> Unit, onRemove
             }
         }
         Text(stringResource(R.string.tap_token), color = Color(0xFF5A6A7A), style = MaterialTheme.typography.labelSmall)
-    }
-}
-
-@Composable
-private fun MiniShield(label: String, value: Int, onInc: () -> Unit, onDec: () -> Unit) {
-    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-        Surface(onClick = onDec, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(30.dp)) { Box(contentAlignment = Alignment.Center) { Text("-", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) } }
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text("$value", color = Color(0xFF4FC3F7), fontSize = 20.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.width(40.dp))
-            Text(label, color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
-        }
-        Surface(onClick = onInc, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(30.dp)) { Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) } }
     }
 }
 
