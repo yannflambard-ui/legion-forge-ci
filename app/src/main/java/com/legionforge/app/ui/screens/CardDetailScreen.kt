@@ -634,7 +634,15 @@ private fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionEn
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(stringResource(R.string.squadron_tracking), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { BigCounter(stringResource(R.string.hull), hull, maxHp, Color(0xFFFF6B6B), { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- }) }
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
+                    BigCounter(stringResource(R.string.hull), hull, maxHp, Color(0xFFFF6B6B), { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- })
+                    Spacer(Modifier.width(20.dp))
+                    // Coût de l'escadron affiché à côté de la coque.
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(stringResource(R.string.cost), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold)
+                        Text("${unit.card.points}", color = Color(0xFFFFC857), fontSize = 24.sp, fontWeight = FontWeight.Bold)
+                    }
+                }
                 if (hull < maxHp) HealthBar(hull.toFloat() / maxHp, hull, maxHp)
                 if (stats?.keywords?.isNotEmpty() == true) {
                     HorizontalDivider(color = Color(0xFF2A3A4A))
@@ -895,7 +903,7 @@ private fun StatChip(label: String, value: Int, color: Color, modifier: Modifier
 private fun DiceDiamond(count: Int, color: Color, size: Dp = 20.dp) {
     Box(Modifier.size(size), contentAlignment = Alignment.Center) {
         Canvas(Modifier.fillMaxSize()) {
-            val w = size.width; val h = size.height
+            val w = this.size.width; val h = this.size.height
             val path = Path().apply {
                 moveTo(w / 2f, 0f)          // pointe haut
                 lineTo(w, h / 2f)           // pointe droite

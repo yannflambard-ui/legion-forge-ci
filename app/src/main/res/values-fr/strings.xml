@@ -115,6 +115,7 @@
     <string name="upgrade_installed">Amélioration installée</string>
     <string name="upgrades_hint">Améliorations (cliquez pour activer/désactiver)</string>
     <string name="total_pts">Total %1$d pts</string>
+    <string name="cost">Coût</string>
     <string name="defense_tokens">JETONS DE DÉFENSE</string>
     <string name="shields_hull">CADRANS</string>
     <string name="shield_front">AV</string>
