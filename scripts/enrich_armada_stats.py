@@ -57,6 +57,9 @@ def ship_stats(rt):
             "rear": shield.get("rear", 0),
         },
         "maxSpeed": max_speed or 1,
+        "command": d.get("command", 1),
+        "squadron": d.get("squadron", 0),
+        "engineering": d.get("engineering", 0),
         "defenseTokens": tokens,
         "attack": {
             "front": attack.get("front", [0, 0, 0]),
