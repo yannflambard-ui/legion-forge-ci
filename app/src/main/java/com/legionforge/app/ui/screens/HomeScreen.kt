@@ -48,7 +48,13 @@ fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, on
     val loading by vm.loading.collectAsState()
     val catalogError by vm.catalogError.collectAsState()
     Scaffold(topBar = {
-            TopAppBar(title = { Text(stringResource(R.string.app_name), style = MaterialTheme.typography.titleLarge) },
+            TopAppBar(title = {
+                Image(
+                    painter = painterResource(R.drawable.ic_logo_app),
+                    contentDescription = stringResource(R.string.app_name),
+                    modifier = Modifier.height(56.dp)
+                )
+            },
                 actions = {
                     IconButton(onClick = onSettings) {
                         Text("\u2699", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium)
