@@ -4,6 +4,8 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
@@ -16,6 +18,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -387,6 +391,7 @@ private object ArmadaStatsParser {
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntries: List<ListEntry>, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
     val totalPts = unit.card.points + children.sumOf { it.card.points * it.quantity }
@@ -434,10 +439,10 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                 else if (!unit.card.rulesText.isNullOrBlank()) ClickableRulesText(unit.card.rulesText, wikiSections, onRuleClick, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall, maxLines = 6)
                 // Slots d'upgrade du vaisseau (icônes en bas de la carte) : pilotent les upgrades dispo dans le catalogue.
                 if (unit.card.allowedUpgradeSlots.isNotEmpty()) {
-                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                         unit.card.allowedUpgradeSlots.forEach { slot ->
-                            Surface(shape = RoundedCornerShape(8.dp), color = Color(0xFF1E2A3A)) {
-                                Text(slot.name.lowercase().replace('_', ' '), Modifier.padding(horizontal = 8.dp, vertical = 3.dp), color = Color(0xFF4FC3F7), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+                            Surface(shape = RoundedCornerShape(6.dp), color = Color(0xFF1E2A3A)) {
+                                Text(slot.name.lowercase().replace('_', ' '), Modifier.padding(horizontal = 6.dp, vertical = 2.dp), color = Color(0xFF4FC3F7), fontSize = 8.sp, fontWeight = FontWeight.Bold, maxLines = 1, overflow = TextOverflow.Ellipsis)
                             }
                         }
                     }
@@ -909,26 +914,39 @@ private fun OrderTokenDisc(order: ArmadaCommandOrder, count: Int, onWikiClick: (
     }
 }
 
-// Jeton d'activation d'escadron : disque plein bleu (INACTIF) / rouge (ACTIVE) comme le jeton du socle de chasseur.
-// Tap sur le disque = activer/désactiver. Petit "i" à côté = définition wiki.
+// Jeton d'activation d'escadron : disque pleine-face bleu (ACTIF) / rouge (INACTIF) comme le jeton du socle de chasseur.
+// Tap sur le disque = retourner (activer/désactiver). Petit "i" à côté = définition wiki.
 @Composable
 private fun SquadronActivationToken(activated: Boolean, onToggle: () -> Unit, onWikiClick: () -> Unit) {
-    val color = if (activated) Color(0xFFFF6B6B) else Color(0xFF4FC3F7)
+    val face = if (activated) Color(0xFF2E7DD1) else Color(0xFFC0392B)   // bleu actif / rouge inactif
+    val faceLight = if (activated) Color(0xFF4FC3F7) else Color(0xFFE57373)
     Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(6.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             Surface(
                 onClick = onToggle,
                 shape = CircleShape,
-                color = color,
-                modifier = Modifier.size(56.dp),
-                border = androidx.compose.foundation.BorderStroke(4.dp, color.copy(alpha = 0.5f))
+                color = face,
+                modifier = Modifier.size(58.dp),
+                border = androidx.compose.foundation.BorderStroke(3.dp, faceLight)
             ) {
-                Box(contentAlignment = Alignment.Center) {
-                    // Silhouette de chasseur au centre du jeton (bande claire + aile).
-                    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                        Text("\u2708", color = if (activated) Color.White else Color(0xFF0A0E15), fontSize = 22.sp, fontWeight = FontWeight.Bold)
-                        Text(if (activated) "ON" else "OFF", color = if (activated) Color.White else Color(0xFF0A0E15), fontSize = 8.sp, fontWeight = FontWeight.Bold)
+                Canvas(Modifier.fillMaxSize().padding(8.dp)) {
+                    // Fuseau de chasseur (silhouette delta) au centre du jeton.
+                    val w = size.width; val h = size.height
+                    val cx = w / 2f; val cy = h / 2f
+                    val body = Path().apply {
+                        moveTo(cx, cy - h * 0.30f)          // nez
+                        lineTo(cx + w * 0.10f, cy + h * 0.18f) // arrière droit
+                        lineTo(cx + w * 0.30f, cy + h * 0.30f) // aile droite
+                        lineTo(cx + w * 0.16f, cy + h * 0.10f)
+                        lineTo(cx + w * 0.16f, cy + h * 0.30f) // aile droite bas
+                        lineTo(cx, cy + h * 0.22f)
+                        lineTo(cx - w * 0.16f, cy + h * 0.30f)
+                        lineTo(cx - w * 0.16f, cy + h * 0.10f)
+                        lineTo(cx - w * 0.30f, cy + h * 0.30f) // aile gauche
+                        lineTo(cx - w * 0.10f, cy + h * 0.18f)
+                        close()
                     }
+                    drawPath(body, color = Color.White)
                 }
             }
             Surface(
@@ -940,7 +958,7 @@ private fun SquadronActivationToken(activated: Boolean, onToggle: () -> Unit, on
                 Box(contentAlignment = Alignment.Center) { Text("i", color = Color(0xFFFFC857), fontSize = 11.sp, fontWeight = FontWeight.Bold) }
             }
         }
-        Text(if (activated) "ACTIVE" else "INACTIF", color = color, fontSize = 9.sp, fontWeight = FontWeight.Bold)
+        Text(if (activated) "ACTIF" else "INACTIF", color = faceLight, fontSize = 9.sp, fontWeight = FontWeight.Bold)
     }
 }
 
