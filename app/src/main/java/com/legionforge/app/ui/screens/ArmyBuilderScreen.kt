@@ -62,15 +62,21 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
     // Without a selection: show ONLY the units/ships/squadrons/commanders — upgrades are
     // hidden until a unit or ship is selected.
     val selectedParent = entries.firstOrNull { it.instanceId == selectedParentId }
+    // Slots du parent déjà pleins : un slot est plein quand le nombre d'upgrades attachées
+    // de ce type atteint le nombre de fois que le slot apparaît dans allowedUpgradeSlots
+    // (ex. Executor I = 4 slots OFFICER). Les upgrades de ces slots sont masquées du catalogue.
+    val parentChildren = entries.filter { it.parentInstanceId == selectedParent?.instanceId }
+    val fullSlots: Set<ArmadaSlot> = selectedParent?.card?.allowedUpgradeSlots?.toSet()?.filter { slot ->
+        parentChildren.count { (it.chosenSlot ?: it.card.upgradeSlots.firstOrNull()) == slot } >= selectedParent.card.allowedUpgradeSlots.count { it == slot }
+    }?.toSet() ?: emptySet()
     val filteredAdditions = if (selectedParent != null) {
             cards.filter { it.kind in allowedKinds && matchesFaction(it) }.filter { c ->
                 when {
                     game == GameSystem.LEGION_V2 && c.kind == CardKind.LEGION_UPGRADE ->
-                        c.upgradeSlots.any { it in selectedParent.card.allowedUpgradeSlots }
+                        c.upgradeSlots.any { it in selectedParent.card.allowedUpgradeSlots } && c.upgradeSlots.none { it in fullSlots }
                     game == GameSystem.ARMADA_V15 && c.kind == CardKind.ARMADA_UPGRADE ->
                         c.upgradeSlots.any { it in selectedParent.card.allowedUpgradeSlots } && upgradeFitsShip(c, selectedParent.card) &&
-                        // Un vaisseau ne peut pas avoir 2 titles : masquer les autres titles s'il en a déjà un.
-                        !(ArmadaSlot.TITLE in c.upgradeSlots && entries.any { it.parentInstanceId == selectedParent.instanceId && it.chosenSlot == ArmadaSlot.TITLE })
+                        c.upgradeSlots.none { it in fullSlots }
                     // Commandant Armada : n'apparaît que sur un vaisseau capital, et seulement
                     // si la flotte n'a pas déjà de commandant (une fois choisi, les autres sont masqués).
                     game == GameSystem.ARMADA_V15 && c.kind == CardKind.COMMANDER ->

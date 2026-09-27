@@ -38,14 +38,16 @@ def ship_stats(rt):
                 max_speed = int(k)
     if hull is None:
         return None
-    # Dés d'attaque par arc : {front/right/left/rear: [bleu, rouge, noir]}
+    # Des d'attaque par arc : {front/right/left/rear: [bleu, rouge, noir]}
     attack = d.get("attack") or {}
-    # Matrice de manoeuvres : {vitesse: nb de manoeuvres} (les cases "-" sont ignorées)
-    speed_chart = {}
+    # Matrice de manoeuvres : liste de lignes {position, values:{vitesse: nb}} (structure triangulaire officielle).
+    speed_chart = []
     for row in d.get("speed-chart-rows", []) or []:
+        vals = {}
         for k, v in (row.get("values") or {}).items():
-            if k.isdigit() and str(v).isdigit():
-                speed_chart[k] = int(v)
+            if k.isdigit():
+                vals[k] = int(v) if str(v).isdigit() else 0
+        speed_chart.append({"position": row.get("position", 0), "values": vals})
     return {
         "hull": hull,
         "shield": {
@@ -84,7 +86,10 @@ UPGRADE_BAR_SLOT = {
 }
 
 def ship_upgrade_slots(rt):
-    """Map a BSData ship's upgrade-bar to ArmadaSlot enum names (TITLE + COMMANDER always included)."""
+    """Map a BSData ship's upgrade-bar to ArmadaSlot enum names (TITLE + COMMANDER always included).
+
+    IMPORTANT : on GARDE les doublons (ex. Executor I = 4 slots OFFICER) pour que le builder
+    sache combien d'upgrades d'un même type un vaisseau accepte. Ne PAS dédupliquer avec set()."""
     try:
         d = json.loads(rt)
     except (TypeError, ValueError):
@@ -95,7 +100,7 @@ def ship_upgrade_slots(rt):
         slots.append("TITLE")
     if "COMMANDER" not in slots:
         slots.append("COMMANDER")
-    return sorted(set(slots))
+    return slots
 
 def parse_def_tokens(s):
     """Parse BSData 'Defense Tokens' string -> list of token names (with dupes).
