@@ -389,11 +389,15 @@ private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, preselec
                 Text("${card.points} pts • ${kindLabel(card.kind)}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelSmall)
                 Text("${factionLabel(card.factionId)} • ${if (card.unique) "Unique" else "Standard"}", maxLines = 1, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall)
                 if (requiresTarget && eligibleTargets.isNotEmpty()) {
-                    var expandedTarget by remember { mutableStateOf(false) }
-                    Box {
-                        TextButton(onClick = { expandedTarget = true }) { Text("Pour : ${eligibleTargets.firstOrNull { it.instanceId == targetId }?.card?.name ?: "choisir unité"}") }
-                        DropdownMenu(expandedTarget, onDismissRequest = { expandedTarget = false }) {
-                            eligibleTargets.forEach { target -> DropdownMenuItem(text = { Text(target.card.displayName()) }, onClick = { targetId = target.instanceId; expandedTarget = false }) }
+                    // Quand un parent est déjà sélectionné, le catalogue est scoped à ce parent :
+                    // le sélecteur "Pour :" est redondant, on l'affiche seulement sans présélection.
+                    if (preselectedParentId == null) {
+                        var expandedTarget by remember { mutableStateOf(false) }
+                        Box {
+                            TextButton(onClick = { expandedTarget = true }) { Text("Pour : ${eligibleTargets.firstOrNull { it.instanceId == targetId }?.card?.name ?: "choisir unité"}") }
+                            DropdownMenu(expandedTarget, onDismissRequest = { expandedTarget = false }) {
+                                eligibleTargets.forEach { target -> DropdownMenuItem(text = { Text(target.card.displayName()) }, onClick = { targetId = target.instanceId; expandedTarget = false }) }
+                            }
                         }
                     }
                     if (armadaShip && card.allowedUpgradeSlots.isNotEmpty()) Text("Slots : ${card.allowedUpgradeSlots.groupingBy { it }.eachCount().entries.joinToString { "${it.value}× ${it.key.name.lowercase().replace('_', ' ')}" }}", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall)
