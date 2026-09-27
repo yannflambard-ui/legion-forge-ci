@@ -345,7 +345,7 @@ private fun BuilderEntryCard(entry: ListEntry, isChild: Boolean = false, accentC
             CardArtwork(entry.card, Modifier.size(width = 64.dp, height = 88.dp))
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
                 Text(entry.card.displayName(), color = Color.White, style = MaterialTheme.typography.titleSmall)
-                Text("${entry.card.points * entry.quantity} pts  •  ${entry.card.legionRank?.name?.replace('_', ' ') ?: entry.card.kind.name.replace('_', ' ')}", color = accentColor, style = MaterialTheme.typography.labelSmall)
+                Text("${entry.card.points * entry.quantity} pts  •  ${entry.card.legionRank?.name?.replace('_', ' ') ?: kindLabel(entry.card.kind)}", color = accentColor, style = MaterialTheme.typography.labelSmall)
                 if (entry.parentInstanceId != null) Text("↳ ${entry.chosenSlot?.name?.replace('_', ' ') ?: "amélioration liée"}", color = Color(0xFF77D9A7), style = MaterialTheme.typography.labelSmall)
                 if (entry.card.kind == CardKind.LEGION_UNIT || entry.card.kind == CardKind.ARMADA_SHIP) {
                     if (entry.card.allowedUpgradeSlots.isNotEmpty()) Text("Slots : ${entry.card.allowedUpgradeSlots.joinToString { it.name.lowercase().replace('_', ' ') }}", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, maxLines = 2)
