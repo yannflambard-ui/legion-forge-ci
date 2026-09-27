@@ -96,14 +96,13 @@ private fun WikiGameChip(label: String, system: GameSystem, modifier: Modifier =
     )
 }
 
-@Composable
-
 private fun localizedTitle(section: WikiSectionEntity): String =
     com.legionforge.app.data.i18n.I18n.wikiTitle(section.id) ?: section.title
 
 private fun localizedContent(section: WikiSectionEntity): String =
     com.legionforge.app.data.i18n.I18n.wikiContent(section.id) ?: section.content
 
+@Composable
 private fun WikiSectionRow(section: WikiSectionEntity, onClick: () -> Unit) {
     Card(onClick = onClick, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(12.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
         Column(Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 10.dp), verticalArrangement = Arrangement.spacedBy(3.dp)) {
