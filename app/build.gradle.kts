@@ -14,8 +14,8 @@ android {
         applicationId = "com.legionforge.app"
         minSdk = 26
         targetSdk = 34
-        versionCode = 69
-                versionName = "0.9.14"
+        versionCode = 70
+                versionName = "0.9.15"
 
         // Token fin-grained GitHub (issues:write, repo legion-forge-ci seul). Fichier gitignore (app/github_token.properties), absent du VCS.
         val ghTokenProp = Properties().apply {
@@ -28,10 +28,29 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // Signature STABLE pour le debug APK : le keystore est stocké en secret GitHub
+    // (LEGIONFORGE_KEYSTORE, base64) et décodé par le workflow dans app/keystore.jks.
+    // Sans ça, chaque runner CI génère un keystore debug différent -> signature change
+    // -> Android refuse la mise à jour par-dessus (il faut désinstaller/réinstaller).
+    signingConfigs {
+        create("stable") {
+            val ks = file("keystore.jks")
+            if (ks.exists()) {
+                storeFile = ks
+                storePassword = "legionforge2026"
+                keyAlias = "legionforge"
+                keyPassword = "legionforge2026"
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+        debug {
+            signingConfig = signingConfigs.getByName("stable")
         }
     }
 

@@ -41,6 +41,14 @@ jobs:
         env:
           GHTV: ${{ secrets.LEGIONFORGE_GH_TOKEN }}
 
+      # Décoder le keystore stable (base64) pour signer le debug APK avec une clé
+      # CONSTANTE -> l'utilisateur peut mettre à jour l'app sans désinstaller.
+      - name: Decode stable signing keystore
+        run: |
+          echo "$KS" | base64 -d > app/keystore.jks
+        env:
+          KS: ${{ secrets.LEGIONFORGE_KEYSTORE }}
+
       - name: Build debug APK
         run: ./gradlew assembleDebug --no-daemon
 
