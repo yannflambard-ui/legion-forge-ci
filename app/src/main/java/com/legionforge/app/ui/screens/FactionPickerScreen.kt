@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.legionforge.app.R
@@ -40,7 +41,7 @@ fun FactionPickerScreen(system: GameSystem, onFactionSelected: (String) -> Unit,
     androidx.compose.runtime.LaunchedEffect(system) { vm.loadAllCatalog(system) }
     val factionCards = cards.filter { if (system == GameSystem.LEGION_V2) it.kind == com.legionforge.app.data.model.CardKind.LEGION_UNIT else it.kind == com.legionforge.app.data.model.CardKind.ARMADA_SHIP }
     val groups = factionCards.groupBy { it.factionId }
-    Scaffold(topBar = { TopAppBar(title = { Text("Choisir une faction") }) }) { pad ->
+    Scaffold(topBar = { TopAppBar(title = { Text(stringResource(R.string.choose_faction)) }) }) { pad ->
         LazyColumn(Modifier.fillMaxSize().padding(pad).padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             item { Text(system.label(), color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge) }
             items(groups.keys.sorted(), key = { it }) { faction ->
@@ -49,12 +50,12 @@ fun FactionPickerScreen(system: GameSystem, onFactionSelected: (String) -> Unit,
                     Row(Modifier.padding(18.dp).fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp), verticalAlignment = Alignment.CenterVertically) {
                         Image(
                             painter = painterResource(factionIconRes(faction)),
-                            contentDescription = "Icône ${faction.displayName()}",
+                            contentDescription = stringResource(R.string.icon_desc, faction.displayName()),
                             modifier = Modifier.size(64.dp)
                         )
                         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                             Text(faction.displayName(), style = MaterialTheme.typography.titleLarge, color = Color.White)
-                            Text("$count ${if (system == GameSystem.LEGION_V2) "unités / véhicules" else "vaisseaux"} au catalogue  →", color = Color(0xFFFFC857))
+                            Text(if (system == GameSystem.LEGION_V2) stringResource(R.string.faction_count_units, count) else stringResource(R.string.faction_count_ships, count), color = Color(0xFFFFC857))
                         }
                     }
                 }
@@ -62,18 +63,18 @@ fun FactionPickerScreen(system: GameSystem, onFactionSelected: (String) -> Unit,
             if (cards.isEmpty()) {
     if (loading) {
         item { LinearProgressIndicator(modifier = Modifier.fillMaxWidth().padding(horizontal = 40.dp), color = Color(0xFFFFC857)) }
-        item { Text("Chargement du catalogue hors ligne…", color = Color.LightGray) }
+        item { Text(stringResource(R.string.loading_catalog), color = Color.LightGray) }
     }
     if (error != null) {
         item { Card(Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(containerColor = Color(0xFF3B2224))) {
             Column(Modifier.padding(12.dp)) {
-                Text("Erreur catalogue", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium)
+                Text(stringResource(R.string.catalog_error), color = Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium)
                 Text(error ?: "", color = Color(0xFFFFC7B7), style = MaterialTheme.typography.bodySmall)
             }
         } }
     }
     if (!loading && error == null) {
-        item { Text("Catalogue vide. Reessayez plus tard.", color = Color.LightGray) }
+        item { Text(stringResource(R.string.catalog_empty), color = Color.LightGray) }
     }
 }
         }

@@ -1,6 +1,7 @@
 package com.legionforge.app.ui.nav
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -8,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.legionforge.app.R
 import com.legionforge.app.data.model.GameSystem
 import com.legionforge.app.ui.screens.ArmyBuilderScreen
 import com.legionforge.app.ui.screens.CardDetailScreen
@@ -66,8 +68,9 @@ fun LegionForgeNavHost(navController: NavHostController = rememberNavController(
         }
         composable(Routes.FACTION_PICKER, arguments = listOf(navArgument("system") { type = NavType.StringType })) { entry ->
             val system = runCatching { GameSystem.valueOf(entry.arguments?.getString("system") ?: "LEGION_V2") }.getOrDefault(GameSystem.LEGION_V2)
+            val defaultName = if (system == GameSystem.LEGION_V2) stringResource(R.string.new_list_title) else stringResource(R.string.new_fleet_title)
             FactionPickerScreen(system, onFactionSelected = { factionId ->
-                vm.createList(if (system == GameSystem.LEGION_V2) "Nouvelle armée" else "Nouvelle flotte", system, factionId, if (system == GameSystem.LEGION_V2) 1000 else 400) { id ->
+                vm.createList(defaultName, system, factionId, if (system == GameSystem.LEGION_V2) 1000 else 400) { id ->
                     navController.navigate(Routes.armyBuilder(id))
                 }
             }, vm = vm)

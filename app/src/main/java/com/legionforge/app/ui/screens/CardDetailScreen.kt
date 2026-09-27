@@ -16,12 +16,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.layout.ContentScale
 import coil.compose.AsyncImage
+import com.legionforge.app.R
 import com.legionforge.app.data.model.*
 import com.legionforge.app.data.model.WikiSectionEntity
 import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
@@ -75,8 +77,8 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
     LaunchedEffect(Unit) { vm.loadAllWiki() }
 
     Scaffold(topBar = {
-        TopAppBar(title = { Text(if (playable.isNotEmpty()) playable[pagerState.currentPage].card.displayName() else "Mode partie", style = MaterialTheme.typography.titleMedium) },
-            navigationIcon = { TextButton(onClick = onBack) { Text("<") } },
+        TopAppBar(title = { Text(if (playable.isNotEmpty()) playable[pagerState.currentPage].card.displayName() else stringResource(R.string.play_mode), style = MaterialTheme.typography.titleMedium) },
+            navigationIcon = { TextButton(onClick = onBack) { Text(stringResource(R.string.back)) } },
             actions = {
                 Surface(onClick = { if (round > 1) round-- }, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(28.dp)) {
                     Box(contentAlignment = Alignment.Center) { Text("-", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) }
@@ -88,7 +90,7 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
             },
             colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF0A0E15)))
     }) { pad ->
-        if (playable.isEmpty()) { Box(Modifier.fillMaxSize().padding(pad), contentAlignment = Alignment.Center) { Text("Ajoutez des unites pour utiliser le mode partie", color = Color.Gray) }; return@Scaffold }
+        if (playable.isEmpty()) { Box(Modifier.fillMaxSize().padding(pad), contentAlignment = Alignment.Center) { Text(stringResource(R.string.add_units_play), color = Color.Gray) }; return@Scaffold }
         Box(Modifier.fillMaxSize().padding(pad)) {
             HorizontalPager(state = pagerState, modifier = Modifier.fillMaxSize()) { page ->
                 val unit = playable[page]; val children = entries.filter { it.parentInstanceId == unit.instanceId }
@@ -184,39 +186,39 @@ private fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntrie
         // ── stats réelles de la carte ──
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                Text("PROFIL", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.profile), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                    StatChip("SANTE", "${stats?.miniCount ?: 1} × ${stats?.health ?: 1}", Color(0xFFFF6B6B))
-                    StatChip("COURAGE", "${stats?.courage ?: 1}", Color(0xFFFFC857))
-                    StatChip("VITESSE", "${stats?.speed ?: 1}", Color(0xFF4FC3F7))
-                    StatChip("DEFENSE", (stats?.defenseDie ?: "w").uppercase(), defColor)
+                    StatChip(stringResource(R.string.stat_health), "${stats?.miniCount ?: 1} × ${stats?.health ?: 1}", Color(0xFFFF6B6B))
+                    StatChip(stringResource(R.string.stat_courage), "${stats?.courage ?: 1}", Color(0xFFFFC857))
+                    StatChip(stringResource(R.string.stat_speed), "${stats?.speed ?: 1}", Color(0xFF4FC3F7))
+                    StatChip(stringResource(R.string.stat_defense), (stats?.defenseDie ?: "w").uppercase(), defColor)
                 }
                 if (!stats?.surgeAttack.isNullOrBlank() || !stats?.surgeDefense.isNullOrBlank()) {
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                        Text("Surge attaque: ${surgeLabel(stats?.surgeAttack)}", color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall)
-                        Text("Surge défense: ${surgeLabel(stats?.surgeDefense)}", color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall)
+                        Text(stringResource(R.string.surge_attack, surgeLabel(stats?.surgeAttack)), color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall)
+                        Text(stringResource(R.string.surge_defense, surgeLabel(stats?.surgeDefense)), color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall)
                     }
                 }
                 if (stats?.keywords?.isNotEmpty() == true) {
-                    Text("Mots-clés: ${stats.keywords.joinToString(", ") { com.legionforge.app.data.i18n.I18n.keyword(it) }}", color = Color(0xFF9EACBC), style = MaterialTheme.typography.bodySmall)
+Text(stringResource(R.string.keywords_label, stats.keywords.joinToString(", ") { com.legionforge.app.data.i18n.I18n.keyword(it) }), color = Color(0xFF9EACBC), style = MaterialTheme.typography.bodySmall)
                 }
             }
         }
         // ── suivi des blessures (valeur restante) ──
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
-                Text("SUIVI", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { BigCounter("FIGURINES", wounds, maxHp, Color(0xFFFF6B6B), { if (wounds < maxHp) wounds++ }, { if (wounds > 0) wounds-- }) }
+                Text(stringResource(R.string.tracking), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { BigCounter(stringResource(R.string.minis), wounds, maxHp, Color(0xFFFF6B6B), { if (wounds < maxHp) wounds++ }, { if (wounds > 0) wounds-- }) }
                 HealthBar(wounds.toFloat() / maxHp, wounds, maxHp)
                 // Armes de l'unité (range + dés)
                 if (stats?.weapons?.isNotEmpty() == true) {
                     HorizontalDivider(color = Color(0xFF2A3A4A))
-                    Text("ARMES", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.weapons), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
                     stats.weapons.forEach { w ->
                         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                             Column(Modifier.weight(1f)) {
                                 Text(w.name, color = Color.White, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
-                                Text("Portée ${w.rangeMin}-${w.rangeMax}", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall)
+                                Text(stringResource(R.string.range_label, w.rangeMin, w.rangeMax), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall)
                             }
                             Text(diceText(w.red, w.black, w.white), color = Color(0xFF77D9A7), style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
                         }
@@ -227,7 +229,7 @@ private fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntrie
         }
         EffectsPanel(
             effects = buildList {
-                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), c.card.rulesText ?: "Amelioration installee", c.instanceId).copy(used = usedUpgrades.contains(c.instanceId))) }
+                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), c.card.rulesText ?: stringResource(R.string.upgrade_installed), c.instanceId).copy(used = usedUpgrades.contains(c.instanceId))) }
                 activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, c.name)) }
             },
             critSelector = { expanded, onDismiss, onSelect ->
@@ -249,7 +251,8 @@ private fun StatChip(label: String, value: String, color: Color) {
         Text(value, color = color, fontSize = 16.sp, fontWeight = FontWeight.Bold)
     }
 }
-private fun surgeLabel(s: String?): String = when (s) { "h" -> "Critique"; "a" -> "Touché"; "b" -> "Blocage"; "r" -> "Contre-attaque"; else -> "—" }
+@Composable
+private fun surgeLabel(s: String?): String = when (s) { "h" -> stringResource(R.string.surge_crit); "a" -> stringResource(R.string.surge_hit); "b" -> stringResource(R.string.surge_block); "r" -> stringResource(R.string.surge_counter); else -> "—" }
 private fun diceText(red: Int, black: Int, white: Int): String {
     val parts = buildList { if (red > 0) add("R$red"); if (black > 0) add("N$black"); if (white > 0) add("B$white") }
     return if (parts.isEmpty()) "—" else parts.joinToString(" ")
@@ -334,7 +337,7 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.Top) {
-                    Column(Modifier.weight(1f)) { Text(unit.card.displayName(), color = Color.White, style = MaterialTheme.typography.headlineSmall); Text("Vaisseau  •  ${unit.card.factionId.replace('-', ' ').replaceFirstChar { it.uppercase() }}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge) }
+                    Column(Modifier.weight(1f)) { Text(unit.card.displayName(), color = Color.White, style = MaterialTheme.typography.headlineSmall); Text("${stringResource(R.string.kind_ship)}  •  ${unit.card.factionId.replace('-', ' ').replaceFirstChar { it.uppercase() }}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge) }
                     Text("${unit.card.points} pts", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleLarge)
                 }
                 if (!unit.card.rulesText.isNullOrBlank()) ClickableRulesText(unit.card.rulesText, wikiSections, onRuleClick, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall, maxLines = 6)
@@ -351,7 +354,7 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                 }
                 if (children.isNotEmpty()) {
                     HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 4.dp))
-                    Text("Ameliorations  (cliquez pour activer/désactiver)", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.upgrades_hint), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold)
                     children.forEach { c ->
                         val used = usedUpgrades.contains(c.instanceId)
                         Row(Modifier.fillMaxWidth().clickable { usedUpgrades = if (used) usedUpgrades - c.instanceId else usedUpgrades + c.instanceId }, horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
@@ -364,13 +367,13 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                     }
                 }
                 HorizontalDivider(color = Color(0xFF2A3A4A))
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) { Text("Total $totalPts pts", color = Color(0xFFFFC857), fontWeight = FontWeight.Bold) }
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) { Text(stringResource(R.string.total_pts, totalPts), color = Color(0xFFFFC857), fontWeight = FontWeight.Bold) }
             }
         }
         // ── defense tokens ──
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp)) {
-                Text("JETONS DE DEFENSE", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.defense_tokens), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
                 Spacer(Modifier.height(10.dp))
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                     defTokenStates.forEachIndexed { i, (def, _) ->
@@ -384,17 +387,17 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
         // ── shields & hull ──
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                Text("BOUCLIERS & COQUE", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.shields_hull), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    MiniShield("AV", sF, { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- })
-                    Row(horizontalArrangement = Arrangement.spacedBy(24.dp)) { MiniShield("BAB", sP, { if (sP < maxShield) sP++ }, { if (sP > 0) sP-- }); MiniShield("TRIB", sS, { if (sS < maxShield) sS++ }, { if (sS > 0) sS-- }) }
-                    MiniShield("ARR", sR, { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- })
+                    MiniShield(stringResource(R.string.shield_front), sF, { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- })
+                    Row(horizontalArrangement = Arrangement.spacedBy(24.dp)) { MiniShield(stringResource(R.string.shield_port), sP, { if (sP < maxShield) sP++ }, { if (sP > 0) sP-- }); MiniShield(stringResource(R.string.shield_starboard), sS, { if (sS < maxShield) sS++ }, { if (sS > 0) sS-- }) }
+                    MiniShield(stringResource(R.string.shield_rear), sR, { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- })
                 }
                 HorizontalDivider(color = Color(0xFF2A3A4A))
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-                    BigCounter("VITESSE", speed, maxSpeed, Color(0xFF77D9A7), { if (speed < maxSpeed) speed++ }, { if (speed > 1) speed-- })
+                    BigCounter(stringResource(R.string.stat_speed), speed, maxSpeed, Color(0xFF77D9A7), { if (speed < maxSpeed) speed++ }, { if (speed > 1) speed-- })
                     Spacer(Modifier.width(24.dp))
-                    BigCounter("COQUE", hull, maxHp, Color(0xFFFF6B6B), { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- })
+                    BigCounter(stringResource(R.string.hull), hull, maxHp, Color(0xFFFF6B6B), { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- })
                 }
                 if (hull < maxHp) { HealthBar(hull.toFloat() / maxHp, hull, maxHp) }
             }
@@ -406,9 +409,9 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
         // ── effects panel ──
         EffectsPanel(
             effects = buildList {
-                if (commander != null) add(ActiveEffect(EffectType.COMMANDER, commander.card.displayName(), commander.card.rulesText ?: "Commandant de la flotte", "cmd_${commander.instanceId}")
+                if (commander != null) add(ActiveEffect(EffectType.COMMANDER, commander.card.displayName(), commander.card.rulesText ?: stringResource(R.string.fleet_commander), "cmd_${commander.instanceId}")
                     .copy(used = usedUpgrades.contains("cmd")))
-                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), c.card.rulesText ?: "Amelioration installee", c.instanceId)
+                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), c.card.rulesText ?: stringResource(R.string.upgrade_installed), c.instanceId)
                     .copy(used = usedUpgrades.contains(c.instanceId))) }
                 activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, "crit_${c.name}")) }
             },
@@ -431,7 +434,7 @@ private fun CommanderPage(unit: ListEntry, wikiSections: List<WikiSectionEntity>
         CardBlock(unit, emptyList(), unit.card.points, wikiSections, onRuleClick)
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                Text("COMMANDEMENT DE LA FLOTTE", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.fleet_command), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
                 TokenSection(tokens, { tokens = tokens + it }, { tokens = tokens - it })
             }
         }
@@ -450,8 +453,8 @@ private fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionEn
         CardBlock(unit, emptyList(), unit.card.points, wikiSections, onRuleClick)
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                Text("SUIVI ESCADRON", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { BigCounter("COQUE", hull, maxHp, Color(0xFFFF6B6B), { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- }) }
+                Text(stringResource(R.string.squadron_tracking), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { BigCounter(stringResource(R.string.hull), hull, maxHp, Color(0xFFFF6B6B), { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- }) }
                 if (hull < maxHp) HealthBar(hull.toFloat() / maxHp, hull, maxHp)
                 TokenSection(tokens, { tokens = tokens + it }, { tokens = tokens - it })
             }
@@ -471,11 +474,11 @@ private fun CardPlayImage(card: CardDefinition) {
     if (source != null) {
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(18.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.fillMaxWidth().padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                Text("CARTE", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.card_label), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
                 Spacer(Modifier.height(10.dp))
                 AsyncImage(
                     model = source,
-                    contentDescription = "Carte de ${card.displayName()}",
+                    contentDescription = stringResource(R.string.icon_desc, card.displayName()),
                     modifier = Modifier.fillMaxWidth(0.96f).heightIn(max = 520.dp),
                     contentScale = ContentScale.Fit
                 )
@@ -502,7 +505,7 @@ private fun CardBlock(unit: ListEntry, children: List<ListEntry>, totalPts: Int,
                 HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 4.dp))
                 children.forEach { c -> Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) { Row(modifier = Modifier.weight(1f)) { Text("+ ", color = Color(0xFF77D9A7), fontWeight = FontWeight.Bold); Text(c.card.displayName(), color = Color.White, style = MaterialTheme.typography.bodyMedium) }; Text("${c.card.points}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium) } }
                 HorizontalDivider(color = Color(0xFF2A3A4A))
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) { Text("Total $totalPts pts", color = Color(0xFFFFC857), fontWeight = FontWeight.Bold) }
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) { Text(stringResource(R.string.total_pts, totalPts), color = Color(0xFFFFC857), fontWeight = FontWeight.Bold) }
             }
         }
     }
@@ -522,9 +525,9 @@ private fun EffectsPanel(
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         // Header + add crit button
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-            Text("EFFETS ACTIFS", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+            Text(stringResource(R.string.active_effects), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
             Surface(onClick = { expandedCrit = true }, shape = RoundedCornerShape(10.dp), color = Color(0xFF5A2020)) {
-                Text(" + Dgt Crit", Modifier.padding(horizontal = 14.dp, vertical = 8.dp), color = Color(0xFFFF6B6B), fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.add_crit), Modifier.padding(horizontal = 14.dp, vertical = 8.dp), color = Color(0xFFFF6B6B), fontSize = 12.sp, fontWeight = FontWeight.Bold)
             }
         }
         // Crit selector dropdown
@@ -532,7 +535,7 @@ private fun EffectsPanel(
 
         // Effect list
         if (effects.isEmpty()) {
-            Text("Aucun effet actif", color = Color(0xFF5A6A7A), style = MaterialTheme.typography.bodySmall)
+            Text(stringResource(R.string.no_effects), color = Color(0xFF5A6A7A), style = MaterialTheme.typography.bodySmall)
         } else {
             effects.forEach { eff ->
                 val (icon, iconColor) = when (eff.type) {
@@ -555,10 +558,10 @@ private fun EffectsPanel(
                                 Column {
                                     Row(verticalAlignment = Alignment.CenterVertically) {
                                         Text(eff.label, color = if (eff.used) Color(0xFF5A6A7A) else Color.White, style = MaterialTheme.typography.bodyMedium, fontWeight = if (eff.type == EffectType.CRIT) FontWeight.Bold else FontWeight.Normal)
-                                        if (eff.used) { Spacer(Modifier.width(6.dp)); Surface(shape = RoundedCornerShape(4.dp), color = Color(0xFF3A3A4A)) { Text("ACTIVEE", Modifier.padding(horizontal = 5.dp, vertical = 2.dp), color = Color(0xFF5A6A7A), fontSize = 8.sp, fontWeight = FontWeight.Bold) } }
+                                        if (eff.used) { Spacer(Modifier.width(6.dp)); Surface(shape = RoundedCornerShape(4.dp), color = Color(0xFF3A3A4A)) { Text(stringResource(R.string.activated), Modifier.padding(horizontal = 5.dp, vertical = 2.dp), color = Color(0xFF5A6A7A), fontSize = 8.sp, fontWeight = FontWeight.Bold) } }
                                     }
                                     Text(
-                                        when (eff.type) { EffectType.COMMANDER -> "Commandant"; EffectType.UPGRADE -> "Amelioration"; EffectType.CRIT -> "Degat critique"; EffectType.ABILITY -> "Capacite" },
+                                        when (eff.type) { EffectType.COMMANDER -> stringResource(R.string.effect_commander); EffectType.UPGRADE -> stringResource(R.string.effect_upgrade); EffectType.CRIT -> stringResource(R.string.effect_crit); EffectType.ABILITY -> stringResource(R.string.effect_ability) },
                                         color = (if (eff.used) Color(0xFF5A6A7A) else iconColor).copy(alpha = 0.6f), fontSize = 10.sp
                                     )
                                 }
@@ -573,7 +576,7 @@ private fun EffectsPanel(
                             }
                             if (eff.type == EffectType.CRIT) {
                                 Spacer(Modifier.height(4.dp))
-                                TextButton(onClick = { onRemoveCrit(allCrits.firstOrNull { it.name == eff.label } ?: return@TextButton) }) { Text("Retirer le critique", color = Color(0xFFFF6B6B), style = MaterialTheme.typography.labelSmall) }
+                                TextButton(onClick = { onRemoveCrit(allCrits.firstOrNull { it.name == eff.label } ?: return@TextButton) }) { Text(stringResource(R.string.remove_crit), color = Color(0xFFFF6B6B), style = MaterialTheme.typography.labelSmall) }
                             }
                         }
                     }
@@ -622,14 +625,14 @@ private fun DefenseTokenDisc(def: ArmadaDefenseToken, used: Boolean, onClick: ()
             }
         }
         Text(def.label, color = ringColor, fontSize = 9.sp, fontWeight = FontWeight.Bold)
-        Text(if (used) "UTILISE" else "PRET", color = ringColor.copy(alpha = 0.7f), fontSize = 8.sp, fontWeight = FontWeight.Bold)
+        Text(if (used) stringResource(R.string.used) else stringResource(R.string.ready), color = ringColor.copy(alpha = 0.7f), fontSize = 8.sp, fontWeight = FontWeight.Bold)
     }
 }
 
 @Composable
 private fun TokenSection(tokens: List<String>, onAdd: (String) -> Unit, onRemove: (String) -> Unit) {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Text("JETONS / MARQUEURS", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelLarge)
+        Text(stringResource(R.string.tokens_markers), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelLarge)
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             listOf("Dgt" to Color(0xFFFF6B6B), "Etat" to Color(0xFFFFC857), "Bcl" to Color(0xFF4FC3F7), "Ordre" to Color(0xFF77D9A7)).forEach { (l, c) ->
                 Surface(onClick = { onAdd(l) }, shape = RoundedCornerShape(12.dp), color = c.copy(alpha = 0.2f)) { Text(l, Modifier.padding(horizontal = 16.dp, vertical = 10.dp), color = c, fontWeight = FontWeight.Bold, fontSize = 14.sp) }
@@ -640,7 +643,7 @@ private fun TokenSection(tokens: List<String>, onAdd: (String) -> Unit, onRemove
                 tokens.forEach { t -> Surface(onClick = { onRemove(t) }, shape = RoundedCornerShape(8.dp), color = Color(0xFF3B2224)) { Text("$t  \u2715", Modifier.padding(horizontal = 12.dp, vertical = 6.dp), color = Color(0xFFFFC7B7), fontSize = 12.sp, fontWeight = FontWeight.Bold) } }
             }
         }
-        Text("Appuyez sur un jeton pour le retirer", color = Color(0xFF5A6A7A), style = MaterialTheme.typography.labelSmall)
+        Text(stringResource(R.string.tap_token), color = Color(0xFF5A6A7A), style = MaterialTheme.typography.labelSmall)
     }
 }
 

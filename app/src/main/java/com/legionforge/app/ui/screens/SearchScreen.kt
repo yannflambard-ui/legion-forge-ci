@@ -12,9 +12,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.legionforge.app.R
 import com.legionforge.app.data.model.CardDefinition
 import com.legionforge.app.data.model.GameSystem
 import com.legionforge.app.data.model.CardKind
@@ -36,8 +38,8 @@ fun SearchScreen(
 
     Scaffold(topBar = {
         TopAppBar(
-            title = { Text("RECHERCHER", style = MaterialTheme.typography.titleMedium) },
-            navigationIcon = { TextButton(onClick = onBack) { Text("<") } },
+            title = { Text(stringResource(R.string.search_title), style = MaterialTheme.typography.titleMedium) },
+            navigationIcon = { TextButton(onClick = onBack) { Text(stringResource(R.string.back)) } },
             colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF0A0E15))
         )
     }) { pad ->
@@ -46,7 +48,7 @@ fun SearchScreen(
             OutlinedTextField(
                 value = query,
                 onValueChange = { query = it; vm.searchCards(it) },
-                placeholder = { Text("Nom, mot-clé, règle, arme…", color = Color(0xFF5A6A7A), fontSize = 14.sp) },
+                placeholder = { Text(stringResource(R.string.search_placeholder), color = Color(0xFF5A6A7A), fontSize = 14.sp) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
@@ -54,7 +56,7 @@ fun SearchScreen(
             )
             when {
                 searching -> Box(Modifier.fillMaxWidth().padding(20.dp), contentAlignment = Alignment.Center) { CircularProgressIndicator(color = Color(0xFFFFC857), strokeWidth = 2.dp) }
-                results.isEmpty() && query.isNotBlank() -> Text("Aucun résultat pour « $query »", color = Color(0xFF5A6A7A), style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(vertical = 12.dp))
+                results.isEmpty() && query.isNotBlank() -> Text(stringResource(R.string.no_results, query), color = Color(0xFF5A6A7A), style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(vertical = 12.dp))
                 results.isNotEmpty() -> LazyColumn(verticalArrangement = Arrangement.spacedBy(4.dp), contentPadding = PaddingValues(bottom = 20.dp)) {
                     items(results) { card ->
                         SearchResultRow(card, onClick = { selected = card })
@@ -73,7 +75,7 @@ fun SearchScreen(
             title = { Text(baseName(sel), color = Color.White, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold) },
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                    Text("${variants.size} variante(s) — touchez pour ouvrir", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall)
+                    Text(stringResource(R.string.variants, variants.size), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall)
                     variants.forEach { v ->
                         Row(
                             Modifier.fillMaxWidth().clip(RoundedCornerShape(10.dp)).background(if (v.id == sel.id) Color(0xFF2A3A4A) else Color(0xFF0A0E15)).clickable { onCardClick(v); selected = null }.padding(10.dp),
@@ -89,7 +91,7 @@ fun SearchScreen(
                     }
                 }
             },
-            confirmButton = { TextButton(onClick = { selected = null }) { Text("Fermer", color = Color(0xFFFFC857)) } }
+            confirmButton = { TextButton(onClick = { selected = null }) { Text(stringResource(R.string.close), color = Color(0xFFFFC857)) } }
         )
     }
 }
@@ -115,13 +117,14 @@ private fun SearchResultRow(card: CardDefinition, onClick: () -> Unit) {
 /** Nom de base : retire le suffixe de variante entre parenthèses (ex "Wookiee Warriors (Freedom Fighters)" → "Wookiee Warriors"). */
 private fun baseName(card: CardDefinition): String = card.name.substringBefore(" (").trim()
 
+@Composable
 private fun kindLabel(card: CardDefinition): String = when (card.kind) {
-    CardKind.LEGION_UNIT -> "Unité"
-    CardKind.LEGION_UPGRADE -> "Amélioration"
-    CardKind.ARMADA_SHIP -> "Vaisseau"
-    CardKind.ARMADA_SQUADRON -> "Escadron"
-    CardKind.ARMADA_UPGRADE -> "Amélioration"
-    CardKind.COMMANDER -> "Commandant"
+    CardKind.LEGION_UNIT -> stringResource(R.string.kind_unit)
+    CardKind.LEGION_UPGRADE -> stringResource(R.string.kind_upgrade)
+    CardKind.ARMADA_SHIP -> stringResource(R.string.kind_ship)
+    CardKind.ARMADA_SQUADRON -> stringResource(R.string.kind_squadron)
+    CardKind.ARMADA_UPGRADE -> stringResource(R.string.kind_upgrade)
+    CardKind.COMMANDER -> stringResource(R.string.kind_commander)
     else -> "Carte"
 }
 private fun gameLabel(card: CardDefinition): String = if (card.gameSystem == GameSystem.LEGION_V2) "LEGION V2" else "ARMADA V1.5"

@@ -33,9 +33,11 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.legionforge.app.R
 import com.legionforge.app.data.model.GameSystem
 import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
 
@@ -46,7 +48,7 @@ fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, on
     val loading by vm.loading.collectAsState()
     val catalogError by vm.catalogError.collectAsState()
     Scaffold(topBar = {
-            TopAppBar(title = { Text("SW ARMY BUILDER", style = MaterialTheme.typography.titleLarge) },
+            TopAppBar(title = { Text(stringResource(R.string.app_name), style = MaterialTheme.typography.titleLarge) },
                 actions = {
                     IconButton(onClick = onSettings) {
                         Text("\u2699", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium)
@@ -59,33 +61,33 @@ fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, on
                     Row(Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) {
                         Text("\uD83D\uDD0E", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium)
                         Spacer(Modifier.width(10.dp))
-                        Text("Rechercher une carte, un mot-clé, une règle…", color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodyMedium)
+                        Text(stringResource(R.string.search_hint), color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodyMedium)
                     }
                 }
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    CompactGameTile("LEGION", "Armées • V2 • 1000 pts", GameSystem.LEGION_V2, Modifier.weight(1f), onClick = { onNewList(GameSystem.LEGION_V2) })
-                    CompactGameTile("ARMADA", "Flottes • V1.5", GameSystem.ARMADA_V15, Modifier.weight(1f), onClick = { onNewList(GameSystem.ARMADA_V15) })
+                    CompactGameTile(stringResource(R.string.game_legion), stringResource(R.string.legion_desc), GameSystem.LEGION_V2, Modifier.weight(1f), onClick = { onNewList(GameSystem.LEGION_V2) })
+                    CompactGameTile(stringResource(R.string.game_armada), stringResource(R.string.armada_desc), GameSystem.ARMADA_V15, Modifier.weight(1f), onClick = { onNewList(GameSystem.ARMADA_V15) })
                 }
                 // Accès au wiki des règles officielles
                 Card(onClick = onWiki, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(14.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
                     Row(Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) {
                         Text("\uD83D\uDCD6", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium)
                         Spacer(Modifier.width(10.dp))
-                        Text("Wiki des règles officielles (Armada & Legion)", color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodyMedium)
+                        Text(stringResource(R.string.wiki_rules), color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodyMedium)
                     }
                 }
-            Text("LISTES RÉCENTES", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge)
-            if (lists.isEmpty()) Text("Vos compositions sauvegardées apparaîtront ici, hors ligne.", color = Color.LightGray)
+            Text(stringResource(R.string.recent_lists), color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge)
+            if (lists.isEmpty()) Text(stringResource(R.string.saved_lists_hint), color = Color.LightGray)
             if (loading) {
                 Spacer(Modifier.height(40.dp))
                 LinearProgressIndicator(modifier = Modifier.fillMaxWidth().padding(horizontal = 40.dp), color = Color(0xFFFFC857))
                 Spacer(Modifier.height(8.dp))
-                Text("Chargement du catalogue hors ligne…", color = Color(0xFF9EACBC), style = MaterialTheme.typography.bodySmall, modifier = Modifier.align(Alignment.CenterHorizontally))
+                Text(stringResource(R.string.loading_catalog), color = Color(0xFF9EACBC), style = MaterialTheme.typography.bodySmall, modifier = Modifier.align(Alignment.CenterHorizontally))
             }
             if (catalogError != null) {
                 Card(Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 8.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF3B2224))) {
                     Column(Modifier.padding(12.dp)) {
-                        Text("Erreur catalogue", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.catalog_error), color = Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
                         Text(catalogError ?: "", color = Color(0xFFFFC7B7), style = MaterialTheme.typography.bodySmall)
                     }
                 }
@@ -99,7 +101,7 @@ fun HomeScreen(onNewList: (GameSystem) -> Unit, onOpenList: (String) -> Unit, on
                 }
             }
             Spacer(Modifier.height(4.dp))
-            Text("Mode hors ligne activé • données stockées sur cet appareil", color = Color(0xFF8F9BAD), style = MaterialTheme.typography.labelSmall)
+            Text(stringResource(R.string.offline_mode), color = Color(0xFF8F9BAD), style = MaterialTheme.typography.labelSmall)
         }
     }
 }
@@ -110,7 +112,7 @@ private fun CompactGameTile(title: String, subtitle: String, system: GameSystem,
         Column(Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 10.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
             Image(
                 painter = painterResource(gameIconRes(system)),
-                contentDescription = "Icône $title",
+                contentDescription = stringResource(R.string.icon_desc, title),
                 modifier = Modifier.fillMaxWidth().height(96.dp),
                 contentScale = ContentScale.Fit
             )

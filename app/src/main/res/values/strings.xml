@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SW ARMY BUILDER</string>
-    <string name="btn_new_list">NEW LIST</string>
+    <string name="btn_new_list">NEW ARMY</string>
     <string name="btn_new_fleet">NEW FLEET</string>
     <string name="choose_faction">Choose a faction</string>
     <string name="game_legion">LEGION</string>
@@ -29,4 +29,118 @@
     <string name="validation_ok">List valid</string>
     <string name="total_points">Total</string>
     <string name="limit_pts">pts</string>
+
+    <!-- Home -->
+    <string name="search_hint">Search a card, a keyword, a rule…</string>
+        <string name="wiki_rules">Official rules wiki (Armada &amp; Legion)</string>
+    <string name="catalog_error">Catalog error</string>
+    <string name="icon_desc">Icon %1$s</string>
+
+    <!-- Faction picker -->
+    <string name="faction_count_units">%1$d units / vehicles in catalog  →</string>
+    <string name="faction_count_ships">%1$d ships in catalog  →</string>
+    <string name="catalog_empty">Catalog empty. Try again later.</string>
+
+    <!-- Army builder -->
+    <string name="points_label">POINTS / %1$d</string>
+    <string name="units_vehicles">units / vehicles</string>
+    <string name="ships">ships</string>
+    <string name="squadrons_label">Squadrons %1$d / %2$d pts</string>
+    <string name="list_valid">✓ List valid</string>
+    <string name="list_invalid">✗ List invalid</string>
+    <string name="rules_to_fix">+ %1$d rules to fix</string>
+    <string name="tab_list">LIST (%1$d)</string>
+    <string name="tab_catalog">CATALOG (%1$d)</string>
+    <string name="adding_to">Adding to: %1$s</string>
+    <string name="empty_army">Your force is empty. Open the catalog to add your first cards.</string>
+    <string name="filter_rank">RANK / TYPE</string>
+    <string name="filter_max_pts">MAX POINTS</string>
+    <string name="filter_keyword">Keyword (Pierce…)</string>
+    <string name="clear_filters">Clear filters</string>
+    <string name="offline_catalog_note">Offline • catalog subject to official updates</string>
+    <string name="rename_title">Name the list</string>
+    <string name="rename_placeholder">List name…</string>
+    <string name="save">SAVE</string>
+    <string name="cancel">CANCEL</string>
+    <string name="no_image">No image for this card</string>
+    <string name="click_to_close">Click the image to close</string>
+    <string name="linked_upgrade">linked upgrade</string>
+    <string name="slots_label">Slots: %1$s</string>
+    <string name="for_label">For: %1$s</string>
+    <string name="choose_unit">choose unit</string>
+    <string name="unique">Unique</string>
+    <string name="standard">Standard</string>
+    <string name="add_unit_first">Add a unit with this slot first</string>
+    <string name="no_compatible_ship">No compatible ship in the fleet</string>
+    <string name="slots_full">All compatible slots are occupied</string>
+    <string name="slot_label">Slot: %1$s</string>
+    <string name="select">select</string>
+    <string name="faction_rebel">Rebel</string>
+    <string name="faction_empire">Empire</string>
+    <string name="faction_republic">Republic</string>
+    <string name="faction_separatist">Separatist</string>
+    <string name="faction_neutral">Neutral</string>
+    <string name="kind_unit">Unit</string>
+    <string name="kind_upgrade">Upgrade</string>
+    <string name="kind_ship">Ship</string>
+    <string name="kind_squadron">Squadron</string>
+    <string name="kind_commander">Commander</string>
+
+    <!-- Settings -->
+    <string name="back">Back</string>
+    <string name="more_options">More options coming soon</string>
+
+    <!-- Search -->
+    <string name="search_title">SEARCH</string>
+    <string name="search_placeholder">Name, keyword, rule, weapon…</string>
+    <string name="no_results">No results for « %1$s »</string>
+    <string name="variants">%1$d variant(s) — tap to open</string>
+    <string name="close">Close</string>
+
+    <!-- Card detail (play mode) -->
+    <string name="play_mode">Play mode</string>
+    <string name="add_units_play">Add units to use play mode</string>
+    <string name="profile">PROFILE</string>
+    <string name="stat_health">HEALTH</string>
+    <string name="stat_courage">COURAGE</string>
+    <string name="stat_speed">SPEED</string>
+    <string name="stat_defense">DEFENSE</string>
+    <string name="surge_attack">Surge attack: %1$s</string>
+    <string name="surge_defense">Surge defense: %1$s</string>
+    <string name="keywords_label">Keywords: %1$s</string>
+    <string name="tracking">TRACKING</string>
+    <string name="minis">MINIS</string>
+    <string name="weapons">WEAPONS</string>
+    <string name="range_label">Range %1$d-%2$d</string>
+    <string name="upgrade_installed">Upgrade installed</string>
+    <string name="upgrades_hint">Upgrades (tap to activate/deactivate)</string>
+    <string name="total_pts">Total %1$d pts</string>
+    <string name="defense_tokens">DEFENSE TOKENS</string>
+    <string name="shields_hull">SHIELDS &amp; HULL</string>
+    <string name="shield_front">FRONT</string>
+    <string name="shield_port">PORT</string>
+    <string name="shield_starboard">STARBOARD</string>
+    <string name="shield_rear">REAR</string>
+    <string name="hull">HULL</string>
+    <string name="fleet_command">FLEET COMMAND</string>
+    <string name="squadron_tracking">SQUADRON TRACKING</string>
+    <string name="card_label">CARD</string>
+    <string name="active_effects">ACTIVE EFFECTS</string>
+    <string name="add_crit">+ Dmg Crit</string>
+    <string name="no_effects">No active effect</string>
+    <string name="activated">ACTIVATED</string>
+    <string name="effect_commander">Commander</string>
+    <string name="effect_upgrade">Upgrade</string>
+    <string name="effect_crit">Critical damage</string>
+    <string name="effect_ability">Ability</string>
+    <string name="remove_crit">Remove the critical</string>
+    <string name="used">USED</string>
+    <string name="ready">READY</string>
+    <string name="tokens_markers">TOKENS / MARKERS</string>
+    <string name="tap_token">Tap a token to remove it</string>
+    <string name="fleet_commander">Fleet commander</string>
+    <string name="surge_crit">Critical</string>
+    <string name="surge_hit">Hit</string>
+    <string name="surge_block">Block</string>
+    <string name="surge_counter">Counter-attack</string>
 </resources>

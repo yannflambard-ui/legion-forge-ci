@@ -12,9 +12,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.legionforge.app.R
 import java.util.Locale
 
 private data class LangOption(val code: String, val flag: String, val label: String)
@@ -37,9 +39,9 @@ fun SettingsScreen(onBack: () -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Settings") },
+                title = { Text(stringResource(R.string.settings)) },
                 navigationIcon = {
-                    TextButton(onClick = onBack) { Text("< Back") }
+                    TextButton(onClick = onBack) { Text(stringResource(R.string.back)) }
                 }
             )
         }
@@ -48,7 +50,7 @@ fun SettingsScreen(onBack: () -> Unit) {
             Modifier.fillMaxSize().padding(pad).padding(20.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Text("Language / Langue / Sprache / Idioma",
+            Text(stringResource(R.string.language),
                 color = Color(0xFFFFC857),
                 style = MaterialTheme.typography.titleMedium)
 
@@ -86,7 +88,7 @@ fun SettingsScreen(onBack: () -> Unit) {
             }
 
             Spacer(Modifier.height(12.dp))
-            Text("More options coming soon",
+            Text(stringResource(R.string.more_options),
                 color = Color.Gray, style = MaterialTheme.typography.bodySmall)
         }
     }

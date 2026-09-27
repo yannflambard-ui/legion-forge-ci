@@ -16,6 +16,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -24,6 +25,7 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
+import com.legionforge.app.R
 import com.legionforge.app.data.model.*
 import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
 
@@ -91,7 +93,7 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                         renameText = list?.name ?: ""
                         renameOpen = true
                     }) {
-                        Text(list?.name ?: "Nouvelle liste", style = MaterialTheme.typography.titleLarge, color = Color.White, maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
+                        Text(list?.name ?: stringResource(R.string.new_list_title), style = MaterialTheme.typography.titleLarge, color = Color.White, maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
                     }
                     Text("${game.label()}  •  ${list?.factionId.orEmpty()}", style = MaterialTheme.typography.labelSmall, color = Color(0xFFFFC857))
                 }
@@ -118,22 +120,22 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                         Column {
                             Text("$total", color = Color(0xFFFFC857), style = MaterialTheme.typography.headlineMedium)
-                            Text("POINTS / $limit", color = Color.LightGray, style = MaterialTheme.typography.labelSmall)
+                            Text(stringResource(R.string.points_label, limit), color = Color.LightGray, style = MaterialTheme.typography.labelSmall)
                         }
                         val count = entries.filter { it.card.kind == if (game == GameSystem.LEGION_V2) CardKind.LEGION_UNIT else CardKind.ARMADA_SHIP }.sumOf { it.quantity }
-                        Text("$count ${if (game == GameSystem.LEGION_V2) "unités / véhicules" else "vaisseaux"}", color = Color.White)
+                        Text("$count ${if (game == GameSystem.LEGION_V2) stringResource(R.string.units_vehicles) else stringResource(R.string.ships)}", color = Color.White)
                     }
                     if (game == GameSystem.ARMADA_V15) {
                         val squadronPts = entries.filter { it.card.kind == CardKind.ARMADA_SQUADRON }.sumOf { it.card.points * it.quantity }
                         LinearProgressIndicator(progress = { (squadronPts.toFloat() / ((limit + 2) / 3).coerceAtLeast(1)).coerceIn(0f, 1f) }, modifier = Modifier.fillMaxWidth(), color = Color(0xFFFFC857))
-                        Text("Escadrons $squadronPts / ${(limit + 2) / 3} pts", color = Color.LightGray, style = MaterialTheme.typography.labelSmall)
+                        Text(stringResource(R.string.squadrons_label, squadronPts, (limit + 2) / 3), color = Color.LightGray, style = MaterialTheme.typography.labelSmall)
                     } else {
                         val counts = entries.filter { it.card.kind == CardKind.LEGION_UNIT }.groupBy { it.card.legionRank }.mapValues { (_, items) -> items.sumOf { it.quantity } }
                         Text("C ${counts[LegionRank.COMMANDER] ?: 0}/1–2   •   T ${counts[LegionRank.CORPS] ?: 0}/3–6   •   FS ${counts[LegionRank.SPECIAL_FORCES] ?: 0}/0–3", color = Color.LightGray, style = MaterialTheme.typography.labelSmall)
                     }
                     // Indicateur de validité dans l'encadré des points
                     if (entries.isNotEmpty()) {
-                        Text(if (listValid) "✓ Liste valide" else "✗ Liste invalide", color = if (listValid) Color(0xFF77D9A7) else Color(0xFFFF927F), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+                        Text(if (listValid) stringResource(R.string.list_valid) else stringResource(R.string.list_invalid), color = if (listValid) Color(0xFF77D9A7) else Color(0xFFFF927F), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
                     }
                 }
             }
@@ -141,28 +143,28 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                 Card(Modifier.fillMaxWidth().padding(horizontal = 14.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF3B2224))) {
                     Column(Modifier.padding(10.dp), verticalArrangement = Arrangement.spacedBy(3.dp)) {
                         validation.violations.take(3).forEach { Text("! ${it.message}", color = Color(0xFFFFC7B7), style = MaterialTheme.typography.bodySmall) }
-                        if (validation.violations.size > 3) Text("+ ${validation.violations.size - 3} règles à corriger", color = Color.LightGray, style = MaterialTheme.typography.labelSmall)
+                        if (validation.violations.size > 3) Text(stringResource(R.string.rules_to_fix, validation.violations.size - 3), color = Color.LightGray, style = MaterialTheme.typography.labelSmall)
                     }
                 }
             }
             TabRow(selectedTabIndex = selectedTab) {
-                Tab(selectedTab == 0, onClick = { selectedTab = 0 }, text = { Text("LISTE (${entries.size})") })
+                Tab(selectedTab == 0, onClick = { selectedTab = 0 }, text = { Text(stringResource(R.string.tab_list, entries.size)) })
                 Tab(selectedTab == 1, onClick = { selectedTab = 1 }, text = {
                     if (selectedParent != null) Text("→ ${selectedParent.card.displayName().take(18)}")
-                    else Text("CATALOGUE (${additions.size})")
+                    else Text(stringResource(R.string.tab_catalog, additions.size))
                 })
             }
             if (selectedParent != null && selectedTab == 1) {
                 Surface(modifier = Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 4.dp), shape = RoundedCornerShape(12.dp), color = Color(0xFFFFB800).copy(alpha = 0.15f)) {
                     Row(Modifier.padding(horizontal = 14.dp, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
-                        Text("Ajout à : ${selectedParent.card.displayName()}", color = Color(0xFFFFC857), style = MaterialTheme.typography.bodySmall)
+                        Text(stringResource(R.string.adding_to, selectedParent.card.displayName()), color = Color(0xFFFFC857), style = MaterialTheme.typography.bodySmall)
                         TextButton(onClick = { selectedParentId = null }) { Text("✕", color = Color.White) }
                     }
                 }
             }
             if (selectedTab == 0) {
                 LazyColumn(Modifier.weight(1f), contentPadding = PaddingValues(14.dp), verticalArrangement = Arrangement.spacedBy(9.dp)) {
-                    if (entries.isEmpty()) item { Text("Votre force est vide. Ouvrez le catalogue pour ajouter vos premières cartes.", color = Color.LightGray, modifier = Modifier.padding(16.dp)) }
+                    if (entries.isEmpty()) item { Text(stringResource(R.string.empty_army), color = Color.LightGray, modifier = Modifier.padding(16.dp)) }
                     // Group entries hierarchically: parents first, then their upgrades indented
                     val parents = entries.filter { it.parentInstanceId == null }
                     val allParentIds = parents.map { it.instanceId }.toSet()
@@ -189,7 +191,7 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                 }
             } else {
                 Row(Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 6.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    OutlinedTextField(value = search, onValueChange = { search = it }, modifier = Modifier.weight(1f), placeholder = { Text("Rechercher une carte…") }, singleLine = true, textStyle = MaterialTheme.typography.bodyMedium)
+                    OutlinedTextField(value = search, onValueChange = { search = it }, modifier = Modifier.weight(1f), placeholder = { Text(stringResource(R.string.search_hint)) }, singleLine = true, textStyle = MaterialTheme.typography.bodyMedium)
                     // Bouton filtre compact à droite de la barre de recherche
                     Box {
                         Surface(onClick = { filtersMenuOpen = true }, shape = RoundedCornerShape(10.dp), color = if (filterRank != null || filterMaxPts != null || filterKeyword != null) Color(0xFFFFC857) else Color(0xFF2A3A4A)) {
@@ -198,23 +200,23 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                         DropdownMenu(expanded = filtersMenuOpen, onDismissRequest = { filtersMenuOpen = false }) {
                             // Rang/type : petits chips à lettre
                             val ranks = if (game == GameSystem.LEGION_V2) listOf("COMMANDER" to "C", "OPERATIVE" to "O", "CORPS" to "Co", "SPECIAL_FORCES" to "FS", "SUPPORT" to "S", "HEAVY" to "H") else listOf("ARMADA_SHIP" to "V", "ARMADA_SQUADRON" to "E", "COMMANDER" to "Cmd")
-                            Text("RANG / TYPE", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp))
+                            Text(stringResource(R.string.filter_rank), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp))
                             Row(Modifier.padding(horizontal = 12.dp), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                                 ranks.forEach { (r, abbr) ->
                                     FilterChip(selected = filterRank == r, onClick = { filterRank = if (filterRank == r) null else r }, label = { Text(abbr, fontSize = 10.sp) })
                                 }
                             }
                             HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 6.dp))
-                            Text("POINTS MAX", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp))
+                            Text(stringResource(R.string.filter_max_pts), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp))
                             Row(Modifier.padding(horizontal = 12.dp), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                                 listOf(25, 50, 100).forEach { maxPts ->
                                     FilterChip(selected = filterMaxPts == maxPts, onClick = { filterMaxPts = if (filterMaxPts == maxPts) null else maxPts }, label = { Text("≤$maxPts", fontSize = 10.sp) })
                                 }
                             }
                             HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 6.dp))
-                            OutlinedTextField(value = filterKeyword ?: "", onValueChange = { filterKeyword = it.ifBlank { null } }, modifier = Modifier.padding(horizontal = 12.dp).width(180.dp), placeholder = { Text("Mot-clé (Pierce…)", fontSize = 12.sp) }, singleLine = true, textStyle = MaterialTheme.typography.bodySmall)
+                            OutlinedTextField(value = filterKeyword ?: "", onValueChange = { filterKeyword = it.ifBlank { null } }, modifier = Modifier.padding(horizontal = 12.dp).width(180.dp), placeholder = { Text(stringResource(R.string.filter_keyword), fontSize = 12.sp) }, singleLine = true, textStyle = MaterialTheme.typography.bodySmall)
                             if (filterRank != null || filterMaxPts != null || filterKeyword != null) {
-                                TextButton(onClick = { filterRank = null; filterMaxPts = null; filterKeyword = null }, modifier = Modifier.padding(horizontal = 8.dp)) { Text("Effacer les filtres", color = Color(0xFFFF927F), style = MaterialTheme.typography.labelSmall) }
+                                TextButton(onClick = { filterRank = null; filterMaxPts = null; filterKeyword = null }, modifier = Modifier.padding(horizontal = 8.dp)) { Text(stringResource(R.string.clear_filters), color = Color(0xFFFF927F), style = MaterialTheme.typography.labelSmall) }
                             }
                         }
                     }
@@ -223,19 +225,19 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                         items(additions, key = { it.id }) { card -> CatalogCard(card, entries, selectedParentId, onAdd = { parent, slot -> viewModel.add(card, parent, slot) }, onPreview = { previewCard = card }) }
                                 }
             }
-            Text("Hors ligne • catalogue sous réserve des mises à jour officielles", Modifier.align(Alignment.CenterHorizontally).padding(bottom = 6.dp), color = Color(0xFF718096), style = MaterialTheme.typography.labelSmall)
+            Text(stringResource(R.string.offline_catalog_note), Modifier.align(Alignment.CenterHorizontally).padding(bottom = 6.dp), color = Color(0xFF718096), style = MaterialTheme.typography.labelSmall)
         }
     }
     if (renameOpen) {
         AlertDialog(
             onDismissRequest = { renameOpen = false },
-            title = { Text("Nommer la liste", color = Color.White) },
+            title = { Text(stringResource(R.string.rename_title), color = Color.White) },
             text = {
                 OutlinedTextField(
                     value = renameText,
                     onValueChange = { renameText = it },
                     singleLine = true,
-                    placeholder = { Text("Nom de la liste…") },
+                    placeholder = { Text(stringResource(R.string.rename_placeholder)) },
                     textStyle = MaterialTheme.typography.bodyMedium
                 )
             },
@@ -243,10 +245,10 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                 TextButton(onClick = {
                     viewModel.renameList(renameText)
                     renameOpen = false
-                }) { Text("SAUVEGARDER", color = Color(0xFFFFC857), fontWeight = FontWeight.Bold) }
+                }) { Text(stringResource(R.string.save), color = Color(0xFFFFC857), fontWeight = FontWeight.Bold) }
             },
             dismissButton = {
-                TextButton(onClick = { renameOpen = false }) { Text("ANNULER", color = Color(0xFF9EACBC)) }
+                TextButton(onClick = { renameOpen = false }) { Text(stringResource(R.string.cancel), color = Color(0xFF9EACBC)) }
             },
             containerColor = Color(0xFF192330)
         )
@@ -276,40 +278,42 @@ private fun ImagePreviewDialog(card: CardDefinition, onClose: () -> Unit) {
                         if (source != null) {
                             AsyncImage(
                                 model = source,
-                                contentDescription = "Image de ${card.displayName()}",
+contentDescription = stringResource(R.string.icon_desc, card.displayName()),
                                 modifier = Modifier.fillMaxWidth().heightIn(max = 560.dp),
                                 contentScale = ContentScale.Fit
                             )
                         } else {
                             Box(Modifier.fillMaxWidth().aspectRatio(cardAspectRatio(card)).background(Brush.linearGradient(listOf(Color(0xFF253344), Color(0xFF111820)))), contentAlignment = Alignment.Center) {
-                                Text("Aucune image pour cette carte", color = Color(0xFF8494A8), style = MaterialTheme.typography.bodySmall)
+                                Text(stringResource(R.string.no_image), color = Color(0xFF8494A8), style = MaterialTheme.typography.bodySmall)
                             }
                         }
                     }
-                    Text("Cliquer sur l'image pour fermer", color = Color(0xFF718096), style = MaterialTheme.typography.labelSmall)
+                    Text(stringResource(R.string.click_to_close), color = Color(0xFF718096), style = MaterialTheme.typography.labelSmall)
                 }
             }
         }
     }
 }
 
+@Composable
 private fun factionLabel(factionId: String?): String = when (factionId) {
-    "rebel" -> "Rebelle"
-    "empire" -> "Empire"
-    "republic", "republics" -> "République"
-    "separatist", "separatists" -> "Séparatiste"
-    "neutral" -> "Neutre"
-    else -> factionId?.replace('-', ' ') ?: "Neutre"
+    "rebel" -> stringResource(R.string.faction_rebel)
+    "empire" -> stringResource(R.string.faction_empire)
+    "republic", "republics" -> stringResource(R.string.faction_republic)
+    "separatist", "separatists" -> stringResource(R.string.faction_separatist)
+    "neutral" -> stringResource(R.string.faction_neutral)
+    else -> factionId?.replace('-', ' ') ?: stringResource(R.string.faction_neutral)
 }
 
 /** Libellé court du type de carte affiché dans le catalogue (pas la valeur de filtre). */
+@Composable
 private fun kindLabel(kind: CardKind): String = when (kind) {
-    CardKind.LEGION_UNIT -> "Unité"
-    CardKind.LEGION_UPGRADE -> "Amélioration"
-    CardKind.ARMADA_SHIP -> "Vaisseau"
-    CardKind.ARMADA_SQUADRON -> "Escadron"
-    CardKind.ARMADA_UPGRADE -> "Amélioration"
-    CardKind.COMMANDER -> "Commandant"
+    CardKind.LEGION_UNIT -> stringResource(R.string.kind_unit)
+    CardKind.LEGION_UPGRADE -> stringResource(R.string.kind_upgrade)
+    CardKind.ARMADA_SHIP -> stringResource(R.string.kind_ship)
+    CardKind.ARMADA_SQUADRON -> stringResource(R.string.kind_squadron)
+    CardKind.ARMADA_UPGRADE -> stringResource(R.string.kind_upgrade)
+    CardKind.COMMANDER -> stringResource(R.string.kind_commander)
 }
 
 @Composable
@@ -348,9 +352,9 @@ private fun BuilderEntryCard(entry: ListEntry, isChild: Boolean = false, accentC
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
                 Text(entry.card.displayName(), color = Color.White, style = MaterialTheme.typography.titleSmall)
                 Text("${entry.card.points * entry.quantity} pts  •  ${entry.card.legionRank?.name?.replace('_', ' ') ?: kindLabel(entry.card.kind)}", color = accentColor, style = MaterialTheme.typography.labelSmall)
-                if (entry.parentInstanceId != null) Text("↳ ${entry.chosenSlot?.name?.replace('_', ' ') ?: "amélioration liée"}", color = Color(0xFF77D9A7), style = MaterialTheme.typography.labelSmall)
+                if (entry.parentInstanceId != null) Text("↳ ${entry.chosenSlot?.name?.replace('_', ' ') ?: stringResource(R.string.linked_upgrade)}", color = Color(0xFF77D9A7), style = MaterialTheme.typography.labelSmall)
                 if (entry.card.kind == CardKind.LEGION_UNIT || entry.card.kind == CardKind.ARMADA_SHIP) {
-                    if (entry.card.allowedUpgradeSlots.isNotEmpty()) Text("Slots : ${entry.card.allowedUpgradeSlots.joinToString { it.name.lowercase().replace('_', ' ') }}", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, maxLines = 2)
+                    if (entry.card.allowedUpgradeSlots.isNotEmpty()) Text(stringResource(R.string.slots_label, entry.card.allowedUpgradeSlots.joinToString { it.name.lowercase().replace('_', ' ') }), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, maxLines = 2)
                 }
             }
             Text("←", color = Color(0xFF5A6A7A), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
@@ -385,31 +389,31 @@ private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, preselec
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
                 Text(card.displayName(), color = Color.White, style = MaterialTheme.typography.titleSmall)
                 Text("${card.points} pts • ${kindLabel(card.kind)}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelSmall)
-                Text("${factionLabel(card.factionId)} • ${if (card.unique) "Unique" else "Standard"}", maxLines = 1, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall)
+                Text("${factionLabel(card.factionId)} • ${if (card.unique) stringResource(R.string.unique) else stringResource(R.string.standard)}", maxLines = 1, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall)
                 if (requiresTarget && eligibleTargets.isNotEmpty()) {
                     // Quand un parent est déjà sélectionné, le catalogue est scoped à ce parent :
                     // le sélecteur "Pour :" est redondant, on l'affiche seulement sans présélection.
                     if (preselectedParentId == null) {
                         var expandedTarget by remember { mutableStateOf(false) }
                         Box {
-                            TextButton(onClick = { expandedTarget = true }) { Text("Pour : ${eligibleTargets.firstOrNull { it.instanceId == targetId }?.card?.name ?: "choisir unité"}") }
+                            TextButton(onClick = { expandedTarget = true }) { Text(stringResource(R.string.for_label, eligibleTargets.firstOrNull { it.instanceId == targetId }?.card?.name ?: stringResource(R.string.choose_unit))) }
                             DropdownMenu(expandedTarget, onDismissRequest = { expandedTarget = false }) {
                                 eligibleTargets.forEach { target -> DropdownMenuItem(text = { Text(target.card.displayName()) }, onClick = { targetId = target.instanceId; expandedTarget = false }) }
                             }
                         }
                     }
-                    if (armadaShip && card.allowedUpgradeSlots.isNotEmpty()) Text("Slots : ${card.allowedUpgradeSlots.groupingBy { it }.eachCount().entries.joinToString { "${it.value}× ${it.key.name.lowercase().replace('_', ' ')}" }}", color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall)
+                    if (armadaShip && card.allowedUpgradeSlots.isNotEmpty()) Text(stringResource(R.string.slots_label, card.allowedUpgradeSlots.groupingBy { it }.eachCount().entries.joinToString { "${it.value}× ${it.key.name.lowercase().replace('_', ' ')}" }), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall)
                     if (card.kind == CardKind.ARMADA_UPGRADE && eligibleSlots.size > 1) {
                         var expandedSlot by remember { mutableStateOf(false) }
                         Box {
-                            TextButton(onClick = { expandedSlot = true }) { Text("Slot : ${selectedSlot?.name?.replace('_', ' ') ?: "sélectionner"}") }
+                            TextButton(onClick = { expandedSlot = true }) { Text(stringResource(R.string.slot_label, selectedSlot?.name?.replace('_', ' ') ?: stringResource(R.string.select))) }
                             DropdownMenu(expandedSlot, onDismissRequest = { expandedSlot = false }) {
                                 eligibleSlots.forEach { slot -> DropdownMenuItem(text = { Text(slot.name.replace('_', ' ')) }, onClick = { selectedSlot = slot; expandedSlot = false }) }
                             }
                         }
                     }
-                    if (requiresTarget && eligibleTargets.isEmpty()) Text(if (card.kind == CardKind.LEGION_UPGRADE) "Ajoutez d'abord une unité avec ce slot" else "Aucun vaisseau compatible dans la flotte", color = Color(0xFFFF927F), style = MaterialTheme.typography.labelSmall)
-                    if (compatibleSlotFull) Text("Tous les slots compatibles sont occupés", color = Color(0xFFFF927F), style = MaterialTheme.typography.labelSmall)
+                    if (requiresTarget && eligibleTargets.isEmpty()) Text(if (card.kind == CardKind.LEGION_UPGRADE) stringResource(R.string.add_unit_first) else stringResource(R.string.no_compatible_ship), color = Color(0xFFFF927F), style = MaterialTheme.typography.labelSmall)
+                    if (compatibleSlotFull) Text(stringResource(R.string.slots_full), color = Color(0xFFFF927F), style = MaterialTheme.typography.labelSmall)
                 }
             }
             Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(2.dp)) {
@@ -437,7 +441,7 @@ private fun CardArtwork(card: CardDefinition, modifier: Modifier = Modifier) {
     val source: Any? = card.imageAssetPath?.let { "file:///android_asset/$it" } ?: card.imageUrl
     val ratio = cardAspectRatio(card)
     val sized = modifier.aspectRatio(ratio)
-    if (source != null) AsyncImage(model = source, contentDescription = "Visuel de ${card.displayName()}", modifier = sized, contentScale = ContentScale.Crop)
+    if (source != null) AsyncImage(model = source, contentDescription = stringResource(R.string.icon_desc, card.displayName()), modifier = sized, contentScale = ContentScale.Crop)
     else Card(sized, shape = RoundedCornerShape(10.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF253344))) {
         Box(Modifier.fillMaxSize().background(Brush.linearGradient(listOf(Color(0xFF253344), Color(0xFF111820)))), contentAlignment = Alignment.Center) {
             Text(card.displayName().split(' ').take(2).joinToString("\n"), color = Color(0xFF8494A8), style = MaterialTheme.typography.labelSmall)

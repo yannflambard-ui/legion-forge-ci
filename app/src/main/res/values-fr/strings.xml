@@ -29,4 +29,118 @@
     <string name="validation_ok">Liste valide</string>
     <string name="total_points">Total</string>
     <string name="limit_pts">pts</string>
+
+    <!-- Home -->
+    <string name="search_hint">Rechercher une carte, un mot-clé, une règle…</string>
+        <string name="wiki_rules">Wiki des règles officielles (Armada &amp; Legion)</string>
+    <string name="catalog_error">Erreur catalogue</string>
+    <string name="icon_desc">Icône %1$s</string>
+
+    <!-- Faction picker -->
+    <string name="faction_count_units">%1$d unités / véhicules au catalogue  →</string>
+    <string name="faction_count_ships">%1$d vaisseaux au catalogue  →</string>
+    <string name="catalog_empty">Catalogue vide. Réessayez plus tard.</string>
+
+    <!-- Army builder -->
+    <string name="points_label">POINTS / %1$d</string>
+    <string name="units_vehicles">unités / véhicules</string>
+    <string name="ships">vaisseaux</string>
+    <string name="squadrons_label">Escadrons %1$d / %2$d pts</string>
+    <string name="list_valid">✓ Liste valide</string>
+    <string name="list_invalid">✗ Liste invalide</string>
+    <string name="rules_to_fix">+ %1$d règles à corriger</string>
+    <string name="tab_list">LISTE (%1$d)</string>
+    <string name="tab_catalog">CATALOGUE (%1$d)</string>
+    <string name="adding_to">Ajout à : %1$s</string>
+    <string name="empty_army">Votre force est vide. Ouvrez le catalogue pour ajouter vos premières cartes.</string>
+    <string name="filter_rank">RANG / TYPE</string>
+    <string name="filter_max_pts">POINTS MAX</string>
+    <string name="filter_keyword">Mot-clé (Pierce…)</string>
+    <string name="clear_filters">Effacer les filtres</string>
+    <string name="offline_catalog_note">Hors ligne • catalogue sous réserve des mises à jour officielles</string>
+    <string name="rename_title">Nommer la liste</string>
+    <string name="rename_placeholder">Nom de la liste…</string>
+    <string name="save">SAUVEGARDER</string>
+    <string name="cancel">ANNULER</string>
+    <string name="no_image">Aucune image pour cette carte</string>
+    <string name="click_to_close">Cliquer sur l\'image pour fermer</string>
+    <string name="linked_upgrade">amélioration liée</string>
+    <string name="slots_label">Slots : %1$s</string>
+    <string name="for_label">Pour : %1$s</string>
+    <string name="choose_unit">choisir unité</string>
+    <string name="unique">Unique</string>
+    <string name="standard">Standard</string>
+    <string name="add_unit_first">Ajoutez d\'abord une unité avec ce slot</string>
+    <string name="no_compatible_ship">Aucun vaisseau compatible dans la flotte</string>
+    <string name="slots_full">Tous les slots compatibles sont occupés</string>
+    <string name="slot_label">Slot : %1$s</string>
+    <string name="select">sélectionner</string>
+    <string name="faction_rebel">Rebelle</string>
+    <string name="faction_empire">Empire</string>
+    <string name="faction_republic">République</string>
+    <string name="faction_separatist">Séparatiste</string>
+    <string name="faction_neutral">Neutre</string>
+    <string name="kind_unit">Unité</string>
+    <string name="kind_upgrade">Amélioration</string>
+    <string name="kind_ship">Vaisseau</string>
+    <string name="kind_squadron">Escadron</string>
+    <string name="kind_commander">Commandant</string>
+
+    <!-- Settings -->
+    <string name="back">Retour</string>
+    <string name="more_options">Plus d\'options à venir</string>
+
+    <!-- Search -->
+    <string name="search_title">RECHERCHER</string>
+    <string name="search_placeholder">Nom, mot-clé, règle, arme…</string>
+    <string name="no_results">Aucun résultat pour « %1$s »</string>
+    <string name="variants">%1$d variante(s) — touchez pour ouvrir</string>
+    <string name="close">Fermer</string>
+
+    <!-- Card detail (play mode) -->
+    <string name="play_mode">Mode partie</string>
+    <string name="add_units_play">Ajoutez des unités pour utiliser le mode partie</string>
+    <string name="profile">PROFIL</string>
+    <string name="stat_health">SANTÉ</string>
+    <string name="stat_courage">COURAGE</string>
+    <string name="stat_speed">VITESSE</string>
+    <string name="stat_defense">DÉFENSE</string>
+    <string name="surge_attack">Surge attaque : %1$s</string>
+    <string name="surge_defense">Surge défense : %1$s</string>
+    <string name="keywords_label">Mots-clés : %1$s</string>
+    <string name="tracking">SUIVI</string>
+    <string name="minis">FIGURINES</string>
+    <string name="weapons">ARMES</string>
+    <string name="range_label">Portée %1$d-%2$d</string>
+    <string name="upgrade_installed">Amélioration installée</string>
+    <string name="upgrades_hint">Améliorations (cliquez pour activer/désactiver)</string>
+    <string name="total_pts">Total %1$d pts</string>
+    <string name="defense_tokens">JETONS DE DÉFENSE</string>
+    <string name="shields_hull">BOUCLIERS &amp; COQUE</string>
+    <string name="shield_front">AV</string>
+    <string name="shield_port">BAB</string>
+    <string name="shield_starboard">TRIB</string>
+    <string name="shield_rear">ARR</string>
+    <string name="hull">COQUE</string>
+    <string name="fleet_command">COMMANDEMENT DE LA FLOTTE</string>
+    <string name="squadron_tracking">SUIVI ESCADRON</string>
+    <string name="card_label">CARTE</string>
+    <string name="active_effects">EFFETS ACTIFS</string>
+    <string name="add_crit">+ Dgt Crit</string>
+    <string name="no_effects">Aucun effet actif</string>
+    <string name="activated">ACTIVÉE</string>
+    <string name="effect_commander">Commandant</string>
+    <string name="effect_upgrade">Amélioration</string>
+    <string name="effect_crit">Dégât critique</string>
+    <string name="effect_ability">Capacité</string>
+    <string name="remove_crit">Retirer le critique</string>
+    <string name="used">UTILISÉ</string>
+    <string name="ready">PRÊT</string>
+    <string name="tokens_markers">JETONS / MARQUEURS</string>
+    <string name="tap_token">Appuyez sur un jeton pour le retirer</string>
+    <string name="fleet_commander">Commandant de la flotte</string>
+    <string name="surge_crit">Critique</string>
+    <string name="surge_hit">Touché</string>
+    <string name="surge_block">Blocage</string>
+    <string name="surge_counter">Contre-attaque</string>
 </resources>
