@@ -22,6 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.legionforge.app.R
 import com.legionforge.app.data.model.*
 import com.legionforge.app.data.model.WikiSectionEntity
@@ -125,47 +126,33 @@ private fun CondensedShipCard(
     val isHuge = stats?.size == "huge"
     val accent = FactionCardColor(ship.card.factionId)
     Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(16.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
-        Column(Modifier.padding(10.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Column(Modifier.padding(10.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             // ── header ──
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text(ship.card.displayName(), color = Color(0xFF4FC3F7), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f).clickable { onZoom() })
                 if (isHuge) Surface(shape = RoundedCornerShape(8.dp), color = Color(0xFF3A2050)) { Text("HUGE", Modifier.padding(horizontal = 6.dp, vertical = 1.dp), color = Color(0xFFD7A6FF), fontSize = 9.sp, fontWeight = FontWeight.Bold) }
                 Text("${ship.card.points}", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
             }
-            // ── chips stats ──
+            // ── stats ──
             Row(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
                 StatChip(stringResource(R.string.stat_speed), state.speed, Color(0xFF4FC3F7), Modifier.clickable { onElement(SheetContent.Matrix(ship, state)) })
                 StatChip(stringResource(R.string.hull), state.hull, Color(0xFFFF6B6B), Modifier.clickable { onElement(SheetContent.Shields(ship, state)) })
                 StatChip("Cmd", stats?.command ?: 1, Color(0xFFFFC857), Modifier.clickable { onElement(SheetContent.Command(ship, state)) })
             }
-            // ── boucliers (losanges) + dés (arc avant) côte à côte ──
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.Top) {
-                // boucliers
-                Surface(shape = RoundedCornerShape(9.dp), color = Color(0xFF1F2C3D), modifier = Modifier.weight(1f).clickable { onElement(SheetContent.Shields(ship, state)) }) {
-                    Column(Modifier.padding(6.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text("Boucliers", color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
-                        Row(horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically) {
-                                                    ShieldDiamond("A", state.sR, Color(0xFF4A7FCE))
-                                                    ShieldDiamond("P", state.sP, Color(0xFF4A7FCE))
-                                                    ShieldDiamond("F", state.sF, Color(0xFF4A7FCE))
-                                                    ShieldDiamond("T", state.sS, Color(0xFF4A7FCE))
-                                                }
-                    }
-                }
-                // dés d'attaque (arc avant)
-                Surface(shape = RoundedCornerShape(9.dp), color = Color(0xFF1F2C3D), modifier = Modifier.weight(1f).clickable { onElement(SheetContent.Dice(ship, state)) }) {
-                    Column(Modifier.padding(6.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text("Dés", color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
-                        AttackDiceRow(stats?.attackFront, vertical = false)
-                    }
+            // ── cadrans (rectangle unique -> ouvre les cadrans) ──
+            Surface(shape = RoundedCornerShape(9.dp), color = Color(0xFF1F2C3D), modifier = Modifier.fillMaxWidth().clickable { onElement(SheetContent.Shields(ship, state)) }) {
+                Row(Modifier.padding(horizontal = 10.dp, vertical = 7.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Text("Cadrans", color = Color(0xFF9EACBC), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                    Spacer(Modifier.weight(1f))
+                    Text("🛡 ${state.sF}/${state.sP}/${state.sS}/${state.sR}", color = Color(0xFF4FC3F7), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                    Text("⚄ ${(stats?.attackFront?.sum() ?: 0)}", color = Color(0xFFFF6B6B), fontSize = 10.sp, fontWeight = FontWeight.Bold)
                 }
             }
-            // ── commande + jetons + défense ──
+            // ── commande + pions d'ordre ──
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
-                // dial commande actif
                 Surface(shape = RoundedCornerShape(9.dp), color = Color(0xFF1F2C3D), modifier = Modifier.clickable { onElement(SheetContent.Command(ship, state)) }) {
                     Row(Modifier.padding(6.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                        Box(Modifier.size(26.dp).clip(CircleShape).border(2.dp, Color(0xFFFFC857), CircleShape), contentAlignment = Alignment.Center) {
+                        Box(Modifier.size(24.dp).clip(CircleShape).border(2.dp, Color(0xFFFFC857), CircleShape), contentAlignment = Alignment.Center) {
                             Text(state.commandOrder?.label?.take(1) ?: "?", color = Color(0xFFFFC857), fontWeight = FontWeight.Bold)
                         }
                         Column {
@@ -174,19 +161,18 @@ private fun CondensedShipCard(
                         }
                     }
                 }
-                // jetons ordre
                 Surface(shape = RoundedCornerShape(9.dp), color = Color(0xFF1F2C3D), modifier = Modifier.weight(1f).clickable { onElement(SheetContent.Orders(ship, state)) }) {
                     Row(Modifier.padding(6.dp), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
-                        Text("Jetons", color = Color(0xFF9EACBC), fontSize = 8.sp, fontWeight = FontWeight.Bold)
+                        Text("Pions", color = Color(0xFF9EACBC), fontSize = 8.sp, fontWeight = FontWeight.Bold)
                         state.orderTokens.forEach { (name, count) ->
                             if (count > 0) {
                                 val order = ArmadaCommandOrder.entries.firstOrNull { it.name == name }
                                 if (order != null) {
                                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                        Box(Modifier.size(18.dp).clip(CircleShape).background(Color(0xFF77D9A7)), contentAlignment = Alignment.Center) {
-                                            Text(order.label.take(1), color = Color(0xFF0A0E15), fontSize = 8.sp, fontWeight = FontWeight.Bold)
+                                        Box(Modifier.size(16.dp).clip(CircleShape).background(Color(0xFF77D9A7)), contentAlignment = Alignment.Center) {
+                                            Text(order.label.take(1), color = Color(0xFF0A0E15), fontSize = 7.sp, fontWeight = FontWeight.Bold)
                                         }
-                                        Text("$count", color = Color(0xFF77D9A7), fontSize = 8.sp, fontWeight = FontWeight.Bold)
+                                        Text("$count", color = Color(0xFF77D9A7), fontSize = 7.sp, fontWeight = FontWeight.Bold)
                                     }
                                 }
                             }
@@ -194,7 +180,7 @@ private fun CondensedShipCard(
                     }
                 }
             }
-            // ── défense (statut par couleur) ──
+            // ── jetons de défense (directs, statut par couleur) ──
             Surface(shape = RoundedCornerShape(9.dp), color = Color(0xFF1F2C3D), modifier = Modifier.fillMaxWidth().clickable { onElement(SheetContent.Defense(ship, state)) }) {
                 Row(Modifier.padding(6.dp), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
                     Text(stringResource(R.string.defense_tokens), color = Color(0xFF9EACBC), fontSize = 8.sp, fontWeight = FontWeight.Bold)
@@ -207,12 +193,13 @@ private fun CondensedShipCard(
                     }
                 }
             }
-            // ── améliorations (icône + nom) ──
+            // ── améliorations (icône webp + nom) ──
             if (children.isNotEmpty()) {
                 FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(5.dp), verticalArrangement = Arrangement.spacedBy(5.dp)) {
                     children.forEach { child ->
                         val slot = child.chosenSlot ?: child.card.upgradeSlots.firstOrNull()
                         val (badge, badgeColor) = if (slot != null) slotBadge(slot) else ("U" to Color(0xFF4FC3F7))
+                        val iconPath = slot?.let { slotIconPath(it) }
                         val effect = ActiveEffect(EffectType.UPGRADE, child.card.displayName(), stripBracketName(child.card.rulesText ?: ""), child.instanceId, used = state.usedUpgrades.contains(child.instanceId), slot = slot, pts = child.card.points)
                         Surface(
                             shape = RoundedCornerShape(7.dp),
@@ -221,7 +208,11 @@ private fun CondensedShipCard(
                             modifier = Modifier.clickable { onElement(SheetContent.Effect(ship, effect)) }
                         ) {
                             Row(Modifier.padding(horizontal = 6.dp, vertical = 3.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                                Text(badge, color = badgeColor, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                                if (iconPath != null) {
+                                    AsyncImage(model = "file:///android_asset/$iconPath", contentDescription = null, modifier = Modifier.size(14.dp))
+                                } else {
+                                    Text(badge, color = badgeColor, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                                }
                                 Text(child.card.displayName(), color = if (state.usedUpgrades.contains(child.instanceId)) Color(0xFF5A6A7A) else Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
                             }
                         }
