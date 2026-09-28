@@ -357,14 +357,14 @@ private data class ArmadaStats(
     val command: Int = 1, // niveau de commande = stock max de pions d'ordre
     val squadron: Int = 0,
     val engineering: Int = 0,
-    val attackFront: List<Int> = emptyList(), // [bleu, rouge, noir]
+    val attackFront: List<Int> = emptyList(), // [rouge, bleu, noir]
     val attackRear: List<Int> = emptyList(),
     val attackPort: List<Int> = emptyList(),
     val attackStarboard: List<Int> = emptyList(),
     val attackPortAux: List<Int> = emptyList(),      // huge : dés bâbord auxiliaire
     val attackStarboardAux: List<Int> = emptyList(), // huge : dés tribord auxiliaire
-    val antiSquadron: List<Int> = emptyList(), // [bleu, rouge, noir]
-    val battery: List<Int> = emptyList(),      // [bleu, rouge, noir]
+    val antiSquadron: List<Int> = emptyList(), // [rouge, bleu, noir]
+    val battery: List<Int> = emptyList(),      // [rouge, bleu, noir]
     val keywords: List<String> = emptyList(),
     val defenseTokens: List<String> = emptyList(),
     val speedChart: List<Map<String, Int>> = emptyList(), // liste de positions, chaque position = {vitesse: nb de clics}
@@ -467,6 +467,8 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
     val maxShield = 9
     val maxSpeed = stats?.maxSpeed ?: 3
     var speed by remember(unit.instanceId) { mutableIntStateOf(2) }
+    // Colonne de vitesse sélectionnée dans la matrice de manoeuvres (0 = aucune).
+    var selectedSpeed by remember(unit.instanceId) { mutableIntStateOf(0) }
     var activeCrits by remember(unit.instanceId) { mutableStateOf(listOf<CritCard>()) }
     var usedUpgrades by remember(unit.instanceId) { mutableStateOf(setOf<String>()) }
     val defTokenNames = remember(unit.instanceId) {
@@ -569,8 +571,16 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                             Spacer(Modifier.width(30.dp)) // coin vide (label position)
                             (1..maxSpeed).forEach { v ->
-                                Box(Modifier.weight(1f), contentAlignment = Alignment.Center) {
-                                    Text("V$v", color = Color(0xFFFFC857), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                                val isSel = v == selectedSpeed
+                                Surface(
+                                    onClick = { selectedSpeed = if (selectedSpeed == v) 0 else v },
+                                    shape = RoundedCornerShape(6.dp),
+                                    color = if (isSel) Color(0xFFFFC857) else Color(0xFF2A3A4A),
+                                    modifier = Modifier.weight(1f)
+                                ) {
+                                    Box(Modifier.padding(vertical = 4.dp), contentAlignment = Alignment.Center) {
+                                        Text("V$v", color = if (isSel) Color(0xFF0A0E15) else Color(0xFFFFC857), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                                    }
                                 }
                             }
                         }
@@ -585,7 +595,13 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                                     val n = posMap[v.toString()] ?: -1 // -1 = case vide (hors triangle)
                                     val cellColor = if (n < 0) Color(0xFF800000) else Color.White
                                     val cellText = when { n < 0 -> ""; n == 0 -> "-"; n == 1 -> "I"; n == 2 -> "II"; else -> "III" }
-                                    Surface(shape = RoundedCornerShape(6.dp), color = cellColor, modifier = Modifier.weight(1f).height(32.dp)) {
+                                    val isSel = v == selectedSpeed
+                                    Surface(
+                                        shape = RoundedCornerShape(6.dp),
+                                        color = cellColor,
+                                        modifier = Modifier.weight(1f).height(32.dp),
+                                        border = if (isSel) androidx.compose.foundation.BorderStroke(2.dp, Color(0xFFFFC857)) else null
+                                    ) {
                                         Box(contentAlignment = Alignment.Center) {
                                             Text(cellText, color = if (n < 0) Color(0xFF800000) else Color(0xFF1B2B4B), fontSize = 14.sp, fontWeight = FontWeight.Bold)
                                         }
@@ -900,9 +916,9 @@ private fun DefenseTokenDisc(def: ArmadaDefenseToken, used: Boolean, onClick: ()
 private fun ShipStatsBlock(stats: ArmadaStats) {
     Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-            StatChip("CMD", stats.command, Color(0xFFFFC857), modifier = Modifier.weight(1f))
-            StatChip("SQN", stats.squadron, Color(0xFF4FC3F7), modifier = Modifier.weight(1f))
-            StatChip("ENG", stats.engineering, Color(0xFF77D9A7), modifier = Modifier.weight(1f))
+            StatChip(stringResource(R.string.stat_command), stats.command, Color(0xFFFFC857), modifier = Modifier.weight(1f))
+            StatChip(stringResource(R.string.stat_squadron), stats.squadron, Color(0xFF4FC3F7), modifier = Modifier.weight(1f))
+            StatChip(stringResource(R.string.stat_engineering), stats.engineering, Color(0xFF77D9A7), modifier = Modifier.weight(1f))
         }
     }
 }
@@ -940,8 +956,8 @@ private fun DiceDiamond(color: Color, size: Dp = 14.dp) {
 @Composable
 private fun AttackDiceRow(dice: List<Int>?, vertical: Boolean = false) {
     if (dice.isNullOrEmpty() || dice.all { it <= 0 }) return
-    val blue = dice.getOrNull(0) ?: 0
-    val red = dice.getOrNull(1) ?: 0
+    val red = dice.getOrNull(0) ?: 0
+    val blue = dice.getOrNull(1) ?: 0
     val black = dice.getOrNull(2) ?: 0
     val total = blue + red + black
     // Ordre d'affichage : rouge, bleu, noir. Un losange par dé.
@@ -1070,13 +1086,10 @@ private fun CommandDialCard(
     Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Text("ROUE DE COMMANDEMENT", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                CommandDialButton(order = ArmadaCommandOrder.NAVIGATE, selected = selected == ArmadaCommandOrder.NAVIGATE, onClick = { onSelect(ArmadaCommandOrder.NAVIGATE) }, modifier = Modifier.weight(1f))
-                CommandDialButton(order = ArmadaCommandOrder.CONCENTRATE, selected = selected == ArmadaCommandOrder.CONCENTRATE, onClick = { onSelect(ArmadaCommandOrder.CONCENTRATE) }, modifier = Modifier.weight(1f))
-            }
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                CommandDialButton(order = ArmadaCommandOrder.SQUADRON, selected = selected == ArmadaCommandOrder.SQUADRON, onClick = { onSelect(ArmadaCommandOrder.SQUADRON) }, modifier = Modifier.weight(1f))
-                CommandDialButton(order = ArmadaCommandOrder.REPAIR, selected = selected == ArmadaCommandOrder.REPAIR, onClick = { onSelect(ArmadaCommandOrder.REPAIR) }, modifier = Modifier.weight(1f))
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                ArmadaCommandOrder.entries.forEach { order ->
+                    CommandDialButton(order = order, selected = selected == order, onClick = { onSelect(order) }, modifier = Modifier.weight(1f))
+                }
             }
             HorizontalDivider(color = Color(0xFF2A3A4A))
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {

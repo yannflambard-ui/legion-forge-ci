@@ -105,7 +105,10 @@
     <string name="stat_courage">COURAGE</string>
     <string name="stat_speed">VITESSE</string>
     <string name="stat_defense">DÉFENSE</string>
-    <string name="surge_attack">Surge attaque : %1$s</string>
+    <string name="stat_command">COMMANDEMENT</string>
+    <string name="stat_squadron">ESCADRON</string>
+    <string name="stat_engineering">INGÉNIERIE</string>
+        <string name="surge_attack">Surge attaque : %1$s</string>
     <string name="surge_defense">Surge défense : %1$s</string>
     <string name="keywords_label">Mots-clés : %1$s</string>
     <string name="tracking">SUIVI</string>
