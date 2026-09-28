@@ -508,7 +508,7 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                     defTokenStates.forEachIndexed { i, (def, _) ->
                         val key = "${def.name}_$i"
                         val used = defTokens[key] ?: false
-                        DefenseTokenDisc(def, used, onClick = { defTokens = defTokens + (key to !used) })
+                        DefenseTokenDisc(def, used, onClick = { defTokens = defTokens + (key to !used) }, onWikiClick = { findWikiSection(wikiSections, def.label)?.let(onRuleClick) })
                     }
                 }
             }
@@ -692,7 +692,7 @@ private fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionEn
                         defTokenStates.forEachIndexed { i, (def, _) ->
                             val key = "${def.name}_$i"
                             val used = defTokens[key] ?: false
-                            DefenseTokenDisc(def, used, onClick = { defTokens = defTokens + (key to !used) })
+                            DefenseTokenDisc(def, used, onClick = { defTokens = defTokens + (key to !used) }, onWikiClick = { findWikiSection(wikiSections, def.label)?.let(onRuleClick) })
                         }
                     }
                 }
@@ -861,25 +861,32 @@ private fun HealthBar(ratio: Float, current: Int, max: Int) {
 }
 
 @Composable
-private fun DefenseTokenDisc(def: ArmadaDefenseToken, used: Boolean, onClick: () -> Unit) {
+private fun DefenseTokenDisc(def: ArmadaDefenseToken, used: Boolean, onClick: () -> Unit, onWikiClick: (() -> Unit)? = null) {
     val ringColor = if (used) Color(0xFFFF6B6B) else Color(0xFF77D9A7)
     // Les jetons de defense officiels (render fandom, 100x52) : vert = PRET, rouge = UTILISE.
     val tokenFile = "tokens/${def.name.lowercase()}_${if (used) "exhausted" else "ready"}.webp"
     Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
-        Surface(
-            onClick = onClick,
-            shape = CircleShape,
-            color = Color(0xFF192330),
-            modifier = Modifier.size(52.dp),
-            border = androidx.compose.foundation.BorderStroke(3.dp, ringColor)
-        ) {
-            Box(contentAlignment = Alignment.Center, modifier = Modifier.padding(3.dp)) {
-                AsyncImage(
-                    model = "file:///android_asset/$tokenFile",
-                    contentDescription = def.label,
-                    modifier = Modifier.fillMaxSize().clip(CircleShape),
-                    contentScale = ContentScale.Crop
-                )
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+            Surface(
+                onClick = onClick,
+                shape = CircleShape,
+                color = Color(0xFF192330),
+                modifier = Modifier.size(52.dp),
+                border = androidx.compose.foundation.BorderStroke(3.dp, ringColor)
+            ) {
+                Box(contentAlignment = Alignment.Center, modifier = Modifier.padding(3.dp)) {
+                    AsyncImage(
+                        model = "file:///android_asset/$tokenFile",
+                        contentDescription = def.label,
+                        modifier = Modifier.fillMaxSize().clip(CircleShape),
+                        contentScale = ContentScale.Crop
+                    )
+                }
+            }
+            if (onWikiClick != null) {
+                Surface(onClick = onWikiClick, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(20.dp)) {
+                    Box(contentAlignment = Alignment.Center) { Text("i", color = Color(0xFFFFC857), fontSize = 10.sp, fontWeight = FontWeight.Bold) }
+                }
             }
         }
         Text(def.label, color = ringColor, fontSize = 9.sp, fontWeight = FontWeight.Bold)
