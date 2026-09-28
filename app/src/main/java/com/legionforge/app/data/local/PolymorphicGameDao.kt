@@ -43,7 +43,11 @@ interface PolymorphicGameDao {
     /** Nombre de vaisseaux/escadrons Armada qui n'ont pas encore de stats (shipStats NULL/'').
      *  > 0 => il faut re-seeder pour charger les stats du mode partie. */
     @Query("SELECT COUNT(*) FROM catalog_cards WHERE gameSystem = 'ARMADA_V15' AND kind IN ('ARMADA_SHIP','ARMADA_SQUADRON') AND (shipStats IS NULL OR shipStats = '')")
-    suspend fun armadaUnitsWithoutStats(): Int
+        suspend fun armadaUnitsWithoutStats(): Int
+
+        /** Nombre de cartes Armada sans noms localisés (names NULL/''). > 0 => re-seed pour charger les noms FR/DE/ES. */
+        @Query("SELECT COUNT(*) FROM catalog_cards WHERE gameSystem = 'ARMADA_V15' AND (names IS NULL OR names = '')")
+        suspend fun armadaCardsMissingNames(): Int
 
     data class SystemCountRow(val gameSystem: String, val cnt: Int)
 

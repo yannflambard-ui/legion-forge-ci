@@ -42,16 +42,17 @@ class BuilderRepository(context: Context) {
             val legionCount = counts[GameSystem.LEGION_V2.name] ?: 0
             val armadaCount = counts[GameSystem.ARMADA_V15.name] ?: 0
             val missingStats = dao.armadaUnitsWithoutStats()
-            val armadaShips = dao.armadaShipCount()
-            android.util.Log.i("Repo", "seedCatalog: LEGION=$legionCount, ARMADA=$armadaCount, ships=$armadaShips, missingStats=$missingStats")
-            // Re-seed dès qu'un système manque, si des vaisseaux manquent de stats,
-            // ou si la base ne contient pas encore les 4 factions Armada (Republic/Sep =>
-            // le catalogue bundle contient 64 vaisseaux; une vieille base en a 46).
-            val catalogComplete = armadaShips >= 60
-            if (legionCount >= 190 && armadaCount >= 40 && missingStats == 0 && catalogComplete) {
-                seedLog = "skip: déjà peuplé (LEGION=$legionCount, ARMADA=$armadaCount, ships=$armadaShips, missingStats=$missingStats)"
-                return@withContext
-            }
+                        val missingNames = dao.armadaCardsMissingNames()
+                        val armadaShips = dao.armadaShipCount()
+                        android.util.Log.i("Repo", "seedCatalog: LEGION=$legionCount, ARMADA=$armadaCount, ships=$armadaShips, missingStats=$missingStats, missingNames=$missingNames")
+                        // Re-seed dès qu'un système manque, si des vaisseaux manquent de stats,
+                        // si des noms localisés manquent (FR/DE/ES), ou si la base ne contient pas
+                        // encore les 4 factions Armada (Republic/Sep => le catalogue bundle en a 64).
+                        val catalogComplete = armadaShips >= 60
+                        if (legionCount >= 190 && armadaCount >= 40 && missingStats == 0 && missingNames == 0 && catalogComplete) {
+                            seedLog = "skip: déjà peuplé (LEGION=$legionCount, ARMADA=$armadaCount, ships=$armadaShips, missingStats=$missingStats, missingNames=$missingNames)"
+                            return@withContext
+                        }
             logProbe("reseed", "forge (L=$legionCount A=$armadaCount ships=$armadaShips missingStats=$missingStats)")
             val json = try { context.assets.open("catalog.json").bufferedReader().use { it.readText() } }
             catch (e: Exception) { seedLog = "ERREUR lecture asset: ${e.message}"; throw e }
