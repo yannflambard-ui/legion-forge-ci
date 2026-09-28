@@ -163,17 +163,13 @@ private fun CondensedShipCard(
                                 OrderTokenDisc(order, count, onWikiClick = {}, onInc = { if (state.orderTokens.values.sum() < state.maxOrderStock) state.orderTokens = state.orderTokens + (order.name to count + 1) }, onDec = { state.orderTokens = state.orderTokens + (order.name to (count - 1).coerceAtLeast(0)) })
                             }
                         }
-            // ── jetons de défense (directs, statut par couleur) ──
-            Surface(shape = RoundedCornerShape(9.dp), color = Color(0xFF1F2C3D), modifier = Modifier.fillMaxWidth().clickable { onElement(SheetContent.Defense(ship, state)) }) {
-                Row(Modifier.padding(6.dp), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
-                    Text(stringResource(R.string.defense_tokens), color = Color(0xFF9EACBC), fontSize = 8.sp, fontWeight = FontWeight.Bold)
-                    state.defTokenStates.forEachIndexed { i, (def, _) ->
-                        val used = state.defTokens["${def.name}_$i"] ?: false
-                        val c = if (used) Color(0xFFFF6B6B) else Color(0xFF77D9A7)
-                        Surface(shape = RoundedCornerShape(6.dp), color = c.copy(alpha = 0.15f), border = androidx.compose.foundation.BorderStroke(1.dp, c)) {
-                            Text(def.label, Modifier.padding(horizontal = 6.dp, vertical = 2.dp), color = c, fontSize = 9.sp, fontWeight = FontWeight.Bold)
-                        }
-                    }
+            // ── jetons de défense (vrais visuels zoom, direct) ──
+            Text(stringResource(R.string.defense_tokens), color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                state.defTokenStates.forEachIndexed { i, (def, _) ->
+                    val key = "${def.name}_$i"
+                    val used = state.defTokens[key] ?: false
+                    DefenseTokenDisc(def, used, onClick = { state.defTokens = state.defTokens + (key to !used) }, onWikiClick = null)
                 }
             }
             // ── améliorations (icône webp + nom) ──
