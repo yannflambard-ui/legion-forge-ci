@@ -533,22 +533,22 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
                 // ── cadrans des 4 arcs en croix (comme sur la carte officielle) : rectangle de dés + cercle de bouclier ──
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(6.dp)) {
                     // AVANT : rectangle de dés AU-DESSUS du cercle de bouclier.
-                    ArcCadran(ArcPos.ABOVE, stringResource(R.string.shield_front), listOf(stats?.attackFront), listOf(sF), { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- }, { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- })
+                    ArcCadran(ArcPos.ABOVE, listOf(stats?.attackFront), listOf(sF), { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- }, { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- })
                     // Ligne centrale : BAB (gauche) | TRIB (droite). Vaisseaux huge = 2 cadrans par flanc.
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.Top) {
-                        ArcCadran(ArcPos.LEFT, stringResource(R.string.shield_port),
+                        ArcCadran(ArcPos.LEFT,
                             if (isHuge) listOf(stats?.attackPort, stats?.attackPortAux) else listOf(stats?.attackPort),
                             if (isHuge) listOf(sP, sP2) else listOf(sP),
                             { if (sP < maxShield) sP++ }, { if (sP > 0) sP-- },
                             { if (sP2 < maxShield) sP2++ }, { if (sP2 > 0) sP2-- })
-                        ArcCadran(ArcPos.RIGHT, stringResource(R.string.shield_starboard),
+                        ArcCadran(ArcPos.RIGHT,
                             if (isHuge) listOf(stats?.attackStarboard, stats?.attackStarboardAux) else listOf(stats?.attackStarboard),
                             if (isHuge) listOf(sS, sS2) else listOf(sS),
                             { if (sS < maxShield) sS++ }, { if (sS > 0) sS-- },
                             { if (sS2 < maxShield) sS2++ }, { if (sS2 > 0) sS2-- })
                     }
                     // ARRIERE : rectangle de dés EN DESSOUS du cercle de bouclier.
-                    ArcCadran(ArcPos.BELOW, stringResource(R.string.shield_rear), listOf(stats?.attackRear), listOf(sR), { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- }, { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- })
+                    ArcCadran(ArcPos.BELOW, listOf(stats?.attackRear), listOf(sR), { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- }, { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- })
                 }
                 HorizontalDivider(color = Color(0xFF2A3A4A))
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
@@ -883,14 +883,15 @@ private fun DefenseTokenDisc(def: ArmadaDefenseToken, used: Boolean, onClick: ()
                     )
                 }
             }
-            if (onWikiClick != null) {
-                Surface(onClick = onWikiClick, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(20.dp)) {
-                    Box(contentAlignment = Alignment.Center) { Text("i", color = Color(0xFFFFC857), fontSize = 10.sp, fontWeight = FontWeight.Bold) }
-                }
-            }
         }
-        Text(def.label, color = ringColor, fontSize = 9.sp, fontWeight = FontWeight.Bold)
-        Text(if (used) stringResource(R.string.used) else stringResource(R.string.ready), color = ringColor.copy(alpha = 0.7f), fontSize = 8.sp, fontWeight = FontWeight.Bold)
+        // Le libellé du jeton est cliquable vers le wiki (plus de bouton "i").
+        Text(
+            def.label,
+            color = ringColor,
+            fontSize = 9.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = if (onWikiClick != null) Modifier.clickable { onWikiClick() } else Modifier
+        )
     }
 }
 
@@ -993,7 +994,7 @@ private enum class ArcPos { ABOVE, BELOW, LEFT, RIGHT }
 // diceList = liste des dés par cadran (1 pour normal, 2 pour huge). values = valeurs de bouclier par cadran.
 // onInc1/onDec1 = 1er cadran, onInc2/onDec2 = 2e.
 @Composable
-private fun ArcCadran(pos: ArcPos, label: String, diceList: List<List<Int>?>, values: List<Int>, onInc1: () -> Unit, onDec1: () -> Unit, onInc2: () -> Unit, onDec2: () -> Unit) {
+private fun ArcCadran(pos: ArcPos, diceList: List<List<Int>?>, values: List<Int>, onInc1: () -> Unit, onDec1: () -> Unit, onInc2: () -> Unit, onDec2: () -> Unit) {
     val isFlank = pos == ArcPos.LEFT || pos == ArcPos.RIGHT
     val rects: @Composable () -> Unit = {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -1003,8 +1004,8 @@ private fun ArcCadran(pos: ArcPos, label: String, diceList: List<List<Int>?>, va
     }
     val shields: @Composable () -> Unit = {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
-            CircleShield(label, values.getOrElse(0) { 0 }, onInc1, onDec1)
-            if (values.size > 1) CircleShield(label, values.getOrElse(1) { 0 }, onInc2, onDec2)
+            CircleShield(values.getOrElse(0) { 0 }, onInc1, onDec1)
+            if (values.size > 1) CircleShield(values.getOrElse(1) { 0 }, onInc2, onDec2)
         }
     }
     when (pos) {
@@ -1035,7 +1036,7 @@ private fun DiceRect(dice: List<Int>?, vertical: Boolean = false) {
 
 // Cercle blanc à fine bordure bleue contenant la valeur de bouclier (comme sur la carte officielle).
 @Composable
-private fun CircleShield(label: String, value: Int, onInc: () -> Unit, onDec: () -> Unit) {
+private fun CircleShield(value: Int, onInc: () -> Unit, onDec: () -> Unit) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
             Surface(onClick = onDec, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(26.dp)) { Box(contentAlignment = Alignment.Center) { Text("-", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) } }
@@ -1051,7 +1052,6 @@ private fun CircleShield(label: String, value: Int, onInc: () -> Unit, onDec: ()
             }
             Surface(onClick = onInc, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(26.dp)) { Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) } }
         }
-        Text(label, color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
     }
 }
 
@@ -1187,16 +1187,15 @@ private fun SquadronActivationToken(activated: Boolean, onToggle: () -> Unit, on
                     drawPath(body, color = Color.White)
                 }
             }
-            Surface(
-                onClick = onWikiClick,
-                shape = CircleShape,
-                color = Color(0xFF2A3A4A),
-                modifier = Modifier.size(22.dp)
-            ) {
-                Box(contentAlignment = Alignment.Center) { Text("i", color = Color(0xFFFFC857), fontSize = 11.sp, fontWeight = FontWeight.Bold) }
-            }
         }
-        Text(if (activated) "ACTIF" else "INACTIF", color = faceLight, fontSize = 9.sp, fontWeight = FontWeight.Bold)
+        // Le texte ACTIF/INACTIF est cliquable vers le wiki (plus de bouton "i").
+        Text(
+            if (activated) "ACTIF" else "INACTIF",
+            color = faceLight,
+            fontSize = 9.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.clickable { onWikiClick() }
+        )
     }
 }
 
