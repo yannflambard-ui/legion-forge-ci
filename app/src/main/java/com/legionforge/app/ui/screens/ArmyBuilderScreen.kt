@@ -30,7 +30,7 @@ import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, String) -> Unit = { _, _ -> }, viewModel: ArmyBuilderViewModel = viewModel()) {
+fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, String) -> Unit = { _, _ -> }, onPlayCondensed: (String) -> Unit = {}, viewModel: ArmyBuilderViewModel = viewModel()) {
     val list by viewModel.currentList.collectAsState()
     val cards by viewModel.cards.collectAsState()
     val entries by viewModel.entries.collectAsState()
@@ -112,7 +112,7 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                 }
                 // Bouton play compact à côté du nom de la liste
                 Button(
-                    onClick = { if (firstPlayable != null) onPlayCard(listId, firstPlayable.instanceId) },
+                    onClick = { if (firstPlayable != null) onPlayCondensed(listId) },
                     enabled = listValid && firstPlayable != null,
                     shape = RoundedCornerShape(10.dp),
                     colors = ButtonDefaults.buttonColors(
@@ -330,7 +330,7 @@ private fun kindLabel(kind: CardKind): String = when (kind) {
 }
 
 @Composable
-private fun FactionCardColor(factionId: String?): Color = when (factionId) {
+internal fun FactionCardColor(factionId: String?): Color = when (factionId) {
     "rebel" -> Color(0xFF4EC9E0)        // cyan
     "empire" -> Color(0xFFFF5A5A)       // rouge impérial
     "republic", "republics" -> Color(0xFFE8B54E) // or/jaune

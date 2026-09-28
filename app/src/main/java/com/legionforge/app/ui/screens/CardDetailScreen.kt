@@ -38,7 +38,7 @@ import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 // Retrouve la section wiki correspondant à un mot-clé/titre (insensible à la casse).
-private fun findWikiSection(wikiSections: List<WikiSectionEntity>, keyword: String): WikiSectionEntity? {
+internal fun findWikiSection(wikiSections: List<WikiSectionEntity>, keyword: String): WikiSectionEntity? {
     val k = keyword.lowercase()
     return wikiSections.firstOrNull { s ->
         s.title.lowercase() == k || s.keywordList().any { it.lowercase() == k }
@@ -46,7 +46,7 @@ private fun findWikiSection(wikiSections: List<WikiSectionEntity>, keyword: Stri
 }
 
 // Retire le préfixe "[Nom]\n" du rulesText (le nom est déjà affiché dans le label de l'effet).
-private fun stripBracketName(desc: String): String {
+internal fun stripBracketName(desc: String): String {
     val t = desc.trimStart()
     return if (t.startsWith("[")) {
         val end = t.indexOf(']')
@@ -55,7 +55,7 @@ private fun stripBracketName(desc: String): String {
 }
 
 // Icône officielle du slot d'upgrade (assets/icons/upg_*.webp), teintée par la couleur du slot.
-private fun slotIconPath(slot: ArmadaSlot): String? = when (slot) {
+internal fun slotIconPath(slot: ArmadaSlot): String? = when (slot) {
     ArmadaSlot.COMMANDER -> "icons/upg_commander.webp"
     ArmadaSlot.OFFICER -> "icons/upg_officer.webp"
     ArmadaSlot.TITLE -> "icons/upg_title.webp"
@@ -73,7 +73,7 @@ private fun slotIconPath(slot: ArmadaSlot): String? = when (slot) {
 }
 
 // Badge d'upgrade : lettre + couleur distincte par type de slot (au lieu du bleu unique).
-private fun slotBadge(slot: ArmadaSlot): Pair<String, Color> = when (slot) {
+internal fun slotBadge(slot: ArmadaSlot): Pair<String, Color> = when (slot) {
     ArmadaSlot.COMMANDER -> "C" to Color(0xFFFFC857)
     ArmadaSlot.OFFICER -> "O" to Color(0xFFFFB74D)
     ArmadaSlot.TITLE -> "T" to Color(0xFFCE93D8)
@@ -91,7 +91,7 @@ private fun slotBadge(slot: ArmadaSlot): Pair<String, Color> = when (slot) {
 
 // ── common crit cards ───────────────────────────────────
 data class CritCard(val name: String, val effect: String)
-private val armadaCrits = listOf(
+internal val armadaCrits = listOf(
     CritCard("Blinded Laser", "Le vaisseau ne peut pas utiliser l'armement principal ce tour."),
     CritCard("Burning Sensors", "Le vaisseau saute son activation et gagne 1 jeton d'état."),
     CritCard("Damaged Control", "Le vaisseau ne peut pas utiliser son jeton de commandement suivant."),
@@ -101,7 +101,7 @@ private val armadaCrits = listOf(
     CritCard("Shaken Crew", "Le vaisseau saute son activation."),
     CritCard("Structural Damage", "Tous les dégâts subis par la coque sont doublés ce tour.")
 )
-private val legionCrits = listOf(
+internal val legionCrits = listOf(
     CritCard("Blessure critique", "La figurine subit une blessure negligee."),
     CritCard("Sonne", "La figurine ne peut pas effectuer d'action ce tour."),
     CritCard("Desequilibre", "Retirez un de de la reserve de des."),
@@ -127,8 +127,8 @@ enum class ArmadaCommandOrder(val label: String, val iconFile: String, val order
 }
 
 // ── active effect model ─────────────────────────────────
-private enum class EffectType { COMMANDER, UPGRADE, CRIT, ABILITY }
-private data class ActiveEffect(val type: EffectType, val label: String, val desc: String, val id: String, val used: Boolean = false, val slot: ArmadaSlot? = null, val pts: Int = 0)
+internal enum class EffectType { COMMANDER, UPGRADE, CRIT, ABILITY }
+internal data class ActiveEffect(val type: EffectType, val label: String, val desc: String, val id: String, val used: Boolean = false, val slot: ArmadaSlot? = null, val pts: Int = 0)
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
@@ -191,9 +191,9 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
 // ═══════════════════  LEGION  ═══════════════════════════
 // Stats réels des cartes Legion v2 embarqués dans card.legionStats (JSON),
 // générés par build_legion_v2.py depuis le bundle LegionHQ V2 (2.6).
-private data class LegionWeapon(val name: String, val rangeMin: Int, val rangeMax: Int,
+internal data class LegionWeapon(val name: String, val rangeMin: Int, val rangeMax: Int,
                                 val red: Int, val black: Int, val white: Int)
-private data class LegionStats(
+internal data class LegionStats(
     val health: Int = 1,
     val courage: Int = 1,
     val speed: Int = 1,
@@ -204,7 +204,7 @@ private data class LegionStats(
     val keywords: List<String> = emptyList(),
     val weapons: List<LegionWeapon> = emptyList()
 )
-private object LegionStatsParser {
+internal object LegionStatsParser {
     fun parse(legionStats: String?): LegionStats? {
         if (legionStats.isNullOrBlank()) return null
         return try {
@@ -242,7 +242,7 @@ private object LegionStatsParser {
 }
 
 @Composable
-private fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntries: List<ListEntry>, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
+internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntries: List<ListEntry>, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
     val totalPts = unit.card.points + children.sumOf { it.card.points * it.quantity }
     val stats = remember(unit.instanceId) { LegionStatsParser.parse(unit.card.legionStats) }
     // Points de vie réels de l'unité = santé par figurine × nombre de figurines.
@@ -329,22 +329,22 @@ private fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntrie
 }
 
 @Composable
-private fun StatChip(label: String, value: String, color: Color) {
+internal fun StatChip(label: String, value: String, color: Color) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(label, color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
         Text(value, color = color, fontSize = 16.sp, fontWeight = FontWeight.Bold)
     }
 }
 @Composable
-private fun surgeLabel(s: String?): String = when (s) { "h" -> stringResource(R.string.surge_crit); "a" -> stringResource(R.string.surge_hit); "b" -> stringResource(R.string.surge_block); "r" -> stringResource(R.string.surge_counter); else -> "—" }
-private fun diceText(red: Int, black: Int, white: Int): String {
+internal fun surgeLabel(s: String?): String = when (s) { "h" -> stringResource(R.string.surge_crit); "a" -> stringResource(R.string.surge_hit); "b" -> stringResource(R.string.surge_block); "r" -> stringResource(R.string.surge_counter); else -> "—" }
+internal fun diceText(red: Int, black: Int, white: Int): String {
     val parts = buildList { if (red > 0) add("R$red"); if (black > 0) add("N$black"); if (white > 0) add("B$white") }
     return if (parts.isEmpty()) "—" else parts.joinToString(" ")
 }
 
 // // ═══════════════════  ARMADA SHIP  ═══════════════════════
 // Stats embarqués depuis le catalogue BSData ("fleet builder") dans card.shipStats (JSON).
-private data class ArmadaStats(
+internal data class ArmadaStats(
     val hull: Int = 0,
     val shieldFront: Int = 0,
     val shieldRear: Int = 0,
@@ -371,7 +371,7 @@ private data class ArmadaStats(
     val size: String = "small" // huge = 2 cadrans de bouclier par côté (Executor, Starhawk)
 )
 
-private object ArmadaStatsParser {
+internal object ArmadaStatsParser {
     fun parse(shipStats: String?, kind: CardKind): ArmadaStats? {
         if (shipStats.isNullOrBlank()) return null
         return try {
@@ -449,7 +449,7 @@ private object ArmadaStatsParser {
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntries: List<ListEntry>, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
+internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntries: List<ListEntry>, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
     val totalPts = unit.card.points + children.sumOf { it.card.points * it.quantity }
     val stats = remember(unit.instanceId) { ArmadaStatsParser.parse(unit.card.shipStats, CardKind.ARMADA_SHIP) }
     // Coque + boucliers initialisés aux valeurs de base de la carte ; speed démarre à 2.
@@ -639,7 +639,7 @@ private fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntrie
 }
 // ═══════════════════  COMMANDER (pas de degats critiques, equipe sur le flagship)  ═══════════════════
 @Composable
-private fun CommanderPage(unit: ListEntry, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
+internal fun CommanderPage(unit: ListEntry, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         CardBlock(unit, emptyList(), unit.card.points, wikiSections, onRuleClick)
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
@@ -654,7 +654,7 @@ private fun CommanderPage(unit: ListEntry, wikiSections: List<WikiSectionEntity>
 
 // ═══════════════════  SQUADRON  ═══════════════════════════
 @Composable
-private fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
+internal fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
     val stats = remember(unit.instanceId) { ArmadaStatsParser.parse(unit.card.shipStats, CardKind.ARMADA_SQUADRON) }
     val maxHp = stats?.hull?.takeIf { it > 0 } ?: 8
     var hull by remember(unit.instanceId) { mutableIntStateOf(maxHp) }
@@ -724,7 +724,7 @@ private fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionEn
 // Affiche la carte en image (la vraie carte) en bas des pages de mode partie,
 // si une image est disponible pour cette carte (sinon rien).
 @Composable
-private fun CardPlayImage(card: CardDefinition) {
+internal fun CardPlayImage(card: CardDefinition) {
     val source: Any? = card.imageAssetPath?.let { "file:///android_asset/$it" } ?: card.imageUrl
     if (source != null) {
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(18.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
@@ -744,7 +744,7 @@ private fun CardPlayImage(card: CardDefinition) {
 
 
 @Composable
-private fun CardBlock(unit: ListEntry, children: List<ListEntry>, totalPts: Int, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
+internal fun CardBlock(unit: ListEntry, children: List<ListEntry>, totalPts: Int, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
     Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.Top) {
@@ -768,7 +768,7 @@ private fun CardBlock(unit: ListEntry, children: List<ListEntry>, totalPts: Int,
 
 // Effects panel with crit selector
 @Composable
-private fun EffectsPanel(
+internal fun EffectsPanel(
     effects: List<ActiveEffect>,
     critSelector: @Composable (Boolean, () -> Unit, (CritCard) -> Unit) -> Unit,
     onAddCrit: (CritCard) -> Unit,
@@ -861,7 +861,7 @@ private fun EffectsPanel(
 }
 
 @Composable
-private fun CritSelectorDropdown(crits: List<CritCard>, expanded: Boolean, onDismiss: () -> Unit, onSelect: (CritCard) -> Unit) {
+internal fun CritSelectorDropdown(crits: List<CritCard>, expanded: Boolean, onDismiss: () -> Unit, onSelect: (CritCard) -> Unit) {
     DropdownMenu(expanded = expanded, onDismissRequest = onDismiss) {
         crits.forEach { crit ->
             DropdownMenuItem(text = { Column { Text(crit.name, fontWeight = FontWeight.Bold, fontSize = 14.sp); Text(crit.effect.take(60)+"...", fontSize = 11.sp, color = Color.Gray) } }, onClick = { onSelect(crit) })
@@ -870,14 +870,14 @@ private fun CritSelectorDropdown(crits: List<CritCard>, expanded: Boolean, onDis
 }
 
 @Composable
-private fun HealthBar(ratio: Float, current: Int, max: Int) {
+internal fun HealthBar(ratio: Float, current: Int, max: Int) {
     val barColor = when { ratio > 0.66f -> Color(0xFF77D9A7); ratio > 0.33f -> Color(0xFFFFC857); else -> Color(0xFFFF6B6B) }
     LinearProgressIndicator(progress = { ratio }, modifier = Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(4.dp)), color = barColor, trackColor = Color(0xFF2A3A4A))
     Box(Modifier.fillMaxWidth()) { Text("$current / $max", color = barColor, style = MaterialTheme.typography.labelSmall, modifier = Modifier.align(Alignment.CenterEnd)) }
 }
 
 @Composable
-private fun DefenseTokenDisc(def: ArmadaDefenseToken, used: Boolean, onClick: () -> Unit, onWikiClick: (() -> Unit)? = null) {
+internal fun DefenseTokenDisc(def: ArmadaDefenseToken, used: Boolean, onClick: () -> Unit, onWikiClick: (() -> Unit)? = null) {
     val ringColor = if (used) Color(0xFFFF6B6B) else Color(0xFF77D9A7)
     // Les jetons de defense officiels (render fandom, 100x52) : vert = PRET, rouge = UTILISE.
     val tokenFile = "tokens/${def.name.lowercase()}_${if (used) "exhausted" else "ready"}.webp"
@@ -913,7 +913,7 @@ private fun DefenseTokenDisc(def: ArmadaDefenseToken, used: Boolean, onClick: ()
 
 // ── stats du vaisseau (au lieu du JSON brut) ─────────────
 @Composable
-private fun ShipStatsBlock(stats: ArmadaStats) {
+internal fun ShipStatsBlock(stats: ArmadaStats) {
     Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
             StatChip(stringResource(R.string.stat_command), stats.command, Color(0xFFFFC857), modifier = Modifier.weight(1f))
@@ -924,7 +924,7 @@ private fun ShipStatsBlock(stats: ArmadaStats) {
 }
 
 @Composable
-private fun StatChip(label: String, value: Int, color: Color, modifier: Modifier = Modifier) {
+internal fun StatChip(label: String, value: Int, color: Color, modifier: Modifier = Modifier) {
     Surface(shape = RoundedCornerShape(8.dp), color = color.copy(alpha = 0.15f), modifier = modifier) {
         Column(Modifier.padding(vertical = 3.dp), horizontalAlignment = Alignment.CenterHorizontally) {
             Text("$value", color = color, fontSize = 15.sp, fontWeight = FontWeight.Bold)
@@ -936,7 +936,7 @@ private fun StatChip(label: String, value: Int, color: Color, modifier: Modifier
 // ── dés d'attaque : UN losange par dé (comme la carte officielle), sans chiffre ──
 // Losange plein de couleur, un par dé de cette couleur.
 @Composable
-private fun DiceDiamond(color: Color, size: Dp = 14.dp) {
+internal fun DiceDiamond(color: Color, size: Dp = 14.dp) {
     Canvas(Modifier.size(size)) {
         val w = this.size.width; val h = this.size.height
         val path = Path().apply {
@@ -954,7 +954,7 @@ private fun DiceDiamond(color: Color, size: Dp = 14.dp) {
 // vertical=false (AV/ARR) : rangée horizontale, 2 lignes si >2 dés.
 // vertical=true (BAB/TRIB) : 2 colonnes pour gagner de la largeur.
 @Composable
-private fun AttackDiceRow(dice: List<Int>?, vertical: Boolean = false) {
+internal fun AttackDiceRow(dice: List<Int>?, vertical: Boolean = false) {
     if (dice.isNullOrEmpty() || dice.all { it <= 0 }) return
     val red = dice.getOrNull(0) ?: 0
     val blue = dice.getOrNull(1) ?: 0
@@ -1004,13 +1004,13 @@ private fun AttackDiceRow(dice: List<Int>?, vertical: Boolean = false) {
 
 // ── cadrans des arcs (imité de la carte officielle) ──────────
 // Position du rectangle de dés par rapport au cercle de bouclier.
-private enum class ArcPos { ABOVE, BELOW, LEFT, RIGHT }
+internal enum class ArcPos { ABOVE, BELOW, LEFT, RIGHT }
 
 // Cadran d'un arc : rectangle(s) de dés positionné(s) autour du/des cercle(s) de bouclier.
 // diceList = liste des dés par cadran (1 pour normal, 2 pour huge). values = valeurs de bouclier par cadran.
 // onInc1/onDec1 = 1er cadran, onInc2/onDec2 = 2e.
 @Composable
-private fun ArcCadran(pos: ArcPos, diceList: List<List<Int>?>, values: List<Int>, onInc1: () -> Unit, onDec1: () -> Unit, onInc2: () -> Unit, onDec2: () -> Unit) {
+internal fun ArcCadran(pos: ArcPos, diceList: List<List<Int>?>, values: List<Int>, onInc1: () -> Unit, onDec1: () -> Unit, onInc2: () -> Unit, onDec2: () -> Unit) {
     val isFlank = pos == ArcPos.LEFT || pos == ArcPos.RIGHT
     val rects: @Composable () -> Unit = {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -1034,7 +1034,7 @@ private fun ArcCadran(pos: ArcPos, diceList: List<List<Int>?>, values: List<Int>
 
 // Rectangle blanc contenant les dés d'attaque en losanges de couleur (comme le cadran de la carte).
 @Composable
-private fun DiceRect(dice: List<Int>?, vertical: Boolean = false) {
+internal fun DiceRect(dice: List<Int>?, vertical: Boolean = false) {
     Surface(
         shape = RoundedCornerShape(8.dp),
         color = Color(0xFFE8EDF5),   // fond blanc cassé du rectangle sur la carte
@@ -1052,7 +1052,7 @@ private fun DiceRect(dice: List<Int>?, vertical: Boolean = false) {
 
 // Cercle blanc à fine bordure bleue contenant la valeur de bouclier (comme sur la carte officielle).
 @Composable
-private fun CircleShield(value: Int, onInc: () -> Unit, onDec: () -> Unit) {
+internal fun CircleShield(value: Int, onInc: () -> Unit, onDec: () -> Unit) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
             Surface(onClick = onDec, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(26.dp)) { Box(contentAlignment = Alignment.Center) { Text("-", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) } }
@@ -1073,7 +1073,7 @@ private fun CircleShield(value: Int, onInc: () -> Unit, onDec: () -> Unit) {
 
 // ── roue de commandement (dial) + pions d'ordre ──────────
 @Composable
-private fun CommandDialCard(
+internal fun CommandDialCard(
     selected: ArmadaCommandOrder?,
     onSelect: (ArmadaCommandOrder) -> Unit,
     orderTokens: Map<String, Int>,
@@ -1113,7 +1113,7 @@ private fun CommandDialCard(
 }
 
 @Composable
-private fun CommandDialButton(order: ArmadaCommandOrder, selected: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {
+internal fun CommandDialButton(order: ArmadaCommandOrder, selected: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {
     val ringColor = if (selected) Color(0xFFFFC857) else Color(0xFF2A3A4A)
     Column(modifier, horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Surface(
@@ -1137,7 +1137,7 @@ private fun CommandDialButton(order: ArmadaCommandOrder, selected: Boolean, onCl
 }
 
 @Composable
-private fun OrderTokenDisc(order: ArmadaCommandOrder, count: Int, onWikiClick: () -> Unit, onInc: () -> Unit, onDec: () -> Unit) {
+internal fun OrderTokenDisc(order: ArmadaCommandOrder, count: Int, onWikiClick: () -> Unit, onInc: () -> Unit, onDec: () -> Unit) {
     Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Surface(
             onClick = onWikiClick,
@@ -1168,7 +1168,7 @@ private fun OrderTokenDisc(order: ArmadaCommandOrder, count: Int, onWikiClick: (
 // Jeton d'activation d'escadron : disque pleine-face bleu (ACTIF) / rouge (INACTIF) comme le jeton du socle de chasseur.
 // Tap sur le disque = retourner (activer/désactiver). Petit "i" à côté = définition wiki.
 @Composable
-private fun SquadronActivationToken(activated: Boolean, onToggle: () -> Unit, onWikiClick: () -> Unit) {
+internal fun SquadronActivationToken(activated: Boolean, onToggle: () -> Unit, onWikiClick: () -> Unit) {
     val face = if (activated) Color(0xFF2E7DD1) else Color(0xFFC0392B)   // bleu actif / rouge inactif
     val faceLight = if (activated) Color(0xFF4FC3F7) else Color(0xFFE57373)
     Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -1213,7 +1213,7 @@ private fun SquadronActivationToken(activated: Boolean, onToggle: () -> Unit, on
 }
 
 @Composable
-private fun TokenSection(tokens: List<String>, onAdd: (String) -> Unit, onRemove: (String) -> Unit) {
+internal fun TokenSection(tokens: List<String>, onAdd: (String) -> Unit, onRemove: (String) -> Unit) {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(stringResource(R.string.tokens_markers), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelLarge)
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -1231,7 +1231,7 @@ private fun TokenSection(tokens: List<String>, onAdd: (String) -> Unit, onRemove
 }
 
 @Composable
-private fun BigCounter(label: String, value: Int, max: Int, color: Color, onInc: () -> Unit, onDec: () -> Unit) {
+internal fun BigCounter(label: String, value: Int, max: Int, color: Color, onInc: () -> Unit, onDec: () -> Unit) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(label, color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold)
         Spacer(Modifier.height(5.dp))
