@@ -148,38 +148,21 @@ private fun CondensedShipCard(
                     Text("⚄ ${(stats?.attackFront?.sum() ?: 0)}", color = Color(0xFFFF6B6B), fontSize = 10.sp, fontWeight = FontWeight.Bold)
                 }
             }
-            // ── commande + pions d'ordre ──
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
-                Surface(shape = RoundedCornerShape(9.dp), color = Color(0xFF1F2C3D), modifier = Modifier.clickable { onElement(SheetContent.Command(ship, state)) }) {
-                    Row(Modifier.padding(6.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                        Box(Modifier.size(24.dp).clip(CircleShape).border(2.dp, Color(0xFFFFC857), CircleShape), contentAlignment = Alignment.Center) {
-                            Text(state.commandOrder?.label?.take(1) ?: "?", color = Color(0xFFFFC857), fontWeight = FontWeight.Bold)
-                        }
-                        Column {
-                            Text("Commande", color = Color(0xFF9EACBC), fontSize = 8.sp, fontWeight = FontWeight.Bold)
-                            Text(state.commandOrder?.label ?: "—", color = Color(0xFFFFC857), fontSize = 10.sp, fontWeight = FontWeight.Bold)
-                        }
-                    }
-                }
-                Surface(shape = RoundedCornerShape(9.dp), color = Color(0xFF1F2C3D), modifier = Modifier.weight(1f).clickable { onElement(SheetContent.Orders(ship, state)) }) {
-                    Row(Modifier.padding(6.dp), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
-                        Text("Pions", color = Color(0xFF9EACBC), fontSize = 8.sp, fontWeight = FontWeight.Bold)
-                        state.orderTokens.forEach { (name, count) ->
-                            if (count > 0) {
-                                val order = ArmadaCommandOrder.entries.firstOrNull { it.name == name }
-                                if (order != null) {
-                                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                        Box(Modifier.size(16.dp).clip(CircleShape).background(Color(0xFF77D9A7)), contentAlignment = Alignment.Center) {
-                                            Text(order.label.take(1), color = Color(0xFF0A0E15), fontSize = 7.sp, fontWeight = FontWeight.Bold)
-                                        }
-                                        Text("$count", color = Color(0xFF77D9A7), fontSize = 7.sp, fontWeight = FontWeight.Bold)
-                                    }
-                                }
+            // ── roue de commandement (vrais visuels zoom, direct) ──
+                        Text("Roue de commandement", color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                            ArmadaCommandOrder.entries.forEach { order ->
+                                CommandDialButton(order = order, selected = state.commandOrder == order, onClick = { state.commandOrder = if (state.commandOrder == order) null else order }, modifier = Modifier.weight(1f))
                             }
                         }
-                    }
-                }
-            }
+                        // ── pions d'ordre (vrais visuels zoom, direct) ──
+                        Text("Pions d'ordre", color = Color(0xFF9EACBC), fontSize = 9.sp, fontWeight = FontWeight.Bold)
+                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                            ArmadaCommandOrder.entries.forEach { order ->
+                                val count = state.orderTokens[order.name] ?: 0
+                                OrderTokenDisc(order, count, onWikiClick = {}, onInc = { if (state.orderTokens.values.sum() < state.maxOrderStock) state.orderTokens = state.orderTokens + (order.name to count + 1) }, onDec = { state.orderTokens = state.orderTokens + (order.name to (count - 1).coerceAtLeast(0)) })
+                            }
+                        }
             // ── jetons de défense (directs, statut par couleur) ──
             Surface(shape = RoundedCornerShape(9.dp), color = Color(0xFF1F2C3D), modifier = Modifier.fillMaxWidth().clickable { onElement(SheetContent.Defense(ship, state)) }) {
                 Row(Modifier.padding(6.dp), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
