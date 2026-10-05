@@ -11,9 +11,9 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.legionforge.app.R
 import com.legionforge.app.data.model.GameSystem
+import com.legionforge.app.data.model.CardKind
 import com.legionforge.app.ui.screens.ArmyBuilderScreen
 import com.legionforge.app.ui.screens.CardDetailScreen
-import com.legionforge.app.ui.screens.CondensedPlayScreen
 import com.legionforge.app.ui.screens.FactionPickerScreen
 import com.legionforge.app.ui.screens.HomeScreen
 import com.legionforge.app.ui.screens.SearchScreen
@@ -30,11 +30,9 @@ object Routes {
     const val SETTINGS = "settings"
     const val WIKI = "wiki"
     const val CARD_DETAIL = "card_detail/{listId}/{entryInstanceId}"
-    const val CONDENSED_PLAY = "condensed_play/{listId}"
     fun factionPicker(system: GameSystem) = "faction_picker/${system.name}"
     fun armyBuilder(listId: String) = "army_builder/$listId"
     fun cardDetail(listId: String, entryInstanceId: String) = "card_detail/$listId/$entryInstanceId"
-    fun condensedPlay(listId: String) = "condensed_play/$listId"
 }
 
 @Composable
@@ -84,7 +82,10 @@ fun LegionForgeNavHost(navController: NavHostController = rememberNavController(
             }, onPlayCard = { listId, entryId ->
                 navController.navigate(Routes.cardDetail(listId, entryId))
             }, onPlayCondensed = { listId ->
-                navController.navigate(Routes.condensedPlay(listId))
+                // Le mode play condensé est désormais fusionné dans la vue plein écran :
+                // le bouton ▶ ouvre CardDetailScreen sur le premier élément jouable.
+                val firstPlayable = vm.entries.value.firstOrNull { it.parentInstanceId == null && (it.card.kind == CardKind.LEGION_UNIT || it.card.kind == CardKind.ARMADA_SHIP) }
+                if (firstPlayable != null) navController.navigate(Routes.cardDetail(listId, firstPlayable.instanceId))
             })
         }
         composable(Routes.SETTINGS) {
@@ -96,15 +97,6 @@ fun LegionForgeNavHost(navController: NavHostController = rememberNavController(
             val allEntries = vm.entries.value
             val idx = allEntries.indexOfFirst { it.instanceId == eid }.coerceAtLeast(0)
             CardDetailScreen(entries = allEntries, initialIndex = idx, onBack = { navController.popBackStack() })
-        }
-        composable(Routes.CONDENSED_PLAY, arguments = listOf(navArgument("listId") { type = NavType.StringType })) { entry ->
-            val lid = entry.arguments?.getString("listId") ?: return@composable
-            val allEntries = vm.entries.value
-            CondensedPlayScreen(
-                entries = allEntries,
-                onBack = { navController.popBackStack() },
-                onZoom = { eid -> navController.navigate(Routes.cardDetail(lid, eid)) }
-            )
         }
     }
 }

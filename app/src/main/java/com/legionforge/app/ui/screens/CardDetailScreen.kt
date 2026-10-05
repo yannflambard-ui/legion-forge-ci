@@ -470,6 +470,7 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
     // Colonne de vitesse sélectionnée dans la matrice de manoeuvres (0 = aucune).
     var selectedSpeed by remember(unit.instanceId) { mutableIntStateOf(0) }
     var activeCrits by remember(unit.instanceId) { mutableStateOf(listOf<CritCard>()) }
+    var critDlg by remember(unit.instanceId) { mutableStateOf(false) }
     var usedUpgrades by remember(unit.instanceId) { mutableStateOf(setOf<String>()) }
     val defTokenNames = remember(unit.instanceId) {
         val fromStats = stats?.defenseTokens.orEmpty()
@@ -490,15 +491,14 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
     val commander = allEntries.firstOrNull { it.card.kind == CardKind.COMMANDER || (it.card.kind == CardKind.ARMADA_UPGRADE && ArmadaSlot.COMMANDER in it.card.upgradeSlots) }
 
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        // ── ship card ──
+        // ── ship card (zone du haut compacte, reprise de la vue condensée) ──
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
-            Column(Modifier.padding(10.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                    // Petit icône du vaisseau à gauche des caractéristiques (artwork de la carte).
+            Column(Modifier.padding(10.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     CardArtwork(unit.card, Modifier.width(52.dp))
-                    Spacer(Modifier.width(8.dp))
                     Column(Modifier.weight(1f)) { Text(unit.card.displayName(), color = Color.White, style = MaterialTheme.typography.titleMedium, maxLines = 1, overflow = TextOverflow.Ellipsis); Text("${stringResource(R.string.kind_ship)}  •  ${unit.card.factionId.replace('-', ' ').replaceFirstChar { it.uppercase() }}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium) }
-                    Text("${unit.card.points} pts", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium)
+                    if (isHuge) Surface(shape = RoundedCornerShape(8.dp), color = Color(0xFF3A2050)) { Text("HUGE", Modifier.padding(horizontal = 6.dp, vertical = 1.dp), color = Color(0xFFD7A6FF), fontSize = 9.sp, fontWeight = FontWeight.Bold) }
+                    Text("${unit.card.points}", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
                 }
                 if (stats != null) ShipStatsBlock(stats)
                 else if (!unit.card.rulesText.isNullOrBlank()) ClickableRulesText(unit.card.rulesText, wikiSections, onRuleClick, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall, maxLines = 6)
@@ -506,6 +506,16 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                     StatChip(stringResource(R.string.hull), hull, Color(0xFFFF8A80), modifier = Modifier.weight(1f), display = "$hull/$maxHp")
                     StatChip(stringResource(R.string.stat_speed), speed, Color(0xFF77D9A7), modifier = Modifier.weight(1f), display = "$speed/$maxSpeed")
+                }
+                // ── rectangle cadrans (compact, comme la vue condensée) + +DGT CRIT ──
+                Surface(shape = RoundedCornerShape(9.dp), color = Color(0xFF1F2C3D), modifier = Modifier.fillMaxWidth()) {
+                    Row(Modifier.padding(horizontal = 10.dp, vertical = 7.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Text("Cadrans", color = Color(0xFF9EACBC), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                        Spacer(Modifier.weight(1f))
+                        Text("🛡 ${sF}/${sP}/${sS}/${sR}", color = Color(0xFF4FC3F7), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                        Text("⚄ ${(stats?.attackFront?.sum() ?: 0)}", color = Color(0xFFFF6B6B), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                        Surface(onClick = { critDlg = true }, shape = RoundedCornerShape(7.dp), color = Color(0xFF5A2020)) { Text("+ DGT CRIT", Modifier.padding(horizontal = 8.dp, vertical = 4.dp), color = Color(0xFFFF6B6B), fontSize = 9.sp, fontWeight = FontWeight.Bold) }
+                    }
                 }
             }
         }
@@ -523,6 +533,25 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
                 }
             }
         }
+        // ── effects panel (améliorations remontées au-dessus de la roue de commandement) ──
+        EffectsPanel(
+            effects = buildList {
+                if (commander != null) add(ActiveEffect(EffectType.COMMANDER, commander.card.displayName(), stripBracketName(commander.card.rulesText ?: stringResource(R.string.fleet_commander)), "cmd_${commander.instanceId}", pts = commander.card.points)
+                    .copy(used = usedUpgrades.contains("cmd")))
+                children.forEach { c ->
+                    if (c.card.kind == CardKind.COMMANDER || (c.card.kind == CardKind.ARMADA_UPGRADE && ArmadaSlot.COMMANDER in c.card.upgradeSlots)) return@forEach
+                    add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), stripBracketName(c.card.rulesText ?: stringResource(R.string.upgrade_installed)), c.instanceId, slot = c.card.upgradeSlots.firstOrNull(), pts = c.card.points)
+                        .copy(used = usedUpgrades.contains(c.instanceId)))
+                }
+                activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, "crit_${c.name}")) }
+            },
+            critSelector = { expanded, onDismiss, onSelect ->
+                CritSelectorDropdown(armadaCrits, expanded, onDismiss, onSelect)
+            },
+            onAddCrit = { activeCrits = activeCrits + it },
+            onRemoveCrit = { activeCrits = activeCrits - it },
+            allCrits = armadaCrits
+        )
         // ── command dial (roue de commandement) + pions d'ordre ──
         CommandDialCard(
             selected = commandOrder,
@@ -616,26 +645,7 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
                 }
             }
         }
-        // ── effects panel ──
-        EffectsPanel(
-            effects = buildList {
-                if (commander != null) add(ActiveEffect(EffectType.COMMANDER, commander.card.displayName(), stripBracketName(commander.card.rulesText ?: stringResource(R.string.fleet_commander)), "cmd_${commander.instanceId}", pts = commander.card.points)
-                    .copy(used = usedUpgrades.contains("cmd")))
-                children.forEach { c ->
-                    // Le commandant est déjà affiché dans sa propre section (EffectType.COMMANDER) : pas dans la liste des upgrades.
-                    if (c.card.kind == CardKind.COMMANDER || (c.card.kind == CardKind.ARMADA_UPGRADE && ArmadaSlot.COMMANDER in c.card.upgradeSlots)) return@forEach
-                    add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), stripBracketName(c.card.rulesText ?: stringResource(R.string.upgrade_installed)), c.instanceId, slot = c.card.upgradeSlots.firstOrNull(), pts = c.card.points)
-                        .copy(used = usedUpgrades.contains(c.instanceId)))
-                }
-                activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, "crit_${c.name}")) }
-            },
-            critSelector = { expanded, onDismiss, onSelect ->
-                CritSelectorDropdown(armadaCrits, expanded, onDismiss, onSelect)
-            },
-            onAddCrit = { activeCrits = activeCrits + it },
-            onRemoveCrit = { activeCrits = activeCrits - it },
-            allCrits = armadaCrits
-        )
+        CritSelectorDropdown(armadaCrits, critDlg, { critDlg = false }, { activeCrits = activeCrits + it; critDlg = false })
         CardPlayImage(unit.card)
         Spacer(Modifier.height(20.dp))
     }
