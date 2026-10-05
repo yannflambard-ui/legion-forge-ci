@@ -251,11 +251,12 @@ internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntri
     var wounds by remember(unit.instanceId) { mutableIntStateOf(maxHp) }
     var tokens by remember(unit.instanceId) { mutableStateOf(listOf<String>()) }
     var activeCrits by remember(unit.instanceId) { mutableStateOf(listOf<CritCard>()) }
+    var showCard by remember(unit.instanceId) { mutableStateOf(false) }
     var usedUpgrades by remember(unit.instanceId) { mutableStateOf(setOf<String>()) }
     val defColor = if ((stats?.defenseDie ?: "w") == "r") Color(0xFFFF6B6B) else Color.White
 
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        CardBlock(unit, children, totalPts, wikiSections, onRuleClick)
+        CardBlock(unit, children, totalPts, wikiSections, onRuleClick, onCardClick = { showCard = true })
         // ── stats réelles de la carte ──
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -323,7 +324,7 @@ internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntri
             onRemoveCrit = { activeCrits = activeCrits - it },
             allCrits = legionCrits
         )
-        CardPlayImage(unit.card)
+        CardZoomOverlay(unit.card, showCard) { showCard = false }
         Spacer(Modifier.height(20.dp))
     }
 }
@@ -470,7 +471,7 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
     // Colonne de vitesse sélectionnée dans la matrice de manoeuvres (0 = aucune).
     var selectedSpeed by remember(unit.instanceId) { mutableIntStateOf(0) }
     var activeCrits by remember(unit.instanceId) { mutableStateOf(listOf<CritCard>()) }
-    var critDlg by remember(unit.instanceId) { mutableStateOf(false) }
+    var showCard by remember(unit.instanceId) { mutableStateOf(false) }
     var usedUpgrades by remember(unit.instanceId) { mutableStateOf(setOf<String>()) }
     val defTokenNames = remember(unit.instanceId) {
         val fromStats = stats?.defenseTokens.orEmpty()
@@ -495,7 +496,7 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(10.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    CardArtwork(unit.card, Modifier.width(52.dp))
+                    CardArtwork(unit.card, Modifier.width(52.dp).clickable { showCard = true })
                     Column(Modifier.weight(1f)) { Text(unit.card.displayName(), color = Color.White, style = MaterialTheme.typography.titleMedium, maxLines = 1, overflow = TextOverflow.Ellipsis); Text("${stringResource(R.string.kind_ship)}  •  ${unit.card.factionId.replace('-', ' ').replaceFirstChar { it.uppercase() }}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium) }
                     if (isHuge) Surface(shape = RoundedCornerShape(8.dp), color = Color(0xFF3A2050)) { Text("HUGE", Modifier.padding(horizontal = 6.dp, vertical = 1.dp), color = Color(0xFFD7A6FF), fontSize = 9.sp, fontWeight = FontWeight.Bold) }
                     Text("${unit.card.points}", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
@@ -514,7 +515,6 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
                         Spacer(Modifier.weight(1f))
                         Text("🛡 ${sF}/${sP}/${sS}/${sR}", color = Color(0xFF4FC3F7), fontSize = 10.sp, fontWeight = FontWeight.Bold)
                         Text("⚄ ${(stats?.attackFront?.sum() ?: 0)}", color = Color(0xFFFF6B6B), fontSize = 10.sp, fontWeight = FontWeight.Bold)
-                        Surface(onClick = { critDlg = true }, shape = RoundedCornerShape(7.dp), color = Color(0xFF5A2020)) { Text(stringResource(R.string.add_dgt_crit), Modifier.padding(horizontal = 8.dp, vertical = 4.dp), color = Color(0xFFFF6B6B), fontSize = 9.sp, fontWeight = FontWeight.Bold) }
                     }
                 }
             }
@@ -645,22 +645,22 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
                 }
             }
         }
-        CritSelectorDropdown(armadaCrits, critDlg, { critDlg = false }, { activeCrits = activeCrits + it; critDlg = false })
-        CardPlayImage(unit.card)
+        CardZoomOverlay(unit.card, showCard) { showCard = false }
         Spacer(Modifier.height(20.dp))
     }
 }
 // ═══════════════════  COMMANDER (pas de degats critiques, equipe sur le flagship)  ═══════════════════
 @Composable
 internal fun CommanderPage(unit: ListEntry, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
+    var showCard by remember(unit.instanceId) { mutableStateOf(false) }
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        CardBlock(unit, emptyList(), unit.card.points, wikiSections, onRuleClick)
+        CardBlock(unit, emptyList(), unit.card.points, wikiSections, onRuleClick, onCardClick = { showCard = true })
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(stringResource(R.string.fleet_command), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
             }
         }
-        CardPlayImage(unit.card)
+        CardZoomOverlay(unit.card, showCard) { showCard = false }
         Spacer(Modifier.height(20.dp))
     }
 }
@@ -668,6 +668,7 @@ internal fun CommanderPage(unit: ListEntry, wikiSections: List<WikiSectionEntity
 // ═══════════════════  SQUADRON  ═══════════════════════════
 @Composable
 internal fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
+    var showCard by remember(unit.instanceId) { mutableStateOf(false) }
     val stats = remember(unit.instanceId) { ArmadaStatsParser.parse(unit.card.shipStats, CardKind.ARMADA_SQUADRON) }
     val maxHp = stats?.hull?.takeIf { it > 0 } ?: 8
     var hull by remember(unit.instanceId) { mutableIntStateOf(maxHp) }
@@ -680,7 +681,7 @@ internal fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionE
     }
     var defTokens by remember(unit.instanceId) { mutableStateOf<Map<String, Boolean>>(defTokenStates.mapIndexed { i, (def, _) -> "${def.name}_$i" to false }.toMap()) }
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        CardBlock(unit, emptyList(), unit.card.points, wikiSections, onRuleClick)
+        CardBlock(unit, emptyList(), unit.card.points, wikiSections, onRuleClick, onCardClick = { showCard = true })
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(stringResource(R.string.squadron_tracking), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
@@ -727,40 +728,44 @@ internal fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionE
                 }
             }
         }
-        CardPlayImage(unit.card)
+        CardZoomOverlay(unit.card, showCard) { showCard = false }
         Spacer(Modifier.height(20.dp))
     }
 }
 
 // ═══════════════════  SHARED COMPONENTS  ═══════════════════
 
-// Affiche la carte en image (la vraie carte) en bas des pages de mode partie,
-// si une image est disponible pour cette carte (sinon rien).
+// Overlay zoom : la vraie carte en grand, au-dessus du contenu, ouverte au clic sur la miniature.
 @Composable
-internal fun CardPlayImage(card: CardDefinition) {
+internal fun CardZoomOverlay(card: CardDefinition, show: Boolean, onDismiss: () -> Unit) {
+    if (!show) return
     val source: Any? = card.imageAssetPath?.let { "file:///android_asset/$it" } ?: card.imageUrl
-    if (source != null) {
-        Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(18.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
-            Column(Modifier.fillMaxWidth().padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(stringResource(R.string.card_label), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                Spacer(Modifier.height(10.dp))
-                AsyncImage(
-                    model = source,
-                    contentDescription = stringResource(R.string.icon_desc, card.displayName()),
-                    modifier = Modifier.fillMaxWidth(0.96f).heightIn(max = 520.dp),
-                    contentScale = ContentScale.Fit
-                )
+    androidx.compose.ui.window.Dialog(onDismissRequest = onDismiss) {
+        androidx.compose.material3.Surface(
+            modifier = Modifier.fillMaxWidth(0.96f).verticalScroll(rememberScrollState()),
+            shape = RoundedCornerShape(18.dp),
+            color = Color(0xFF192330)
+        ) {
+            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(card.displayName(), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                if (source != null) {
+                    AsyncImage(model = source, contentDescription = stringResource(R.string.icon_desc, card.displayName()),
+                        modifier = Modifier.fillMaxWidth().heightIn(max = 640.dp), contentScale = ContentScale.Fit)
+                }
+                Surface(onClick = onDismiss, shape = RoundedCornerShape(8.dp), color = Color(0xFF2A3A4A)) {
+                    Text("✕", Modifier.padding(horizontal = 14.dp, vertical = 6.dp), color = Color(0xFF9EACBC), fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                }
             }
         }
     }
 }
 
-
 @Composable
-internal fun CardBlock(unit: ListEntry, children: List<ListEntry>, totalPts: Int, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
+internal fun CardBlock(unit: ListEntry, children: List<ListEntry>, totalPts: Int, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}, onCardClick: (() -> Unit)? = null) {
     Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.Top) {
+                if (onCardClick != null) CardArtwork(unit.card, Modifier.width(64.dp).clickable { onCardClick() })
                 Column(Modifier.weight(1f)) {
                     Text(unit.card.displayName(), color = Color.White, style = MaterialTheme.typography.headlineSmall)
                     val kind = unit.card.legionRank?.name?.replace('_', ' ')?.lowercase()?.replaceFirstChar { it.uppercase() } ?: unit.card.kind.name.replace('_', ' ').lowercase().replaceFirstChar { it.uppercase() }

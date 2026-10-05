@@ -44,3 +44,11 @@
 - Roue de commandement: affiche QUE l ordre selectionne (pastille 96x84) + pions d ordre compacts; si aucun ordre, les 4 pions cliquables.
 - Ameliorations/effets: spacings reduits (8->6dp, padding effet 12->8dp).
 - Version 0.9.23 / code 74 (bump meme commit que la feature).
+
+## 0.9.25 (05/10/2026) — Mode partie: retrait carte bas + bouton crit des cadrans
+- RETIRE le bouton "+DGT CRIT" de la ligne cadrans (header ship Armada). Ajout de critiques via le panneau Effets uniquement (bouton +crit existant).
+- RETIRE la grosse carte (CardPlayImage) affichee en bas des 4 pages mode partie (Legion, ArmadaShip, Commander, Squadron).
+- La carte s affiche desormais en OVERLAY (Dialog plein ecran, CardZoomOverlay) en haut du contenu, au clic sur la miniature du header (CardArtwork 52/64dp cliquable).
+- CardBlock : nouveau parametre onCardClick (miniature cliquable) utilise par Legion/Commander/Squadron.
+- Supprime les cles string inutilisees : add_dgt_crit, card_label (4 locales).
+- Version 0.9.25 / code 76.

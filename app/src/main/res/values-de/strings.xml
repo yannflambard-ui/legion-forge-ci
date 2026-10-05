@@ -128,7 +128,6 @@
     <string name="hull">RUMPF</string>
     <string name="fleet_command">FLOTTENKOMMANDO</string>
     <string name="squadron_tracking">STAFFEL-VERFOLGUNG</string>
-    <string name="card_label">KARTE</string>
     <string name="active_effects">AKTIVE EFFEKTE</string>
     <string name="add_crit">+ Schaden Krit</string>
     <string name="no_effects">Kein aktiver Effekt</string>
@@ -151,7 +150,6 @@
     <string name="command_wheel">BEFEHLSRAD</string>
     <string name="orders_stock">%1$s/%2$s</string>
     <string name="cadrans">Zifferblätter</string>
-    <string name="add_dgt_crit">+ KRIT. SCHADEN</string>
     <string name="wiki_title">REGELWIKI</string>
     <string name="wiki_search_hint">Stichwort: Schilde, Aktivierung, Angriff, Geschwindigkeit…</string>
     <string name="wiki_no_results">Keine Sektion für „%1$s“</string>
