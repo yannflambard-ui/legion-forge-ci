@@ -36,3 +36,11 @@
 - Kotlin/Compose, minSdk 26, targetSdk 34, JDK 17, Room 2.6.1, Gson 2.11.
 - GameSystem : `LEGION_V2`, `ARMADA_V15`. CardKind : LEGION_UNIT/UPGRADE, ARMADA_SHIP/SQUADRON/UPGRADE, COMMANDER.
 - Mode jeu : swipe cartes, blessures/boucliers directionnels, jetons défense vert/rouge, dégâts critiques, round tracker, activation upgrades, localisation FR/DE/ES.
+## 0.9.23 (05/10/2026) — Fiche vaisseau Armada compactee (mode play)
+- Icône de la carte (CardArtwork) a gauche du titre + nom en titleMedium pour tenir sur tele.
+- Coque et vitesse en courant/max (ex 2/8, 2/3) sur une ligne sous les caracs CMD/SQN/ENG (StatChip avec display=).
+- RETIRE le gros compteur coque rouge (BigCounter 0xFFFF6B6B) + la HealthBar rouge sous les cadrans boucliers ("truc rouge a cote du resume des boucliers").
+- StatChip: padding vertical 3->6dp, fillMaxWidth, maxLines=1 (largeurs egalisees).
+- Roue de commandement: affiche QUE l ordre selectionne (pastille 96x84) + pions d ordre compacts; si aucun ordre, les 4 pions cliquables.
+- Ameliorations/effets: spacings reduits (8->6dp, padding effet 12->8dp).
+- Version 0.9.23 / code 74 (bump meme commit que la feature).
