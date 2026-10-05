@@ -494,11 +494,19 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
         Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
             Column(Modifier.padding(10.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                    Column(Modifier.weight(1f)) { Text(unit.card.displayName(), color = Color.White, style = MaterialTheme.typography.titleLarge, maxLines = 1, overflow = TextOverflow.Ellipsis); Text("${stringResource(R.string.kind_ship)}  •  ${unit.card.factionId.replace('-', ' ').replaceFirstChar { it.uppercase() }}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium) }
+                    // Petit icône du vaisseau à gauche des caractéristiques (artwork de la carte).
+                    CardArtwork(unit.card, Modifier.width(52.dp))
+                    Spacer(Modifier.width(8.dp))
+                    Column(Modifier.weight(1f)) { Text(unit.card.displayName(), color = Color.White, style = MaterialTheme.typography.titleMedium, maxLines = 1, overflow = TextOverflow.Ellipsis); Text("${stringResource(R.string.kind_ship)}  •  ${unit.card.factionId.replace('-', ' ').replaceFirstChar { it.uppercase() }}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium) }
                     Text("${unit.card.points} pts", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium)
                 }
                 if (stats != null) ShipStatsBlock(stats)
                 else if (!unit.card.rulesText.isNullOrBlank()) ClickableRulesText(unit.card.rulesText, wikiSections, onRuleClick, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall, maxLines = 6)
+                // ── résumé coque + vitesse (courant/max, compact) ──
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    StatChip(stringResource(R.string.hull), hull, Color(0xFFFF8A80), modifier = Modifier.weight(1f), display = "$hull/$maxHp")
+                    StatChip(stringResource(R.string.stat_speed), speed, Color(0xFF77D9A7), modifier = Modifier.weight(1f), display = "$speed/$maxSpeed")
+                }
             }
         }
         // ── defense tokens ──
@@ -553,12 +561,7 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
                     ArcCadran(ArcPos.BELOW, listOf(stats?.attackRear), listOf(sR), { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- }, { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- })
                 }
                 HorizontalDivider(color = Color(0xFF2A3A4A))
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-                    BigCounter(stringResource(R.string.stat_speed), speed, maxSpeed, Color(0xFF77D9A7), { if (speed < maxSpeed) speed++ }, { if (speed > 1) speed-- })
-                    Spacer(Modifier.width(24.dp))
-                    BigCounter(stringResource(R.string.hull), hull, maxHp, Color(0xFFFF6B6B), { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- })
-                }
-                if (hull < maxHp) { HealthBar(hull.toFloat() / maxHp, hull, maxHp) }
+                // Résumé coque/vitesse déplacé en haut (header ship card) ; gros compteurs rouges retirés pour compacter.
                 // Matrice de manoeuvres : triangulaire 4x4 (comme la carte officielle).
                 // X = vitesse (1..maxSpeed), Y = position (nb de clics sur l'outil de manoeuvre).
                 // Position 1 EN BAS, position max EN HAUT (inversé). Valeur : I = 1, II = 2, - = 0. Cases vides = bordeaux.
@@ -777,12 +780,12 @@ internal fun EffectsPanel(
 ) {
     var expandedCrit by remember { mutableStateOf(false) }
     var selectedEffect by remember { mutableStateOf<ActiveEffect?>(null) }
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
         // Header + add crit button
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
             Text(stringResource(R.string.active_effects), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
             Surface(onClick = { expandedCrit = true }, shape = RoundedCornerShape(10.dp), color = Color(0xFF5A2020)) {
-                Text(stringResource(R.string.add_crit), Modifier.padding(horizontal = 14.dp, vertical = 8.dp), color = Color(0xFFFF6B6B), fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.add_crit), Modifier.padding(horizontal = 12.dp, vertical = 6.dp), color = Color(0xFFFF6B6B), fontSize = 12.sp, fontWeight = FontWeight.Bold)
             }
         }
         // Crit selector dropdown
@@ -805,7 +808,7 @@ internal fun EffectsPanel(
                     color = when { eff.used -> Color(0xFF1A1A2A); eff.type == EffectType.CRIT -> Color(0xFF3B2224); eff.type == EffectType.ABILITY -> Color(0xFF1E3A2A); else -> Color(0xFF1E2A3A) },
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Column(Modifier.padding(12.dp)) {
+                    Column(Modifier.padding(8.dp)) {
                         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Box(Modifier.size(24.dp).clip(CircleShape).background(if (eff.used) Color(0xFF3A3A4A) else Color(0xFF1E2A3A)), contentAlignment = Alignment.Center) {
@@ -924,11 +927,11 @@ internal fun ShipStatsBlock(stats: ArmadaStats) {
 }
 
 @Composable
-internal fun StatChip(label: String, value: Int, color: Color, modifier: Modifier = Modifier) {
+internal fun StatChip(label: String, value: Int, color: Color, modifier: Modifier = Modifier, display: String? = null) {
     Surface(shape = RoundedCornerShape(8.dp), color = color.copy(alpha = 0.15f), modifier = modifier) {
-        Column(Modifier.padding(vertical = 3.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-            Text("$value", color = color, fontSize = 15.sp, fontWeight = FontWeight.Bold)
-            Text(label, color = color.copy(alpha = 0.8f), fontSize = 8.sp, fontWeight = FontWeight.Bold)
+        Column(Modifier.padding(vertical = 6.dp).fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(display ?: "$value", color = color, fontSize = 15.sp, fontWeight = FontWeight.Bold, maxLines = 1)
+            Text(label, color = color.copy(alpha = 0.8f), fontSize = 8.sp, fontWeight = FontWeight.Bold, maxLines = 1)
         }
     }
 }
@@ -1084,28 +1087,32 @@ internal fun CommandDialCard(
     onRuleClick: (WikiSectionEntity) -> Unit = {}
 ) {
     Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
-        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text("ROUE DE COMMANDEMENT", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                ArmadaCommandOrder.entries.forEach { order ->
-                    CommandDialButton(order = order, selected = selected == order, onClick = { onSelect(order) }, modifier = Modifier.weight(1f))
-                }
-            }
-            HorizontalDivider(color = Color(0xFF2A3A4A))
+        Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                Text("PIONS D'ORDRE", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                Text("STOCK ${orderTokens.values.sum()} / $maxStock", color = Color(0xFF77D9A7), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+                Text("ROUE DE COMMANDEMENT", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
+                // Compteur de pions compact.
+                Text("${orderTokens.values.sum()}/$maxStock", color = Color(0xFF77D9A7), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
             }
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                ArmadaCommandOrder.entries.forEach { order ->
-                    val count = orderTokens[order.name] ?: 0
-                    OrderTokenDisc(
-                        order = order,
-                        count = count,
-                        onWikiClick = { findWikiSection(wikiSections, order.label)?.let(onRuleClick) },
-                        onInc = { onIncOrder(order.name) },
-                        onDec = { onDecOrder(order.name) }
-                    )
+            // N'affiche QUE l'ordre sélectionné (pastille compacte) ; sinon un selecteur compact par tap.
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
+                if (selected != null) {
+                    CommandDialButton(order = selected!!, selected = true, onClick = { onSelect(selected!!) }, modifier = Modifier.size(width = 96.dp, height = 84.dp))
+                    // Pions d'ordre du stock (compteurs jaunes) toujours visibles.
+                    ArmadaCommandOrder.entries.forEach { order ->
+                        val count = orderTokens[order.name] ?: 0
+                        OrderTokenDisc(
+                            order = order,
+                            count = count,
+                            onWikiClick = { findWikiSection(wikiSections, order.label)?.let(onRuleClick) },
+                            onInc = { onIncOrder(order.name) },
+                            onDec = { onDecOrder(order.name) }
+                        )
+                    }
+                } else {
+                    // Aucun ordre choisi : 4 pions cliquables pour sélectionner.
+                    ArmadaCommandOrder.entries.forEach { order ->
+                        CommandDialButton(order = order, selected = false, onClick = { onSelect(order) }, modifier = Modifier.weight(1f))
+                    }
                 }
             }
         }
