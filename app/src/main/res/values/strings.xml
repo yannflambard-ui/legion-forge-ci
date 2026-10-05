@@ -148,4 +148,11 @@
     <string name="surge_block">Block</string>
     <string name="surge_counter">Counter-attack</string>
     <string name="maneuver_matrix">MANEUVER MATRIX</string>
+    <string name="command_wheel">COMMAND WHEEL</string>
+    <string name="orders_stock">%1$s/%2$s</string>
+    <string name="cadrans">Dials</string>
+    <string name="add_dgt_crit">+ DGT CRIT</string>
+    <string name="wiki_title">RULES WIKI</string>
+    <string name="wiki_search_hint">Keyword: shields, activation, attack, speed…</string>
+    <string name="wiki_no_results">No section for “%1$s”</string>
 </resources>

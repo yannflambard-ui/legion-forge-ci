@@ -510,11 +510,11 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
                 // ── rectangle cadrans (compact, comme la vue condensée) + +DGT CRIT ──
                 Surface(shape = RoundedCornerShape(9.dp), color = Color(0xFF1F2C3D), modifier = Modifier.fillMaxWidth()) {
                     Row(Modifier.padding(horizontal = 10.dp, vertical = 7.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Text("Cadrans", color = Color(0xFF9EACBC), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.cadrans), color = Color(0xFF9EACBC), fontSize = 10.sp, fontWeight = FontWeight.Bold)
                         Spacer(Modifier.weight(1f))
                         Text("🛡 ${sF}/${sP}/${sS}/${sR}", color = Color(0xFF4FC3F7), fontSize = 10.sp, fontWeight = FontWeight.Bold)
                         Text("⚄ ${(stats?.attackFront?.sum() ?: 0)}", color = Color(0xFFFF6B6B), fontSize = 10.sp, fontWeight = FontWeight.Bold)
-                        Surface(onClick = { critDlg = true }, shape = RoundedCornerShape(7.dp), color = Color(0xFF5A2020)) { Text("+ DGT CRIT", Modifier.padding(horizontal = 8.dp, vertical = 4.dp), color = Color(0xFFFF6B6B), fontSize = 9.sp, fontWeight = FontWeight.Bold) }
+                        Surface(onClick = { critDlg = true }, shape = RoundedCornerShape(7.dp), color = Color(0xFF5A2020)) { Text(stringResource(R.string.add_dgt_crit), Modifier.padding(horizontal = 8.dp, vertical = 4.dp), color = Color(0xFFFF6B6B), fontSize = 9.sp, fontWeight = FontWeight.Bold) }
                     }
                 }
             }
@@ -1099,9 +1099,9 @@ internal fun CommandDialCard(
     Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
         Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                Text("ROUE DE COMMANDEMENT", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.command_wheel), color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
                 // Compteur de pions compact.
-                Text("${orderTokens.values.sum()}/$maxStock", color = Color(0xFF77D9A7), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.orders_stock, orderTokens.values.sum(), maxStock), color = Color(0xFF77D9A7), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
             }
             // N'affiche QUE l'ordre sélectionné (pastille compacte) ; sinon un selecteur compact par tap.
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
