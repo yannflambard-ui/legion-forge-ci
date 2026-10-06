@@ -30,7 +30,7 @@ import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, String) -> Unit = { _, _ -> }, onPlayCondensed: (String) -> Unit = {}, viewModel: ArmyBuilderViewModel = viewModel()) {
+fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, String) -> Unit = { _, _ -> }, onPlayCondensed: (String) -> Unit = {}, onShare: () -> Unit = {}, viewModel: ArmyBuilderViewModel = viewModel()) {
     val list by viewModel.currentList.collectAsState()
     val cards by viewModel.cards.collectAsState()
     val entries by viewModel.entries.collectAsState()
@@ -120,9 +120,17 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                         contentColor = if (listValid) Color.White else Color(0xFF718096)
                     )
                 ) {
-                    Text("\u25B6", fontWeight = FontWeight.Bold, fontSize = 14.sp)
-                }
-            }
+                                    Text("\u25B6", fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                                }
+                                // Bouton partage (Nearby Connections)
+                                Button(
+                                    onClick = onShare,
+                                    shape = RoundedCornerShape(10.dp),
+                                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1A2330), contentColor = Color(0xFFFFC857))
+                                ) {
+                                    Text("\uD83D\uDD0C", fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                                }
+                            }
         }, navigationIcon = { TextButton(onClick = onBack) { Text("‹") } })
     }) { pad ->
         Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).padding(pad)) {

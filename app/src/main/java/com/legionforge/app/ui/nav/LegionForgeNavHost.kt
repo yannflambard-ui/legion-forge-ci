@@ -18,8 +18,10 @@ import com.legionforge.app.ui.screens.FactionPickerScreen
 import com.legionforge.app.ui.screens.HomeScreen
 import com.legionforge.app.ui.screens.SearchScreen
 import com.legionforge.app.ui.screens.SettingsScreen
+import com.legionforge.app.ui.screens.ShareScreen
 import com.legionforge.app.ui.screens.WikiScreen
 import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
+import com.legionforge.app.ui.viewmodel.ShareListPayload
 import androidx.navigation.NavGraph.Companion.findStartDestination
 
 object Routes {
@@ -30,9 +32,11 @@ object Routes {
     const val SETTINGS = "settings"
     const val WIKI = "wiki"
     const val CARD_DETAIL = "card_detail/{listId}/{entryInstanceId}"
-    fun factionPicker(system: GameSystem) = "faction_picker/${system.name}"
-    fun armyBuilder(listId: String) = "army_builder/$listId"
-    fun cardDetail(listId: String, entryInstanceId: String) = "card_detail/$listId/$entryInstanceId"
+        const val SHARE = "share/{listId}"
+        fun factionPicker(system: GameSystem) = "faction_picker/${system.name}"
+        fun armyBuilder(listId: String) = "army_builder/$listId"
+        fun cardDetail(listId: String, entryInstanceId: String) = "card_detail/$listId/$entryInstanceId"
+        fun share(listId: String) = "share/$listId"
 }
 
 @Composable
@@ -82,11 +86,13 @@ fun LegionForgeNavHost(navController: NavHostController = rememberNavController(
             }, onPlayCard = { listId, entryId ->
                 navController.navigate(Routes.cardDetail(listId, entryId))
             }, onPlayCondensed = { listId ->
-                // Le mode play condensé est désormais fusionné dans la vue plein écran :
-                // le bouton ▶ ouvre CardDetailScreen sur le premier élément jouable.
-                val firstPlayable = vm.entries.value.firstOrNull { it.parentInstanceId == null && (it.card.kind == CardKind.LEGION_UNIT || it.card.kind == CardKind.ARMADA_SHIP) }
-                if (firstPlayable != null) navController.navigate(Routes.cardDetail(listId, firstPlayable.instanceId))
-            })
+                            // Le mode play condensé est désormais fusionné dans la vue plein écran :
+                            // le bouton ▶ ouvre CardDetailScreen sur le premier élément jouable.
+                            val firstPlayable = vm.entries.value.firstOrNull { it.parentInstanceId == null && (it.card.kind == CardKind.LEGION_UNIT || it.card.kind == CardKind.ARMADA_SHIP) }
+                            if (firstPlayable != null) navController.navigate(Routes.cardDetail(listId, firstPlayable.instanceId))
+                        }, onShare = {
+                            navController.navigate(Routes.share(id))
+                        })
         }
         composable(Routes.SETTINGS) {
             SettingsScreen(onBack = { navController.popBackStack() })
@@ -97,6 +103,23 @@ fun LegionForgeNavHost(navController: NavHostController = rememberNavController(
             val allEntries = vm.entries.value
             val idx = allEntries.indexOfFirst { it.instanceId == eid }.coerceAtLeast(0)
             CardDetailScreen(entries = allEntries, initialIndex = idx, onBack = { navController.popBackStack() })
+        }
+        composable(Routes.SHARE, arguments = listOf(navArgument("listId") { type = NavType.StringType })) { entry ->
+            val lid = entry.arguments?.getString("listId") ?: return@composable
+            val list = vm.currentList.value
+            ShareScreen(
+                list = list,
+                entries = vm.entries.value,
+                onImport = { payload ->
+                    vm.importSharedList(payload) { newId ->
+                        navController.navigate(Routes.armyBuilder(newId)) {
+                            popUpTo(navController.graph.findStartDestination().id) { saveState = false }
+                            launchSingleTop = true
+                        }
+                    }
+                },
+                onBack = { navController.popBackStack() }
+            )
         }
     }
 }

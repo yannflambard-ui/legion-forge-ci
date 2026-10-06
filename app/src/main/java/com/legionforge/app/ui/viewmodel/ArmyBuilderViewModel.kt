@@ -8,6 +8,7 @@ import com.legionforge.app.data.repository.BuilderRepository
 import com.legionforge.app.data.repository.WikiRepository
 import com.legionforge.app.domain.*
 import com.legionforge.app.util.CrashReporter
+import com.legionforge.app.ui.viewmodel.ShareListPayload
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -267,4 +268,30 @@ class ArmyBuilderViewModel(application: Application) : AndroidViewModel(applicat
     }
 
     fun cardById(id: String) = _cards.value.firstOrNull { it.id == id }
-}
+
+        /** Importe une liste reçue via Nearby : crée une nouvelle liste et ajoute les entrées. */
+        fun importSharedList(payload: ShareListPayload, onImported: (String) -> Unit = {}) {
+            viewModelScope.launch {
+                awaitCatalog()
+                val system = runCatching { GameSystem.valueOf(payload.gameSystem) }.getOrDefault(GameSystem.LEGION_V2)
+                val list = repository.createList(payload.name, system, payload.factionId, payload.pointsLimit)
+                _currentList.value = list
+                _entries.value = emptyList()
+                loadCatalog(system, payload.factionId)
+                // Ajoute les entrées reçues (cardId -> carte du catalogue).
+                val byId = _cards.value.associateBy(CardDefinition::id)
+                payload.entries.forEach { e ->
+                    val card = byId[e.cardId] ?: return@forEach
+                    _entries.value = _entries.value + ListEntry(
+                        instanceId = UUID.randomUUID().toString(),
+                        card = card,
+                        parentInstanceId = e.parentInstanceId,
+                        quantity = e.quantity,
+                        chosenSlot = e.chosenSlot?.let(ArmadaSlot::valueOf)
+                    )
+                }
+                persistAndValidate()
+                onImported(list.id)
+            }
+        }
+    }
