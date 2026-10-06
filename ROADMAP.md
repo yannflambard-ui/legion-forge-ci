@@ -20,6 +20,16 @@ Objectif : devenir indispensable **à côté de la table** (trouver une info en 
 
 ## 🔴 P0 — Essentiel
 
+### [x] Mode partie compact — tient sur un écran de téléphone (0.9.26)
+```
+Jeu : Legion + Armada (Commun)
+Priorité : P0 | Valeur joueur : Très haute | Complexité : Faible
+État actuel : FAIT en 0.9.26 — sections repliables (CollapsibleSection) sur toutes les pages mode partie.
+Écrans : CardDetailScreen (LegionUnitPage, ArmadaShipPage, ArmadaSquadronPage)
+Pourquoi : le mode partie scrollait sur plusieurs écrans (carte, jetons, roue de commandement, cadrans, effets). Sur téléphone c'était illisible.
+Intégration : chaque bloc secondaire (profil, roue de commandement, effets, jetons de défense escadron) est replié par défaut ; le suivi principal (blessures/coque/boucliers) reste déplié. En-tête cliquable (titre + chevron ▲▼) pour masquer/déplier. La roue de commandement (jetons d'ordre) est conservée mais repliée par défaut.
+```
+
 ### [ ] Glossaire / mots-clés cliquables
 ```
 Jeu : Legion + Armada (Commun)

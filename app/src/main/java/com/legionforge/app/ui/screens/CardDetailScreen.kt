@@ -257,73 +257,69 @@ internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntri
 
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         CardBlock(unit, children, totalPts, wikiSections, onRuleClick, onCardClick = { showCard = true })
-        // ── stats réelles de la carte ──
-        Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
-            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                Text(stringResource(R.string.profile), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                    StatChip(stringResource(R.string.stat_health), "${stats?.miniCount ?: 1} × ${stats?.health ?: 1}", Color(0xFFFF6B6B))
-                    StatChip(stringResource(R.string.stat_courage), "${stats?.courage ?: 1}", Color(0xFFFFC857))
-                    StatChip(stringResource(R.string.stat_speed), "${stats?.speed ?: 1}", Color(0xFF4FC3F7))
-                    StatChip(stringResource(R.string.stat_defense), (stats?.defenseDie ?: "w").uppercase(), defColor)
+        // ── stats réelles de la carte (repliable) ──
+        CollapsibleSection(stringResource(R.string.profile), initiallyExpanded = false) {
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                StatChip(stringResource(R.string.stat_health), "${stats?.miniCount ?: 1} × ${stats?.health ?: 1}", Color(0xFFFF6B6B))
+                StatChip(stringResource(R.string.stat_courage), "${stats?.courage ?: 1}", Color(0xFFFFC857))
+                StatChip(stringResource(R.string.stat_speed), "${stats?.speed ?: 1}", Color(0xFF4FC3F7))
+                StatChip(stringResource(R.string.stat_defense), (stats?.defenseDie ?: "w").uppercase(), defColor)
+            }
+            if (!stats?.surgeAttack.isNullOrBlank() || !stats?.surgeDefense.isNullOrBlank()) {
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Text(stringResource(R.string.surge_attack, surgeLabel(stats?.surgeAttack)), color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall)
+                    Text(stringResource(R.string.surge_defense, surgeLabel(stats?.surgeDefense)), color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall)
                 }
-                if (!stats?.surgeAttack.isNullOrBlank() || !stats?.surgeDefense.isNullOrBlank()) {
-                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                        Text(stringResource(R.string.surge_attack, surgeLabel(stats?.surgeAttack)), color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall)
-                        Text(stringResource(R.string.surge_defense, surgeLabel(stats?.surgeDefense)), color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall)
-                    }
-                }
-                if (stats?.keywords?.isNotEmpty() == true) {
-                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                        stats.keywords.forEach { kw ->
-                            val section = findWikiSection(wikiSections, kw)
-                            Surface(
-                                onClick = { if (section != null) onRuleClick(section) },
-                                shape = RoundedCornerShape(8.dp),
-                                color = Color(0xFF2A3A4A)
-                            ) {
-                                Text(com.legionforge.app.data.i18n.I18n.keyword(kw), Modifier.padding(horizontal = 10.dp, vertical = 4.dp), color = if (section != null) Color(0xFFFFC857) else Color(0xFF77D9A7), fontSize = 11.sp, fontWeight = FontWeight.Bold)
-                            }
+            }
+            if (stats?.keywords?.isNotEmpty() == true) {
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    stats.keywords.forEach { kw ->
+                        val section = findWikiSection(wikiSections, kw)
+                        Surface(
+                            onClick = { if (section != null) onRuleClick(section) },
+                            shape = RoundedCornerShape(8.dp),
+                            color = Color(0xFF2A3A4A)
+                        ) {
+                            Text(com.legionforge.app.data.i18n.I18n.keyword(kw), Modifier.padding(horizontal = 10.dp, vertical = 4.dp), color = if (section != null) Color(0xFFFFC857) else Color(0xFF77D9A7), fontSize = 11.sp, fontWeight = FontWeight.Bold)
                         }
                     }
                 }
             }
         }
-        // ── suivi des blessures (valeur restante) ──
-        Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
-            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
-                Text(stringResource(R.string.tracking), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { BigCounter(stringResource(R.string.minis), wounds, maxHp, Color(0xFFFF6B6B), { if (wounds < maxHp) wounds++ }, { if (wounds > 0) wounds-- }) }
-                HealthBar(wounds.toFloat() / maxHp, wounds, maxHp)
-                // Armes de l'unité (range + dés)
-                if (stats?.weapons?.isNotEmpty() == true) {
-                    HorizontalDivider(color = Color(0xFF2A3A4A))
-                    Text(stringResource(R.string.weapons), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
-                    stats.weapons.forEach { w ->
-                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                            Column(Modifier.weight(1f)) {
-                                Text(w.name, color = Color.White, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
-                                Text(stringResource(R.string.range_label, w.rangeMin, w.rangeMax), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall)
-                            }
-                            Text(diceText(w.red, w.black, w.white), color = Color(0xFF77D9A7), style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
+        // ── suivi des blessures (valeur restante) (repliable) ──
+        CollapsibleSection(stringResource(R.string.tracking), initiallyExpanded = true) {
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { BigCounter(stringResource(R.string.minis), wounds, maxHp, Color(0xFFFF6B6B), { if (wounds < maxHp) wounds++ }, { if (wounds > 0) wounds-- }) }
+            HealthBar(wounds.toFloat() / maxHp, wounds, maxHp)
+            // Armes de l'unité (range + dés)
+            if (stats?.weapons?.isNotEmpty() == true) {
+                HorizontalDivider(color = Color(0xFF2A3A4A))
+                Text(stringResource(R.string.weapons), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
+                stats.weapons.forEach { w ->
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                        Column(Modifier.weight(1f)) {
+                            Text(w.name, color = Color.White, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
+                            Text(stringResource(R.string.range_label, w.rangeMin, w.rangeMax), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall)
                         }
+                        Text(diceText(w.red, w.black, w.white), color = Color(0xFF77D9A7), style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
                     }
                 }
-                TokenSection(tokens, { tokens = tokens + it }, { tokens = tokens - it })
             }
+            TokenSection(tokens, { tokens = tokens + it }, { tokens = tokens - it })
         }
-        EffectsPanel(
-            effects = buildList {
-                children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), stripBracketName(c.card.rulesText ?: stringResource(R.string.upgrade_installed)), c.instanceId, slot = c.card.upgradeSlots.firstOrNull(), pts = c.card.points).copy(used = usedUpgrades.contains(c.instanceId))) }
-                activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, c.name)) }
-            },
-            critSelector = { expanded, onDismiss, onSelect ->
-                CritSelectorDropdown(legionCrits, expanded, onDismiss, onSelect)
-            },
-            onAddCrit = { activeCrits = activeCrits + it },
-            onRemoveCrit = { activeCrits = activeCrits - it },
-            allCrits = legionCrits
-        )
+        CollapsibleSection(stringResource(R.string.active_effects), initiallyExpanded = false) {
+            EffectsPanel(
+                effects = buildList {
+                    children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), stripBracketName(c.card.rulesText ?: stringResource(R.string.upgrade_installed)), c.instanceId, slot = c.card.upgradeSlots.firstOrNull(), pts = c.card.points).copy(used = usedUpgrades.contains(c.instanceId))) }
+                    activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, c.name)) }
+                },
+                critSelector = { expanded, onDismiss, onSelect ->
+                    CritSelectorDropdown(legionCrits, expanded, onDismiss, onSelect)
+                },
+                onAddCrit = { activeCrits = activeCrits + it },
+                onRemoveCrit = { activeCrits = activeCrits - it },
+                allCrits = legionCrits
+            )
+        }
         CardZoomOverlay(unit.card, showCard) { showCard = false }
         Spacer(Modifier.height(20.dp))
     }
@@ -519,56 +515,54 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
                 }
             }
         }
-        // ── defense tokens ──
-        Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
-            Column(Modifier.padding(16.dp)) {
-                Text(stringResource(R.string.defense_tokens), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                Spacer(Modifier.height(10.dp))
-                FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                    defTokenStates.forEachIndexed { i, (def, _) ->
-                        val key = "${def.name}_$i"
-                        val used = defTokens[key] ?: false
-                        DefenseTokenDisc(def, used, onClick = { defTokens = defTokens + (key to !used) }, onWikiClick = { findWikiSection(wikiSections, def.label)?.let(onRuleClick) })
-                    }
+        // ── defense tokens (repliable) ──
+        CollapsibleSection(stringResource(R.string.defense_tokens), initiallyExpanded = true) {
+            FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                defTokenStates.forEachIndexed { i, (def, _) ->
+                    val key = "${def.name}_$i"
+                    val used = defTokens[key] ?: false
+                    DefenseTokenDisc(def, used, onClick = { defTokens = defTokens + (key to !used) }, onWikiClick = { findWikiSection(wikiSections, def.label)?.let(onRuleClick) })
                 }
             }
         }
-        // ── effects panel (améliorations remontées au-dessus de la roue de commandement) ──
-        EffectsPanel(
-            effects = buildList {
-                if (commander != null) add(ActiveEffect(EffectType.COMMANDER, commander.card.displayName(), stripBracketName(commander.card.rulesText ?: stringResource(R.string.fleet_commander)), "cmd_${commander.instanceId}", pts = commander.card.points)
-                    .copy(used = usedUpgrades.contains("cmd")))
-                children.forEach { c ->
-                    if (c.card.kind == CardKind.COMMANDER || (c.card.kind == CardKind.ARMADA_UPGRADE && ArmadaSlot.COMMANDER in c.card.upgradeSlots)) return@forEach
-                    add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), stripBracketName(c.card.rulesText ?: stringResource(R.string.upgrade_installed)), c.instanceId, slot = c.card.upgradeSlots.firstOrNull(), pts = c.card.points)
-                        .copy(used = usedUpgrades.contains(c.instanceId)))
-                }
-                activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, "crit_${c.name}")) }
-            },
-            critSelector = { expanded, onDismiss, onSelect ->
-                CritSelectorDropdown(armadaCrits, expanded, onDismiss, onSelect)
-            },
-            onAddCrit = { activeCrits = activeCrits + it },
-            onRemoveCrit = { activeCrits = activeCrits - it },
-            allCrits = armadaCrits
-        )
-        // ── command dial (roue de commandement) + pions d'ordre ──
-        CommandDialCard(
-            selected = commandOrder,
-            onSelect = { commandOrder = if (commandOrder == it) null else it },
-            orderTokens = orderTokens,
-            maxStock = maxOrderStock,
-            onIncOrder = { name ->
-                if (orderTokens.values.sum() < maxOrderStock) orderTokens = orderTokens + (name to (orderTokens[name] ?: 0) + 1)
-            },
-            onDecOrder = { name -> orderTokens = orderTokens + (name to ((orderTokens[name] ?: 0) - 1).coerceAtLeast(0)) },
-            wikiSections = wikiSections,
-            onRuleClick = onRuleClick
-        )
-        // ── cadrans (boucliers & coque) + dés d'attaque par côté + matrice de manoeuvres ──
-        Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
-            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                Text(stringResource(R.string.shields_hull), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+        // ── effects panel (améliorations remontées au-dessus de la roue de commandement) (repliable) ──
+        CollapsibleSection(stringResource(R.string.active_effects), initiallyExpanded = false) {
+            EffectsPanel(
+                effects = buildList {
+                    if (commander != null) add(ActiveEffect(EffectType.COMMANDER, commander.card.displayName(), stripBracketName(commander.card.rulesText ?: stringResource(R.string.fleet_commander)), "cmd_${commander.instanceId}", pts = commander.card.points)
+                        .copy(used = usedUpgrades.contains("cmd")))
+                    children.forEach { c ->
+                        if (c.card.kind == CardKind.COMMANDER || (c.card.kind == CardKind.ARMADA_UPGRADE && ArmadaSlot.COMMANDER in c.card.upgradeSlots)) return@forEach
+                        add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), stripBracketName(c.card.rulesText ?: stringResource(R.string.upgrade_installed)), c.instanceId, slot = c.card.upgradeSlots.firstOrNull(), pts = c.card.points)
+                            .copy(used = usedUpgrades.contains(c.instanceId)))
+                    }
+                    activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, "crit_${c.name}")) }
+                },
+                critSelector = { expanded, onDismiss, onSelect ->
+                    CritSelectorDropdown(armadaCrits, expanded, onDismiss, onSelect)
+                },
+                onAddCrit = { activeCrits = activeCrits + it },
+                onRemoveCrit = { activeCrits = activeCrits - it },
+                allCrits = armadaCrits
+            )
+        }
+        // ── command dial (roue de commandement) + pions d'ordre (repliable) ──
+        CollapsibleSection(stringResource(R.string.command_wheel), initiallyExpanded = false) {
+            CommandDialCard(
+                selected = commandOrder,
+                onSelect = { commandOrder = if (commandOrder == it) null else it },
+                orderTokens = orderTokens,
+                maxStock = maxOrderStock,
+                onIncOrder = { name ->
+                    if (orderTokens.values.sum() < maxOrderStock) orderTokens = orderTokens + (name to (orderTokens[name] ?: 0) + 1)
+                },
+                onDecOrder = { name -> orderTokens = orderTokens + (name to ((orderTokens[name] ?: 0) - 1).coerceAtLeast(0)) },
+                wikiSections = wikiSections,
+                onRuleClick = onRuleClick
+            )
+        }
+        // ── cadrans (boucliers & coque) + dés d'attaque par côté + matrice de manoeuvres (repliable) ──
+        CollapsibleSection(stringResource(R.string.shields_hull), initiallyExpanded = true) {
                 // ── cadrans des 4 arcs en croix (comme sur la carte officielle) : rectangle de dés + cercle de bouclier ──
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(6.dp)) {
                     // AVANT : rectangle de dés AU-DESSUS du cercle de bouclier.
@@ -643,7 +637,6 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
                         }
                     }
                 }
-            }
         }
         CardZoomOverlay(unit.card, showCard) { showCard = false }
         Spacer(Modifier.height(20.dp))
@@ -682,48 +675,41 @@ internal fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionE
     var defTokens by remember(unit.instanceId) { mutableStateOf<Map<String, Boolean>>(defTokenStates.mapIndexed { i, (def, _) -> "${def.name}_$i" to false }.toMap()) }
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         CardBlock(unit, emptyList(), unit.card.points, wikiSections, onRuleClick, onCardClick = { showCard = true })
-        Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
-            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                Text(stringResource(R.string.squadron_tracking), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
-                    BigCounter(stringResource(R.string.hull), hull, maxHp, Color(0xFFFF6B6B), { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- })
-                    Spacer(Modifier.width(20.dp))
-                    // Jeton d'activation/désactivation de l'escadron (à la place du coût, redondant avec le cadre du haut).
-                    SquadronActivationToken(
-                        activated = activated,
-                        onToggle = { activated = !activated },
-                        onWikiClick = { findWikiSection(wikiSections, "activation")?.let(onRuleClick) }
-                    )
-                }
-                if (hull < maxHp) HealthBar(hull.toFloat() / maxHp, hull, maxHp)
-                if (stats?.keywords?.isNotEmpty() == true) {
-                    HorizontalDivider(color = Color(0xFF2A3A4A))
-                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                        stats.keywords.forEach { kw ->
-                            val section = findWikiSection(wikiSections, kw)
-                            Surface(
-                                onClick = { if (section != null) onRuleClick(section) },
-                                shape = RoundedCornerShape(8.dp),
-                                color = Color(0xFF2A3A4A)
-                            ) {
-                                Text(kw, Modifier.padding(horizontal = 10.dp, vertical = 4.dp), color = if (section != null) Color(0xFFFFC857) else Color(0xFF77D9A7), fontSize = 11.sp, fontWeight = FontWeight.Bold)
-                            }
+        CollapsibleSection(stringResource(R.string.squadron_tracking), initiallyExpanded = true) {
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
+                BigCounter(stringResource(R.string.hull), hull, maxHp, Color(0xFFFF6B6B), { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- })
+                Spacer(Modifier.width(20.dp))
+                // Jeton d'activation/désactivation de l'escadron (à la place du coût, redondant avec le cadre du haut).
+                SquadronActivationToken(
+                    activated = activated,
+                    onToggle = { activated = !activated },
+                    onWikiClick = { findWikiSection(wikiSections, "activation")?.let(onRuleClick) }
+                )
+            }
+            if (hull < maxHp) HealthBar(hull.toFloat() / maxHp, hull, maxHp)
+            if (stats?.keywords?.isNotEmpty() == true) {
+                HorizontalDivider(color = Color(0xFF2A3A4A))
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    stats.keywords.forEach { kw ->
+                        val section = findWikiSection(wikiSections, kw)
+                        Surface(
+                            onClick = { if (section != null) onRuleClick(section) },
+                            shape = RoundedCornerShape(8.dp),
+                            color = Color(0xFF2A3A4A)
+                        ) {
+                            Text(kw, Modifier.padding(horizontal = 10.dp, vertical = 4.dp), color = if (section != null) Color(0xFFFFC857) else Color(0xFF77D9A7), fontSize = 11.sp, fontWeight = FontWeight.Bold)
                         }
                     }
                 }
             }
         }
         if (defTokenStates.isNotEmpty()) {
-            Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
-                Column(Modifier.padding(16.dp)) {
-                    Text(stringResource(R.string.defense_tokens), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                    Spacer(Modifier.height(10.dp))
-                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                        defTokenStates.forEachIndexed { i, (def, _) ->
-                            val key = "${def.name}_$i"
-                            val used = defTokens[key] ?: false
-                            DefenseTokenDisc(def, used, onClick = { defTokens = defTokens + (key to !used) }, onWikiClick = { findWikiSection(wikiSections, def.label)?.let(onRuleClick) })
-                        }
+            CollapsibleSection(stringResource(R.string.defense_tokens), initiallyExpanded = false) {
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                    defTokenStates.forEachIndexed { i, (def, _) ->
+                        val key = "${def.name}_$i"
+                        val used = defTokens[key] ?: false
+                        DefenseTokenDisc(def, used, onClick = { defTokens = defTokens + (key to !used) }, onWikiClick = { findWikiSection(wikiSections, def.label)?.let(onRuleClick) })
                     }
                 }
             }
@@ -784,7 +770,34 @@ internal fun CardBlock(unit: ListEntry, children: List<ListEntry>, totalPts: Int
     }
 }
 
-// Effects panel with crit selector
+// Section repliable : en-tete cliquable (titre + chevron) + contenu masque/deplie.
+// Permet de compacter le mode partie sur un ecran de telephone : les infos secondaires
+// (roue de commandement, effets, profil) sont repliees par defaut, le suivi principal reste visible.
+@Composable
+internal fun CollapsibleSection(
+    title: String,
+    initiallyExpanded: Boolean = false,
+    content: @Composable ColumnScope.() -> Unit
+) {
+    var expanded by remember { mutableStateOf(initiallyExpanded) }
+    Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
+        Column {
+            Row(
+                Modifier.fillMaxWidth().clickable { expanded = !expanded }.padding(horizontal = 16.dp, vertical = 14.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(title, color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                Text(if (expanded) "\u25B2" else "\u25BC", color = Color(0xFF9EACBC), fontSize = 12.sp)
+            }
+            if (expanded) {
+                HorizontalDivider(color = Color(0xFF2A3A4A))
+                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp), content = content)
+            }
+        }
+    }
+}
+
 @Composable
 internal fun EffectsPanel(
     effects: List<ActiveEffect>,
