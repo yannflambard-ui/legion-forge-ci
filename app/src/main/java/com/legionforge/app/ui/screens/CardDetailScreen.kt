@@ -556,6 +556,7 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
     // Colonne de vitesse sélectionnée dans la matrice de manoeuvres (0 = aucune).
     var selectedSpeed by remember(unit.instanceId) { mutableIntStateOf(0) }
     var activeCrits by remember(unit.instanceId) { mutableStateOf(listOf<CritCard>()) }
+    var showCritSelector by remember(unit.instanceId) { mutableStateOf(false) }
     var showCard by remember(unit.instanceId) { mutableStateOf(false) }
     var usedUpgrades by remember(unit.instanceId) { mutableStateOf(setOf<String>()) }
     val defTokenNames = remember(unit.instanceId) {
@@ -588,31 +589,37 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
                 }
                 if (stats != null) ShipStatsBlock(stats)
                 else if (!unit.card.rulesText.isNullOrBlank()) ClickableRulesText(unit.card.rulesText, wikiSections, onRuleClick, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall, maxLines = 6)
-                // ── résumé coque + vitesse + dégâts (compact, toujours visible) ──
+                // ── résumé coque (avec +/-) + vitesse + bouton +DGT CRIT (toujours visible) ──
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
-                    StatChip(stringResource(R.string.hull), hull, Color(0xFFFF8A80), modifier = Modifier.weight(1f), display = "$hull/$maxHp")
+                    HullCounter(hull, maxHp, { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- })
                     StatChip(stringResource(R.string.stat_speed), speed, Color(0xFF77D9A7), modifier = Modifier.weight(1f), display = "$speed/$maxSpeed")
-                    // Bouton dégât +/- : pilote la coque actuelle (toujours visible).
-                    DamageCounter(hull, maxHp, { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- })
+                    // Bouton +DGT CRIT : ajoute une carte de dégât critique (toujours visible).
+                    Surface(onClick = { showCritSelector = true }, shape = RoundedCornerShape(10.dp), color = Color(0xFF5A2020)) {
+                        Text(stringResource(R.string.add_crit), Modifier.padding(horizontal = 10.dp, vertical = 8.dp), color = Color(0xFFFF6B6B), fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                    }
                 }
-                // ── matrice de manœuvres (remplace la ligne compacte "Cadrans") ; pilote la vitesse ──
-                if (stats?.speedChart?.isNotEmpty() == true) {
-                    ManeuverMatrix(stats, selectedSpeed, { v ->
-                        selectedSpeed = if (selectedSpeed == v) 0 else v
-                        if (selectedSpeed != 0) speed = selectedSpeed
-                    })
-                } else {
-                    Surface(shape = RoundedCornerShape(9.dp), color = Color(0xFF1F2C3D), modifier = Modifier.fillMaxWidth()) {
-                        Row(Modifier.padding(horizontal = 10.dp, vertical = 7.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Text(stringResource(R.string.cadrans), color = Color(0xFF9EACBC), fontSize = 10.sp, fontWeight = FontWeight.Bold)
-                            Spacer(Modifier.weight(1f))
-                            Text("🛡 ${sF}/${sP}/${sS}/${sR}", color = Color(0xFF4FC3F7), fontSize = 10.sp, fontWeight = FontWeight.Bold)
-                            Text("⚄ ${(stats?.attackFront?.sum() ?: 0)}", color = Color(0xFFFF6B6B), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                // Sélecteur de dégât critique (ouvert par le bouton +DGT CRIT).
+                CritSelectorDropdown(armadaCrits, showCritSelector, { showCritSelector = false }, { c -> activeCrits = activeCrits + c; showCritSelector = false })
+            }
+        }
+                // ── matrice de manœuvres (repliable, repliée par défaut) ; pilote la vitesse ──
+                CollapsibleSection(stringResource(R.string.maneuver_matrix), initiallyExpanded = false) {
+                    if (stats?.speedChart?.isNotEmpty() == true) {
+                        ManeuverMatrix(stats, selectedSpeed, { v ->
+                            selectedSpeed = if (selectedSpeed == v) 0 else v
+                            if (selectedSpeed != 0) speed = selectedSpeed
+                        })
+                    } else {
+                        Surface(shape = RoundedCornerShape(9.dp), color = Color(0xFF1F2C3D), modifier = Modifier.fillMaxWidth()) {
+                            Row(Modifier.padding(horizontal = 10.dp, vertical = 7.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                Text(stringResource(R.string.cadrans), color = Color(0xFF9EACBC), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                                Spacer(Modifier.weight(1f))
+                                Text("🛡 ${sF}/${sP}/${sS}/${sR}", color = Color(0xFF4FC3F7), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                                Text("⚄ ${(stats?.attackFront?.sum() ?: 0)}", color = Color(0xFFFF6B6B), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                            }
                         }
                     }
                 }
-            }
-        }
                 // ── command dial (roue de commandement) (en haut, repliable) ──
                 CollapsibleSection(stringResource(R.string.command_wheel), initiallyExpanded = false) {
                     CommandDialCard(
@@ -1362,14 +1369,14 @@ internal fun BigCounter(label: String, value: Int, max: Int, color: Color, onInc
     }
 }
 
-// Compteur de dégâts compact (toujours visible dans le header) : pilote la coque actuelle.
+// Compteur de coque compact avec +/- (pilote la coque actuelle, toujours visible dans le header).
 @Composable
-internal fun DamageCounter(value: Int, max: Int, onInc: () -> Unit, onDec: () -> Unit) {
+internal fun HullCounter(value: Int, max: Int, onInc: () -> Unit, onDec: () -> Unit) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(stringResource(R.string.damage), color = Color(0xFFFF6B6B), fontSize = 8.sp, fontWeight = FontWeight.Bold)
+        Text(stringResource(R.string.hull), color = Color(0xFFFF8A80), fontSize = 8.sp, fontWeight = FontWeight.Bold)
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
             Surface(onClick = onDec, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(26.dp)) { Box(contentAlignment = Alignment.Center) { Text("-", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) } }
-            Text("$value", color = Color(0xFFFF6B6B), fontSize = 15.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.width(30.dp))
+            Text("$value/$max", color = Color(0xFFFF8A80), fontSize = 13.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.width(44.dp))
             Surface(onClick = onInc, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(26.dp)) { Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) } }
         }
     }

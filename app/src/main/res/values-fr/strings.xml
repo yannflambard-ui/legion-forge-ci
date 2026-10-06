@@ -154,8 +154,8 @@
     <string name="share_title">PARTAGER LA LISTE</string>
     <string name="share_host">HÔTE</string>
     <string name="share_client">CLIENT</string>
-    <string name="share_hosting">Hébergement… en attente d'un client</string>
-    <string name="share_discovering">Recherche d'hôtes…</string>
+    <string name="share_hosting">Hébergement… en attente d\'un client</string>
+    <string name="share_discovering">Recherche d\'hôtes…</string>
     <string name="share_connect">Connecter</string>
     <string name="share_connected">Connecté</string>
     <string name="share_send">Envoyer la liste</string>
