@@ -348,10 +348,6 @@ internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntri
                     children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), stripBracketName(c.card.rulesText ?: stringResource(R.string.upgrade_installed)), c.instanceId, slot = c.card.upgradeSlots.firstOrNull(), pts = c.card.points).copy(used = usedUpgrades.contains(c.instanceId))) }
                     activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, c.name)) }
                 },
-                critSelector = { expanded, onDismiss, onSelect ->
-                    CritSelectorDropdown(legionCrits, expanded, onDismiss, onSelect)
-                },
-                onAddCrit = { activeCrits = activeCrits + it },
                 onRemoveCrit = { activeCrits = activeCrits - it },
                 allCrits = legionCrits
             )
@@ -553,8 +549,8 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
     val maxShield = 9
     val maxSpeed = stats?.maxSpeed ?: 3
     var speed by remember(unit.instanceId) { mutableIntStateOf(2) }
-    // Colonne de vitesse sélectionnée dans la matrice de manoeuvres (0 = aucune).
-    var selectedSpeed by remember(unit.instanceId) { mutableIntStateOf(0) }
+    // Colonne de vitesse sélectionnée dans la matrice de manoeuvres (défaut = 2, vitesse de départ des vaisseaux).
+    var selectedSpeed by remember(unit.instanceId) { mutableIntStateOf(2) }
     var activeCrits by remember(unit.instanceId) { mutableStateOf(listOf<CritCard>()) }
     var showCritSelector by remember(unit.instanceId) { mutableStateOf(false) }
     var showCard by remember(unit.instanceId) { mutableStateOf(false) }
@@ -583,7 +579,7 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
             Column(Modifier.padding(10.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     CardArtwork(unit.card, Modifier.width(52.dp).clickable { showCard = true })
-                    Column(Modifier.weight(1f)) { Text(unit.card.displayName(), color = Color.White, style = MaterialTheme.typography.titleMedium, maxLines = 2, overflow = TextOverflow.Ellipsis); Text("${stringResource(R.string.kind_ship)}  •  ${unit.card.factionId.replace('-', ' ').replaceFirstChar { it.uppercase() }}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium) }
+                    Column(Modifier.weight(1f)) { Text(unit.card.displayName(), color = Color.White, style = MaterialTheme.typography.labelLarge, maxLines = 1, overflow = TextOverflow.Ellipsis); Text("${stringResource(R.string.kind_ship)}  •  ${unit.card.factionId.replace('-', ' ').replaceFirstChar { it.uppercase() }}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelSmall) }
                     if (isHuge) Surface(shape = RoundedCornerShape(8.dp), color = Color(0xFF3A2050)) { Text("HUGE", Modifier.padding(horizontal = 6.dp, vertical = 1.dp), color = Color(0xFFD7A6FF), fontSize = 9.sp, fontWeight = FontWeight.Bold) }
                     Text("${unit.card.points}", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
                 }
@@ -665,10 +661,6 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
                     }
                     activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, "crit_${c.name}")) }
                 },
-                critSelector = { expanded, onDismiss, onSelect ->
-                    CritSelectorDropdown(armadaCrits, expanded, onDismiss, onSelect)
-                },
-                onAddCrit = { activeCrits = activeCrits + it },
                 onRemoveCrit = { activeCrits = activeCrits - it },
                 allCrits = armadaCrits
             )
@@ -862,24 +854,11 @@ internal fun CollapsibleSection(
 @Composable
 internal fun EffectsPanel(
     effects: List<ActiveEffect>,
-    critSelector: @Composable (Boolean, () -> Unit, (CritCard) -> Unit) -> Unit,
-    onAddCrit: (CritCard) -> Unit,
     onRemoveCrit: (CritCard) -> Unit,
     allCrits: List<CritCard>
 ) {
-    var expandedCrit by remember { mutableStateOf(false) }
     var selectedEffect by remember { mutableStateOf<ActiveEffect?>(null) }
     Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-        // Header + add crit button
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-            Text(stringResource(R.string.active_effects), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-            Surface(onClick = { expandedCrit = true }, shape = RoundedCornerShape(10.dp), color = Color(0xFF5A2020)) {
-                Text(stringResource(R.string.add_crit), Modifier.padding(horizontal = 12.dp, vertical = 6.dp), color = Color(0xFFFF6B6B), fontSize = 12.sp, fontWeight = FontWeight.Bold)
-            }
-        }
-        // Crit selector dropdown
-        critSelector(expandedCrit, { expandedCrit = false }, { c -> onAddCrit(c); expandedCrit = false })
-
         // Effect list
         if (effects.isEmpty()) {
             Text(stringResource(R.string.no_effects), color = Color(0xFF5A6A7A), style = MaterialTheme.typography.bodySmall)
@@ -1173,7 +1152,6 @@ internal fun CommandDialCard(
 ) {
     Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
         Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text(stringResource(R.string.command_wheel), color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
             // N'affiche QUE l'ordre sélectionné (pastille compacte) ; sinon un selecteur compact par tap.
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
                 if (selected != null) {
@@ -1201,9 +1179,8 @@ internal fun OrderTokensCard(
 ) {
     Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(22.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF192330))) {
         Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                Text(stringResource(R.string.order_tokens), color = Color(0xFFFFC857), style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
-                // Compteur de pions compact.
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End, verticalAlignment = Alignment.CenterVertically) {
+                // Compteur de pions compact (le titre est déjà dans l'en-tête du menu repliable).
                 Text(stringResource(R.string.orders_stock, orderTokens.values.sum(), maxStock), color = Color(0xFF77D9A7), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
             }
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
