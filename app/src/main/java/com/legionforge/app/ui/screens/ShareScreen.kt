@@ -21,6 +21,7 @@ import com.legionforge.app.data.nearby.ShareMode
 import com.legionforge.app.ui.viewmodel.ShareListPayload
 import com.legionforge.app.ui.viewmodel.ShareViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ShareScreen(
     list: BuilderListEntity?,
