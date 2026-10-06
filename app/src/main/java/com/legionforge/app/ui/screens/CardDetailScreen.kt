@@ -250,6 +250,12 @@ internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntri
     val maxHp = (stats?.health?.takeIf { it > 0 } ?: 1) * (stats?.miniCount?.takeIf { it > 0 } ?: 1)
     var wounds by remember(unit.instanceId) { mutableIntStateOf(maxHp) }
     var tokens by remember(unit.instanceId) { mutableStateOf(listOf<String>()) }
+    // Courage de l'unité (depuis legionStats) : pilote les états Supprimé (> courage) / Paniqué (>= 2x courage).
+    val courage = stats?.courage?.takeIf { it > 0 } ?: 1
+    var suppressions by remember(unit.instanceId) { mutableIntStateOf(0) }
+    val isWounded = wounds < maxHp
+    val isSuppressed = suppressions >= courage
+    val isPanicked = suppressions >= courage * 2
     var activeCrits by remember(unit.instanceId) { mutableStateOf(listOf<CritCard>()) }
     var showCard by remember(unit.instanceId) { mutableStateOf(false) }
     var usedUpgrades by remember(unit.instanceId) { mutableStateOf(setOf<String>()) }
@@ -290,6 +296,21 @@ internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntri
         CollapsibleSection(stringResource(R.string.tracking), initiallyExpanded = true) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { BigCounter(stringResource(R.string.minis), wounds, maxHp, Color(0xFFFF6B6B), { if (wounds < maxHp) wounds++ }, { if (wounds > 0) wounds-- }) }
             HealthBar(wounds.toFloat() / maxHp, wounds, maxHp)
+            // ── état de l'unité (auto-calculé depuis blessures + suppression / courage) ──
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                StateChip(stringResource(R.string.legion_state_wounded), isWounded, Color(0xFFFFC857))
+                StateChip(stringResource(R.string.legion_state_suppressed), isSuppressed, Color(0xFFFFB74D))
+                StateChip(stringResource(R.string.legion_state_panicked), isPanicked, Color(0xFFFF6B6B))
+            }
+            // Compteur de suppression : alimente l'état Supprimé (>= courage) / Paniqué (>= 2x courage).
+            Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                Text(stringResource(R.string.legion_suppression_label), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold)
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Surface(onClick = { if (suppressions > 0) suppressions-- }, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(34.dp)) { Box(contentAlignment = Alignment.Center) { Text("-", color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.Bold) } }
+                    Text("$suppressions / $courage", color = if (isPanicked) Color(0xFFFF6B6B) else if (isSuppressed) Color(0xFFFFB74D) else Color(0xFF77D9A7), fontSize = 18.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
+                    Surface(onClick = { suppressions++ }, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(34.dp)) { Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.Bold) } }
+                }
+            }
             // Armes de l'unité (range + dés)
             if (stats?.weapons?.isNotEmpty() == true) {
                 HorizontalDivider(color = Color(0xFF2A3A4A))
@@ -1251,9 +1272,17 @@ internal fun SquadronActivationToken(activated: Boolean, onToggle: () -> Unit, o
 internal fun TokenSection(tokens: List<String>, onAdd: (String) -> Unit, onRemove: (String) -> Unit) {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(stringResource(R.string.tokens_markers), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelLarge)
+        // Jetons d'action Legion v2 : Aim (jaune), Dodge (violet), Surge (bleu), Standby (orange).
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            listOf("Dgt" to Color(0xFFFF6B6B), "Etat" to Color(0xFFFFC857), "Bcl" to Color(0xFF4FC3F7), "Ordre" to Color(0xFF77D9A7)).forEach { (l, c) ->
-                Surface(onClick = { onAdd(l) }, shape = RoundedCornerShape(12.dp), color = c.copy(alpha = 0.2f)) { Text(l, Modifier.padding(horizontal = 16.dp, vertical = 10.dp), color = c, fontWeight = FontWeight.Bold, fontSize = 14.sp) }
+            listOf(
+                stringResource(R.string.legion_token_aim) to Color(0xFFFFC857),
+                stringResource(R.string.legion_token_dodge) to Color(0xFF9B6DFF),
+                stringResource(R.string.legion_token_surge) to Color(0xFF4FC3F7),
+                stringResource(R.string.legion_token_standby) to Color(0xFFFF8A65)
+            ).forEach { (l, c) ->
+                Surface(onClick = { onAdd(l) }, shape = RoundedCornerShape(10.dp), color = c.copy(alpha = 0.18f)) {
+                    Text(l, Modifier.padding(horizontal = 14.dp, vertical = 9.dp), color = c, fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                }
             }
         }
         if (tokens.isNotEmpty()) {
@@ -1262,6 +1291,14 @@ internal fun TokenSection(tokens: List<String>, onAdd: (String) -> Unit, onRemov
             }
         }
         Text(stringResource(R.string.tap_token), color = Color(0xFF5A6A7A), style = MaterialTheme.typography.labelSmall)
+    }
+}
+
+// Badge d'état auto (Blessé / Supprimé / Paniqué) : actif = coloré, sinon grisé.
+@Composable
+internal fun StateChip(label: String, active: Boolean, color: Color) {
+    Surface(shape = RoundedCornerShape(8.dp), color = if (active) color.copy(alpha = 0.22f) else Color(0xFF1E2A3A)) {
+        Text(label, Modifier.padding(horizontal = 12.dp, vertical = 7.dp), color = if (active) color else Color(0xFF5A6A7A), fontSize = 11.sp, fontWeight = FontWeight.Bold)
     }
 }
 

@@ -153,4 +153,13 @@
     <string name="wiki_title">RULES WIKI</string>
     <string name="wiki_search_hint">Keyword: shields, activation, attack, speed…</string>
     <string name="wiki_no_results">No section for “%1$s”</string>
+    <string name="legion_token_aim">Aim</string>
+    <string name="legion_token_dodge">Dodge</string>
+    <string name="legion_token_surge">Surge</string>
+    <string name="legion_token_standby">Standby</string>
+    <string name="legion_token_suppression">Suppression</string>
+    <string name="legion_suppression_label">SUPPRESSION</string>
+    <string name="legion_state_wounded">Wounded</string>
+    <string name="legion_state_suppressed">Suppressed</string>
+    <string name="legion_state_panicked">Panicked</string>
 </resources>

@@ -52,3 +52,15 @@
 - CardBlock : nouveau parametre onCardClick (miniature cliquable) utilise par Legion/Commander/Squadron.
 - Supprime les cles string inutilisees : add_dgt_crit, card_label (4 locales).
 - Version 0.9.25 / code 76.
+
+## 0.9.27 (06/10/2026) — Mode partie Legion intelligent : etats auto + jetons v2
+- P1 killer #3 (roadmap) : les jetons generiques Dgt/Etat/Bcl/Ordre sont remplaces par les vrais jetons d'action Legion v2 — Aim (jaune), Dodge (violet), Surge (bleu), Standby (orange).
+- Etat auto de l'unite calcule depuis les donnees de la carte :
+  - Blesse (Wounded) si wounds < maxHp (sante x effectif).
+  - Supprime (Suppressed) si suppression >= courage (legionStats.courage).
+  - Panique (Panicked) si suppression >= 2 x courage.
+- Compteur de repetition dedie (pilote l'etat Supprime/Panique) + badges d'etat cliquables (StateChip).
+- Seuils conformes a la roadmap P1 ("Suppression: Supprime >= courage / Panique >= 2x courage").
+- Nouvelles cles string (4 locales EN/FR/DE/ES) : legion_token_{aim,dodge,surge,standby,suppression}, legion_suppression_label, legion_state_{wounded,suppressed,panicked}.
+- Est-ce que la recherche globale + glossaire cliquable + filtres catalogue etaient DEJÀ implémentes (P0 roadmaps non coches) : voir ROADMAP.md — marques FAIT.
+- Version 0.9.27 / code 78

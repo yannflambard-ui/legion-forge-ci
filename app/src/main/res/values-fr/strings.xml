@@ -153,4 +153,13 @@
     <string name="wiki_title">WIKI DES RÈGLES</string>
     <string name="wiki_search_hint">Mot-clé : boucliers, activation, attaque, vitesse…</string>
     <string name="wiki_no_results">Aucune section pour « %1$s »</string>
+    <string name="legion_token_aim">Visée</string>
+    <string name="legion_token_dodge">Esquive</string>
+    <string name="legion_token_surge">Surge</string>
+    <string name="legion_token_standby">Veille</string>
+    <string name="legion_token_suppression">Répression</string>
+    <string name="legion_suppression_label">RÉPRESSION</string>
+    <string name="legion_state_wounded">Blessé</string>
+    <string name="legion_state_suppressed">Supprimé</string>
+    <string name="legion_state_panicked">Paniqué</string>
 </resources>

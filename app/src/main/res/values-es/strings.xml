@@ -153,4 +153,13 @@
     <string name="wiki_title">WIKI DE REGLAS</string>
     <string name="wiki_search_hint">Palabra clave: escudos, activación, ataque, velocidad…</string>
     <string name="wiki_no_results">Ninguna sección para «%1$s»</string>
+    <string name="legion_token_aim">Apuntar</string>
+    <string name="legion_token_dodge">Esquivar</string>
+    <string name="legion_token_surge">Surge</string>
+    <string name="legion_token_standby">Espera</string>
+    <string name="legion_token_suppression">Represión</string>
+    <string name="legion_suppression_label">REPRESIÓN</string>
+    <string name="legion_state_wounded">Herido</string>
+    <string name="legion_state_suppressed">Suprimido</string>
+    <string name="legion_state_panicked">En pánico</string>
 </resources>

@@ -153,4 +153,13 @@
     <string name="wiki_title">REGELWIKI</string>
     <string name="wiki_search_hint">Stichwort: Schilde, Aktivierung, Angriff, Geschwindigkeit…</string>
     <string name="wiki_no_results">Keine Sektion für „%1$s“</string>
+    <string name="legion_token_aim">Zielen</string>
+    <string name="legion_token_dodge">Ausweichen</string>
+    <string name="legion_token_surge">Surge</string>
+    <string name="legion_token_standby">Bereitschaft</string>
+    <string name="legion_token_suppression">Unterdrückung</string>
+    <string name="legion_suppression_label">UNTERDRÜCKUNG</string>
+    <string name="legion_state_wounded">Verwundet</string>
+    <string name="legion_state_suppressed">Unterdrückt</string>
+    <string name="legion_state_panicked">Panik</string>
 </resources>

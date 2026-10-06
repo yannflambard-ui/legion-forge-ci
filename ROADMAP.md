@@ -30,40 +30,28 @@ Pourquoi : le mode partie scrollait sur plusieurs écrans (carte, jetons, roue d
 Intégration : chaque bloc secondaire (profil, roue de commandement, effets, jetons de défense escadron) est replié par défaut ; le suivi principal (blessures/coque/boucliers) reste déplié. En-tête cliquable (titre + chevron ▲▼) pour masquer/déplier. La roue de commandement (jetons d'ordre) est conservée mais repliée par défaut.
 ```
 
-### [ ] Glossaire / mots-clés cliquables
+### [x] Glossaire / mots-clés cliquables
 ```
 Jeu : Legion + Armada (Commun)
 Priorité : P0 | Valeur joueur : Très haute | Complexité : Faible
-État actuel : legionStats.keywords rempli dans le JSON v2 (173 unités), mais affiché en texte brut non-cliquable. Le dataset DoctorDizzee a keywords.json avec descriptions.
-Écrans : LegionUnitPage (profil), ArmyBuilder, fiche carte
-Données : legionStats.keywords + définitions de mots-clés
-
-Pourquoi : l'info n°1 cherchée pendant une partie (« c'est quoi Combat X ? »). Aujourd'hui un mot-clé = string inerte.
-Intégration : seed des définitions de mots-clés (pas forcément une nouvelle table — voir note architecture data), mots-clés rendus cliquables → bottom sheet glossaire. Réutiliser le pattern de fiche existant.
+État actuel : FAIT — les keywords (legionStats.keywords) sont des chips cliquables dans le profil des pages mode partie (Legion + ArmadaSquadron) qui ouvrent le point de règle officiel du wiki (RulePopup). Le dictionnaire keywords_i18n.json reste un stub (1 mot-clé) — à compléter si besoin de traduction FR/DE/ES des noms.
+Écrans : LegionUnitPage (profil), ArmadaSquadronPage, fiche carte
 ```
 
-### [ ] Recherche globale dans le texte des cartes
+### [x] Recherche globale dans le texte des cartes
 ```
 Jeu : Commun
 Priorité : P0 | Valeur joueur : Haute | Complexité : Moyenne
-État actuel : recherche par nom seulement (filtre par faction).
+État actuel : FAIT — SearchScreen + PolymorphicGameDao.searchCards cherchent sur name + rulesText + legionStats + shipStats (LIKE). Interface compacte, clic résultat → bottom sheet des variantes du même nom de base.
 Écrans : HomeScreen / barre d'ajout
-Données : catalog_cards (name, rulesText, legionStats)
-
-Pourquoi : « quelle unité/amélioration a Pierce 2 ? », « quel vaisseau a tel trait ? ».
-Intégration : recherche sur name + rulesText + legionStats (LIKE ou FTS5 selon volume). Champ en haut → HomeScreen + barre d'ajout.
 ```
 
-### [ ] Filtres de catalogue enrichis
+### [x] Filtres de catalogue enrichis
 ```
 Jeu : Commun
 Priorité : P0 | Valeur joueur : Haute | Complexité : Faible-moyenne
-État actuel : filtre faction + pré-filtre scoped upgrades (0.4.2). legionStats rempli.
+État actuel : FAIT — ArmyBuilderScreen (bouton ⚙) : chips rang/type (C/O/Co/FS/S/H Legion, V/E/Cmd Armada) + tranche de points (≤25/50/100) + mot-clé (texte libellé, cherche nom+rulesText+legionStats+shipStats). S'ajoutent au filtre faction + scoped upgrades existants.
 Écrans : FactionPicker → liste, ArmyBuilder
-Données : legionStats (keywords), rank, points, faction
-
-Pourquoi : « les corps ≤80 pts avec Armor » avant/après sélection.
-Intégration : chips (rang, tranche de points, mot-clé, slot) ; réutiliser le filtre mémoire + matchesFaction.
 ```
 
 ### [ ] Historique + favoris
@@ -90,15 +78,16 @@ Données : collection (cardId) + filtre « ma collection » (pattern matchesFact
 Pourquoi : construire une liste honnête = ce qu'on possède vraiment.
 ```
 
-### [ ] Mode partie Legion enrichi (jetons v2 + états auto)
+### [x] Mode partie Legion enrichi (jetons v2 + états auto) — 0.9.27
 ```
 Jeu : Legion
 Priorité : P1 | Valeur : haute (tournoi / partie)
-Base déjà refaite en 0.5.0 (PV réels, profil, armes, surges). À ajouter (référence LITKO 2024 Refresh) :
-- jetons Aim / Dodge / Standby / Surge
-- Suppression : état Supprimé (≥ courage) / Paniqué (≥ 2×courage) — auto-calcul depuis legionStats.courage
-- Vehicle Damage (résilience) / Ion Damage (véhicules + droïdes)
-Écrans : LegionUnitPage, TokenSection (généraliser)
+État actuel : FAIT en 0.9.27 (coeur de la killer feature) —
+- jetons v2 réels : Aim / Dodge / Surge / Standby (remplacent les génériques Dgt/Etat/Bcl/Ordre).
+- états auto-calculés depuis les données : Blessé (wounds < santé×effectif), Supprimé (suppression >= courage), Paniqué (suppression >= 2×courage) — depuis legionStats.courage.
+- compteur de suppression dédié qui pilote les états + badges (StateChip).
+Écrans : LegionUnitPage, TokenSection
+Reste à enrichir (suite P1) : jeton Surge auto selon surgeAttack, Vehicle Damage (résilience) / Ion Damage (véhicules + droïdes), Standby lié au round.
 ```
 > Killer feature Legion : ne plus rien mémoriser à la table.
 
