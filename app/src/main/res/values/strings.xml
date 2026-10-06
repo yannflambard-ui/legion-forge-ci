@@ -150,6 +150,7 @@
     <string name="command_wheel">COMMAND WHEEL</string>
     <string name="orders_stock">%1$s/%2$s</string>
         <string name="order_tokens">ORDER TOKENS</string>
+    <string name="damage">DMG</string>
     <string name="cadrans">Dials</string>
     <string name="wiki_title">RULES WIKI</string>
     <string name="wiki_search_hint">Keyword: shields, activation, attack, speed…</string>

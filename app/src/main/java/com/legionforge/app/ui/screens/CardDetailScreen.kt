@@ -588,10 +588,12 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
                 }
                 if (stats != null) ShipStatsBlock(stats)
                 else if (!unit.card.rulesText.isNullOrBlank()) ClickableRulesText(unit.card.rulesText, wikiSections, onRuleClick, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall, maxLines = 6)
-                // ── résumé coque + vitesse (courant/max, compact) ──
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                // ── résumé coque + vitesse + dégâts (compact, toujours visible) ──
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
                     StatChip(stringResource(R.string.hull), hull, Color(0xFFFF8A80), modifier = Modifier.weight(1f), display = "$hull/$maxHp")
                     StatChip(stringResource(R.string.stat_speed), speed, Color(0xFF77D9A7), modifier = Modifier.weight(1f), display = "$speed/$maxSpeed")
+                    // Bouton dégât +/- : pilote la coque actuelle (toujours visible).
+                    DamageCounter(hull, maxHp, { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- })
                 }
                 // ── matrice de manœuvres (remplace la ligne compacte "Cadrans") ; pilote la vitesse ──
                 if (stats?.speedChart?.isNotEmpty() == true) {
@@ -1356,6 +1358,19 @@ internal fun BigCounter(label: String, value: Int, max: Int, color: Color, onInc
             Surface(onClick = onDec, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(38.dp)) { Box(contentAlignment = Alignment.Center) { Text("-", color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold) } }
             Text("$value", color = color, fontSize = 32.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.width(54.dp))
             Surface(onClick = onInc, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(38.dp)) { Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold) } }
+        }
+    }
+}
+
+// Compteur de dégâts compact (toujours visible dans le header) : pilote la coque actuelle.
+@Composable
+internal fun DamageCounter(value: Int, max: Int, onInc: () -> Unit, onDec: () -> Unit) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(stringResource(R.string.damage), color = Color(0xFFFF6B6B), fontSize = 8.sp, fontWeight = FontWeight.Bold)
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+            Surface(onClick = onDec, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(26.dp)) { Box(contentAlignment = Alignment.Center) { Text("-", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) } }
+            Text("$value", color = Color(0xFFFF6B6B), fontSize = 15.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.width(30.dp))
+            Surface(onClick = onInc, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(26.dp)) { Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) } }
         }
     }
 }

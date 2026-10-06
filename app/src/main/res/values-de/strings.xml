@@ -150,6 +150,7 @@
     <string name="command_wheel">BEFEHLSRAD</string>
     <string name="orders_stock">%1$s/%2$s</string>
         <string name="order_tokens">BEFEHLSTOKENS</string>
+    <string name="damage">SCHADEN</string>
     <string name="cadrans">Zifferblätter</string>
     <string name="wiki_title">REGELWIKI</string>
     <string name="wiki_search_hint">Stichwort: Schilde, Aktivierung, Angriff, Geschwindigkeit…</string>

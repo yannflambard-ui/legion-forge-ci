@@ -150,6 +150,7 @@
     <string name="command_wheel">RUEDA DE MANDO</string>
     <string name="orders_stock">%1$s/%2$s</string>
         <string name="order_tokens">FICHAS DE ORDEN</string>
+    <string name="damage">DAÑO</string>
     <string name="cadrans">Esferas</string>
     <string name="wiki_title">WIKI DE REGLAS</string>
     <string name="wiki_search_hint">Palabra clave: escudos, activación, ataque, velocidad…</string>
