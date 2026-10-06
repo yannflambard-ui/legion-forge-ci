@@ -149,7 +149,7 @@
     <string name="maneuver_matrix">MATRICE DE MANOEUVRES</string>
     <string name="command_wheel">ROUE DE COMMANDEMENT</string>
     <string name="orders_stock">%1$s/%2$s</string>
-        <string name="order_tokens">JETONS D'ORDRE</string>
+        <string name="order_tokens">JETONS D\'ORDRE</string>
     <string name="damage">DÉGÂTS</string>
     <string name="cadrans">Cadrans</string>
     <string name="wiki_title">WIKI DES RÈGLES</string>
