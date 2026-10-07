@@ -182,6 +182,14 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
     val isConnected = syncMode == ShareMode.CONNECTED
     // Gain de permission runtime avant toute action Nearby (mode 2 joueurs).
     val runWithPermission = rememberNearbyPermissionAction()
+    // Cartes de commandement Legion : chargement + deck (ajout/marquage jouée).
+    val legionContext = androidx.compose.ui.platform.LocalContext.current
+    val cmdFaction = vm.currentList.value?.factionId ?: ""
+    val isLegion = vm.currentList.value?.gameSystem == "LEGION_V2"
+    val cmdCards = remember { loadCommandCards(legionContext) }
+    var commandDeck by remember { mutableStateOf(setOf<String>()) }
+    var playedCommands by remember { mutableStateOf(setOf<String>()) }
+    var showCmdSheet by remember { mutableStateOf(false) }
     // Applique les états reçus de l'autre téléphone.
     LaunchedEffect(receivedUnits) {
         receivedUnits.forEach { st ->
@@ -210,6 +218,14 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
                                 Surface(onClick = { viewingOpponent = !viewingOpponent }, shape = RoundedCornerShape(8.dp), color = Color(0xFF1A2330), modifier = Modifier.padding(end = 4.dp)) {
                                     Box(Modifier.padding(horizontal = 8.dp, vertical = 6.dp), contentAlignment = Alignment.Center) {
                                         Text(if (viewingOpponent) stringResource(R.string.play_opponent) else stringResource(R.string.play_my_army), color = Color(0xFFFFC857), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                                    }
+                                }
+                            }
+                            // Bouton deck de cartes de commandement (Legion only).
+                            if (isLegion) {
+                                Surface(onClick = { showCmdSheet = true }, shape = RoundedCornerShape(8.dp), color = if (commandDeck.isNotEmpty()) Color(0xFF1E3A2A) else Color(0xFF2A3A4A), modifier = Modifier.padding(end = 4.dp)) {
+                                    Box(Modifier.padding(horizontal = 8.dp, vertical = 6.dp), contentAlignment = Alignment.Center) {
+                                        Text("CMD ${commandDeck.size}", color = Color(0xFFFFC857), fontSize = 10.sp, fontWeight = FontWeight.Bold)
                                     }
                                 }
                             }
@@ -309,6 +325,17 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
     ruleSection?.let { section ->
         RulePopup(section = section, onClose = { ruleSection = null })
     }
+    // Sheet du deck de cartes de commandement (Legion).
+    if (showCmdSheet) {
+        CommandDeckSheet(
+            cards = cmdCards.filter { it.generic || it.faction == cmdFaction },
+            deck = commandDeck,
+            played = playedCommands,
+            onToggleDeck = { id -> commandDeck = if (id in commandDeck) commandDeck - id else commandDeck + id },
+            onTogglePlayed = { id -> playedCommands = if (id in playedCommands) playedCommands - id else playedCommands + id },
+            onClose = { showCmdSheet = false }
+        )
+    }
 }
 
 // ═══════════════════  LEGION  ═══════════════════════════
@@ -361,6 +388,137 @@ internal object LegionStatsParser {
                 weapons = wp
             )
         } catch (_: Exception) { null }
+    }
+}
+
+// ── Rendu lisible des conditions d'équipement Legion ─────────────────────────
+// Le rulesText des upgrades LEGION est du JSON de "requirements" (conditions
+// pour équiper l'upgrade sur une unité), PAS un texte d'effet. On le rend
+// humainement lisible au lieu d'afficher le JSON brut. (Armada = déjà lisible.)
+internal fun readableUpgradeText(rulesText: String?): String? {
+    val rt = rulesText?.trim() ?: return null
+    if (!rt.startsWith("{")) return stripBracketName(rt) // Armada : texte déjà lisible
+    return try {
+        val req = renderLegionRequirement(org.json.JSONObject(rt).opt("requirements")) ?: return null
+        "Équipable sur : $req"
+    } catch (_: Exception) { null }
+}
+
+private fun renderLegionRequirement(node: Any?): String? = when (node) {
+    is org.json.JSONArray -> {
+        val items = (0 until node.length()).map { node.get(it) }
+        if (items.isNotEmpty() && items[0] is String) {
+            val op = items[0] as String
+            val rest = items.drop(1).mapNotNull { renderLegionRequirement(it) }
+            when {
+                op.equals("OR", true) -> rest.joinToString(" OU ")
+                op.equals("AND", true) -> rest.joinToString(" ET ")
+                op.equals("NOT", true) -> "pas ${rest.firstOrNull() ?: ""}"
+                else -> rest.joinToString(" ")
+            }
+        } else items.mapNotNull { renderLegionRequirement(it) }.joinToString(" ")
+    }
+    is org.json.JSONObject -> {
+        val parts = mutableListOf<String>()
+        node.keys().forEach { k ->
+            when (k) {
+                "cardName" -> parts.add(node.optString("cardName"))
+                "title" -> parts.add("\"${node.optString("title")}\"")
+                "cardSubtype" -> parts.add(titleCase(node.optString("cardSubtype")))
+                "faction" -> parts.add(titleCase(node.optString("faction")))
+                "rank" -> parts.add(titleCase(node.optString("rank")))
+                "forceAffinity" -> parts.add(if (node.optString("forceAffinity") == "light side") "côté clair" else "côté obscur")
+                "upgradeBar" -> { val a = node.optJSONArray("upgradeBar"); if (a != null && a.length() > 0) parts.add("slot ${titleCase(a.getString(0))}") }
+                "keywords" -> { val a = node.optJSONArray("keywords"); if (a != null && a.length() > 0) parts.add(a.getString(0)) }
+                "stats" -> { val s = node.optJSONObject("stats"); if (s != null) parts.add("défense ${s.optString("defense")}") }
+            }
+        }
+        parts.joinToString(" ").ifEmpty { null }
+    }
+    is String -> node
+    else -> node?.toString()
+}
+
+private fun titleCase(s: String): String = s.replace('_', ' ').trim().replaceFirstChar { it.uppercase() }
+
+// ── Cartes de commandement Legion ────────────────────────────────────────
+internal data class LegionCommandCard(
+    val id: String,
+    val name: String,
+    val pip: String,             // "1" | "2" | "3"
+    val faction: String,
+    val generic: Boolean = false,
+    val commanders: List<String> = emptyList(),
+    val keywords: List<String> = emptyList()
+)
+
+// Charge les cartes de commandement depuis assets/command_cards.json.
+internal fun loadCommandCards(context: android.content.Context): List<LegionCommandCard> {
+    return try {
+        val s = context.assets.open("command_cards.json").bufferedReader().use { it.readText() }
+        val arr = org.json.JSONObject(s).getJSONArray("cards")
+        buildList {
+            for (i in 0 until arr.length()) {
+                val o = arr.getJSONObject(i)
+                val cmdrs = buildList { val a = o.optJSONArray("commanders"); if (a != null) for (j in 0 until a.length()) add(a.getString(j)) }
+                val kws = buildList { val a = o.optJSONArray("keywords"); if (a != null) for (j in 0 until a.length()) add(a.getString(j)) }
+                add(LegionCommandCard(o.optString("id"), o.optString("name"), o.optString("pip"), o.optString("faction"), o.optBoolean("generic"), cmdrs, kws))
+            }
+        }
+    } catch (_: Exception) { emptyList() }
+}
+
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
+@Composable
+internal fun CommandDeckSheet(
+    cards: List<LegionCommandCard>,
+    deck: Set<String>,
+    played: Set<String>,
+    onToggleDeck: (String) -> Unit,
+    onTogglePlayed: (String) -> Unit,
+    onClose: () -> Unit
+) {
+    ModalBottomSheet(onDismissRequest = onClose, containerColor = Color(0xFF111827)) {
+        Column(Modifier.fillMaxWidth().padding(horizontal = 16.dp).padding(bottom = 24.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+            Text("CARTES DE COMMANDEMENT", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+            if (deck.isEmpty()) {
+                Text("Touchez une carte pour l'ajouter à votre deck.", color = Color(0xFF9EACBC), style = MaterialTheme.typography.bodySmall)
+            } else {
+                Text("Deck : ${deck.size} cartes · ${played.size} jouée(s).", color = Color(0xFF77D9A7), style = MaterialTheme.typography.bodySmall)
+            }
+            Box(Modifier.fillMaxWidth().height(2.dp).background(Color(0xFF2A3A4A)))
+            listOf("1", "2", "3").forEach { pip ->
+                val pipCards = cards.filter { it.pip == pip }
+                if (pipCards.isEmpty()) return@forEach
+                Text("PIP $pip", color = Color(0xFFB4BFCE), fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 4.dp))
+                FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    pipCards.forEach { c ->
+                        val inDeck = c.id in deck
+                        val isPlayed = c.id in played
+                        Surface(
+                            onClick = { onToggleDeck(c.id) },
+                            shape = RoundedCornerShape(10.dp),
+                            color = if (inDeck) if (isPlayed) Color(0xFF5A2E2E) else Color(0xFF1E3A2A) else Color(0xFF192330),
+                            modifier = Modifier.weight(1f, fill = false)
+                        ) {
+                            Column(Modifier.padding(horizontal = 10.dp, vertical = 8.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Text("$pip", color = Color(0xFFFFC857), fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                                    Spacer(Modifier.width(6.dp))
+                                    Text(c.name, color = Color.White, fontWeight = FontWeight.Bold, fontSize = 12.sp, modifier = Modifier.weight(1f))
+                                    if (inDeck) {
+                                        Surface(onClick = { onTogglePlayed(c.id) }, shape = RoundedCornerShape(6.dp), color = Color(0xFF2A3A4A)) {
+                                            Text(if (isPlayed) "✓ JOUÉE" else "✓", Modifier.padding(horizontal = 7.dp, vertical = 3.dp), color = if (isPlayed) Color(0xFFFFC857) else Color(0xFF77D9A7), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                                        }
+                                    }
+                                }
+                                if (inDeck) Text(if (isPlayed) "Jouée ce round" else "Dans le deck — touchez pour retirer", color = if (isPlayed) Color(0xFFFFC7B7) else Color(0xFF9EACBC), fontSize = 9.sp)
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -453,7 +611,7 @@ internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntri
         CollapsibleSection(stringResource(R.string.active_effects), initiallyExpanded = false) {
             EffectsPanel(
                 effects = buildList {
-                    children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), stripBracketName(c.card.rulesText ?: stringResource(R.string.upgrade_installed)), c.instanceId, slot = c.card.upgradeSlots.firstOrNull(), pts = c.card.points).copy(used = usedUpgrades.contains(c.instanceId))) }
+                    children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), readableUpgradeText(c.card.rulesText) ?: stringResource(R.string.upgrade_installed), c.instanceId, slot = c.card.upgradeSlots.firstOrNull(), pts = c.card.points).copy(used = usedUpgrades.contains(c.instanceId))) }
                     activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, c.name)) }
                 },
                 onRemoveCrit = { activeCrits = activeCrits - it },

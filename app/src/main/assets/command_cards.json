@@ -1,0 +1,1518 @@
+{
+ "schemaVersion": 1,
+ "cards": [
+  {
+   "id": "cmd:come-and-prove-it",
+   "name": "Come and Prove It",
+   "pip": "1",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [
+    "Seventh Sister"
+   ],
+   "keywords": [
+    "Indomitable"
+   ]
+  },
+  {
+   "id": "cmd:die-at-my-hand",
+   "name": "Die at My Hand",
+   "pip": "1",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [
+    "Moff Gideon"
+   ],
+   "keywords": [
+    "Relentless"
+   ]
+  },
+  {
+   "id": "cmd:drive-them-out",
+   "name": "Drive Them Out",
+   "pip": "1",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [],
+   "keywords": [
+    "Demoralize"
+   ]
+  },
+  {
+   "id": "cmd:face-me",
+   "name": "Face Me!",
+   "pip": "1",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [
+    "Agent Kallus"
+   ],
+   "keywords": [
+    "Hold the Line"
+   ]
+  },
+  {
+   "id": "cmd:fearsome-oration",
+   "name": "Fearsome Oration",
+   "pip": "1",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [
+    "Imperial Agent"
+   ],
+   "keywords": [
+    {
+     "name": "Demoralize",
+     "value": 2
+    },
+    {
+     "name": "Inspire",
+     "value": 2
+    }
+   ]
+  },
+  {
+   "id": "cmd:gunner-infantry",
+   "name": "Gunner, Infantry!",
+   "pip": "1",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [
+    "Major Marquand"
+   ],
+   "keywords": [
+    "Tactical",
+    "Suppressive"
+   ]
+  },
+  {
+   "id": "cmd:unrelenting-fire",
+   "name": "Unrelenting Fire",
+   "pip": "1",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:isb-investigation",
+   "name": "ISB Investigation",
+   "pip": "2",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [
+    "Agent Kallus"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:overwhelming-barrage",
+   "name": "Overwhelming Barrage",
+   "pip": "2",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [],
+   "keywords": [
+    "Blast",
+    "Beam",
+    "Critical",
+    "Immune: Deflect",
+    "Suppressive"
+   ]
+  },
+  {
+   "id": "cmd:squadron-on-me",
+   "name": "Squadron, On Me",
+   "pip": "2",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [
+    "Major Marquand"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:unexpected-but-not-unwelcome",
+   "name": "Unexpected, But Not Unwelcome",
+   "pip": "2",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [
+    "Seventh Sister"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:we-need-reinforcements",
+   "name": "We Need Reinforcements",
+   "pip": "2",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [],
+   "keywords": [
+    "Disengage"
+   ]
+  },
+  {
+   "id": "cmd:you-have-something-i-want",
+   "name": "You Have Something I Want",
+   "pip": "2",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [
+    "Moff Gideon"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:you-would-question-me",
+   "name": "You Would Question Me?",
+   "pip": "2",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [
+    "Fifth Brother"
+   ],
+   "keywords": [
+    "Permanent"
+   ]
+  },
+  {
+   "id": "cmd:armored-cavalry",
+   "name": "Armored Cavalry",
+   "pip": "3",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [
+    "Major Marquand"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:constantly-alert",
+   "name": "Constantly Alert",
+   "pip": "3",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:debark-for-ground-assault",
+   "name": "Debark for Ground Assault",
+   "pip": "3",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [],
+   "keywords": [
+    "Spur",
+    "Suppressive"
+   ]
+  },
+  {
+   "id": "cmd:i-care-not-for-your-struggles",
+   "name": "I Care Not For Your Struggles",
+   "pip": "3",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [
+    "Fifth Brother"
+   ],
+   "keywords": [
+    "Dauntless"
+   ]
+  },
+  {
+   "id": "cmd:inexorable-advance",
+   "name": "Inexorable Advance",
+   "pip": "3",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [
+    "Imperial Officer"
+   ],
+   "keywords": [
+    "Suppressive"
+   ]
+  },
+  {
+   "id": "cmd:moment-of-consideration",
+   "name": "Moment of Consideration",
+   "pip": "3",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [
+    "Moff Gideon"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:ruthless-tactics",
+   "name": "Ruthless Tactics",
+   "pip": "3",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [
+    "Agent Kallus"
+   ],
+   "keywords": [
+    "Suppressive"
+   ]
+  },
+  {
+   "id": "cmd:you-hide-your-fear-well",
+   "name": "You Hide Your Fear Well",
+   "pip": "3",
+   "faction": "empire",
+   "generic": false,
+   "commanders": [
+    "Seventh Sister"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:witch-magick",
+   "name": "Witch Magick",
+   "pip": "1",
+   "faction": "mercenary",
+   "generic": false,
+   "commanders": [
+    "Maul"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:his-eminence",
+   "name": "His Eminence",
+   "pip": "2",
+   "faction": "mercenary",
+   "generic": false,
+   "commanders": [
+    "Maul"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:seize-what-power-we-can",
+   "name": "Seize What Power We Can",
+   "pip": "3",
+   "faction": "mercenary",
+   "generic": false,
+   "commanders": [
+    "Maul"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:a-simple-man",
+   "name": "A Simple Man",
+   "pip": "1",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "Boba Fett"
+   ],
+   "keywords": [
+    "Marksman"
+   ]
+  },
+  {
+   "id": "cmd:duel-of-the-fates",
+   "name": "Duel of the Fates",
+   "pip": "1",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "Maul"
+   ],
+   "keywords": [
+    "Disengage"
+   ]
+  },
+  {
+   "id": "cmd:focused-on-the-kill",
+   "name": "Focused on the Kill",
+   "pip": "1",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "IG-88"
+   ],
+   "keywords": [
+    "Permanent",
+    "Bounty"
+   ]
+  },
+  {
+   "id": "cmd:insolence-we-are-pirates",
+   "name": "Insolence?! We are Pirates!",
+   "pip": "1",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:marked-for-elimination",
+   "name": "Marked For Elimination",
+   "pip": "1",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "Gar Saxon"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:mechanical-carnage",
+   "name": "Mechanical Carnage",
+   "pip": "1",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "IG-11"
+   ],
+   "keywords": [
+    "Gunslinger"
+   ]
+  },
+  {
+   "id": "cmd:never-tell-me-the-odds",
+   "name": "Never Tell Me the Odds",
+   "pip": "1",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "Han & Chewie"
+   ],
+   "keywords": [
+    "Marksman"
+   ]
+  },
+  {
+   "id": "cmd:ploy",
+   "name": "Ploy",
+   "pip": "1",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:this-is-the-way",
+   "name": "This is the Way",
+   "pip": "1",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "Din Djarin"
+   ],
+   "keywords": [
+    "Relentless"
+   ]
+  },
+  {
+   "id": "cmd:a-machine-made-for-killing",
+   "name": "A Machine Made For Killing",
+   "pip": "2",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "IG-11",
+    "IG-88"
+   ],
+   "keywords": [
+    "Demoralize",
+    "Steady"
+   ]
+  },
+  {
+   "id": "cmd:aggression",
+   "name": "Aggression",
+   "pip": "2",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:fight-another-day",
+   "name": "Fight Another Day",
+   "pip": "2",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "Gar Saxon"
+   ],
+   "keywords": [
+    "Outmaneuver"
+   ]
+  },
+  {
+   "id": "cmd:i-like-those-odds",
+   "name": "I Like Those Odds",
+   "pip": "2",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "Din Djarin"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:independent-programming",
+   "name": "Independent Programming",
+   "pip": "2",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "IG-88"
+   ],
+   "keywords": [
+    "Permanent",
+    "Independent"
+   ]
+  },
+  {
+   "id": "cmd:making-his-way-in-the-galaxy",
+   "name": "Making His Way in the Galaxy",
+   "pip": "2",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "Boba Fett"
+   ],
+   "keywords": [
+    "Blast",
+    "Impact",
+    "Versatile"
+   ]
+  },
+  {
+   "id": "cmd:speak-softly-and-drive-a-big-tank",
+   "name": "Speak Softly and Drive a Big Tank",
+   "pip": "2",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:that-s-just-good-business",
+   "name": "That's Just Good Business",
+   "pip": "2",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "Hondo Ohnaka"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:the-hand-thing",
+   "name": "The Hand Thing",
+   "pip": "2",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "Grogu"
+   ],
+   "keywords": [
+    "Deflect"
+   ]
+  },
+  {
+   "id": "cmd:the-phantom-menace",
+   "name": "The Phantom Menace",
+   "pip": "2",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "Maul"
+   ],
+   "keywords": [
+    "Divulge",
+    "Infiltrate"
+   ]
+  },
+  {
+   "id": "cmd:wookiee-life-debt",
+   "name": "Wookiee Life Debt",
+   "pip": "2",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "Han & Chewie"
+   ],
+   "keywords": [
+    "Permanent",
+    {
+     "name": "Armor",
+     "value": "1"
+    },
+    {
+     "name": "Guardian",
+     "value": "2"
+    }
+   ]
+  },
+  {
+   "id": "cmd:anti-capture-protocols",
+   "name": "Anti-Capture Protocols",
+   "pip": "3",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "IG-11"
+   ],
+   "keywords": [
+    {
+     "name": "Self-Destruct",
+     "value": 4
+    }
+   ]
+  },
+  {
+   "id": "cmd:at-last",
+   "name": "At Last",
+   "pip": "3",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "Maul"
+   ],
+   "keywords": [
+    "Jedi Hunter"
+   ]
+  },
+  {
+   "id": "cmd:boring-conversation-anyway",
+   "name": "Boring Conversation Anyway",
+   "pip": "3",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "Han & Chewie"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:discretion",
+   "name": "Discretion",
+   "pip": "3",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:i-smell-profit",
+   "name": "I Smell Profit",
+   "pip": "3",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [],
+   "keywords": [
+    "Eyes on the Prize",
+    "Low Profile",
+    "Nimble"
+   ]
+  },
+  {
+   "id": "cmd:rule-with-respect",
+   "name": "Rule With Respect",
+   "pip": "3",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "Boba Fett"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:stories-so-many-of-them-true",
+   "name": "Stories, So Many of Them True",
+   "pip": "3",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "Hondo Ohnaka"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:victory-or-death",
+   "name": "Victory or Death!",
+   "pip": "3",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "Gar Saxon"
+   ],
+   "keywords": [
+    "Outmaneuver"
+   ]
+  },
+  {
+   "id": "cmd:we-do-what-we-do",
+   "name": "We Do What We Do",
+   "pip": "3",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "The Bad Batch"
+   ],
+   "keywords": [
+    "Tactical",
+    "Reliable",
+    "Precise",
+    "Inspire",
+    "Suppressive"
+   ]
+  },
+  {
+   "id": "cmd:whistling-birds",
+   "name": "Whistling Birds",
+   "pip": "3",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [
+    "Din Djarin"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:arboreal-assault",
+   "name": "Arboreal Assault",
+   "pip": "1",
+   "faction": "rebel",
+   "generic": false,
+   "commanders": [],
+   "keywords": [
+    "Suppressive",
+    "Immobilize"
+   ]
+  },
+  {
+   "id": "cmd:close-call",
+   "name": "Close Call",
+   "pip": "1",
+   "faction": "rebel",
+   "generic": false,
+   "commanders": [
+    "Wicket"
+   ],
+   "keywords": [
+    "Outmaneuver"
+   ]
+  },
+  {
+   "id": "cmd:corellian-spike",
+   "name": "Corellian Spike",
+   "pip": "1",
+   "faction": "rebel",
+   "generic": false,
+   "commanders": [
+    "Lando Calrissian"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:delaying-tactics",
+   "name": "Delaying Tactics",
+   "pip": "1",
+   "faction": "rebel",
+   "generic": false,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:i-am-no-jedi",
+   "name": "I Am No Jedi",
+   "pip": "1",
+   "faction": "rebel",
+   "generic": false,
+   "commanders": [
+    "Ahsoka Tano"
+   ],
+   "keywords": [
+    "Agile"
+   ]
+  },
+  {
+   "id": "cmd:log-traps",
+   "name": "Log Traps",
+   "pip": "1",
+   "faction": "rebel",
+   "generic": false,
+   "commanders": [],
+   "keywords": [
+    "Impact",
+    "Pierce"
+   ]
+  },
+  {
+   "id": "cmd:a-beautiful-friendship",
+   "name": "A Beautiful Friendship",
+   "pip": "2",
+   "faction": "rebel",
+   "generic": false,
+   "commanders": [
+    "Leia Organa"
+   ],
+   "keywords": [
+    "Permanent",
+    "Teamwork"
+   ]
+  },
+  {
+   "id": "cmd:ace-up-his-sleeve",
+   "name": "Ace Up His Sleeve",
+   "pip": "2",
+   "faction": "rebel",
+   "generic": false,
+   "commanders": [
+    "Lando Calrissian"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:battlefield-reconnaissance",
+   "name": "Battlefield Reconnaissance",
+   "pip": "2",
+   "faction": "rebel",
+   "generic": false,
+   "commanders": [
+    "Rebel Agent"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:courage-of-the-rebellion",
+   "name": "Courage of the Rebellion",
+   "pip": "2",
+   "faction": "rebel",
+   "generic": false,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:family-reunion",
+   "name": "Family Reunion",
+   "pip": "2",
+   "faction": "rebel",
+   "generic": false,
+   "commanders": [
+    "Ahsoka Tano"
+   ],
+   "keywords": [
+    "Teamwork"
+   ]
+  },
+  {
+   "id": "cmd:hiding-in-plain-sight",
+   "name": "Hiding in Plain Sight",
+   "pip": "2",
+   "faction": "rebel",
+   "generic": false,
+   "commanders": [],
+   "keywords": [
+    "Inconspicuous"
+   ]
+  },
+  {
+   "id": "cmd:sneaky-scouting",
+   "name": "Sneaky Scouting",
+   "pip": "2",
+   "faction": "rebel",
+   "generic": false,
+   "commanders": [
+    "Wicket"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:swift-protector",
+   "name": "Swift Protector",
+   "pip": "2",
+   "faction": "rebel",
+   "generic": false,
+   "commanders": [
+    "Ahsoka Tano"
+   ],
+   "keywords": [
+    "Guardian"
+   ]
+  },
+  {
+   "id": "cmd:a-new-beginning",
+   "name": "A New Beginning",
+   "pip": "3",
+   "faction": "rebel",
+   "generic": false,
+   "commanders": [
+    "Ahsoka Tano"
+   ],
+   "keywords": [
+    "Inspire"
+   ]
+  },
+  {
+   "id": "cmd:courageous-counterattack",
+   "name": "Courageous Counterattack",
+   "pip": "3",
+   "faction": "rebel",
+   "generic": false,
+   "commanders": [
+    "Wicket"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:diversionary-tactics",
+   "name": "Diversionary Tactics",
+   "pip": "3",
+   "faction": "rebel",
+   "generic": false,
+   "commanders": [
+    "Rebel Officer"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:for-the-tribe",
+   "name": "For the Tribe",
+   "pip": "3",
+   "faction": "rebel",
+   "generic": false,
+   "commanders": [],
+   "keywords": [
+    "Dauntless",
+    "Relentless"
+   ]
+  },
+  {
+   "id": "cmd:hold-at-any-cost",
+   "name": "Hold at Any Cost",
+   "pip": "3",
+   "faction": "rebel",
+   "generic": false,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:idiot-s-array",
+   "name": "Idiot's Array",
+   "pip": "3",
+   "faction": "rebel",
+   "generic": false,
+   "commanders": [
+    "Lando Calrissian"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:bring-it-down",
+   "name": "Bring It Down!",
+   "pip": "1",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [
+    "Clone Commander Cody"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:defiance",
+   "name": "Defiance",
+   "pip": "1",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:flow-of-the-force",
+   "name": "Flow of the Force",
+   "pip": "1",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [
+    "Jedi Knight",
+    "Jedi Knight General"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:size-matters-not",
+   "name": "Size Matters Not",
+   "pip": "1",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [
+    "Yoda"
+   ],
+   "keywords": [
+    "Jump",
+    "Charge",
+    "Disengage"
+   ]
+  },
+  {
+   "id": "cmd:sneak-attack",
+   "name": "Sneak Attack",
+   "pip": "1",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [],
+   "keywords": [
+    "Infiltrate",
+    {
+     "name": "Scout",
+     "value": "1"
+    }
+   ]
+  },
+  {
+   "id": "cmd:synchronized-offensive",
+   "name": "Synchronized Offensive",
+   "pip": "1",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:this-is-where-the-fun-begins",
+   "name": "This is Where the Fun Begins",
+   "pip": "1",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [
+    "Anakin Skywalker"
+   ],
+   "keywords": [
+    "Jump",
+    "Prepared Position"
+   ]
+  },
+  {
+   "id": "cmd:wisdom-of-the-council",
+   "name": "Wisdom of the Council",
+   "pip": "1",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:you-are-beaten",
+   "name": "You Are Beaten",
+   "pip": "1",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [
+    "Ahsoka Tano"
+   ],
+   "keywords": [
+    "Charge"
+   ]
+  },
+  {
+   "id": "cmd:air-support",
+   "name": "Air Support",
+   "pip": "2",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [],
+   "keywords": [
+    "Field Commander",
+    {
+     "name": "Beam",
+     "value": 2
+    },
+    "Immune: Deflect"
+   ]
+  },
+  {
+   "id": "cmd:get-in-position",
+   "name": "Get In Position",
+   "pip": "2",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [],
+   "keywords": [
+    "Agile"
+   ]
+  },
+  {
+   "id": "cmd:have-i-ever-let-you-down",
+   "name": "Have I Ever Let You Down?",
+   "pip": "2",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [
+    "Clone Commander Cody"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:lead-from-the-front",
+   "name": "Lead From the Front",
+   "pip": "2",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:recon-division",
+   "name": "Recon Division",
+   "pip": "2",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [],
+   "keywords": [
+    {
+     "name": "Observe",
+     "value": "1"
+    }
+   ]
+  },
+  {
+   "id": "cmd:revenge-is-not-the-jedi-way",
+   "name": "Revenge Is Not the Jedi Way",
+   "pip": "2",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [
+    "Ahsoka Tano"
+   ],
+   "keywords": [
+    "Jar'Kai Mastery",
+    "Shien Mastery"
+   ]
+  },
+  {
+   "id": "cmd:size-matters-sometimes",
+   "name": "Size Matters Sometimes",
+   "pip": "2",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [
+    "Chewbacca"
+   ],
+   "keywords": [
+    "Deflect",
+    "Guardian"
+   ]
+  },
+  {
+   "id": "cmd:tactical-planning",
+   "name": "Tactical Planning",
+   "pip": "2",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:there-is-no-try",
+   "name": "There Is No Try",
+   "pip": "2",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [
+    "Yoda"
+   ],
+   "keywords": [
+    "Outmaneuver",
+    "Relentless"
+   ]
+  },
+  {
+   "id": "cmd:you-underestimate-my-power",
+   "name": "You Underestimate My Power",
+   "pip": "2",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [
+    "Anakin Skywalker"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:affirmative-general",
+   "name": "Affirmative, General!",
+   "pip": "3",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [
+    "Jedi Knight",
+    "Jedi Knight General"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:attack-of-the-clones",
+   "name": "Attack of the Clones",
+   "pip": "3",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:combined-arms",
+   "name": "Combined Arms",
+   "pip": "3",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [
+    "Clone Commander Cody"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:daring-defense",
+   "name": "Daring Defense",
+   "pip": "3",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [],
+   "keywords": [
+    "Demoralize"
+   ]
+  },
+  {
+   "id": "cmd:flexible-strategy",
+   "name": "Flexible Strategy",
+   "pip": "3",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:general-skywalker",
+   "name": "General Skywalker",
+   "pip": "3",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [
+    "Anakin Skywalker"
+   ],
+   "keywords": [
+    "Inspire"
+   ]
+  },
+  {
+   "id": "cmd:i-go-where-i-m-needed",
+   "name": "I Go Where I'm Needed",
+   "pip": "3",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [
+    "Ahsoka Tano"
+   ],
+   "keywords": [
+    "Guardian",
+    "Disengage"
+   ]
+  },
+  {
+   "id": "cmd:leaders-of-the-501st",
+   "name": "Leaders of the 501st",
+   "pip": "3",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [],
+   "keywords": [
+    "Permanent",
+    "Indomitable"
+   ]
+  },
+  {
+   "id": "cmd:luminous-beings-are-we",
+   "name": "Luminous Beings Are We",
+   "pip": "3",
+   "faction": "republic",
+   "generic": false,
+   "commanders": [
+    "Yoda"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:ai-coordination",
+   "name": "AI Coordination",
+   "pip": "1",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:brutal-enforcer",
+   "name": "Brutal Enforcer",
+   "pip": "1",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [
+    "Sun Fac"
+   ],
+   "keywords": [
+    "Agile",
+    "Jump",
+    "Demoralize"
+   ]
+  },
+  {
+   "id": "cmd:exterminate",
+   "name": "Exterminate",
+   "pip": "1",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [
+    "Super Tactical Command Droid"
+   ],
+   "keywords": [
+    {
+     "name": "Demoralize",
+     "value": 2
+    }
+   ]
+  },
+  {
+   "id": "cmd:i-ll-do-it-myself",
+   "name": "I'll Do it Myself!",
+   "pip": "1",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [
+    "General Grievous"
+   ],
+   "keywords": [
+    {
+     "name": "Tactical",
+     "value": 1
+    }
+   ]
+  },
+  {
+   "id": "cmd:let-the-executions-begin",
+   "name": "Let the Executions Begin!",
+   "pip": "1",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [
+    "Poggle the Lesser"
+   ],
+   "keywords": [
+    "Fire Support"
+   ]
+  },
+  {
+   "id": "cmd:mechanized-incursion",
+   "name": "Mechanized Incursion",
+   "pip": "1",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:the-jedi-shall-fall",
+   "name": "The Jedi Shall Fall",
+   "pip": "1",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [
+    "Asajj Ventress"
+   ],
+   "keywords": [
+    "Jedi Hunter"
+   ]
+  },
+  {
+   "id": "cmd:they-too-will-suffer",
+   "name": "They Too Will Suffer",
+   "pip": "1",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [
+    "Kalani",
+    "Kraken"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:i-am-fear",
+   "name": "I Am Fear",
+   "pip": "2",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [
+    "Asajj Ventress"
+   ],
+   "keywords": [
+    "Suppressive",
+    "Spray"
+   ]
+  },
+  {
+   "id": "cmd:orbital-strike",
+   "name": "Orbital Strike",
+   "pip": "2",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:pincer-attack",
+   "name": "Pincer Attack",
+   "pip": "2",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [
+    "General Grievous"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:preservation-protocols",
+   "name": "Preservation Protocols",
+   "pip": "2",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [
+    "Kalani",
+    "Kraken"
+   ],
+   "keywords": [
+    "AI",
+    "Disengage",
+    "Impervious"
+   ]
+  },
+  {
+   "id": "cmd:the-sith-will-rule",
+   "name": "The Sith Will Rule",
+   "pip": "2",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [
+    "Count Dooku"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:unrelenting-assault",
+   "name": "Unrelenting Assault",
+   "pip": "2",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:we-serve-the-queen",
+   "name": "We Serve the Queen",
+   "pip": "2",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [
+    "Poggle the Lesser"
+   ],
+   "keywords": [
+    "Direct",
+    "Coordinate"
+   ]
+  },
+  {
+   "id": "cmd:do-not-underestimate-our-means",
+   "name": "Do Not Underestimate Our Means",
+   "pip": "3",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [
+    "Kalani",
+    "Kraken"
+   ],
+   "keywords": [
+    "Divulge",
+    "AI",
+    "Reinforcements"
+   ]
+  },
+  {
+   "id": "cmd:full-throttle",
+   "name": "Full Throttle",
+   "pip": "3",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [
+    "General Grievous"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:roger-roger",
+   "name": "Roger, Roger!",
+   "pip": "3",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:tactical-download",
+   "name": "Tactical Download",
+   "pip": "3",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [
+    "Super Tactical Command Droid"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:unstoppable-advance",
+   "name": "Unstoppable Advance",
+   "pip": "3",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [],
+   "keywords": []
+  },
+  {
+   "id": "cmd:we-make-weapons",
+   "name": "We Make Weapons",
+   "pip": "3",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [
+    "Poggle the Lesser"
+   ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:yes-my-master",
+   "name": "Yes, My Master",
+   "pip": "3",
+   "faction": "separatists",
+   "generic": false,
+   "commanders": [
+    "Asajj Ventress"
+   ],
+   "keywords": [
+    "Divulge",
+    "Permanent",
+    "Demoralize",
+    "Makashi Mastery",
+    "Outmaneuver"
+   ]
+  }
+ ]
+}
