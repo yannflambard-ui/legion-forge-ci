@@ -164,6 +164,7 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
     // Mode 2 joueurs : bascule entre mon armée et l'armée adverse (sync live via Nearby).
     var twoPlayer by remember { mutableStateOf(false) }
     var viewingOpponent by remember { mutableStateOf(false) }
+        var showArmiesMenu by remember { mutableStateOf(false) }
     val syncMode by playSyncVm.mode.collectAsState()
     val syncRound by playSyncVm.receivedRound.collectAsState()
     val opponentListJson by playSyncVm.opponentListJson.collectAsState()
@@ -239,11 +240,17 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
                                     Text(stringResource(R.string.play_2players), color = if (twoPlayer) Color(0xFF0A0E15) else Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
                                 }
                             }
-                            // Bascule Mon armée / Armée adverse (mode 2 joueurs).
+                            // Bouton Armées : ouvre un menu pour choisir Mon armée / Armée adverse.
                             if (twoPlayer) {
-                                Surface(onClick = { viewingOpponent = !viewingOpponent }, shape = RoundedCornerShape(8.dp), color = Color(0xFF1A2330), modifier = Modifier.padding(end = 4.dp)) {
-                                    Box(Modifier.padding(horizontal = 8.dp, vertical = 6.dp), contentAlignment = Alignment.Center) {
-                                        Text(if (viewingOpponent) stringResource(R.string.play_opponent) else stringResource(R.string.play_my_army), color = Color(0xFFFFC857), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                                Box {
+                                    Surface(onClick = { showArmiesMenu = true }, shape = RoundedCornerShape(8.dp), color = Color(0xFF1A2330), modifier = Modifier.padding(end = 4.dp)) {
+                                        Box(Modifier.padding(horizontal = 8.dp, vertical = 6.dp), contentAlignment = Alignment.Center) {
+                                            Text("Armées", color = Color(0xFFFFC857), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                                        }
+                                    }
+                                    DropdownMenu(expanded = showArmiesMenu, onDismissRequest = { showArmiesMenu = false }) {
+                                        DropdownMenuItem(text = { Text(stringResource(R.string.play_my_army)) }, onClick = { viewingOpponent = false; showArmiesMenu = false })
+                                        DropdownMenuItem(text = { Text(stringResource(R.string.play_opponent)) }, onClick = { viewingOpponent = true; showArmiesMenu = false })
                                     }
                                 }
                             }
@@ -338,6 +345,26 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
                                         Text("${opp.gameSystem} • ${opp.factionId} • ${opp.pointsLimit} pts", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium)
                                         Text("${opp.entries.size} unités", color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodySmall)
                                     }
+                                }
+                                // Liste des unités adverses (résolues depuis le catalogue local).
+                                val oppCards = remember(opp, vm.cards.value) {
+                                    opp.entries.mapNotNull { e ->
+                                        vm.cards.value.firstOrNull { it.id == e.cardId }?.let { it to e.quantity }
+                                    }
+                                }
+                                if (oppCards.isNotEmpty()) {
+                                    Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                                        oppCards.forEach { (card, qty) ->
+                                            Surface(shape = RoundedCornerShape(10.dp), color = Color(0xFF1A2330), modifier = Modifier.fillMaxWidth()) {
+                                                Row(Modifier.padding(horizontal = 12.dp, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+                                                    Text(card.displayName(), color = Color.White, fontWeight = FontWeight.Bold, fontSize = 13.sp, modifier = Modifier.weight(1f))
+                                                    Text("${card.points} pts", color = Color(0xFFFFC857), fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    Text("Unités non résolues (catalogue local incomplet)", color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodySmall)
                                 }
                                 Text(stringResource(R.string.play_opponent_synced), color = Color(0xFF77D9A7), style = MaterialTheme.typography.bodySmall)
                             }
