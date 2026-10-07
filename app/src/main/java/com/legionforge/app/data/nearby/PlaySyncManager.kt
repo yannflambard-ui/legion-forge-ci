@@ -20,7 +20,7 @@ data class SyncedUnitState(
 
 /** Payload de synchronisation d'état de jeu (envoyé via Nearby). */
 data class PlaySyncPayload(
-    val type: String,           // "round" | "state" | "list"
+    val type: String,           // "round" | "state" | "list" | "request"
     val round: Int? = null,
     val units: List<SyncedUnitState> = emptyList(),
     val listJson: String? = null // liste de l'armée adverse (sérialisée)
@@ -28,7 +28,7 @@ data class PlaySyncPayload(
 
 /**
  * Gestionnaire de synchronisation du mode play 2 joueurs.
- * Réutilise NearbyShareManager pour le transport, et sérialise l'état de jeu en JSON.
+ * Réutilise NearbyShareManager (singleton) pour le transport, et sérialise l'état de jeu en JSON.
  */
 class PlaySyncManager(context: Context) {
     // Singleton partagé : un seul client Nearby pour tout l'app (sinon les écrans
@@ -51,6 +51,10 @@ class PlaySyncManager(context: Context) {
     private val _receivedListJson = MutableStateFlow<String?>(null)
     val receivedListJson: StateFlow<String?> = _receivedListJson.asStateFlow()
 
+    // Signal reçu : l'autre joueur demande qu'on lui renvoie notre liste (synchro manuelle).
+    private val _listRequested = MutableStateFlow(false)
+    val listRequested: StateFlow<Boolean> = _listRequested.asStateFlow()
+
     init {
         // Décode les payloads reçus.
         CoroutineScope(Dispatchers.Main).launch {
@@ -61,6 +65,7 @@ class PlaySyncManager(context: Context) {
                     "round" -> _receivedRound.value = payload.round
                     "state" -> _receivedUnits.value = payload.units
                     "list" -> _receivedListJson.value = payload.listJson
+                    "request" -> _listRequested.value = true
                 }
             }
         }
@@ -81,5 +86,10 @@ class PlaySyncManager(context: Context) {
 
     fun sendList(json: String) {
         nearby.sendList(gson.toJson(PlaySyncPayload(type = "list", listJson = json)))
+    }
+
+    /** Demande à l'autre joueur de renvoyer sa liste (synchro manuelle). */
+    fun requestList() {
+        nearby.sendList(gson.toJson(PlaySyncPayload(type = "request")))
     }
 }

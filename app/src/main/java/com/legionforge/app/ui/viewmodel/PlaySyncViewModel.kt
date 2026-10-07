@@ -29,9 +29,22 @@ class PlaySyncViewModel(application: Application) : AndroidViewModel(application
     private val _opponentListJson = MutableStateFlow<String?>(null)
     val opponentListJson: StateFlow<String?> = _opponentListJson.asStateFlow()
 
+    // Cache de la dernière liste envoyée, pour pouvoir la renvoyer sur demande.
+    private var lastList: BuilderListEntity? = null
+    private var lastEntries: List<ListEntry> = emptyList()
+
     init {
         viewModelScope.launch {
             sync.receivedListJson.collect { json -> _opponentListJson.value = json }
+        }
+        // Quand l'autre joueur demande la synchro, on lui renvoie notre liste.
+        viewModelScope.launch {
+            sync.listRequested.collect { requested ->
+                if (requested) {
+                    val l = lastList
+                    if (l != null) sendList(l, lastEntries)
+                }
+            }
         }
     }
 
@@ -43,9 +56,14 @@ class PlaySyncViewModel(application: Application) : AndroidViewModel(application
     fun sendRound(round: Int) = sync.sendRound(round)
     fun sendState(units: List<SyncedUnitState>) = sync.sendState(units)
 
+    /** Demande à l'autre joueur de renvoyer sa liste (synchro manuelle). */
+    fun requestList() = sync.requestList()
+
     /** Sérialise la liste courante et l'envoie à l'autre téléphone. */
     fun sendList(list: BuilderListEntity?, entries: List<ListEntry>) {
         val l = list ?: return
+        lastList = l
+        lastEntries = entries
         val payload = ShareListPayload(
             name = l.name, gameSystem = l.gameSystem, factionId = l.factionId,
             pointsLimit = l.pointsLimit,

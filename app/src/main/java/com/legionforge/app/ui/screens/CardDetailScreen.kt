@@ -297,6 +297,19 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
                             Text(stringResource(R.string.play_opponent), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
                             if (opp == null) {
                                 Text(stringResource(R.string.play_connecting), color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodyMedium)
+                                // Synchro manuelle : demande à l'autre joueur de renvoyer sa liste.
+                                Button(onClick = { playSyncVm.requestList() }, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1A2330))) {
+                                    Text("Renvoyer la synchro", color = Color(0xFFFFC857), fontWeight = FontWeight.Bold)
+                                }
+                                // Rapport GitHub : aide au diagnostic quand la liste adverse n'arrive pas.
+                                TextButton(onClick = {
+                                    com.legionforge.app.util.CrashReporter.reportEvent(
+                                        "Synchro 2 joueurs: liste adverse absente (${android.os.Build.MODEL})",
+                                        "Mode=${syncMode} · connecté=${playSyncVm.connectedEndpoint.value != null} · " +
+                                        "liste adverse reçue=${opponentListJson != null} · " +
+                                        "erreur=${playSyncVm.error.value ?: "aucune"}"
+                                    )
+                                }) { Text("Signaler sur GitHub", color = Color(0xFFFFC857), fontSize = 11.sp, fontWeight = FontWeight.Bold) }
                             } else {
                                 Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(16.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
                                     Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
