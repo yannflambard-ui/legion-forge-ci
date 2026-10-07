@@ -364,6 +364,7 @@ internal object LegionStatsParser {
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntries: List<ListEntry>, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}, woundsValue: Int? = null, onWoundsChange: (Int) -> Unit = {}) {
     val totalPts = unit.card.points + children.sumOf { it.card.points * it.quantity }
@@ -401,21 +402,20 @@ internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntri
                 }
             }
             if (stats?.keywords?.isNotEmpty() == true) {
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                    stats.keywords.forEach { kw ->
-                        val section = findWikiSection(wikiSections, kw)
-                        Surface(
-                            onClick = { if (section != null) onRuleClick(section) },
-                            shape = RoundedCornerShape(8.dp),
-                            color = Color(0xFF2A3A4A)
-                        ) {
-                            Text(com.legionforge.app.data.i18n.I18n.keyword(kw), Modifier.padding(horizontal = 10.dp, vertical = 4.dp), color = if (section != null) Color(0xFFFFC857) else Color(0xFF77D9A7), fontSize = 11.sp, fontWeight = FontWeight.Bold)
-                        }
-                    }
-                }
-            }
-        }
-        // ── suivi des blessures (valeur restante) (repliable) ──
+                            FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                                stats.keywords.forEach { kw ->
+                                    val section = findWikiSection(wikiSections, kw)
+                                    Surface(
+                                        onClick = { if (section != null) onRuleClick(section) },
+                                        shape = RoundedCornerShape(8.dp),
+                                        color = Color(0xFF2A3A4A)
+                                    ) {
+                                        Text(com.legionforge.app.data.i18n.I18n.keyword(kw), Modifier.padding(horizontal = 10.dp, vertical = 4.dp), color = if (section != null) Color(0xFFFFC857) else Color(0xFF77D9A7), fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                                    }           }
+                                }
+                                                        }
+                                        }
+                                        // ── suivi des blessures (valeur restante) (repliable) ──
         CollapsibleSection(stringResource(R.string.tracking), initiallyExpanded = false) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { BigCounter(stringResource(R.string.minis), wounds, maxHp, Color(0xFFFF6B6B), { if (wounds < maxHp) onWoundsChange(wounds + 1) }, { if (wounds > 0) onWoundsChange(wounds - 1) }) }
             HealthBar(wounds.toFloat() / maxHp, wounds, maxHp)
@@ -457,8 +457,13 @@ internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntri
                     activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, c.name)) }
                 },
                 onRemoveCrit = { activeCrits = activeCrits - it },
-                allCrits = legionCrits
-            )
+                                allCrits = legionCrits,
+                                onToggleUsed = { eff ->
+                                    if (eff.type == EffectType.UPGRADE) {
+                                        usedUpgrades = if (eff.id in usedUpgrades) usedUpgrades - eff.id else usedUpgrades + eff.id
+                                    }
+                                }
+                            )
         }
         CardZoomOverlay(unit.card, showCard) { showCard = false }
         Spacer(Modifier.height(20.dp))
@@ -963,7 +968,8 @@ internal fun CollapsibleSection(
 internal fun EffectsPanel(
     effects: List<ActiveEffect>,
     onRemoveCrit: (CritCard) -> Unit,
-    allCrits: List<CritCard>
+    allCrits: List<CritCard>,
+    onToggleUsed: (ActiveEffect) -> Unit = {}
 ) {
     var selectedEffect by remember { mutableStateOf<ActiveEffect?>(null) }
     Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -979,11 +985,11 @@ internal fun EffectsPanel(
                     else -> "?" to Color.Gray
                 }
                 Surface(
-                    onClick = { selectedEffect = if (selectedEffect == eff) null else eff },
-                    shape = RoundedCornerShape(12.dp),
-                    color = when { eff.used -> Color(0xFF1A1A2A); eff.type == EffectType.CRIT -> Color(0xFF3B2224); eff.type == EffectType.ABILITY -> Color(0xFF1E3A2A); else -> Color(0xFF1E2A3A) },
-                    modifier = Modifier.fillMaxWidth()
-                ) {
+                                    onClick = { onToggleUsed(eff) },
+                                    shape = RoundedCornerShape(12.dp),
+                                    color = when { eff.used -> Color(0xFF1A1A2A); eff.type == EffectType.CRIT -> Color(0xFF3B2224); eff.type == EffectType.ABILITY -> Color(0xFF1E3A2A); else -> Color(0xFF1E2A3A) },
+                                    modifier = Modifier.fillMaxWidth()
+                                ) {
                     Column(Modifier.padding(8.dp)) {
                         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -1018,7 +1024,9 @@ internal fun EffectsPanel(
                             }
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                                 if (eff.pts > 0) Text("${eff.pts} pts", color = Color(0xFFFFC857), fontSize = 11.sp, fontWeight = FontWeight.Bold)
-                                Text(if (selectedEffect == eff) "\u25B2" else "\u25BC", color = Color(0xFF9EACBC), fontSize = 12.sp)
+                                                                Surface(onClick = { selectedEffect = if (selectedEffect == eff) null else eff }, shape = RoundedCornerShape(6.dp), color = Color(0xFF2A3A4A)) {
+                                                                    Text(if (selectedEffect == eff) "\u25B2" else "\u25BC", Modifier.padding(horizontal = 8.dp, vertical = 4.dp), color = Color(0xFF9EACBC), fontSize = 12.sp)
+                                                                }
                             }
                         }
                         // Expanded description
@@ -1409,29 +1417,57 @@ internal fun SquadronActivationToken(activated: Boolean, onToggle: () -> Unit, o
 
 @Composable
 internal fun TokenSection(tokens: List<String>, onAdd: (String) -> Unit, onRemove: (String) -> Unit) {
+    // Jetons d'action Legion v2 : Aim (jaune), Dodge (violet), Surge (bleu), Standby (orange).
+    val allTokens = listOf(
+        LegionToken(stringResource(R.string.legion_token_aim), Color(0xFFFFC857), "\u25CE"),
+        LegionToken(stringResource(R.string.legion_token_dodge), Color(0xFF9B6DFF), "\u25CC"),
+        LegionToken(stringResource(R.string.legion_token_surge), Color(0xFF4FC3F7), "\u26A1"),
+        LegionToken(stringResource(R.string.legion_token_standby), Color(0xFFFF8A65), "\u25C9")
+    )
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(stringResource(R.string.tokens_markers), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelLarge)
-        // Jetons d'action Legion v2 : Aim (jaune), Dodge (violet), Surge (bleu), Standby (orange).
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            listOf(
-                stringResource(R.string.legion_token_aim) to Color(0xFFFFC857),
-                stringResource(R.string.legion_token_dodge) to Color(0xFF9B6DFF),
-                stringResource(R.string.legion_token_surge) to Color(0xFF4FC3F7),
-                stringResource(R.string.legion_token_standby) to Color(0xFFFF8A65)
-            ).forEach { (l, c) ->
-                Surface(onClick = { onAdd(l) }, shape = RoundedCornerShape(10.dp), color = c.copy(alpha = 0.18f)) {
-                    Text(l, Modifier.padding(horizontal = 14.dp, vertical = 9.dp), color = c, fontWeight = FontWeight.Bold, fontSize = 13.sp)
-                }
-            }
+        // Disques de jetons (vrais tokens) : retour à la ligne automatique si trop nombreux.
+        FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            allTokens.forEach { t -> LegionTokenDisc(t.label, t.color, t.symbol, onClick = { onAdd(t.label) }) }
         }
         if (tokens.isNotEmpty()) {
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                tokens.forEach { t -> Surface(onClick = { onRemove(t) }, shape = RoundedCornerShape(8.dp), color = Color(0xFF3B2224)) { Text("$t  \u2715", Modifier.padding(horizontal = 12.dp, vertical = 6.dp), color = Color(0xFFFFC7B7), fontSize = 12.sp, fontWeight = FontWeight.Bold) } }
+            FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                tokens.forEach { t ->
+                    val meta = allTokens.firstOrNull { it.label == t }
+                    Surface(onClick = { onRemove(t) }, shape = RoundedCornerShape(8.dp), color = Color(0xFF3B2224)) {
+                        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp)) {
+                            Text(meta?.symbol ?: "\u25A3", color = meta?.color ?: Color(0xFFFFC7B7), fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                            Spacer(Modifier.width(6.dp))
+                            Text("$t  \u2715", color = Color(0xFFFFC7B7), fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                        }
+                    }
+                }
             }
         }
         Text(stringResource(R.string.tap_token), color = Color(0xFF5A6A7A), style = MaterialTheme.typography.labelSmall)
     }
 }
+
+// Jeton d'action Legion : disque coloré avec symbole, cliquable pour l'ajouter.
+@Composable
+internal fun LegionTokenDisc(label: String, color: Color, symbol: String, onClick: () -> Unit) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Surface(
+            onClick = onClick,
+            shape = CircleShape,
+            color = color.copy(alpha = 0.22f),
+            border = androidx.compose.foundation.BorderStroke(2.dp, color),
+            modifier = Modifier.size(52.dp)
+        ) {
+            Box(contentAlignment = Alignment.Center) { Text(symbol, color = color, fontSize = 22.sp, fontWeight = FontWeight.Bold) }
+        }
+        Spacer(Modifier.height(3.dp))
+        Text(label, color = color, fontSize = 9.sp, fontWeight = FontWeight.Bold)
+    }
+}
+
+// Modèle d'un jeton d'action Legion (label localisé + couleur + symbole).
+internal data class LegionToken(val label: String, val color: Color, val symbol: String)
 
 // Badge d'état auto (Blessé / Supprimé / Paniqué) : actif = coloré, sinon grisé.
 @Composable
