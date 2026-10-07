@@ -31,7 +31,8 @@ data class ShareEntry(
 
 class ShareViewModel(application: Application) : AndroidViewModel(application) {
     private val gson = Gson()
-    private val nearby = NearbyShareManager(application)
+    init { NearbyShareManager.init(application) }
+    private val nearby = NearbyShareManager
 
     val mode: StateFlow<ShareMode> = nearby.mode
     val endpoints: StateFlow<List<com.legionforge.app.data.nearby.DiscoveredEndpoint>> = nearby.endpoints

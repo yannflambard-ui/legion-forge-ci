@@ -31,7 +31,10 @@ data class PlaySyncPayload(
  * Réutilise NearbyShareManager pour le transport, et sérialise l'état de jeu en JSON.
  */
 class PlaySyncManager(context: Context) {
-    private val nearby = NearbyShareManager(context)
+    // Singleton partagé : un seul client Nearby pour tout l'app (sinon les écrans
+    // Share/2JOUEURS se percutent → 8001/8002 « déjà hôte/client »).
+    init { NearbyShareManager.init(context) }
+    private val nearby = NearbyShareManager
     private val gson = Gson()
 
     val mode: StateFlow<ShareMode> = nearby.mode

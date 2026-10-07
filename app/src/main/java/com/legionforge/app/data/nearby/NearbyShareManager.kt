@@ -25,13 +25,20 @@ enum class ShareMode { IDLE, ADVERTISING, DISCOVERING, CONNECTED }
 data class DiscoveredEndpoint(val endpointId: String, val name: String)
 
 /**
- * Gestionnaire Nearby Connections : partage live de listes entre 2 téléphones, sans serveur.
- * - Hôte : startAdvertising() -> attend qu'un client se connecte.
- * - Client : startDiscovery() -> voit les hôtes, connectTo(endpointId).
- * - Une fois connecté, sendList(json) envoie la liste ; l'autre la reçoit via receivedPayload.
+ * Gestionnaire Nearby Connections — SINGLETON partagé par DIX points d'entrée
+ * (ShareViewModel du partage ET PlaySyncViewModel du mode 2 joueurs).
+ *
+ * Nearby Connections n'autorise qu'UN SEUL client actif par application : si deux
+ * écrans instancient chacun un client, leur startAdvertising/startDiscovery se
+ * percutent -> erreurs « déjà hôte/client » (8001/8002) et sessions perdues
+ * (8034/8038). En partageant un unique ConnectionsClient (ce singleton), le mode
+ * 2 joueurs se comporte identiquement quel que soit l'écran d'entrée.
  */
-class NearbyShareManager(context: Context) {
-    private val connectionsClient: ConnectionsClient = Nearby.getConnectionsClient(context)
+object NearbyShareManager {
+    private lateinit var appContext: Context
+    fun init(context: Context) { appContext = context.applicationContext }
+
+    val connectionsClient: ConnectionsClient get() = Nearby.getConnectionsClient(appContext)
     private val serviceId = "com.legionforge.app.share"
 
     private val _mode = MutableStateFlow(ShareMode.IDLE)
@@ -61,7 +68,10 @@ class NearbyShareManager(context: Context) {
                     _connectedEndpoint.value = endpointId
                     _mode.value = ShareMode.CONNECTED
                 }
-                else -> _error.value = "Connexion refusée (${result.status.statusCode})"
+                else -> {
+                    val c = result.status.statusCode
+                    _error.value = "Connexion refusée (${nearbyStatusMsg(c)})"
+                }
             }
         }
 
@@ -130,11 +140,31 @@ class NearbyShareManager(context: Context) {
     }
 
     fun stop() {
-        connectionsClient.stopAdvertising()
-        connectionsClient.stopDiscovery()
-        connectionsClient.stopAllEndpoints()
+        if (::appContext.isInitialized) {
+            connectionsClient.stopAdvertising()
+            connectionsClient.stopDiscovery()
+            connectionsClient.stopAllEndpoints()
+        }
         _mode.value = ShareMode.IDLE
         _endpoints.value = emptyList()
         _connectedEndpoint.value = null
     }
+}
+
+// ── Lecture des codes de statut Nearby (connecté → erreur lisible) ──────────
+internal fun nearbyStatusMsg(c: Int): String = when (c) {
+    0 -> "connecté"
+    8001 -> "déjà en publicité (hôte) sur cet appareil"
+    8002 -> "déjà en découverte (client) sur cet appareil"
+    8003 -> "déjà à l'écoute Nearby"
+    8004 -> "erreur Bluetooth (activez le Bluetooth)"
+    8007 -> "pas de réseau Nearby (Wi-Fi/Bluetooth coupé)"
+    8008 -> "erreur de transfert (réessayez)"
+    8019 -> "connexion acceptée par l'autre joueur"
+    8020 -> "connexion refusée par l'autre joueur"
+    8024 -> "endpoint trop loin / hors de portée"
+    8031 -> "l'autre joueur n'est plus à l'écoute"
+    8034 -> "connexion perdue pendant l'échange (réessayez, déplacez vos téléphones)"
+    8038 -> "session Nearby interrompue (relancez les 2 boutons 2 JOUEURS)"
+    else -> "code $c"
 }
