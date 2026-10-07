@@ -38,6 +38,7 @@ import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
 import com.legionforge.app.ui.viewmodel.PlaySyncViewModel
 import com.legionforge.app.data.nearby.ShareMode
 import com.legionforge.app.util.rememberNearbyPermissionAction
+import com.legionforge.app.util.NearbyDiagnosticPanel
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 // Retrouve la section wiki correspondant à un mot-clé/titre (insensible à la casse).
@@ -268,16 +269,22 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
                         }
                     }
                     if (syncMode == ShareMode.DISCOVERING) {
-                        if (endpoints.isEmpty()) Text(stringResource(R.string.share_no_endpoints), color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodySmall)
-                        endpoints.forEach { ep ->
-                            Card(onClick = { runWithPermission { playSyncVm.connectTo(ep.endpointId) } }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(12.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
-                                Row(Modifier.fillMaxWidth().padding(12.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                                    Text(ep.name, color = Color.White, fontWeight = FontWeight.Bold)
-                                    Text(stringResource(R.string.share_connect), color = Color(0xFFFFC857), fontSize = 12.sp, fontWeight = FontWeight.Bold)
-                                }
-                            }
-                        }
-                    }
+                                            if (endpoints.isEmpty()) Text(stringResource(R.string.share_no_endpoints), color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodySmall)
+                                            endpoints.forEach { ep ->
+                                                Card(onClick = { runWithPermission { playSyncVm.connectTo(ep.endpointId) } }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(12.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
+                                                    Row(Modifier.fillMaxWidth().padding(12.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                                                        Text(ep.name, color = Color.White, fontWeight = FontWeight.Bold)
+                                                        Text(stringResource(R.string.share_connect), color = Color(0xFFFFC857), fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        // Diagnostic Nearby : état des permissions + erreur traduite + bouton Signaler (→ GitHub).
+                                                                                val syncError by playSyncVm.error.collectAsState()
+                                                                                NearbyDiagnosticPanel(
+                                                                                    error = syncError,
+                                                                                    onReport = { body -> com.legionforge.app.util.CrashReporter.reportEvent("Nearby 2 joueurs (${android.os.Build.MODEL})", body) }
+                                                                                )
                 }
                 return@Box
             }
