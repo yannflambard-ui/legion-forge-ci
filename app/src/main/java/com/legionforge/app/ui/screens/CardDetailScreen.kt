@@ -175,6 +175,18 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
     LaunchedEffect(syncMode) {
         if (twoPlayer && syncMode == ShareMode.CONNECTED) playSyncVm.sendList(vm.currentList.value, vm.entries.value)
     }
+    // Sync par unité : map observable des états, alimentée puis diffusée.
+    val stateMap = androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateMapOf<String, com.legionforge.app.data.nearby.SyncedUnitState>() }
+    val receivedUnits by playSyncVm.receivedUnits.collectAsState()
+    val isConnected = syncMode == ShareMode.CONNECTED
+    // Applique les états reçus de l'autre téléphone.
+    LaunchedEffect(receivedUnits) {
+        receivedUnits.forEach { st ->
+            stateMap[st.instanceId] = stateMap[st.instanceId]?.let { existing ->
+                existing.copy(hull = st.hull ?: existing.hull, wounds = st.wounds ?: existing.wounds).takeIf { it != existing } ?: existing
+            } ?: st
+        }
+    }
 
     Scaffold(topBar = {
         TopAppBar(title = { Text(stringResource(R.string.play_mode), style = MaterialTheme.typography.titleMedium) },
@@ -266,11 +278,21 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
                     wikiSections.filter { it.gameSystem == unit.card.gameSystem.name }
                 }
                 when (unit.card.kind) {
-                    CardKind.ARMADA_SHIP -> ArmadaShipPage(unit, children, entries, unitWikiSections, onRuleClick)
+                    CardKind.ARMADA_SHIP -> ArmadaShipPage(unit, children, entries, unitWikiSections, onRuleClick,
+                        hullValue = stateMap[unit.instanceId]?.hull,
+                        onHullChange = { h ->
+                            stateMap[unit.instanceId] = com.legionforge.app.data.nearby.SyncedUnitState(unit.instanceId, hull = h)
+                            if (isConnected) playSyncVm.sendState(listOf(stateMap[unit.instanceId]!!))
+                        })
                     CardKind.ARMADA_SQUADRON -> ArmadaSquadronPage(unit, unitWikiSections, onRuleClick)
                     // Degats critiques reserves aux vaisseaux capitaux (par Regle Armada). Un commandant est equipe sur un vaisseau, il n'a pas de page de degats propres.
                     CardKind.COMMANDER -> CommanderPage(unit, unitWikiSections, onRuleClick)
-                    else -> LegionUnitPage(unit, children, entries, unitWikiSections, onRuleClick)
+                    else -> LegionUnitPage(unit, children, entries, unitWikiSections, onRuleClick,
+                        woundsValue = stateMap[unit.instanceId]?.wounds,
+                        onWoundsChange = { w ->
+                            stateMap[unit.instanceId] = com.legionforge.app.data.nearby.SyncedUnitState(unit.instanceId, wounds = w)
+                            if (isConnected) playSyncVm.sendState(listOf(stateMap[unit.instanceId]!!))
+                        })
                 }
             }
             if (playable.size > 1) {
@@ -340,13 +362,13 @@ internal object LegionStatsParser {
 }
 
 @Composable
-internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntries: List<ListEntry>, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
+internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntries: List<ListEntry>, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}, woundsValue: Int? = null, onWoundsChange: (Int) -> Unit = {}) {
     val totalPts = unit.card.points + children.sumOf { it.card.points * it.quantity }
     val stats = remember(unit.instanceId) { LegionStatsParser.parse(unit.card.legionStats) }
     // Points de vie réels de l'unité = santé par figurine × nombre de figurines.
     // Tracker de VALEUR RESTANTE : démarre plein, descend sous les dégâts (comme la coque Armada).
     val maxHp = (stats?.health?.takeIf { it > 0 } ?: 1) * (stats?.miniCount?.takeIf { it > 0 } ?: 1)
-    var wounds by remember(unit.instanceId) { mutableIntStateOf(maxHp) }
+    val wounds = woundsValue ?: maxHp
     var tokens by remember(unit.instanceId) { mutableStateOf(listOf<String>()) }
     // Courage de l'unité (depuis legionStats) : pilote les états Supprimé (> courage) / Paniqué (>= 2x courage).
     val courage = stats?.courage?.takeIf { it > 0 } ?: 1
@@ -392,7 +414,7 @@ internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntri
         }
         // ── suivi des blessures (valeur restante) (repliable) ──
         CollapsibleSection(stringResource(R.string.tracking), initiallyExpanded = false) {
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { BigCounter(stringResource(R.string.minis), wounds, maxHp, Color(0xFFFF6B6B), { if (wounds < maxHp) wounds++ }, { if (wounds > 0) wounds-- }) }
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { BigCounter(stringResource(R.string.minis), wounds, maxHp, Color(0xFFFF6B6B), { if (wounds < maxHp) onWoundsChange(wounds + 1) }, { if (wounds > 0) onWoundsChange(wounds - 1) }) }
             HealthBar(wounds.toFloat() / maxHp, wounds, maxHp)
             // ── état de l'unité (auto-calculé depuis blessures + suppression / courage) ──
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -614,13 +636,13 @@ private fun ManeuverMatrix(stats: ArmadaStats?, selectedSpeed: Int, onSelectSpee
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntries: List<ListEntry>, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
+internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntries: List<ListEntry>, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}, hullValue: Int? = null, onHullChange: (Int) -> Unit = {}) {
     val totalPts = unit.card.points + children.sumOf { it.card.points * it.quantity }
     val stats = remember(unit.instanceId) { ArmadaStatsParser.parse(unit.card.shipStats, CardKind.ARMADA_SHIP) }
     // Coque + boucliers initialisés aux valeurs de base de la carte ; speed démarre à 2.
     // La coque est un tracker de valeur restante (démarre au hull de base, descend sous les dégâts).
     val maxHp = stats?.hull?.takeIf { it > 0 } ?: 15
-    var hull by remember(unit.instanceId) { mutableIntStateOf(maxHp) }
+    val hull = hullValue ?: maxHp
     var sF by remember(unit.instanceId) { mutableIntStateOf(stats?.shieldFront ?: 0) }
     var sR by remember(unit.instanceId) { mutableIntStateOf(stats?.shieldRear ?: 0) }
     var sP by remember(unit.instanceId) { mutableIntStateOf(stats?.shieldPort ?: 0) }
@@ -670,7 +692,7 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
                 else if (!unit.card.rulesText.isNullOrBlank()) ClickableRulesText(unit.card.rulesText, wikiSections, onRuleClick, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall, maxLines = 6)
                 // ── résumé coque (avec +/-) + vitesse + bouton +DGT CRIT (toujours visible) ──
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
-                    HullCounter(hull, maxHp, { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- })
+                    HullCounter(hull, maxHp, { if (hull < maxHp) onHullChange(hull + 1) }, { if (hull > 0) onHullChange(hull - 1) })
                     StatChip(stringResource(R.string.stat_speed), speed, Color(0xFF77D9A7), modifier = Modifier.weight(1f), display = "$speed/$maxSpeed")
                     // Bouton +DGT CRIT : ajoute une carte de dégât critique (toujours visible).
                     Surface(onClick = { showCritSelector = true }, shape = RoundedCornerShape(10.dp), color = Color(0xFF5A2020)) {
