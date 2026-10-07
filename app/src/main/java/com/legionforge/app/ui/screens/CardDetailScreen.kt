@@ -177,16 +177,12 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
     LaunchedEffect(syncRound) { if (twoPlayer && syncRound != null && syncRound != round) round = syncRound!! }
     // Émet le round quand il change en mode 2 joueurs.
     LaunchedEffect(round) { if (twoPlayer && syncMode == ShareMode.CONNECTED) playSyncVm.sendRound(round) }
-    // Envoie la liste au démarrage de la session 2 joueurs.
-    LaunchedEffect(syncMode) {
-        if (twoPlayer && syncMode == ShareMode.CONNECTED) playSyncVm.sendList(vm.currentList.value, vm.entries.value)
-    }
-    // Envoie la liste dès qu'elle est chargée ET qu'on est connecté (openList est async,
-    // donc currentList peut être null au moment de la connexion -> on réessaie à chaque
-    // changement de currentList).
-    LaunchedEffect(vm.currentList.value, syncMode) {
+    // Envoie la liste dès qu'elle est chargée ET qu'on est connecté. openList est async :
+    // currentList ET entries se remplissent en arrière-plan, donc on réessaie à chaque
+    // changement des deux (sinon on peut envoyer une liste VIDE si entries n'est pas encore chargé).
+    LaunchedEffect(vm.currentList.value, vm.entries.value, syncMode) {
         val l = vm.currentList.value
-        if (twoPlayer && syncMode == ShareMode.CONNECTED && l != null) {
+        if (twoPlayer && syncMode == ShareMode.CONNECTED && l != null && vm.entries.value.isNotEmpty()) {
             playSyncVm.sendList(l, vm.entries.value)
         }
     }
@@ -351,6 +347,17 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
                                 }) { Text("Signaler sur GitHub", color = Color(0xFFFFC857), fontSize = 11.sp, fontWeight = FontWeight.Bold) }
                             }
                         }
+                    } else if (oppPlayable.isEmpty()) {
+                        Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(16.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
+                            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                                Text(stringResource(R.string.play_opponent), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                                Text("${opp.name} • ${opp.gameSystem} • ${opp.pointsLimit} pts", color = Color.White, style = MaterialTheme.typography.labelMedium)
+                                Text("0 unité reçue — la liste adverse n'est pas encore arrivée", color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodySmall)
+                                Button(onClick = { playSyncVm.requestList() }, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2A3A4A))) {
+                                    Text("Renvoyer la synchro", color = Color(0xFFFFC857), fontWeight = FontWeight.Bold)
+                                }
+                            }
+                        }
                     } else {
                         Card(onClick = { viewingArmy = "opp" }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(16.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
                             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -371,27 +378,33 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
             val pagerState = if (isOpp) oppPagerState else ownPagerState
             val readOnly = isOpp
             val onUnitChange: (String, SyncedUnitState) -> Unit = if (isOpp) { _, _ -> } else { id, next -> playSyncVm.setOwnState(id, next) }
-            HorizontalPager(state = pagerState, modifier = Modifier.fillMaxSize()) { page ->
-                val unit = pagerEntries[page]; val children = pagerAll.filter { it.parentInstanceId == unit.instanceId }
-                // Liens wiki : ne montrer que les mots-clés du jeu courant (pas de mélange Legion/Armada)
-                val unitWikiSections = remember(unit, wikiSections) {
-                    wikiSections.filter { it.gameSystem == unit.card.gameSystem.name }
+            if (pagerEntries.isEmpty()) {
+                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Text(if (isOpp) "Armée adverse vide (aucune unité reçue)" else stringResource(R.string.add_units_play), color = Color.Gray)
                 }
-                val unitState = states[unit.instanceId] ?: SyncedUnitState(unit.instanceId)
-                when (unit.card.kind) {
-                    CardKind.ARMADA_SHIP -> ArmadaShipPage(unit, children, pagerAll, unitWikiSections, onRuleClick,
-                        state = unitState, onChange = { next -> onUnitChange(unit.instanceId, next) }, readOnly = readOnly)
-                    CardKind.ARMADA_SQUADRON -> ArmadaSquadronPage(unit, unitWikiSections, onRuleClick,
-                        state = unitState, onChange = { next -> onUnitChange(unit.instanceId, next) }, readOnly = readOnly)
-                    // Degats critiques reserves aux vaisseaux capitaux (par Regle Armada). Un commandant est equipe sur un vaisseau, il n'a pas de page de degats propres.
-                    CardKind.COMMANDER -> CommanderPage(unit, unitWikiSections, onRuleClick)
-                    else -> LegionUnitPage(unit, children, pagerAll, unitWikiSections, onRuleClick,
-                        state = unitState, onChange = { next -> onUnitChange(unit.instanceId, next) }, readOnly = readOnly)
+            } else {
+                HorizontalPager(state = pagerState, modifier = Modifier.fillMaxSize()) { page ->
+                    val unit = pagerEntries[page]; val children = pagerAll.filter { it.parentInstanceId == unit.instanceId }
+                    // Liens wiki : ne montrer que les mots-clés du jeu courant (pas de mélange Legion/Armada)
+                    val unitWikiSections = remember(unit, wikiSections) {
+                        wikiSections.filter { it.gameSystem == unit.card.gameSystem.name }
+                    }
+                    val unitState = states[unit.instanceId] ?: SyncedUnitState(unit.instanceId)
+                    when (unit.card.kind) {
+                        CardKind.ARMADA_SHIP -> ArmadaShipPage(unit, children, pagerAll, unitWikiSections, onRuleClick,
+                            state = unitState, onChange = { next -> onUnitChange(unit.instanceId, next) }, readOnly = readOnly)
+                        CardKind.ARMADA_SQUADRON -> ArmadaSquadronPage(unit, unitWikiSections, onRuleClick,
+                            state = unitState, onChange = { next -> onUnitChange(unit.instanceId, next) }, readOnly = readOnly)
+                        // Degats critiques reserves aux vaisseaux capitaux (par Regle Armada). Un commandant est equipe sur un vaisseau, il n'a pas de page de degats propres.
+                        CardKind.COMMANDER -> CommanderPage(unit, unitWikiSections, onRuleClick)
+                        else -> LegionUnitPage(unit, children, pagerAll, unitWikiSections, onRuleClick,
+                            state = unitState, onChange = { next -> onUnitChange(unit.instanceId, next) }, readOnly = readOnly)
+                    }
                 }
-            }
-            if (pagerEntries.size > 1) {
-                Row(Modifier.fillMaxWidth().padding(bottom = 50.dp).align(Alignment.BottomCenter), horizontalArrangement = Arrangement.Center) {
-                    repeat(pagerEntries.size) { i -> Box(Modifier.padding(3.dp).size(if (i == pagerState.currentPage) 10.dp else 7.dp).clip(CircleShape).background(if (i == pagerState.currentPage) Color(0xFFFFC857) else Color(0xFF3A4A5A))) }
+                if (pagerEntries.size > 1) {
+                    Row(Modifier.fillMaxWidth().padding(bottom = 50.dp).align(Alignment.BottomCenter), horizontalArrangement = Arrangement.Center) {
+                        repeat(pagerEntries.size) { i -> Box(Modifier.padding(3.dp).size(if (i == pagerState.currentPage) 10.dp else 7.dp).clip(CircleShape).background(if (i == pagerState.currentPage) Color(0xFFFFC857) else Color(0xFF3A4A5A))) }
+                    }
                 }
             }
         }
