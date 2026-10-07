@@ -36,7 +36,7 @@ class PlaySyncViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun startHost() = sync.startHost()
-    fun startClient() = sync.startDiscovery()
+    fun startClient() = sync.startClient()
     fun connectTo(endpointId: String) = sync.connectTo(endpointId)
     fun stop() = sync.stop()
 
