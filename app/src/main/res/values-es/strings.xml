@@ -164,6 +164,13 @@
     <string name="share_import">Importar</string>
     <string name="share_no_endpoints">Ningún anfitrión cerca</string>
     <string name="share_stop">Detener</string>
+    <string name="play_2players">2 JUGADORES</string>
+    <string name="play_my_army">MI EJÉRCITO</string>
+    <string name="play_opponent">OPONENTE</string>
+    <string name="play_host">ANFITRIÓN</string>
+    <string name="play_client">CLIENTE</string>
+    <string name="play_connecting">Conéctate para iniciar la sincronización de 2 jugadores</string>
+    <string name="play_opponent_synced">Ejército oponente sincronizado en vivo</string>
     <string name="cadrans">Esferas</string>
     <string name="wiki_title">WIKI DE REGLAS</string>
     <string name="wiki_search_hint">Palabra clave: escudos, activación, ataque, velocidad…</string>

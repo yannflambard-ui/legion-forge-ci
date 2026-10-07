@@ -164,6 +164,13 @@
     <string name="share_import">Import</string>
     <string name="share_no_endpoints">No host found nearby</string>
     <string name="share_stop">Stop</string>
+    <string name="play_2players">2 PLAYERS</string>
+    <string name="play_my_army">MY ARMY</string>
+    <string name="play_opponent">OPPONENT</string>
+    <string name="play_host">HOST</string>
+    <string name="play_client">CLIENT</string>
+    <string name="play_connecting">Connect to start 2-player sync</string>
+    <string name="play_opponent_synced">Opponent army synced live</string>
     <string name="cadrans">Dials</string>
     <string name="wiki_title">RULES WIKI</string>
     <string name="wiki_search_hint">Keyword: shields, activation, attack, speed…</string>

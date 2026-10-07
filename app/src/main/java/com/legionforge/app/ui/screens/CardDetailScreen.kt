@@ -35,6 +35,8 @@ import com.legionforge.app.R
 import com.legionforge.app.data.model.*
 import com.legionforge.app.data.model.WikiSectionEntity
 import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
+import com.legionforge.app.ui.viewmodel.PlaySyncViewModel
+import com.legionforge.app.data.nearby.ShareMode
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 // Retrouve la section wiki correspondant à un mot-clé/titre (insensible à la casse).
@@ -147,36 +149,117 @@ internal data class ActiveEffect(val type: EffectType, val label: String, val de
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: () -> Unit, vm: ArmyBuilderViewModel = viewModel()) {
+fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: () -> Unit, vm: ArmyBuilderViewModel = viewModel(), playSyncVm: PlaySyncViewModel = viewModel()) {
     val playable = entries.filter { e ->
         e.parentInstanceId == null && (e.card.kind == CardKind.LEGION_UNIT || e.card.kind == CardKind.ARMADA_SHIP || e.card.kind == CardKind.ARMADA_SQUADRON || e.card.kind == CardKind.COMMANDER)
     }
     val safeIndex = initialIndex.coerceIn(0, (playable.size - 1).coerceAtLeast(0))
     val pagerState = rememberPagerState(pageCount = { playable.size.coerceAtLeast(1) }, initialPage = safeIndex)
     var round by remember { mutableIntStateOf(1) }
+    // Mode 2 joueurs : bascule entre mon armée et l'armée adverse (sync live via Nearby).
+    var twoPlayer by remember { mutableStateOf(false) }
+    var viewingOpponent by remember { mutableStateOf(false) }
+    val syncMode by playSyncVm.mode.collectAsState()
+    val syncRound by playSyncVm.receivedRound.collectAsState()
+    val opponentListJson by playSyncVm.opponentListJson.collectAsState()
     // Wiki des règles : chargé pour rendre les mots-clés du texte de règles cliquables.
     val wikiSections by vm.wikiSections.collectAsState()
     var ruleSection by remember { mutableStateOf<WikiSectionEntity?>(null) }
     val onRuleClick: (WikiSectionEntity) -> Unit = { ruleSection = it }
     LaunchedEffect(Unit) { vm.loadAllWiki() }
+    // Applique le round reçu de l'autre téléphone.
+    LaunchedEffect(syncRound) { if (twoPlayer && syncRound != null && syncRound != round) round = syncRound!! }
+    // Émet le round quand il change en mode 2 joueurs.
+    LaunchedEffect(round) { if (twoPlayer && syncMode == ShareMode.CONNECTED) playSyncVm.sendRound(round) }
+    // Envoie la liste au démarrage de la session 2 joueurs.
+    LaunchedEffect(syncMode) {
+        if (twoPlayer && syncMode == ShareMode.CONNECTED) playSyncVm.sendList(vm.currentList.value, vm.entries.value)
+    }
 
     Scaffold(topBar = {
         TopAppBar(title = { Text(stringResource(R.string.play_mode), style = MaterialTheme.typography.titleMedium) },
             navigationIcon = { TextButton(onClick = onBack) { Text(stringResource(R.string.back)) } },
             actions = {
-                Surface(onClick = { if (round > 1) round-- }, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(28.dp)) {
-                    Box(contentAlignment = Alignment.Center) { Text("-", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) }
-                }
-                Text(" R$round ", color = Color(0xFFFFC857), fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                Surface(onClick = { round++ }, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(28.dp)) {
-                    Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) }
-                }
-            },
+                            // Bouton 2 joueurs : active/désactive le mode sync live.
+                            Surface(onClick = {
+                                twoPlayer = !twoPlayer
+                                if (twoPlayer && syncMode == ShareMode.IDLE) playSyncVm.startHost()
+                                if (!twoPlayer) { viewingOpponent = false; playSyncVm.stop() }
+                            }, shape = RoundedCornerShape(8.dp), color = if (twoPlayer) Color(0xFFFFC857) else Color(0xFF2A3A4A), modifier = Modifier.padding(end = 4.dp)) {
+                                Box(Modifier.padding(horizontal = 8.dp, vertical = 6.dp), contentAlignment = Alignment.Center) {
+                                    Text(stringResource(R.string.play_2players), color = if (twoPlayer) Color(0xFF0A0E15) else Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                                }
+                            }
+                            // Bascule Mon armée / Armée adverse (mode 2 joueurs).
+                            if (twoPlayer) {
+                                Surface(onClick = { viewingOpponent = !viewingOpponent }, shape = RoundedCornerShape(8.dp), color = Color(0xFF1A2330), modifier = Modifier.padding(end = 4.dp)) {
+                                    Box(Modifier.padding(horizontal = 8.dp, vertical = 6.dp), contentAlignment = Alignment.Center) {
+                                        Text(if (viewingOpponent) stringResource(R.string.play_opponent) else stringResource(R.string.play_my_army), color = Color(0xFFFFC857), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                                    }
+                                }
+                            }
+                            Surface(onClick = { if (round > 1) round-- }, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(28.dp)) {
+                                Box(contentAlignment = Alignment.Center) { Text("-", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) }
+                            }
+                            Text(" R$round ", color = Color(0xFFFFC857), fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                            Surface(onClick = { round++ }, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(28.dp)) {
+                                Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold) }
+                            }
+                        },
             colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF0A0E15)))
     }) { pad ->
         if (playable.isEmpty()) { Box(Modifier.fillMaxSize().padding(pad), contentAlignment = Alignment.Center) { Text(stringResource(R.string.add_units_play), color = Color.Gray) }; return@Scaffold }
         Box(Modifier.fillMaxSize().padding(pad)) {
-            HorizontalPager(state = pagerState, modifier = Modifier.fillMaxSize()) { page ->
+            // Mode 2 joueurs : panneau de connexion si pas encore connecté.
+            if (twoPlayer && syncMode != ShareMode.CONNECTED) {
+                val endpoints by playSyncVm.endpoints.collectAsState()
+                Column(Modifier.fillMaxSize().padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Text(stringResource(R.string.play_2players), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Button(onClick = { playSyncVm.startHost() }, modifier = Modifier.weight(1f), colors = ButtonDefaults.buttonColors(containerColor = if (syncMode == ShareMode.ADVERTISING) Color(0xFFFFC857) else Color(0xFF1A2330))) {
+                            Text(stringResource(R.string.play_host), color = if (syncMode == ShareMode.ADVERTISING) Color(0xFF0A0E15) else Color.White, fontWeight = FontWeight.Bold)
+                        }
+                        Button(onClick = { playSyncVm.startClient() }, modifier = Modifier.weight(1f), colors = ButtonDefaults.buttonColors(containerColor = if (syncMode == ShareMode.DISCOVERING) Color(0xFFFFC857) else Color(0xFF1A2330))) {
+                            Text(stringResource(R.string.play_client), color = if (syncMode == ShareMode.DISCOVERING) Color(0xFF0A0E15) else Color.White, fontWeight = FontWeight.Bold)
+                        }
+                    }
+                    if (syncMode == ShareMode.DISCOVERING) {
+                        if (endpoints.isEmpty()) Text(stringResource(R.string.share_no_endpoints), color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodySmall)
+                        endpoints.forEach { ep ->
+                            Card(onClick = { playSyncVm.connectTo(ep.endpointId) }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(12.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
+                                Row(Modifier.fillMaxWidth().padding(12.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                                    Text(ep.name, color = Color.White, fontWeight = FontWeight.Bold)
+                                    Text(stringResource(R.string.share_connect), color = Color(0xFFFFC857), fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                                }
+                            }
+                        }
+                    }
+                }
+                return@Box
+            }
+            // Mode 2 joueurs : affichage de l'armée adverse (reçue via Nearby).
+            if (viewingOpponent) {
+                        val opp = remember(opponentListJson) {
+                            try { com.google.gson.Gson().fromJson(opponentListJson, com.legionforge.app.ui.viewmodel.ShareListPayload::class.java) } catch (_: Exception) { null }
+                        }
+                        Column(Modifier.fillMaxSize().padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                            Text(stringResource(R.string.play_opponent), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                            if (opp == null) {
+                                Text(stringResource(R.string.play_connecting), color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodyMedium)
+                            } else {
+                                Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(16.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
+                                    Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                                        Text(opp.name, color = Color.White, style = MaterialTheme.typography.titleMedium)
+                                        Text("${opp.gameSystem} • ${opp.factionId} • ${opp.pointsLimit} pts", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium)
+                                        Text("${opp.entries.size} unités", color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodySmall)
+                                    }
+                                }
+                                Text(stringResource(R.string.play_opponent_synced), color = Color(0xFF77D9A7), style = MaterialTheme.typography.bodySmall)
+                            }
+                        }
+                        return@Box
+                    }
+                    HorizontalPager(state = pagerState, modifier = Modifier.fillMaxSize()) { page ->
                 val unit = playable[page]; val children = entries.filter { it.parentInstanceId == unit.instanceId }
                 // Liens wiki : ne montrer que les mots-clés du jeu courant (pas de mélange Legion/Armada)
                 val unitWikiSections = remember(unit, wikiSections) {

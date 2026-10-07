@@ -164,6 +164,13 @@
     <string name="share_import">Importer</string>
     <string name="share_no_endpoints">Aucun hôte trouvé à proximité</string>
     <string name="share_stop">Arrêter</string>
+    <string name="play_2players">2 JOUEURS</string>
+    <string name="play_my_army">MON ARMÉE</string>
+    <string name="play_opponent">ADVERSE</string>
+    <string name="play_host">HÔTE</string>
+    <string name="play_client">CLIENT</string>
+    <string name="play_connecting">Connectez-vous pour lancer la synchro 2 joueurs</string>
+    <string name="play_opponent_synced">Armée adverse synchronisée en direct</string>
     <string name="cadrans">Cadrans</string>
     <string name="wiki_title">WIKI DES RÈGLES</string>
     <string name="wiki_search_hint">Mot-clé : boucliers, activation, attaque, vitesse…</string>

@@ -164,6 +164,13 @@
     <string name="share_import">Importieren</string>
     <string name="share_no_endpoints">Kein Gastgeber in der Nähe</string>
     <string name="share_stop">Stopp</string>
+    <string name="play_2players">2 SPIELER</string>
+    <string name="play_my_army">MEINE ARMEE</string>
+    <string name="play_opponent">GEGNER</string>
+    <string name="play_host">GASTGEBER</string>
+    <string name="play_client">CLIENT</string>
+    <string name="play_connecting">Verbinden für 2-Spieler-Sync</string>
+    <string name="play_opponent_synced">Gegnerarmee live synchronisiert</string>
     <string name="cadrans">Zifferblätter</string>
     <string name="wiki_title">REGELWIKI</string>
     <string name="wiki_search_hint">Stichwort: Schilde, Aktivierung, Angriff, Geschwindigkeit…</string>
