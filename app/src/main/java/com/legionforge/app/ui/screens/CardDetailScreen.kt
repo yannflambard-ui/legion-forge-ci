@@ -151,7 +151,10 @@ internal data class ActiveEffect(val type: EffectType, val label: String, val de
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: () -> Unit, vm: ArmyBuilderViewModel = viewModel(), playSyncVm: PlaySyncViewModel = viewModel()) {
+fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: () -> Unit, listId: String? = null, vm: ArmyBuilderViewModel = viewModel(), playSyncVm: PlaySyncViewModel = viewModel()) {
+    // Charge la liste dans CE vm (scopé à l'écran play) : sinon currentList est null et la
+    // synchro 2 joueurs ne peut pas envoyer la liste adverse.
+    if (listId != null) androidx.compose.runtime.LaunchedEffect(listId) { vm.openList(listId) }
     val playable = entries.filter { e ->
         e.parentInstanceId == null && (e.card.kind == CardKind.LEGION_UNIT || e.card.kind == CardKind.ARMADA_SHIP || e.card.kind == CardKind.ARMADA_SQUADRON || e.card.kind == CardKind.COMMANDER)
     }
