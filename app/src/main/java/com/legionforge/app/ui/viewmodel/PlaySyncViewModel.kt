@@ -25,6 +25,11 @@ class PlaySyncViewModel(application: Application) : AndroidViewModel(application
     val error: StateFlow<String?> = sync.error
     val receivedRound: StateFlow<Int?> = sync.receivedRound
     val receivedUnits: StateFlow<List<SyncedUnitState>> = sync.receivedUnits
+    // Store d'état de jeu : mon armée (éditable, diffusée) + armée adverse (reçue, lecture seule).
+    private val _ownStates = MutableStateFlow<Map<String, SyncedUnitState>>(emptyMap())
+    val ownStates: StateFlow<Map<String, SyncedUnitState>> = _ownStates.asStateFlow()
+    private val _oppStates = MutableStateFlow<Map<String, SyncedUnitState>>(emptyMap())
+    val oppStates: StateFlow<Map<String, SyncedUnitState>> = _oppStates.asStateFlow()
 
     private val _opponentListJson = MutableStateFlow<String?>(null)
     val opponentListJson: StateFlow<String?> = _opponentListJson.asStateFlow()
@@ -44,6 +49,15 @@ class PlaySyncViewModel(application: Application) : AndroidViewModel(application
                     val l = lastList
                     if (l != null) sendList(l, lastEntries)
                 }
+            }
+        }
+        // Applique les états reçus de l'adversaire dans le store oppStates (remplacement complet :
+        // chaque broadcast envoie l'état complet de l'unité).
+        viewModelScope.launch {
+            sync.receivedUnits.collect { units ->
+                val m = _oppStates.value.toMutableMap()
+                units.forEach { st -> m[st.instanceId] = st }
+                _oppStates.value = m
             }
         }
     }
@@ -67,9 +81,29 @@ class PlaySyncViewModel(application: Application) : AndroidViewModel(application
         val payload = ShareListPayload(
             name = l.name, gameSystem = l.gameSystem, factionId = l.factionId,
             pointsLimit = l.pointsLimit,
-            entries = entries.map { e -> ShareEntry(e.card.id, e.parentInstanceId, e.quantity, e.chosenSlot?.name) }
+            entries = entries.map { e -> ShareEntry(e.card.id, e.parentInstanceId, e.quantity, e.chosenSlot?.name, e.instanceId) }
         )
         sync.sendList(gson.toJson(payload))
+    }
+
+    /** Met à jour l'état d'une de MES unités et diffuse le changement à l'adversaire. */
+    fun updateOwnState(id: String, transform: (SyncedUnitState) -> SyncedUnitState) {
+        val cur = _ownStates.value[id] ?: SyncedUnitState(id)
+        val next = transform(cur)
+        _ownStates.value = _ownStates.value + (id to next)
+        if (sync.mode.value == ShareMode.CONNECTED) sync.sendState(listOf(next))
+    }
+
+    /** Met à jour l'état d'une unité ADVERSE (reçue) — lecture seule, pas de broadcast. */
+    fun updateOppState(id: String, transform: (SyncedUnitState) -> SyncedUnitState) {
+        val cur = _oppStates.value[id] ?: SyncedUnitState(id)
+        _oppStates.value = _oppStates.value + (id to transform(cur))
+    }
+
+    /** Remplace l'état complet d'une de MES unités et diffuse le changement à l'adversaire. */
+    fun setOwnState(id: String, next: SyncedUnitState) {
+        _ownStates.value = _ownStates.value + (id to next)
+        if (sync.mode.value == ShareMode.CONNECTED) sync.sendState(listOf(next))
     }
 
     override fun onCleared() {

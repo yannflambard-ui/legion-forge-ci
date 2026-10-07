@@ -26,7 +26,8 @@ data class ShareEntry(
     val cardId: String,
     val parentInstanceId: String?,
     val quantity: Int,
-    val chosenSlot: String?
+    val chosenSlot: String?,
+    val instanceId: String? = null
 )
 
 class ShareViewModel(application: Application) : AndroidViewModel(application) {

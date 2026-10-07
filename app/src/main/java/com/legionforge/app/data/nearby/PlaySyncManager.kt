@@ -12,10 +12,18 @@ import kotlinx.coroutines.launch
 /** État d'une unité en mode play, synchronisé entre les 2 téléphones. */
 data class SyncedUnitState(
     val instanceId: String,
-    val hull: Int? = null,      // Armada ship / squadron
-    val wounds: Int? = null,    // Legion unit
-    val tokens: List<String> = emptyList(), // Legion action tokens
-    val shields: List<Int> = emptyList()    // Armada shields [F,P,S,R]
+    val hull: Int? = null,          // Armada ship / squadron (valeur restante)
+    val wounds: Int? = null,        // Legion unit (valeur restante)
+    val tokens: List<String> = emptyList(),   // Legion action tokens
+    val suppressions: Int? = null,  // Legion
+    val shields: List<Int> = emptyList(),     // Armada shields [F,P,S,R] (+aux si huge)
+    val speed: Int? = null,         // Armada ship (vitesse courante)
+    val defTokens: Map<String, Boolean> = emptyMap(),  // Armada defense tokens (clé "name_i")
+    val orderTokens: Map<String, Int> = emptyMap(),    // Armada pions d'ordre (clé = nom commande)
+    val commandOrder: String? = null,  // Armada roue de commandement (nom de l'ordre)
+    val activeCrits: List<String> = emptyList(),  // noms des dégâts critiques actifs
+    val usedUpgrades: Set<String> = emptySet(),   // ids des upgrades marqués utilisés
+    val activated: Boolean? = null   // Armada squadron (activé/désactivé)
 )
 
 /** Payload de synchronisation d'état de jeu (envoyé via Nearby). */

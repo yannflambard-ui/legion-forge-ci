@@ -37,6 +37,7 @@ import com.legionforge.app.data.model.WikiSectionEntity
 import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
 import com.legionforge.app.ui.viewmodel.PlaySyncViewModel
 import com.legionforge.app.data.nearby.ShareMode
+import com.legionforge.app.data.nearby.SyncedUnitState
 import com.legionforge.app.util.rememberNearbyPermissionAction
 import com.legionforge.app.util.NearbyDiagnosticPanel
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -159,12 +160,11 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
         e.parentInstanceId == null && (e.card.kind == CardKind.LEGION_UNIT || e.card.kind == CardKind.ARMADA_SHIP || e.card.kind == CardKind.ARMADA_SQUADRON || e.card.kind == CardKind.COMMANDER)
     }
     val safeIndex = initialIndex.coerceIn(0, (playable.size - 1).coerceAtLeast(0))
-    val pagerState = rememberPagerState(pageCount = { playable.size.coerceAtLeast(1) }, initialPage = safeIndex)
+    val ownPagerState = rememberPagerState(pageCount = { playable.size.coerceAtLeast(1) }, initialPage = safeIndex)
     var round by remember { mutableIntStateOf(1) }
-    // Mode 2 joueurs : bascule entre mon armée et l'armée adverse (sync live via Nearby).
+    // Mode 2 joueurs : viewingArmy = null (liste des armées) | "own" (mon armée) | "opp" (armée adverse).
     var twoPlayer by remember { mutableStateOf(false) }
-    var viewingOpponent by remember { mutableStateOf(false) }
-        var showArmiesMenu by remember { mutableStateOf(false) }
+    var viewingArmy by remember { mutableStateOf<String?>(null) }
     val syncMode by playSyncVm.mode.collectAsState()
     val syncRound by playSyncVm.receivedRound.collectAsState()
     val opponentListJson by playSyncVm.opponentListJson.collectAsState()
@@ -192,15 +192,12 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
     }
     // Quand on ouvre l'écran ADVERSE : renvoie notre liste + demande celle de l'adversaire.
     // (Le sendList initial peut rater si la liste n'était pas chargée à la connexion.)
-    LaunchedEffect(viewingOpponent, syncMode) {
-        if (viewingOpponent && syncMode == ShareMode.CONNECTED) {
+    LaunchedEffect(viewingArmy, syncMode) {
+        if (viewingArmy == "opp" && syncMode == ShareMode.CONNECTED) {
             playSyncVm.sendList(vm.currentList.value, vm.entries.value)
             playSyncVm.requestList()
         }
     }
-    // Sync par unité : map observable des états, alimentée puis diffusée.
-    val stateMap = androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateMapOf<String, com.legionforge.app.data.nearby.SyncedUnitState>() }
-    val receivedUnits by playSyncVm.receivedUnits.collectAsState()
     val isConnected = syncMode == ShareMode.CONNECTED
     // Gain de permission runtime avant toute action Nearby (mode 2 joueurs).
     val runWithPermission = rememberNearbyPermissionAction()
@@ -217,14 +214,30 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
     var battleDeck by remember { mutableStateOf(setOf<String>()) }
     var battleRevealed by remember { mutableStateOf(mapOf<String, String>()) }
     var showBattleSheet by remember { mutableStateOf(false) }
-    // Applique les états reçus de l'autre téléphone.
-    LaunchedEffect(receivedUnits) {
-        receivedUnits.forEach { st ->
-            stateMap[st.instanceId] = stateMap[st.instanceId]?.let { existing ->
-                existing.copy(hull = st.hull ?: existing.hull, wounds = st.wounds ?: existing.wounds).takeIf { it != existing } ?: existing
-            } ?: st
-        }
+    // Store d'état de jeu : mon armée (éditable) + armée adverse (reçue, lecture seule).
+    val ownStates by playSyncVm.ownStates.collectAsState()
+    val oppStates by playSyncVm.oppStates.collectAsState()
+    // Armée adverse : résolue depuis le payload partagé (cardId -> carte du catalogue local).
+    val opp = remember(opponentListJson) {
+        try { com.google.gson.Gson().fromJson(opponentListJson, com.legionforge.app.ui.viewmodel.ShareListPayload::class.java) } catch (_: Exception) { null }
     }
+    val oppEntries = remember(opp, vm.cards.value) {
+        opp?.entries?.mapNotNull { e ->
+            vm.cards.value.firstOrNull { it.id == e.cardId }?.let { card ->
+                ListEntry(
+                    instanceId = e.instanceId ?: "opp_${e.cardId}_${e.parentInstanceId ?: "root"}",
+                    card = card,
+                    parentInstanceId = e.parentInstanceId,
+                    quantity = e.quantity,
+                    chosenSlot = e.chosenSlot?.let { s -> runCatching { ArmadaSlot.valueOf(s) }.getOrNull() }
+                )
+            }
+        } ?: emptyList()
+    }
+    val oppPlayable = oppEntries.filter { e ->
+        e.parentInstanceId == null && (e.card.kind == CardKind.LEGION_UNIT || e.card.kind == CardKind.ARMADA_SHIP || e.card.kind == CardKind.ARMADA_SQUADRON || e.card.kind == CardKind.COMMANDER)
+    }
+    val oppPagerState = rememberPagerState(pageCount = { oppPlayable.size.coerceAtLeast(1) })
 
     Scaffold(topBar = {
         TopAppBar(title = { Text(stringResource(R.string.play_mode), style = MaterialTheme.typography.titleMedium) },
@@ -234,23 +247,17 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
                             Surface(onClick = {
                                 twoPlayer = !twoPlayer
                                 if (twoPlayer && syncMode == ShareMode.IDLE) runWithPermission { playSyncVm.startHost() }
-                                if (!twoPlayer) { viewingOpponent = false; playSyncVm.stop() }
+                                if (!twoPlayer) { viewingArmy = null; playSyncVm.stop() }
                             }, shape = RoundedCornerShape(8.dp), color = if (twoPlayer) Color(0xFFFFC857) else Color(0xFF2A3A4A), modifier = Modifier.padding(end = 4.dp)) {
                                 Box(Modifier.padding(horizontal = 8.dp, vertical = 6.dp), contentAlignment = Alignment.Center) {
                                     Text(stringResource(R.string.play_2players), color = if (twoPlayer) Color(0xFF0A0E15) else Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
                                 }
                             }
-                            // Bouton Armées : ouvre un menu pour choisir Mon armée / Armée adverse.
-                            if (twoPlayer) {
-                                Box {
-                                    Surface(onClick = { showArmiesMenu = true }, shape = RoundedCornerShape(8.dp), color = Color(0xFF1A2330), modifier = Modifier.padding(end = 4.dp)) {
-                                        Box(Modifier.padding(horizontal = 8.dp, vertical = 6.dp), contentAlignment = Alignment.Center) {
-                                            Text("Armées", color = Color(0xFFFFC857), fontSize = 10.sp, fontWeight = FontWeight.Bold)
-                                        }
-                                    }
-                                    DropdownMenu(expanded = showArmiesMenu, onDismissRequest = { showArmiesMenu = false }) {
-                                        DropdownMenuItem(text = { Text(stringResource(R.string.play_my_army)) }, onClick = { viewingOpponent = false; showArmiesMenu = false })
-                                        DropdownMenuItem(text = { Text(stringResource(R.string.play_opponent)) }, onClick = { viewingOpponent = true; showArmiesMenu = false })
+                            // Bouton Armées : revient à la liste des armées (quand on est dans une armée).
+                            if (twoPlayer && viewingArmy != null) {
+                                Surface(onClick = { viewingArmy = null }, shape = RoundedCornerShape(8.dp), color = Color(0xFF1A2330), modifier = Modifier.padding(end = 4.dp)) {
+                                    Box(Modifier.padding(horizontal = 8.dp, vertical = 6.dp), contentAlignment = Alignment.Center) {
+                                        Text("Armées", color = Color(0xFFFFC857), fontSize = 10.sp, fontWeight = FontWeight.Bold)
                                     }
                                 }
                             }
@@ -282,53 +289,57 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
     }) { pad ->
         if (playable.isEmpty()) { Box(Modifier.fillMaxSize().padding(pad), contentAlignment = Alignment.Center) { Text(stringResource(R.string.add_units_play), color = Color.Gray) }; return@Scaffold }
         Box(Modifier.fillMaxSize().padding(pad)) {
-            // Mode 2 joueurs : panneau de connexion si pas encore connecté.
-            if (twoPlayer && syncMode != ShareMode.CONNECTED) {
-                val endpoints by playSyncVm.endpoints.collectAsState()
+            // ── ÉCRAN 2 JOUEURS : liste des armées (Mon armée / Armée adverse) ──
+            if (twoPlayer && viewingArmy == null) {
                 Column(Modifier.fillMaxSize().padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                     Text(stringResource(R.string.play_2players), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
-                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Button(onClick = { runWithPermission { playSyncVm.startHost() } }, modifier = Modifier.weight(1f), colors = ButtonDefaults.buttonColors(containerColor = if (syncMode == ShareMode.ADVERTISING) Color(0xFFFFC857) else Color(0xFF1A2330))) {
-                            Text(stringResource(R.string.play_host), color = if (syncMode == ShareMode.ADVERTISING) Color(0xFF0A0E15) else Color.White, fontWeight = FontWeight.Bold)
+                    // Connexion Nearby : panneau si pas connecté, sinon indicateur.
+                    if (syncMode != ShareMode.CONNECTED) {
+                        val endpoints by playSyncVm.endpoints.collectAsState()
+                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Button(onClick = { runWithPermission { playSyncVm.startHost() } }, modifier = Modifier.weight(1f), colors = ButtonDefaults.buttonColors(containerColor = if (syncMode == ShareMode.ADVERTISING) Color(0xFFFFC857) else Color(0xFF1A2330))) {
+                                Text(stringResource(R.string.play_host), color = if (syncMode == ShareMode.ADVERTISING) Color(0xFF0A0E15) else Color.White, fontWeight = FontWeight.Bold)
+                            }
+                            Button(onClick = { runWithPermission { playSyncVm.startClient() } }, modifier = Modifier.weight(1f), colors = ButtonDefaults.buttonColors(containerColor = if (syncMode == ShareMode.DISCOVERING) Color(0xFFFFC857) else Color(0xFF1A2330))) {
+                                Text(stringResource(R.string.play_client), color = if (syncMode == ShareMode.DISCOVERING) Color(0xFF0A0E15) else Color.White, fontWeight = FontWeight.Bold)
+                            }
                         }
-                        Button(onClick = { runWithPermission { playSyncVm.startClient() } }, modifier = Modifier.weight(1f), colors = ButtonDefaults.buttonColors(containerColor = if (syncMode == ShareMode.DISCOVERING) Color(0xFFFFC857) else Color(0xFF1A2330))) {
-                            Text(stringResource(R.string.play_client), color = if (syncMode == ShareMode.DISCOVERING) Color(0xFF0A0E15) else Color.White, fontWeight = FontWeight.Bold)
+                        if (syncMode == ShareMode.DISCOVERING) {
+                            if (endpoints.isEmpty()) Text(stringResource(R.string.share_no_endpoints), color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodySmall)
+                            endpoints.forEach { ep ->
+                                Card(onClick = { runWithPermission { playSyncVm.connectTo(ep.endpointId) } }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(12.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
+                                    Row(Modifier.fillMaxWidth().padding(12.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                                        Text(ep.name, color = Color.White, fontWeight = FontWeight.Bold)
+                                        Text(stringResource(R.string.share_connect), color = Color(0xFFFFC857), fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                                    }
+                                }
+                            }
+                        }
+                        val syncError by playSyncVm.error.collectAsState()
+                        NearbyDiagnosticPanel(
+                            error = syncError,
+                            onReport = { body -> com.legionforge.app.util.CrashReporter.reportEvent("Nearby 2 joueurs (${android.os.Build.MODEL})", body) }
+                        )
+                    } else {
+                        Text("Connecté — choisissez une armée", color = Color(0xFF77D9A7), style = MaterialTheme.typography.bodySmall, fontWeight = FontWeight.Bold)
+                    }
+                    // ── Mon armée ──
+                    Card(onClick = { viewingArmy = "own" }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(16.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
+                        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                            Text(stringResource(R.string.play_my_army), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                            Text("${vm.currentList.value?.name ?: ""} • ${vm.currentList.value?.factionId ?: ""} • ${vm.currentList.value?.pointsLimit ?: 0} pts", color = Color.White, style = MaterialTheme.typography.labelMedium)
+                            Text("${playable.size} unités", color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodySmall)
                         }
                     }
-                    if (syncMode == ShareMode.DISCOVERING) {
-                                            if (endpoints.isEmpty()) Text(stringResource(R.string.share_no_endpoints), color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodySmall)
-                                            endpoints.forEach { ep ->
-                                                Card(onClick = { runWithPermission { playSyncVm.connectTo(ep.endpointId) } }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(12.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
-                                                    Row(Modifier.fillMaxWidth().padding(12.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                                                        Text(ep.name, color = Color.White, fontWeight = FontWeight.Bold)
-                                                        Text(stringResource(R.string.share_connect), color = Color(0xFFFFC857), fontSize = 12.sp, fontWeight = FontWeight.Bold)
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        // Diagnostic Nearby : état des permissions + erreur traduite + bouton Signaler (→ GitHub).
-                                                                                val syncError by playSyncVm.error.collectAsState()
-                                                                                NearbyDiagnosticPanel(
-                                                                                    error = syncError,
-                                                                                    onReport = { body -> com.legionforge.app.util.CrashReporter.reportEvent("Nearby 2 joueurs (${android.os.Build.MODEL})", body) }
-                                                                                )
-                }
-                return@Box
-            }
-            // Mode 2 joueurs : affichage de l'armée adverse (reçue via Nearby).
-            if (viewingOpponent) {
-                        val opp = remember(opponentListJson) {
-                            try { com.google.gson.Gson().fromJson(opponentListJson, com.legionforge.app.ui.viewmodel.ShareListPayload::class.java) } catch (_: Exception) { null }
-                        }
-                        Column(Modifier.fillMaxSize().padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                            Text(stringResource(R.string.play_opponent), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
-                            if (opp == null) {
+                    // ── Armée adverse ──
+                    if (opp == null) {
+                        Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(16.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
+                            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                                Text(stringResource(R.string.play_opponent), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
                                 Text(stringResource(R.string.play_connecting), color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodyMedium)
-                                // Synchro manuelle : demande à l'autre joueur de renvoyer sa liste.
-                                Button(onClick = { playSyncVm.requestList() }, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1A2330))) {
+                                Button(onClick = { playSyncVm.requestList() }, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2A3A4A))) {
                                     Text("Renvoyer la synchro", color = Color(0xFFFFC857), fontWeight = FontWeight.Bold)
                                 }
-                                // Rapport GitHub : aide au diagnostic quand la liste adverse n'arrive pas.
                                 TextButton(onClick = {
                                     com.legionforge.app.util.CrashReporter.reportEvent(
                                         "Synchro 2 joueurs: liste adverse absente (${android.os.Build.MODEL}) ${System.currentTimeMillis()}",
@@ -338,66 +349,49 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
                                         "erreur=${playSyncVm.error.value ?: "aucune"}"
                                     )
                                 }) { Text("Signaler sur GitHub", color = Color(0xFFFFC857), fontSize = 11.sp, fontWeight = FontWeight.Bold) }
-                            } else {
-                                Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(16.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
-                                    Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                                        Text(opp.name, color = Color.White, style = MaterialTheme.typography.titleMedium)
-                                        Text("${opp.gameSystem} • ${opp.factionId} • ${opp.pointsLimit} pts", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelMedium)
-                                        Text("${opp.entries.size} unités", color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodySmall)
-                                    }
-                                }
-                                // Liste des unités adverses (résolues depuis le catalogue local).
-                                val oppCards = remember(opp, vm.cards.value) {
-                                    opp.entries.mapNotNull { e ->
-                                        vm.cards.value.firstOrNull { it.id == e.cardId }?.let { it to e.quantity }
-                                    }
-                                }
-                                if (oppCards.isNotEmpty()) {
-                                    Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                                        oppCards.forEach { (card, qty) ->
-                                            Surface(shape = RoundedCornerShape(10.dp), color = Color(0xFF1A2330), modifier = Modifier.fillMaxWidth()) {
-                                                Row(Modifier.padding(horizontal = 12.dp, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-                                                    Text(card.displayName(), color = Color.White, fontWeight = FontWeight.Bold, fontSize = 13.sp, modifier = Modifier.weight(1f))
-                                                    Text("${card.points} pts", color = Color(0xFFFFC857), fontSize = 12.sp, fontWeight = FontWeight.Bold)
-                                                }
-                                            }
-                                        }
-                                    }
-                                } else {
-                                    Text("Unités non résolues (catalogue local incomplet)", color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodySmall)
-                                }
-                                Text(stringResource(R.string.play_opponent_synced), color = Color(0xFF77D9A7), style = MaterialTheme.typography.bodySmall)
                             }
                         }
-                        return@Box
+                    } else {
+                        Card(onClick = { viewingArmy = "opp" }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(16.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
+                            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                                Text(stringResource(R.string.play_opponent), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                                Text("${opp.name} • ${opp.gameSystem} • ${opp.pointsLimit} pts", color = Color.White, style = MaterialTheme.typography.labelMedium)
+                                Text("${oppPlayable.size} unités", color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodySmall)
+                            }
+                        }
                     }
-                    HorizontalPager(state = pagerState, modifier = Modifier.fillMaxSize()) { page ->
-                val unit = playable[page]; val children = entries.filter { it.parentInstanceId == unit.instanceId }
+                }
+                return@Box
+            }
+            // ── PAGER : mon armée (éditable) ou armée adverse (lecture seule live) ──
+            val isOpp = twoPlayer && viewingArmy == "opp"
+            val pagerEntries = if (isOpp) oppPlayable else playable
+            val pagerAll = if (isOpp) oppEntries else entries
+            val states = if (isOpp) oppStates else ownStates
+            val pagerState = if (isOpp) oppPagerState else ownPagerState
+            val readOnly = isOpp
+            val onUnitChange: (String, SyncedUnitState) -> Unit = if (isOpp) { _, _ -> } else { id, next -> playSyncVm.setOwnState(id, next) }
+            HorizontalPager(state = pagerState, modifier = Modifier.fillMaxSize()) { page ->
+                val unit = pagerEntries[page]; val children = pagerAll.filter { it.parentInstanceId == unit.instanceId }
                 // Liens wiki : ne montrer que les mots-clés du jeu courant (pas de mélange Legion/Armada)
                 val unitWikiSections = remember(unit, wikiSections) {
                     wikiSections.filter { it.gameSystem == unit.card.gameSystem.name }
                 }
+                val unitState = states[unit.instanceId] ?: SyncedUnitState(unit.instanceId)
                 when (unit.card.kind) {
-                    CardKind.ARMADA_SHIP -> ArmadaShipPage(unit, children, entries, unitWikiSections, onRuleClick,
-                        hullValue = stateMap[unit.instanceId]?.hull,
-                        onHullChange = { h ->
-                            stateMap[unit.instanceId] = com.legionforge.app.data.nearby.SyncedUnitState(unit.instanceId, hull = h)
-                            if (isConnected) playSyncVm.sendState(listOf(stateMap[unit.instanceId]!!))
-                        })
-                    CardKind.ARMADA_SQUADRON -> ArmadaSquadronPage(unit, unitWikiSections, onRuleClick)
+                    CardKind.ARMADA_SHIP -> ArmadaShipPage(unit, children, pagerAll, unitWikiSections, onRuleClick,
+                        state = unitState, onChange = { next -> onUnitChange(unit.instanceId, next) }, readOnly = readOnly)
+                    CardKind.ARMADA_SQUADRON -> ArmadaSquadronPage(unit, unitWikiSections, onRuleClick,
+                        state = unitState, onChange = { next -> onUnitChange(unit.instanceId, next) }, readOnly = readOnly)
                     // Degats critiques reserves aux vaisseaux capitaux (par Regle Armada). Un commandant est equipe sur un vaisseau, il n'a pas de page de degats propres.
                     CardKind.COMMANDER -> CommanderPage(unit, unitWikiSections, onRuleClick)
-                    else -> LegionUnitPage(unit, children, entries, unitWikiSections, onRuleClick,
-                        woundsValue = stateMap[unit.instanceId]?.wounds,
-                        onWoundsChange = { w ->
-                            stateMap[unit.instanceId] = com.legionforge.app.data.nearby.SyncedUnitState(unit.instanceId, wounds = w)
-                            if (isConnected) playSyncVm.sendState(listOf(stateMap[unit.instanceId]!!))
-                        })
+                    else -> LegionUnitPage(unit, children, pagerAll, unitWikiSections, onRuleClick,
+                        state = unitState, onChange = { next -> onUnitChange(unit.instanceId, next) }, readOnly = readOnly)
                 }
             }
-            if (playable.size > 1) {
+            if (pagerEntries.size > 1) {
                 Row(Modifier.fillMaxWidth().padding(bottom = 50.dp).align(Alignment.BottomCenter), horizontalArrangement = Arrangement.Center) {
-                    repeat(playable.size) { i -> Box(Modifier.padding(3.dp).size(if (i == pagerState.currentPage) 10.dp else 7.dp).clip(CircleShape).background(if (i == pagerState.currentPage) Color(0xFFFFC857) else Color(0xFF3A4A5A))) }
+                    repeat(pagerEntries.size) { i -> Box(Modifier.padding(3.dp).size(if (i == pagerState.currentPage) 10.dp else 7.dp).clip(CircleShape).background(if (i == pagerState.currentPage) Color(0xFFFFC857) else Color(0xFF3A4A5A))) }
                 }
             }
         }
@@ -714,24 +708,26 @@ internal fun CommandDeckSheet(
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntries: List<ListEntry>, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}, woundsValue: Int? = null, onWoundsChange: (Int) -> Unit = {}) {
+internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntries: List<ListEntry>, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}, state: SyncedUnitState = SyncedUnitState(unit.instanceId), onChange: (SyncedUnitState) -> Unit = {}, readOnly: Boolean = false) {
     val totalPts = unit.card.points + children.sumOf { it.card.points * it.quantity }
     val stats = remember(unit.instanceId) { LegionStatsParser.parse(unit.card.legionStats) }
     // Points de vie réels de l'unité = santé par figurine × nombre de figurines.
     // Tracker de VALEUR RESTANTE : démarre plein, descend sous les dégâts (comme la coque Armada).
     val maxHp = (stats?.health?.takeIf { it > 0 } ?: 1) * (stats?.miniCount?.takeIf { it > 0 } ?: 1)
-    val wounds = woundsValue ?: maxHp
-    var tokens by remember(unit.instanceId) { mutableStateOf(listOf<String>()) }
+    val wounds = state.wounds ?: maxHp
+    val tokens = state.tokens
     // Courage de l'unité (depuis legionStats) : pilote les états Supprimé (> courage) / Paniqué (>= 2x courage).
     val courage = stats?.courage?.takeIf { it > 0 } ?: 1
-    var suppressions by remember(unit.instanceId) { mutableIntStateOf(0) }
+    val suppressions = state.suppressions ?: 0
     val isWounded = wounds < maxHp
     val isSuppressed = suppressions >= courage
     val isPanicked = suppressions >= courage * 2
-    var activeCrits by remember(unit.instanceId) { mutableStateOf(listOf<CritCard>()) }
+    val activeCrits = state.activeCrits.mapNotNull { name -> legionCrits.firstOrNull { it.name == name } }
     var showCard by remember(unit.instanceId) { mutableStateOf(false) }
-    var usedUpgrades by remember(unit.instanceId) { mutableStateOf(setOf<String>()) }
+    val usedUpgrades = state.usedUpgrades
     val defColor = if ((stats?.defenseDie ?: "w") == "r") Color(0xFFFF6B6B) else Color.White
+    // Écriture dans le store (no-op en lecture seule = armée adverse).
+    val set: (SyncedUnitState) -> Unit = { if (!readOnly) onChange(it) }
 
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         CardBlock(unit, children, totalPts, wikiSections, onRuleClick, onCardClick = { showCard = true })
@@ -765,7 +761,7 @@ internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntri
                                         }
                                         // ── suivi des blessures (valeur restante) (repliable) ──
         CollapsibleSection(stringResource(R.string.tracking), initiallyExpanded = false) {
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { BigCounter(stringResource(R.string.minis), wounds, maxHp, Color(0xFFFF6B6B), { if (wounds < maxHp) onWoundsChange(wounds + 1) }, { if (wounds > 0) onWoundsChange(wounds - 1) }) }
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { BigCounter(stringResource(R.string.minis), wounds, maxHp, Color(0xFFFF6B6B), { if (wounds < maxHp) set(state.copy(wounds = wounds + 1)) }, { if (wounds > 0) set(state.copy(wounds = wounds - 1)) }) }
             HealthBar(wounds.toFloat() / maxHp, wounds, maxHp)
             // ── état de l'unité (auto-calculé depuis blessures + suppression / courage) ──
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -777,9 +773,9 @@ internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntri
             Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(stringResource(R.string.legion_suppression_label), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold)
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Surface(onClick = { if (suppressions > 0) suppressions-- }, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(34.dp)) { Box(contentAlignment = Alignment.Center) { Text("-", color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.Bold) } }
+                    Surface(onClick = { if (suppressions > 0) set(state.copy(suppressions = suppressions - 1)) }, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(34.dp)) { Box(contentAlignment = Alignment.Center) { Text("-", color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.Bold) } }
                     Text("$suppressions / $courage", color = if (isPanicked) Color(0xFFFF6B6B) else if (isSuppressed) Color(0xFFFFB74D) else Color(0xFF77D9A7), fontSize = 18.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
-                    Surface(onClick = { suppressions++ }, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(34.dp)) { Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.Bold) } }
+                    Surface(onClick = { set(state.copy(suppressions = suppressions + 1)) }, shape = CircleShape, color = Color(0xFF2A3A4A), modifier = Modifier.size(34.dp)) { Box(contentAlignment = Alignment.Center) { Text("+", color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.Bold) } }
                 }
             }
             // Armes de l'unité (range + dés)
@@ -796,7 +792,7 @@ internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntri
                     }
                 }
             }
-            TokenSection(tokens, { tokens = tokens + it }, { tokens = tokens - it })
+            TokenSection(tokens, { set(state.copy(tokens = tokens + it)) }, { set(state.copy(tokens = tokens - it)) })
         }
         CollapsibleSection(stringResource(R.string.active_effects), initiallyExpanded = false) {
             EffectsPanel(
@@ -804,11 +800,11 @@ internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntri
                     children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), readableUpgradeText(c.card.rulesText) ?: stringResource(R.string.upgrade_installed), c.instanceId, slot = c.card.upgradeSlots.firstOrNull(), pts = c.card.points).copy(used = usedUpgrades.contains(c.instanceId))) }
                     activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, c.name)) }
                 },
-                onRemoveCrit = { activeCrits = activeCrits - it },
+                onRemoveCrit = { crit -> set(state.copy(activeCrits = state.activeCrits - crit.name)) },
                                 allCrits = legionCrits,
                                 onToggleUsed = { eff ->
                                     if (eff.type == EffectType.UPGRADE) {
-                                        usedUpgrades = if (eff.id in usedUpgrades) usedUpgrades - eff.id else usedUpgrades + eff.id
+                                        set(state.copy(usedUpgrades = if (eff.id in usedUpgrades) usedUpgrades - eff.id else usedUpgrades + eff.id))
                                     }
                                 }
                             )
@@ -992,30 +988,32 @@ private fun ManeuverMatrix(stats: ArmadaStats?, selectedSpeed: Int, onSelectSpee
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntries: List<ListEntry>, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}, hullValue: Int? = null, onHullChange: (Int) -> Unit = {}) {
+internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntries: List<ListEntry>, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}, state: SyncedUnitState = SyncedUnitState(unit.instanceId), onChange: (SyncedUnitState) -> Unit = {}, readOnly: Boolean = false) {
     val totalPts = unit.card.points + children.sumOf { it.card.points * it.quantity }
     val stats = remember(unit.instanceId) { ArmadaStatsParser.parse(unit.card.shipStats, CardKind.ARMADA_SHIP) }
     // Coque + boucliers initialisés aux valeurs de base de la carte ; speed démarre à 2.
     // La coque est un tracker de valeur restante (démarre au hull de base, descend sous les dégâts).
     val maxHp = stats?.hull?.takeIf { it > 0 } ?: 15
-    val hull = hullValue ?: maxHp
-    var sF by remember(unit.instanceId) { mutableIntStateOf(stats?.shieldFront ?: 0) }
-    var sR by remember(unit.instanceId) { mutableIntStateOf(stats?.shieldRear ?: 0) }
-    var sP by remember(unit.instanceId) { mutableIntStateOf(stats?.shieldPort ?: 0) }
-    var sS by remember(unit.instanceId) { mutableIntStateOf(stats?.shieldStarboard ?: 0) }
+    val hull = state.hull ?: maxHp
+    // Boucliers stockés dans state.shields : [F,P,S,R] (+ [P2,S2] si huge).
+    val shields = state.shields
+    val sF = shields.getOrElse(0) { stats?.shieldFront ?: 0 }
+    val sP = shields.getOrElse(1) { stats?.shieldPort ?: 0 }
+    val sS = shields.getOrElse(2) { stats?.shieldStarboard ?: 0 }
+    val sR = shields.getOrElse(3) { stats?.shieldRear ?: 0 }
     // Vaisseaux "huge" (Executor, Starhawk) : 2 cadrans de bouclier par flanc (haut + bas).
     val isHuge = stats?.size == "huge"
-    var sP2 by remember(unit.instanceId) { mutableIntStateOf(if (isHuge) (stats?.shieldPortAux ?: 0) else 0) }
-    var sS2 by remember(unit.instanceId) { mutableIntStateOf(if (isHuge) (stats?.shieldStarboardAux ?: 0) else 0) }
+    val sP2 = shields.getOrElse(4) { if (isHuge) (stats?.shieldPortAux ?: 0) else 0 }
+    val sS2 = shields.getOrElse(5) { if (isHuge) (stats?.shieldStarboardAux ?: 0) else 0 }
     val maxShield = 9
     val maxSpeed = stats?.maxSpeed ?: 3
-    var speed by remember(unit.instanceId) { mutableIntStateOf(2) }
+    val speed = state.speed ?: 2
     // Colonne de vitesse sélectionnée dans la matrice de manoeuvres (défaut = 2, vitesse de départ des vaisseaux).
-    var selectedSpeed by remember(unit.instanceId) { mutableIntStateOf(2) }
-    var activeCrits by remember(unit.instanceId) { mutableStateOf(listOf<CritCard>()) }
+    val selectedSpeed = speed
+    val activeCrits = state.activeCrits.mapNotNull { name -> armadaCrits.firstOrNull { it.name == name } }
     var showCritSelector by remember(unit.instanceId) { mutableStateOf(false) }
     var showCard by remember(unit.instanceId) { mutableStateOf(false) }
-    var usedUpgrades by remember(unit.instanceId) { mutableStateOf(setOf<String>()) }
+    val usedUpgrades = state.usedUpgrades
     val defTokenNames = remember(unit.instanceId) {
         val fromStats = stats?.defenseTokens.orEmpty()
         if (fromStats.isNotEmpty()) fromStats
@@ -1026,13 +1024,21 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
         if (def == null) null else def to name
     }
     // Chaque jeton (même en doublon) est une instance indépendante, clé = "name_i".
-    var defTokens by remember(unit.instanceId) { mutableStateOf<Map<String, Boolean>>(defTokenStates.mapIndexed { i, (def, _) -> "${def.name}_$i" to false }.toMap()) }
+    val defTokens = state.defTokens
     // Roue de commandement : ordre courant du vaisseau (null = non défini).
-    var commandOrder by remember(unit.instanceId) { mutableStateOf<ArmadaCommandOrder?>(null) }
+    val commandOrder = state.commandOrder?.let { name -> ArmadaCommandOrder.entries.firstOrNull { it.name == name } }
     // Pions d'ordre en stock : chaque commande a un compteur (0..N), total max = niveau de commande.
     val maxOrderStock = stats?.command ?: 1
-    var orderTokens by remember(unit.instanceId) { mutableStateOf<Map<String, Int>>(ArmadaCommandOrder.entries.associate { it.name to 0 }) }
+    val orderTokens = state.orderTokens
     val commander = allEntries.firstOrNull { it.card.kind == CardKind.COMMANDER || (it.card.kind == CardKind.ARMADA_UPGRADE && ArmadaSlot.COMMANDER in it.card.upgradeSlots) }
+    // Écriture dans le store (no-op en lecture seule = armée adverse).
+    val set: (SyncedUnitState) -> Unit = { if (!readOnly) onChange(it) }
+    fun setShield(i: Int, v: Int) {
+        val arr = shields.toMutableList()
+        while (arr.size <= i) arr.add(0)
+        arr[i] = v
+        set(state.copy(shields = arr))
+    }
 
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         // ── ship card (zone du haut compacte, reprise de la vue condensée) ──
@@ -1048,7 +1054,7 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
                 else if (!unit.card.rulesText.isNullOrBlank()) ClickableRulesText(unit.card.rulesText, wikiSections, onRuleClick, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall, maxLines = 6)
                 // ── résumé coque (avec +/-) + vitesse + bouton +DGT CRIT (toujours visible) ──
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
-                    HullCounter(hull, maxHp, { if (hull < maxHp) onHullChange(hull + 1) }, { if (hull > 0) onHullChange(hull - 1) })
+                    HullCounter(hull, maxHp, { if (hull < maxHp) set(state.copy(hull = hull + 1)) }, { if (hull > 0) set(state.copy(hull = hull - 1)) })
                     StatChip(stringResource(R.string.stat_speed), speed, Color(0xFF77D9A7), modifier = Modifier.weight(1f), display = "$speed/$maxSpeed")
                     // Bouton +DGT CRIT : ajoute une carte de dégât critique (toujours visible).
                     Surface(onClick = { showCritSelector = true }, shape = RoundedCornerShape(10.dp), color = Color(0xFF5A2020)) {
@@ -1056,15 +1062,14 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
                     }
                 }
                 // Sélecteur de dégât critique (ouvert par le bouton +DGT CRIT).
-                CritSelectorDropdown(armadaCrits, showCritSelector, { showCritSelector = false }, { c -> activeCrits = activeCrits + c; showCritSelector = false })
+                CritSelectorDropdown(armadaCrits, showCritSelector, { showCritSelector = false }, { c -> set(state.copy(activeCrits = state.activeCrits + c.name)); showCritSelector = false })
             }
         }
                 // ── matrice de manœuvres (repliable, repliée par défaut) ; pilote la vitesse ──
                 CollapsibleSection(stringResource(R.string.maneuver_matrix), initiallyExpanded = false) {
                     if (stats?.speedChart?.isNotEmpty() == true) {
                         ManeuverMatrix(stats, selectedSpeed, { v ->
-                            selectedSpeed = if (selectedSpeed == v) 0 else v
-                            if (selectedSpeed != 0) speed = selectedSpeed
+                            set(state.copy(speed = if (speed == v) 0 else v))
                         })
                     } else {
                         Surface(shape = RoundedCornerShape(9.dp), color = Color(0xFF1F2C3D), modifier = Modifier.fillMaxWidth()) {
@@ -1081,7 +1086,7 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
                 CollapsibleSection(stringResource(R.string.command_wheel), initiallyExpanded = false) {
                     CommandDialCard(
                         selected = commandOrder,
-                        onSelect = { commandOrder = if (commandOrder == it) null else it },
+                        onSelect = { it -> set(state.copy(commandOrder = if (commandOrder?.name == it.name) null else it.name)) },
                         wikiSections = wikiSections,
                         onRuleClick = onRuleClick
                     )
@@ -1092,9 +1097,9 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
                         orderTokens = orderTokens,
                         maxStock = maxOrderStock,
                         onIncOrder = { name ->
-                            if (orderTokens.values.sum() < maxOrderStock) orderTokens = orderTokens + (name to (orderTokens[name] ?: 0) + 1)
+                            if (orderTokens.values.sum() < maxOrderStock) set(state.copy(orderTokens = orderTokens + (name to (orderTokens[name] ?: 0) + 1)))
                         },
-                        onDecOrder = { name -> orderTokens = orderTokens + (name to ((orderTokens[name] ?: 0) - 1).coerceAtLeast(0)) },
+                        onDecOrder = { name -> set(state.copy(orderTokens = orderTokens + (name to ((orderTokens[name] ?: 0) - 1).coerceAtLeast(0)))) },
                         wikiSections = wikiSections,
                         onRuleClick = onRuleClick
                     )
@@ -1105,7 +1110,7 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
                         defTokenStates.forEachIndexed { i, (def, _) ->
                             val key = "${def.name}_$i"
                             val used = defTokens[key] ?: false
-                            DefenseTokenDisc(def, used, onClick = { defTokens = defTokens + (key to !used) }, onWikiClick = { findWikiSection(wikiSections, def.label)?.let(onRuleClick) })
+                            DefenseTokenDisc(def, used, onClick = { set(state.copy(defTokens = defTokens + (key to !used))) }, onWikiClick = { findWikiSection(wikiSections, def.label)?.let(onRuleClick) })
                         }
                     }
                 }
@@ -1122,7 +1127,7 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
                     }
                     activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, "crit_${c.name}")) }
                 },
-                onRemoveCrit = { activeCrits = activeCrits - it },
+                onRemoveCrit = { crit -> set(state.copy(activeCrits = state.activeCrits - crit.name)) },
                 allCrits = armadaCrits
             )
         }
@@ -1131,22 +1136,22 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
                 // ── cadrans des 4 arcs en croix (comme sur la carte officielle) : rectangle de dés + cercle de bouclier ──
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(6.dp)) {
                     // AVANT : rectangle de dés AU-DESSUS du cercle de bouclier.
-                    ArcCadran(ArcPos.ABOVE, listOf(stats?.attackFront), listOf(sF), { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- }, { if (sF < maxShield) sF++ }, { if (sF > 0) sF-- })
+                    ArcCadran(ArcPos.ABOVE, listOf(stats?.attackFront), listOf(sF), { if (sF < maxShield) setShield(0, sF + 1) }, { if (sF > 0) setShield(0, sF - 1) }, { if (sF < maxShield) setShield(0, sF + 1) }, { if (sF > 0) setShield(0, sF - 1) })
                     // Ligne centrale : BAB (gauche) | TRIB (droite). Vaisseaux huge = 2 cadrans par flanc.
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.Top) {
                         ArcCadran(ArcPos.LEFT,
                             if (isHuge) listOf(stats?.attackPort, stats?.attackPortAux) else listOf(stats?.attackPort),
                             if (isHuge) listOf(sP, sP2) else listOf(sP),
-                            { if (sP < maxShield) sP++ }, { if (sP > 0) sP-- },
-                            { if (sP2 < maxShield) sP2++ }, { if (sP2 > 0) sP2-- })
+                            { if (sP < maxShield) setShield(1, sP + 1) }, { if (sP > 0) setShield(1, sP - 1) },
+                            { if (sP2 < maxShield) setShield(4, sP2 + 1) }, { if (sP2 > 0) setShield(4, sP2 - 1) })
                         ArcCadran(ArcPos.RIGHT,
                             if (isHuge) listOf(stats?.attackStarboard, stats?.attackStarboardAux) else listOf(stats?.attackStarboard),
                             if (isHuge) listOf(sS, sS2) else listOf(sS),
-                            { if (sS < maxShield) sS++ }, { if (sS > 0) sS-- },
-                            { if (sS2 < maxShield) sS2++ }, { if (sS2 > 0) sS2-- })
+                            { if (sS < maxShield) setShield(2, sS + 1) }, { if (sS > 0) setShield(2, sS - 1) },
+                            { if (sS2 < maxShield) setShield(5, sS2 + 1) }, { if (sS2 > 0) setShield(5, sS2 - 1) })
                     }
                     // ARRIERE : rectangle de dés EN DESSOUS du cercle de bouclier.
-                    ArcCadran(ArcPos.BELOW, listOf(stats?.attackRear), listOf(sR), { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- }, { if (sR < maxShield) sR++ }, { if (sR > 0) sR-- })
+                    ArcCadran(ArcPos.BELOW, listOf(stats?.attackRear), listOf(sR), { if (sR < maxShield) setShield(3, sR + 1) }, { if (sR > 0) setShield(3, sR - 1) }, { if (sR < maxShield) setShield(3, sR + 1) }, { if (sR > 0) setShield(3, sR - 1) })
                 }
                 HorizontalDivider(color = Color(0xFF2A3A4A))
                                 // Résumé coque/vitesse déplacé en haut (header ship card) ; gros compteurs rouges retirés pour compacter.
@@ -1174,29 +1179,31 @@ internal fun CommanderPage(unit: ListEntry, wikiSections: List<WikiSectionEntity
 
 // ═══════════════════  SQUADRON  ═══════════════════════════
 @Composable
-internal fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}) {
+internal fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionEntity> = emptyList(), onRuleClick: (WikiSectionEntity) -> Unit = {}, state: SyncedUnitState = SyncedUnitState(unit.instanceId), onChange: (SyncedUnitState) -> Unit = {}, readOnly: Boolean = false) {
     var showCard by remember(unit.instanceId) { mutableStateOf(false) }
     val stats = remember(unit.instanceId) { ArmadaStatsParser.parse(unit.card.shipStats, CardKind.ARMADA_SQUADRON) }
     val maxHp = stats?.hull?.takeIf { it > 0 } ?: 8
-    var hull by remember(unit.instanceId) { mutableIntStateOf(maxHp) }
-    var activated by remember(unit.instanceId) { mutableStateOf(false) }
+    val hull = state.hull ?: maxHp
+    val activated = state.activated ?: false
     // Jetons de défense des escadrons uniques (ex: "2 Brace", "Brace, Scatter").
     val defTokenNames = remember(unit.instanceId) { stats?.defenseTokens.orEmpty() }
     val defTokenStates = defTokenNames.mapNotNull { name ->
         val def = ArmadaDefenseToken.entries.firstOrNull { it.name == name.uppercase() }
         if (def == null) null else def to name
     }
-    var defTokens by remember(unit.instanceId) { mutableStateOf<Map<String, Boolean>>(defTokenStates.mapIndexed { i, (def, _) -> "${def.name}_$i" to false }.toMap()) }
+    val defTokens = state.defTokens
+    // Écriture dans le store (no-op en lecture seule = armée adverse).
+    val set: (SyncedUnitState) -> Unit = { if (!readOnly) onChange(it) }
     Column(Modifier.fillMaxSize().background(Color(0xFF0A0E15)).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         CardBlock(unit, emptyList(), unit.card.points, wikiSections, onRuleClick, onCardClick = { showCard = true })
         CollapsibleSection(stringResource(R.string.squadron_tracking), initiallyExpanded = false) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
-                BigCounter(stringResource(R.string.hull), hull, maxHp, Color(0xFFFF6B6B), { if (hull < maxHp) hull++ }, { if (hull > 0) hull-- })
+                BigCounter(stringResource(R.string.hull), hull, maxHp, Color(0xFFFF6B6B), { if (hull < maxHp) set(state.copy(hull = hull + 1)) }, { if (hull > 0) set(state.copy(hull = hull - 1)) })
                 Spacer(Modifier.width(20.dp))
                 // Jeton d'activation/désactivation de l'escadron (à la place du coût, redondant avec le cadre du haut).
                 SquadronActivationToken(
                     activated = activated,
-                    onToggle = { activated = !activated },
+                    onToggle = { set(state.copy(activated = !activated)) },
                     onWikiClick = { findWikiSection(wikiSections, "activation")?.let(onRuleClick) }
                 )
             }
@@ -1223,7 +1230,7 @@ internal fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionE
                     defTokenStates.forEachIndexed { i, (def, _) ->
                         val key = "${def.name}_$i"
                         val used = defTokens[key] ?: false
-                        DefenseTokenDisc(def, used, onClick = { defTokens = defTokens + (key to !used) }, onWikiClick = { findWikiSection(wikiSections, def.label)?.let(onRuleClick) })
+                        DefenseTokenDisc(def, used, onClick = { set(state.copy(defTokens = defTokens + (key to !used))) }, onWikiClick = { findWikiSection(wikiSections, def.label)?.let(onRuleClick) })
                     }
                 }
             }
