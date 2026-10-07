@@ -325,10 +325,14 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
     ruleSection?.let { section ->
         RulePopup(section = section, onClose = { ruleSection = null })
     }
-    // Sheet du deck de cartes de commandement (Legion).
+    // Sheet du deck de cartes de commandement (Legion) — main officielle de 7.
     if (showCmdSheet) {
+        val armyNames = remember { vm.entries.value.map { it.card.displayName() }.toSet() }
         CommandDeckSheet(
-            cards = cmdCards.filter { it.generic || it.faction == cmdFaction },
+            cards = cmdCards.filter {
+                (it.generic || it.faction == cmdFaction) &&
+                (it.commanders.isEmpty() || it.commanders.any { c -> c in armyNames })
+            },
             deck = commandDeck,
             played = playedCommands,
             onToggleDeck = { id -> commandDeck = if (id in commandDeck) commandDeck - id else commandDeck + id },
@@ -478,41 +482,55 @@ internal fun CommandDeckSheet(
     onTogglePlayed: (String) -> Unit,
     onClose: () -> Unit
 ) {
+    // Règle officielle v2 : main = 2×1-pip + 2×2-pip + 2×3-pip + Standing Orders (4-pip, obligatoire).
+    val standingOrders = cards.firstOrNull { it.pip == "4" }
+    val hand = deck + (standingOrders?.let { setOf(it.id) } ?: emptySet())
+    fun selectedCount(pip: String): Int = cards.count { it.pip == pip && it.id in hand }
     ModalBottomSheet(onDismissRequest = onClose, containerColor = Color(0xFF111827)) {
         Column(Modifier.fillMaxWidth().padding(horizontal = 16.dp).padding(bottom = 24.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-            Text("CARTES DE COMMANDEMENT", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
-            if (deck.isEmpty()) {
-                Text("Touchez une carte pour l'ajouter à votre deck.", color = Color(0xFF9EACBC), style = MaterialTheme.typography.bodySmall)
-            } else {
-                Text("Deck : ${deck.size} cartes · ${played.size} jouée(s).", color = Color(0xFF77D9A7), style = MaterialTheme.typography.bodySmall)
+            Text("MAIN DE COMMANDEMENT", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+            Text("Officielle : 2×1-pip + 2×2-pip + 2×3-pip + Standing Orders (4-pip).  ${hand.size}/7", color = Color(0xFF9EACBC), style = MaterialTheme.typography.bodySmall)
+            // Standing Orders : toujours incluse, verrouillée.
+            if (standingOrders != null) {
+                Surface(shape = RoundedCornerShape(10.dp), color = Color(0xFF1E3A2A), modifier = Modifier.fillMaxWidth()) {
+                    Row(Modifier.padding(horizontal = 10.dp, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+                        Text("4", color = Color(0xFFFFC857), fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                        Spacer(Modifier.width(8.dp))
+                        Text(standingOrders.name, color = Color.White, fontWeight = FontWeight.Bold, fontSize = 13.sp, modifier = Modifier.weight(1f))
+                        Text("✓ obligatoire", color = Color(0xFF77D9A7), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                    }
+                }
             }
             Box(Modifier.fillMaxWidth().height(2.dp).background(Color(0xFF2A3A4A)))
             listOf("1", "2", "3").forEach { pip ->
                 val pipCards = cards.filter { it.pip == pip }
                 if (pipCards.isEmpty()) return@forEach
-                Text("PIP $pip", color = Color(0xFFB4BFCE), fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 4.dp))
+                val sel = selectedCount(pip)
+                Text("PIP $pip  ($sel/2)", color = Color(0xFFB4BFCE), fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 4.dp))
                 FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                     pipCards.forEach { c ->
                         val inDeck = c.id in deck
                         val isPlayed = c.id in played
+                        val full = sel >= 2
                         Surface(
-                            onClick = { onToggleDeck(c.id) },
+                            onClick = { if (inDeck || !full) onToggleDeck(c.id) },
                             shape = RoundedCornerShape(10.dp),
-                            color = if (inDeck) if (isPlayed) Color(0xFF5A2E2E) else Color(0xFF1E3A2A) else Color(0xFF192330),
+                            color = if (inDeck) if (isPlayed) Color(0xFF5A2E2E) else Color(0xFF1E3A2A) else if (full) Color(0xFF11151D) else Color(0xFF192330),
                             modifier = Modifier.weight(1f, fill = false)
                         ) {
                             Column(Modifier.padding(horizontal = 10.dp, vertical = 8.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Text("$pip", color = Color(0xFFFFC857), fontSize = 11.sp, fontWeight = FontWeight.Bold)
                                     Spacer(Modifier.width(6.dp))
-                                    Text(c.name, color = Color.White, fontWeight = FontWeight.Bold, fontSize = 12.sp, modifier = Modifier.weight(1f))
+                                    Text(c.name, color = if (full && !inDeck) Color(0xFF5A6A7A) else Color.White, fontWeight = FontWeight.Bold, fontSize = 12.sp, modifier = Modifier.weight(1f))
                                     if (inDeck) {
                                         Surface(onClick = { onTogglePlayed(c.id) }, shape = RoundedCornerShape(6.dp), color = Color(0xFF2A3A4A)) {
                                             Text(if (isPlayed) "✓ JOUÉE" else "✓", Modifier.padding(horizontal = 7.dp, vertical = 3.dp), color = if (isPlayed) Color(0xFFFFC857) else Color(0xFF77D9A7), fontSize = 10.sp, fontWeight = FontWeight.Bold)
                                         }
                                     }
                                 }
-                                if (inDeck) Text(if (isPlayed) "Jouée ce round" else "Dans le deck — touchez pour retirer", color = if (isPlayed) Color(0xFFFFC7B7) else Color(0xFF9EACBC), fontSize = 9.sp)
+                                if (inDeck) Text(if (isPlayed) "Jouée ce round" else "Dans la main — touchez pour retirer", color = if (isPlayed) Color(0xFFFFC7B7) else Color(0xFF9EACBC), fontSize = 9.sp)
+                                else if (full) Text("Main complète (2/2)", color = Color(0xFF5A6A7A), fontSize = 9.sp)
                             }
                         }
                     }
@@ -1581,7 +1599,11 @@ internal fun TokenSection(tokens: List<String>, onAdd: (String) -> Unit, onRemov
         LegionToken(stringResource(R.string.legion_token_aim), Color(0xFFFFC857), "\u25CE"),
         LegionToken(stringResource(R.string.legion_token_dodge), Color(0xFF9B6DFF), "\u25CC"),
         LegionToken(stringResource(R.string.legion_token_surge), Color(0xFF4FC3F7), "\u26A1"),
-        LegionToken(stringResource(R.string.legion_token_standby), Color(0xFFFF8A65), "\u25C9")
+        LegionToken(stringResource(R.string.legion_token_standby), Color(0xFFFF8A65), "\u25C9"),
+        LegionToken(stringResource(R.string.legion_token_observation), Color(0xFF90CAF9), "\u25C8"),
+        LegionToken(stringResource(R.string.legion_token_advantage), Color(0xFF77D9A7), "\u25B2"),
+        LegionToken(stringResource(R.string.legion_token_smoke), Color(0xFF9EACBC), "\u25CF"),
+        LegionToken(stringResource(R.string.legion_token_charge), Color(0xFFFFB74D), "\u2694")
     )
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(stringResource(R.string.tokens_markers), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelLarge)

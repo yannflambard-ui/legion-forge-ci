@@ -180,6 +180,10 @@
     <string name="legion_token_surge">Surge</string>
     <string name="legion_token_standby">Bereitschaft</string>
     <string name="legion_token_suppression">Unterdrückung</string>
+    <string name="legion_token_observation">Beobachtung</string>
+    <string name="legion_token_advantage">Vorteil</string>
+    <string name="legion_token_smoke">Rauch</string>
+    <string name="legion_token_charge">Sturm</string>
     <string name="legion_suppression_label">UNTERDRÜCKUNG</string>
     <string name="legion_state_wounded">Verwundet</string>
     <string name="legion_state_suppressed">Unterdrückt</string>

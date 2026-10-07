@@ -317,6 +317,15 @@
    ]
   },
   {
+   "id": "cmd:ambush",
+   "name": "Ambush",
+   "pip": "1",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [],
+   "keywords": []
+  },
+  {
    "id": "cmd:duel-of-the-fates",
    "name": "Duel of the Fates",
    "pip": "1",
@@ -489,6 +498,15 @@
    ]
   },
   {
+   "id": "cmd:push",
+   "name": "Push",
+   "pip": "2",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [],
+   "keywords": []
+  },
+  {
    "id": "cmd:speak-softly-and-drive-a-big-tank",
    "name": "Speak Softly and Drive a Big Tank",
    "pip": "2",
@@ -571,6 +589,15 @@
      "value": 4
     }
    ]
+  },
+  {
+   "id": "cmd:assault",
+   "name": "Assault",
+   "pip": "3",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [],
+   "keywords": []
   },
   {
    "id": "cmd:at-last",
@@ -679,6 +706,15 @@
    "commanders": [
     "Din Djarin"
    ],
+   "keywords": []
+  },
+  {
+   "id": "cmd:standing-orders",
+   "name": "Standing Orders",
+   "pip": "4",
+   "faction": "neutral",
+   "generic": true,
+   "commanders": [],
    "keywords": []
   },
   {
