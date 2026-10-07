@@ -100,12 +100,15 @@ fun LegionForgeNavHost(navController: NavHostController = rememberNavController(
             SettingsScreen(onBack = { navController.popBackStack() })
         }
         composable(Routes.CARD_DETAIL, arguments = listOf(navArgument("listId") { type = NavType.StringType }, navArgument("entryInstanceId") { type = NavType.StringType })) { entry ->
-            val lid = entry.arguments?.getString("listId") ?: return@composable
-            val eid = entry.arguments?.getString("entryInstanceId") ?: return@composable
-            val allEntries = vm.entries.value
-            val idx = allEntries.indexOfFirst { it.instanceId == eid }.coerceAtLeast(0)
-            CardDetailScreen(entries = allEntries, initialIndex = idx, onBack = { navController.popBackStack() })
-        }
+                    val lid = entry.arguments?.getString("listId") ?: return@composable
+                    val eid = entry.arguments?.getString("entryInstanceId") ?: return@composable
+                    // Charge la liste dans le VM : sinon vm.currentList est null et la synchro
+                    // 2 joueurs ne peut pas envoyer la liste adverse (sendList -> return).
+                    androidx.compose.runtime.LaunchedEffect(lid) { vm.openList(lid) }
+                    val allEntries = vm.entries.value
+                    val idx = allEntries.indexOfFirst { it.instanceId == eid }.coerceAtLeast(0)
+                    CardDetailScreen(entries = allEntries, initialIndex = idx, onBack = { navController.popBackStack() })
+                }
         composable(Routes.BATTLEFIELD_VETO) {
             BattlefieldVetoScreen(
                 onBack = { navController.popBackStack() },
