@@ -41,11 +41,11 @@ import androidx.core.content.ContextCompat
  *  - MISSING_PERMISSION_ACCESS_COARSE_LOCATION (client, pré-31) → ACCURACY.
  */
 fun nearbyPermissions(): Array<String> = buildList {
-    // Legacy Nearby pre-Android 12 : le scan Bluetooth passait par la localisation.
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
-        add(Manifest.permission.ACCESS_COARSE_LOCATION)
-        add(Manifest.permission.ACCESS_FINE_LOCATION)
-    }
+    // Nearby Connections exige ACCESS_COARSE_LOCATION au runtime sur TOUTES les versions
+    // Android (le check Nearby le réclame même en 13+, indépendamment de BLUETOOTH_SCAN).
+    // Sans lui -> erreur client "8034: MISSING_PERMISSION_ACCESS_COARSE_LOCATION".
+    add(Manifest.permission.ACCESS_COARSE_LOCATION)
+    add(Manifest.permission.ACCESS_FINE_LOCATION)
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
         add(Manifest.permission.BLUETOOTH_SCAN)
         add(Manifest.permission.BLUETOOTH_ADVERTISE)
