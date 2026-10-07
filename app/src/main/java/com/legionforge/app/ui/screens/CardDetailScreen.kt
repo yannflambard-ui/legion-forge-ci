@@ -190,6 +190,11 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
     var commandDeck by remember { mutableStateOf(setOf<String>()) }
     var playedCommands by remember { mutableStateOf(setOf<String>()) }
     var showCmdSheet by remember { mutableStateOf(false) }
+    // Battle deck (Legion v2) : 9 cartes (3+3+3) + mission (carte révélée par catégorie).
+    val battleCards = remember { loadBattleCards(legionContext) }
+    var battleDeck by remember { mutableStateOf(setOf<String>()) }
+    var battleRevealed by remember { mutableStateOf(mapOf<String, String>()) }
+    var showBattleSheet by remember { mutableStateOf(false) }
     // Applique les états reçus de l'autre téléphone.
     LaunchedEffect(receivedUnits) {
         receivedUnits.forEach { st ->
@@ -226,6 +231,14 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
                                 Surface(onClick = { showCmdSheet = true }, shape = RoundedCornerShape(8.dp), color = if (commandDeck.isNotEmpty()) Color(0xFF1E3A2A) else Color(0xFF2A3A4A), modifier = Modifier.padding(end = 4.dp)) {
                                     Box(Modifier.padding(horizontal = 8.dp, vertical = 6.dp), contentAlignment = Alignment.Center) {
                                         Text("CMD ${commandDeck.size}", color = Color(0xFFFFC857), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                                    }
+                                }
+                            }
+                            // Bouton battle deck (battle cards v2, Legion only).
+                            if (isLegion) {
+                                Surface(onClick = { showBattleSheet = true }, shape = RoundedCornerShape(8.dp), color = if (battleDeck.isNotEmpty()) Color(0xFF1E3A2A) else Color(0xFF2A3A4A), modifier = Modifier.padding(end = 4.dp)) {
+                                    Box(Modifier.padding(horizontal = 8.dp, vertical = 6.dp), contentAlignment = Alignment.Center) {
+                                        Text("BAT ${battleDeck.size}", color = Color(0xFFFFC857), fontSize = 10.sp, fontWeight = FontWeight.Bold)
                                     }
                                 }
                             }
@@ -324,6 +337,34 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
     // Popup de règle : clic sur un mot-clé du texte de règles -> point de règle officiel.
     ruleSection?.let { section ->
         RulePopup(section = section, onClose = { ruleSection = null })
+    }
+    // Sheet battle deck (battle cards v2, Legion) — 9 cartes 3+3+3 + mission.
+    if (showBattleSheet) {
+        BattleDeckSheet(
+            cards = battleCards,
+            deck = battleDeck,
+            revealed = battleRevealed,
+            onToggleDeck = { name ->
+                val cat = battleCards.firstOrNull { it.name == name }?.category
+                if (name in battleDeck) {
+                    battleDeck = battleDeck - name
+                    if (cat != null && battleRevealed[cat] == name) battleRevealed = battleRevealed - cat
+                } else {
+                    battleDeck = battleDeck + name
+                    if (cat != null && battleRevealed[cat] == null) battleRevealed = battleRevealed + (cat to name)
+                }
+            },
+            onCycleReveal = { cat ->
+                val opts = battleCards.filter { it.category == cat && it.name in battleDeck }.map { it.name }.distinct()
+                if (opts.isNotEmpty()) {
+                    val cur = battleRevealed[cat]
+                    val idx = opts.indexOf(cur).coerceAtLeast(0)
+                    battleRevealed = battleRevealed + (cat to opts[(idx + 1) % opts.size])
+                }
+            },
+            deckComplete = { cat -> battleCards.count { it.category == cat && it.name in battleDeck } >= 3 },
+            onClose = { showBattleSheet = false }
+        )
     }
     // Sheet du deck de cartes de commandement (Legion) — main officielle de 7.
     if (showCmdSheet) {
@@ -456,7 +497,6 @@ internal data class LegionCommandCard(
     val keywords: List<String> = emptyList()
 )
 
-// Charge les cartes de commandement depuis assets/command_cards.json.
 internal fun loadCommandCards(context: android.content.Context): List<LegionCommandCard> {
     return try {
         val s = context.assets.open("command_cards.json").bufferedReader().use { it.readText() }
@@ -470,6 +510,70 @@ internal fun loadCommandCards(context: android.content.Context): List<LegionComm
             }
         }
     } catch (_: Exception) { emptyList() }
+}
+
+internal data class LegionBattleCard(val category: String, val name: String)
+
+internal fun loadBattleCards(context: android.content.Context): List<LegionBattleCard> {
+    return try {
+        val s = context.assets.open("battle_cards.json").bufferedReader().use { it.readText() }
+        val arr = org.json.JSONObject(s).getJSONArray("cards")
+        buildList { for (i in 0 until arr.length()) { val o = arr.getJSONObject(i); add(LegionBattleCard(o.optString("category"), o.optString("name"))) } }
+    } catch (_: Exception) { emptyList() }
+}
+
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
+@Composable
+internal fun BattleDeckSheet(
+    cards: List<LegionBattleCard>,
+    deck: Set<String>,
+    revealed: Map<String, String>,           // category -> carte révélée
+    onToggleDeck: (String) -> Unit,
+    onCycleReveal: (String) -> Unit,         // category -> passer à la carte suivante du deck
+    deckComplete: (String) -> Boolean,       // category -> 3 sélectionnées
+    onClose: () -> Unit
+) {
+    val order = listOf("objective" to "OBJECTIVE + MAP", "secondary" to "SECONDARY OBJECTIVE", "advantage" to "ADVANTAGE")
+    ModalBottomSheet(onDismissRequest = onClose, containerColor = Color(0xFF111827)) {
+        Column(Modifier.fillMaxWidth().padding(horizontal = 16.dp).padding(bottom = 24.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+            Text("BATTLE DECK (9 cartes)", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+            Text("Officiel : 3 Objective(+Map) + 3 Secondary + 3 Advantage, sans doublon.", color = Color(0xFF9EACBC), style = MaterialTheme.typography.bodySmall)
+            Box(Modifier.fillMaxWidth().height(2.dp).background(Color(0xFF2A3A4A)))
+            order.forEach { (cat, label) ->
+                val catCards = cards.filter { it.category == cat }
+                if (catCards.isEmpty()) return@forEach
+                val sel = deck.count { id -> catCards.any { it.name == id } }
+                Text("$label  ($sel/3)", color = Color(0xFFB4BFCE), fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 4.dp))
+                FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    catCards.forEach { c ->
+                        val inDeck = c.name in deck
+                        val full = sel >= 3
+                        Surface(
+                            onClick = { if (inDeck || !full) onToggleDeck(c.name) },
+                            shape = RoundedCornerShape(10.dp),
+                            color = if (inDeck) if (revealed[cat] == c.name) Color(0xFF5A2E2E) else Color(0xFF1E3A2A) else if (full) Color(0xFF11151D) else Color(0xFF192330),
+                            modifier = Modifier.weight(1f, fill = false)
+                        ) {
+                            Column(Modifier.padding(horizontal = 10.dp, vertical = 8.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Text(c.name, color = if (inDeck) Color.White else if (full) Color(0xFF5A6A7A) else Color(0xFFB4BFCE), fontWeight = FontWeight.Bold, fontSize = 12.sp, modifier = Modifier.weight(1f))
+                                    if (inDeck && revealed[cat] == c.name) Text("RÉVÉLÉE", color = Color(0xFFFFC857), fontSize = 8.sp, fontWeight = FontWeight.Bold)
+                                }
+                                if (inDeck && revealed[cat] == c.name) Text("Mission en cours — touchez ↻ pour remplacer", color = Color(0xFFFFC7B7), fontSize = 8.sp)
+                            }
+                        }
+                    }
+                }
+                // Mission : révéler / remplacer la carte courante de cette catégorie.
+                val rev = revealed[cat]
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                    Text("Mission → ", color = Color(0xFF9EACBC), fontSize = 10.sp)
+                    Text(rev.takeIf { !it.isNullOrEmpty() } ?: "—", color = Color(0xFFFFC857), fontWeight = FontWeight.Bold, fontSize = 11.sp, modifier = Modifier.weight(1f))
+                    if (deckComplete(cat)) Button(onClick = { onCycleReveal(cat) }, contentPadding = PaddingValues(horizontal = 10.dp, vertical = 4.dp)) { Text("↻", fontSize = 14.sp) }
+                }
+            }
+        }
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
