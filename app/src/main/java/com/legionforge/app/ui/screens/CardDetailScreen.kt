@@ -37,6 +37,7 @@ import com.legionforge.app.data.model.WikiSectionEntity
 import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
 import com.legionforge.app.ui.viewmodel.PlaySyncViewModel
 import com.legionforge.app.data.nearby.ShareMode
+import com.legionforge.app.util.rememberNearbyPermissionAction
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 // Retrouve la section wiki correspondant à un mot-clé/titre (insensible à la casse).
@@ -179,6 +180,8 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
     val stateMap = androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateMapOf<String, com.legionforge.app.data.nearby.SyncedUnitState>() }
     val receivedUnits by playSyncVm.receivedUnits.collectAsState()
     val isConnected = syncMode == ShareMode.CONNECTED
+    // Gain de permission runtime avant toute action Nearby (mode 2 joueurs).
+    val runWithPermission = rememberNearbyPermissionAction()
     // Applique les états reçus de l'autre téléphone.
     LaunchedEffect(receivedUnits) {
         receivedUnits.forEach { st ->
@@ -195,7 +198,7 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
                             // Bouton 2 joueurs : active/désactive le mode sync live.
                             Surface(onClick = {
                                 twoPlayer = !twoPlayer
-                                if (twoPlayer && syncMode == ShareMode.IDLE) playSyncVm.startHost()
+                                if (twoPlayer && syncMode == ShareMode.IDLE) runWithPermission { playSyncVm.startHost() }
                                 if (!twoPlayer) { viewingOpponent = false; playSyncVm.stop() }
                             }, shape = RoundedCornerShape(8.dp), color = if (twoPlayer) Color(0xFFFFC857) else Color(0xFF2A3A4A), modifier = Modifier.padding(end = 4.dp)) {
                                 Box(Modifier.padding(horizontal = 8.dp, vertical = 6.dp), contentAlignment = Alignment.Center) {
@@ -228,17 +231,17 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
                 Column(Modifier.fillMaxSize().padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                     Text(stringResource(R.string.play_2players), color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Button(onClick = { playSyncVm.startHost() }, modifier = Modifier.weight(1f), colors = ButtonDefaults.buttonColors(containerColor = if (syncMode == ShareMode.ADVERTISING) Color(0xFFFFC857) else Color(0xFF1A2330))) {
+                        Button(onClick = { runWithPermission { playSyncVm.startHost() } }, modifier = Modifier.weight(1f), colors = ButtonDefaults.buttonColors(containerColor = if (syncMode == ShareMode.ADVERTISING) Color(0xFFFFC857) else Color(0xFF1A2330))) {
                             Text(stringResource(R.string.play_host), color = if (syncMode == ShareMode.ADVERTISING) Color(0xFF0A0E15) else Color.White, fontWeight = FontWeight.Bold)
                         }
-                        Button(onClick = { playSyncVm.startClient() }, modifier = Modifier.weight(1f), colors = ButtonDefaults.buttonColors(containerColor = if (syncMode == ShareMode.DISCOVERING) Color(0xFFFFC857) else Color(0xFF1A2330))) {
+                        Button(onClick = { runWithPermission { playSyncVm.startClient() } }, modifier = Modifier.weight(1f), colors = ButtonDefaults.buttonColors(containerColor = if (syncMode == ShareMode.DISCOVERING) Color(0xFFFFC857) else Color(0xFF1A2330))) {
                             Text(stringResource(R.string.play_client), color = if (syncMode == ShareMode.DISCOVERING) Color(0xFF0A0E15) else Color.White, fontWeight = FontWeight.Bold)
                         }
                     }
                     if (syncMode == ShareMode.DISCOVERING) {
                         if (endpoints.isEmpty()) Text(stringResource(R.string.share_no_endpoints), color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodySmall)
                         endpoints.forEach { ep ->
-                            Card(onClick = { playSyncVm.connectTo(ep.endpointId) }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(12.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
+                            Card(onClick = { runWithPermission { playSyncVm.connectTo(ep.endpointId) } }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(12.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
                                 Row(Modifier.fillMaxWidth().padding(12.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                                     Text(ep.name, color = Color.White, fontWeight = FontWeight.Bold)
                                     Text(stringResource(R.string.share_connect), color = Color(0xFFFFC857), fontSize = 12.sp, fontWeight = FontWeight.Bold)

@@ -20,6 +20,7 @@ import com.legionforge.app.data.model.ListEntry
 import com.legionforge.app.data.nearby.ShareMode
 import com.legionforge.app.ui.viewmodel.ShareListPayload
 import com.legionforge.app.ui.viewmodel.ShareViewModel
+import com.legionforge.app.util.rememberNearbyPermissionAction
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -36,6 +37,7 @@ fun ShareScreen(
     val error by vm.error.collectAsState()
     val received by vm.receivedList.collectAsState()
     val sent by vm.sent.collectAsState()
+    val runWithPermission = rememberNearbyPermissionAction()
 
     Scaffold(topBar = {
         TopAppBar(
@@ -47,10 +49,10 @@ fun ShareScreen(
         Column(Modifier.fillMaxSize().background(Brush.verticalGradient(listOf(Color(0xFF111827), Color(0xFF080B12)))).padding(pad).padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             // Choix du mode : Hôte ou Client
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Button(onClick = { vm.startHost() }, modifier = Modifier.weight(1f), colors = ButtonDefaults.buttonColors(containerColor = if (mode == ShareMode.ADVERTISING) Color(0xFFFFC857) else Color(0xFF1A2330))) {
+                Button(onClick = { runWithPermission { vm.startHost() } }, modifier = Modifier.weight(1f), colors = ButtonDefaults.buttonColors(containerColor = if (mode == ShareMode.ADVERTISING) Color(0xFFFFC857) else Color(0xFF1A2330))) {
                     Text(stringResource(R.string.share_host), color = if (mode == ShareMode.ADVERTISING) Color(0xFF0A0E15) else Color.White, fontWeight = FontWeight.Bold)
                 }
-                Button(onClick = { vm.startClient() }, modifier = Modifier.weight(1f), colors = ButtonDefaults.buttonColors(containerColor = if (mode == ShareMode.DISCOVERING) Color(0xFFFFC857) else Color(0xFF1A2330))) {
+                Button(onClick = { runWithPermission { vm.startClient() } }, modifier = Modifier.weight(1f), colors = ButtonDefaults.buttonColors(containerColor = if (mode == ShareMode.DISCOVERING) Color(0xFFFFC857) else Color(0xFF1A2330))) {
                     Text(stringResource(R.string.share_client), color = if (mode == ShareMode.DISCOVERING) Color(0xFF0A0E15) else Color.White, fontWeight = FontWeight.Bold)
                 }
             }
@@ -70,7 +72,7 @@ fun ShareScreen(
                     Text(stringResource(R.string.share_no_endpoints), color = Color(0xFF8F9BAD), style = MaterialTheme.typography.bodySmall)
                 }
                 endpoints.forEach { ep ->
-                    Card(onClick = { vm.connectTo(ep.endpointId) }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(12.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
+                    Card(onClick = { runWithPermission { vm.connectTo(ep.endpointId) } }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(12.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFF1A2330))) {
                         Row(Modifier.fillMaxWidth().padding(12.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                             Text(ep.name, color = Color.White, fontWeight = FontWeight.Bold)
                             Text(stringResource(R.string.share_connect), color = Color(0xFFFFC857), fontSize = 12.sp, fontWeight = FontWeight.Bold)
