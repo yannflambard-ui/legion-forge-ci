@@ -1415,6 +1415,7 @@ internal fun SquadronActivationToken(activated: Boolean, onToggle: () -> Unit, o
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 internal fun TokenSection(tokens: List<String>, onAdd: (String) -> Unit, onRemove: (String) -> Unit) {
     // Jetons d'action Legion v2 : Aim (jaune), Dodge (violet), Surge (bleu), Standby (orange).
