@@ -174,17 +174,26 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
     // Émet le round quand il change en mode 2 joueurs.
     LaunchedEffect(round) { if (twoPlayer && syncMode == ShareMode.CONNECTED) playSyncVm.sendRound(round) }
     // Envoie la liste au démarrage de la session 2 joueurs.
-        LaunchedEffect(syncMode) {
-            if (twoPlayer && syncMode == ShareMode.CONNECTED) playSyncVm.sendList(vm.currentList.value, vm.entries.value)
+    LaunchedEffect(syncMode) {
+        if (twoPlayer && syncMode == ShareMode.CONNECTED) playSyncVm.sendList(vm.currentList.value, vm.entries.value)
+    }
+    // Envoie la liste dès qu'elle est chargée ET qu'on est connecté (openList est async,
+    // donc currentList peut être null au moment de la connexion -> on réessaie à chaque
+    // changement de currentList).
+    LaunchedEffect(vm.currentList.value, syncMode) {
+        val l = vm.currentList.value
+        if (twoPlayer && syncMode == ShareMode.CONNECTED && l != null) {
+            playSyncVm.sendList(l, vm.entries.value)
         }
-        // Quand on ouvre l'écran ADVERSE : renvoie notre liste + demande celle de l'adversaire.
-        // (Le sendList initial peut rater si la liste n'était pas chargée à la connexion.)
-        LaunchedEffect(viewingOpponent, syncMode) {
-            if (viewingOpponent && syncMode == ShareMode.CONNECTED) {
-                playSyncVm.sendList(vm.currentList.value, vm.entries.value)
-                playSyncVm.requestList()
-            }
+    }
+    // Quand on ouvre l'écran ADVERSE : renvoie notre liste + demande celle de l'adversaire.
+    // (Le sendList initial peut rater si la liste n'était pas chargée à la connexion.)
+    LaunchedEffect(viewingOpponent, syncMode) {
+        if (viewingOpponent && syncMode == ShareMode.CONNECTED) {
+            playSyncVm.sendList(vm.currentList.value, vm.entries.value)
+            playSyncVm.requestList()
         }
+    }
     // Sync par unité : map observable des états, alimentée puis diffusée.
     val stateMap = androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateMapOf<String, com.legionforge.app.data.nearby.SyncedUnitState>() }
     val receivedUnits by playSyncVm.receivedUnits.collectAsState()
@@ -312,9 +321,10 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
                                 // Rapport GitHub : aide au diagnostic quand la liste adverse n'arrive pas.
                                 TextButton(onClick = {
                                     com.legionforge.app.util.CrashReporter.reportEvent(
-                                        "Synchro 2 joueurs: liste adverse absente (${android.os.Build.MODEL})",
+                                        "Synchro 2 joueurs: liste adverse absente (${android.os.Build.MODEL}) ${System.currentTimeMillis()}",
                                         "Mode=${syncMode} · connecté=${playSyncVm.connectedEndpoint.value != null} · " +
                                         "liste adverse reçue=${opponentListJson != null} · " +
+                                        "ma liste chargée=${vm.currentList.value != null} · " +
                                         "erreur=${playSyncVm.error.value ?: "aucune"}"
                                     )
                                 }) { Text("Signaler sur GitHub", color = Color(0xFFFFC857), fontSize = 11.sp, fontWeight = FontWeight.Bold) }
