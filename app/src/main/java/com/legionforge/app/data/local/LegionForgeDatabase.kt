@@ -37,7 +37,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
         BuilderEntryEntity::class,
         WikiSectionEntity::class
     ],
-    version = 14,
+    version = 15,
     exportSchema = false
 )
 @TypeConverters(Converters::class)

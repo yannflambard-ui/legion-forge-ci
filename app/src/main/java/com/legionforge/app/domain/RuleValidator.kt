@@ -55,6 +55,7 @@ class LegionV2Validator : RuleValidator {
                 individualUpgradeSlotCounts[key] = (individualUpgradeSlotCounts[key] ?: 0) - 1
                 if (individualUpgradeSlotCounts[key] ?: 0 < 0) violations += violation("legion_slot_capacity", "${parent.card.name} ne dispose plus de slot ${slot.toDisplay()}.")
                 if (upgrade.card.unique && legionEntries.any { it.instanceId != upgrade.instanceId && it.card.id == upgrade.card.id }) violations += violation("unique_upgrade_duplicate", "${upgrade.card.name} ne peut être sélectionnée qu'une seule fois.")
+                if (!LegionRequirements.matches(upgrade.card.rulesText, parent.card)) violations += violation("upgrade_requirement", "${upgrade.card.name} ne peut être équipée que sur une unité répondant à ses exigences (pas ${parent.card.name}).")
             }
         }
         return RuleValidationResult(violations.isEmpty(), total, violations.distinctBy { it.code + it.message })
