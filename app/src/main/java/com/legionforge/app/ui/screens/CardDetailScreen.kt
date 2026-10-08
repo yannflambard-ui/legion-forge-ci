@@ -3,6 +3,7 @@ package com.legionforge.app.ui.screens
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -565,11 +566,12 @@ private fun titleCase(s: String): String = s.replace('_', ' ').trim().replaceFir
 internal data class LegionCommandCard(
     val id: String,
     val name: String,
-    val pip: String,             // "1" | "2" | "3"
+    val pip: String,             // "1" | "2" | "3" | "4"
     val faction: String,
     val generic: Boolean = false,
     val commanders: List<String> = emptyList(),
-    val keywords: List<String> = emptyList()
+    val keywords: List<String> = emptyList(),
+    val imageAssetPath: String? = null
 )
 
 internal fun loadCommandCards(context: android.content.Context): List<LegionCommandCard> {
@@ -581,19 +583,19 @@ internal fun loadCommandCards(context: android.content.Context): List<LegionComm
                 val o = arr.getJSONObject(i)
                 val cmdrs = buildList { val a = o.optJSONArray("commanders"); if (a != null) for (j in 0 until a.length()) add(a.getString(j)) }
                 val kws = buildList { val a = o.optJSONArray("keywords"); if (a != null) for (j in 0 until a.length()) add(a.getString(j)) }
-                add(LegionCommandCard(o.optString("id"), o.optString("name"), o.optString("pip"), o.optString("faction"), o.optBoolean("generic"), cmdrs, kws))
+                add(LegionCommandCard(o.optString("id"), o.optString("name"), o.optString("pip"), o.optString("faction"), o.optBoolean("generic"), cmdrs, kws, o.optString("imageAssetPath").takeIf { it.isNotBlank() }))
             }
         }
     } catch (_: Exception) { emptyList() }
 }
 
-internal data class LegionBattleCard(val category: String, val name: String)
+internal data class LegionBattleCard(val category: String, val name: String, val imageAssetPath: String? = null)
 
 internal fun loadBattleCards(context: android.content.Context): List<LegionBattleCard> {
     return try {
         val s = context.assets.open("battle_cards.json").bufferedReader().use { it.readText() }
         val arr = org.json.JSONObject(s).getJSONArray("cards")
-        buildList { for (i in 0 until arr.length()) { val o = arr.getJSONObject(i); add(LegionBattleCard(o.optString("category"), o.optString("name"))) } }
+        buildList { for (i in 0 until arr.length()) { val o = arr.getJSONObject(i); add(LegionBattleCard(o.optString("category"), o.optString("name"), o.optString("imageAssetPath").takeIf { it.isNotBlank() })) } }
     } catch (_: Exception) { emptyList() }
 }
 
@@ -609,6 +611,7 @@ internal fun BattleDeckSheet(
     onClose: () -> Unit
 ) {
     val order = listOf("objective" to "OBJECTIVE + MAP", "secondary" to "SECONDARY OBJECTIVE", "advantage" to "ADVANTAGE")
+    var zoomCard by remember { mutableStateOf<LegionBattleCard?>(null) }
     ModalBottomSheet(onDismissRequest = onClose, containerColor = Color(0xFF111827)) {
         Column(Modifier.fillMaxWidth().padding(horizontal = 16.dp).padding(bottom = 24.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Text("BATTLE DECK (9 cartes)", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
@@ -623,20 +626,14 @@ internal fun BattleDeckSheet(
                     catCards.forEach { c ->
                         val inDeck = c.name in deck
                         val full = sel >= 3
-                        Surface(
-                            onClick = { if (inDeck || !full) onToggleDeck(c.name) },
-                            shape = RoundedCornerShape(10.dp),
-                            color = if (inDeck) if (revealed[cat] == c.name) Color(0xFF5A2E2E) else Color(0xFF1E3A2A) else if (full) Color(0xFF11151D) else Color(0xFF192330),
-                            modifier = Modifier.weight(1f, fill = false)
-                        ) {
-                            Column(Modifier.padding(horizontal = 10.dp, vertical = 8.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                                Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Text(c.name, color = if (inDeck) Color.White else if (full) Color(0xFF5A6A7A) else Color(0xFFB4BFCE), fontWeight = FontWeight.Bold, fontSize = 12.sp, modifier = Modifier.weight(1f))
-                                    if (inDeck && revealed[cat] == c.name) Text("RÉVÉLÉE", color = Color(0xFFFFC857), fontSize = 8.sp, fontWeight = FontWeight.Bold)
-                                }
-                                if (inDeck && revealed[cat] == c.name) Text("Mission en cours — touchez ↻ pour remplacer", color = Color(0xFFFFC7B7), fontSize = 8.sp)
-                            }
-                        }
+                        DeckCardThumb(
+                            imageAssetPath = c.imageAssetPath,
+                            name = c.name,
+                            badge = if (inDeck && revealed[cat] == c.name) "★" else null,
+                            selected = inDeck,
+                            dimmed = full && !inDeck,
+                            onClick = { zoomCard = c }
+                        )
                     }
                 }
                 // Mission : révéler / remplacer la carte courante de cette catégorie.
@@ -648,6 +645,20 @@ internal fun BattleDeckSheet(
                 }
             }
         }
+    }
+    zoomCard?.let { c ->
+        val inDeck = c.name in deck
+        val cat = c.category
+        val full = deck.count { id -> cards.any { it.name == id && it.category == cat } } >= 3
+        DeckCardZoom(
+            imageAssetPath = c.imageAssetPath,
+            title = c.name,
+            subtitle = order.firstOrNull { it.first == cat }?.second,
+            inDeck = inDeck,
+            canAdd = !full,
+            onToggleDeck = { onToggleDeck(c.name) },
+            onClose = { zoomCard = null }
+        )
     }
 }
 
@@ -665,17 +676,25 @@ internal fun CommandDeckSheet(
     val standingOrders = cards.firstOrNull { it.pip == "4" }
     val hand = deck + (standingOrders?.let { setOf(it.id) } ?: emptySet())
     fun selectedCount(pip: String): Int = cards.count { it.pip == pip && it.id in hand }
+    var zoomCard by remember { mutableStateOf<LegionCommandCard?>(null) }
     ModalBottomSheet(onDismissRequest = onClose, containerColor = Color(0xFF111827)) {
         Column(Modifier.fillMaxWidth().padding(horizontal = 16.dp).padding(bottom = 24.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Text("MAIN DE COMMANDEMENT", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
             Text("Officielle : 2×1-pip + 2×2-pip + 2×3-pip + Standing Orders (4-pip).  ${hand.size}/7", color = Color(0xFF9EACBC), style = MaterialTheme.typography.bodySmall)
             // Standing Orders : toujours incluse, verrouillée.
             if (standingOrders != null) {
-                Surface(shape = RoundedCornerShape(10.dp), color = Color(0xFF1E3A2A), modifier = Modifier.fillMaxWidth()) {
-                    Row(Modifier.padding(horizontal = 10.dp, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-                        Text("4", color = Color(0xFFFFC857), fontSize = 12.sp, fontWeight = FontWeight.Bold)
-                        Spacer(Modifier.width(8.dp))
-                        Text(standingOrders.name, color = Color.White, fontWeight = FontWeight.Bold, fontSize = 13.sp, modifier = Modifier.weight(1f))
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                    DeckCardThumb(
+                        imageAssetPath = standingOrders.imageAssetPath,
+                        name = standingOrders.name,
+                        badge = "4",
+                        selected = true,
+                        dimmed = false,
+                        onClick = { zoomCard = standingOrders }
+                    )
+                    Spacer(Modifier.width(10.dp))
+                    Column(Modifier.weight(1f)) {
+                        Text(standingOrders.name, color = Color.White, fontWeight = FontWeight.Bold, fontSize = 13.sp)
                         Text("✓ obligatoire", color = Color(0xFF77D9A7), fontSize = 10.sp, fontWeight = FontWeight.Bold)
                     }
                 }
@@ -691,27 +710,123 @@ internal fun CommandDeckSheet(
                         val inDeck = c.id in deck
                         val isPlayed = c.id in played
                         val full = sel >= 2
-                        Surface(
-                            onClick = { if (inDeck || !full) onToggleDeck(c.id) },
-                            shape = RoundedCornerShape(10.dp),
-                            color = if (inDeck) if (isPlayed) Color(0xFF5A2E2E) else Color(0xFF1E3A2A) else if (full) Color(0xFF11151D) else Color(0xFF192330),
-                            modifier = Modifier.weight(1f, fill = false)
-                        ) {
-                            Column(Modifier.padding(horizontal = 10.dp, vertical = 8.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                                Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Text("$pip", color = Color(0xFFFFC857), fontSize = 11.sp, fontWeight = FontWeight.Bold)
-                                    Spacer(Modifier.width(6.dp))
-                                    Text(c.name, color = if (full && !inDeck) Color(0xFF5A6A7A) else Color.White, fontWeight = FontWeight.Bold, fontSize = 12.sp, modifier = Modifier.weight(1f))
-                                    if (inDeck) {
-                                        Surface(onClick = { onTogglePlayed(c.id) }, shape = RoundedCornerShape(6.dp), color = Color(0xFF2A3A4A)) {
-                                            Text(if (isPlayed) "✓ JOUÉE" else "✓", Modifier.padding(horizontal = 7.dp, vertical = 3.dp), color = if (isPlayed) Color(0xFFFFC857) else Color(0xFF77D9A7), fontSize = 10.sp, fontWeight = FontWeight.Bold)
-                                        }
-                                    }
-                                }
-                                if (inDeck) Text(if (isPlayed) "Jouée ce round" else "Dans la main — touchez pour retirer", color = if (isPlayed) Color(0xFFFFC7B7) else Color(0xFF9EACBC), fontSize = 9.sp)
-                                else if (full) Text("Main complète (2/2)", color = Color(0xFF5A6A7A), fontSize = 9.sp)
-                            }
+                        DeckCardThumb(
+                            imageAssetPath = c.imageAssetPath,
+                            name = c.name,
+                            badge = pip,
+                            selected = inDeck,
+                            dimmed = full && !inDeck,
+                            onClick = { zoomCard = c }
+                        )
+                    }
+                }
+            }
+        }
+    }
+    zoomCard?.let { c ->
+        val inDeck = c.id in deck
+        val isPlayed = c.id in played
+        val pip = c.pip
+        val full = selectedCount(pip) >= 2
+        val locked = pip == "4"   // Standing Orders : toujours dans la main, non retirable.
+        DeckCardZoom(
+            imageAssetPath = c.imageAssetPath,
+            title = c.name,
+            subtitle = "PIP $pip",
+            inDeck = inDeck,
+            canAdd = !full,
+            locked = locked,
+            onToggleDeck = { onToggleDeck(c.id) },
+            onTogglePlayed = { onTogglePlayed(c.id) },
+            isPlayed = isPlayed,
+            onClose = { zoomCard = null }
+        )
+    }
+}
+
+// ── Miniature de carte (deck commandement / battle) ─────────────────────
+@Composable
+internal fun DeckCardThumb(
+    imageAssetPath: String?,
+    name: String,
+    badge: String? = null,
+    selected: Boolean,
+    dimmed: Boolean,
+    onClick: () -> Unit
+) {
+    val source = imageAssetPath?.let { "file:///android_asset/$it" }
+    Box(
+        Modifier.width(96.dp)
+            .clip(RoundedCornerShape(10.dp))
+            .background(if (selected) Color(0xFF1E3A2A) else if (dimmed) Color(0xFF11151D) else Color(0xFF192330))
+            .clickable(onClick = onClick)
+    ) {
+        if (source != null) {
+            AsyncImage(model = source, contentDescription = name, modifier = Modifier.fillMaxWidth().height(134.dp), contentScale = ContentScale.Fit)
+        } else {
+            Box(Modifier.fillMaxWidth().height(134.dp), contentAlignment = Alignment.Center) {
+                Text(name, color = if (dimmed) Color(0xFF5A6A7A) else Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.padding(6.dp))
+            }
+        }
+        if (selected) {
+            Box(Modifier.matchParentSize().clip(RoundedCornerShape(10.dp)).border(2.dp, Color(0xFFFFC857), RoundedCornerShape(10.dp)))
+        }
+        if (badge != null) {
+            Box(Modifier.padding(4.dp).clip(CircleShape).background(Color(0xFF0A0E15).copy(alpha = 0.85f)).padding(horizontal = 6.dp, vertical = 2.dp), contentAlignment = Alignment.Center) {
+                Text(badge, color = Color(0xFFFFC857), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+            }
+        }
+    }
+}
+
+// ── Zoom carte (deck commandement / battle) : grand + Retirer / Fermer ──
+@Composable
+internal fun DeckCardZoom(
+    imageAssetPath: String?,
+    title: String,
+    subtitle: String? = null,
+    inDeck: Boolean,
+    canAdd: Boolean,
+    locked: Boolean = false,
+    onToggleDeck: () -> Unit,
+    onTogglePlayed: (() -> Unit)? = null,
+    isPlayed: Boolean = false,
+    onClose: () -> Unit
+) {
+    val source = imageAssetPath?.let { "file:///android_asset/$it" }
+    androidx.compose.ui.window.Dialog(onDismissRequest = onClose) {
+        androidx.compose.material3.Surface(
+            modifier = Modifier.fillMaxWidth(0.96f).verticalScroll(rememberScrollState()),
+            shape = RoundedCornerShape(18.dp),
+            color = Color(0xFF192330)
+        ) {
+            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(title, color = Color(0xFFFFC857), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
+                if (subtitle != null) Text(subtitle, color = Color(0xFF9EACBC), style = MaterialTheme.typography.bodySmall)
+                if (source != null) {
+                    AsyncImage(model = source, contentDescription = title, modifier = Modifier.fillMaxWidth().heightIn(max = 560.dp), contentScale = ContentScale.Fit)
+                } else {
+                    Box(Modifier.fillMaxWidth().height(220.dp).clip(RoundedCornerShape(12.dp)).background(Color(0xFF2A3A4A)), contentAlignment = Alignment.Center) {
+                        Text(title, color = Color.White, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.padding(12.dp))
+                    }
+                }
+                Row(horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
+                    if (onTogglePlayed != null && inDeck && !locked) {
+                        Surface(onClick = onTogglePlayed, shape = RoundedCornerShape(8.dp), color = if (isPlayed) Color(0xFF5A2E2E) else Color(0xFF2A3A4A)) {
+                            Text(if (isPlayed) "✓ JOUÉE" else "Jouée", Modifier.padding(horizontal = 12.dp, vertical = 8.dp), color = if (isPlayed) Color(0xFFFFC857) else Color(0xFF77D9A7), fontSize = 12.sp, fontWeight = FontWeight.Bold)
                         }
+                    }
+                    if (locked) {
+                        Surface(shape = RoundedCornerShape(8.dp), color = Color(0xFF1E3A2A)) {
+                            Text("✓ Obligatoire", Modifier.padding(horizontal = 12.dp, vertical = 8.dp), color = Color(0xFF77D9A7), fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                        }
+                    } else if (inDeck || canAdd) {
+                        Surface(onClick = onToggleDeck, shape = RoundedCornerShape(8.dp), color = if (inDeck) Color(0xFF5A2E2E) else Color(0xFF1E3A2A)) {
+                            Text(if (inDeck) "Retirer" else "Ajouter", Modifier.padding(horizontal = 12.dp, vertical = 8.dp), color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                        }
+                    }
+                    Surface(onClick = onClose, shape = RoundedCornerShape(8.dp), color = Color(0xFF2A3A4A)) {
+                        Text("Fermer", Modifier.padding(horizontal = 12.dp, vertical = 8.dp), color = Color(0xFF9EACBC), fontSize = 12.sp, fontWeight = FontWeight.Bold)
                     }
                 }
             }
