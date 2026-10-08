@@ -85,6 +85,12 @@
     <string name="kind_ship">Schiff</string>
     <string name="kind_squadron">Staffel</string>
     <string name="kind_commander">Kommandant</string>
+    <string name="rank_commander">Kommandant</string>
+    <string name="rank_operative">Agent</string>
+    <string name="rank_corps">Korps</string>
+    <string name="rank_special">Spezialkräfte</string>
+    <string name="rank_support">Unterstützung</string>
+    <string name="rank_heavy">Schwer</string>
 
     <!-- Settings -->
     <string name="back">Zurück</string>

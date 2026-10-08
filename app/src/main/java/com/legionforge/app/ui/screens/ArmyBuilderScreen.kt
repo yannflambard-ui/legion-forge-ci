@@ -337,6 +337,27 @@ private fun kindLabel(kind: CardKind): String = when (kind) {
     CardKind.COMMANDER -> stringResource(R.string.kind_commander)
 }
 
+// Libellé + couleur du rang/type d'unité Legion (badge dans le catalogue).
+@Composable
+private fun rankLabel(rank: LegionRank?): String = when (rank) {
+    LegionRank.COMMANDER -> stringResource(R.string.rank_commander)
+    LegionRank.OPERATIVE -> stringResource(R.string.rank_operative)
+    LegionRank.CORPS -> stringResource(R.string.rank_corps)
+    LegionRank.SPECIAL_FORCES -> stringResource(R.string.rank_special)
+    LegionRank.SUPPORT -> stringResource(R.string.rank_support)
+    LegionRank.HEAVY -> stringResource(R.string.rank_heavy)
+    null -> ""
+}
+private fun rankColor(rank: LegionRank?): Color = when (rank) {
+    LegionRank.COMMANDER -> Color(0xFFFF6B6B)      // rouge commandant
+    LegionRank.OPERATIVE -> Color(0xFFB388FF)      // violet agent
+    LegionRank.CORPS -> Color(0xFF4FC3F7)          // bleu corps
+    LegionRank.SPECIAL_FORCES -> Color(0xFF81C784) // vert forces spéciales
+    LegionRank.SUPPORT -> Color(0xFF4DD0E1)        // cyan soutien
+    LegionRank.HEAVY -> Color(0xFFFF8A65)          // orange lourd
+    null -> Color(0xFF9EACBC)
+}
+
 @Composable
 internal fun FactionCardColor(factionId: String?): Color = when (factionId) {
     "rebel" -> Color(0xFF4EC9E0)        // cyan
@@ -419,6 +440,9 @@ private fun CatalogCard(card: CardDefinition, entries: List<ListEntry>, preselec
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
                 Text(card.displayName(), color = Color.White, style = MaterialTheme.typography.titleSmall)
                 Text("${card.points} pts • ${kindLabel(card.kind)}", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelSmall)
+                if (card.kind == CardKind.LEGION_UNIT && card.legionRank != null) {
+                    Text(rankLabel(card.legionRank), color = rankColor(card.legionRank), style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold)
+                }
                 Text("${factionLabel(card.factionId)} • ${if (card.unique) stringResource(R.string.unique) else stringResource(R.string.standard)}", maxLines = 1, color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall)
                 if (requiresTarget && eligibleTargets.isNotEmpty()) {
                     // Quand un parent est déjà sélectionné, le catalogue est scoped à ce parent :
