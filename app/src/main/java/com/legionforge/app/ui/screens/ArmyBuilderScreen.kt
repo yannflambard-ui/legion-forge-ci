@@ -55,7 +55,7 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
     // (Certaines cartes Armada existent en 2 factions — ex: Ahsoka Tano rebel/republic — mais
     // ce sont des cartes distinctes par faction, donc le filtre factionId les gère correctement.)
     val listFaction = list?.factionId
-    fun matchesFaction(c: CardDefinition) = listFaction == null || c.factionId == listFaction || c.factionId == "neutral" || c.factionId == "mercenary"
+    fun matchesFaction(c: CardDefinition) = listFaction == null || c.factionId == listFaction || c.factionId == "neutral" || (c.factionId == "mercenary" && listFaction in c.mercenaryFactions)
     // When a parent unit is selected, show ONLY the upgrades that fit in that parent's
     // slots (and, for Armada, that match the ship family via linkedUnit). No other ships,
     // squadrons or commanders — the catalogue is scoped to the selected parent.

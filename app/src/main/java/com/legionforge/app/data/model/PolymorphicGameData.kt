@@ -76,7 +76,8 @@ data class CardDefinition(
         val legionStats: String? = null,
         val cardSubtype: String? = null,
         val title: String? = null,
-        val forceAffinity: String? = null
+        val forceAffinity: String? = null,
+        val mercenaryFactions: List<String> = emptyList()
             ) {
     fun displayName(locale: String = java.util.Locale.getDefault().language): String {
         return names[locale] ?: name
@@ -128,13 +129,14 @@ data class CatalogCardEntity(
     val legionStats: String? = null,
     val cardSubtype: String? = null,
     val title: String? = null,
-    val forceAffinity: String? = null
+    val forceAffinity: String? = null,
+    val mercenaryFactions: String? = null
 ) {
     fun toDefinition() = CardDefinition(
         id, GameSystem.valueOf(gameSystem), CardKind.valueOf(kind), name, points, factionId,
         legionRank?.let(LegionRank::valueOf), parseSlots(upgradeSlots), parseSlots(allowedUpgradeSlots),
         commander, unique, imageUrl, imageAssetPath, rulesText, parseJsonNames(names), shipStats, linkedUnit, legionStats,
-        cardSubtype, title, forceAffinity
+        cardSubtype, title, forceAffinity, parseFactions(mercenaryFactions)
     )
 
     companion object {
@@ -143,9 +145,10 @@ data class CatalogCardEntity(
             card.legionRank?.name, card.upgradeSlots.joinToString(",") { it.name },
             card.allowedUpgradeSlots.joinToString(",") { it.name }, card.commander, card.unique,
             card.imageUrl, card.imageAssetPath, card.rulesText, toJsonNames(card.names), card.shipStats, card.linkedUnit, card.legionStats,
-            card.cardSubtype, card.title, card.forceAffinity
+            card.cardSubtype, card.title, card.forceAffinity, card.mercenaryFactions.joinToString(",")
         )
         private fun parseSlots(value: String) = value.split(',').filter(String::isNotBlank).map(ArmadaSlot::valueOf)
+        private fun parseFactions(value: String?) = value?.split(',')?.filter(String::isNotBlank) ?: emptyList()
         private fun parseJsonNames(value: String?): Map<String, String> {
             if (value == null || value.isEmpty()) return emptyMap()
             return try { com.google.gson.Gson().fromJson(value, Map::class.java) as? Map<String, String> ?: emptyMap() } catch (_: Exception) { emptyMap() }

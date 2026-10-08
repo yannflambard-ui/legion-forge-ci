@@ -457,7 +457,10 @@
    "legionStats": "{\"health\":5,\"courage\":3,\"speed\":3,\"defenseDie\":\"r\",\"surgeAttack\":\"c\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Mercenary\",\"Jump\",\"Arsenal\",\"Bounty\",\"Impervious\",\"Independent\",\"Sharpshooter\"],\"weapons\":[{\"name\":\"Boot Spikes\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":3,\"black\":0,\"white\":0}},{\"name\":\"Integrated Rockets\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":0,\"black\":3,\"white\":0}},{\"name\":\"Fett's EE-3 Carbine\",\"range\":{\"min\":1,\"max\":3},\"dice\":{\"red\":0,\"black\":0,\"white\":0}}],\"upgradeBar\":[\"training\",\"training\",\"comms\",\"gear\",\"gear\"]}",
    "cardSubtype": "mandalorian trooper",
    "title": "Infamous Bounty Hunter",
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "empire"
+   ]
   },
   {
    "id": "legion_v2:lhq2/bossk-trandoshan-terror",
@@ -480,7 +483,11 @@
    "legionStats": "{\"health\":7,\"courage\":2,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"c\",\"surgeDefense\":\"\",\"miniCount\":1,\"keywords\":[\"Mercenary\",\"Bounty\",\"Enrage\",\"Independent\",\"Regenerate\",\"Scale\"],\"weapons\":[{\"name\":\"Frenzy\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":1,\"black\":2,\"white\":1}},{\"name\":\"Relby-v10 Mortar Rifle\",\"range\":{\"min\":2,\"max\":4},\"dice\":{\"red\":1,\"black\":0,\"white\":4}}],\"upgradeBar\":[\"training\",\"training\",\"gear\"]}",
    "cardSubtype": "trooper",
    "title": "Trandoshan Terror",
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "empire",
+    "separatists"
+   ]
   },
   {
    "id": "legion_v2:lhq2/stormtroopers",
@@ -1276,7 +1283,11 @@
    "legionStats": "{\"health\":6,\"courage\":3,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"h\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Mercenary\",\"Jump\",\"Bounty\",\"Danger Sense\",\"Independent\",\"Sharpshooter\",\"Steady\"],\"weapons\":[{\"name\":\"Martial Arts\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":3,\"white\":0}},{\"name\":\"Dual LL-30 Blaster Pistols\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":0,\"black\":4,\"white\":0}}],\"upgradeBar\":[\"training\",\"training\",\"comms\",\"gear\",\"armament\",\"grenades\"]}",
    "cardSubtype": "trooper",
    "title": "Needs No Introduction",
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "empire",
+    "separatists"
+   ]
   },
   {
    "id": "legion_v2:lhq2/arc-troopers-strike-team",
@@ -2001,7 +2012,14 @@
    "legionStats": "{\"health\":4,\"courage\":2,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Mercenary\",\"Aid\",\"Independent\",\"Danger Sense\"],\"weapons\":[{\"name\":\"Unarmed\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":1,\"white\":0}},{\"name\":\"Capo's P13 Long Blaster\",\"range\":{\"min\":1,\"max\":3},\"dice\":{\"red\":0,\"black\":3,\"white\":0}}],\"upgradeBar\":[\"command\",\"gear\"]}",
    "cardSubtype": "trooper",
    "title": null,
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "rebel",
+    "empire",
+    "republic",
+    "separatists",
+    "mandalorians"
+   ]
   },
   {
    "id": "legion_v2:lhq2/pyke-syndicate-foot-soldiers",
@@ -2026,7 +2044,14 @@
    "legionStats": "{\"health\":1,\"courage\":1,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"\",\"surgeDefense\":\"b\",\"miniCount\":4,\"keywords\":[\"Mercenary\",\"Self-Preservation\",\"Danger Sense\",\"Outmaneuver\",\"Independent\"],\"weapons\":[{\"name\":\"Stun Baton\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":0,\"white\":2}},{\"name\":\"P13 Long Blaster\",\"range\":{\"min\":1,\"max\":3},\"dice\":{\"red\":0,\"black\":1,\"white\":0}}],\"upgradeBar\":[\"heavy weapon\",\"personnel\",\"gear\",\"grenades\"]}",
    "cardSubtype": "trooper",
    "title": null,
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "rebel",
+    "empire",
+    "republic",
+    "separatists",
+    "mandalorians"
+   ]
   },
   {
    "id": "legion_v2:lhq2/black-sun-vigo",
@@ -2049,7 +2074,11 @@
    "legionStats": "{\"health\":4,\"courage\":2,\"speed\":2,\"defenseDie\":\"r\",\"surgeAttack\":\"\",\"surgeDefense\":\"\",\"miniCount\":1,\"keywords\":[\"Mercenary\",\"Aid\",\"Dauntless\",\"Independent\"],\"weapons\":[{\"name\":\"Martial Arts\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":3,\"white\":0}},{\"name\":\"Vigo's BH-4 Double Blaster\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":0,\"black\":2,\"white\":2}}],\"upgradeBar\":[\"command\",\"gear\"]}",
    "cardSubtype": "trooper",
    "title": null,
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "empire",
+    "separatists"
+   ]
   },
   {
    "id": "legion_v2:lhq2/black-sun-enforcers",
@@ -2074,7 +2103,11 @@
    "legionStats": "{\"health\":1,\"courage\":1,\"speed\":2,\"defenseDie\":\"r\",\"surgeAttack\":\"\",\"surgeDefense\":\"\",\"miniCount\":4,\"keywords\":[\"Mercenary\",\"Dauntless\",\"Precise\",\"Self-Preservation\",\"Independent\"],\"weapons\":[{\"name\":\"Close Quarters Combat\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":1,\"black\":0,\"white\":0}},{\"name\":\"BH-4 Double Blaster\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":0,\"black\":1,\"white\":1}}],\"upgradeBar\":[\"heavy weapon\",\"personnel\",\"gear\",\"grenades\"]}",
    "cardSubtype": "trooper",
    "title": null,
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "empire",
+    "separatists"
+   ]
   },
   {
    "id": "legion_v2:lhq2/maul-a-rival",
@@ -2197,7 +2230,11 @@
    "legionStats": "{\"health\":3,\"courage\":0,\"speed\":3,\"defenseDie\":\"w\",\"surgeAttack\":\"h\",\"surgeDefense\":\"b\",\"miniCount\":2,\"keywords\":[\"Mercenary\",\"Cover\",\"Independent\",\"Reinforcements\",\"Speeder\"],\"weapons\":[{\"name\":\"Vibro-Ax\",\"range\":{\"min\":null,\"max\":null},\"dice\":{\"red\":1,\"black\":0,\"white\":2}},{\"name\":\"Heavy Blaster Pistol\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":1,\"black\":1,\"white\":0}}],\"upgradeBar\":[\"comms\"]}",
    "cardSubtype": "repulsor vehicle",
    "title": null,
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "rebel",
+    "republic"
+   ]
   },
   {
    "id": "legion_v2:lhq2/stormtroopers-heavy-response-unit",
@@ -2243,7 +2280,10 @@
    "legionStats": "{\"health\":5,\"courage\":2,\"speed\":2,\"defenseDie\":\"r\",\"surgeAttack\":\"c\",\"surgeDefense\":\"\",\"miniCount\":1,\"keywords\":[\"Mercenary\",\"Armor\",\"Bounty\",\"Impervious\",\"Sharpshooter\"],\"weapons\":[{\"name\":\"IG-88's Vibro-cleaver\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":1,\"black\":1,\"white\":1}},{\"name\":\"Modified E-11 Blaster\",\"range\":{\"min\":1,\"max\":3},\"dice\":{\"red\":0,\"black\":1,\"white\":2}},{\"name\":\"Modified DLT-20A Rifle\",\"range\":{\"min\":1,\"max\":4},\"dice\":{\"red\":0,\"black\":0,\"white\":0}}],\"upgradeBar\":[\"training\",\"comms\",\"gear\"]}",
    "cardSubtype": "droid trooper",
    "title": "Notorious Assassin Droid",
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "empire"
+   ]
   },
   {
    "id": "legion_v2:lhq2/ig-11-nurse-and-protect",
@@ -2268,7 +2308,11 @@
    "legionStats": "{\"health\":5,\"courage\":2,\"speed\":2,\"defenseDie\":\"r\",\"surgeAttack\":\"h\",\"surgeDefense\":\"\",\"miniCount\":1,\"keywords\":[\"Mercenary\",\"Armor\",\"Gunslinger\",\"Impervious\",\"Programmed\",\"Sharpshooter\"],\"weapons\":[{\"name\":\"Overpower\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":4,\"black\":0,\"white\":0}},{\"name\":\"Modified E-11 Blaster\",\"range\":{\"min\":1,\"max\":3},\"dice\":{\"red\":0,\"black\":1,\"white\":2}},{\"name\":\"Modified DLT-20A Rifle\",\"range\":{\"min\":1,\"max\":4},\"dice\":{\"red\":0,\"black\":0,\"white\":0}}],\"upgradeBar\":[\"training\",\"comms\",\"gear\",\"programming\"]}",
    "cardSubtype": "droid trooper",
    "title": "Nurse and Protect",
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "empire",
+    "rebel"
+   ]
   },
   {
    "id": "legion_v2:lhq2/din-djarin-cotw-the-mandalorian",
@@ -2290,7 +2334,11 @@
    "imageUrl": null,
    "imageAssetPath": "cards/swl/mercenary/din-djarin-cotw-the-mandalorian.webp",
    "rulesText": null,
-   "legionStats": "{\"health\":5,\"courage\":3,\"speed\":2,\"defenseDie\":\"r\",\"surgeAttack\":\"c\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Mercenary\",\"Arsenal\",\"Bounty\",\"Impervious\",\"Independent\",\"Tactical\"],\"weapons\":[{\"name\":\"Vibro Knife\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":2,\"white\":0}},{\"name\":\"Din's IB-94 Pistol\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":2,\"black\":1,\"white\":0}}],\"upgradeBar\":[\"training\",\"training\",\"comms\",\"gear\",\"gear\",\"armament\"]}"
+   "legionStats": "{\"health\":5,\"courage\":3,\"speed\":2,\"defenseDie\":\"r\",\"surgeAttack\":\"c\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Mercenary\",\"Arsenal\",\"Bounty\",\"Impervious\",\"Independent\",\"Tactical\"],\"weapons\":[{\"name\":\"Vibro Knife\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":2,\"white\":0}},{\"name\":\"Din's IB-94 Pistol\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":2,\"black\":1,\"white\":0}}],\"upgradeBar\":[\"training\",\"training\",\"comms\",\"gear\",\"gear\",\"armament\"]}",
+   "mercenaryFactions": [
+    "empire",
+    "rebel"
+   ]
   },
   {
    "id": "legion_v2:lhq2/boba-fett-daimyo-of-mos-espa",
@@ -2313,7 +2361,10 @@
    "legionStats": "{\"health\":5,\"courage\":3,\"speed\":2,\"defenseDie\":\"r\",\"surgeAttack\":\"c\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Mercenary\",\"Jump\",\"Arsenal\",\"Impervious\",\"Independent\",\"Sentinel\",\"Sharpshooter\",\"Tactical\"],\"weapons\":[{\"name\":\"Fett's Gaderffii Stick\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":3,\"black\":1,\"white\":0}},{\"name\":\"Fett's EE-3 Carbine\",\"range\":{\"min\":1,\"max\":3},\"dice\":{\"red\":0,\"black\":3,\"white\":0}}],\"upgradeBar\":[\"training\",\"training\",\"gear\",\"gear\"]}",
    "cardSubtype": "mandalorian trooper",
    "title": "Daimyo of Mos Espa",
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "rebel"
+   ]
   },
   {
    "id": "legion_v2:lhq2/imperial-dark-troopers",
@@ -2454,7 +2505,10 @@
    "legionStats": "{\"health\":5,\"courage\":2,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"c\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Mercenary\",\"Independent\",\"Low Profile\",\"Nimble\",\"Relentless\",\"Scout\",\"Scouting Party\",\"Unhindered\"],\"weapons\":[{\"name\":\"Spear\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":2,\"black\":1,\"white\":0}},{\"name\":\"Sling\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":0,\"black\":1,\"white\":0}}],\"upgradeBar\":[\"training\",\"training\",\"training\"]}",
    "cardSubtype": "trooper",
    "title": "Hero of Bright Tree",
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "rebel"
+   ]
   },
   {
    "id": "legion_v2:lhq2/chewbacca-let-the-wookiee-win",
@@ -2498,7 +2552,10 @@
    "legionStats": "{\"health\":1,\"courage\":1,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"\",\"surgeDefense\":\"\",\"miniCount\":6,\"keywords\":[\"Mercenary\",\"Low Profile\",\"Unhindered\"],\"weapons\":[{\"name\":\"Spear\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":1,\"white\":0}}],\"upgradeBar\":[\"heavy weapon\",\"personnel\",\"personnel\",\"training\"]}",
    "cardSubtype": "trooper",
    "title": null,
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "rebel"
+   ]
   },
   {
    "id": "legion_v2:lhq2/ewok-slingers",
@@ -2522,7 +2579,10 @@
    "legionStats": "{\"health\":1,\"courage\":1,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"\",\"surgeDefense\":\"\",\"miniCount\":6,\"keywords\":[\"Mercenary\",\"Independent\",\"Low Profile\",\"Target\"],\"weapons\":[{\"name\":\"Stones\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":0,\"white\":1}},{\"name\":\"Slings\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":0,\"black\":1,\"white\":0}}],\"upgradeBar\":[\"heavy weapon\",\"personnel\",\"personnel\",\"training\"]}",
    "cardSubtype": "trooper",
    "title": null,
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "rebel"
+   ]
   },
   {
    "id": "legion_v2:lhq2/c-3p0-golden-god",
@@ -2894,7 +2954,10 @@
    "legionStats": "{\"health\":2,\"courage\":3,\"speed\":2,\"defenseDie\":\"r\",\"surgeAttack\":\"\",\"surgeDefense\":\"\",\"miniCount\":0,\"keywords\":[\"Mercenary\",\"Equip\",\"Impervious\",\"Scale\",\"Steady\",\"Sharpshooter\",\"We're Not Regs\"],\"weapons\":[{\"name\":\"Advanced Combat Training\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":1,\"black\":0,\"white\":0}},{\"name\":\"DC-17 Hand Blaster\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":0,\"black\":1,\"white\":1}}],\"upgradeBar\":[\"heavy weapon\",\"heavy weapon\",\"heavy weapon\",\"heavy weapon\"]}",
    "cardSubtype": "clone trooper",
    "title": "Clone Force 99",
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "rebel"
+   ]
   },
   {
    "id": "legion_v2:lhq2/rebel-sleeper-cell-ready-to-strike",
@@ -3092,7 +3155,13 @@
    "legionStats": "{\"health\":5,\"courage\":-1,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"\",\"surgeDefense\":\"\",\"miniCount\":1,\"keywords\":[\"Mercenary\",\"Arsenal\",\"Disengage\",\"Independent\",\"My Mood Is Based On Profit\",\"Nimble\",\"Reliable\",\"Uncanny Luck\"],\"weapons\":[{\"name\":\"Weequay's Cunning\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":3,\"white\":0}},{\"name\":\"Hondo's Blaster\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":1,\"black\":3,\"white\":0}}],\"upgradeBar\":[\"gear\",\"grenades\",\"grenades\",\"comms\"]}",
    "cardSubtype": "trooper",
    "title": "Trustworthy Compatriot",
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "empire",
+    "rebel",
+    "republic",
+    "separatists"
+   ]
   },
   {
    "id": "legion_v2:lhq2/rebel-agent-defender-of-democracy",
@@ -3447,7 +3516,13 @@
    "legionStats": "{\"health\":1,\"courage\":1,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"\",\"surgeDefense\":\"b\",\"miniCount\":4,\"keywords\":[\"Mercenary\",\"Charge\",\"Independent\",\"Self-Preservation\",\"Swashbuckler\"],\"weapons\":[{\"name\":\"Vibroblade\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":1,\"white\":0}},{\"name\":\"Weequay Blaster\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":0,\"black\":1,\"white\":1}}],\"upgradeBar\":[\"heavy weapon\",\"personnel\",\"personnel\",\"training\",\"gear\",\"grenades\"]}",
    "cardSubtype": "trooper",
    "title": null,
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "empire",
+    "rebel",
+    "republic",
+    "separatists"
+   ]
   },
   {
    "id": "legion_v2:lhq2/wlo-5-speeder-tank",
@@ -3470,7 +3545,13 @@
    "legionStats": "{\"health\":10,\"courage\":6,\"speed\":1,\"defenseDie\":\"w\",\"surgeAttack\":\"\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Mercenary\",\"Armor\",\"Arsenal\",\"Hover\",\"Transport\",\"Weak Point\"],\"weapons\":[{\"name\":\"Anti-Personnel Lasers\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":0,\"black\":3,\"white\":2}},{\"name\":\"Heavy Laser Cannon\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":1,\"black\":2,\"white\":2}}],\"upgradeBar\":[\"pilot\",\"comms\",\"crew\"]}",
    "cardSubtype": "repulsor vehicle",
    "title": null,
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "empire",
+    "rebel",
+    "republic",
+    "separatists"
+   ]
   },
   {
    "id": "legion_v2:lhq2/grand-admiral-thrawn-imperial-high-command",
@@ -3789,7 +3870,11 @@
    "legionStats": "{\"health\":1,\"courage\":2,\"speed\":3,\"defenseDie\":\"r\",\"surgeAttack\":\"h\",\"surgeDefense\":\"b\",\"miniCount\":5,\"keywords\":[\"Mercenary\",\"Jump\",\"Impervious\",\"Mandalorians Are Stronger Together\",\"Tactical\"],\"weapons\":[{\"name\":\"Blaster Pistols\",\"range\":{\"min\":0,\"max\":2},\"dice\":{\"red\":1,\"black\":0,\"white\":1}},{\"name\":\"GALAAR-15 Carbines\",\"range\":{\"min\":1,\"max\":3},\"dice\":{\"red\":0,\"black\":1,\"white\":0}}],\"upgradeBar\":[\"personnel\",\"heavy weapon\",\"training\",\"grenades\",\"gear\"]}",
    "cardSubtype": "mandalorian trooper",
    "title": null,
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "rebel",
+    "republic"
+   ]
   },
   {
    "id": "legion_v2:lhq2/mandalorian-leader",
@@ -3844,7 +3929,14 @@
    "legionStats": "{\"health\":5,\"courage\":2,\"speed\":3,\"defenseDie\":\"r\",\"surgeAttack\":\"h\",\"surgeDefense\":\"\",\"miniCount\":1,\"keywords\":[\"Mercenary\",\"Jump\",\"Equip\",\"Impervious\"],\"weapons\":[{\"name\":\"Vibroknife\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":2,\"white\":2}},{\"name\":\"Blaster Pistol\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":2,\"black\":0,\"white\":2}}],\"upgradeBar\":[\"clan\",\"doctrine\",\"armament\",\"training\",\"gear\",\"gear\",\"grenades\"]}",
    "cardSubtype": "mandalorian trooper",
    "title": null,
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "rebel",
+    "empire",
+    "republic",
+    "separatists",
+    "mandalorians"
+   ]
   },
   {
    "id": "legion_v2:lhq2/bo-katan-kryze-savior-of-mandalore",
@@ -3870,7 +3962,11 @@
    "legionStats": "{\"health\":5,\"courage\":3,\"speed\":3,\"defenseDie\":\"r\",\"surgeAttack\":\"c\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Mercenary\",\"Jump\",\"Death from Above\",\"Impervious\",\"Mandalorians Are Stronger Together\",\"Tactical\"],\"weapons\":[{\"name\":\"Dual Blaster Pistols\",\"range\":{\"min\":0,\"max\":2},\"dice\":{\"red\":2,\"black\":2,\"white\":0}}],\"upgradeBar\":[\"command\",\"training\",\"training\",\"gear\",\"gear\",\"armament\",\"grenades\"]}",
    "cardSubtype": "mandalorian trooper",
    "title": "Savior of Mandalore",
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "rebel",
+    "republic"
+   ]
   },
   {
    "id": "legion_v2:lhq2/axe-woves-cunning-warrior",
@@ -3895,7 +3991,11 @@
    "legionStats": "{\"health\":5,\"courage\":2,\"speed\":3,\"defenseDie\":\"r\",\"surgeAttack\":\"h\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Mercenary\",\"Jump\",\"Charge\",\"Coordinate\",\"Impervious\",\"Mandalorians Are Stronger Together\",\"Tactical\"],\"weapons\":[{\"name\":\"Vibroknife and Pistol\",\"range\":{\"min\":0,\"max\":2},\"dice\":{\"red\":2,\"black\":2,\"white\":0}}],\"upgradeBar\":[\"training\",\"training\",\"comms\",\"gear\",\"gear\",\"grenades\"]}",
    "cardSubtype": "mandalorian trooper",
    "title": "Cunning Warrior",
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "rebel",
+    "republic"
+   ]
   },
   {
    "id": "legion_v2:lhq2/the-armorer-forging-the-future",
@@ -3968,7 +4068,10 @@
    "legionStats": "{\"health\":1,\"courage\":2,\"speed\":3,\"defenseDie\":\"r\",\"surgeAttack\":\"h\",\"surgeDefense\":\"b\",\"miniCount\":3,\"keywords\":[\"Mercenary\",\"Jump\",\"Dauntless\",\"Impervious\",\"Nimble\",\"We Fight for Our Family\"],\"weapons\":[{\"name\":\"Blaster Pistols\",\"range\":{\"min\":0,\"max\":2},\"dice\":{\"red\":1,\"black\":0,\"white\":1}},{\"name\":\"Galar-15 Carbines\",\"range\":{\"min\":1,\"max\":3},\"dice\":{\"red\":0,\"black\":1,\"white\":0}}],\"upgradeBar\":[\"heavy weapon\",\"personnel\",\"training\",\"gear\",\"grenades\"]}",
    "cardSubtype": "mandalorian trooper",
    "title": null,
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "rebel"
+   ]
   },
   {
    "id": "legion_v2:lhq2/geonosian-warriors-geonosian-engineers",
@@ -4013,7 +4116,10 @@
    "legionStats": "{\"health\":5,\"courage\":2,\"speed\":3,\"defenseDie\":\"r\",\"surgeAttack\":\"h\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Bolster\",\"Jump\",\"Mercenary\",\"Entourage\",\"Impervious\",\"Inspire\",\"Nimble\",\"We Fight for Our Family\"],\"weapons\":[{\"name\":\"Blaster Pistols\",\"range\":{\"min\":0,\"max\":2},\"dice\":{\"red\":2,\"black\":2,\"white\":0}}],\"upgradeBar\":[\"command\",\"training\",\"training\",\"gear\",\"gear\",\"grenades\"]}",
    "cardSubtype": "mandalorian trooper",
    "title": "Leader of Clan Wren",
-   "forceAffinity": null
+   "forceAffinity": null,
+   "mercenaryFactions": [
+    "rebel"
+   ]
   },
   {
    "id": "legion_v2:lhq2/sabine-wren-back-in-the-fold",
