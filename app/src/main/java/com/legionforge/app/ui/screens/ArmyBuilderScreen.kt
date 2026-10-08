@@ -73,10 +73,14 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
             cards.filter { it.kind in allowedKinds && matchesFaction(it) }.filter { c ->
                 when {
                     game == GameSystem.LEGION_V2 && c.kind == CardKind.LEGION_UPGRADE ->
-                        c.upgradeSlots.any { it in selectedParent.card.allowedUpgradeSlots } && c.upgradeSlots.none { it in fullSlots }
+                        c.upgradeSlots.any { it in selectedParent.card.allowedUpgradeSlots } && c.upgradeSlots.none { it in fullSlots } &&
+                        // Règle Legion : une unité ne peut pas équiper 2× la même amélioration.
+                        !parentChildren.any { it.card.id == c.id }
                     game == GameSystem.ARMADA_V15 && c.kind == CardKind.ARMADA_UPGRADE ->
                         c.upgradeSlots.any { it in selectedParent.card.allowedUpgradeSlots } && upgradeFitsShip(c, selectedParent.card) &&
-                        c.upgradeSlots.none { it in fullSlots }
+                        c.upgradeSlots.none { it in fullSlots } &&
+                        // Règle Armada : un vaisseau ne peut pas équiper 2× la même amélioration.
+                        !parentChildren.any { it.card.id == c.id }
                     // Commandant Armada : n'apparaît que sur un vaisseau capital, et seulement
                     // si la flotte n'a pas déjà de commandant (une fois choisi, les autres sont masqués).
                     game == GameSystem.ARMADA_V15 && c.kind == CardKind.COMMANDER ->
