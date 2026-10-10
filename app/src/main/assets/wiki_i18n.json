@@ -1,10 +1,1419 @@
 {
-  "schemaVersion": 1,
-  "sections": {
-    "armada_activation": {
-      "fr": { "title": "Activation", "content": "Contenu officiel FR à venir." },
-      "de": { "title": "Aktivierung", "content": "Offizieller DE-Inhalt folgt." },
-      "es": { "title": "Activación", "content": "Contenido oficial ES próximamente." }
-    }
+ "schemaVersion": 1,
+ "sections": {
+  "armada_activation": {
+   "fr": {
+    "title": "Activation",
+    "content": "Contenu officiel FR à venir."
+   },
+   "de": {
+    "title": "Aktivierung",
+    "content": "Offizieller DE-Inhalt folgt."
+   },
+   "es": {
+    "title": "Activación",
+    "content": "Contenido oficial ES próximamente."
+   }
+  },
+  "legion_allies-of-convenience": {
+   "fr": {
+    "title": "ALLIÉS DE CONVENANCE",
+    "content": "Les unités dotées du mot-clé Alliés de convenance peuvent émettre des Ordres aux unités de Mercenaires alliées, quelle que soit leur Affiliation. De plus, lors de la construction d'une armée, les joueurs peuvent inclure 1 unité de Mercenaire supplémentaire dans leur armée, quel que soit son Rang, s'il y a au moins 1 unité dotée du mot-clé Alliés de convenance, bien qu'ils ne puissent pas prendre plus d'unités d'un Rang particulier que normalement autorisé."
+   },
+   "de": {
+    "title": "VERBÜNDETE AUS BEQUEMLICHKEIT",
+    "content": "Einheiten mit dem Schlüsselwort „Verbündete aus Bequemlichkeit“ können unabhängig von der Zugehörigkeit Befehle an verbündete Söldnereinheiten erteilen. Zusätzlich darf ein Spieler beim Aufbau einer Armee 1 zusätzliche Söldnereinheit in seine Armee aufnehmen, unabhängig vom Rang, sofern mindestens 1 Einheit mit dem Schlüsselwort „Verbündete aus Bequemlichkeit“ vorhanden ist, wobei er jedoch nicht mehr Einheiten eines bestimmten Ranges aufnehmen darf, als normalerweise erlaubt."
+   },
+   "es": {
+    "title": "ALIADOS POR CONVENIENCIA",
+    "content": "Las unidades con la palabra clave Aliados por Conveniencia pueden emitir Órdenes a unidades Mercenarias aliadas independientemente de su Afiliación. Además, al construir un ejército, los jugadores pueden incluir 1 unidad Mercenaria extra en su ejército independientemente de su Rango si hay al menos 1 unidad con la palabra clave Aliados por Conveniencia, aunque no pueden llevar más unidades de un Rango concreto de lo que normalmente se permite."
+   }
+  },
+  "legion_ataru-mastery": {
+   "fr": {
+    "title": "MAÎTRISE ATARU",
+    "content": "Une unité dotée du mot-clé Maîtrise Ataru peut effectuer jusqu'à 2 Actions d'attaque pendant son Activation. Lorsqu'elle attaque, elle gagne 1 jeton d'Esquive après la résolution de l'attaque. Lorsqu'elle défend, elle gagne 1 jeton de Visée après la résolution de l'attaque."
+   },
+   "de": {
+    "title": "ATARU-MEISTERSCHAFT",
+    "content": "Eine Einheit mit dem Schlüsselwort „Ataru-Meisterschaft“ kann während ihrer Aktivierung bis zu 2 Angriffsaktionen durchführen. Wenn sie angreift, erhält sie nach Auflösung des Angriffs 1 Ausweichmarker. Wenn sie sich verteidigt, erhält sie nach Auflösung des Angriffs 1 Zielmarker."
+   },
+   "es": {
+    "title": "MAESTRÍA ATARU",
+    "content": "Una unidad con la palabra clave Maestría Ataru puede realizar hasta 2 acciones de Ataque durante su Activación. Cuando ataca, gana 1 ficha de Esquiva después de que el ataque se resuelva. Cuando se defiende, gana 1 ficha de Puntería después de que el ataque se resuelva."
+   }
+  },
+  "legion_attack-run": {
+   "fr": {
+    "title": "COURSE D'ATTAQUE",
+    "content": "Au début de son Activation, une unité dotée du mot-clé Course d'attaque peut augmenter ou diminuer sa Vitesse de 1 jusqu'à la fin de cette Activation."
+   },
+   "de": {
+    "title": "ANGRIFFSLÄUFER",
+    "content": "Zu Beginn ihrer Aktivierung darf eine Einheit mit dem Schlüsselwort „Angriffsläufer“ ihre Geschwindigkeit bis zum Ende dieser Aktivierung um 1 erhöhen oder verringern."
+   },
+   "es": {
+    "title": "CARRERA DE ATAQUE",
+    "content": "Al comienzo de su Activación, una unidad con la palabra clave Carrera de Ataque puede aumentar o disminuir su Velocidad en 1 hasta el final de esa Activación."
+   }
+  },
+  "legion_barrage": {
+   "fr": {
+    "title": "BARRAGE",
+    "content": "Si une unité possède le mot-clé Barrage, elle peut effectuer 2 Actions d'attaque pendant son Activation au lieu de 1 si elle n'utilise pas le mot-clé Arsenal pendant cette Activation."
+   },
+   "de": {
+    "title": "SPERRFEUER",
+    "content": "Wenn eine Einheit das Schlüsselwort „Sperrfeuer“ besitzt, darf sie während ihrer Aktivierung 2 Angriffsaktionen statt 1 durchführen, sofern sie während dieser Aktivierung nicht das Schlüsselwort „Arsenal“ verwendet."
+   },
+   "es": {
+    "title": "BARRAGE",
+    "content": "Si una unidad tiene la palabra clave Barrage, puede realizar 2 acciones de Ataque durante su Activación en lugar de 1 si no usa la palabra clave Arsenal durante esa Activación."
+   }
+  },
+  "legion_block": {
+   "fr": {
+    "title": "BLOCAGE",
+    "content": "Lorsqu'une unité dotée du mot-clé Blocage défend, si elle dépense 1 ou plusieurs jetons d'Esquive pendant l'étape Appliquer l'esquive et la couverture, elle gagne e:d jusqu'à la fin de cette attaque."
+   },
+   "de": {
+    "title": "BLOCKEN",
+    "content": "Wenn sich eine Einheit mit dem Schlüsselwort „Blocken“ verteidigt und sie während des Schritts „Ausweichen und Deckung anwenden“ 1 oder mehr Ausweichmarker ausgibt, erhält sie bis zum Ende dieses Angriffs e:d."
+   },
+   "es": {
+    "title": "BLOQUEO",
+    "content": "Cuando una unidad con la palabra clave Bloqueo se está defendiendo, si gasta 1 o más fichas de Esquiva durante el paso de Aplicar Esquiva y Cobertura, gana e:d hasta el final de ese ataque."
+   }
+  },
+  "legion_bounty": {
+   "fr": {
+    "title": "PRIME",
+    "content": "Pendant la Mise en place, une unité dotée du mot-clé Prime choisit une unité ennemie o ou p. L'unité choisie gagne 1 jeton de Prime. Après qu'une unité alliée dotée du mot-clé Prime a vaincu une unité ennemie qui possède 1 ou plusieurs jetons de Prime avec une attaque ou un effet, le joueur qui contrôle l'unité alliée marque 1 PV."
+   },
+   "de": {
+    "title": "KOPFGELD",
+    "content": "Während der Aufstellung wählt eine Einheit mit dem Schlüsselwort „Kopfgeld“ eine feindliche o- oder p-Einheit. Die gewählte Einheit erhält 1 Kopfgeldmarker. Wenn eine verbündete Einheit mit dem Schlüsselwort „Kopfgeld“ eine feindliche Einheit, die 1 oder mehr Kopfgeldmarker besitzt, mit einem Angriff oder Effekt besiegt, erzielt der kontrollierende Spieler der verbündeten Einheit 1 Siegpunkt."
+   },
+   "es": {
+    "title": "RECOMPENSA",
+    "content": "Durante la Preparación, una unidad con la palabra clave Recompensa elige una unidad enemiga o p. La unidad elegida gana 1 ficha de Recompensa. Después de que una unidad aliada con la palabra clave Recompensa derrote a una unidad enemiga que tenga 1 o más fichas de Recompensa con un ataque o efecto, el jugador que controla la unidad aliada anota 1 PV."
+   }
+  },
+  "legion_calculate-odds": {
+   "fr": {
+    "title": "CALCULER LES PROBABILITÉS",
+    "content": "En tant qu'action de carte, une unité dotée du mot-clé Calculer les probabilités peut choisir une unité de Soldats alliée à portée 2 et en LdV pour gagner 1 jeton de Visée, 1 jeton d'Esquive et 1 jeton de Suppression."
+   },
+   "de": {
+    "title": "CHANCEN BERECHNEN",
+    "content": "Als Kartenaktion kann eine Einheit mit dem Schlüsselwort „Chancen berechnen“ eine verbündete Trupplereinheit innerhalb von 2 und in Sichtlinie wählen, die 1 Zielmarker, 1 Ausweichmarker und 1 Unterdrückungsmarker erhält."
+   },
+   "es": {
+    "title": "CALCULAR PROBABILIDADES",
+    "content": "Como acción de Carta, una unidad con la palabra clave Calcular Probabilidades puede elegir una unidad de Tropa aliada a distancia 2 y en LdV para que gane 1 ficha de Puntería, 1 ficha de Esquiva y 1 ficha de Supresión."
+   }
+  },
+  "legion_charge": {
+   "fr": {
+    "title": "CHARGE",
+    "content": "Après qu'une unité dotée du mot-clé Charge a effectué une Action de déplacement pendant son Activation qui l'amène en contact de base avec une figurine ennemie pour commencer une Mêlée, elle peut effectuer une Action d'attaque gratuite contre cette unité en utilisant uniquement des armes de Mêlée."
+   },
+   "de": {
+    "title": "STURM",
+    "content": "Nachdem eine Einheit mit dem Schlüsselwort „Sturm“ während ihrer Aktivierung eine Bewegungsaktion durchgeführt hat, die sie in Basenkontakt mit einer feindlichen Miniatur bringt, um einen Nahkampf zu beginnen, darf sie eine freie Angriffsaktion gegen diese Einheit durchführen, wobei sie nur Nahkampfwaffen verwendet."
+   },
+   "es": {
+    "title": "CARGA",
+    "content": "Después de que una unidad que tiene la palabra clave Carga realice una acción de Movimiento durante su Activación que la ponga en contacto de base con una miniatura enemiga para iniciar un Cuerpo a Cuerpo, puede realizar una acción de Ataque gratuita contra esa unidad usando solo armas de Cuerpo a Cuerpo."
+   }
+  },
+  "legion_climbing-vehicle": {
+   "fr": {
+    "title": "VÉHICULE D'ESCALADE",
+    "content": "Une unité dotée du mot-clé Véhicule d'escalade peut effectuer des déplacements d'Escalade et est traitée comme une unité de Soldats aux fins de l'Escalade."
+   },
+   "de": {
+    "title": "KLETTERFAHRZEUG",
+    "content": "Eine Einheit mit dem Schlüsselwort „Kletterfahrzeug“ kann Kletterbewegungen durchführen und gilt für die Zwecke des Kletterns als Trupplereinheit."
+   },
+   "es": {
+    "title": "VEHÍCULO TREPADOR",
+    "content": "Una unidad con la palabra clave Vehículo Trepador puede realizar movimientos de Trepar y se trata como una unidad de Tropa a efectos de Trepar."
+   }
+  },
+  "legion_complete-the-mission": {
+   "fr": {
+    "title": "ACCOMPLIR LA MISSION",
+    "content": "Pendant la Mise en place, pour chaque unité alliée dotée du mot-clé Accomplir la mission, placez un jeton de Mission prioritaire allié (Avantage) sur le champ de bataille dans un Territoire contesté. Tant qu'une unité dotée du mot-clé Accomplir la mission se trouve à portée 1 d'un ou plusieurs jetons de Mission prioritaire alliés, cette unité gagne e:d. Lorsqu'une unité dotée du mot-clé Accomplir la mission attaque une unité ennemie à portée 1 d'un ou plusieurs jetons de Mission prioritaire alliés, la Réserve d'attaque de l'unité attaquante gagne le mot-clé Critique 2."
+   },
+   "de": {
+    "title": "MISSION ERFÜLLEN",
+    "content": "Während der Aufstellung wird für jede verbündete Einheit mit dem Schlüsselwort „Mission erfüllen“ ein verbündeter Prioritätsmissionsmarker (Vorteil) innerhalb des umkämpften Territoriums auf dem Schlachtfeld platziert. Solange sich eine Einheit mit dem Schlüsselwort „Mission erfüllen“ innerhalb von 1 von 1 oder mehr verbündeten Prioritätsmissionsmarkern befindet, erhält diese Einheit e:d. Wenn eine Einheit mit dem Schlüsselwort „Mission erfüllen“ eine feindliche Einheit innerhalb von 1 von 1 oder mehr verbündeten Prioritätsmissionsmarkern angreift, erhält der Angriffspool der angreifenden Einheit das Schlüsselwort „Kritisch 2“."
+   },
+   "es": {
+    "title": "COMPLETAR LA MISIÓN",
+    "content": "Durante la Preparación, por cada unidad aliada con la palabra clave Completar la Misión, coloca una ficha aliada de Misión Prioritaria (Ventaja) en el campo de batalla dentro del Territorio en Disputa. Mientras una unidad con la palabra clave Completar la Misión esté a distancia 1 de 1 o más fichas aliadas de Misión Prioritaria, esa unidad gana e:d. Cuando una unidad con la palabra clave Completar la Misión ataca a una unidad enemiga a distancia 1 de 1 o más fichas aliadas de Misión Prioritaria, la Reserva de Ataque de la unidad atacante gana la palabra clave Crítico 2."
+   }
+  },
+  "legion_disengage": {
+   "fr": {
+    "title": "DÉSENGAGEMENT",
+    "content": "Une unité de Soldats dotée du mot-clé Désengagement peut effectuer des Déplacements normalement tant qu'elle est Engagée avec une seule unité ennemie."
+   },
+   "de": {
+    "title": "LÖSEN",
+    "content": "Eine Trupplereinheit mit dem Schlüsselwort „Lösen“ kann Bewegungen wie normal durchführen, während sie mit einer einzelnen feindlichen Einheit im Nahkampf ist."
+   },
+   "es": {
+    "title": "DESENGANCHE",
+    "content": "Una unidad de Tropa con la palabra clave Desenganche puede realizar Movimientos con normalidad mientras esté Enzarzada con una única unidad enemiga."
+   }
+  },
+  "legion_distract": {
+   "fr": {
+    "title": "DISTRACTION",
+    "content": "En tant qu'action de carte gratuite, une unité dotée du mot-clé Distraction peut choisir une unité de Soldats ennemie à portée 2 et en LdV. Jusqu'à la fin de la Manche, lorsque l'unité ennemie choisie effectue une attaque, elle doit attaquer l'unité qui a utilisé l'action Distraction, si possible."
+   },
+   "de": {
+    "title": "ABLENKEN",
+    "content": "Als freie Kartenaktion kann eine Einheit mit dem Schlüsselwort „Ablenken“ eine feindliche Trupplereinheit innerhalb von 2 und in Sichtlinie wählen. Bis zum Ende der Runde muss die gewählte feindliche Einheit, wenn sie einen Angriff durchführt, die Einheit angreifen, die die Ablenkaktion verwendet hat, sofern möglich."
+   },
+   "es": {
+    "title": "DISTRAER",
+    "content": "Como acción de Carta gratuita, una unidad con la palabra clave Distraer puede elegir una unidad de Tropa enemiga a distancia 2 y en LdV. Hasta el final de la Ronda, cuando la unidad enemiga elegida realice un ataque, debe atacar a la unidad que usó la acción Distraer, si puede."
+   }
+  },
+  "legion_cunning": {
+   "fr": {
+    "title": "RUSE",
+    "content": "Lors de la détermination de la priorité pendant la Phase de commandement, si un joueur révèle une Carte de commandement spécifique p ou o qui appartient à une unité dotée du mot-clé Ruse et qu'il y aurait égalité pour la priorité, traitez cette Carte de commandement comme ayant 1 point de moins, avec un minimum de 0. Si les deux joueurs révèlent une Carte de commandement spécifique p ou o qui appartient à une unité dotée du mot-clé Ruse, il y a toujours égalité pour la priorité."
+   },
+   "de": {
+    "title": "LISTIG",
+    "content": "Wenn während der Befehlsphase die Priorität bestimmt wird und ein Spieler eine spezifische p- oder o-Befehlskarte aufdeckt, die zu einer Einheit mit dem Schlüsselwort „Listig“ gehört, und es zu einem Gleichstand bei der Priorität käme, gilt diese Befehlskarte als mit 1 Punkt weniger, mindestens jedoch 0. Wenn beide Spieler eine spezifische p- oder o-Befehlskarte aufdecken, die zu einer Einheit mit dem Schlüsselwort „Listig“ gehört, besteht weiterhin ein Gleichstand bei der Priorität."
+   },
+   "es": {
+    "title": "ASTUCIA",
+    "content": "Al determinar la prioridad durante la Fase de Mando, si un jugador revela una Carta de Mando específica p u o que pertenece a una unidad con la palabra clave Astucia y hubiera un empate por la prioridad, trata esa Carta de Mando como si tuviera 1 pip menos, con un mínimo de 0. Si ambos jugadores revelan una Carta de Mando específica p u o que pertenece a una unidad con la palabra clave Astucia, sigue habiendo un empate por la prioridad."
+   }
+  },
+  "legion_dauntless": {
+   "fr": {
+    "title": "INTRÉPIDE",
+    "content": "Après qu'une unité de Soldats non-droïde dotée du mot-clé Intrépide s'est Ralliée et est Supprimée mais pas Paniquée, au début de son étape Effectuer des actions, elle peut gagner 1 jeton de Suppression pour effectuer une Action de déplacement gratuite.\nUne unité dotée du mot-clé Intrépide ne peut pas être affectée par le mot-clé Contrainte."
+   },
+   "de": {
+    "title": "FURCHTLOS",
+    "content": "Nachdem eine Nicht-Droiden-Trupplereinheit mit dem Schlüsselwort „Furchtlos“ gesammelt hat und unterdrückt, aber nicht in Panik ist, darf sie zu Beginn ihres Schritts „Aktion durchführen“ 1 Unterdrückungsmarker erhalten, um eine freie Bewegungsaktion durchzuführen. Eine Einheit mit dem Schlüsselwort „Furchtlos“ darf nicht vom Schlüsselwort „Zwingen“ betroffen sein."
+   },
+   "es": {
+    "title": "INTREPIDO",
+    "content": "Después de que una unidad de Tropa no Droide con la palabra clave Intrépido se Reagrupe y esté Suprimida pero no en Pánico, al comienzo de su paso de Realizar Acciones, puede ganar 1 ficha de Supresión para realizar una acción de Movimiento gratuita.\nUna unidad con la palabra clave Intrépido no puede verse afectada por la palabra clave Compeler."
+   }
+  },
+  "legion_death-from-above": {
+   "fr": {
+    "title": "MORT D'EN HAUT",
+    "content": "Lorsqu'une unité dotée du mot-clé Mort d'en haut attaque, l'unité qui défend ne peut pas utiliser la Couverture pour annuler les résultats de touche a pendant l'étape Appliquer la couverture si le chef d'unité de l'unité attaquante chevauche un élément de terrain non-zone d'une hauteur supérieure à tout terrain que le chef d'unité de l'unité qui défend chevauche."
+   },
+   "de": {
+    "title": "TOD AUS DER HÖHE",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Tod aus der Höhe“ angreift, kann die verteidigende Einheit während des Schritts „Deckung anwenden“ keine Deckung verwenden, um Treffer-a-Ergebnisse zu streichen, wenn der Einheitenführer der angreifenden Einheit ein Stück Nicht-Flächengelände überlappt, das höher ist als jedes Gelände, das der Einheitenführer der verteidigenden Einheit überlappt."
+   },
+   "es": {
+    "title": "MUERTE DESDE ARRIBA",
+    "content": "Cuando una unidad con la palabra clave Muerte desde Arriba ataca, la unidad defensora no puede usar Cobertura para cancelar resultados de impacto a durante el paso de Aplicar Cobertura si el líder de unidad de la unidad atacante se solapa con una pieza de terreno no de área de mayor altura que cualquier terreno que se solape con el líder de unidad de la unidad defensora."
+   }
+  },
+  "legion_deflect": {
+   "fr": {
+    "title": "DÉVIATION",
+    "content": "Tant qu'une unité dotée du mot-clé Déviation défend contre une attaque à distance ou utilise le mot-clé Gardien X, son tableau de conversion des sursauts gagne e:d. De plus, pendant l'étape Convertir les sursauts de défense, avant de convertir les résultats e, l'attaquant subit 1 Blessure s'il y a au moins 1 résultat e dans le jet de défense. Lorsqu'une unité dotée du mot-clé Déviation utilise le mot-clé Gardien X, avant de convertir les sursauts de défense, l'attaquant subit 1 Blessure si au moins 1 des dés lancés avec Gardien X a produit au moins 1 résultat e.\n\nDe plus, l'unité spécifiée par le mot-clé Entourage ignore l'exigence de Rang m pour fournir un Soutien à l'unité dotée du mot-clé Entourage.\nPar exemple, le Directeur Orson Krennic a Entourage : Death Troopers. Si une armée inclut le Directeur Orson Krennic, 1 unité de Death Troopers dans la même armée ne compte pas dans le nombre maximum de Rangs n autorisés dans l'armée, permettant à un joueur d'amener jusqu'à 3 autres unités n en plus des Death Troopers. Pendant la Phase de commandement, le Directeur Orson Krennic peut émettre un Ordre à une unité de Death Troopers alliée à portée 2."
+   },
+   "de": {
+    "title": "ABWEHREN",
+    "content": "Solange sich eine Einheit mit dem Schlüsselwort „Abwehren“ gegen einen Fernkampfangriff verteidigt oder das Schlüsselwort „Beschützer X“ verwendet, erhält ihre Überschlagsumwandlungstabelle e:d. Zusätzlich erleidet der Angreifer während des Schritts „Verteidigungsüberschläge umwandeln“ vor dem Umwandeln von e-Ergebnissen 1 Verwundung, wenn sich mindestens 1 e-Ergebnis im Verteidigungswurf befindet. Wenn eine Einheit mit dem Schlüsselwort „Abwehren“ das Schlüsselwort „Beschützer X“ verwendet, erleidet der Angreifer vor dem Umwandeln von Verteidigungsüberschlägen 1 Verwundung, wenn mindestens 1 der mit „Beschützer X“ geworfenen Würfel mindestens 1 e-Ergebnis geworfen hat."
+   },
+   "es": {
+    "title": "DESVIAR",
+    "content": "Mientras una unidad con la palabra clave Desviar se defiende contra un ataque a Distancia o usa la palabra clave Guardián X, su tabla de conversión de Surge gana e:d. Además, durante el paso de Convertir Surges de Defensa, antes de convertir resultados e, el atacante sufre 1 Herida si hay al menos 1 resultado e en la tirada de defensa. Cuando una unidad con la palabra clave Desviar usa la palabra clave Guardián X, antes de convertir cualquier surge de defensa, el atacante sufre 1 Herida si al menos 1 de los dados lanzados con Guardián X obtuvo al menos 1 resultado e."
+   }
+  },
+  "legion_equip": {
+   "fr": {
+    "title": "ÉQUIPER",
+    "content": "Pendant la Construction d'armée, si un joueur inclut une unité dotée du mot-clé Équiper, cette unité doit équiper les améliorations listées après le mot-clé."
+   },
+   "de": {
+    "title": "AUSRÜSTEN",
+    "content": "Wenn ein Spieler während des Armeeaufbaus eine Einheit mit dem Schlüsselwort „Ausrüsten“ aufnimmt, muss diese Einheit die nach dem Schlüsselwort aufgeführten Aufwertungen ausrüsten."
+   },
+   "es": {
+    "title": "EQUIPAR",
+    "content": "Durante la Construcción del Ejército, si un jugador incluye una unidad con la palabra clave Equipar, esa unidad debe equipar las mejoras listadas después de la palabra clave."
+   }
+  },
+  "legion_expert-climber": {
+   "fr": {
+    "title": "GRIMPEUR EXPERT",
+    "content": "Lorsqu'une unité dotée du mot-clé Grimpeur expert effectue une Escalade, elle peut se Déplacer d'une distance verticale allant jusqu'à la hauteur 2."
+   },
+   "de": {
+    "title": "EXPERTENKLETTERER",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Expertenkletterer“ einen Klettervorgang durchführt, darf sie eine vertikale Distanz von bis zu Höhe 2 zurücklegen."
+   },
+   "es": {
+    "title": "TREPADOR EXPERTO",
+    "content": "Cuando una unidad con la palabra clave Trepador Experto realiza un Trepar, puede Moverse una distancia vertical de hasta altura 2."
+   }
+  },
+  "legion_djem-so-mastery": {
+   "fr": {
+    "title": "MAÎTRISE DJEM SO",
+    "content": "Lorsqu'une unité dotée du mot-clé Maîtrise Djem So défend contre une attaque de Mêlée, pendant l'étape Comparer les résultats, l'unité attaquante subit 1 Blessure si le jet d'attaque contient 1 ou plusieurs résultats Vides."
+   },
+   "de": {
+    "title": "DJEM-SO-MEISTERSCHAFT",
+    "content": "Wenn sich eine Einheit mit dem Schlüsselwort „Djem-So-Meisterschaft“ gegen einen Nahkampfangriff verteidigt, erleidet die angreifende Einheit während des Schritts „Ergebnisse vergleichen“ 1 Verwundung, wenn der Angriffswurf 1 oder mehr Leer-Ergebnisse enthält."
+   },
+   "es": {
+    "title": "MAESTRÍA DJEM SO",
+    "content": "Cuando una unidad con la palabra clave Maestría Djem So se defiende contra un ataque de Cuerpo a Cuerpo, durante el paso de Comparar Resultados, la unidad atacante sufre 1 Herida si la tirada de ataque contiene 1 o más resultados en Blanco."
+   }
+  },
+  "legion_duelist": {
+   "fr": {
+    "title": "DUELISTE",
+    "content": "Lorsqu'une unité dotée du mot-clé Dueliste effectue une attaque de Mêlée, si elle dépense 1 ou plusieurs jetons de Visée pendant l'étape Relancer les dés d'attaque, la Réserve d'attaque gagne le mot-clé d'arme Perforant 1. Tant qu'une unité dotée du mot-clé Dueliste défend contre une attaque de Mêlée, si elle dépense au moins 1 jeton d'Esquive pendant l'étape Appliquer l'esquive et la couverture, elle gagne le mot-clé Immunité : Perforant.\nUne unité dotée du mot-clé Dueliste obtient ces effets en plus des effets normaux de la dépense de jetons de Visée ou d'Esquive."
+   },
+   "de": {
+    "title": "DUELANT",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Duelant“ einen Nahkampfangriff durchführt und sie während des Schritts „Angriffswürfel neu würfeln“ 1 oder mehr Zielmarker ausgibt, erhält der Angriffspool das Waffen-Schlüsselwort „Durchschlag 1“. Solange sich eine Einheit mit dem Schlüsselwort „Duelant“ gegen einen Nahkampfangriff verteidigt und sie während des Schritts „Ausweichen und Deckung anwenden“ mindestens 1 Ausweichmarker ausgibt, erhält sie das Schlüsselwort „Immun: Durchschlag“. Eine Einheit mit dem Schlüsselwort „Duelant“ erhält diese Effekte zusätzlich zu den normalen Effekten des Ausgebens von Ziel- oder Ausweichmarkern."
+   },
+   "es": {
+    "title": "DUELISTA",
+    "content": "Cuando una unidad con la palabra clave Duelista realiza un ataque de Cuerpo a Cuerpo, si gasta 1 o más fichas de Puntería durante el paso de Relanzar Dados de Ataque, la Reserva de Ataque gana la palabra clave de arma Perforar 1. Mientras una unidad con la palabra clave Duelista se defiende contra un ataque de Cuerpo a Cuerpo, si gasta al menos 1 ficha de Esquiva durante el paso de Aplicar Esquiva y Cobertura, gana la palabra clave Inmune: Perforar.\nUna unidad con la palabra clave Duelista obtiene estos efectos además de los efectos normales de gastar fichas de Puntería o Esquiva."
+   }
+  },
+  "legion_gunslinger": {
+   "fr": {
+    "title": "PISTOLERO",
+    "content": "Lorsqu'une unité dotée du mot-clé Pistolero atteint l'étape Déclarer un défenseur supplémentaire, elle peut déclarer un défenseur supplémentaire et créer une Réserve d'attaque composée uniquement d'une arme à distance qui a déjà été ajoutée à une autre Réserve d'attaque. Le mot-clé Pistolero ne peut être utilisé qu'une seule fois par séquence d'attaque."
+   },
+   "de": {
+    "title": "REVOLVERHELD",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Revolverheld“ den Schritt „Zusätzlichen Verteidiger bestimmen“ erreicht, darf sie einen zusätzlichen Verteidiger bestimmen und einen Angriffspool bilden, der ausschließlich aus einer Fernkampfwaffe besteht, die bereits zu einem anderen Angriffspool beigetragen wurde. Das Schlüsselwort „Revolverheld“ kann nur einmal pro Angriffssequenz verwendet werden."
+   },
+   "es": {
+    "title": "PISTOLERO",
+    "content": "Cuando una unidad con la palabra clave Pistolero llega al paso de Declarar Defensor Adicional, puede declarar un defensor adicional y crear una Reserva de Ataque compuesta únicamente por un arma a Distancia que ya haya sido aportada a otra Reserva de Ataque. La palabra clave Pistolero solo puede usarse una vez por secuencia de ataque."
+   }
+  },
+  "legion_hold-the-line": {
+   "fr": {
+    "title": "TENIR LA LIGNE",
+    "content": "Tant qu'une unité dotée du mot-clé Tenir la ligne est Engagée, elle gagne c : a et e : d."
+   },
+   "de": {
+    "title": "HALTE DIE STELLUNG",
+    "content": "Solange eine Einheit mit dem Schlüsselwort „Halte die Stellung“ im Nahkampf ist, erhält sie c:a und e:d."
+   },
+   "es": {
+    "title": "MANTENER LA LÍNEA",
+    "content": "Mientras una unidad con la palabra clave Mantener la Línea está Enzarzada, gana c:a y e:d."
+   }
+  },
+  "legion_fire-support": {
+   "fr": {
+    "title": "SOUTIEN DE FEU",
+    "content": "Après qu'une unité dotée du mot-clé Soutien de feu a reçu un Ordre, elle gagne un jeton de Veille."
+   },
+   "de": {
+    "title": "FEUERUNTERSTÜTZUNG",
+    "content": "Nachdem einer Einheit mit dem Schlüsselwort „Feuerunterstützung“ ein Befehl erteilt wurde, erhält sie einen Bereitschaftsmarker."
+   },
+   "es": {
+    "title": "APOYO DE FUEGO",
+    "content": "Después de que a una unidad con la palabra clave Apoyo de Fuego se le emita una Orden, gana una ficha de Alerta."
+   }
+  },
+  "legion_full-pivot": {
+   "fr": {
+    "title": "PIVOT COMPLET",
+    "content": "Lorsqu'une unité dotée du mot-clé Pivot complet effectue un Pivot, elle peut Pivoter jusqu'à 360°."
+   },
+   "de": {
+    "title": "VOLLE DREHUNG",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Volle Drehung“ eine Drehung durchführt, darf sie sich um bis zu 360° drehen."
+   },
+   "es": {
+    "title": "GIRO COMPLETO",
+    "content": "Cuando una unidad con la palabra clave Giro Completo realiza un Giro, puede Girar hasta 360°."
+   }
+  },
+  "legion_guidance": {
+   "fr": {
+    "title": "GUIDAGE",
+    "content": "En tant qu'action de carte ou de carte gratuite, une unité dotée du mot-clé Guidage peut choisir une autre unité alliée du type d'unité spécifié à portée 2. L'unité choisie effectue une action non-attaque gratuite."
+   },
+   "de": {
+    "title": "FÜHRUNG",
+    "content": "Als Karten- oder freie Kartenaktion darf eine Einheit mit dem Schlüsselwort „Führung“ eine andere verbündete Einheit des angegebenen Einheitentyps innerhalb von 2 wählen. Die gewählte Einheit führt eine freie Nicht-Angriffsaktion durch."
+   },
+   "es": {
+    "title": "GUÍA",
+    "content": "Como acción de Carta o de Carta gratuita, una unidad con la palabra clave Guía puede elegir otra unidad aliada del tipo de unidad especificado a distancia 2. La unidad elegida realiza una acción gratuita que no sea de Ataque."
+   }
+  },
+  "legion_impervious": {
+   "fr": {
+    "title": "IMPERMÉABLE",
+    "content": "Lorsqu'une Réserve d'attaque est résolue contre une unité dotée du mot-clé Imperméable, au début de l'étape Modifier les dés de défense, réduisez la valeur du mot-clé Perforant X de cette Réserve d'attaque de 1, avec un minimum de 0."
+   },
+   "de": {
+    "title": "UNEMPFINDLICH",
+    "content": "Wenn ein Angriffspool gegen eine Einheit mit dem Schlüsselwort „Unempfindlich“ aufgelöst wird, wird zu Beginn des Schritts „Verteidigungswürfel modifizieren“ der Wert des Schlüsselworts „Durchschlag X“ dieses Angriffspools um 1 reduziert, mindestens jedoch auf 0."
+   },
+   "es": {
+    "title": "IMPERMEABLE",
+    "content": "Cuando se está resolviendo una Reserva de Ataque contra una unidad con la palabra clave Impermeable, al comienzo del paso de Modificar Dados de Defensa, reduce el valor de la palabra clave Perforar X de esa Reserva de Ataque en 1, con un mínimo de 0."
+   }
+  },
+  "legion_incognito": {
+   "fr": {
+    "title": "INCOGNITO",
+    "content": "Une unité dotée du mot-clé Incognito ne peut pas être attaquée par des unités ennemies qui ne sont pas à portée 1 d'elle, ne peut pas Contester des Objectifs et ne peut pas fournir de Soutien.\nSi une unité dotée du mot-clé Incognito effectue une attaque ou défend contre une attaque, elle perd le mot-clé Incognito pour le reste de la partie. De plus, au début de l'Activation d'une unité dotée du mot-clé Incognito, elle peut choisir de perdre le mot-clé Incognito pour le reste de la partie."
+   },
+   "de": {
+    "title": "INKOGNITO",
+    "content": "Eine Einheit mit dem Schlüsselwort „Inkognito“ kann nicht von feindlichen Einheiten angegriffen werden, die sich nicht innerhalb von 1 von ihr befinden, kann keine Ziele bestreiten und kann keine Unterstützung leisten. Wenn eine Einheit mit dem Schlüsselwort „Inkognito“ jemals einen Angriff durchführt oder sich gegen einen Angriff verteidigt, verliert sie das Schlüsselwort „Inkognito“ für den Rest des Spiels. Zusätzlich darf eine Einheit mit dem Schlüsselwort „Inkognito“ zu Beginn ihrer Aktivierung wählen, das Schlüsselwort „Inkognito“ für den Rest des Spiels zu verlieren."
+   },
+   "es": {
+    "title": "INCOGNITO",
+    "content": "Una unidad con la palabra clave Incógnito no puede ser atacada por unidades enemigas que no estén a distancia 1 de ella, no puede Disputar Objetivos y no puede proporcionar Apoyo.\nSi una unidad con la palabra clave Incógnito alguna vez realiza un ataque o se defiende contra un ataque, pierde la palabra clave Incógnito durante el resto de la partida. Además, al comienzo de la Activación de una unidad con la palabra clave Incógnito, puede elegir perder la palabra clave Incógnito durante el resto de la partida."
+   }
+  },
+  "legion_inconspicuous": {
+   "fr": {
+    "title": "DISCRET",
+    "content": "Tant qu'une unité dotée du mot-clé Discret possède 1 ou plusieurs jetons de Suppression, les unités ennemies qui attaquent doivent cibler une autre unité, si possible. Lorsqu'une unité dotée du mot-clé Discret se Rallie, elle peut choisir de ne retirer aucun nombre de jetons de Suppression, y compris 0."
+   },
+   "de": {
+    "title": "UNSCHEINBAR",
+    "content": "Solange eine Einheit mit dem Schlüsselwort „Unscheinbar“ 1 oder mehr Unterdrückungsmarker besitzt, müssen angreifende feindliche Einheiten eine andere Einheit als Ziel wählen, sofern möglich. Wenn eine Einheit mit dem Schlüsselwort „Unscheinbar“ sammelt, darf sie wählen, keine beliebige Anzahl von Unterdrückungsmarkern zu entfernen, einschließlich 0."
+   },
+   "es": {
+    "title": "DISCRETO",
+    "content": "Mientras una unidad con la palabra clave Discreto tenga 1 o más fichas de Supresión, las unidades enemigas que ataquen deben apuntar a otra unidad, si pueden. Cuando una unidad con la palabra clave Discreto se Reagrupa, puede elegir no retirar cualquier número de fichas de Supresión, incluido 0."
+   }
+  },
+  "legion_indomitable": {
+   "fr": {
+    "title": "INDOMITABLE",
+    "content": "Lorsqu'une unité dotée du mot-clé Indomitable se Rallie, elle lance des dés de défense rouges au lieu de dés de défense blancs."
+   },
+   "de": {
+    "title": "UNBEZÄHMBAR",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Unbezähmbar“ sammelt, würfelt sie rote Verteidigungswürfel statt weißer Verteidigungswürfel."
+   },
+   "es": {
+    "title": "INDOMABLE",
+    "content": "Cuando una unidad que tiene la palabra clave Indomable se Reagrupa, lanza dados de defensa rojos en lugar de dados de defensa blancos."
+   }
+  },
+  "legion_infiltrate": {
+   "fr": {
+    "title": "INFILTRATION",
+    "content": "Lorsqu'une unité dotée du mot-clé Infiltration commence son Activation, si elle n'est pas déployée, elle peut se Déployer en plaçant le chef d'unité de cette unité entièrement dans le Territoire allié. Ensuite, les figurines restantes de cette unité sont placées en Cohésion avec leur chef d'unité et entièrement dans le Territoire allié. Les figurines ne peuvent pas chevaucher de terrain infranchissable lorsqu'elles sont placées en utilisant Infiltration."
+   },
+   "de": {
+    "title": "INFILTRIEREN",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Infiltrieren“ ihre Aktivierung beginnt und sie noch nicht aufgestellt ist, darf sie aufstellen, indem der Einheitenführer dieser Einheit vollständig innerhalb des verbündeten Territoriums platziert wird. Dann werden die übrigen Miniaturen dieser Einheit im Zusammenhalt mit ihrem Einheitenführer und vollständig innerhalb des verbündeten Territoriums platziert. Miniaturen dürfen bei der Platzierung mittels „Infiltrieren“ kein unpassierbares Gelände überlappen."
+   },
+   "es": {
+    "title": "INFILTRARSE",
+    "content": "Cuando una unidad con la palabra clave Infiltrarse comienza su Activación, si no está desplegada, puede Desplegarse colocando al líder de unidad de esa unidad completamente dentro del Territorio aliado. Entonces, las miniaturas restantes de esa unidad se colocan en Cohesión con su líder de unidad y completamente dentro del Territorio aliado. Las miniaturas no pueden solaparse con terreno infranqueable cuando se colocan usando Infiltrarse."
+   }
+  },
+  "legion_immune-blast": {
+   "fr": {
+    "title": "IMMUNITÉ : EXPLOSION",
+    "content": "Tant qu'une unité dotée du mot-clé Immunité : Explosion défend, les effets du mot-clé Explosion sont ignorés."
+   },
+   "de": {
+    "title": "IMMUN: EXPLOSION",
+    "content": "Solange sich eine Einheit mit dem Schlüsselwort „Immun: Explosion“ verteidigt, werden die Effekte des Schlüsselworts „Explosion“ ignoriert."
+   },
+   "es": {
+    "title": "INMUNE: EXPLOSIÓN",
+    "content": "Mientras una unidad con la palabra clave Inmune: Explosión se está defendiendo, se ignoran los efectos de la palabra clave Explosión."
+   }
+  },
+  "legion_immune-melee": {
+   "fr": {
+    "title": "IMMUNITÉ : MÊLÉE",
+    "content": "Les unités dotées du mot-clé Immunité : Mêlée ne peuvent pas être ciblées par des attaques de Mêlée et ne peuvent pas être Engagées.\nLors de la formation d'une Réserve d'attaque ciblant une unité dotée du mot-clé Immunité : Mêlée, l'unité attaquante peut ajouter des armes à distance à la Réserve d'attaque même si elles sont en Mêlée avec l'unité qui défend."
+   },
+   "de": {
+    "title": "IMMUN: NAHKAMPF",
+    "content": "Einheiten mit dem Schlüsselwort „Immun: Nahkampf“ können nicht von Nahkampfangriffen als Ziel gewählt werden und können nicht in den Nahkampf geraten. Wenn ein Angriffspool gebildet wird, der eine Einheit mit dem Schlüsselwort „Immun: Nahkampf“ als Ziel hat, kann die angreifende Einheit Fernkampfwaffen zum Angriffspool hinzufügen, selbst wenn sie sich im Nahkampf mit der verteidigenden Einheit befindet."
+   },
+   "es": {
+    "title": "INMUNE: CUERPO A CUERPO",
+    "content": "Las unidades con la palabra clave Inmune: Cuerpo a Cuerpo no pueden ser objetivo de ataques de Cuerpo a Cuerpo y no pueden ser Enzarzadas.\nAl formar una Reserva de Ataque que apunte a una unidad con la palabra clave Inmune: Cuerpo a Cuerpo, la unidad atacante puede añadir armas a Distancia a la Reserva de Ataque incluso si está en Cuerpo a Cuerpo con la unidad defensora."
+   }
+  },
+  "legion_immune-melee-pierce": {
+   "fr": {
+    "title": "IMMUNITÉ : PERFORANT EN MÊLÉE",
+    "content": "Tant qu'une unité dotée du mot-clé Immunité : Perforant en mêlée défend contre une attaque de Mêlée, l'attaquant ne peut pas utiliser le mot-clé d'arme Perforant X pour annuler les résultats d sur les dés de défense pendant l'étape Modifier les dés de défense.\nTant qu'une unité dotée d'Immunité : Perforant en mêlée utilise le mot-clé Gardien X pendant une attaque de Mêlée, l'unité attaquante ne peut pas utiliser le mot-clé Perforant X pour annuler les résultats d sur les dés de défense lancés par cette unité pour le mot-clé Gardien X."
+   },
+   "de": {
+    "title": "IMMUN: NAHKAMPF-DURCHSCHLAG",
+    "content": "Solange sich eine Einheit mit dem Schlüsselwort „Immun: Nahkampf-Durchschlag“ gegen einen Nahkampfangriff verteidigt, kann der Angreifer das Waffen-Schlüsselwort „Durchschlag X“ nicht verwenden, um d-Ergebnisse auf Verteidigungswürfeln während des Schritts „Verteidigungswürfel modifizieren“ zu streichen. Solange eine Einheit mit „Immun: Nahkampf-Durchschlag“ das Schlüsselwort „Beschützer X“ während eines Nahkampfangriffs verwendet, kann die angreifende Einheit das Schlüsselwort „Durchschlag X“ nicht verwenden, um d-Ergebnisse auf Verteidigungswürfeln zu streichen, die diese Einheit für das Schlüsselwort „Beschützer X“ geworfen hat."
+   },
+   "es": {
+    "title": "INMUNE: PERFORACIÓN CUERPO A CUERPO",
+    "content": "Mientras una unidad con la palabra clave Inmune: Perforación Cuerpo a Cuerpo se defiende contra un ataque de Cuerpo a Cuerpo, el atacante no puede usar la palabra clave de arma Perforar X para cancelar resultados d en los dados de defensa durante el paso de Modificar Dados de Defensa.\nMientras una unidad con Inmune: Perforación Cuerpo a Cuerpo usa la palabra clave Guardián X durante un ataque de Cuerpo a Cuerpo, la unidad atacante no puede usar la palabra clave Perforar X para cancelar resultados d en los dados de defensa lanzados por esa unidad para la palabra clave Guardián X."
+   }
+  },
+  "legion_immune-pierce": {
+   "fr": {
+    "title": "IMMUNITÉ : PERFORANT",
+    "content": "Tant qu'une unité dotée du mot-clé Immunité : Perforant défend, l'attaquant ne peut pas utiliser le mot-clé d'arme Perforant X pour annuler les résultats d sur les dés de défense pendant l'étape Modifier les dés de défense.\nTant qu'une unité dotée d'Immunité : Perforant utilise le mot-clé Gardien X, l'unité attaquante ne peut pas utiliser le mot-clé Perforant X pour annuler les résultats d sur les dés de défense lancés par cette unité pour le mot-clé Gardien X."
+   },
+   "de": {
+    "title": "IMMUN: DURCHSCHLAG",
+    "content": "Solange sich eine Einheit mit dem Schlüsselwort „Immun: Durchschlag“ verteidigt, kann der Angreifer das Waffen-Schlüsselwort „Durchschlag X“ nicht verwenden, um d-Ergebnisse auf Verteidigungswürfeln während des Schritts „Verteidigungswürfel modifizieren“ zu streichen. Solange eine Einheit mit „Immun: Durchschlag“ das Schlüsselwort „Beschützer X“ verwendet, kann die angreifende Einheit das Schlüsselwort „Durchschlag X“ nicht verwenden, um d-Ergebnisse auf Verteidigungswürfeln zu streichen, die diese Einheit für das Schlüsselwort „Beschützer X“ geworfen hat."
+   },
+   "es": {
+    "title": "INMUNE: PERFORACIÓN",
+    "content": "Mientras una unidad con la palabra clave Inmune: Perforación se está defendiendo, el atacante no puede usar la palabra clave de arma Perforar X para cancelar resultados d en los dados de defensa durante el paso de Modificar Dados de Defensa.\nMientras una unidad con Inmune: Perforación usa la palabra clave Guardián X, la unidad atacante no puede usar la palabra clave Perforar X para cancelar resultados d en los dados de defensa lanzados por esa unidad para la palabra clave Guardián X."
+   }
+  },
+  "legion_mandalorians-are-stronger-together": {
+   "fr": {
+    "title": "LES MANDALORIENS SONT PLUS FORTS ENSEMBLE",
+    "content": "Lorsqu'une unité alliée dotée du mot-clé Les Mandaloriens sont plus forts ensemble dépense 1 ou plusieurs jetons de Visée pendant une attaque, après la résolution de l'attaque, elle gagne 1 jeton d'Esquive si elle se trouve à portée 2 d'une autre unité alliée dotée du mot-clé Les Mandaloriens sont plus forts ensemble.\nLorsqu'une unité alliée dotée du mot-clé Les Mandaloriens sont plus forts ensemble dépense 1 ou plusieurs jetons d'Esquive pendant une attaque, après la résolution de l'attaque, elle gagne 1 jeton de Visée si elle se trouve à portée 2 d'une autre unité alliée dotée du mot-clé Les Mandaloriens sont plus forts ensemble."
+   },
+   "de": {
+    "title": "MANDALORIANER SIND GEMEINSAM STÄRKER",
+    "content": "Wenn eine verbündete Einheit mit dem Schlüsselwort „Mandalorianer sind gemeinsam stärker“ während eines Angriffs 1 oder mehr Zielmarker ausgibt, erhält sie nach Auflösung des Angriffs 1 Ausweichmarker, wenn sie sich innerhalb von 2 einer anderen verbündeten Einheit mit dem Schlüsselwort „Mandalorianer sind gemeinsam stärker“ befindet. Wenn eine verbündete Einheit mit dem Schlüsselwort „Mandalorianer sind gemeinsam stärker“ während eines Angriffs 1 oder mehr Ausweichmarker ausgibt, erhält sie nach Auflösung des Angriffs 1 Zielmarker, wenn sie sich innerhalb von 2 einer anderen verbündeten Einheit mit dem Schlüsselwort „Mandalorianer sind gemeinsam stärker“ befindet."
+   },
+   "es": {
+    "title": "LOS MANDALORIANOS SON MÁS FUERTES JUNTOS",
+    "content": "Cuando una unidad aliada con la palabra clave Los Mandalorianos Son Más Fuertes Juntos gasta 1 o más fichas de Puntería durante un ataque, después de que el ataque se resuelva, gana 1 ficha de Esquiva si está a distancia 2 de otra unidad aliada con la palabra clave Los Mandalorianos Son Más Fuertes Juntos.\nCuando una unidad aliada con la palabra clave Los Mandalorianos Son Más Fuertes Juntos gasta 1 o más fichas de Esquiva durante un ataque, después de que el ataque se resuelva, gana 1 ficha de Puntería si está a distancia 2 de otra unidad aliada con la palabra clave Los Mandalorianos Son Más Fuertes Juntos."
+   }
+  },
+  "legion_makashi-mastery": {
+   "fr": {
+    "title": "MAÎTRISE MAKASHI",
+    "content": "Lorsqu'une unité dotée du mot-clé Maîtrise Makashi effectue une attaque de Mêlée, elle peut réduire la valeur Perforant X d'une arme de la Réserve d'attaque de 1 pendant l'étape Choisir les armes et rassembler les dés. Si elle le fait, le défenseur ne peut pas utiliser les mots-clés Immunité : Perforant en mêlée, Immunité : Perforant et/ou Imperméable pendant cette attaque."
+   },
+   "de": {
+    "title": "MAKASHI-MEISTERSCHAFT",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Makashi-Meisterschaft“ einen Nahkampfangriff durchführt, kann sie während des Schritts „Waffen wählen und Würfel sammeln“ den Wert „Durchschlag X“ einer Waffe im Angriffspool um 1 reduzieren. Wenn sie dies tut, kann der Verteidiger während dieses Angriffs die Schlüsselwörter „Immun: Nahkampf-Durchschlag“, „Immun: Durchschlag“ und/oder „Unempfindlich“ nicht verwenden."
+   },
+   "es": {
+    "title": "MAESTRÍA MAKASHI",
+    "content": "Cuando una unidad con la palabra clave Maestría Makashi realiza un ataque de Cuerpo a Cuerpo, puede reducir el valor de Perforar X de un arma de la Reserva de Ataque en 1 durante el paso de Elegir Armas y Reunir Dados. Si lo hace, el defensor no puede usar las palabras clave Inmune: Perforación Cuerpo a Cuerpo, Inmune: Perforación y/o Impermeable durante este ataque."
+   }
+  },
+  "legion_marksman": {
+   "fr": {
+    "title": "TIREUR D'ÉLITE",
+    "content": "Une unité dotée du mot-clé Tireur d'élite peut dépenser n'importe quel nombre de jetons de Visée après la conversion des sursauts d'attaque pendant l'étape Convertir les sursauts d'attaque. Pour chaque jeton de Visée dépensé de cette manière, au lieu de relancer les dés, changez 1 résultat Vide en un résultat a, 1 résultat a en un résultat b, ou dépensez 2 jetons de Visée pour changer 1 résultat Vide en un résultat b."
+   },
+   "de": {
+    "title": "SCHÜTZE",
+    "content": "Eine Einheit mit dem Schlüsselwort „Schütze“ darf während des Schritts „Angriffsüberschläge umwandeln“ nach dem Umwandeln von Angriffsüberschlägen eine beliebige Anzahl von Zielmarkern ausgeben. Für jeden auf diese Weise ausgegebenen Zielmarker wird, statt Würfel neu zu würfeln, 1 Leer-Ergebnis in ein a-Ergebnis, 1 a-Ergebnis in ein b-Ergebnis geändert, oder es werden 2 Zielmarker ausgegeben, um 1 Leer-Ergebnis in ein b-Ergebnis zu ändern."
+   },
+   "es": {
+    "title": "TIRO PRECISO",
+    "content": "Una unidad con la palabra clave Tiro Preciso puede gastar cualquier número de fichas de Puntería después de convertir surges de ataque durante el paso de Convertir Surges de Ataque. Por cada ficha de Puntería gastada de esta manera, en lugar de relanzar dados, cambia 1 resultado en Blanco a un resultado a, 1 resultado a a un resultado b, o gasta 2 fichas de Puntería para cambiar 1 resultado en Blanco a un resultado b."
+   }
+  },
+  "legion_interrogate": {
+   "fr": {
+    "title": "INTERROGER",
+    "content": "Pendant la Phase de commandement, si un joueur révèle une Carte de commandement qui appartient à une unité à portée 1 d'une ou plusieurs unités ennemies dotées du mot-clé Interroger et qu'il y aurait égalité pour la priorité, traitez cette Carte de commandement comme ayant 1 point de plus."
+   },
+   "de": {
+    "title": "VERHÖR",
+    "content": "Wenn ein Spieler während der Befehlsphase eine Befehlskarte aufdeckt, die zu einer Einheit innerhalb von 1 von 1 oder mehr feindlichen Einheiten mit dem Schlüsselwort „Verhör“ gehört, und es zu einem Gleichstand bei der Priorität käme, gilt diese Befehlskarte als mit 1 Punkt mehr."
+   },
+   "es": {
+    "title": "INTERROGAR",
+    "content": "Durante la Fase de Mando, si un jugador revela una Carta de Mando que pertenece a una unidad a distancia 1 de 1 o más unidades enemigas con la palabra clave Interrogar y hubiera un empate por la prioridad, trata esa Carta de Mando como si tuviera 1 pip más."
+   }
+  },
+  "legion_jar-kai-mastery": {
+   "fr": {
+    "title": "MAÎTRISE JAR'KAI",
+    "content": "Lorsqu'une unité dotée du mot-clé Maîtrise Jar'Kai effectue une attaque de Mêlée, elle peut dépenser n'importe quel nombre de jetons d'Esquive après la conversion des sursauts d'attaque pendant l'étape Convertir les sursauts d'attaque. Pour chaque jeton d'Esquive dépensé de cette manière, changez un résultat Vide en un résultat a, un résultat a en un résultat b, ou dépensez 2 jetons d'Esquive pour changer un résultat Vide en un résultat b."
+   },
+   "de": {
+    "title": "JAR'KAI-MEISTERSCHAFT",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Jar'Kai-Meisterschaft“ einen Nahkampfangriff durchführt, darf sie während des Schritts „Angriffsüberschläge umwandeln“ nach dem Umwandeln von Angriffsüberschlägen eine beliebige Anzahl von Ausweichmarkern ausgeben. Für jeden auf diese Weise ausgegebenen Ausweichmarker wird ein Leer-Ergebnis in ein a-Ergebnis, ein a-Ergebnis in ein b-Ergebnis geändert, oder es werden 2 Ausweichmarker ausgegeben, um ein Leer-Ergebnis in ein b-Ergebnis zu ändern."
+   },
+   "es": {
+    "title": "MAESTRÍA JAR'KAI",
+    "content": "Cuando una unidad con la palabra clave Maestría Jar'Kai realiza un ataque de Cuerpo a Cuerpo, puede gastar cualquier número de fichas de Esquiva después de convertir surges de ataque durante el paso de Convertir Surges de Ataque. Por cada ficha de Esquiva gastada de esta manera, cambia un resultado en Blanco a un resultado a, un resultado a a un resultado b, o gasta 2 fichas de Esquiva para cambiar un resultado en Blanco a un resultado b."
+   }
+  },
+  "legion_juyo-mastery": {
+   "fr": {
+    "title": "MAÎTRISE JUYO",
+    "content": "Tant qu'une unité dotée du mot-clé Maîtrise Juyo possède 1 ou plusieurs jetons de Blessure, elle peut effectuer 1 action supplémentaire pendant son étape Effectuer des actions. Une unité dotée de Maîtrise Juyo ne peut effectuer que 2 Actions de déplacement pendant son Activation, y compris les actions gratuites."
+   },
+   "de": {
+    "title": "JUYO-MEISTERSCHAFT",
+    "content": "Solange eine Einheit mit dem Schlüsselwort „Juyo-Meisterschaft“ 1 oder mehr Verwundungsmarker besitzt, kann sie während ihres Schritts „Aktionen durchführen“ 1 zusätzliche Aktion durchführen. Eine Einheit mit „Juyo-Meisterschaft“ darf während ihrer Aktivierung nur 2 Bewegungsaktionen durchführen, einschließlich freier Aktionen."
+   },
+   "es": {
+    "title": "MAESTRÍA JUYO",
+    "content": "Mientras una unidad con la palabra clave Maestría Juyo tenga 1 o más fichas de Herida, puede realizar 1 acción adicional durante su paso de Realizar Acciones. Una unidad con Maestría Juyo solo puede realizar 2 acciones de Movimiento durante su Activación, incluidas las acciones gratuitas."
+   }
+  },
+  "legion_low-profile": {
+   "fr": {
+    "title": "PROFIL BAS",
+    "content": "Lorsqu'une unité dotée du mot-clé Profil bas devrait lancer 1 ou plusieurs dés de défense pendant l'étape Lancer la réserve de couverture, elle lance 1 dé de défense de moins et ajoute à la place un résultat d supplémentaire à la Réserve de couverture après le lancer."
+   },
+   "de": {
+    "title": "NIEDRIGES PROFIL",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Niedriges Profil“ während des Schritts „Deckungspool würfeln“ 1 oder mehr Verteidigungswürfel würfeln würde, würfelt sie 1 Verteidigungswürfel weniger und fügt stattdessen nach dem Würfeln ein zusätzliches d-Ergebnis zum Deckungspool hinzu."
+   },
+   "es": {
+    "title": "PERFIL BAJO",
+    "content": "Cuando una unidad con la palabra clave Perfil Bajo lanzaría 1 o más dados de defensa durante el paso de Lanzar la Reserva de Cobertura, lanza 1 dado de defensa menos y, en su lugar, añade un resultado d adicional a la Reserva de Cobertura después de lanzar."
+   }
+  },
+  "legion_outmaneuver": {
+   "fr": {
+    "title": "DÉBORDEMENT",
+    "content": "Une unité dotée du mot-clé Débordement peut dépenser des jetons d'Esquive pour annuler des résultats b pendant l'étape Appliquer l'esquive et la couverture."
+   },
+   "de": {
+    "title": "AUSMANÖVRIEREN",
+    "content": "Eine Einheit mit dem Schlüsselwort „Ausmanövrieren“ kann Ausweichmarker ausgeben, um b-Ergebnisse während des Schritts „Ausweichen und Deckung anwenden“ zu streichen."
+   },
+   "es": {
+    "title": "SUPERAR EN MANIOBRA",
+    "content": "Una unidad con la palabra clave Superar en Maniobra puede gastar fichas de Esquiva para cancelar resultados b durante el paso de Aplicar Esquiva y Cobertura."
+   }
+  },
+  "legion_override": {
+   "fr": {
+    "title": "CONTRÔLE MANUEL",
+    "content": "Lorsqu'une unité alliée dotée du mot-clé IA commence son Activation à portée 3 d'une ou plusieurs unités alliées dotées du mot-clé Contrôle manuel, choisissez 1 de ces unités dotées du mot-clé Contrôle manuel qui n'est pas Paniquée. L'unité choisie peut gagner 1 jeton de Suppression. Si elle le fait, l'unité qui s'active ignore le mot-clé IA pendant son Activation."
+   },
+   "de": {
+    "title": "ÜBERSTEUERN",
+    "content": "Wenn eine verbündete Einheit mit dem Schlüsselwort „KI“ ihre Aktivierung innerhalb von 3 von 1 oder mehr verbündeten Einheiten beginnt, die das Schlüsselwort „Übersteuern“ besitzen, wähle 1 dieser Einheiten mit dem Schlüsselwort „Übersteuern“, die nicht in Panik ist. Die gewählte Einheit darf 1 Unterdrückungsmarker erhalten. Wenn sie dies tut, ignoriert die aktivierende Einheit während ihrer Aktivierung das Schlüsselwort „KI“."
+   },
+   "es": {
+    "title": "ANULAR",
+    "content": "Cuando una unidad aliada con la palabra clave IA comienza su Activación a distancia 3 de 1 o más unidades aliadas que tengan la palabra clave Anular, elige 1 de esas unidades que tenga la palabra clave Anular y que no esté en Pánico. La unidad elegida puede ganar 1 ficha de Supresión. Si lo hace, la unidad que se activa ignora la palabra clave IA durante su Activación."
+   }
+  },
+  "legion_plodding": {
+   "fr": {
+    "title": "MARCHE LENTE",
+    "content": "Une unité dotée du mot-clé Marche lente ne peut effectuer qu'1 Action de déplacement pendant son Activation."
+   },
+   "de": {
+    "title": "SCHLEICHEND",
+    "content": "Eine Einheit mit dem Schlüsselwort „Schleichend“ kann während ihrer Aktivierung nur 1 Bewegungsaktion durchführen."
+   },
+   "es": {
+    "title": "PESADO",
+    "content": "Una unidad con la palabra clave Pesado solo puede realizar 1 acción de Movimiento durante su Activación."
+   }
+  },
+  "legion_prepared-position": {
+   "fr": {
+    "title": "POSITION PRÉPARÉE",
+    "content": "Pendant l'étape Déploiement en positions préparées de la Mise en place, une unité dotée du mot-clé Position préparée peut se Déployer en plaçant le chef d'unité de cette unité entièrement dans le Territoire allié. Ensuite, les figurines restantes de cette unité sont placées en Cohésion avec leur chef d'unité et dans le Territoire allié. Cette unité gagne ensuite 1 jeton d'Esquive. Les figurines ne peuvent pas chevaucher de terrain infranchissable lorsqu'elles sont placées en utilisant Position préparée."
+   },
+   "de": {
+    "title": "VORBEREITETE STELLUNG",
+    "content": "Während des Schritts „In vorbereiteten Stellungen aufstellen“ der Aufstellung darf eine Einheit mit dem Schlüsselwort „Vorbereitete Stellung“ aufstellen, indem der Einheitenführer dieser Einheit vollständig innerhalb des verbündeten Territoriums platziert wird. Dann werden die übrigen Miniaturen dieser Einheit im Zusammenhalt mit ihrem Einheitenführer und innerhalb des verbündeten Territoriums platziert. Diese Einheit erhält dann 1 Ausweichmarker. Miniaturen dürfen bei der Platzierung mittels „Vorbereitete Stellung“ kein unpassierbares Gelände überlappen."
+   },
+   "es": {
+    "title": "POSICIÓN PREPARADA",
+    "content": "Durante el paso de Desplegar en Posiciones Preparadas de la Preparación, una unidad con la palabra clave Posición Preparada puede Desplegarse colocando al líder de unidad de esa unidad completamente dentro del Territorio aliado. Entonces, las miniaturas restantes de esa unidad se colocan en Cohesión con su líder de unidad y dentro del Territorio aliado. Esa unidad gana entonces 1 ficha de Esquiva. Las miniaturas no pueden solaparse con terreno infranqueable cuando se colocan usando Posición Preparada."
+   }
+  },
+  "legion_pulling-the-strings": {
+   "fr": {
+    "title": "TIRER LES FICELLES",
+    "content": "En tant qu'action de carte, une unité dotée du mot-clé Tirer les ficelles peut choisir une autre unité de Soldats alliée à portée 2. L'unité choisie peut effectuer une Action d'attaque gratuite ou une Action de déplacement gratuite."
+   },
+   "de": {
+    "title": "DIE FÄDEN ZIEHEN",
+    "content": "Als Kartenaktion darf eine Einheit mit dem Schlüsselwort „Die Fäden ziehen“ eine andere verbündete Trupplereinheit innerhalb von 2 wählen. Die gewählte Einheit darf eine freie Angriffsaktion oder eine freie Bewegungsaktion durchführen."
+   },
+   "es": {
+    "title": "TIRAR DE LOS HILOS",
+    "content": "Como acción de Carta, una unidad con la palabra clave Tirar de los Hilos puede elegir otra unidad de Tropa aliada a distancia 2. La unidad elegida puede realizar una acción de Ataque gratuita o una acción de Movimiento gratuita."
+   }
+  },
+  "legion_quick-thinking": {
+   "fr": {
+    "title": "RÉFLEXE RAPIDE",
+    "content": "Lorsqu'une unité effectue l'action de carte Réflexe rapide, elle gagne 1 jeton de Visée et 1 jeton d'Esquive."
+   },
+   "de": {
+    "title": "SCHNELLES DENKEN",
+    "content": "Wenn eine Einheit die Kartenaktion „Schnelles Denken“ durchführt, erhält sie 1 Ziel- und 1 Ausweichmarker."
+   },
+   "es": {
+    "title": "PENSAMIENTO RÁPIDO",
+    "content": "Cuando una unidad realiza la acción de Carta Pensamiento Rápido, gana 1 ficha de Puntería y 1 ficha de Esquiva."
+   }
+  },
+  "legion_mobile": {
+   "fr": {
+    "title": "MOBILE",
+    "content": "Lorsqu'une unité sur base à encoche dotée du mot-clé Mobile effectue un déplacement, elle saute l'étape 1 de la section de déplacement sur base à encoche, en faisant pivoter la base du chef d'unité.\nUne unité dotée du mot-clé Mobile doit effectuer une Action de déplacement obligatoire gratuite au début ou à la fin de son étape Effectuer des actions. Une unité dotée du mot-clé Mobile ne peut pas effectuer de Déplacements en marche arrière.\nSi une unité dotée du mot-clé Mobile effectue plus d'1 Action de déplacement non obligatoire pendant son Activation, elle ne peut pas réclamer de jetons d'Atout cette Activation. De plus, une unité dotée du mot-clé Mobile qui a réclamé un jeton d'Atout ne peut effectuer qu'1 Action de déplacement non obligatoire pendant son Activation."
+   },
+   "de": {
+    "title": "MOBIL",
+    "content": "Wenn sich eine Einheit auf gekerbten Sockeln mit dem Schlüsselwort „Mobil“ bewegt, überspringt sie Schritt 1 des Bewegungsabschnitts für gekerbte Sockel, indem sie den Sockel des Einheitenführers dreht. Eine Einheit mit dem Schlüsselwort „Mobil“ muss zu Beginn oder am Ende ihres Schritts „Aktionen durchführen“ eine freie Pflicht-Bewegungsaktion durchführen. Eine Einheit mit dem Schlüsselwort „Mobil“ kann keine Rückwärtsbewegungen durchführen. Wenn eine Einheit mit dem Schlüsselwort „Mobil“ während ihrer Aktivierung mehr als 1 nicht verpflichtende Bewegungsaktion durchführt, darf sie während dieser Aktivierung keine Vermögensmarker beanspruchen. Zusätzlich kann eine Einheit mit dem Schlüsselwort „Mobil“, die einen Vermögensmarker beansprucht hat, während ihrer Aktivierung nur 1 nicht verpflichtende Bewegungsaktion durchführen."
+   },
+   "es": {
+    "title": "MÓVIL",
+    "content": "Cuando una unidad sobre bases con muescas con la palabra clave Móvil realiza un movimiento, se salta el paso 1 de la sección de movimiento de bases con muescas, rotando la base del líder de unidad.\nUna unidad con la palabra clave Móvil debe realizar una acción de Movimiento gratuita obligatoria al comienzo o al final de su paso de Realizar Acciones. Una unidad con la palabra clave Móvil no puede realizar Movimientos en Reversa.\nSi una unidad con la palabra clave Móvil realiza más de 1 acción de Movimiento no obligatoria durante su Activación, no puede reclamar fichas de Activo esa Activación. Además, una unidad con la palabra clave Móvil que haya reclamado una ficha de Activo solo puede realizar 1 acción de Movimiento no obligatoria durante su Activación."
+   }
+  },
+  "legion_my-mood-is-based-on-profit": {
+   "fr": {
+    "title": "MON HUMEUR DÉPEND DU PROFIT",
+    "content": "Les mots-clés et les statistiques qui ont une valeur X sur la Carte d'unité d'une unité dotée du mot-clé Mon humeur dépend du profit ont une valeur X égale au nombre de points sur la Carte de commandement que le joueur qui contrôle cette unité a jouée et révélée le plus récemment cette Partie, avec un minimum de 1. Si un joueur n'a pas encore joué et révélé de Carte de commandement cette Partie, traitez X comme 1 à la place."
+   },
+   "de": {
+    "title": "MEINE LAUNE RICHTET SICH NACH DEM GEWINN",
+    "content": "Schlüsselwörter und Werte, die auf der Einheitenkarte einer Einheit mit dem Schlüsselwort „Meine Laune richtet sich nach dem Gewinn“ einen X-Wert besitzen, haben einen X-Wert, der der Anzahl der Punkte auf der Befehlskarte entspricht, die der kontrollierende Spieler dieser Einheit in diesem Spiel zuletzt gespielt und aufgedeckt hat, mindestens jedoch 1. Wenn ein Spieler in diesem Spiel noch keine Befehlskarte gespielt und aufgedeckt hat, gilt X stattdessen als 1."
+   },
+   "es": {
+    "title": "MI HUMOR SE BASA EN EL BENEFICIO",
+    "content": "Las palabras clave y estadísticas que tienen un valor X en la Carta de Unidad de una unidad con la palabra clave Mi Humor se Basa en el Beneficio tienen un valor X igual al número de pips de la Carta de Mando que el jugador que controla esa unidad jugó y reveló más recientemente esa Partida, con un mínimo de 1. Si un jugador aún no ha jugado y revelado una Carta de Mando esta Partida, trata X como 1 en su lugar."
+   }
+  },
+  "legion_nimble": {
+   "fr": {
+    "title": "AGILE",
+    "content": "Lorsqu'une unité dotée du mot-clé Agile défend contre une attaque et dépense au moins 1 jeton d'Esquive à n'importe quel moment de la séquence d'attaque, après la résolution de l'attaque, elle gagne 1 jeton d'Esquive."
+   },
+   "de": {
+    "title": "WENDIG",
+    "content": "Wenn sich eine Einheit mit dem Schlüsselwort „Wendig“ gegen einen Angriff verteidigt und während irgendeines Zeitpunkts der Angriffssequenz mindestens 1 Ausweichmarker ausgibt, erhält sie nach Auflösung des Angriffs 1 Ausweichmarker."
+   },
+   "es": {
+    "title": "ÁGIL",
+    "content": "Cuando una unidad con la palabra clave Ágil se defiende contra un ataque y gasta al menos 1 ficha de Esquiva en cualquier punto de la secuencia de ataque, después de que el ataque se resuelva, gana 1 ficha de Esquiva."
+   }
+  },
+  "legion_one-step-ahead": {
+   "fr": {
+    "title": "UN PAS D'AVANCE",
+    "content": "Si 1 ou plusieurs unités alliées possèdent le mot-clé Un pas d'avance, pendant l'étape Résoudre les effets des cartes de commandement, après avoir révélé les Cartes de commandement mais avant de résoudre les effets des cartes de commandement, si le nombre de points sur les Cartes de commandement révélées ne correspond pas, 1 unité alliée dotée du mot-clé Un pas d'avance sur le champ de bataille peut effectuer un Déplacement de vitesse 1. Si le nombre de points correspond, et qu'il y a 1 ou plusieurs unités alliées dotées du mot-clé Un pas d'avance sur le champ de bataille, choisissez une unité alliée sur le champ de bataille. L'unité choisie peut effectuer un Déplacement de vitesse 1."
+   },
+   "de": {
+    "title": "EINEN SCHRITT VORAUS",
+    "content": "Wenn 1 oder mehr verbündete Einheiten das Schlüsselwort „Einen Schritt voraus“ besitzen, darf während des Schritts „Befehlskarteneffekte auflösen“, nach dem Aufdecken der Befehlskarten, aber vor dem Auflösen der Befehlskarteneffekte, wenn die Anzahl der Punkte auf den aufgedeckten Befehlskarten nicht übereinstimmt, 1 verbündete Einheit mit dem Schlüsselwort „Einen Schritt voraus“ auf dem Schlachtfeld eine Bewegung mit Geschwindigkeit 1 durchführen. Wenn die Anzahl der Punkte übereinstimmt und sich 1 oder mehr verbündete Einheiten mit dem Schlüsselwort „Einen Schritt voraus“ auf dem Schlachtfeld befinden, wähle eine verbündete Einheit auf dem Schlachtfeld. Die gewählte Einheit darf eine Bewegung mit Geschwindigkeit 1 durchführen."
+   },
+   "es": {
+    "title": "UN PASO POR DELANTE",
+    "content": "Si 1 o más unidades aliadas tienen la palabra clave Un Paso por Delante, durante el paso de Resolver Efectos de Cartas de Mando, después de revelar las Cartas de Mando pero antes de resolver los efectos de las Cartas de Mando, si el número de pips de las Cartas de Mando reveladas no coincide, 1 unidad aliada con la palabra clave Un Paso por Delante en el campo de batalla puede realizar un Movimiento de Velocidad 1. Si el número de pips coincide, y hay 1 o más unidades aliadas con la palabra clave Un Paso por Delante en el campo de batalla, elige una unidad aliada en el campo de batalla. La unidad elegida puede realizar un Movimiento de Velocidad 1."
+   }
+  },
+  "legion_secret-mission": {
+   "fr": {
+    "title": "MISSION SECRÈTE",
+    "content": "Au début de chaque Phase de commandement, si une unité dotée du mot-clé Mission secrète est entièrement dans le Territoire ennemi, elle gagne 1 jeton de Mission secrète. Une unité ne peut jamais gagner plus d'1 jeton de Mission secrète par partie.\nLors du calcul des PV pendant la Phase de fin, si un joueur contrôle 1 ou plusieurs unités qui possèdent un jeton de Mission secrète et se trouvent dans le Territoire ennemi, ce joueur peut choisir de retirer les jetons de Mission secrète de ces unités de la partie. Ce joueur marque 1 PV pour chaque jeton de Mission secrète retiré de cette manière."
+   },
+   "de": {
+    "title": "GEHEIMAUFTRAG",
+    "content": "Zu Beginn jeder Befehlsphase erhält eine Einheit mit dem Schlüsselwort „Geheimauftrag“, die sich vollständig innerhalb des feindlichen Territoriums befindet, 1 Geheimauftragsmarker. Eine Einheit darf pro Spiel nur 1 Geheimauftragsmarker erhalten. Wenn während der Endphase Siegpunkte vergeben werden und ein Spieler 1 oder mehr Einheiten kontrolliert, die einen Geheimauftragsmarker besitzen und sich innerhalb des feindlichen Territoriums befinden, darf dieser Spieler wählen, die Geheimauftragsmarker dieser Einheiten aus dem Spiel zu entfernen. Dieser Spieler erzielt 1 Siegpunkt für jeden auf diese Weise entfernten Geheimauftragsmarker."
+   },
+   "es": {
+    "title": "MISIÓN SECRETA",
+    "content": "Al comienzo de cada Fase de Mando, si una unidad con la palabra clave Misión Secreta está completamente dentro del Territorio enemigo, gana 1 ficha de Misión Secreta. Una unidad solo puede ganar 1 ficha de Misión Secreta por partida.\nAl anotar PV durante la Fase Final, si un jugador controla 1 o más unidades que tienen una ficha de Misión Secreta y están dentro del Territorio enemigo, ese jugador puede elegir retirar las fichas de Misión Secreta de esas unidades de la partida. Ese jugador anota 1 PV por cada ficha de Misión Secreta retirada de esta manera."
+   }
+  },
+  "legion_sentinel": {
+   "fr": {
+    "title": "SENTINELLE",
+    "content": "Une unité dotée du mot-clé Sentinelle peut dépenser un jeton de Veille après qu'une unité ennemie a effectué une attaque, un Déplacement ou une action à portée 3, plutôt qu'à portée 2."
+   },
+   "de": {
+    "title": "WACHE",
+    "content": "Eine Einheit mit dem Schlüsselwort „Wache“ kann einen Bereitschaftsmarker ausgeben, nachdem eine feindliche Einheit innerhalb von 3 einen Angriff, eine Bewegung oder eine Aktion durchgeführt hat, statt innerhalb von 2."
+   },
+   "es": {
+    "title": "CENTINELA",
+    "content": "Una unidad con la palabra clave Centinela puede gastar una ficha de Alerta después de que una unidad enemiga realice un ataque, Movimiento o acción a distancia 3, en lugar de a distancia 2."
+   }
+  },
+  "legion_reinforcements": {
+   "fr": {
+    "title": "RENFORTS",
+    "content": "Au début de la Phase de fin de la première Manche, une unité dotée du mot-clé Renforts peut effectuer un Déplacement de vitesse 1."
+   },
+   "de": {
+    "title": "VERSTÄRKUNGEN",
+    "content": "Zu Beginn der Endphase der ersten Runde darf eine Einheit mit dem Schlüsselwort „Verstärkungen“ eine Bewegung mit Geschwindigkeit 1 durchführen."
+   },
+   "es": {
+    "title": "REFUERZOS",
+    "content": "Al comienzo de la Fase Final de la primera Ronda, una unidad con la palabra clave Refuerzos puede realizar un Movimiento de Velocidad 1."
+   }
+  },
+  "legion_relentless": {
+   "fr": {
+    "title": "IMPLACABLE",
+    "content": "Après qu'une unité dotée du mot-clé Implacable a effectué une Action de déplacement pendant son Activation, elle peut effectuer une Action d'attaque gratuite."
+   },
+   "de": {
+    "title": "UNERBITTLICH",
+    "content": "Nachdem eine Einheit mit dem Schlüsselwort „Unerbittlich“ während ihrer Aktivierung eine Bewegungsaktion durchgeführt hat, darf sie eine freie Angriffsaktion durchführen."
+   },
+   "es": {
+    "title": "IMPLACABLE",
+    "content": "Después de que una unidad que tiene la palabra clave Implacable realice una acción de Movimiento durante su Activación, puede realizar una acción de Ataque gratuita."
+   }
+  },
+  "legion_reposition": {
+   "fr": {
+    "title": "REPOSITIONNEMENT",
+    "content": "Lorsqu'une unité dotée du mot-clé Repositionnement effectue un Déplacement standard, elle peut effectuer un Pivot avant ou après avoir effectué ce Déplacement standard."
+   },
+   "de": {
+    "title": "NEUPOSITIONIEREN",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Neupositionieren“ eine Standardbewegung durchführt, darf sie entweder vor oder nach dieser Standardbewegung eine Drehung durchführen."
+   },
+   "es": {
+    "title": "REPOSICIONAR",
+    "content": "Cuando una unidad con la palabra clave Reposicionar realiza un Movimiento Estándar, puede realizar un Giro antes o después de realizar ese Movimiento Estándar."
+   }
+  },
+  "legion_ruthless": {
+   "fr": {
+    "title": "IMPITOYABLE",
+    "content": "Lorsqu'une unité de Soldats m alliée dotée d'un jeton d'Ordre face visible commence son Activation à portée 2 et en LdV d'une unité dotée du mot-clé Impitoyable, cette unité alliée peut subir 1 Blessure pour effectuer 1 action gratuite."
+   },
+   "de": {
+    "title": "RÜCKSICHTSLOS",
+    "content": "Wenn eine verbündete m-Trupplereinheit mit einem offenen Befehlsmarker ihre Aktivierung innerhalb von 2 und in Sichtlinie einer Einheit mit dem Schlüsselwort „Rücksichtslos“ beginnt, darf diese verbündete Einheit 1 Verwundung erleiden, um 1 freie Aktion durchzuführen."
+   },
+   "es": {
+    "title": "DESPIADADO",
+    "content": "Cuando una unidad de Tropa m aliada con una ficha de Orden boca arriba comienza su Activación a distancia 2 y en LdV de una unidad con la palabra clave Despiadado, esa unidad aliada puede sufrir 1 Herida para realizar 1 acción gratuita."
+   }
+  },
+  "legion_scale": {
+   "fr": {
+    "title": "ESCALADE",
+    "content": "Lorsqu'une unité dotée du mot-clé Escalade effectue une Escalade, elle peut se Déplacer d'une distance verticale allant jusqu'à la hauteur 2.\nLorsqu'une unité dotée du mot-clé Escalade effectue un Déplacement, elle ne réduit pas sa Vitesse pour sortir, entrer ou traverser un terrain difficile."
+   },
+   "de": {
+    "title": "KLETTERN",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Klettern“ einen Klettervorgang durchführt, darf sie eine vertikale Distanz von bis zu Höhe 2 zurücklegen. Wenn eine Einheit mit dem Schlüsselwort „Klettern“ eine Bewegung durchführt, reduziert sie ihre Geschwindigkeit nicht für das Verlassen, Betreten oder Durchqueren von schwierigem Gelände."
+   },
+   "es": {
+    "title": "ESCALAR",
+    "content": "Cuando una unidad con la palabra clave Escalar realiza un Trepar, puede Moverse una distancia vertical de hasta altura 2.\nCuando una unidad que tiene la palabra clave Escalar realiza un Movimiento, no reduce su Velocidad por moverse fuera de, hacia o a través de terreno difícil."
+   }
+  },
+  "legion_soresu-mastery": {
+   "fr": {
+    "title": "MAÎTRISE SORESU",
+    "content": "Lorsqu'une unité dotée de Maîtrise Soresu défend contre une attaque à distance, elle peut relancer tous ses dés de défense pendant l'étape Relancer les dés de défense. De plus, lorsqu'une unité dotée de Maîtrise Soresu utilise le mot-clé Gardien X, elle peut dépenser 1 jeton d'Esquive avant de convertir les résultats e. Si elle le fait, elle relance tous ses dés de défense avant de convertir les résultats e. Chaque dé ne peut pas être relancé plus d'une fois en utilisant Maîtrise Soresu."
+   },
+   "de": {
+    "title": "SORESU-MEISTERSCHAFT",
+    "content": "Wenn sich eine Einheit mit „Soresu-Meisterschaft“ gegen einen Fernkampfangriff verteidigt, darf sie während des Schritts „Verteidigungswürfel neu würfeln“ alle ihre Verteidigungswürfel neu würfeln. Zusätzlich darf eine Einheit mit „Soresu-Meisterschaft“, wenn sie das Schlüsselwort „Beschützer X“ verwendet, 1 Ausweichmarker ausgeben, bevor sie e-Ergebnisse umwandelt. Wenn sie dies tut, würfelt sie alle ihre Verteidigungswürfel neu, bevor sie e-Ergebnisse umwandelt. Jeder Würfel darf mit „Soresu-Meisterschaft“ nicht mehr als einmal neu gewürfelt werden."
+   },
+   "es": {
+    "title": "MAESTRÍA SORESU",
+    "content": "Cuando una unidad con Maestría Soresu se defiende contra un ataque a Distancia, puede relanzar todos sus dados de defensa durante el paso de Relanzar Dados de Defensa. Además, cuando una unidad con Maestría Soresu usa la palabra clave Guardián X, puede gastar 1 ficha de Esquiva antes de convertir cualquier resultado e. Si lo hace, relanza todos sus dados de defensa antes de convertir resultados e. Cada dado no puede relanzarse más de una vez usando Maestría Soresu."
+   }
+  },
+  "legion_shien-mastery": {
+   "fr": {
+    "title": "MAÎTRISE SHIEN",
+    "content": "Lorsqu'une unité dotée du mot-clé Maîtrise Shien utilise le mot-clé Déviation, l'attaquant subit 1 Blessure pour chaque résultat e dans le jet de défense au lieu de toute autre Blessure que Déviation causerait. De plus, lorsqu'une unité dotée du mot-clé Maîtrise Shien est l'unité qui défend d'une attaque à distance, si elle ne subit pas de Blessures de cette attaque, elle ne gagne pas de jetons de Suppression pendant l'étape Assigner un jeton de suppression au défenseur de cette attaque."
+   },
+   "de": {
+    "title": "SHIEN-MEISTERSCHAFT",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Shien-Meisterschaft“ das Schlüsselwort „Abwehren“ verwendet, erleidet der Angreifer für jedes e-Ergebnis im Verteidigungswurf 1 Verwundung, statt anderer Verwundungen, die „Abwehren“ verursachen würde. Zusätzlich erhält eine Einheit mit dem Schlüsselwort „Shien-Meisterschaft“, wenn sie die verteidigende Einheit eines Fernkampfangriffs ist und keine Verwundungen durch diesen Angriff erleidet, während des Schritts „Unterdrückungsmarker dem Verteidiger zuweisen“ dieses Angriffs keine Unterdrückungsmarker."
+   },
+   "es": {
+    "title": "MAESTRÍA SHIEN",
+    "content": "Cuando una unidad con la palabra clave Maestría Shien usa la palabra clave Desviar, el atacante sufre 1 Herida por cada resultado e en la tirada de defensa en lugar de cualquier otra Herida que Desviar causaría. Además, cuando una unidad con la palabra clave Maestría Shien es la unidad defensora de un ataque a Distancia, si no sufre Heridas de ese ataque, no gana fichas de Supresión durante el paso de Asignar Ficha de Supresión al Defensor de ese ataque."
+   }
+  },
+  "legion_spur": {
+   "fr": {
+    "title": "ÉPERON",
+    "content": "Lorsqu'une unité dotée du mot-clé Éperon effectue un Déplacement, son joueur qui la contrôle peut lui assigner 1 jeton de Suppression. S'il le fait, cette unité augmente sa Vitesse de 1 pendant ce Déplacement, avec un maximum de 3. Lorsqu'une unité effectue un Déplacement, appliquez tous les effets qui augmentent la Vitesse de l'unité avant d'appliquer tous les effets qui réduisent la Vitesse de cette unité.\nPar exemple, une unité qui a normalement une Vitesse de 1, mais qui possède 1 jeton d'Immobilisation, peut utiliser le mot-clé Éperon pour effectuer un Déplacement avec une Vitesse totale de 1. Cependant, une unité qui a normalement une Vitesse de 1, mais qui possède 2 jetons d'Immobilisation, ne peut pas utiliser le mot-clé Éperon pour effectuer un Déplacement car sa Vitesse serait toujours de 0."
+   },
+   "de": {
+    "title": "ANSPORNEN",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Anspornen“ eine Bewegung durchführt, darf ihr kontrollierender Spieler ihr 1 Unterdrückungsmarker zuweisen. Wenn er dies tut, erhöht diese Einheit ihre Geschwindigkeit während dieser Bewegung um 1, bis maximal 3. Wenn eine Einheit eine Bewegung durchführt, wende zuerst alle Effekte an, die die Geschwindigkeit der Einheit erhöhen, bevor Effekte angewendet werden, die die Geschwindigkeit dieser Einheit verringern. Beispielsweise kann eine Einheit, die normalerweise eine Geschwindigkeit von 1 hat, aber 1 Immobilisierungsmarker besitzt, das Schlüsselwort „Anspornen“ verwenden, um eine Bewegung mit einer Gesamtgeschwindigkeit von 1 durchzuführen. Eine Einheit, die normalerweise eine Geschwindigkeit von 1 hat, aber 2 Immobilisierungsmarker besitzt, kann das Schlüsselwort „Anspornen“ jedoch nicht verwenden, um eine Bewegung durchzuführen, da ihre Geschwindigkeit immer noch 0 wäre."
+   },
+   "es": {
+    "title": "ESPUELA",
+    "content": "Cuando una unidad con la palabra clave Espuela realiza un Movimiento, su jugador controlador puede asignarle 1 ficha de Supresión. Si lo hace, esa unidad aumenta su Velocidad en 1 durante ese Movimiento hasta un máximo de 3. Cuando una unidad realiza un Movimiento, aplica cualquier efecto que aumente la Velocidad de la unidad antes de aplicar cualquier efecto que reduzca la Velocidad de esa unidad.\nPor ejemplo, una unidad que normalmente tiene una Velocidad de 1, pero tiene 1 ficha de Inmovilizar, puede usar la palabra clave Espuela para realizar un Movimiento con una Velocidad total de 1. Sin embargo, una unidad que normalmente tiene una Velocidad de 1, pero tiene 2 fichas de Inmovilizar, no puede usar la palabra clave Espuela para realizar un Movimiento porque su Velocidad seguiría siendo 0."
+   }
+  },
+  "legion_stationary": {
+   "fr": {
+    "title": "STATIONNAIRE",
+    "content": "Une unité dotée du mot-clé Stationnaire ne peut pas effectuer de Déplacements, sauf si le Déplacement est un Pivot. Une unité dotée des mots-clés Position préparée et Stationnaire doit se Déployer pendant l'étape Déploiement en positions préparées de la Mise en place."
+   },
+   "de": {
+    "title": "STATIONÄR",
+    "content": "Eine Einheit mit dem Schlüsselwort „Stationär“ kann keine Bewegungen durchführen, es sei denn, die Bewegung ist eine Drehung. Eine Einheit mit den Schlüsselwörtern „Vorbereitete Stellung“ und „Stationär“ muss während des Schritts „In vorbereiteten Stellungen aufstellen“ der Aufstellung aufstellen."
+   },
+   "es": {
+    "title": "ESTACIONARIO",
+    "content": "Una unidad con la palabra clave Estacionario no puede realizar Movimientos a menos que el Movimiento sea un Giro. Una unidad con las palabras clave Posición Preparada y Estacionario debe Desplegarse durante el paso de Desplegar en Posiciones Preparadas de la Preparación."
+   }
+  },
+  "legion_steady": {
+   "fr": {
+    "title": "STABLE",
+    "content": "Après qu'une unité dotée du mot-clé Stable a effectué une Action de déplacement pendant son Activation, elle peut effectuer une Action d'attaque gratuite. Seules les armes à distance peuvent être ajoutées aux Réserves d'attaque pendant cette Action d'attaque."
+   },
+   "de": {
+    "title": "STETIG",
+    "content": "Nachdem eine Einheit mit dem Schlüsselwort „Stetig“ während ihrer Aktivierung eine Bewegungsaktion durchgeführt hat, darf sie eine freie Angriffsaktion durchführen. Während dieser Angriffsaktion können nur Fernkampfwaffen zu Angriffspools hinzugefügt werden."
+   },
+   "es": {
+    "title": "FIRME",
+    "content": "Después de que una unidad que tiene la palabra clave Firme realice una acción de Movimiento durante su Activación, puede realizar una acción de Ataque gratuita. Solo se pueden añadir armas a Distancia a las Reservas de Ataque durante esta acción de Ataque."
+   }
+  },
+  "legion_swashbuckler": {
+   "fr": {
+    "title": "BAVARD",
+    "content": "Lorsqu'une unité dotée du mot-clé Bavard dépense 1 ou plusieurs jetons de Visée pendant une Action d'attaque, après la résolution de l'effet, elle gagne 1 jeton d'Esquive."
+   },
+   "de": {
+    "title": "FECHTER",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Fechter“ während einer Angriffsaktion 1 oder mehr Zielmarker ausgibt, erhält sie nach Auflösung des Effekts 1 Ausweichmarker."
+   },
+   "es": {
+    "title": "ESPADACHÍN",
+    "content": "Cuando una unidad con la palabra clave Espadachín gasta 1 o más fichas de Puntería durante una acción de Ataque, después de que el efecto se resuelva, gana 1 ficha de Esquiva."
+   }
+  },
+  "legion_tempted": {
+   "fr": {
+    "title": "TENTÉ",
+    "content": "Si une unité alliée est vaincue par une attaque ennemie et que l'unité attaquante se trouve à portée 3 d'une unité dotée du mot-clé Tenté, après la résolution de l'attaque, cette unité dotée du mot-clé Tenté peut effectuer une Action d'attaque gratuite ou un Déplacement de vitesse 2 en ignorant le terrain difficile. Une unité ne peut utiliser le mot-clé Tenté qu'une seule fois par Manche."
+   },
+   "de": {
+    "title": "VERSUCHT",
+    "content": "Wenn eine verbündete Einheit durch einen feindlichen Angriff besiegt wird und sich die angreifende Einheit innerhalb von 3 einer Einheit mit dem Schlüsselwort „Versucht“ befindet, darf diese Einheit mit dem Schlüsselwort „Versucht“ nach Auflösung des Angriffs eine freie Angriffsaktion oder eine Bewegung mit Geschwindigkeit 2 durchführen, wobei schwieriges Gelände ignoriert wird. Eine Einheit darf das Schlüsselwort „Versucht“ nur einmal pro Runde verwenden."
+   },
+   "es": {
+    "title": "TENTADO",
+    "content": "Si una unidad aliada es derrotada por un ataque enemigo y la unidad atacante está a distancia 3 de una unidad con la palabra clave Tentado, después de que el ataque se resuelva, esa unidad con la palabra clave Tentado puede realizar una acción de Ataque gratuita o un Movimiento de Velocidad 2 ignorando el terreno difícil. Una unidad solo puede usar la palabra clave Tentado una vez por Ronda."
+   }
+  },
+  "legion_this-is-the-way": {
+   "fr": {
+    "title": "C'EST LA VOIE",
+    "content": "Lorsqu'une unité alliée dotée du mot-clé C'est la voie reçoit un Ordre, choisissez jusqu'à X autres unités alliées à portée 2 de cette unité. Chaque unité choisie effectue l'Action listée par le mot-clé C'est la voie de l'unité qui a reçu l'ordre en tant qu'action gratuite."
+   },
+   "de": {
+    "title": "DIES IST DER WEG",
+    "content": "Wenn einer verbündeten Einheit mit dem Schlüsselwort „Dies ist der Weg“ ein Befehl erteilt wird, wähle bis zu X andere verbündete Einheiten innerhalb von 2 dieser Einheit. Jede gewählte Einheit führt die Aktion, die durch das Schlüsselwort „Dies ist der Weg“ der Einheit aufgelistet ist, der der Befehl erteilt wurde, als freie Aktion durch."
+   },
+   "es": {
+    "title": "ESTE ES EL CAMINO",
+    "content": "Cuando a una unidad aliada con la palabra clave Este es el Camino se le emite una Orden, elige hasta X otras unidades aliadas a distancia 2 de esa unidad. Cada unidad elegida realiza la Acción listada por la palabra clave Este es el Camino de la unidad a la que se le emitió la orden como una acción gratuita."
+   }
+  },
+  "legion_transport": {
+   "fr": {
+    "title": "TRANSPORT",
+    "content": "Pendant la Mise en place, une unité dotée du mot-clé Transport peut choisir une unité de Soldats m ou de Soldats n alliée à transporter. Pendant l'étape Émission d'ordres de la première Manche, une unité dotée du mot-clé Transport peut émettre un Ordre à l'unité choisie. Si l'unité choisie n'est pas déployée lorsque l'unité dotée du mot-clé Transport se Déploie, après la résolution de l'effet, l'unité choisie se Déploie en effectuant un Déplacement de vitesse 1. Mesurez le début de ce Déplacement avec les deux pointes d'un côté du Gabarit de déplacement touchant la base de l'unité dotée du mot-clé Transport. Une unité peut effectuer ce Déplacement quelle que soit sa Vitesse. Lorsque l'unité choisie se Déploie de cette manière, le chef d'unité de cette unité mesure la distance verticale parcourue pendant ce Déplacement à partir de l'unité dotée du mot-clé Transport."
+   },
+   "de": {
+    "title": "TRANSPORT",
+    "content": "Während der Aufstellung darf eine Einheit mit dem Schlüsselwort „Transport“ eine verbündete m-Truppler- oder n-Trupplereinheit zum Transport wählen. Während des Schritts „Befehle erteilen“ der ersten Runde darf eine Einheit mit dem Schlüsselwort „Transport“ der gewählten Einheit einen Befehl erteilen. Wenn die gewählte Einheit noch nicht aufgestellt ist, wenn die Einheit mit dem Schlüsselwort „Transport“ aufstellt, stellt die gewählte Einheit nach Auflösung des Effekts auf, indem sie eine Bewegung mit Geschwindigkeit 1 durchführt. Miss den Beginn dieser Bewegung, indem beide Zinken einer Seite des Bewegungsinstruments den Sockel der Einheit mit dem Schlüsselwort „Transport“ berühren. Eine Einheit kann diese Bewegung unabhängig von ihrer Geschwindigkeit durchführen. Wenn die gewählte Einheit auf diese Weise aufstellt, misst der Einheitenführer dieser Einheit die während dieser Bewegung veränderte vertikale Distanz, beginnend bei der Einheit mit dem Schlüsselwort „Transport“."
+   },
+   "es": {
+    "title": "TRANSPORTE",
+    "content": "Durante la Preparación, una unidad con la palabra clave Transporte puede elegir una unidad de Tropa m o de Tropa n aliada para transportar. Durante el paso de Emitir Órdenes de la primera Ronda, una unidad con la palabra clave Transporte puede emitir una Orden a la unidad elegida. Si la unidad elegida no está desplegada cuando la unidad con la palabra clave Transporte se Despliega, después de que el efecto se resuelva, la unidad elegida se Despliega realizando un Movimiento de Velocidad 1. Mide el comienzo de este Movimiento con ambas puntas de un lado de la Herramienta de Movimiento tocando la base de la unidad con la palabra clave Transporte. Una unidad puede realizar este Movimiento independientemente de su Velocidad. Cuando la unidad elegida se Despliega de esta manera, el líder de unidad de esa unidad mide la distancia vertical cambiada durante ese Movimiento comenzando desde la unidad con la palabra clave Transporte."
+   }
+  },
+  "legion_unconcerned": {
+   "fr": {
+    "title": "INSOUCIANT",
+    "content": "Une unité dotée du mot-clé Insouciant ne peut pas bénéficier de la Couverture, et les figurines de l'unité ne peuvent pas être Réparées ou Restaurées."
+   },
+   "de": {
+    "title": "UNBEKÜMMERT",
+    "content": "Eine Einheit mit dem Schlüsselwort „Unbekümmert“ kann nicht von Deckung profitieren, und Miniaturen in der Einheit können nicht repariert oder wiederhergestellt werden."
+   },
+   "es": {
+    "title": "DESPREOCUPADO",
+    "content": "Una unidad con la palabra clave Despreocupado no puede beneficiarse de la Cobertura, y las miniaturas de la unidad no pueden ser Reparadas ni Restauradas."
+   }
+  },
+  "legion_unhindered": {
+   "fr": {
+    "title": "SANS ENTRAVE",
+    "content": "Lorsqu'une unité dotée du mot-clé Sans entrave effectue un Déplacement, elle ne réduit pas sa Vitesse pour sortir, entrer ou traverser un terrain difficile."
+   },
+   "de": {
+    "title": "UNBEHINDERT",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Unbehindert“ eine Bewegung durchführt, reduziert sie ihre Geschwindigkeit nicht für das Verlassen, Betreten oder Durchqueren von schwierigem Gelände."
+   },
+   "es": {
+    "title": "SIN OBSTÁCULOS",
+    "content": "Cuando una unidad que tiene la palabra clave Sin Obstáculos realiza un Movimiento, no reduce su Velocidad por moverse fuera de, hacia o a través de terreno difícil."
+   }
+  },
+  "legion_vaapad-mastery": {
+   "fr": {
+    "title": "MAÎTRISE VAAPAD",
+    "content": "Lorsqu'une unité dotée du mot-clé Maîtrise Vaapad attaque, avant de lancer les dés, elle ajoute 1 dé d'attaque blanc à la réserve pour chaque jeton de Blessure qu'elle possède, avec un maximum de 3.\nLorsqu'une unité dotée du mot-clé Maîtrise Vaapad défend, avant de lancer les dés, elle ajoute 1 dé de défense blanc à la réserve pour chaque jeton de Blessure qu'elle possède, avec un maximum de 3."
+   },
+   "de": {
+    "title": "VAAPAD-MEISTERSCHAFT",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Vaapad-Meisterschaft“ angreift, fügt sie vor dem Würfeln für jeden Verwundungsmarker, den sie besitzt, 1 weißen Angriffswürfel zum Pool hinzu, bis maximal 3. Wenn sich eine Einheit mit dem Schlüsselwort „Vaapad-Meisterschaft“ verteidigt, fügt sie vor dem Würfeln für jeden Verwundungsmarker, den sie besitzt, 1 weißen Verteidigungswürfel zum Pool hinzu, bis maximal 3."
+   },
+   "es": {
+    "title": "MAESTRÍA VAAPAD",
+    "content": "Cuando una unidad con la palabra clave Maestría Vaapad ataca, antes de lanzar los dados, añade 1 dado de ataque blanco a la reserva por cada ficha de Herida que tenga, hasta un máximo de 3.\nCuando una unidad con la palabra clave Maestría Vaapad se defiende, antes de lanzar los dados, añade 1 dado de defensa blanco a la reserva por cada ficha de Herida que tenga, hasta un máximo de 3."
+   }
+  },
+  "legion_victory-or-death": {
+   "fr": {
+    "title": "VICTOIRE OU MORT",
+    "content": "Lorsqu'une unité alliée dotée du mot-clé Victoire ou mort subit 1 ou plusieurs Blessures d'une attaque ennemie, après la résolution de l'attaque, l'unité alliée peut gagner 1 jeton de Suppression. Si elle le fait, elle peut gagner 1 jeton de Visée ou 1 jeton d'Esquive."
+   },
+   "de": {
+    "title": "SIEG ODER TOD",
+    "content": "Wenn eine verbündete Einheit mit dem Schlüsselwort „Sieg oder Tod“ 1 oder mehr Verwundungen durch einen feindlichen Angriff erleidet, darf die verbündete Einheit nach Auflösung des Angriffs 1 Unterdrückungsmarker erhalten. Wenn sie dies tut, darf sie 1 Zielmarker oder 1 Ausweichmarker erhalten."
+   },
+   "es": {
+    "title": "VICTORIA O MUERTE",
+    "content": "Cuando una unidad aliada con la palabra clave Victoria o Muerte sufre 1 o más Heridas de un ataque enemigo, después de que el ataque se resuelva, la unidad aliada puede ganar 1 ficha de Supresión. Si lo hace, puede ganar 1 ficha de Puntería o 1 ficha de Esquiva."
+   }
+  },
+  "legion_unstoppable": {
+   "fr": {
+    "title": "INARRÊTABLE",
+    "content": "Une unité dotée du mot-clé Inarrêtable est éligible pour s'activer pendant la Phase d'activation tant qu'elle possède 1 jeton d'Ordre ou moins. Cette unité ne peut jamais avoir plus d'1 jeton d'Ordre face visible. Tant que cette unité n'est pas vaincue, lorsque son joueur qui la contrôle crée sa Réserve d'ordres, il ajoute un jeton d'Ordre supplémentaire correspondant au Rang de cette unité à sa Réserve d'ordres."
+   },
+   "de": {
+    "title": "UNAUFHALTSAM",
+    "content": "Eine Einheit mit dem Schlüsselwort „Unaufhaltsam“ ist während der Aktivierungsphase berechtigt zu aktivieren, solange sie 1 oder weniger Befehlsmarker besitzt. Diese Einheit darf nie mehr als 1 offenen Befehlsmarker besitzen. Solange diese Einheit nicht besiegt ist, fügt ihr kontrollierender Spieler beim Erstellen seines Befehlspools einen zusätzlichen Befehlsmarker hinzu, der dem Rang dieser Einheit entspricht."
+   },
+   "es": {
+    "title": "IMBATIBLE",
+    "content": "Una unidad con la palabra clave Imbatible es elegible para activarse durante la Fase de Activación mientras tenga 1 o menos fichas de Orden. Esta unidad nunca puede tener más de 1 ficha de Orden boca arriba. Mientras esta unidad no esté derrotada, cuando su jugador controlador crea su Reserva de Órdenes, añade una ficha de Orden adicional correspondiente al Rango de esta unidad a su Reserva de Órdenes."
+   }
+  },
+  "legion_weighed-down": {
+   "fr": {
+    "title": "ALOURDI",
+    "content": "Une unité dotée du mot-clé Alourdi ne peut pas utiliser le mot-clé Saut tant qu'elle tient 1 ou plusieurs jetons d'Objectif."
+   },
+   "de": {
+    "title": "BESCHWERT",
+    "content": "Eine Einheit mit dem Schlüsselwort „Beschwert“ kann das Schlüsselwort „Sprung“ nicht verwenden, solange sie 1 oder mehr Zielmarker hält."
+   },
+   "es": {
+    "title": "SOBRECARGADO",
+    "content": "Una unidad con la palabra clave Sobrecargado no puede usar la palabra clave Salto mientras sostenga 1 o más fichas de Objetivo."
+   }
+  },
+  "legion_we-re-not-regs": {
+   "fr": {
+    "title": "NOUS NE SOMMES PAS DES RÉGULIERS",
+    "content": "Une unité dotée du mot-clé Nous ne sommes pas des réguliers ne peut pas dépenser de jetons verts sur d'autres unités de Soldats clones, et les autres unités de Soldats clones ne peuvent pas dépenser les jetons verts de cette unité. De plus, cette unité ne peut pas bénéficier d'un Soutien."
+   },
+   "de": {
+    "title": "WIR SIND KEINE REGULÄREN",
+    "content": "Eine Einheit mit dem Schlüsselwort „Wir sind keine Regulären“ kann keine grünen Marker für andere Klon-Trupplereinheiten ausgeben, und andere Klon-Trupplereinheiten können die grünen Marker dieser Einheit nicht ausgeben. Zusätzlich kann diese Einheit nicht von Unterstützung profitieren."
+   },
+   "es": {
+    "title": "NO SOMOS REGULARES",
+    "content": "Una unidad con la palabra clave No Somos Regulares no puede gastar fichas Verdes en otras unidades de Tropa Clon, y otras unidades de Tropa Clon no pueden gastar las fichas Verdes de esta unidad. Además, esta unidad no puede beneficiarse del Apoyo."
+   }
+  },
+  "legion_wheel-mode": {
+   "fr": {
+    "title": "MODE ROUE",
+    "content": "Au début de son Activation, une unité dotée du mot-clé Mode roue peut changer sa Vitesse en 3 jusqu'à la fin de cette Activation. Si elle le fait, jusqu'à la fin de la Manche, elle perd le mot-clé Insouciant, gagne les mots-clés IA : Déplacement et Couverture 2, et ne peut pas effectuer d'attaques ni retourner ses jetons de Bouclier actifs.\nPour indiquer qu'une unité de Droidekas utilise le mot-clé Mode roue, un joueur peut remplacer ses figurines de Droideka debout par des figurines de Droideka en forme de boule, ou simplement marquer l'unité avec un jeton de Mode roue jusqu'à la fin de la Manche. Les joueurs ne doivent utiliser les figurines de Droideka en forme de boule que lorsque l'unité utilise le mot-clé Mode roue et uniquement pour la durée de cette Manche. À la fin de la Manche, toutes les figurines de Droideka en forme de boule doivent être remplacées par des figurines de Droideka debout."
+   },
+   "de": {
+    "title": "RADMODUS",
+    "content": "Zu Beginn ihrer Aktivierung darf eine Einheit mit dem Schlüsselwort „Radmodus“ ihre Geschwindigkeit bis zum Ende dieser Aktivierung auf 3 ändern. Wenn sie dies tut, verliert sie bis zum Ende der Runde das Schlüsselwort „Unbekümmert“, erhält die Schlüsselwörter „KI: Bewegung“ und „Deckung 2“ und kann keine Angriffe durchführen oder ihre aktiven Schildmarker umdrehen. Um anzuzeigen, dass eine Einheit von Droidekas das Schlüsselwort „Radmodus“ verwendet, darf ein Spieler seine stehenden Droideka-Miniaturen durch Droideka-Miniaturen in Kugelform ersetzen oder die Einheit einfach bis zum Ende der Runde mit einem Radmodusmarker markieren. Spieler sollten die Droideka-Miniaturen in Kugelform nur verwenden, wenn die Einheit das Schlüsselwort „Radmodus“ verwendet, und nur für die Dauer dieser Runde. Am Ende der Runde sollten alle Droideka-Miniaturen in Kugelform durch stehende Droideka-Miniaturen ersetzt werden."
+   },
+   "es": {
+    "title": "MODO RUEDA",
+    "content": "Al comienzo de su Activación, una unidad con la palabra clave Modo Rueda puede cambiar su Velocidad a 3 hasta el final de esa Activación. Si lo hace, hasta el final de la Ronda, pierde la palabra clave Despreocupado, gana las palabras clave IA: Movimiento y Cobertura 2, y no puede realizar ataques ni voltear sus fichas de Escudo activas.\nPara indicar que una unidad de Droidekas está usando la palabra clave Modo Rueda, un jugador puede reemplazar sus miniaturas de Droideka de pie con miniaturas de Droideka en forma de bola, o simplemente marcar la unidad con una ficha de Modo Rueda hasta el final de la Ronda. Los jugadores deben usar las miniaturas de Droideka en forma de bola solo cuando la unidad use la palabra clave Modo Rueda y solo durante la duración de esa Ronda. Al final de la Ronda, cualquier miniatura de Droideka en forma de bola debe reemplazarse con miniaturas de Droideka de pie."
+   }
+  },
+  "legion_we-fight-for-our-family": {
+   "fr": {
+    "title": "NOUS NOUS BATTONS POUR NOTRE FAMILLE",
+    "content": "Lorsqu'une unité dotée du mot-clé Nous nous battons pour notre famille effectue une Action d'attaque, après la résolution de l'effet, choisissez une autre unité alliée dotée du mot-clé Nous nous battons pour notre famille à portée 2, si possible. L'unité choisie gagne 1 jeton d'Esquive."
+   },
+   "de": {
+    "title": "WIR KÄMPFEN FÜR UNSERE FAMILIE",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Wir kämpfen für unsere Familie“ eine Angriffsaktion durchführt, wähle nach Auflösung des Effekts, sofern möglich, eine andere verbündete Einheit mit dem Schlüsselwort „Wir kämpfen für unsere Familie“ innerhalb von 2. Die gewählte Einheit erhält 1 Ausweichmarker."
+   },
+   "es": {
+    "title": "LUCHAMOS POR NUESTRA FAMILIA",
+    "content": "Cuando una unidad con la palabra clave Luchamos por Nuestra Familia realiza una acción de Ataque, después de que el efecto se resuelva, elige otra unidad aliada con la palabra clave Luchamos por Nuestra Familia a distancia 2, si puede. La unidad elegida gana 1 ficha de Esquiva."
+   }
+  },
+  "legion_blast": {
+   "fr": {
+    "title": "EXPLOSION",
+    "content": "Une unité qui défend ne peut pas utiliser la Couverture légère ou lourde pendant l'étape Appliquer l'esquive et la couverture pour annuler les résultats de touche a produits par une Réserve d'attaque qui contient le mot-clé Explosion."
+   },
+   "de": {
+    "title": "EXPLOSION",
+    "content": "Eine verteidigende Einheit kann während des Schritts „Ausweichen und Deckung anwenden“ keine leichte oder schwere Deckung verwenden, um Treffer-a-Ergebnisse zu streichen, die von einem Angriffspool erzeugt wurden, der das Schlüsselwort „Explosion“ enthält."
+   },
+   "es": {
+    "title": "EXPLOSIÓN",
+    "content": "Una unidad defensora no puede usar Cobertura ligera o pesada durante el paso de Aplicar Esquiva y Cobertura para cancelar resultados de impacto a producidos por una Reserva de Ataque que contenga la palabra clave Explosión."
+   }
+  },
+  "legion_suppressive": {
+   "fr": {
+    "title": "SUPPRESSIF",
+    "content": "Lorsqu'une unité défend contre une Réserve d'attaque qui possède Suppressif, elle gagne 1 jeton de Suppression supplémentaire pendant l'étape Assigner un jeton de suppression au défenseur."
+   },
+   "de": {
+    "title": "UNTERDRÜCKEND",
+    "content": "Wenn sich eine Einheit gegen einen Angriffspool verteidigt, der „Unterdrückend“ besitzt, erhält sie während des Schritts „Unterdrückungsmarker dem Verteidiger zuweisen“ 1 zusätzlichen Unterdrückungsmarker."
+   },
+   "es": {
+    "title": "SUPRESOR",
+    "content": "Cuando una unidad se defiende contra una Reserva de Ataque que tenga Supresor, gana 1 ficha de Supresión adicional durante el paso de Asignar Ficha de Supresión al Defensor."
+   }
+  },
+  "legion_advanced-targeting": {
+   "fr": {
+    "title": "CIBLAGE AVANCÉ",
+    "content": "Lorsqu'une unité dotée du mot-clé Ciblage avancé X effectue une attaque contre une unité ennemie du type d'unité listé, pendant l'étape Former la réserve d'attaque, elle peut gagner X jetons de Visée. Une unité qui utilise le mot-clé Ciblage avancé X ne peut former qu'1 Réserve d'attaque et saute l'étape Déclarer un défenseur supplémentaire de la séquence d'attaque."
+   },
+   "de": {
+    "title": "ERWEITERTE ZIELERFASSUNG",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Erweiterte Zielerfassung X“ einen Angriff gegen eine feindliche Einheit mit dem aufgeführten Einheitentyp durchführt, darf sie während des Schritts „Angriffspool bilden“ X Zielmarker erhalten. Eine Einheit, die das Schlüsselwort „Erweiterte Zielerfassung X“ verwendet, darf nur 1 Angriffspool bilden und überspringt den Schritt „Zusätzlichen Verteidiger bestimmen“ der Angriffssequenz."
+   },
+   "es": {
+    "title": "PUNTERÍA AVANZADA",
+    "content": "Cuando una unidad con la palabra clave Puntería Avanzada X realiza un ataque contra una unidad enemiga con el tipo de unidad listado, durante el paso de Formar Reserva de Ataque, puede ganar X fichas de Puntería. Una unidad que usa la palabra clave Puntería Avanzada X solo puede formar 1 Reserva de Ataque y se salta el paso de Declarar Defensor Adicional de la secuencia de ataque."
+   }
+  },
+  "legion_command-vehicle": {
+   "fr": {
+    "title": "VÉHICULE DE COMMANDEMENT",
+    "content": "Lorsqu'une unité alliée à portée 3 d'une unité dotée du mot-clé Véhicule de commandement X vérifie la Panique, si les deux unités ont la même Affiliation ou Faction, l'unité alliée traite l'unité dotée du mot-clé Véhicule de commandement X comme une unité de commandant avec une valeur de courage de X."
+   },
+   "de": {
+    "title": "KOMMANDOFAHRZEUG",
+    "content": "Wenn eine verbündete Einheit innerhalb von Reichweite 3 einer Einheit, die das Schlüsselwort „Kommando-Fahrzeug X“ besitzt, auf Panik prüft und beide Einheiten dieselbe Zugehörigkeit oder Fraktion haben, behandelt die verbündete Einheit die Einheit mit dem Schlüsselwort „Kommando-Fahrzeug X“ als Kommandanteneinheit mit einem Mutwert von X."
+   },
+   "es": {
+    "title": "VEHÍCULO DE MANDO",
+    "content": "Cuando una unidad aliada a distancia 3 de una unidad que tiene la palabra clave Vehículo de Mando X comprueba Pánico, si ambas unidades tienen la misma Afiliación o Facción, la unidad aliada trata a la unidad que tiene la palabra clave Vehículo de Mando X como una unidad de comandante con un valor de coraje de X."
+   }
+  },
+  "legion_danger-sense": {
+   "fr": {
+    "title": "SENS DU DANGER",
+    "content": "Lorsqu'une unité dotée du mot-clé Sens du danger X devrait retirer un nombre quelconque de ses jetons de suppression, elle peut choisir de ne pas retirer jusqu'à X jetons, y compris zéro. Tant qu'une unité dotée du mot-clé Sens du danger X défend contre une attaque, elle lance un dé de défense supplémentaire pour chaque jeton de suppression qu'elle possède, jusqu'à X dés supplémentaires."
+   },
+   "de": {
+    "title": "GEFAHRENSINN",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Gefahrensinn X“ eine beliebige Anzahl ihrer Unterdrückungsmarker entfernen würde, darf sie wählen, bis zu X Marker nicht zu entfernen, einschließlich null. Solange sich eine Einheit mit dem Schlüsselwort „Gefahrensinn X“ gegen einen Angriff verteidigt, würfelt sie für jeden Unterdrückungsmarker, den sie besitzt, einen zusätzlichen Verteidigungswürfel, bis zu X zusätzliche Würfel."
+   },
+   "es": {
+    "title": "SENTIDO DEL PELIGRO",
+    "content": "Cuando una unidad con la palabra clave Sentido del Peligro X retiraría cualquier número de sus fichas de Supresión, puede elegir no retirar hasta X fichas, incluido cero. Mientras una unidad con la palabra clave Sentido del Peligro X se defiende contra un ataque, lanza un dado de defensa extra por cada ficha de Supresión que tenga, hasta X dados adicionales."
+   }
+  },
+  "legion_divine-influence": {
+   "fr": {
+    "title": "INFLUENCE DIVINE",
+    "content": "Les autres unités de Soldats Ewoks alliées gagnent Gardien 2 : C-3PO tant qu'elles se trouvent à portée 1 et en LdV d'un C-3PO allié. Tant que les unités de Soldats Ewoks alliées se trouvent à portée 1 et en LdV d'un C-3PO allié, elles gagnent le mot-clé Gardien 2 : C-3PO."
+   },
+   "de": {
+    "title": "GÖTTLICHER EINFLUSS",
+    "content": "Andere verbündete Ewok-Trupplereinheiten erhalten „Beschützer 2: C-3PO“, solange sie sich innerhalb von Reichweite 1 und in Sichtlinie eines verbündeten C-3PO befinden. Solange sich verbündete Ewok-Trupplereinheiten innerhalb von Reichweite 1 und in Sichtlinie eines verbündeten C-3PO befinden, erhalten sie das Schlüsselwort „Beschützer 2: C-3PO“."
+   },
+   "es": {
+    "title": "INFLUENCIA DIVINA",
+    "content": "Otras unidades aliadas de Tropa Ewok ganan Guardián 2: C-3PO mientras estén a distancia 1 y en LdV de un C-3PO aliado. Mientras las unidades aliadas de Tropa Ewok estén a distancia 1 y en LdV de un C-3PO aliado, ganan la palabra clave Guardián 2: C-3PO."
+   }
+  },
+  "legion_enrage": {
+   "fr": {
+    "title": "ENRAGER",
+    "content": "Lorsqu'une unité dotée du mot-clé Enrager X possède un nombre de jetons de Blessure supérieur ou égal à X, cette unité gagne le mot-clé Charge et son courage devient \"-\". Si une unité dotée du mot-clé Enrager X possède un nombre de jetons de Blessure supérieur ou égal à X mais retire des jetons de Blessure par un effet de sorte qu'elle en possède moins de X, elle ne bénéficie plus du mot-clé Enrager X."
+   },
+   "de": {
+    "title": "WUT",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Wut X“ Verwundungsmarker besitzt, die größer oder gleich X sind, erhält diese Einheit das Schlüsselwort „Sturm“ und ihr Mut wird zu „-“. Wenn eine Einheit mit dem Schlüsselwort „Wut X“ Verwundungsmarker besitzt, die größer oder gleich X sind, aber durch einen Effekt Verwundungsmarker entfernt, sodass sie weniger als X besitzt, profitiert sie nicht länger vom Schlüsselwort „Wut X“."
+   },
+   "es": {
+    "title": "ENFURECER",
+    "content": "Cuando una unidad con la palabra clave Enfurecer X tiene fichas de Herida mayores o iguales a X, esa unidad gana la palabra clave Carga y su coraje se convierte en \"-\". Si una unidad con la palabra clave Enfurecer X tiene fichas de Herida mayores o iguales a X pero retira fichas de Herida mediante un efecto de modo que tenga menos de X, ya no se beneficia de la palabra clave Enfurecer X."
+   }
+  },
+  "legion_exemplar": {
+   "fr": {
+    "title": "EXEMPLAIRE",
+    "content": "Pendant qu'elle attaque ou défend, si une unité alliée se trouve à portée 2 et en LdV d'une ou plusieurs unités alliées dotées du mot-clé Exemplaire et partageant la même Faction ou Affiliation que cette unité qui attaque ou défend, cette unité qui attaque ou défend peut dépenser un jeton de Visée, d'Esquive ou de Sursaut appartenant à 1 de ces unités dotées d'Exemplaire comme s'il était le sien."
+   },
+   "de": {
+    "title": "VORBILD",
+    "content": "Solange eine verbündete Einheit angreift oder sich verteidigt und sich innerhalb von Reichweite 2 und in Sichtlinie von 1 oder mehr verbündeten Einheiten befindet, die das Schlüsselwort „Vorbild“ besitzen und dieselbe Fraktion oder Zugehörigkeit wie diese angreifende oder verteidigende Einheit teilen, darf diese angreifende oder verteidigende Einheit einen Ziel-, Ausweich- oder Überschlagsmarker ausgeben, der zu 1 dieser Einheiten mit „Vorbild“ gehört, als wäre er ihr eigener."
+   },
+   "es": {
+    "title": "EJEMPLAR",
+    "content": "Mientras ataca o se defiende, si una unidad aliada está a distancia 2 y en LdV de 1 o más unidades aliadas que tengan la palabra clave Ejemplar y compartan la misma Facción o Afiliación que esa unidad atacante o defensora, esa unidad atacante o defensora puede gastar una ficha de Puntería, Esquiva o Surge que pertenezca a 1 de esas unidades con Ejemplar como si fuera suya."
+   }
+  },
+  "legion_field-commander": {
+   "fr": {
+    "title": "COMMANDANT DE TERRAIN",
+    "content": "Pendant la Construction d'armée, une armée qui inclut une unité dotée du mot-clé Commandant de terrain peut ignorer l'exigence de rang de commandant minimum. Si l'armée d'un joueur ne contient aucune unité de commandant pendant la Mise en place mais contient une unité dotée du mot-clé Commandant de terrain, cette unité est traitée comme un commandant à toutes fins de règles."
+   },
+   "de": {
+    "title": "FELDKOMMANDANT",
+    "content": "Während des Armeeaufbaus darf eine Armee, die eine Einheit mit dem Schlüsselwort „Feldkommandant“ enthält, die Mindestanforderung an Kommandantenränge ignorieren. Wenn die Armee eines Spielers während der Aufstellung keine Kommandanteneinheiten enthält, aber eine Einheit mit dem Schlüsselwort „Feldkommandant“ enthält, wird diese Einheit für alle Regelzwecke als Kommandant behandelt."
+   },
+   "es": {
+    "title": "COMANDANTE DE CAMPO",
+    "content": "Durante la Construcción del Ejército, un ejército que incluya una unidad con la palabra clave Comandante de Campo puede ignorar el requisito de rango mínimo de comandante. Si el ejército de un jugador no contiene unidades de comandante durante la Preparación pero sí contiene una unidad con la palabra clave Comandante de Campo, esa unidad se trata como un comandante a todos los efectos de las reglas."
+   }
+  },
+  "legion_flexible-response": {
+   "fr": {
+    "title": "RÉPONSE FLEXIBLE",
+    "content": "Pendant la Construction d'armée, une unité dotée du mot-clé Réponse flexible doit équiper X améliorations d'armes lourdes."
+   },
+   "de": {
+    "title": "FLEXIBLE REAKTION",
+    "content": "Während des Armeeaufbaus muss eine Einheit mit dem Schlüsselwort „Flexible Reaktion“ X Aufwertungen für schwere Waffen ausrüsten."
+   },
+   "es": {
+    "title": "RESPUESTA FLEXIBLE",
+    "content": "Durante la Construcción del Ejército, una unidad con la palabra clave Respuesta Flexible debe equipar X mejoras de arma pesada."
+   }
+  },
+  "legion_guardian": {
+   "fr": {
+    "title": "GARDIEN",
+    "content": "Tant qu'une unité de Soldats alliée à portée 1 et en LdV d'une unité dotée du mot-clé Gardien X défend contre une attaque à distance, elle peut annuler jusqu'à X résultats de touche pendant l'étape Modifier les dés d'attaque. Pour chaque résultat de touche annulé de cette manière, l'unité dotée du mot-clé Gardien X subit 1 Blessure."
+   },
+   "de": {
+    "title": "BESCHÜTZER",
+    "content": "Solange sich eine verbündete Trupplereinheit innerhalb von Reichweite 1 und in Sichtlinie einer Einheit, die das Schlüsselwort „Beschützer X“ besitzt, gegen einen Fernkampfangriff verteidigt, darf sie während des Schritts „Angriffswürfel modifizieren“ bis zu X Trefferergebnisse streichen. Für jedes auf diese Weise gestrichene Trefferergebnis erleidet die Einheit mit dem Schlüsselwort „Beschützer X“ 1 Verwundung."
+   },
+   "es": {
+    "title": "GUARDIÁN",
+    "content": "Mientras una unidad de Tropa aliada a distancia 1 y en LdV de una unidad que tiene la palabra clave Guardián X se defiende contra un ataque a Distancia, puede cancelar hasta X resultados de impacto durante el paso de Modificar Dados de Ataque. Por cada resultado de impacto cancelado de esta manera, la unidad con la palabra clave Guardián X sufre 1 Herida."
+   }
+  },
+  "legion_heavy-weapon-team": {
+   "fr": {
+    "title": "ÉQUIPE D'ARME LOURDE",
+    "content": "Une unité dotée du mot-clé Équipe d'arme lourde doit équiper une Carte d'amélioration d'arme lourde. La figurine ajoutée à l'unité avec cette Carte d'amélioration devient le chef d'unité."
+   },
+   "de": {
+    "title": "SCHWERWAFFENTEAM",
+    "content": "Eine Einheit mit dem Schlüsselwort „Schwerwaffenteam“ muss eine Aufwertungskarte für eine schwere Waffe ausrüsten. Die Miniatur, die der Einheit mit dieser Aufwertungskarte hinzugefügt wird, wird zum Einheitenführer."
+   },
+   "es": {
+    "title": "EQUIPO DE ARMA PESADA",
+    "content": "Una unidad con la palabra clave Equipo de Arma Pesada debe equipar una Carta de Mejora de arma pesada. La miniatura añadida a la unidad con esta Carta de Mejora se convierte en el líder de unidad."
+   }
+  },
+  "legion_immune-range-1-weapons": {
+   "fr": {
+    "title": "IMMUNITÉ : ARMES À PORTÉE 1",
+    "content": "Une unité dotée du mot-clé Immunité : armes à portée 1 ne peut pas être ciblée par des armes qui ont une portée maximale de 1."
+   },
+   "de": {
+    "title": "IMMUN: WAFFEN MIT REICHWEITE 1",
+    "content": "Eine Einheit mit dem Schlüsselwort „Immun: Waffen mit Reichweite 1“ kann nicht von Waffen als Ziel gewählt werden, die eine maximale Reichweite von 1 haben."
+   },
+   "es": {
+    "title": "INMUNE: ARMAS DE ALCANCE 1",
+    "content": "Una unidad que tiene la palabra clave inmune: armas de alcance 1 no puede ser objetivo de armas que tengan un alcance máximo de 1."
+   }
+  },
+  "legion_jedi-hunter": {
+   "fr": {
+    "title": "CHASSEUR DE JEDI",
+    "content": "Lorsqu'une unité dotée du mot-clé Chasseur de Jedi attaque une unité avec une icône d'amélioration de Force sur sa barre d'améliorations, l'unité attaquante gagne sursaut d'attaque : critique jusqu'à la fin de cette attaque."
+   },
+   "de": {
+    "title": "JEDI-JÄGER",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Jedi-Jäger“ eine Einheit mit einem Machtaufwertungssymbol auf ihrer Aufwertungsleiste angreift, erhält die angreifende Einheit bis zum Ende dieses Angriffs „Angriffsüberschlag: Kritisch“."
+   },
+   "es": {
+    "title": "CAZADOR DE JEDI",
+    "content": "Cuando una unidad con la palabra clave Cazador de Jedi ataca a una unidad con un icono de mejora de fuerza en su barra de mejoras, la unidad atacante gana surge de ataque: crítico hasta el final de ese ataque."
+   }
+  },
+  "legion_master-of-the-force": {
+   "fr": {
+    "title": "MAÎTRE DE LA FORCE",
+    "content": "Lorsqu'une unité dotée du mot-clé Maître de la Force X termine son Activation, elle peut préparer jusqu'à X de ses Cartes d'amélioration de Force épuisées."
+   },
+   "de": {
+    "title": "MEISTER DER MACHT",
+    "content": "Wenn eine Einheit mit dem Schlüsselwort „Meister der Macht X“ ihre Aktivierung beendet, darf sie bis zu X ihrer erschöpften Machtaufwertungskarten bereit machen."
+   },
+   "es": {
+    "title": "MAESTRO DE LA FUERZA",
+    "content": "Cuando una unidad con la palabra clave Maestro de la Fuerza X termina su Activación, puede preparar hasta X de sus Cartas de Mejora de Fuerza agotadas."
+   }
+  },
+  "legion_master-storyteller": {
+   "fr": {
+    "title": "MAÎTRE CONTEUR",
+    "content": "Lorsqu'une unité effectue l'action de carte Maître conteur, elle choisit jusqu'à X unités Ewoks amies à portée 2, où X est le numéro de la Manche actuelle. Chaque unité choisie gagne 2 jetons de sursaut."
+   },
+   "de": {
+    "title": "MEISTERERZÄHLER",
+    "content": "Wenn eine Einheit die Kartenaktion „Meistererzähler“ durchführt, wählt sie bis zu X befreundete Ewok-Einheiten in Reichweite 2, wobei X die aktuelle Rundennummer ist. Jede gewählte Einheit erhält 2 Überschlagsmarker."
+   },
+   "es": {
+    "title": "MAESTRO NARRADOR",
+    "content": "Cuando una unidad realiza la acción de carta Maestro Narrador, elige hasta X unidades Ewok amistosas a distancia 2, donde X es el número de ronda actual. Cada unidad elegida gana 2 fichas de Surge."
+   }
+  },
+  "legion_programmed": {
+   "fr": {
+    "title": "PROGRAMMÉE",
+    "content": "Une unité dotée du mot-clé Programmée doit équiper au moins une Carte d'amélioration de programme pendant la Construction d'armée."
+   },
+   "de": {
+    "title": "PROGRAMMIERT",
+    "content": "Eine Einheit mit dem Schlüsselwort „Programmiert“ muss während des Armeeaufbaus mindestens eine Programm-Aufwertungskarte ausrüsten."
+   },
+   "es": {
+    "title": "PROGRAMADO",
+    "content": "Una unidad con la palabra clave Programado debe equipar al menos una Carta de Mejora de programa durante la Construcción del Ejército."
+   }
+  },
+  "legion_repair": {
+   "fr": {
+    "title": "RÉPARATION",
+    "content": "Lorsqu'une unité utilise l'action de carte Réparation X : Capacité Y, choisissez une unité de soldat droïde ou de véhicule amie à portée 1 et en LdV et placez un jeton de blessure sur la carte qui possède le mot-clé Réparation X : Capacité Y. Retirez un total de jusqu'à X jetons de blessure, d'ion et/ou de dégâts de véhicule de l'unité choisie ou restaurez jusqu'à Y de ses figurines."
+   },
+   "de": {
+    "title": "REPARATUR",
+    "content": "Wenn eine Einheit die Kartenaktion „Reparatur X: Kapazität Y“ durchführt, wähle eine befreundete Droiden-Truppler- oder Fahrzeugeinheit in Reichweite 1 und Sichtlinie und lege einen Verwundungsmarker auf die Karte, die das Schlüsselwort „Reparatur X: Kapazität Y“ besitzt. Entferne insgesamt bis zu X Verwundungs-, Ion- und/oder Fahrzeugschadensmarker von der gewählten Einheit oder stelle bis zu Y ihrer Miniaturen wieder her."
+   },
+   "es": {
+    "title": "REPARAR",
+    "content": "Cuando una unidad usa la acción de carta Reparar X: Capacidad Y, elige una unidad de tropa droide o vehículo amistosa a distancia 1 y en LdV y coloca una ficha de Herida en la carta que tenga la palabra clave Reparar X: Capacidad Y. Retira un total de hasta X fichas de Herida, ion y/o daño de vehículo de la unidad elegida o restaura hasta Y de sus miniaturas."
+   }
+  },
+  "legion_scouting-party": {
+   "fr": {
+    "title": "PATROUILLE D'ÉCLAIREURS",
+    "content": "Pendant la Mise en place, chaque unité dotée du mot-clé Patrouille d'éclaireurs peut choisir jusqu'à X unités de Soldats alliées qui ne possèdent pas le mot-clé Éclaireur et qui partagent la même Faction ou Affiliation que l'unité de Patrouille d'éclaireurs. Chaque unité choisie gagne le mot-clé Éclaireur X, où X est la valeur Éclaireur X de l'unité dotée du mot-clé Patrouille d'éclaireurs."
+   },
+   "de": {
+    "title": "SPÄHTRUPP",
+    "content": "Während der Aufstellung darf jede Einheit mit dem Schlüsselwort „Spähtrupp“ bis zu X verbündete Trupplereinheiten wählen, die nicht das Schlüsselwort „Späher“ besitzen und dieselbe Fraktion oder Zugehörigkeit wie die Spähtrupp-Einheit teilen. Jede gewählte Einheit erhält das Schlüsselwort „Späher X“, wobei X der Späher-X-Wert der Einheit mit dem Schlüsselwort „Spähtrupp“ ist."
+   },
+   "es": {
+    "title": "PARTIDA DE EXPLORACIÓN",
+    "content": "Durante la Preparación, cada unidad con la palabra clave Partida de Exploración puede elegir hasta X unidades de Tropa aliadas que no tengan la palabra clave Explorador y que compartan la misma Facción o Afiliación que la unidad de Partida de Exploración. Cada unidad elegida gana la palabra clave Explorador X, donde X es el valor de Explorador X de la unidad con la palabra clave Partida de Exploración."
+   }
+  },
+  "legion_self-preservation": {
+   "fr": {
+    "title": "AUTOCONSERVATION",
+    "content": "Une unité dotée du mot-clé Autoconservation ne peut pas utiliser le courage d'unités qui ne sont pas de la même Affiliation lors de la vérification de la Panique."
+   },
+   "de": {
+    "title": "SELBSTERHALTUNG",
+    "content": "Eine Einheit mit dem Schlüsselwort „Selbsterhaltung“ kann bei der Panikprüfung nicht den Mut von Einheiten verwenden, die nicht derselben Zugehörigkeit angehören."
+   },
+   "es": {
+    "title": "AUTOCONSERVACIÓN",
+    "content": "Una unidad con la palabra clave Autoconservación no puede usar el coraje de unidades que no sean de la misma Afiliación al comprobar Pánico."
+   }
+  },
+  "legion_special-issue": {
+   "fr": {
+    "title": "ÉDITION SPÉCIALE",
+    "content": "Une unité dotée du mot-clé Édition spéciale ne peut être incluse dans une armée qu'en utilisant la Force de bataille spécifiée."
+   },
+   "de": {
+    "title": "SONDERAUSGABE",
+    "content": "Eine Einheit mit dem Schlüsselwort „Sonderausgabe“ kann nur mit der angegebenen Schlachtformation in eine Armee aufgenommen werden."
+   },
+   "es": {
+    "title": "EQUIPAMIENTO ESPECIAL",
+    "content": "Una unidad con la palabra clave Equipamiento Especial solo puede incluirse en un ejército usando la Fuerza de Batalla especificada."
+   }
+  },
+  "legion_take-cover": {
+   "fr": {
+    "title": "METTEZ-VOUS À COUVERT",
+    "content": "En tant qu'action de carte ou de carte gratuite, une unité dotée du mot-clé Mettez-vous à couvert X peut choisir jusqu'à X unités alliées à portée 2. Chaque unité choisie gagne 1 jeton d'Esquive."
+   },
+   "de": {
+    "title": "DECKUNG SUCHEN",
+    "content": "Als Karten- oder freie Kartenaktion kann eine Einheit mit dem Schlüsselwort „Deckung suchen X“ bis zu X verbündete Einheiten innerhalb von Reichweite 2 wählen. Jede gewählte Einheit erhält 1 Ausweichmarker."
+   },
+   "es": {
+    "title": "CÚBRETE",
+    "content": "Como acción de Carta o de Carta gratuita, una unidad con la palabra clave Cúbrete X puede elegir hasta X unidades aliadas a distancia 2. Cada unidad elegida gana 1 ficha de Esquiva."
+   }
+  },
+  "legion_uncanny-luck": {
+   "fr": {
+    "title": "CHANCE SURNATURELLE",
+    "content": "Tant qu'une unité dotée du mot-clé Chance surnaturelle X défend contre une attaque, elle peut relancer jusqu'à X de ses dés de défense pendant l'étape Relancer les dés de défense. Tous les dés relancés avec le mot-clé Chance surnaturelle X doivent être relancés en même temps, et chaque dé ne peut pas être relancé plus d'une fois."
+   },
+   "de": {
+    "title": "UNHEIMLICHES GLÜCK",
+    "content": "Solange sich eine Einheit mit dem Schlüsselwort „Unheimliches Glück X“ gegen einen Angriff verteidigt, darf sie während des Schritts „Verteidigungswürfel neu würfeln“ bis zu X ihrer Verteidigungswürfel neu würfeln. Alle Würfel, die mit dem Schlüsselwort „Unheimliches Glück X“ neu gewürfelt werden, müssen gleichzeitig neu gewürfelt werden, und jeder Würfel darf nicht mehr als einmal neu gewürfelt werden."
+   },
+   "es": {
+    "title": "SUERTE EXTRAÑA",
+    "content": "Mientras una unidad con la palabra clave Suerte Extraña X se defiende contra un ataque, puede relanzar hasta X de sus dados de defensa durante el paso de Relanzar Dados de Defensa. Cualquier dado relanzado con la palabra clave Suerte Extraña X debe relanzarse al mismo tiempo, y cada dado no puede relanzarse más de una vez."
+   }
+  },
+  "legion_weak-point": {
+   "fr": {
+    "title": "POINT FAIBLE",
+    "content": "Tant qu'une unité dotée du mot-clé Point faible X : Avant/Arrière/Côtés défend, si le chef d'unité de l'unité attaquante se trouve au moins partiellement dans l'arc de tir spécifié de l'unité qui défend, la réserve d'attaque gagne le mot-clé Impact X où X est égal à la valeur de Point faible X."
+   },
+   "de": {
+    "title": "SCHWACHSTELLE",
+    "content": "Solange sich eine Einheit mit dem Schlüsselwort „Schwachstelle X: Vorne/Hinten/Seiten“ verteidigt, erhält der Angriffspool das Schlüsselwort „Durchschlag X“, wenn sich der Einheitenführer der angreifenden Einheit zumindest teilweise innerhalb des angegebenen Feuerwinkels der verteidigenden Einheit befindet, wobei X dem Wert von „Schwachstelle X“ entspricht."
+   },
+   "es": {
+    "title": "PUNTO DÉBIL",
+    "content": "Mientras una unidad con la palabra clave Punto Débil X: Frente/Retaguardia/Lados se está defendiendo, si el líder de unidad de la unidad atacante está al menos parcialmente dentro del arco de fuego especificado de la unidad defensora, la reserva de ataque gana la palabra clave Impacto X donde X es igual al valor de Punto Débil X."
+   }
   }
+ }
 }

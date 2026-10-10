@@ -1,6 +1,710 @@
 {
-  "schemaVersion": 1,
-  "keywords": {
-    "Relentless": { "fr": "Implacable", "de": "Unaufhaltsam", "es": "Implacable" }
+ "schemaVersion": 1,
+ "keywords": {
+  "Relentless": {
+   "fr": "Implacable",
+   "de": "Unaufhaltsam",
+   "es": "Implacable"
+  },
+  "AI": {
+   "fr": "IA",
+   "de": "KI",
+   "es": "IA"
+  },
+  "Advanced Targeting": {
+   "fr": "Ciblage Avancé",
+   "de": "Erweitertes Zielsystem",
+   "es": "Puntería Avanzada"
+  },
+  "Agile": {
+   "fr": "Agile",
+   "de": "Wendig",
+   "es": "Ágil"
+  },
+  "Aid": {
+   "fr": "Assistance",
+   "de": "Unterstützen",
+   "es": "Ayuda"
+  },
+  "Allies of Convenience": {
+   "fr": "Alliés de Convenance",
+   "de": "Verbündete aus Bequemlichkeit",
+   "es": "Aliados de Conveniencia"
+  },
+  "Armor": {
+   "fr": "Blindage",
+   "de": "Panzerung",
+   "es": "Blindaje"
+  },
+  "Arsenal": {
+   "fr": "Arsenal",
+   "de": "Arsenal",
+   "es": "Arsenal"
+  },
+  "Associate": {
+   "fr": "Associé",
+   "de": "Assoziieren",
+   "es": "Asociado"
+  },
+  "Ataru Mastery": {
+   "fr": "Maîtrise d'Ataru",
+   "de": "Ataru-Meisterschaft",
+   "es": "Maestría Ataru"
+  },
+  "Attack Run": {
+   "fr": "Course d'Attaque",
+   "de": "Angriffsflug",
+   "es": "Pasada de Ataque"
+  },
+  "Barrage": {
+   "fr": "Barrage",
+   "de": "Sperrfeuer",
+   "es": "Bombardeo"
+  },
+  "Blast": {
+   "fr": "Explosion",
+   "de": "Explosion",
+   "es": "Explosión"
+  },
+  "Block": {
+   "fr": "Blocage",
+   "de": "Blocken",
+   "es": "Bloqueo"
+  },
+  "Bolster": {
+   "fr": "Renfort",
+   "de": "Stärken",
+   "es": "Reforzar"
+  },
+  "Bounty": {
+   "fr": "Prime",
+   "de": "Kopfgeld",
+   "es": "Recompensa"
+  },
+  "Calculate Odds": {
+   "fr": "Calculer les Probabilités",
+   "de": "Chancen berechnen",
+   "es": "Calcular Probabilidades"
+  },
+  "Charge": {
+   "fr": "Charge",
+   "de": "Sturmangriff",
+   "es": "Carga"
+  },
+  "Climbing Vehicle": {
+   "fr": "Véhicule d'Escalade",
+   "de": "Kletterfahrzeug",
+   "es": "Vehículo Escalador"
+  },
+  "Command Vehicle": {
+   "fr": "Véhicule de Commandement",
+   "de": "Kommandofahrzeug",
+   "es": "Vehículo de Mando"
+  },
+  "Compel": {
+   "fr": "Contrainte",
+   "de": "Zwingen",
+   "es": "Compeler"
+  },
+  "Complete the Mission": {
+   "fr": "Accomplir la Mission",
+   "de": "Mission erfüllen",
+   "es": "Completar la Misión"
+  },
+  "Coordinate": {
+   "fr": "Coordination",
+   "de": "Koordinieren",
+   "es": "Coordinar"
+  },
+  "Cover": {
+   "fr": "Couvert",
+   "de": "Deckung",
+   "es": "Cobertura"
+  },
+  "Cunning": {
+   "fr": "Ruse",
+   "de": "Listig",
+   "es": "Astucia"
+  },
+  "Danger Sense": {
+   "fr": "Sens du Danger",
+   "de": "Gefahrensinn",
+   "es": "Sentido del Peligro"
+  },
+  "Dauntless": {
+   "fr": "Intrépide",
+   "de": "Furchtlos",
+   "es": "Intrépido"
+  },
+  "Death from Above": {
+   "fr": "Mort d'en Haut",
+   "de": "Tod von oben",
+   "es": "Muerte desde Arriba"
+  },
+  "Defend": {
+   "fr": "Défendre",
+   "de": "Verteidigen",
+   "es": "Defender"
+  },
+  "Deflect": {
+   "fr": "Déviation",
+   "de": "Abwehren",
+   "es": "Desviar"
+  },
+  "Demoralize": {
+   "fr": "Démoraliser",
+   "de": "Demoralisieren",
+   "es": "Desmoralizar"
+  },
+  "Detachment": {
+   "fr": "Détachement",
+   "de": "Abteilung",
+   "es": "Destacamento"
+  },
+  "Direct": {
+   "fr": "Direct",
+   "de": "Direkt",
+   "es": "Dirigir"
+  },
+  "Disciplined": {
+   "fr": "Discipliné",
+   "de": "Diszipliniert",
+   "es": "Disciplinado"
+  },
+  "Disengage": {
+   "fr": "Désengagement",
+   "de": "Lösen",
+   "es": "Desengancharse"
+  },
+  "Distract": {
+   "fr": "Distraction",
+   "de": "Ablenken",
+   "es": "Distraer"
+  },
+  "Divine Influence": {
+   "fr": "Influence Divine",
+   "de": "Göttlicher Einfluss",
+   "es": "Influencia Divina"
+  },
+  "Djem So Mastery": {
+   "fr": "Maîtrise de Djem So",
+   "de": "Djem-So-Meisterschaft",
+   "es": "Maestría Djem So"
+  },
+  "Duelist": {
+   "fr": "Duelliste",
+   "de": "Duellant",
+   "es": "Duelista"
+  },
+  "Enrage": {
+   "fr": "Enrager",
+   "de": "Wutanfall",
+   "es": "Enfurecer"
+  },
+  "Entourage": {
+   "fr": "Entourage",
+   "de": "Gefolge",
+   "es": "Séquito"
+  },
+  "Equip": {
+   "fr": "Équiper",
+   "de": "Ausrüsten",
+   "es": "Equipar"
+  },
+  "Exemplar": {
+   "fr": "Exemplaire",
+   "de": "Vorbild",
+   "es": "Ejemplar"
+  },
+  "Expert Climber": {
+   "fr": "Grimpeur Expert",
+   "de": "Expertenkletterer",
+   "es": "Escalador Experto"
+  },
+  "Field Commander": {
+   "fr": "Commandant de Terrain",
+   "de": "Feldkommandant",
+   "es": "Comandante de Campo"
+  },
+  "Fire Support": {
+   "fr": "Appui-Feu",
+   "de": "Feuerunterstützung",
+   "es": "Apoyo de Fuego"
+  },
+  "Fixed": {
+   "fr": "Fixe",
+   "de": "Fest",
+   "es": "Fijo"
+  },
+  "Flexible Response": {
+   "fr": "Réponse Flexible",
+   "de": "Flexible Reaktion",
+   "es": "Respuesta Flexible"
+  },
+  "Full Pivot": {
+   "fr": "Pivot Complet",
+   "de": "Volle Drehung",
+   "es": "Giro Completo"
+  },
+  "Generator": {
+   "fr": "Générateur",
+   "de": "Generator",
+   "es": "Generador"
+  },
+  "Guardian": {
+   "fr": "Gardien",
+   "de": "Wächter",
+   "es": "Guardián"
+  },
+  "Guidance": {
+   "fr": "Guidage",
+   "de": "Führung",
+   "es": "Guía"
+  },
+  "Gunslinger": {
+   "fr": "Tireur d'Élite",
+   "de": "Revolverheld",
+   "es": "Pistolero"
+  },
+  "Heavy Weapon Team": {
+   "fr": "Équipe d'Arme Lourde",
+   "de": "Schweres Waffenteam",
+   "es": "Equipo de Arma Pesada"
+  },
+  "Hold the Line": {
+   "fr": "Tenir la Ligne",
+   "de": "Die Linie halten",
+   "es": "Mantener la Línea"
+  },
+  "Hover": {
+   "fr": "Sustentation",
+   "de": "Schweben",
+   "es": "Flotar"
+  },
+  "Immune: Blast": {
+   "fr": "Immunité : Explosion",
+   "de": "Immun: Explosion",
+   "es": "Inmune: Explosión"
+  },
+  "Immune: Melee": {
+   "fr": "Immunité : Mêlée",
+   "de": "Immun: Nahkampf",
+   "es": "Inmune: Cuerpo a Cuerpo"
+  },
+  "Immune: Melee Pierce": {
+   "fr": "Immunité : Perce-Mêlée",
+   "de": "Immun: Nahkampf-Durchschlag",
+   "es": "Inmune: Perforación Cuerpo a Cuerpo"
+  },
+  "Immune: Pierce": {
+   "fr": "Immunité : Perce",
+   "de": "Immun: Durchschlag",
+   "es": "Inmune: Perforación"
+  },
+  "Immune: Range 1 Weapons": {
+   "fr": "Immunité : Armes de Portée 1",
+   "de": "Immun: Waffen auf Reichweite 1",
+   "es": "Inmune: Armas de Alcance 1"
+  },
+  "Impervious": {
+   "fr": "Imperméable",
+   "de": "Unempfindlich",
+   "es": "Impenetrable"
+  },
+  "Incognito": {
+   "fr": "Incognito",
+   "de": "Inkognito",
+   "es": "Incógnito"
+  },
+  "Inconspicuous": {
+   "fr": "Discret",
+   "de": "Unauffällig",
+   "es": "Discreto"
+  },
+  "Independent": {
+   "fr": "Indépendant",
+   "de": "Unabhängig",
+   "es": "Independiente"
+  },
+  "Indomitable": {
+   "fr": "Indomptable",
+   "de": "Unbezwingbar",
+   "es": "Indomable"
+  },
+  "Infiltrate": {
+   "fr": "Infiltration",
+   "de": "Infiltrieren",
+   "es": "Infiltrarse"
+  },
+  "Inspire": {
+   "fr": "Inspirer",
+   "de": "Inspirieren",
+   "es": "Inspirar"
+  },
+  "Interrogate": {
+   "fr": "Interroger",
+   "de": "Verhören",
+   "es": "Interrogar"
+  },
+  "Jar'Kai Mastery": {
+   "fr": "Maîtrise de Jar'Kai",
+   "de": "Jar'Kai-Meisterschaft",
+   "es": "Maestría Jar'Kai"
+  },
+  "Jedi Hunter": {
+   "fr": "Chasseur de Jedi",
+   "de": "Jedi-Jäger",
+   "es": "Cazador Jedi"
+  },
+  "Jump": {
+   "fr": "Saut",
+   "de": "Sprung",
+   "es": "Salto"
+  },
+  "Juyo Mastery": {
+   "fr": "Maîtrise de Juyo",
+   "de": "Juyo-Meisterschaft",
+   "es": "Maestría Juyo"
+  },
+  "Low Profile": {
+   "fr": "Profil Bas",
+   "de": "Niedriges Profil",
+   "es": "Perfil Bajo"
+  },
+  "Makashi Mastery": {
+   "fr": "Maîtrise de Makashi",
+   "de": "Makashi-Meisterschaft",
+   "es": "Maestría Makashi"
+  },
+  "Mandalorians Are Stronger Together": {
+   "fr": "Les Mandaloriens Sont Plus Forts Ensemble",
+   "de": "Mandalorianer sind gemeinsam stärker",
+   "es": "Los Mandalorianos Son Más Fuertes Juntos"
+  },
+  "Marksman": {
+   "fr": "Tireur d'Élite",
+   "de": "Scharfschütze",
+   "es": "Tirador de Élite"
+  },
+  "Master Storyteller": {
+   "fr": "Maître Conteur",
+   "de": "Meistergeschichtenerzähler",
+   "es": "Maestro Narrador"
+  },
+  "Master of the Force": {
+   "fr": "Maître de la Force",
+   "de": "Meister der Macht",
+   "es": "Maestro de la Fuerza"
+  },
+  "Mercenary": {
+   "fr": "Mercenaire",
+   "de": "Söldner",
+   "es": "Mercenario"
+  },
+  "Mobile": {
+   "fr": "Mobile",
+   "de": "Mobil",
+   "es": "Móvil"
+  },
+  "My Mood Is Based On Profit": {
+   "fr": "Mon Humeur Dépend du Profit",
+   "de": "Meine Laune hängt vom Gewinn ab",
+   "es": "Mi Humor Depende del Beneficio"
+  },
+  "Nimble": {
+   "fr": "Agile",
+   "de": "Flink",
+   "es": "Ágil"
+  },
+  "Observe": {
+   "fr": "Observer",
+   "de": "Beobachten",
+   "es": "Observar"
+  },
+  "One Step Ahead": {
+   "fr": "Un Coup d'Avance",
+   "de": "Einen Schritt voraus",
+   "es": "Un Paso por Delante"
+  },
+  "Outmaneuver": {
+   "fr": "Déborder",
+   "de": "Ausmanövrieren",
+   "es": "Superar en Maniobras"
+  },
+  "Override": {
+   "fr": "Outrepasser",
+   "de": "Übersteuern",
+   "es": "Anular"
+  },
+  "Plodding": {
+   "fr": "Lent",
+   "de": "Schwerfällig",
+   "es": "Pesado"
+  },
+  "Precise": {
+   "fr": "Précis",
+   "de": "Präzise",
+   "es": "Preciso"
+  },
+  "Prepared Position": {
+   "fr": "Position Préparée",
+   "de": "Vorbereitete Stellung",
+   "es": "Posición Preparada"
+  },
+  "Programmed": {
+   "fr": "Programmé",
+   "de": "Programmiert",
+   "es": "Programado"
+  },
+  "Pulling The Strings": {
+   "fr": "Tirer les Ficelles",
+   "de": "Die Fäden ziehen",
+   "es": "Mover los Hilos"
+  },
+  "Quick Thinking": {
+   "fr": "Réflexes Rapides",
+   "de": "Schnelles Denken",
+   "es": "Pensamiento Rápido"
+  },
+  "Ready": {
+   "fr": "Prêt",
+   "de": "Bereit",
+   "es": "Listo"
+  },
+  "Recharge": {
+   "fr": "Recharger",
+   "de": "Aufladen",
+   "es": "Recargar"
+  },
+  "Regenerate": {
+   "fr": "Régénérer",
+   "de": "Regenerieren",
+   "es": "Regenerar"
+  },
+  "Reinforcements": {
+   "fr": "Renforts",
+   "de": "Verstärkung",
+   "es": "Refuerzos"
+  },
+  "Reliable": {
+   "fr": "Fiable",
+   "de": "Zuverlässig",
+   "es": "Fiable"
+  },
+  "Repair": {
+   "fr": "Réparer",
+   "de": "Reparieren",
+   "es": "Reparar"
+  },
+  "Reposition": {
+   "fr": "Repositionnement",
+   "de": "Neu positionieren",
+   "es": "Reposicionar"
+  },
+  "Retinue": {
+   "fr": "Suite",
+   "de": "Gefolge",
+   "es": "Séquito"
+  },
+  "Ruthless": {
+   "fr": "Impitoyable",
+   "de": "Rücksichtslos",
+   "es": "Despiadado"
+  },
+  "Scale": {
+   "fr": "Escalade",
+   "de": "Klettern",
+   "es": "Escalar"
+  },
+  "Scout": {
+   "fr": "Éclaireur",
+   "de": "Späher",
+   "es": "Explorador"
+  },
+  "Scouting Party": {
+   "fr": "Patrouille d'Éclaireurs",
+   "de": "Spähtrupp",
+   "es": "Partida de Exploración"
+  },
+  "Secret Mission": {
+   "fr": "Mission Secrète",
+   "de": "Geheime Mission",
+   "es": "Misión Secreta"
+  },
+  "Self-Destruct": {
+   "fr": "Auto-Destruction",
+   "de": "Selbstzerstörung",
+   "es": "Autodestrucción"
+  },
+  "Self-Preservation": {
+   "fr": "Auto-Préservation",
+   "de": "Selbsterhaltung",
+   "es": "Autoconservación"
+  },
+  "Sentinel": {
+   "fr": "Sentinelle",
+   "de": "Wachtposten",
+   "es": "Centinela"
+  },
+  "Sharpshooter": {
+   "fr": "Tireur d'Élite",
+   "de": "Scharfschütze",
+   "es": "Tirador de Precisión"
+  },
+  "Shielded": {
+   "fr": "Bouclier",
+   "de": "Abgeschirmt",
+   "es": "Protegido"
+  },
+  "Shien Mastery": {
+   "fr": "Maîtrise de Shien",
+   "de": "Shien-Meisterschaft",
+   "es": "Maestría Shien"
+  },
+  "Soresu Mastery": {
+   "fr": "Maîtrise de Soresu",
+   "de": "Soresu-Meisterschaft",
+   "es": "Maestría Soresu"
+  },
+  "Special Issue": {
+   "fr": "Édition Spéciale",
+   "de": "Sonderausgabe",
+   "es": "Equipamiento Especial"
+  },
+  "Speeder": {
+   "fr": "Speeder",
+   "de": "Speeder",
+   "es": "Speeder"
+  },
+  "Spotter": {
+   "fr": "Observateur",
+   "de": "Beobachter",
+   "es": "Observador"
+  },
+  "Spur": {
+   "fr": "Éperon",
+   "de": "Anspornen",
+   "es": "Espolear"
+  },
+  "Stationary": {
+   "fr": "Stationnaire",
+   "de": "Stationär",
+   "es": "Estacionario"
+  },
+  "Steady": {
+   "fr": "Stable",
+   "de": "Standhaft",
+   "es": "Firme"
+  },
+  "Strategize": {
+   "fr": "Élaborer une Stratégie",
+   "de": "Strategisieren",
+   "es": "Elaborar Estrategia"
+  },
+  "Suppressive": {
+   "fr": "Suppressif",
+   "de": "Unterdrückend",
+   "es": "Supresivo"
+  },
+  "Swashbuckler": {
+   "fr": "Bretteur",
+   "de": "Fechter",
+   "es": "Espadachín"
+  },
+  "Tactical": {
+   "fr": "Tactique",
+   "de": "Taktisch",
+   "es": "Táctico"
+  },
+  "Take Cover": {
+   "fr": "Se Mettre à Couvert",
+   "de": "In Deckung gehen",
+   "es": "Cubrirse"
+  },
+  "Target": {
+   "fr": "Cible",
+   "de": "Ziel",
+   "es": "Objetivo"
+  },
+  "Teamwork": {
+   "fr": "Travail d'Équipe",
+   "de": "Teamwork",
+   "es": "Trabajo en Equipo"
+  },
+  "Tempted": {
+   "fr": "Tenté",
+   "de": "Versuchung",
+   "es": "Tentado"
+  },
+  "This is the Way": {
+   "fr": "C'est la Voie",
+   "de": "Das ist der Weg",
+   "es": "Este es el Camino"
+  },
+  "Transport": {
+   "fr": "Transport",
+   "de": "Transport",
+   "es": "Transporte"
+  },
+  "Uncanny Luck": {
+   "fr": "Chance Surnaturelle",
+   "de": "Unheimliches Glück",
+   "es": "Suerte Extraña"
+  },
+  "Unconcerned": {
+   "fr": "Insouciant",
+   "de": "Unbekümmert",
+   "es": "Despreocupado"
+  },
+  "Unhindered": {
+   "fr": "Sans Entrave",
+   "de": "Ungehindert",
+   "es": "Sin Obstáculos"
+  },
+  "Unstoppable": {
+   "fr": "Imparable",
+   "de": "Unaufhaltsam",
+   "es": "Imparable"
+  },
+  "Vaapad Mastery": {
+   "fr": "Maîtrise de Vaapad",
+   "de": "Vaapad-Meisterschaft",
+   "es": "Maestría Vaapad"
+  },
+  "Victory or Death": {
+   "fr": "Victoire ou Mort",
+   "de": "Sieg oder Tod",
+   "es": "Victoria o Muerte"
+  },
+  "We Fight for Our Family": {
+   "fr": "Nous Combattons pour Notre Famille",
+   "de": "Wir kämpfen für unsere Familie",
+   "es": "Luchamos por Nuestra Familia"
+  },
+  "We're Not Regs": {
+   "fr": "Nous Ne Sommes Pas des Réguliers",
+   "de": "Wir sind keine Rekruten",
+   "es": "No Somos Regulares"
+  },
+  "Weak Point": {
+   "fr": "Point Faible",
+   "de": "Schwachstelle",
+   "es": "Punto Débil"
+  },
+  "Weighed Down": {
+   "fr": "Alourdi",
+   "de": "Beschwert",
+   "es": "Lastrado"
+  },
+  "Wheel Mode": {
+   "fr": "Mode Roue",
+   "de": "Radmodus",
+   "es": "Modo Rueda"
+  },
+  "Wound": {
+   "fr": "Blessure",
+   "de": "Wunde",
+   "es": "Herida"
   }
+ }
 }
