@@ -1,0 +1,1615 @@
+{
+ "schemaVersion": 1,
+ "packs": [
+  {
+   "id": "lg:1-4-fd-laser-cannon-team-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "1.4 FD Laser Cannon Team Unit Expansion",
+   "imageName": "Swl14 spread.webp",
+   "cards": [
+    "legion_v2:lhq2/1-4-fd-laser-cannon-team"
+   ],
+   "mappedUnits": [
+    "1.4 FD Laser Cannon Team"
+   ]
+  },
+  {
+   "id": "lg:74-z-speeder-bikes-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "74-Z Speeder Bikes Unit Expansion",
+   "imageName": "74-z_speeders_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/74-z-speeder-bikes"
+   ],
+   "mappedUnits": [
+    "74-Z Speeder Bikes"
+   ]
+  },
+  {
+   "id": "lg:a-a5-speeder-truck-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "A-A5 Speeder Truck Unit Expansion",
+   "imageName": "A-a5-speeder-truck box.webp",
+   "cards": [
+    "legion_v2:lhq2/a-a5-speeder-truck"
+   ],
+   "mappedUnits": [
+    "A-A5 Speeder Truck"
+   ]
+  },
+  {
+   "id": "lg:aat-trade-federation-battle-tank-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "AAT Trade Federation Battle Tank Unit Expansion",
+   "imageName": "AAT_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/aat-battle-tank"
+   ],
+   "mappedUnits": [
+    "AAT Trade Federation Battle Tank"
+   ]
+  },
+  {
+   "id": "lg:arc-troopers-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "ARC Troopers Unit Expansion",
+   "imageName": "ARC_troopers_box.webp",
+   "cards": [
+    "legion_v2:lhq2/arc-troopers-strike-team"
+   ],
+   "mappedUnits": [
+    "ARC Troopers"
+   ]
+  },
+  {
+   "id": "lg:at-rt-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "AT-RT Unit Expansion",
+   "imageName": "At-rt_expansion_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/at-rt"
+   ],
+   "mappedUnits": [
+    "AT-RT"
+   ]
+  },
+  {
+   "id": "lg:at-st-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "AT-ST Unit Expansion",
+   "imageName": "At-st_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/at-st"
+   ],
+   "mappedUnits": [
+    "AT-ST"
+   ]
+  },
+  {
+   "id": "lg:agent-kallus-commander-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Agent Kallus Commander Expansion",
+   "imageName": "Kallus box-old.webp",
+   "cards": [
+    "legion_v2:lhq2/agent-kallus-hunter-of-spectres"
+   ],
+   "mappedUnits": [
+    "Agent Kallus"
+   ]
+  },
+  {
+   "id": "lg:anakin-skywalker-commander-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Anakin Skywalker Commander Expansion",
+   "imageName": "Anakin Skywalker spread unofficial.webp",
+   "cards": [
+    "legion_v2:lhq2/anakin-skywalker-the-chosen-one"
+   ],
+   "mappedUnits": [
+    "Anakin Skywalker"
+   ]
+  },
+  {
+   "id": "lg:b1-battle-droids-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "B1 Battle Droids Unit Expansion",
+   "imageName": "B1_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/b1-battle-droids"
+   ],
+   "mappedUnits": [
+    "B1 Battle Droids"
+   ]
+  },
+  {
+   "id": "lg:b2-super-battle-droids-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "B2 Super Battle Droids Unit Expansion",
+   "imageName": "B2_supers_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/b2-super-battle-droids"
+   ],
+   "mappedUnits": [
+    "B2 Super Battle Droids"
+   ]
+  },
+  {
+   "id": "lg:barc-speeder-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "BARC Speeder Unit Expansion",
+   "imageName": "BARC_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/barc-speeder"
+   ],
+   "mappedUnits": [
+    "BARC Speeder"
+   ]
+  },
+  {
+   "id": "lg:bx-series-droid-commandos-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "BX-series Droid Commandos Unit Expansion",
+   "imageName": "Bx-series_droid_commanods_box.webp",
+   "cards": [
+    "legion_v2:lhq2/bx-series-droid-commandos"
+   ],
+   "mappedUnits": [
+    "BX-series Droid Commandos"
+   ]
+  },
+  {
+   "id": "lg:boba-fett-daimyo-operative-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Boba Fett (Daimyo) Operative Expansion",
+   "imageName": "Boba Fett Daimyo.webp",
+   "cards": [
+    "legion_v2:lhq2/boba-fett-daimyo-of-mos-espa"
+   ],
+   "mappedUnits": [
+    "Boba Fett (Daimyo)"
+   ]
+  },
+  {
+   "id": "lg:boba-fett-operative-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Boba Fett Operative Expansion",
+   "imageName": "Boba_fett_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/boba-fett-infamous-bounty-hunter"
+   ],
+   "mappedUnits": [
+    "Boba Fett"
+   ]
+  },
+  {
+   "id": "lg:bossk-operative-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Bossk Operative Expansion",
+   "imageName": "Bossk_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/bossk-trandoshan-terror"
+   ],
+   "mappedUnits": [
+    "Bossk"
+   ]
+  },
+  {
+   "id": "lg:cad-bane-operative-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Cad Bane Operative Expansion",
+   "imageName": "Cad_bane_box.webp",
+   "cards": [
+    "legion_v2:lhq2/cad-bane-needs-no-introduction"
+   ],
+   "mappedUnits": [
+    "Cad Bane"
+   ]
+  },
+  {
+   "id": "lg:cassian-andor-and-k-2so-commander-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Cassian Andor and K-2SO Commander Expansion",
+   "imageName": "Cassian_and_k-2so_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/cassian-andor-capable-intelligence-agent",
+    "legion_v2:lhq2/k-2so-sardonic-security-droid"
+   ],
+   "mappedUnits": [
+    "Cassian Andor",
+    "K-2SO"
+   ]
+  },
+  {
+   "id": "lg:chewbacca-operative-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Chewbacca Operative Expansion",
+   "imageName": "Chewbacca_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/chewbacca-walking-carpet"
+   ],
+   "mappedUnits": [
+    "Chewbacca"
+   ]
+  },
+  {
+   "id": "lg:clan-wren-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Clan Wren Unit Expansion",
+   "imageName": "Clan_wren_box.webp",
+   "cards": [
+    "legion_v2:lhq2/mandalorian-warriors",
+    "legion_v2:lhq2/ursa-wren-leader-of-clan-wren"
+   ],
+   "mappedUnits": [
+    "Mandalorian Resistance",
+    "Mandalorian Resistance (Clan Wren)"
+   ]
+  },
+  {
+   "id": "lg:clone-captain-rex-commander-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Clone Captain Rex Commander Expansion",
+   "imageName": "Clone_captain_rex_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/clone-captain-rex-honorable-soldier"
+   ],
+   "mappedUnits": [
+    "Clone Captain Rex"
+   ]
+  },
+  {
+   "id": "lg:clone-wars-core-set",
+   "gameSystem": "LEGION_V2",
+   "name": "Clone Wars Core Set",
+   "imageName": "Clone_wars_core_set.webp",
+   "cards": [],
+   "mappedUnits": []
+  },
+  {
+   "id": "lg:count-dooku-commander-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Count Dooku Commander Expansion",
+   "imageName": "Dooku_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/count-dooku-darth-tyranus"
+   ],
+   "mappedUnits": [
+    "Count Dooku"
+   ]
+  },
+  {
+   "id": "lg:dsd1-dwarf-spider-droid-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "DSD1-Dwarf Spider Droid Unit Expansion",
+   "imageName": "Dwarf spider droid.webp",
+   "cards": [
+    "legion_v2:lhq2/dsd1-dwarf-spider-droid"
+   ],
+   "mappedUnits": [
+    "DSD1 Dwarf Spider Droid"
+   ]
+  },
+  {
+   "id": "lg:darth-maul-and-sith-probe-droids-operative-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Darth Maul and Sith Probe Droids Operative Expansion",
+   "imageName": "Darth maul and sith probe droids operative expansion spread.webp",
+   "cards": [
+    "legion_v2:lhq2/drk-1-sith-probe-droids",
+    "legion_v2:lhq2/maul-impatient-apprentice"
+   ],
+   "mappedUnits": [
+    "Maul",
+    "DRK-1 Sith Probe Droids"
+   ]
+  },
+  {
+   "id": "lg:darth-vader-operative-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Darth Vader Operative Expansion",
+   "imageName": "Vader_operative_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/darth-vader-dark-lord-of-the-sith"
+   ],
+   "mappedUnits": [
+    "Darth Vader (Operative)"
+   ]
+  },
+  {
+   "id": "lg:dewback-rider-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Dewback Rider Unit Expansion",
+   "imageName": "Dewback_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/dewback-rider"
+   ],
+   "mappedUnits": [
+    "Dewback Rider"
+   ]
+  },
+  {
+   "id": "lg:director-orson-krennic-commander-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Director Orson Krennic Commander Expansion",
+   "imageName": "Krennic_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/director-orson-krennic-architect-of-terror"
+   ],
+   "mappedUnits": [
+    "Director Orson Krennic"
+   ]
+  },
+  {
+   "id": "lg:droidekas-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Droidekas Unit Expansion",
+   "imageName": "Droidekas_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/droidekas"
+   ],
+   "mappedUnits": [
+    "Droidekas"
+   ]
+  },
+  {
+   "id": "lg:e-web-heavy-blaster-team-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "E-Web Heavy Blaster Team Unit Expansion",
+   "imageName": "Swl15 spread.webp",
+   "cards": [
+    "legion_v2:lhq2/e-web-heavy-blaster-team"
+   ],
+   "mappedUnits": [
+    "E-Web Heavy Blaster Team"
+   ]
+  },
+  {
+   "id": "lg:echo-base-defenders-battle-force-starter-set",
+   "gameSystem": "LEGION_V2",
+   "name": "Echo Base Defenders Battle Force Starter Set",
+   "imageName": "Echo Base Defenders Battle Force Starter Set box.webp",
+   "cards": [],
+   "mappedUnits": []
+  },
+  {
+   "id": "lg:emperor-palpatine-commander-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Emperor Palpatine Commander Expansion",
+   "imageName": "Emperor_palpatine_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/darth-vader-the-emperor-s-apprentice"
+   ],
+   "mappedUnits": [
+    "Emperor Palpatine"
+   ]
+  },
+  {
+   "id": "lg:fleet-troopers-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Fleet Troopers Unit Expansion",
+   "imageName": "Fleet_troopers_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/fleet-troopers"
+   ],
+   "mappedUnits": [
+    "Fleet Troopers"
+   ]
+  },
+  {
+   "id": "lg:general-veers-commander-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "General Veers Commander Expansion",
+   "imageName": "Swl10_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/general-veers-master-tactician"
+   ],
+   "mappedUnits": [
+    "General Veers"
+   ]
+  },
+  {
+   "id": "lg:grand-master-yoda-commander-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Grand Master Yoda Commander Expansion",
+   "imageName": "Yoda box.webp",
+   "cards": [
+    "legion_v2:lhq2/wookiee-chieftain-clan-leader",
+    "legion_v2:lhq2/yoda-grand-master-of-the-jedi-order"
+   ],
+   "mappedUnits": [
+    "Yoda",
+    "Chewbacca (Republic)"
+   ]
+  },
+  {
+   "id": "lg:han-solo-commander-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Han Solo Commander Expansion",
+   "imageName": "Swl20 spread-bester.webp",
+   "cards": [
+    "legion_v2:lhq2/han-solo-unorthodox-general"
+   ],
+   "mappedUnits": [
+    "Han Solo"
+   ]
+  },
+  {
+   "id": "lg:ig-100-magnaguards-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "IG-100 MagnaGuards Unit Expansion",
+   "imageName": "Magnaguards.webp",
+   "cards": [
+    "legion_v2:lhq2/ig-100-magnaguard"
+   ],
+   "mappedUnits": [
+    "IG-100 MagnaGuards"
+   ]
+  },
+  {
+   "id": "lg:ig-series-assassin-droid-operative-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "IG-Series Assassin Droid Operative Expansion",
+   "imageName": "IG Series Assassin Droid.webp",
+   "cards": [
+    "legion_v2:lhq2/ig-11-nurse-and-protect",
+    "legion_v2:lhq2/ig-88-notorious-assassin-droid"
+   ],
+   "mappedUnits": [
+    "IG-88",
+    "IG-11"
+   ]
+  },
+  {
+   "id": "lg:iden-versio-and-id10-commander-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Iden Versio and ID10 Commander Expansion",
+   "imageName": "Iden_versio_ID10_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/iden-versio-inferno-squad-leader"
+   ],
+   "mappedUnits": [
+    "Iden Versio"
+   ]
+  },
+  {
+   "id": "lg:imperial-death-troopers-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Imperial Death Troopers Unit Expansion",
+   "imageName": "Death_troopers_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/imperial-death-troopers"
+   ],
+   "mappedUnits": [
+    "Imperial Death Troopers"
+   ]
+  },
+  {
+   "id": "lg:imperial-royal-guards-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Imperial Royal Guards Unit Expansion",
+   "imageName": "Imperial_royal_guards_spread.webp",
+   "cards": [],
+   "mappedUnits": []
+  },
+  {
+   "id": "lg:imperial-shoretroopers-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Imperial Shoretroopers Unit Expansion",
+   "imageName": "Shoretroopers_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/df-90-mortar-trooper",
+    "legion_v2:lhq2/shoretroopers"
+   ],
+   "mappedUnits": [
+    "Shoretroopers",
+    "DF-90 Mortar Trooper"
+   ]
+  },
+  {
+   "id": "lg:imperial-specialists-personnel-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Imperial Specialists Personnel Expansion",
+   "imageName": "Imperial_Specialists_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/imperial-officer-ruthless-efficiency"
+   ],
+   "mappedUnits": [
+    "Imperial Officer"
+   ]
+  },
+  {
+   "id": "lg:imperial-stormtroopers-upgrade-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Imperial Stormtroopers Upgrade Expansion",
+   "imageName": "Stormtroopers_upgrade_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/stormtroopers"
+   ],
+   "mappedUnits": [
+    "Stormtroopers"
+   ]
+  },
+  {
+   "id": "lg:infantry-support-platform-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Infantry Support Platform Unit Expansion",
+   "imageName": "Infantry support platform.webp",
+   "cards": [
+    "legion_v2:lhq2/infantry-support-platform"
+   ],
+   "mappedUnits": [
+    "Infantry Support Platform"
+   ]
+  },
+  {
+   "id": "lg:inferno-squad-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Inferno Squad Unit Expansion",
+   "imageName": "Inferno_squad_box.webp",
+   "cards": [
+    "legion_v2:lhq2/imperial-special-forces",
+    "legion_v2:lhq2/imperial-special-forces-inferno-squad"
+   ],
+   "mappedUnits": [
+    "Imperial Special Forces",
+    "Inferno Squad"
+   ]
+  },
+  {
+   "id": "lg:jyn-erso-commander-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Jyn Erso Commander Expansion",
+   "imageName": "Jyn_erso_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/jyn-erso-stardust"
+   ],
+   "mappedUnits": [
+    "Jyn Erso"
+   ]
+  },
+  {
+   "id": "lg:laat-le-patrol-transport-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "LAAT/le Patrol Transport Unit Expansion",
+   "imageName": "Laat-le box.webp",
+   "cards": [
+    "legion_v2:lhq2/laat-le-patrol-transport"
+   ],
+   "mappedUnits": [
+    "LAAT/le Patrol Transport"
+   ]
+  },
+  {
+   "id": "lg:lando-calrissian-commander-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Lando Calrissian Commander Expansion",
+   "imageName": "Lando box-old.webp",
+   "cards": [
+    "legion_v2:lhq2/lando-calrissian-canny-general"
+   ],
+   "mappedUnits": [
+    "Lando Calrissian"
+   ]
+  },
+  {
+   "id": "lg:legion-core-set",
+   "gameSystem": "LEGION_V2",
+   "name": "Legion Core Set",
+   "imageName": "Core_set.webp",
+   "cards": [],
+   "mappedUnits": []
+  },
+  {
+   "id": "lg:leia-organa-commander-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Leia Organa Commander Expansion",
+   "imageName": "Organa_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/leia-organa-fearless-and-inventive"
+   ],
+   "mappedUnits": [
+    "Leia Organa"
+   ]
+  },
+  {
+   "id": "lg:luke-skywalker-operative-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Luke Skywalker Operative Expansion",
+   "imageName": "Luke_operative_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/luke-skywalker-hero-of-the-rebellion"
+   ],
+   "mappedUnits": [
+    "Luke Skywalker (Operative)"
+   ]
+  },
+  {
+   "id": "lg:nr-n99-persuader-class-tank-droid-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "NR-N99 Persuader-class Tank Droid Unit Expansion",
+   "imageName": "SWL87-NRN99PersuaderClassTankDroid-box.webp",
+   "cards": [
+    "legion_v2:lhq2/persuader-class-tank-droid"
+   ],
+   "mappedUnits": [
+    "NR-N99 Persuader-Class Tank Droid"
+   ]
+  },
+  {
+   "id": "lg:padm-amidala-operative-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Padmé Amidala Operative Expansion",
+   "imageName": "Padme_box.webp",
+   "cards": [
+    "legion_v2:lhq2/padme-amidala-spirited-senator"
+   ],
+   "mappedUnits": [
+    "Padmé Amidala"
+   ]
+  },
+  {
+   "id": "lg:phase-i-clone-troopers-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Phase I Clone Troopers Unit Expansion",
+   "imageName": "Phase_1_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/clone-trooper-infantry"
+   ],
+   "mappedUnits": [
+    "Phase I Clone Troopers"
+   ]
+  },
+  {
+   "id": "lg:phase-ii-clone-troopers-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Phase II Clone Troopers Unit Expansion",
+   "imageName": "Phase_II_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/clone-trooper-infantry"
+   ],
+   "mappedUnits": [
+    "Phase II Clone Troopers"
+   ]
+  },
+  {
+   "id": "lg:rebel-commandos-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Rebel Commandos Unit Expansion",
+   "imageName": "Rebel_commandos_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/rebel-commandos"
+   ],
+   "mappedUnits": [
+    "Rebel Commandos"
+   ]
+  },
+  {
+   "id": "lg:rebel-pathfinders-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Rebel Pathfinders Unit Expansion",
+   "imageName": "Rebel_pathfinders_spread.webp",
+   "cards": [],
+   "mappedUnits": []
+  },
+  {
+   "id": "lg:rebel-specialists-personnel-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Rebel Specialists Personnel Expansion",
+   "imageName": "Rebel_Specialists_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/rebel-officer-fighting-for-freedom"
+   ],
+   "mappedUnits": [
+    "Rebel Officer"
+   ]
+  },
+  {
+   "id": "lg:rebel-troopers-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Rebel Troopers Unit Expansion",
+   "imageName": "Rebel_troopers_expansion_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/rebel-troopers"
+   ],
+   "mappedUnits": [
+    "Rebel Troopers"
+   ]
+  },
+  {
+   "id": "lg:rebel-veterans-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Rebel Veterans Unit Expansion",
+   "imageName": "Rebel_veterans_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/mark-ii-medium-blaster-trooper",
+    "legion_v2:lhq2/rebel-veterans"
+   ],
+   "mappedUnits": [
+    "Rebel Veterans",
+    "Mark II Medium Blaster Trooper"
+   ]
+  },
+  {
+   "id": "lg:republic-at-rt-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Republic AT-RT Unit Expansion",
+   "imageName": "Republic_at-rt_box.webp",
+   "cards": [
+    "legion_v2:lhq2/at-rt:d2d0a804"
+   ],
+   "mappedUnits": [
+    "Republic AT-RT"
+   ]
+  },
+  {
+   "id": "lg:republic-specialists-personnel-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Republic Specialists Personnel Expansion",
+   "imageName": "Republic specialists spread unofficial.webp",
+   "cards": [
+    "legion_v2:lhq2/clone-commander-trained-for-leadership"
+   ],
+   "mappedUnits": [
+    "Clone Commander"
+   ]
+  },
+  {
+   "id": "lg:stap-riders-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "STAP Riders Unit Expansion",
+   "imageName": "STAP_riders_box.webp",
+   "cards": [
+    "legion_v2:lhq2/stap-riders"
+   ],
+   "mappedUnits": [
+    "STAP Riders"
+   ]
+  },
+  {
+   "id": "lg:sabine-wren-operative-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Sabine Wren Operative Expansion",
+   "imageName": "Sabine_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/sabine-wren-explosive-artist"
+   ],
+   "mappedUnits": [
+    "Sabine Wren"
+   ]
+  },
+  {
+   "id": "lg:scout-troopers-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Scout Troopers Unit Expansion",
+   "imageName": "Scout_troopers_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/scout-troopers"
+   ],
+   "mappedUnits": [
+    "Scout Troopers"
+   ]
+  },
+  {
+   "id": "lg:separatist-specialists-personnel-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Separatist Specialists Personnel Expansion",
+   "imageName": "Separatist specialists personnel expansion spread.webp",
+   "cards": [
+    "legion_v2:lhq2/t-series-tactical-droid-programmed-for-strategy"
+   ],
+   "mappedUnits": [
+    "T-series Tactical Droid"
+   ]
+  },
+  {
+   "id": "lg:snowtroopers-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Snowtroopers Unit Expansion",
+   "imageName": "Swl11_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/snowtroopers"
+   ],
+   "mappedUnits": [
+    "Snowtroopers"
+   ]
+  },
+  {
+   "id": "lg:stormtroopers-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Stormtroopers Unit Expansion",
+   "imageName": "Stormtroopers_expansion_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/stormtroopers"
+   ],
+   "mappedUnits": [
+    "Stormtroopers"
+   ]
+  },
+  {
+   "id": "lg:super-tactical-droid-commander-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Super Tactical Droid Commander Expansion",
+   "imageName": "Super tactical droid.webp",
+   "cards": [
+    "legion_v2:lhq2/super-tactical-command-droid-auxiliary-command-droid",
+    "legion_v2:lhq2/super-tactical-command-droid-command-and-control-droid"
+   ],
+   "mappedUnits": [
+    "Super Tactical Droid",
+    "Super Tactical Droid (Kraken)"
+   ]
+  },
+  {
+   "id": "lg:t-47-airspeeder-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "T-47 Airspeeder Unit Expansion",
+   "imageName": "Wave1_rebels-airspeeder_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/t-47-airspeeder"
+   ],
+   "mappedUnits": [
+    "T-47 Airspeeder"
+   ]
+  },
+  {
+   "id": "lg:tx-130-saber-class-fighter-tank-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "TX-130 Saber-class Fighter Tank Unit Expansion",
+   "imageName": "Tx-130_saber_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/saber-class-tank"
+   ],
+   "mappedUnits": [
+    "TX-130 Saber-class Fighter Tank"
+   ]
+  },
+  {
+   "id": "lg:tx-225-gavw-occupier-combat-assault-tank-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "TX-225 GAVw Occupier Combat Assault Tank Unit Expansion",
+   "imageName": "Swl35 spread.webp",
+   "cards": [
+    "legion_v2:lhq2/tx-225-gavw-occupier-tank"
+   ],
+   "mappedUnits": [
+    "TX-225 GAVw Occupier Combat Assault Tank"
+   ]
+  },
+  {
+   "id": "lg:tauntaun-riders-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Tauntaun Riders Unit Expansion",
+   "imageName": "Tauntaun_riders_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/tauntaun-riders"
+   ],
+   "mappedUnits": [
+    "Tauntaun Riders"
+   ]
+  },
+  {
+   "id": "lg:wookiee-warriors-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "Wookiee Warriors Unit Expansion",
+   "imageName": "Wookiee_warriors_spread.webp",
+   "cards": [
+    "legion_v2:lhq2/wookiee-warriors-kashyyyk-defenders"
+   ],
+   "mappedUnits": [
+    "Wookiee Warriors"
+   ]
+  },
+  {
+   "id": "lg:wookiee-warriors-unit-expansion-republic",
+   "gameSystem": "LEGION_V2",
+   "name": "Wookiee Warriors Unit Expansion (Republic)",
+   "imageName": "Republic wookiee warriors box.webp",
+   "cards": [
+    "legion_v2:lhq2/wookiee-chieftain-clan-leader",
+    "legion_v2:lhq2/wookiee-warriors-freedom-fighters"
+   ],
+   "mappedUnits": [
+    "Wookiee Chieftain",
+    "Wookiee Warriors (Kashyyyk Defenders)",
+    "Wookiee Warriors (Noble Fighters)",
+    "Wookiee Warriors (Freedom Fighters)",
+    "Wookiee Warriors (Kashyyyk Resistance)"
+   ]
+  },
+  {
+   "id": "lg:x-34-landspeeder-unit-expansion",
+   "gameSystem": "LEGION_V2",
+   "name": "X-34 Landspeeder Unit Expansion",
+   "imageName": "Swl36 spread.webp",
+   "cards": [
+    "legion_v2:lhq2/x-34-landspeeder"
+   ],
+   "mappedUnits": [
+    "X-34 Landspeeder"
+   ]
+  },
+  {
+   "id": "swm01",
+   "gameSystem": "ARMADA_V15",
+   "name": "Armada Core Set",
+   "imageName": "Swm01 main.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/commander/general_dodonna",
+    "armada_v15:data/upgrade-card/commander/grand_moff_tarkin",
+    "armada_v15:data/upgrade-card/commander/leia_organa",
+    "armada_v15:data/upgrade-card/defensive-retrofit/electronic_countermeasures",
+    "armada_v15:data/upgrade-card/ion-cannons/overload_pulse",
+    "armada_v15:data/upgrade-card/offensive-retrofit/expanded_hangar_bay",
+    "armada_v15:data/upgrade-card/officer/defense_liaison",
+    "armada_v15:data/upgrade-card/officer/weapons_liaison",
+    "armada_v15:data/upgrade-card/officer/wulff_yularen",
+    "armada_v15:data/upgrade-card/ordnance/assault_concussion_missiles",
+    "armada_v15:data/upgrade-card/support-team/engineering_team",
+    "armada_v15:data/upgrade-card/support-team/nav_team",
+    "armada_v15:data/upgrade-card/title/dodonnas_pride",
+    "armada_v15:data/upgrade-card/title/dominator",
+    "armada_v15:data/upgrade-card/title/redemption",
+    "armada_v15:data/upgrade-card/turbolasers/enhanced_armament",
+    "armada_v15:data/upgrade-card/turbolasers/h9_turbolasers",
+    "armada_v15:data/upgrade-card/weapons-team/gunnery_team",
+    "armada_v15:ship-card/galactic-empire/victory-i-class-star-destroyer",
+    "armada_v15:ship-card/galactic-empire/victory-ii-class-star-destroyer",
+    "armada_v15:ship-card/rebel-alliance/cr90-corvette-a",
+    "armada_v15:ship-card/rebel-alliance/cr90-corvette-b",
+    "armada_v15:ship-card/rebel-alliance/nebulon-b-escort-frigate",
+    "armada_v15:ship-card/rebel-alliance/nebulon-b-support-refit",
+    "armada_v15:squadron-card/galactic-empire/tie-fighter-squadron",
+    "armada_v15:squadron-card/rebel-alliance/x-wing-squadron"
+   ]
+  },
+  {
+   "id": "swm02",
+   "gameSystem": "ARMADA_V15",
+   "name": "Victory-class Star Destroyer Expansion Pack",
+   "imageName": "Swm02 main.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/commander/admiral_motti",
+    "armada_v15:data/upgrade-card/ion-cannons/ion_cannon_batteries",
+    "armada_v15:data/upgrade-card/ion-cannons/overload_pulse",
+    "armada_v15:data/upgrade-card/offensive-retrofit/expanded_hangar_bay",
+    "armada_v15:data/upgrade-card/officer/defense_liaison",
+    "armada_v15:data/upgrade-card/officer/director_isard",
+    "armada_v15:data/upgrade-card/officer/intel_officer",
+    "armada_v15:data/upgrade-card/officer/veteran_captain",
+    "armada_v15:data/upgrade-card/ordnance/assault_concussion_missiles",
+    "armada_v15:data/upgrade-card/title/corrupter",
+    "armada_v15:data/upgrade-card/title/warlord",
+    "armada_v15:data/upgrade-card/turbolasers/xx_9_turbolasers",
+    "armada_v15:data/upgrade-card/weapons-team/flight_controllers",
+    "armada_v15:data/upgrade-card/weapons-team/gunnery_team",
+    "armada_v15:ship-card/galactic-empire/victory-i-class-star-destroyer",
+    "armada_v15:ship-card/galactic-empire/victory-ii-class-star-destroyer"
+   ]
+  },
+  {
+   "id": "swm03",
+   "gameSystem": "ARMADA_V15",
+   "name": "CR90 Corellian Corvette Expansion Pack",
+   "imageName": "Swm03 CR90 ExpPack.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/commander/mon_mothma",
+    "armada_v15:data/upgrade-card/defensive-retrofit/electronic_countermeasures",
+    "armada_v15:data/upgrade-card/ion-cannons/leading_shots",
+    "armada_v15:data/upgrade-card/officer/raymus_antilles",
+    "armada_v15:data/upgrade-card/support-team/nav_team",
+    "armada_v15:data/upgrade-card/title/jainas_light",
+    "armada_v15:data/upgrade-card/title/tantive_iv",
+    "armada_v15:data/upgrade-card/turbolasers/h9_turbolasers",
+    "armada_v15:ship-card/rebel-alliance/cr90-corvette-a",
+    "armada_v15:ship-card/rebel-alliance/cr90-corvette-b"
+   ]
+  },
+  {
+   "id": "swm04",
+   "gameSystem": "ARMADA_V15",
+   "name": "Nebulon-B Frigate Expansion Pack",
+   "imageName": "Swm04 main.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/officer/defense_liaison",
+    "armada_v15:data/upgrade-card/officer/intel_officer",
+    "armada_v15:data/upgrade-card/support-team/engine_techs",
+    "armada_v15:data/upgrade-card/support-team/engineering_team",
+    "armada_v15:data/upgrade-card/title/salvation",
+    "armada_v15:data/upgrade-card/title/yavaris",
+    "armada_v15:data/upgrade-card/turbolasers/enhanced_armament",
+    "armada_v15:data/upgrade-card/turbolasers/xi7_turbolasers",
+    "armada_v15:ship-card/rebel-alliance/nebulon-b-escort-frigate",
+    "armada_v15:ship-card/rebel-alliance/nebulon-b-support-refit"
+   ]
+  },
+  {
+   "id": "swm05",
+   "gameSystem": "ARMADA_V15",
+   "name": "Assault Frigate Mark II Expansion Pack",
+   "imageName": "Swm05 main.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/commander/garm_bel_iblis",
+    "armada_v15:data/upgrade-card/defensive-retrofit/advanced_projectors",
+    "armada_v15:data/upgrade-card/defensive-retrofit/electronic_countermeasures",
+    "armada_v15:data/upgrade-card/offensive-retrofit/point_defense_reroute",
+    "armada_v15:data/upgrade-card/officer/adar_tallon",
+    "armada_v15:data/upgrade-card/officer/veteran_captain",
+    "armada_v15:data/upgrade-card/officer/weapons_liaison",
+    "armada_v15:data/upgrade-card/title/gallant_haven",
+    "armada_v15:data/upgrade-card/title/paragon",
+    "armada_v15:data/upgrade-card/turbolasers/enhanced_armament",
+    "armada_v15:data/upgrade-card/turbolasers/h9_turbolasers",
+    "armada_v15:data/upgrade-card/turbolasers/xx_9_turbolasers",
+    "armada_v15:data/upgrade-card/weapons-team/gunnery_team",
+    "armada_v15:data/upgrade-card/weapons-team/sensor_team",
+    "armada_v15:ship-card/rebel-alliance/assault-frigate-mark-ii-a",
+    "armada_v15:ship-card/rebel-alliance/assault-frigate-mark-ii-b"
+   ]
+  },
+  {
+   "id": "swm06",
+   "gameSystem": "ARMADA_V15",
+   "name": "Gladiator-class Star Destroyer Expansion Pack",
+   "imageName": "Swm06 main.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/commander/admiral_screed",
+    "armada_v15:data/upgrade-card/officer/admiral_chiraneau",
+    "armada_v15:data/upgrade-card/officer/weapons_liaison",
+    "armada_v15:data/upgrade-card/ordnance/assault_concussion_missiles",
+    "armada_v15:data/upgrade-card/ordnance/expanded_launchers",
+    "armada_v15:data/upgrade-card/support-team/engine_techs",
+    "armada_v15:data/upgrade-card/support-team/nav_team",
+    "armada_v15:data/upgrade-card/title/demolisher",
+    "armada_v15:data/upgrade-card/title/insidious",
+    "armada_v15:data/upgrade-card/weapons-team/sensor_team",
+    "armada_v15:ship-card/galactic-empire/gladiator-i-class-star-destroyer",
+    "armada_v15:ship-card/galactic-empire/gladiator-ii-class-star-destroyer"
+   ]
+  },
+  {
+   "id": "swm07",
+   "gameSystem": "ARMADA_V15",
+   "name": "Rebel Fighter Squadrons Expansion Pack",
+   "imageName": "Swm07 main-0.webp",
+   "cards": [
+    "armada_v15:squadron-card/rebel-alliance/a-wing-squadron",
+    "armada_v15:squadron-card/rebel-alliance/b-wing-squadron",
+    "armada_v15:squadron-card/rebel-alliance/x-wing-squadron",
+    "armada_v15:squadron-card/rebel-alliance/y-wing-squadron"
+   ]
+  },
+  {
+   "id": "swm08",
+   "gameSystem": "ARMADA_V15",
+   "name": "Imperial Fighter Squadrons Expansion Pack",
+   "imageName": "Swm08 main-0.webp",
+   "cards": [
+    "armada_v15:squadron-card/galactic-empire/tie-advanced-squadron",
+    "armada_v15:squadron-card/galactic-empire/tie-bomber-squadron",
+    "armada_v15:squadron-card/galactic-empire/tie-fighter-squadron",
+    "armada_v15:squadron-card/galactic-empire/tie-interceptor-squadron"
+   ]
+  },
+  {
+   "id": "swm11",
+   "gameSystem": "ARMADA_V15",
+   "name": "Imperial-class Star Destroyer Expansion Pack",
+   "imageName": "Swm11 box left.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/defensive-retrofit/redundant_shields",
+    "armada_v15:data/upgrade-card/ion-cannons/nk_7_ion_cannons",
+    "armada_v15:data/upgrade-card/offensive-retrofit/boosted_comms",
+    "armada_v15:data/upgrade-card/offensive-retrofit/phylon_q7_tractor_beams",
+    "armada_v15:data/upgrade-card/officer/captain_needa",
+    "armada_v15:data/upgrade-card/officer/engineering_captain",
+    "armada_v15:data/upgrade-card/officer/support_officer",
+    "armada_v15:data/upgrade-card/officer/tactical_expert",
+    "armada_v15:data/upgrade-card/officer/wing_commander",
+    "armada_v15:data/upgrade-card/title/avenger",
+    "armada_v15:data/upgrade-card/title/devastator",
+    "armada_v15:data/upgrade-card/title/relentless",
+    "armada_v15:data/upgrade-card/turbolasers/heavy_turbolaser_turrets",
+    "armada_v15:data/upgrade-card/turbolasers/slaved_turrets",
+    "armada_v15:data/upgrade-card/weapons-team/ruthless_strategists",
+    "armada_v15:ship-card/galactic-empire/imperial-i-class-star-destroyer",
+    "armada_v15:ship-card/galactic-empire/imperial-ii-class-star-destroyer",
+    "armada_v15:squadron-card/galactic-empire/darth-vader"
+   ]
+  },
+  {
+   "id": "swm12",
+   "gameSystem": "ARMADA_V15",
+   "name": "MC30c Frigate Expansion Pack",
+   "imageName": "Swm12 main.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/commander/general_rieekan",
+    "armada_v15:data/upgrade-card/defensive-retrofit/redundant_shields",
+    "armada_v15:data/upgrade-card/officer/engineering_captain",
+    "armada_v15:data/upgrade-card/ordnance/assault_proton_torpedoes",
+    "armada_v15:data/upgrade-card/ordnance/rapid_reload",
+    "armada_v15:data/upgrade-card/title/admonition",
+    "armada_v15:data/upgrade-card/title/foresight",
+    "armada_v15:data/upgrade-card/turbolasers/turbolaser_reroute_circuits",
+    "armada_v15:data/upgrade-card/weapons-team/ordnance_experts",
+    "armada_v15:ship-card/rebel-alliance/mc30c-scout-frigate",
+    "armada_v15:ship-card/rebel-alliance/mc30c-torpedo-frigate",
+    "armada_v15:squadron-card/rebel-alliance/lando-calrissian"
+   ]
+  },
+  {
+   "id": "swm13",
+   "gameSystem": "ARMADA_V15",
+   "name": "Home One Expansion Pack",
+   "imageName": "Swm13 main.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/commander/admiral_ackbar",
+    "armada_v15:data/upgrade-card/defensive-retrofit/cluster_bombs",
+    "armada_v15:data/upgrade-card/ion-cannons/sw_7_ion_batteries",
+    "armada_v15:data/upgrade-card/offensive-retrofit/boosted_comms",
+    "armada_v15:data/upgrade-card/offensive-retrofit/phylon_q7_tractor_beams",
+    "armada_v15:data/upgrade-card/officer/navigation_officer",
+    "armada_v15:data/upgrade-card/officer/support_officer",
+    "armada_v15:data/upgrade-card/officer/walex_blissex",
+    "armada_v15:data/upgrade-card/officer/wing_commander",
+    "armada_v15:data/upgrade-card/support-team/projection_experts",
+    "armada_v15:data/upgrade-card/title/defiance",
+    "armada_v15:data/upgrade-card/title/home_one",
+    "armada_v15:data/upgrade-card/title/independence",
+    "armada_v15:data/upgrade-card/turbolasers/slaved_turrets",
+    "armada_v15:ship-card/rebel-alliance/mc80-assault-cruiser",
+    "armada_v15:ship-card/rebel-alliance/mc80-command-cruiser"
+   ]
+  },
+  {
+   "id": "swm14",
+   "gameSystem": "ARMADA_V15",
+   "name": "Rogues and Villains Expansion Pack",
+   "imageName": "Swm14 main.webp",
+   "cards": [
+    "armada_v15:squadron-card/galactic-empire/aggressor-assault-fighter",
+    "armada_v15:squadron-card/galactic-empire/firespray-31",
+    "armada_v15:squadron-card/galactic-empire/jumpmaster-5000",
+    "armada_v15:squadron-card/galactic-empire/yv-666",
+    "armada_v15:squadron-card/rebel-alliance/hwk-290",
+    "armada_v15:squadron-card/rebel-alliance/scurrg-h-6-bomber",
+    "armada_v15:squadron-card/rebel-alliance/yt-1300",
+    "armada_v15:squadron-card/rebel-alliance/yt-2400"
+   ]
+  },
+  {
+   "id": "swm15",
+   "gameSystem": "ARMADA_V15",
+   "name": "Imperial Raider Expansion Pack",
+   "imageName": "Swm15 main.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/commander/admiral_ozzel",
+    "armada_v15:data/upgrade-card/ion-cannons/sw_7_ion_batteries",
+    "armada_v15:data/upgrade-card/offensive-retrofit/quad_laser_turrets",
+    "armada_v15:data/upgrade-card/officer/admiral_montferrat",
+    "armada_v15:data/upgrade-card/ordnance/rapid_reload",
+    "armada_v15:data/upgrade-card/title/impetuous",
+    "armada_v15:data/upgrade-card/title/instigator",
+    "armada_v15:data/upgrade-card/weapons-team/ordnance_experts",
+    "armada_v15:ship-card/galactic-empire/raider-i-class-corvette",
+    "armada_v15:ship-card/galactic-empire/raider-ii-class-corvette"
+   ]
+  },
+  {
+   "id": "swm16",
+   "gameSystem": "ARMADA_V15",
+   "name": "Interdictor Expansion Pack",
+   "imageName": "Swm16 main.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/commander/admiral_konstantine",
+    "armada_v15:data/upgrade-card/experimental-retrofit/g7_x_grav_well_projector",
+    "armada_v15:data/upgrade-card/experimental-retrofit/g_8_experimental_projector",
+    "armada_v15:data/upgrade-card/experimental-retrofit/grav_shift_reroute",
+    "armada_v15:data/upgrade-card/experimental-retrofit/targeting_scrambler",
+    "armada_v15:data/upgrade-card/ion-cannons/leading_shots",
+    "armada_v15:data/upgrade-card/offensive-retrofit/quad_laser_turrets",
+    "armada_v15:data/upgrade-card/officer/admiral_titus",
+    "armada_v15:data/upgrade-card/officer/commandant_aresko",
+    "armada_v15:data/upgrade-card/officer/flight_commander",
+    "armada_v15:data/upgrade-card/support-team/engineering_team",
+    "armada_v15:data/upgrade-card/support-team/fighter_coordination_team",
+    "armada_v15:data/upgrade-card/title/interdictor",
+    "armada_v15:ship-card/galactic-empire/interdictor-combat-refit",
+    "armada_v15:ship-card/galactic-empire/interdictor-suppression-refit"
+   ]
+  },
+  {
+   "id": "swm17",
+   "gameSystem": "ARMADA_V15",
+   "name": "Liberty Expansion Pack",
+   "imageName": "Swm17 main.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/commander/general_madine",
+    "armada_v15:data/upgrade-card/ion-cannons/high_capacity_ion_turbines",
+    "armada_v15:data/upgrade-card/officer/chart_officer",
+    "armada_v15:data/upgrade-card/officer/skilled_first_officer",
+    "armada_v15:data/upgrade-card/support-team/engine_techs",
+    "armada_v15:data/upgrade-card/support-team/medical_team",
+    "armada_v15:data/upgrade-card/title/endeavor",
+    "armada_v15:data/upgrade-card/title/liberty",
+    "armada_v15:data/upgrade-card/title/mon_karren",
+    "armada_v15:data/upgrade-card/turbolasers/quad_turbolaser_cannons",
+    "armada_v15:data/upgrade-card/turbolasers/spinal_armament",
+    "armada_v15:data/upgrade-card/weapons-team/fire_control_team",
+    "armada_v15:data/upgrade-card/weapons-team/veteran_gunners",
+    "armada_v15:ship-card/rebel-alliance/mc80-battle-cruiser",
+    "armada_v15:ship-card/rebel-alliance/mc80-star-cruiser"
+   ]
+  },
+  {
+   "id": "swm18",
+   "gameSystem": "ARMADA_V15",
+   "name": "Imperial Assault Carriers Expansion Pack",
+   "imageName": "Swm18 main.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/commander/general_tagge",
+    "armada_v15:data/upgrade-card/fleet-support/bomber_command_center",
+    "armada_v15:data/upgrade-card/fleet-support/comms_net",
+    "armada_v15:data/upgrade-card/fleet-support/jamming_field",
+    "armada_v15:data/upgrade-card/fleet-support/slicer_tools",
+    "armada_v15:data/upgrade-card/officer/agent_kallus",
+    "armada_v15:data/upgrade-card/title/suppressor",
+    "armada_v15:data/upgrade-card/title/vector",
+    "armada_v15:ship-card/galactic-empire/gozanti-class-assault-carriers",
+    "armada_v15:ship-card/galactic-empire/gozanti-class-cruisers"
+   ]
+  },
+  {
+   "id": "swm19",
+   "gameSystem": "ARMADA_V15",
+   "name": "Rebel Transports Expansion Pack",
+   "imageName": "Swm19 main.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/commander/general_cracken",
+    "armada_v15:data/upgrade-card/fleet-support/bomber_command_center",
+    "armada_v15:data/upgrade-card/fleet-support/comms_net",
+    "armada_v15:data/upgrade-card/fleet-support/jamming_field",
+    "armada_v15:data/upgrade-card/fleet-support/repair_crews",
+    "armada_v15:data/upgrade-card/officer/toryn_farr",
+    "armada_v15:data/upgrade-card/title/bright_hope",
+    "armada_v15:data/upgrade-card/title/quantum_storm",
+    "armada_v15:ship-card/rebel-alliance/gr-75-combat-retrofits",
+    "armada_v15:ship-card/rebel-alliance/gr-75-medium-transports"
+   ]
+  },
+  {
+   "id": "swm20",
+   "gameSystem": "ARMADA_V15",
+   "name": "Super Star Destroyer Expansion Pack",
+   "imageName": null,
+   "cards": [
+    "armada_v15:data/upgrade-card/commander/admiral_piett",
+    "armada_v15:data/upgrade-card/commander/emperor_palpatine",
+    "armada_v15:data/upgrade-card/fleet-command/all_fighters_follow_me",
+    "armada_v15:data/upgrade-card/fleet-command/entrapment_formation",
+    "armada_v15:data/upgrade-card/fleet-command/intensify_firepower",
+    "armada_v15:data/upgrade-card/fleet-command/shields_to_maximum",
+    "armada_v15:data/upgrade-card/ion-cannons/heavy_ion_emplacements",
+    "armada_v15:data/upgrade-card/offensive-retrofit/point_defense_reroute",
+    "armada_v15:data/upgrade-card/offensive-retrofit/rapid_launch_bays",
+    "armada_v15:data/upgrade-card/officer/commander_gherant",
+    "armada_v15:data/upgrade-card/officer/director_krennic",
+    "armada_v15:data/upgrade-card/officer/lira_wessex",
+    "armada_v15:data/upgrade-card/title/annihilator",
+    "armada_v15:data/upgrade-card/title/eclipse",
+    "armada_v15:data/upgrade-card/title/executor",
+    "armada_v15:data/upgrade-card/title/ravager",
+    "armada_v15:data/upgrade-card/turbolasers/quad_turbolaser_cannons",
+    "armada_v15:data/upgrade-card/turbolasers/xi7_turbolasers",
+    "armada_v15:data/upgrade-card/weapons-team-and-offensive-retrofit/boarding_engineers",
+    "armada_v15:data/upgrade-card/weapons-team/flight_controllers",
+    "armada_v15:data/upgrade-card/weapons-team/veteran_gunners",
+    "armada_v15:ship-card/galactic-empire/executor-i-class-star-dreadnought",
+    "armada_v15:ship-card/galactic-empire/executor-ii-class-star-dreadnought",
+    "armada_v15:ship-card/galactic-empire/star-dreadnought-assault-prototype",
+    "armada_v15:ship-card/galactic-empire/star-dreadnought-command-prototype"
+   ]
+  },
+  {
+   "id": "swm21",
+   "gameSystem": "ARMADA_V15",
+   "name": "Phoenix Home Expansion Pack",
+   "imageName": "Swm21 main.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/commander/commander_sato",
+    "armada_v15:data/upgrade-card/fleet-command/all_fighters_follow_me",
+    "armada_v15:data/upgrade-card/fleet-command/entrapment_formation",
+    "armada_v15:data/upgrade-card/fleet-command/shields_to_maximum",
+    "armada_v15:data/upgrade-card/offensive-retrofit/rapid_launch_bays",
+    "armada_v15:data/upgrade-card/officer/ahsoka_tano",
+    "armada_v15:data/upgrade-card/officer/major_derlin",
+    "armada_v15:data/upgrade-card/ordnance/flechette_torpedoes",
+    "armada_v15:data/upgrade-card/support-team/fighter_coordination_team",
+    "armada_v15:data/upgrade-card/title/phoenix_home",
+    "armada_v15:ship-card/rebel-alliance/modified-pelta-class-assault-ship",
+    "armada_v15:ship-card/rebel-alliance/modified-pelta-class-command-ship"
+   ]
+  },
+  {
+   "id": "swm22",
+   "gameSystem": "ARMADA_V15",
+   "name": "Imperial Light Cruiser Expansion Pack",
+   "imageName": "Swm22 main.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/commander/moff_jerjerrod",
+    "armada_v15:data/upgrade-card/defensive-retrofit/reinforced_blast_doors",
+    "armada_v15:data/upgrade-card/officer/damage_control_officer",
+    "armada_v15:data/upgrade-card/officer/minister_tua",
+    "armada_v15:data/upgrade-card/support-team/engineering_team",
+    "armada_v15:data/upgrade-card/title/centicore",
+    "armada_v15:data/upgrade-card/title/hand_of_justice",
+    "armada_v15:data/upgrade-card/turbolasers/dual_turbolaser_turrets",
+    "armada_v15:ship-card/galactic-empire/arquitens-class-command-cruiser",
+    "armada_v15:ship-card/galactic-empire/arquitens-class-light-cruiser"
+   ]
+  },
+  {
+   "id": "swm23",
+   "gameSystem": "ARMADA_V15",
+   "name": "Rebel Fighter Squadrons II Expansion Pack",
+   "imageName": "Swm23 main.webp",
+   "cards": [
+    "armada_v15:squadron-card/rebel-alliance/e-wing-squadron",
+    "armada_v15:squadron-card/rebel-alliance/lancer-class-pursuit-craft",
+    "armada_v15:squadron-card/rebel-alliance/vcx-100-freighter",
+    "armada_v15:squadron-card/rebel-alliance/z-95-headhunter-squadron"
+   ]
+  },
+  {
+   "id": "swm24",
+   "gameSystem": "ARMADA_V15",
+   "name": "Imperial Fighter Squadrons II Expansion Pack",
+   "imageName": "Swm24 main.webp",
+   "cards": [
+    "armada_v15:squadron-card/galactic-empire/lambda-class-shuttle",
+    "armada_v15:squadron-card/galactic-empire/tie-defender-squadron",
+    "armada_v15:squadron-card/galactic-empire/tie-phantom-squadron",
+    "armada_v15:squadron-card/galactic-empire/vt-49-decimator"
+   ]
+  },
+  {
+   "id": "swm26",
+   "gameSystem": "ARMADA_V15",
+   "name": "Imperial Light Carrier Expansion Pack",
+   "imageName": "Swm26 Quasar Fire Pack.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/commander/admiral_sloane",
+    "armada_v15:data/upgrade-card/offensive-retrofit/disposable_capacitors",
+    "armada_v15:data/upgrade-card/officer/the_grand_inquisitor",
+    "armada_v15:data/upgrade-card/title/pursuant",
+    "armada_v15:data/upgrade-card/title/squall",
+    "armada_v15:data/upgrade-card/title/stronghold",
+    "armada_v15:data/upgrade-card/turbolasers/quad_battery_turrets",
+    "armada_v15:data/upgrade-card/weapons-team-and-offensive-retrofit/boarding_troopers",
+    "armada_v15:ship-card/galactic-empire/quasar-fire-i-class-cruiser-carrier",
+    "armada_v15:ship-card/galactic-empire/quasar-fire-ii-class-cruiser-carrier"
+   ]
+  },
+  {
+   "id": "swm27",
+   "gameSystem": "ARMADA_V15",
+   "name": "Hammerhead Corvettes Expansion Pack",
+   "imageName": "Swm27 Hammerhead Pack.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/ordnance/external_racks",
+    "armada_v15:data/upgrade-card/title/garels_honor",
+    "armada_v15:data/upgrade-card/title/task_force_antilles",
+    "armada_v15:data/upgrade-card/title/task_force_organa",
+    "armada_v15:data/upgrade-card/turbolasers/quad_battery_turrets",
+    "armada_v15:data/upgrade-card/weapons-team-and-offensive-retrofit/boarding_engineers",
+    "armada_v15:data/upgrade-card/weapons-team-and-offensive-retrofit/cham_syndulla",
+    "armada_v15:ship-card/rebel-alliance/hammerhead-scout-corvette",
+    "armada_v15:ship-card/rebel-alliance/hammerhead-torpedo-corvette",
+    "armada_v15:squadron-card/galactic-empire/hondo-ohnaka"
+   ]
+  },
+  {
+   "id": "swm29",
+   "gameSystem": "ARMADA_V15",
+   "name": "Chimaera Expansion Pack",
+   "imageName": "Swm29 main.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/commander/grand_admiral_thrawn",
+    "armada_v15:data/upgrade-card/defensive-retrofit/early_warning_system",
+    "armada_v15:data/upgrade-card/fleet-command/entrapment_formation",
+    "armada_v15:data/upgrade-card/fleet-command/intensify_firepower",
+    "armada_v15:data/upgrade-card/fleet-command/shields_to_maximum",
+    "armada_v15:data/upgrade-card/offensive-retrofit/hardened_bulkheads",
+    "armada_v15:data/upgrade-card/officer/captain_brunson",
+    "armada_v15:data/upgrade-card/officer/governor_pryce",
+    "armada_v15:data/upgrade-card/officer/instructor_goran",
+    "armada_v15:data/upgrade-card/officer/strategic_adviser",
+    "armada_v15:data/upgrade-card/officer/taskmaster_grint",
+    "armada_v15:data/upgrade-card/title/chimaera",
+    "armada_v15:data/upgrade-card/title/seventh_fleet_star_destroyer",
+    "armada_v15:data/upgrade-card/title/sovereign",
+    "armada_v15:ship-card/galactic-empire/imperial-star-destroyer-cymoon-1-refit",
+    "armada_v15:ship-card/galactic-empire/imperial-star-destroyer-kuat-refit",
+    "armada_v15:squadron-card/galactic-empire/mandalorian-gauntlet-fighter"
+   ]
+  },
+  {
+   "id": "swm30",
+   "gameSystem": "ARMADA_V15",
+   "name": "Profundity Expansion Pack",
+   "imageName": "Swm30 profundity box main.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/commander/admiral_raddus",
+    "armada_v15:data/upgrade-card/defensive-retrofit/early_warning_system",
+    "armada_v15:data/upgrade-card/ion-cannons/heavy_ion_emplacements",
+    "armada_v15:data/upgrade-card/officer/bail_organa",
+    "armada_v15:data/upgrade-card/officer/general_draven",
+    "armada_v15:data/upgrade-card/officer/strategic_adviser",
+    "armada_v15:data/upgrade-card/ordnance/ordnance_pods",
+    "armada_v15:data/upgrade-card/ordnance/wide_area_barrage",
+    "armada_v15:data/upgrade-card/title/aspiration",
+    "armada_v15:data/upgrade-card/title/mon_calamari_exodus_fleet",
+    "armada_v15:data/upgrade-card/title/profundity",
+    "armada_v15:data/upgrade-card/weapons-team-and-offensive-retrofit/jyn_erso",
+    "armada_v15:data/upgrade-card/weapons-team/caitken_and_shollan",
+    "armada_v15:ship-card/rebel-alliance/mc75-armored-cruiser",
+    "armada_v15:ship-card/rebel-alliance/mc75-ordnance-cruiser"
+   ]
+  },
+  {
+   "id": "swm32",
+   "gameSystem": "ARMADA_V15",
+   "name": "Nadiri Starhawk Expansion Pack",
+   "imageName": "Swm32 box left.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/commander/kyrsta_agate",
+    "armada_v15:data/upgrade-card/fleet-command/intensify_firepower",
+    "armada_v15:data/upgrade-card/offensive-retrofit/flag_bridge",
+    "armada_v15:data/upgrade-card/title/amity",
+    "armada_v15:data/upgrade-card/title/concord",
+    "armada_v15:data/upgrade-card/title/unity",
+    "armada_v15:data/upgrade-card/turbolasers/heavy_fire_zone",
+    "armada_v15:data/upgrade-card/weapons-team-and-offensive-retrofit/shriv_suurgav",
+    "armada_v15:data/upgrade-card/weapons-team/flight_controllers",
+    "armada_v15:data/upgrade-card/weapons-team/local_fire_control",
+    "armada_v15:ship-card/rebel-alliance/starhawk-class-battleship-mark-i",
+    "armada_v15:ship-card/rebel-alliance/starhawk-class-battleship-mark-ii",
+    "armada_v15:squadron-card/rebel-alliance/wedge-antilles"
+   ]
+  },
+  {
+   "id": "swm33",
+   "gameSystem": "ARMADA_V15",
+   "name": "Onager-class Star Destroyer Expansion Pack",
+   "imageName": "Swm33 main.webp",
+   "cards": [
+    "armada_v15:data/upgrade-card/commander/general_romodi",
+    "armada_v15:data/upgrade-card/fleet-command/all_fighters_follow_me",
+    "armada_v15:data/upgrade-card/offensive-retrofit/flag_bridge",
+    "armada_v15:data/upgrade-card/officer/commander_beck",
+    "armada_v15:data/upgrade-card/officer/reeva_demesne",
+    "armada_v15:data/upgrade-card/superweapon/orbital_bombardment_particle_cannons",
+    "armada_v15:data/upgrade-card/superweapon/superheavy_composite_beam_turbolasers",
+    "armada_v15:data/upgrade-card/title/cataclysm",
+    "armada_v15:data/upgrade-card/title/rakehell",
+    "armada_v15:data/upgrade-card/title/sunder",
+    "armada_v15:data/upgrade-card/turbolasers/heavy_fire_zone",
+    "armada_v15:data/upgrade-card/weapons-team/gunnery_chief_varnillian",
+    "armada_v15:data/upgrade-card/weapons-team/local_fire_control",
+    "armada_v15:ship-card/galactic-empire/onager-class-star-destroyer",
+    "armada_v15:ship-card/galactic-empire/onager-class-testbed"
+   ]
+  },
+  {
+   "id": "swm34",
+   "gameSystem": "ARMADA_V15",
+   "name": "Galactic Republic Fleet Starter",
+   "imageName": "GAR-fleet-starter-box.webp",
+   "cards": [
+    "armada-v15:bsdata:galactic-republic:1da0-310a-d8fc-25ea",
+    "armada-v15:bsdata:galactic-republic:3b12-4d0f-41b6-4078",
+    "armada-v15:bsdata:galactic-republic:4eaa-a922-354c-6fdc",
+    "armada-v15:bsdata:galactic-republic:8795-e911-4096-002c",
+    "armada-v15:bsdata:galactic-republic:abd6-da81-1e67-43d6",
+    "armada-v15:bsdata:galactic-republic:c6ff-db88-74f8-bbb7",
+    "armada_v15:data/upgrade-card/ordnance/assault_concussion_missiles",
+    "armada_v15:data/upgrade-card/support-team/auxiliary_shields_team"
+   ]
+  },
+  {
+   "id": "swm35",
+   "gameSystem": "ARMADA_V15",
+   "name": "Separatist Alliance Fleet Starter",
+   "imageName": "CIS-starter-box.webp",
+   "cards": [
+    "armada-v15:bsdata:separatist-alliance:1a34-db4e-b33c-4c59",
+    "armada-v15:bsdata:separatist-alliance:1da0-310a-d8fc-25ea",
+    "armada-v15:bsdata:separatist-alliance:3b12-4d0f-41b6-4078",
+    "armada-v15:bsdata:separatist-alliance:4eaa-a922-354c-6fdc",
+    "armada-v15:bsdata:separatist-alliance:8795-e911-4096-002c",
+    "armada-v15:bsdata:separatist-alliance:abd6-da81-1e67-43d6",
+    "armada-v15:bsdata:separatist-alliance:c6ff-db88-74f8-bbb7",
+    "armada-v15:bsdata:separatist-alliance:dc93-d6db-d932-097d",
+    "armada_v15:data/upgrade-card/ion-cannons/heavy_ion_emplacements",
+    "armada_v15:data/upgrade-card/offensive-retrofit/reserve_hangar_deck"
+   ]
+  },
+  {
+   "id": "swm36",
+   "gameSystem": "ARMADA_V15",
+   "name": "Republic Fighter Squadrons Expansion Pack",
+   "imageName": "GAR-fighter-box-left.webp",
+   "cards": [
+    "armada-v15:bsdata:galactic-republic:051f-76e7-2b0e-f5af",
+    "armada-v15:bsdata:galactic-republic:3b12-4d0f-41b6-4078",
+    "armada-v15:bsdata:galactic-republic:59fc-b936-5b91-66a1",
+    "armada-v15:bsdata:galactic-republic:7298-1e72-1686-68e3"
+   ]
+  },
+  {
+   "id": "swm37",
+   "gameSystem": "ARMADA_V15",
+   "name": "Separatist Fighter Squadrons Expansion Pack",
+   "imageName": "CIS-fighter-box-left.webp",
+   "cards": [
+    "armada-v15:bsdata:separatist-alliance:051f-76e7-2b0e-f5af",
+    "armada-v15:bsdata:separatist-alliance:3b12-4d0f-41b6-4078",
+    "armada-v15:bsdata:separatist-alliance:59fc-b936-5b91-66a1"
+   ]
+  },
+  {
+   "id": "swm38",
+   "gameSystem": "ARMADA_V15",
+   "name": "Upgrade Card Collection",
+   "imageName": "swm38-box-left.webp",
+   "cards": []
+  },
+  {
+   "id": "swm40",
+   "gameSystem": "ARMADA_V15",
+   "name": "Pelta-class Frigate Expansion Pack",
+   "imageName": "Pelta-box-left.webp",
+   "cards": [
+    "armada-v15:bsdata:galactic-republic:6143-f5f7-e034-e96e",
+    "armada-v15:bsdata:galactic-republic:c42e-d89e-9d06-0a30",
+    "armada-v15:bsdata:galactic-republic:e1f0-8662-e79d-5ef1",
+    "armada-v15:bsdata:galactic-republic:fb6a-33fa-c3e0-2201"
+   ]
+  },
+  {
+   "id": "swm41",
+   "gameSystem": "ARMADA_V15",
+   "name": "Venator-class Star Destroyer Expansion Pack",
+   "imageName": "Venator-box-left.webp",
+   "cards": [
+    "armada-v15:bsdata:galactic-republic:3240-fd8a-04a3-ce98",
+    "armada-v15:bsdata:galactic-republic:b7b4-6ff8-5e4b-7274",
+    "armada-v15:bsdata:galactic-republic:be24-c216-6f4f-6299",
+    "armada-v15:bsdata:galactic-republic:ddb4-6c68-ea35-a417"
+   ]
+  },
+  {
+   "id": "swm42",
+   "gameSystem": "ARMADA_V15",
+   "name": "Invisible Hand Expansion Pack",
+   "imageName": "Invisible-box-left.webp",
+   "cards": [
+    "armada-v15:bsdata:separatist-alliance:0083-8d4e-e272-2a09",
+    "armada-v15:bsdata:separatist-alliance:0236-1299-663d-7fe7",
+    "armada-v15:bsdata:separatist-alliance:7953-a4ce-f74b-c466",
+    "armada-v15:bsdata:separatist-alliance:a6b0-3492-cb22-0736"
+   ]
+  },
+  {
+   "id": "swm43",
+   "gameSystem": "ARMADA_V15",
+   "name": "Recusant-class Destroyer Expansion Pack",
+   "imageName": "Recusant-box-left.webp",
+   "cards": [
+    "armada-v15:bsdata:separatist-alliance:35ab-9360-4935-a8d0",
+    "armada-v15:bsdata:separatist-alliance:41e4-a9fd-cdc6-61d0",
+    "armada-v15:bsdata:separatist-alliance:a1f5-bad7-507a-627c",
+    "armada-v15:bsdata:separatist-alliance:be24-c569-2137-4f0e"
+   ]
+  }
+ ]
+}

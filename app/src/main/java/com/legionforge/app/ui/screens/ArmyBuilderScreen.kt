@@ -101,8 +101,14 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                     var out = list.filter { rk == null || it.legionRank?.name == rk }
                         .filter { mp == null || it.points <= mp }
                         .filter { kw == null || it.name.contains(kw, ignoreCase = true) || (it.rulesText ?: "").contains(kw, ignoreCase = true) || (it.legionStats ?: "").contains(kw, ignoreCase = true) || (it.shipStats ?: "").contains(kw, ignoreCase = true) }
-                    // Filtre strict "Ma collection" : n'affiche que les cartes possédées (unités ET upgrades).
-                    if (collectionOnly) out = out.filter { it.id in ownedCards }
+                    // Filtre "Ma collection" : n'affiche que les cartes possédées. Les UPGRADES
+                    // suivent l'unité/vaisseau sélectionné (on possède sa boîte = on a ses upgrades),
+                    // donc elles ne sont filtrées que si le parent n'est pas possédé — ce cas est
+                    // déjà exclu car le parent ne serait pas dans le catalogue. On ne filtre donc que
+                    // les cartes standalone (unités/vaisseaux/escadrons/commandants).
+                    if (collectionOnly) out = out.filter {
+                        it.kind == CardKind.LEGION_UPGRADE || it.kind == CardKind.ARMADA_UPGRADE || it.id in ownedCards
+                    }
                     out
                 }
     // Bouton play global : actif (vert) uniquement si la liste est valide.

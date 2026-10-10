@@ -96,6 +96,9 @@
     <string name="back">Back</string>
     <string name="my_collection">My collection</string>
     <string name="my_collection_desc">Check the material you own</string>
+    <string name="my_collection_packs">Packs</string>
+    <string name="my_collection_cards">Cards (%1$d)</string>
+    <string name="no_packs">No packs loaded yet</string>
     <string name="more_options">More options coming soon</string>
 
     <!-- Search -->

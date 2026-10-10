@@ -1,53 +1,49 @@
 package com.legionforge.app.ui.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import coil.compose.AsyncImage
 import com.legionforge.app.R
 import com.legionforge.app.data.model.CardDefinition
-import com.legionforge.app.data.model.GameSystem
+import com.legionforge.app.data.repository.CollectionPack
 import com.legionforge.app.data.repository.CollectionRepository
 import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
 
 /**
- * Ma collection (Réglages) : cocher le matériel acheté, carte par carte,
- * groupé par système puis faction, avec recherche. Feed propagé au catalogue
- * via CollectionRepository.owned (le builder peut filtrer "ma collection").
+ * Ma collection (Réglages) : cocher le matériel acheté PAR PACK (boîte d'extension),
+ * avec l'image miniature de la boîte. Cocher un pack marque possédées toutes ses
+ * cartes (union). Un onglet « Cartes » permet le coche carte par carte si besoin.
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CollectionScreen(onBack: () -> Unit, vm: ArmyBuilderViewModel = viewModel()) {
     val allCards by vm.allCatalog.collectAsState()
-    val owned by CollectionRepository.owned.collectAsState()
+    val ownedPacks by CollectionRepository.ownedPacks.collectAsState()
+    val ownedCards by CollectionRepository.ownedCards.collectAsState()
+    val packs by CollectionRepository.packs.collectAsState()
     var search by remember { mutableStateOf("") }
+    var showPacks by remember { mutableStateOf(true) } // onglet Packs / Cartes
 
     LaunchedEffect(Unit) { vm.loadAllCatalogForCollection() }
 
     val q = search.trim()
-    val filtered = allCards.filter {
-        q.isEmpty() || it.displayName().contains(q, ignoreCase = true) || it.name.contains(q, ignoreCase = true) || it.factionId.contains(q, ignoreCase = true)
-    }
-    // Groupement stable : système, puis faction, puis type (unités avant upgrades).
-    val grouped = filtered.groupBy { it.gameSystem }
-        .toSortedMap(compareBy { it.ordinal })
-        .map { (system, cards) ->
-            system to cards.sortedWith(compareBy({ it.factionId }, { it.kind.ordinal }, { it.name.lowercase() }))
-        }
+    val byId = allCards.associateBy { it.id }
 
     Scaffold(
         topBar = {
@@ -72,52 +68,94 @@ fun CollectionScreen(onBack: () -> Unit, vm: ArmyBuilderViewModel = viewModel())
                     textStyle = MaterialTheme.typography.bodyMedium
                 )
                 Text(
-                    "$owned (${owned.size})",
+                    "$ownedPacks packs",
                     color = Color(0xFFFFC857),
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.Bold
                 )
             }
 
-            LazyColumn(Modifier.weight(1f), contentPadding = PaddingValues(horizontal = 14.dp, vertical = 4.dp)) {
-                grouped.forEach { (system, cardsInSystem) ->
-                    item(key = "sys_${system.name}") {
-                        Text(
-                            system.label(),
-                            color = Color(0xFFFFC857),
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.padding(top = 12.dp, bottom = 4.dp)
-                        )
-                    }
-                    var lastFaction: String? = null
-                    cardsInSystem.forEach { card ->
-                        if (card.factionId != lastFaction) {
-                            lastFaction = card.factionId
-                            item(key = "fac_${system.name}_${card.factionId}") {
-                                Row(
-                                    Modifier.fillMaxWidth().padding(top = 6.dp, bottom = 2.dp),
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
-                                    Text(
-                                        factionLabel(card.factionId),
-                                        color = FactionCardColor(card.factionId),
-                                        style = MaterialTheme.typography.labelMedium,
-                                        fontWeight = FontWeight.Bold,
-                                        modifier = Modifier
-                                            .clip(RoundedCornerShape(6.dp))
-                                            .background(FactionCardColor(card.factionId).copy(alpha = 0.18f))
-                                            .padding(horizontal = 8.dp, vertical = 3.dp)
-                                    )
-                                }
-                            }
-                        }
-                        item(key = card.id) {
-                            CollectionRow(card, owned.contains(card.id)) { CollectionRepository.toggle(card.id) }
-                        }
-                    }
+            Row(Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 2.dp)) {
+                TabRow(selectedTabIndex = if (showPacks) 0 else 1) {
+                    Tab(showPacks, onClick = { showPacks = true }, text = { Text(stringResource(R.string.my_collection_packs), fontSize = 13.sp) })
+                    Tab(!showPacks, onClick = { showPacks = false }, text = { Text(stringResource(R.string.my_collection_cards, ownedCards.size), fontSize = 13.sp) })
                 }
             }
+
+            if (showPacks) {
+                PackList(packs, ownedPacks, q)
+            } else {
+                CardList(allCards, byId, ownedCards, q)
+            }
+        }
+    }
+}
+
+// ── vue Packs ─────────────────────────────────────────────────────
+@Composable
+private fun PackList(packs: List<CollectionPack>, ownedPacks: Set<String>, q: String) {
+    if (packs.isEmpty()) {
+        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            Text(stringResource(R.string.no_packs), color = Color.Gray)
+        }
+        return
+    }
+    LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp)) {
+        items(packs.size, key = { packs[it].id }) { i ->
+            val pack = packs[i]
+            if (q.isEmpty() || pack.name.contains(q, ignoreCase = true)) {
+                PackRow(pack, pack.id in ownedPacks) { CollectionRepository.togglePack(pack.id) }
+            }
+        }
+    }
+}
+
+@Composable
+private fun PackRow(pack: CollectionPack, isOwned: Boolean, onToggle: () -> Unit) {
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp)
+            .clip(RoundedCornerShape(12.dp))
+            .clickable(onClick = onToggle),
+        color = if (isOwned) Color(0xFF2A3A1E) else Color(0xFF141B26)
+    ) {
+        Row(Modifier.fillMaxWidth().padding(10.dp), verticalAlignment = Alignment.CenterVertically) {
+            val imgSrc = pack.imageName?.let { "file:///android_asset/cards/packs/$it" }
+            Box(Modifier.size(width = 88.dp, height = 74.dp).clip(RoundedCornerShape(8.dp)), contentAlignment = Alignment.Center) {
+                if (imgSrc != null) {
+                    AsyncImage(model = imgSrc, contentDescription = pack.name,
+                        contentScale = ContentScale.Crop, modifier = Modifier.fillMaxSize())
+                } else {
+                    Text("📦", fontSize = 30.sp)
+                }
+            }
+            Spacer(Modifier.width(12.dp))
+            Column(Modifier.weight(1f)) {
+                Text(pack.name, color = Color.White, style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold, maxLines = 2, overflow = TextOverflow.Ellipsis)
+                Text("${pack.cards.size} cartes", color = Color(0xFF8F9BAD), style = MaterialTheme.typography.labelSmall)
+            }
+            Checkbox(
+                checked = isOwned, onCheckedChange = { onToggle() },
+                colors = CheckboxDefaults.colors(checkedColor = if (isOwned) Color(0xFF77D9A7) else Color(0xFF2A3A4A), checkmarkColor = Color.Black)
+            )
+        }
+    }
+}
+
+// ── vue Cartes (coche par carte) ──────────────────────────────────
+@Composable
+private fun CardList(allCards: List<CardDefinition>, byId: Map<String, CardDefinition>, ownedCards: Set<String>, q: String) {
+    val filtered = if (q.isEmpty()) allCards else allCards.filter {
+        it.displayName().contains(q, ignoreCase = true) || it.name.contains(q, ignoreCase = true) || it.factionId.contains(q, ignoreCase = true)
+    }
+    val grouped = filtered.sortedWith(compareBy({ it.gameSystem.ordinal }, { it.factionId }, { it.name.lowercase() }))
+    LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp)) {
+        items(grouped.size, key = { grouped[it].id }) { i ->
+            val card = grouped[i]
+            val isOwned = card.id in ownedCards
+            CollectionRow(card, isOwned) { CollectionRepository.toggleCard(card.id) }
         }
     }
 }
@@ -141,13 +179,8 @@ private fun CollectionRow(card: CardDefinition, isOwned: Boolean, onToggle: () -
             )
             Spacer(Modifier.width(8.dp))
             Column(Modifier.weight(1f)) {
-                Text(
-                    card.displayName(),
-                    color = Color.White,
-                    style = MaterialTheme.typography.bodyMedium,
-                    maxLines = 1,
-                    overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
-                )
+                Text(card.displayName(), color = Color.White, style = MaterialTheme.typography.bodyMedium,
+                    maxLines = 1, overflow = TextOverflow.Ellipsis)
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                     Text(kindLabel(card.kind), color = Color(0xFF8F9BAD), style = MaterialTheme.typography.labelSmall)
                     if (card.kind.name == "LEGION_UNIT" && card.legionRank != null) {
