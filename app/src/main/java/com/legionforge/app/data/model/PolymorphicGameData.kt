@@ -145,7 +145,7 @@ data class CatalogCardEntity(
             card.legionRank?.name, card.upgradeSlots.joinToString(",") { it.name },
             card.allowedUpgradeSlots.joinToString(",") { it.name }, card.commander, card.unique,
             card.imageUrl, card.imageAssetPath, card.rulesText, toJsonNames(card.names), card.shipStats, card.linkedUnit, card.legionStats,
-            card.cardSubtype, card.title, card.forceAffinity, card.mercenaryFactions.joinToString(",")
+            card.cardSubtype, card.title, card.forceAffinity, (card.mercenaryFactions ?: emptyList()).joinToString(",")
         )
         private fun parseSlots(value: String) = value.split(',').filter(String::isNotBlank).map(ArmadaSlot::valueOf)
         private fun parseFactions(value: String?) = value?.split(',')?.filter(String::isNotBlank) ?: emptyList()
