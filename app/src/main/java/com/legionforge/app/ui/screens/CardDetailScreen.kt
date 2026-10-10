@@ -926,7 +926,7 @@ internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntri
                     }
                 }
             }
-            TokenSection(tokens, { set(state.copy(tokens = tokens + it)) }, { set(state.copy(tokens = tokens - it)) })
+            TokenSection(tokens, { set(state.copy(tokens = tokens + it)) }, { set(state.copy(tokens = tokens - it)) }, isVehicle = unit.card.cardSubtype?.contains("vehicle") == true)
         }
         CollapsibleSection(stringResource(R.string.active_effects), initiallyExpanded = false) {
             EffectsPanel(
@@ -1906,8 +1906,9 @@ internal fun SquadronActivationToken(activated: Boolean, onToggle: () -> Unit, o
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-internal fun TokenSection(tokens: List<String>, onAdd: (String) -> Unit, onRemove: (String) -> Unit) {
+internal fun TokenSection(tokens: List<String>, onAdd: (String) -> Unit, onRemove: (String) -> Unit, isVehicle: Boolean = false) {
     // Jetons d'action Legion v2 : Aim (jaune), Dodge (violet), Surge (bleu), Standby (orange).
+    // Vehicle Damage ne s'applique qu'aux véhicules (règle stricte) -> masqué sinon.
     val allTokens = listOf(
         LegionToken(stringResource(R.string.legion_token_aim), Color(0xFFFFC857), "\u25CE"),
         LegionToken(stringResource(R.string.legion_token_dodge), Color(0xFF9B6DFF), "\u25CC"),
@@ -1917,8 +1918,7 @@ internal fun TokenSection(tokens: List<String>, onAdd: (String) -> Unit, onRemov
         LegionToken(stringResource(R.string.legion_token_advantage), Color(0xFF77D9A7), "\u25B2"),
         LegionToken(stringResource(R.string.legion_token_smoke), Color(0xFF9EACBC), "\u25CF"),
         LegionToken(stringResource(R.string.legion_token_charge), Color(0xFFFFB74D), "\u2694"),
-        // Jetons de keywords + mécaniques (rulebook p.10) : Vehicle Damage, Order, Commander, Ion, Poison, Immobilize, Shield, Incognito, Bane, Graffiti.
-        LegionToken(stringResource(R.string.legion_token_vehicle_damage), Color(0xFFFF6B6B), "\u26A0"),
+        // Jetons de keywords + mécaniques (rulebook p.10) : Order, Commander, Ion, Poison, Immobilize, Shield, Incognito, Bane, Graffiti.
         LegionToken(stringResource(R.string.legion_token_order), Color(0xFF4FC3F7), "\u25C6"),
         LegionToken(stringResource(R.string.legion_token_commander), Color(0xFFFFC857), "\u2605"),
         LegionToken(stringResource(R.string.legion_token_ion), Color(0xFF4DD0E1), "\u26A1"),
@@ -1928,7 +1928,7 @@ internal fun TokenSection(tokens: List<String>, onAdd: (String) -> Unit, onRemov
         LegionToken(stringResource(R.string.legion_token_incognito), Color(0xFF9EACBC), "\u25C7"),
         LegionToken(stringResource(R.string.legion_token_bane), Color(0xFFB8395A), "\u2620"),
         LegionToken(stringResource(R.string.legion_token_graffiti), Color(0xFFFF8A65), "\u270E")
-    )
+    ) + if (isVehicle) listOf(LegionToken(stringResource(R.string.legion_token_vehicle_damage), Color(0xFFFF6B6B), "\u26A0")) else emptyList()
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(stringResource(R.string.tokens_markers), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelLarge)
         // Disques de jetons (vrais tokens) : retour à la ligne automatique si trop nombreux.
