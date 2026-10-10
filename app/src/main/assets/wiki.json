@@ -1119,7 +1119,7 @@
     "DARK",
     "SIDE"
    ],
-   "content": "Units in Star Wars: Legion are grouped together in Factions:\nthe Galactic Empire (Empire t) , the Rebel Alliance (Rebel\ns), the Separatist Alliance (Separatist v), and the Galactic\nRepublic (Republic u). A unit’s Faction is shown by the\nFaction icon printed in the top lef corner of its Unit Card. All\nunits in an army must share the same Faction, unless otherwise\nspecified by a special rule.\nOccasionally a rule references the Light Side or the Dark Side.\nThe Rebel Alliance and the Galactic Republic are the Light Side,\nand the Galactic Empire and the Separatist Alliance are the\nDark Side. Armies not built using these Factions state whether\nthey are part of the Light Side or the Dark Side in their rules\ntext."
+   "content": "Units in Star Wars: Legion are grouped together in Factions:\nthe Galactic Empire (Empire t) , the Rebel Alliance (Rebel\ns), the Separatist Alliance (Separatist v), and the Galactic\nRepublic (Republic u). A unit’s Faction is shown by the\nFaction icon printed in the top left corner of its Unit Card. All\nunits in an army must share the same Faction, unless otherwise\nspecified by a special rule.\nOccasionally a rule references the Light Side or the Dark Side.\nThe Rebel Alliance and the Galactic Republic are the Light Side,\nand the Galactic Empire and the Separatist Alliance are the\nDark Side. Armies not built using these Factions state whether\nthey are part of the Light Side or the Dark Side in their rules\ntext."
   },
   {
    "id": "legion_building-a-command-hand",
@@ -1228,7 +1228,7 @@
     "BUILDING",
     "MISSION"
    ],
-   "content": "Now that the blue player is determined, it is time to build the\nmission. Place the game dashboard with the mission side face\nup near the table. Ten each player separates their Battle Deck\nby type—Advantage, Objective, and Secondary Objective—\nand shuffles each of their three decks, placing them near the\nMission Dashboard.\nPlace a token on the Mission Dashboard to indicate which\nplayer is the blue player. The blue player then chooses to reveal\nthe top card of either their Objective Deck or Secondary\nObjective Deck, placing the revealed card in the designated\n\neligible unit can claim an unclaimed Asset token it is Contesting\nby making that free action. When a unit claims an Asset\nObjective token, remove that token from the battlefield and\nplace it on that unit’s Unit Card. Tat unit is now holding that\nAsset token. When a unit drops an Asset token it is holding,\nthe opponent of that unit’s controlling player places that token\non the battlefield within 7 of that unit’s unit leader. While an\nAsset Objective token is on the battlefield, it is unclaimed.\nWhen a unit Panics, it drops all Asset tokens it is holding. When\na unit is defeated, it drops all Asset tokens it is holding before\nremoving its unit leader miniature from the battlefield."
+   "content": "Now that the blue player is determined, it is time to build the\nmission. Place the game dashboard with the mission side face\nup near the table. Ten each player separates their Battle Deck\nby type—Advantage, Objective, and Secondary Objective—\nand shuffles each of their three decks, placing them near the\nMission Dashboard.\nPlace a token on the Mission Dashboard to indicate which\nplayer is the blue player. The blue player then chooses to reveal\nthe top card of either their Objective Deck or Secondary\nObjective Deck, placing the revealed card in the designated\n\neligible unit can claim an unclaimed Asset token it is Contesting\nby making that free action. When a unit claims an Asset\nObjective token, remove that token from the battlefield and\nplace it on that unit’s Unit Card. That unit is now holding that\nAsset token. When a unit drops an Asset token it is holding,\nthe opponent of that unit’s controlling player places that token\non the battlefield within 7 of that unit’s unit leader. While an\nAsset Objective token is on the battlefield, it is unclaimed.\nWhen a unit Panics, it drops all Asset tokens it is holding. When\na unit is defeated, it drops all Asset tokens it is holding before\nremoving its unit leader miniature from the battlefield."
   },
   {
    "id": "legion_securing-objective-tokens",
@@ -1251,7 +1251,7 @@
     "PLACING",
     "OBJECTIVES"
    ],
-   "content": "Objective tokens must meet the following conditions when they\nare placed:\n•\nObjective tokens cannot be placed overlapping\nimpassable terrain.\n•\nObjective tokens cannot be placed partially overlapping a\nnon-area terrain feature.\n•\nObjective tokens cannot be placed overlapping obstacle\nterrain that is height 2 or greater.\nDuring Setup, if an Objective token should be placed at a\nposition where the above conditions are not met, players must\nadjust terrain placement in a mutually agreeable manner so that\nthe conditions are met. Afer Setup, if an Objective token must\nbe placed and there is not a position in Range where the above\nconditions are met, that token is placed in the closest position\nthat meets the above conditions instead."
+   "content": "Objective tokens must meet the following conditions when they\nare placed:\n•\nObjective tokens cannot be placed overlapping\nimpassable terrain.\n•\nObjective tokens cannot be placed partially overlapping a\nnon-area terrain feature.\n•\nObjective tokens cannot be placed overlapping obstacle\nterrain that is height 2 or greater.\nDuring Setup, if an Objective token should be placed at a\nposition where the above conditions are not met, players must\nadjust terrain placement in a mutually agreeable manner so that\nthe conditions are met. After Setup, if an Objective token must\nbe placed and there is not a position in Range where the above\nconditions are met, that token is placed in the closest position\nthat meets the above conditions instead."
   },
   {
    "id": "legion_winning-the-game",
@@ -1263,7 +1263,7 @@
     "THE",
     "GAME"
    ],
-   "content": "Each game of Star Wars: Legion ends when one of the following\nconditions has been met:\n•\nIf, at the end of the End Phase of any Round, a player has 12\nor more Victory Points (VPs) and has more VPs than each\nopponent, they win the game.\n•\nIf, at any time, only one player has undefeated units, they\nimmediately win the game.\n•\nAt the end of the fifh Round, the player with the most\nVPs is the winner. If both players have the same number of\nVPs, each player totals the point value of defeated units in\ntheir army. Whichever player has the lowest point value of\ndefeated units in their army wins the game. If the game is\nstill tied, the game ends in a draw."
+   "content": "Each game of Star Wars: Legion ends when one of the following\nconditions has been met:\n•\nIf, at the end of the End Phase of any Round, a player has 12\nor more Victory Points (VPs) and has more VPs than each\nopponent, they win the game.\n•\nIf, at any time, only one player has undefeated units, they\nimmediately win the game.\n•\nAt the end of the fifth Round, the player with the most\nVPs is the winner. If both players have the same number of\nVPs, each player totals the point value of defeated units in\ntheir army. Whichever player has the lowest point value of\ndefeated units in their army wins the game. If the game is\nstill tied, the game ends in a draw."
   },
   {
    "id": "legion_resolve-setup-effects",
@@ -1348,7 +1348,7 @@
     "CARD",
     "EFFECTS"
    ],
-   "content": "Afer both players have played a Command Card facedown,\nthey then reveal their Command Cards by flipping them\nfaceup and proceed to resolve the effects of the Command\nCards. Fully resolve the effect of each Command Card before\nmoving to the next Command Card. If both players have an\neffect that occurs at the same time, the blue player resolves\ntheir Command Card effect first."
+   "content": "After both players have played a Command Card facedown,\nthey then reveal their Command Cards by flipping them\nfaceup and proceed to resolve the effects of the Command\nCards. Fully resolve the effect of each Command Card before\nmoving to the next Command Card. If both players have an\neffect that occurs at the same time, the blue player resolves\ntheir Command Card effect first."
   },
   {
    "id": "legion_determine-priority",
@@ -1446,7 +1446,7 @@
     "ORDER",
     "POOL"
    ],
-   "content": "Afer issuing Orders, each player creates their Order Pool by\ntaking 1 Order token that matches the Rank of each undefeated\nunit that was not issued an Order and shuffling those Order\ntokens together."
+   "content": "After issuing Orders, each player creates their Order Pool by\ntaking 1 Order token that matches the Rank of each undefeated\nunit that was not issued an Order and shuffling those Order\ntokens together."
   },
   {
    "id": "legion_create-the-pass-pool",
@@ -1459,7 +1459,7 @@
     "PASS",
     "POOL"
    ],
-   "content": "Afer creating the Order pool, each player counts the number of\nundefeated units they control. The player with fewer undefeated\nunits adds a number of Advantage tokens to their Pass Pool\nequal to 1 fewer than the difference in those counts. Once\nplayers have created their Pass Pools, if any, the Command\nPhase is over, and the Activation Phase begins."
+   "content": "After creating the Order pool, each player counts the number of\nundefeated units they control. The player with fewer undefeated\nunits adds a number of Advantage tokens to their Pass Pool\nequal to 1 fewer than the difference in those counts. Once\nplayers have created their Pass Pools, if any, the Command\nPhase is over, and the Activation Phase begins."
   },
   {
    "id": "legion_the-activation-phase",
@@ -1485,7 +1485,7 @@
     "ISSUE",
     "ORDERS"
    ],
-   "content": "Afer determining priority, players nominate Commanders and\nissue Orders to their units.\nIf the played Command Card corresponds to one or more\nspecific units, one of those units must be nominated as the\nCommander. Otherwise, players may nominate any 1 p unit\nto be their Commander.\nOnce all players have nominated a Commander, they issue\nOrders to their units, starting with the player who has priority.\nThe number of Orders and the units they can be issued to is\nlisted on each Command Card. For a Commander to issue an\nOrder to a unit, the following must be true:"
+   "content": "After determining priority, players nominate Commanders and\nissue Orders to their units.\nIf the played Command Card corresponds to one or more\nspecific units, one of those units must be nominated as the\nCommander. Otherwise, players may nominate any 1 p unit\nto be their Commander.\nOnce all players have nominated a Commander, they issue\nOrders to their units, starting with the player who has priority.\nThe number of Orders and the units they can be issued to is\nlisted on each Command Card. For a Commander to issue an\nOrder to a unit, the following must be true:"
   },
   {
    "id": "legion_parts-of-a-unit-s-activation",
@@ -1545,7 +1545,7 @@
     "ACTIVATING",
     "UNIT"
    ],
-   "content": "When a unit is chosen to activate, it first attempts to Rally, and\nthen the unit may make actions. Afer the unit has completed its\nactions, flip the unit’s faceup Order token facedown or assign it\nthe drawn Order token facedown.\n\n•\nCard Action i: The unit makes an action listed on its Unit\nCard one of its Upgrade Cards, a Command Card, or a\nBattle Card. A unit may make more than one Card action, as\nlong as they are different. A Card action with ii requires\n2 actions to make.\n•\nDodge: A unit that makes a Dodge action gains 1 Dodge\ntoken. Units may spend Dodge tokens to cancel a results\nduring attacks.\n•\nFree Card Actionh: The unit makes an action listed on its\nUnit Card, one of its Upgrade Cards, a Command Card, or\na Battle Card. Free Card actions do not cost the unit any\nactions to make. Free Card actions have this symbol h. A\nunit may make more than one Free Card action, as long as\nthey are different. A unit may only make free actions during\nits Make Actions step and may only make each instance of\na free action once per Activation. Free actions do not allow\na unit to make a non-Move action more than once during\nits Activation.\n•\nMove: When a unit makes a Move action, it makes a\nStandard Move or Climb.\n•\nRecover: A unit that makes a Recover action removes any\nnumber of Suppression tokens from the unit and readies any\nnumber of the unit’s exhausted Upgrade Cards.\n•\nStandby: The unit gains 1 Standby token, which it can use to\nmake actions in response to enemy actions. Only Trooper\nunits and Ground Vehicles can make the Standby action."
+   "content": "When a unit is chosen to activate, it first attempts to Rally, and\nthen the unit may make actions. After the unit has completed its\nactions, flip the unit’s faceup Order token facedown or assign it\nthe drawn Order token facedown.\n\n•\nCard Action i: The unit makes an action listed on its Unit\nCard one of its Upgrade Cards, a Command Card, or a\nBattle Card. A unit may make more than one Card action, as\nlong as they are different. A Card action with ii requires\n2 actions to make.\n•\nDodge: A unit that makes a Dodge action gains 1 Dodge\ntoken. Units may spend Dodge tokens to cancel a results\nduring attacks.\n•\nFree Card Actionh: The unit makes an action listed on its\nUnit Card, one of its Upgrade Cards, a Command Card, or\na Battle Card. Free Card actions do not cost the unit any\nactions to make. Free Card actions have this symbol h. A\nunit may make more than one Free Card action, as long as\nthey are different. A unit may only make free actions during\nits Make Actions step and may only make each instance of\na free action once per Activation. Free actions do not allow\na unit to make a non-Move action more than once during\nits Activation.\n•\nMove: When a unit makes a Move action, it makes a\nStandard Move or Climb.\n•\nRecover: A unit that makes a Recover action removes any\nnumber of Suppression tokens from the unit and readies any\nnumber of the unit’s exhausted Upgrade Cards.\n•\nStandby: The unit gains 1 Standby token, which it can use to\nmake actions in response to enemy actions. Only Trooper\nunits and Ground Vehicles can make the Standby action."
   },
   {
    "id": "legion_deploying-units",
@@ -1590,7 +1590,7 @@
     "STANDARD",
     "MOVE"
    ],
-   "content": "To make a Standard Move, take a Movement Tool of lower\nor equal Speed of the moving unit and place it flat on the\nbattlefield so that one end wholly touches the base of the\nunit’s unit leader. Ten, the player may adjust the joint of the\nMovement Tool as they wish. Afer the Movement Tool has\nbeen adjusted, pick up the unit leader miniature and place it\non the battlefield in contact with any portion of the Movement\nTool. A unit may choose to use a Movement Tool of a lower\nSpeed when making a Move unless otherwise specified.\nAfer placing the unit leader miniature, pick up any other\nminiatures in the unit and place them in Cohesion. If for any\nreason a miniature cannot be placed in Cohesion at the end of a\nMove, place it as close as possible to the unit leader.\nWhen moving the unit leader of a unit with multiple\nminiatures, the player moving the unit may temporarily put\nnon-unit leader miniatures in that unit out of the way to make\nroom for the unit leader, placing these miniatures in Cohesion\nas normal after the unit leader is placed."
+   "content": "To make a Standard Move, take a Movement Tool of lower\nor equal Speed of the moving unit and place it flat on the\nbattlefield so that one end wholly touches the base of the\nunit’s unit leader. Ten, the player may adjust the joint of the\nMovement Tool as they wish. After the Movement Tool has\nbeen adjusted, pick up the unit leader miniature and place it\non the battlefield in contact with any portion of the Movement\nTool. A unit may choose to use a Movement Tool of a lower\nSpeed when making a Move unless otherwise specified.\nAfter placing the unit leader miniature, pick up any other\nminiatures in the unit and place them in Cohesion. If for any\nreason a miniature cannot be placed in Cohesion at the end of a\nMove, place it as close as possible to the unit leader.\nWhen moving the unit leader of a unit with multiple\nminiatures, the player moving the unit may temporarily put\nnon-unit leader miniatures in that unit out of the way to make\nroom for the unit leader, placing these miniatures in Cohesion\nas normal after the unit leader is placed."
   },
   {
    "id": "legion_notched-base-movement",
@@ -1602,7 +1602,7 @@
     "BASE",
     "MOVEMENT"
    ],
-   "content": "Units on notched bases follow all the above rules for movement.\nAdditionally, a unit on a notched base must execute the\nfollowing steps to make a Standard Move:\n1.\nThe player may rotate the unit leader’s base up to 90° to the\nlef or right, keeping the center of the base in the same place.\n2. The player takes a Movement Tool less than or equal to the\nunit’s Speed characteristic and places it flat on the battlefield\nso that one end is wholly inside the front notch of the unit\nleader’s base.\n3. The player may adjust the Movement Tool at its joint as\nthey wish.\n4. The player decides to make either a full Move and proceeds\nstep 6 or a partial Move and proceeds to step 5. Unlike\nnormal bases, notched bases cannot be placed anywhere\nalong the Movement Tool and instead Move along the Tool\nwith different requirements based on this decision.\n5. To execute a partial Move, pick up the unit leader miniature\nand move it along the Movement Tool, taking care to keep\nthe Movement Tool lined up with the front and rear notches\non the base. The player may choose to stop this movement\nanywhere along the path created by the Movement Tool,\nmoving the Movement Tool out of the way and placing the\nminiature on the battlefield. The miniature must be placed\nin such a way so that the line of the front and back notches\non its base are parallel to the section of the Movement Tool\nthe miniature reached at the farthest part of its Move.\n6. To execute a full Move, pick up the unit leader miniature\nand move it along the Movement Tool, taking care to keep\nthe Movement Tool lined up with the front and rear notches\non the base. The player places the miniature so that the\nother end of the Movement Tool is inserted in the back\nnotch of the miniature’s base.\n7. When a miniature makes a full or partial Move, if the base\nof the miniature is impeded by an object while moving, it\nmust stop its movement prematurely unless it can legally\nMove through, over, or on top of the obstructing object.\nMove the Movement Tool out of the way and place the\nminiature on the battlefield accordingly.\n8. Afer placing the unit leader miniature, pick up any\nother miniatures in the unit and place them in Cohesion.\nMiniatures with notched bases must be placed in the exact\nsame directional orientation as their unit leader’s base. If for\nany reason a miniature cannot be placed in Cohesion at the\nend of a Move, place it as close to the unit leader as possible."
+   "content": "Units on notched bases follow all the above rules for movement.\nAdditionally, a unit on a notched base must execute the\nfollowing steps to make a Standard Move:\n1.\nThe player may rotate the unit leader’s base up to 90° to the\nleft or right, keeping the center of the base in the same place.\n2. The player takes a Movement Tool less than or equal to the\nunit’s Speed characteristic and places it flat on the battlefield\nso that one end is wholly inside the front notch of the unit\nleader’s base.\n3. The player may adjust the Movement Tool at its joint as\nthey wish.\n4. The player decides to make either a full Move and proceeds\nstep 6 or a partial Move and proceeds to step 5. Unlike\nnormal bases, notched bases cannot be placed anywhere\nalong the Movement Tool and instead Move along the Tool\nwith different requirements based on this decision.\n5. To execute a partial Move, pick up the unit leader miniature\nand move it along the Movement Tool, taking care to keep\nthe Movement Tool lined up with the front and rear notches\non the base. The player may choose to stop this movement\nanywhere along the path created by the Movement Tool,\nmoving the Movement Tool out of the way and placing the\nminiature on the battlefield. The miniature must be placed\nin such a way so that the line of the front and back notches\non its base are parallel to the section of the Movement Tool\nthe miniature reached at the farthest part of its Move.\n6. To execute a full Move, pick up the unit leader miniature\nand move it along the Movement Tool, taking care to keep\nthe Movement Tool lined up with the front and rear notches\non the base. The player places the miniature so that the\nother end of the Movement Tool is inserted in the back\nnotch of the miniature’s base.\n7. When a miniature makes a full or partial Move, if the base\nof the miniature is impeded by an object while moving, it\nmust stop its movement prematurely unless it can legally\nMove through, over, or on top of the obstructing object.\nMove the Movement Tool out of the way and place the\nminiature on the battlefield accordingly.\n8. After placing the unit leader miniature, pick up any\nother miniatures in the unit and place them in Cohesion.\nMiniatures with notched bases must be placed in the exact\nsame directional orientation as their unit leader’s base. If for\nany reason a miniature cannot be placed in Cohesion at the\nend of a Move, place it as close to the unit leader as possible."
   },
   {
    "id": "legion_non-standard-moves",
@@ -1674,7 +1674,7 @@
     "INTO",
     "MELEE"
    ],
-   "content": "The only way a unit can Move or be placed into base contact\nwith an enemy miniature is to Move into Melee. While a unit\nthat has at least one weapon with a 9 is Moving or being\nplaced, it can Move into Melee by Moving or placing that unit’s\nunit leader into base contact with an enemy miniature. When a\nunit Moves into melee, the following steps must be performed:\n1.\nAfer the unit leader of the unit Moving into Melee is placed,\nplace the other miniatures in that unit into base contact with\nenemy miniatures in the unit that their unit leader is now in\nMelee with.\n2. If the opponent’s unit leader is not in base contact with an\nenemy miniature, that miniature’s controlling player places\nit into base contact with a miniature in the unit that moved\ninto Melee.\n3. The opposing player places the other miniatures in their\nunit that are not currently in base contact with an enemy\nminiature or are not in Cohesion into base contact with\nminiatures from the enemy unit that Moved into Melee.\nIf any miniatures cannot be placed into base contact with\nenemy miniatures during this process, they must still be placed\nin Cohesion. Miniatures may never Move or be placed in\nsuch a way that they would be in base contact with multiple\nenemy units, though it is possible for a unit to be in Melee with\nmultiple enemy units if another unit joins the Melee later."
+   "content": "The only way a unit can Move or be placed into base contact\nwith an enemy miniature is to Move into Melee. While a unit\nthat has at least one weapon with a 9 is Moving or being\nplaced, it can Move into Melee by Moving or placing that unit’s\nunit leader into base contact with an enemy miniature. When a\nunit Moves into melee, the following steps must be performed:\n1.\nAfter the unit leader of the unit Moving into Melee is placed,\nplace the other miniatures in that unit into base contact with\nenemy miniatures in the unit that their unit leader is now in\nMelee with.\n2. If the opponent’s unit leader is not in base contact with an\nenemy miniature, that miniature’s controlling player places\nit into base contact with a miniature in the unit that moved\ninto Melee.\n3. The opposing player places the other miniatures in their\nunit that are not currently in base contact with an enemy\nminiature or are not in Cohesion into base contact with\nminiatures from the enemy unit that Moved into Melee.\nIf any miniatures cannot be placed into base contact with\nenemy miniatures during this process, they must still be placed\nin Cohesion. Miniatures may never Move or be placed in\nsuch a way that they would be in base contact with multiple\nenemy units, though it is possible for a unit to be in Melee with\nmultiple enemy units if another unit joins the Melee later."
   },
   {
    "id": "legion_line-of-sight",
@@ -1890,7 +1890,7 @@
     "TOKEN",
     "DEFENDER"
    ],
-   "content": "Afer resolving steps 1–9 of the attack sequence, if there were\nany a or b results in the Attack Pool during the Roll Attack\nDice step of the attack sequence and the attack was a Ranged\nattack, if the defending unit was not defeated, it gains 1\nSuppression token."
+   "content": "After resolving steps 1–9 of the attack sequence, if there were\nany a or b results in the Attack Pool during the Roll Attack\nDice step of the attack sequence and the attack was a Ranged\nattack, if the defending unit was not defeated, it gains 1\nSuppression token."
   },
   {
    "id": "legion_choose-additional-attack-pool",
@@ -1903,7 +1903,7 @@
     "ATTACK",
     "POOL"
    ],
-   "content": "Afer resolving steps 1–10 of the attack sequence, if the\nattacking unit still has Attack Pools to resolve, the attacking\nplayer chooses another Attack Pool to resolve against a\ndefending unit, making an attack against it by repeating steps\n4–11 of the attack sequence.\nOnce all of an attacking unit’s Attack Pools have been resolved,\nthe Attack action ends."
+   "content": "After resolving steps 1–10 of the attack sequence, if the\nattacking unit still has Attack Pools to resolve, the attacking\nplayer chooses another Attack Pool to resolve against a\ndefending unit, making an attack against it by repeating steps\n4–11 of the attack sequence.\nOnce all of an attacking unit’s Attack Pools have been resolved,\nthe Attack action ends."
   },
   {
    "id": "legion_full-attack-sequence-example",
@@ -1928,7 +1928,7 @@
     "ORDER",
     "TOKEN"
    ],
-   "content": "Once the active player has resolved any end of unit Activation\neffects, if the unit has a faceup Order token, flip it facedown or\nassign it the drawn Order token facedown. The unit’s Activation\nand active player’s Turn have ended, and the other player\nbecomes the active player. Tey take their Turn, repeating steps\n2–3 of the Activation Phase.\nWill’s Rebel Troopers do not have any Dodge tokens, so the attack\nmoves to the next step.\nSince Rebel Troopers have white defense dice, Will rolls 4 white\ndefense dice, 1 for each a and b result remaining. He rolls\n1 d, 1 e, and 2 Blank results.\nAfer rolling defense dice, Will may use any abilities that allow\nhim to reroll defense dice. The Rebel Troopers do not have such\nan ability, so he proceeds to convert defense surges. Since Rebel\nTroopers have e:d on their Unit Card, he changes the e he\nrolled to a d, resulting in a final roll of 2 d and 2 Blank results.\nSimone has rolled 1 b and 3 a results after applying Cover in\nher attack against Will’s Rebel Troopers, and he has rolled 2 d\nand 2 Blank results in defense. Simone counts her a and b\nresults, for a total of 4. Will counts his d results for a total of 2.\nThe players subtract Will’s total from Simone’s total for 4-2=2.\nSince the defending unit suffers a number of Wounds equal to\nthe difference in the attacking and defending results, Will’s Rebel\nTroopers suffer 2 Wounds.\nWill must now assign the Wounds to miniatures in the Rebel\nTrooper unit. Since all the miniatures in the Rebel Trooper unit\nhave a Wound threshold of 1, each miniature that Will assigns\na Wound to is defeated. Will chooses a Rebel Trooper to assign\nthe Wound to, and that miniature is defeated. Tere is still 1\nunassigned Wound remaining, so Will chooses another miniature\nfrom the same unit and repeats the process until either all\nWounds have been suffered or all miniatures in the unit have been\ndefeated. Since each Rebel Trooper only has a Wound threshold of\n1 and the unit suffered 2 Wounds, 2 Rebel Troopers are defeated,\nleaving 3 Rebel Troopers lef.\nBecause there were a or b results in the Attack Pool during the\nRoll Attack Dice step of the attack sequence, and the attack was a\nRanged attack, the Rebel Trooper unit gains 1 Suppression token."
+   "content": "Once the active player has resolved any end of unit Activation\neffects, if the unit has a faceup Order token, flip it facedown or\nassign it the drawn Order token facedown. The unit’s Activation\nand active player’s Turn have ended, and the other player\nbecomes the active player. They take their Turn, repeating steps\n2–3 of the Activation Phase.\nWill’s Rebel Troopers do not have any Dodge tokens, so the attack\nmoves to the next step.\nSince Rebel Troopers have white defense dice, Will rolls 4 white\ndefense dice, 1 for each a and b result remaining. He rolls\n1 d, 1 e, and 2 Blank results.\nAfter rolling defense dice, Will may use any abilities that allow\nhim to reroll defense dice. The Rebel Troopers do not have such\nan ability, so he proceeds to convert defense surges. Since Rebel\nTroopers have e:d on their Unit Card, he changes the e he\nrolled to a d, resulting in a final roll of 2 d and 2 Blank results.\nSimone has rolled 1 b and 3 a results after applying Cover in\nher attack against Will’s Rebel Troopers, and he has rolled 2 d\nand 2 Blank results in defense. Simone counts her a and b\nresults, for a total of 4. Will counts his d results for a total of 2.\nThe players subtract Will’s total from Simone’s total for 4-2=2.\nSince the defending unit suffers a number of Wounds equal to\nthe difference in the attacking and defending results, Will’s Rebel\nTroopers suffer 2 Wounds.\nWill must now assign the Wounds to miniatures in the Rebel\nTrooper unit. Since all the miniatures in the Rebel Trooper unit\nhave a Wound threshold of 1, each miniature that Will assigns\na Wound to is defeated. Will chooses a Rebel Trooper to assign\nthe Wound to, and that miniature is defeated. Tere is still 1\nunassigned Wound remaining, so Will chooses another miniature\nfrom the same unit and repeats the process until either all\nWounds have been suffered or all miniatures in the unit have been\ndefeated. Since each Rebel Trooper only has a Wound threshold of\n1 and the unit suffered 2 Wounds, 2 Rebel Troopers are defeated,\nleaving 3 Rebel Troopers left.\nBecause there were a or b results in the Attack Pool during the\nRoll Attack Dice step of the attack sequence, and the attack was a\nRanged attack, the Rebel Trooper unit gains 1 Suppression token."
   },
   {
    "id": "legion_resolve-end-of-activation-phase-effects",
@@ -2014,7 +2014,7 @@
     "ROUND",
     "COUNTER"
    ],
-   "content": "Set the Round counter to the next highest number. The current\nRound is over, and a new Round begins. Afer the fifh game\nRound, the game ends."
+   "content": "Set the Round counter to the next highest number. The current\nRound is over, and a new Round begins. After the fifth game\nRound, the game ends."
   },
   {
    "id": "legion_appendix-b-unit-types",
@@ -2296,7 +2296,7 @@
     "BOUNTY",
     "BOUNTY"
    ],
-   "content": "During Setup, a unit with the Bounty keyword chooses an\nenemy o or p unit. The chosen unit gains 1 Bounty token.\nAfer an allied unit with the Bounty keyword defeats an enemy\nunit that has 1 or more Bounty tokens with an attack or effect,\nthe allied unit’s controlling player scores 1 VP."
+   "content": "During Setup, a unit with the Bounty keyword chooses an\nenemy o or p unit. The chosen unit gains 1 Bounty token.\nAfter an allied unit with the Bounty keyword defeats an enemy\nunit that has 1 or more Bounty tokens with an attack or effect,\nthe allied unit’s controlling player scores 1 VP."
   },
   {
    "id": "legion_cache",
@@ -2327,7 +2327,7 @@
     "CHARGE",
     "CHARGE"
    ],
-   "content": "Afer a unit that has the Charge keyword makes a Move action\nduring its Activation that brings it into base contact with an\nenemy miniature to start a Melee, it may make a free Attack\naction against that unit using only Melee weapons."
+   "content": "After a unit that has the Charge keyword makes a Move action\nduring its Activation that brings it into base contact with an\nenemy miniature to start a Melee, it may make a free Attack\naction against that unit using only Melee weapons."
   },
   {
    "id": "legion_climbing-vehicle",
@@ -2363,7 +2363,7 @@
     "UNIT",
     "TYPE"
    ],
-   "content": "Afer another allied non-Droid Trooper unit of the matching\nRank or unit type, if specified, within 2 of an allied unit\nwith the Compel keyword Rallies and is Suppressed but not\nPanicked, at the start of its Make Actions step, it may gain 1\nSuppression token to make a free Move action."
+   "content": "After another allied non-Droid Trooper unit of the matching\nRank or unit type, if specified, within 2 of an allied unit\nwith the Compel keyword Rallies and is Suppressed but not\nPanicked, at the start of its Make Actions step, it may gain 1\nSuppression token to make a free Move action."
   },
   {
    "id": "legion_coordinate-unit-name-unit-type",
@@ -2377,7 +2377,7 @@
     "UNIT",
     "TYPE"
    ],
-   "content": "Afer a unit with the Coordinate keyword is issued an Order,\nit may issue an Order to an allied unit within 1 that has the\nunit name or unit type specified. A unit that has 1 or more unit\n\nIf the Deflect keyword causes the attacking unit to be defeated,\nthe attack continues, and the defender can still suffer Wounds.\nWhile defending or using the Guardian X keyword against an\nattack made only with weapons that have the High Velocity\nkeyword, the Deflect keyword has no effect."
+   "content": "After a unit with the Coordinate keyword is issued an Order,\nit may issue an Order to an allied unit within 1 that has the\nunit name or unit type specified. A unit that has 1 or more unit\n\nIf the Deflect keyword causes the attacking unit to be defeated,\nthe attack continues, and the defender can still suffer Wounds.\nWhile defending or using the Guardian X keyword against an\nattack made only with weapons that have the High Velocity\nkeyword, the Deflect keyword has no effect."
   },
   {
    "id": "legion_demoralize-x",
@@ -2387,7 +2387,7 @@
     "DEMORALIZE X",
     "DEMORALIZE"
    ],
-   "content": "Afer a unit with the Demoralize X keyword Rallies, add up to X\ntotal Suppression tokens to enemy units within 2."
+   "content": "After a unit with the Demoralize X keyword Rallies, add up to X\ntotal Suppression tokens to enemy units within 2."
   },
   {
    "id": "legion_detachment-unit-name-type",
@@ -2424,7 +2424,7 @@
     "DISCIPLINED X",
     "DISCIPLINED"
    ],
-   "content": "Afer a unit with the Disciplined X keyword is issued an Order,\nit may remove up to X Suppression tokens."
+   "content": "After a unit with the Disciplined X keyword is issued an Order,\nit may remove up to X Suppression tokens."
   },
   {
    "id": "legion_disengage",
@@ -2485,7 +2485,7 @@
     "DAUNTLESS",
     "DAUNTLESS"
    ],
-   "content": "Afer a non-Droid Trooper unit with the Dauntless keyword\nRallies and is Suppressed but not Panicked, at the start of its\nMake Action step, it may gain 1 Suppression token to make a\nfree Move action.\nA unit with the Dauntless keyword may not be affected by the\nCompel keyword."
+   "content": "After a non-Droid Trooper unit with the Dauntless keyword\nRallies and is Suppressed but not Panicked, at the start of its\nMake Action step, it may gain 1 Suppression token to make a\nfree Move action.\nA unit with the Dauntless keyword may not be affected by the\nCompel keyword."
   },
   {
    "id": "legion_death-from-above",
@@ -2507,7 +2507,7 @@
     "DEFEND X",
     "DEFEND"
    ],
-   "content": "Afer a unit with the Defend X keyword is issued an Order, it\ngains X Dodge tokens."
+   "content": "After a unit with the Defend X keyword is issued an Order, it\ngains X Dodge tokens."
   },
   {
    "id": "legion_deflect",
@@ -2627,7 +2627,7 @@
     "FIRE",
     "SUPPORT"
    ],
-   "content": "Afer a unit with the Fire Support keyword is issued an Order, it\ngains a Standby token."
+   "content": "After a unit with the Fire Support keyword is issued an Order, it\ngains a Standby token."
   },
   {
    "id": "legion_full-pivot",
@@ -2979,7 +2979,7 @@
     "PREPARED",
     "POSITION"
    ],
-   "content": "During the Deploy in Prepared Positions step of Setup, a unit\nwith the Prepared Position keyword may Deploy by placing the\nunit leader of that unit completely within allied Territory. Ten\nthe remaining miniatures in that unit are placed in Cohesion\nwith their unit leader and within allied Territory. Tat unit then\ngains 1 Dodge token. Miniatures cannot overlap impassable\nterrain when they are placed using Prepared Position."
+   "content": "During the Deploy in Prepared Positions step of Setup, a unit\nwith the Prepared Position keyword may Deploy by placing the\nunit leader of that unit completely within allied Territory. Ten\nthe remaining miniatures in that unit are placed in Cohesion\nwith their unit leader and within allied Territory. That unit then\ngains 1 Dodge token. Miniatures cannot overlap impassable\nterrain when they are placed using Prepared Position."
   },
   {
    "id": "legion_pulling-the-strings",
@@ -3012,7 +3012,7 @@
     "READY X",
     "READY"
    ],
-   "content": "Afer a unit with the Ready X keyword makes a Standby action,\nit gains X Aim tokens."
+   "content": "After a unit with the Ready X keyword makes a Standby action,\nit gains X Aim tokens."
   },
   {
    "id": "legion_mobile",
@@ -3098,7 +3098,7 @@
     "SECRET",
     "MISSION"
    ],
-   "content": "At the beginning of each Command Phase, if a unit with the\nSecret Mission keyword is completely within enemy Territory, it\ngains 1 Secret Mission token. A unit may only ever gain 1 Secret\nMission token per game.\nWhen scoring VP during the End Phase, if a player controls 1\nor more units that have a Secret Mission token and are within\nenemy Territory, that player may choose to remove those unit's\nSecret Mission tokens from the game. Tat player scores 1 VP\nfor each Secret Mission token removed in this way."
+   "content": "At the beginning of each Command Phase, if a unit with the\nSecret Mission keyword is completely within enemy Territory, it\ngains 1 Secret Mission token. A unit may only ever gain 1 Secret\nMission token per game.\nWhen scoring VP during the End Phase, if a player controls 1\nor more units that have a Secret Mission token and are within\nenemy Territory, that player may choose to remove those unit's\nSecret Mission tokens from the game. That player scores 1 VP\nfor each Secret Mission token removed in this way."
   },
   {
    "id": "legion_self-destruct-x",
@@ -3108,7 +3108,7 @@
     "SELF-DESTRUCT X",
     "SELF-DESTRUCT"
    ],
-   "content": "A unit may make a Self-Destruct X Card action only if it has\na number of Wound tokens equal to or greater than half of its\nWound threshold, rounding up. For each unit within 1 and in\nLOS, roll X black attack dice, completely resolving each roll before\nmoving to the next unit. Tat unit suffers 1 Wound for each c and\nb result rolled, then gains 1 Suppression token for each a result\nrolled. Afer all rolls are resolved, this unit is defeated."
+   "content": "A unit may make a Self-Destruct X Card action only if it has\na number of Wound tokens equal to or greater than half of its\nWound threshold, rounding up. For each unit within 1 and in\nLOS, roll X black attack dice, completely resolving each roll before\nmoving to the next unit. That unit suffers 1 Wound for each c and\nb result rolled, then gains 1 Suppression token for each a result\nrolled. After all rolls are resolved, this unit is defeated."
   },
   {
    "id": "legion_sentinel",
@@ -3168,7 +3168,7 @@
     "RELENTLESS",
     "RELENTLESS"
    ],
-   "content": "Afer a unit that has the Relentless keyword makes a Move\naction during its Activation, it may make a free Attack action."
+   "content": "After a unit that has the Relentless keyword makes a Move\naction during its Activation, it may make a free Attack action."
   },
   {
    "id": "legion_reposition",
@@ -3348,7 +3348,7 @@
     "STEADY",
     "STEADY"
    ],
-   "content": "Afer a unit that has the Steady keyword makes a Move action\nduring its Activation, it may make a free Attack action. Only\nRanged weapons can be added to Attack Pools during this\nAttack action."
+   "content": "After a unit that has the Steady keyword makes a Move action\nduring its Activation, it may make a free Attack action. Only\nRanged weapons can be added to Attack Pools during this\nAttack action."
   },
   {
    "id": "legion_strategize-x",
@@ -3411,7 +3411,7 @@
     "TARGET X",
     "TARGET"
    ],
-   "content": "Afer a unit with the Target X keyword is issued an Order, it\ngains X Aim tokens."
+   "content": "After a unit with the Target X keyword is issued an Order, it\ngains X Aim tokens."
   },
   {
    "id": "legion_tempted",
@@ -3619,7 +3619,7 @@
     "(CHARGE",
     "TYPE)"
    ],
-   "content": "Afer a unit attacks, Moves, or makes an action, each unit that\nhas a weapon with the Detonate X keyword may Detonate up\nto X allied Charge tokens (Advantage) of the specified type. If\na token would detonate, that token detonates before any other\nabilities or effects that occur after a unit Moves or makes an\naction, with the exception of spending a Standby token which\ncan be spent by a unit before the token detonates. If both\nplayers have units that could detonate Charge tokens, the player\nthat does not control the unit that just made the attack, Move,\nor action may use their unit’s Detonate X keyword first.\nWhen a token detonates, make a separate attack against each\nunit, allied and enemy, that has LOS to the token and is in\nRange of the area weapon, using the surge conversion chart and\nweapon keywords on the card for the token being detonated. The\ndetonating token is considered the attacking unit when making\nattacks, meaning that it cannot spend Aim tokens or modify\nattack dice, regardless of any abilities on the unit that placed the\ntoken. Afer a token detonates, remove it from the battlefield."
+   "content": "After a unit attacks, Moves, or makes an action, each unit that\nhas a weapon with the Detonate X keyword may Detonate up\nto X allied Charge tokens (Advantage) of the specified type. If\na token would detonate, that token detonates before any other\nabilities or effects that occur after a unit Moves or makes an\naction, with the exception of spending a Standby token which\ncan be spent by a unit before the token detonates. If both\nplayers have units that could detonate Charge tokens, the player\nthat does not control the unit that just made the attack, Move,\nor action may use their unit’s Detonate X keyword first.\nWhen a token detonates, make a separate attack against each\nunit, allied and enemy, that has LOS to the token and is in\nRange of the area weapon, using the surge conversion chart and\nweapon keywords on the card for the token being detonated. The\ndetonating token is considered the attacking unit when making\nattacks, meaning that it cannot spend Aim tokens or modify\nattack dice, regardless of any abilities on the unit that placed the\ntoken. After a token detonates, remove it from the battlefield."
   },
   {
    "id": "legion_fixed-front-sides-rear",
@@ -3717,7 +3717,7 @@
     "IMMOBILIZE X",
     "IMMOBILIZE"
    ],
-   "content": "A unit that suffers 1 or more Wounds from an attack that has\nImmobilize X in the Attack Pool gains X Immobilize tokens.\nWhen a unit makes a Move, its Speed is reduced by 1 for each\nImmobilize token it has. Afer modifiers, if a unit is Speed\nis 0 it cannot make Moves of any kind. At the end of a unit’s\nActivation, it removes any Immobilize tokens that it has.\nWhen a unit makes a Move, apply any effects that increase the\nunit’s Speed before applying any effects that reduce its Speed."
+   "content": "A unit that suffers 1 or more Wounds from an attack that has\nImmobilize X in the Attack Pool gains X Immobilize tokens.\nWhen a unit makes a Move, its Speed is reduced by 1 for each\nImmobilize token it has. After modifiers, if a unit is Speed\nis 0 it cannot make Moves of any kind. At the end of a unit’s\nActivation, it removes any Immobilize tokens that it has.\nWhen a unit makes a Move, apply any effects that increase the\nunit’s Speed before applying any effects that reduce its Speed."
   },
   {
    "id": "legion_immune-deflect",
@@ -3779,7 +3779,7 @@
     "OVERRUN X",
     "OVERRUN"
    ],
-   "content": "A weapon with a red overrun Range icon (8) is an Overrun\nweapon and can only be used during Overrun attacks. Overrun\nattacks are not Ranged or Melee attacks. A unit may make X\nOverrun attacks during its activation. A unit with an Overrun\nweapon can make an Overrun attack after it makes a Standard\nMove in which the Movement Tool or one of its miniatures’\nbases overlapped an enemy miniature’s base. Afer the Move is\nresolved, the unit with the Overrun weapon makes an attack\nagainst the unit it moved through, and ignores Range when\nmaking this attack. A unit can only form 1 Attack Pool when\nmaking an Overrun attack, and only weapons with the Overrun\nX keyword can be added to the Attack Pool. The Overrun\nweapon is only added to the Attack Pool once, even if there are\nmultiple miniatures in the unit.\nIf a unit can make multiple Overrun attacks during its\nActivation, it must make a separate Move through an enemy\nunit for each Overrun attack."
+   "content": "A weapon with a red overrun Range icon (8) is an Overrun\nweapon and can only be used during Overrun attacks. Overrun\nattacks are not Ranged or Melee attacks. A unit may make X\nOverrun attacks during its activation. A unit with an Overrun\nweapon can make an Overrun attack after it makes a Standard\nMove in which the Movement Tool or one of its miniatures’\nbases overlapped an enemy miniature’s base. After the Move is\nresolved, the unit with the Overrun weapon makes an attack\nagainst the unit it moved through, and ignores Range when\nmaking this attack. A unit can only form 1 Attack Pool when\nmaking an Overrun attack, and only weapons with the Overrun\nX keyword can be added to the Attack Pool. The Overrun\nweapon is only added to the Attack Pool once, even if there are\nmultiple miniatures in the unit.\nIf a unit can make multiple Overrun attacks during its\nActivation, it must make a separate Move through an enemy\nunit for each Overrun attack."
   },
   {
    "id": "legion_overwhelm",
@@ -3799,7 +3799,7 @@
     "PIERCE X",
     "PIERCE"
    ],
-   "content": "When a unit attacks with an Attack Pool that has Pierce X\nkeyword it may cancel up to X d results during the Modify\nDefense Dice step.\nThe Pierce X keyword can be used to cancel d results on\ndefense dice rolled by a unit using the Guardian X keyword.\nWhen doing so, treat canceled d results as Blank results. Afer\nusing the Pierce X keyword in this way, any unused Pierce\nX value can still be used to cancel d results rolled by the\ndefending unit.\nFor example, a unit with Pierce 3 attacks an enemy unit, and\nanother enemy unit uses Guardian 2 to cancel 2 a results. Afer\nconverting defense e results, the unit using Guardian has rolled\n2 d results. The attacking unit uses Pierce to cancel the 2 d\nresults and the unit using Guardian suffers 2 Wounds.\nNow the defending unit rolls defense dice and the attacking unit\nmay cancel 1 more d result rolled by the defending unit since\nonly 2 of its original Pierce 3 have been used so far."
+   "content": "When a unit attacks with an Attack Pool that has Pierce X\nkeyword it may cancel up to X d results during the Modify\nDefense Dice step.\nThe Pierce X keyword can be used to cancel d results on\ndefense dice rolled by a unit using the Guardian X keyword.\nWhen doing so, treat canceled d results as Blank results. After\nusing the Pierce X keyword in this way, any unused Pierce\nX value can still be used to cancel d results rolled by the\ndefending unit.\nFor example, a unit with Pierce 3 attacks an enemy unit, and\nanother enemy unit uses Guardian 2 to cancel 2 a results. After\nconverting defense e results, the unit using Guardian has rolled\n2 d results. The attacking unit uses Pierce to cancel the 2 d\nresults and the unit using Guardian suffers 2 Wounds.\nNow the defending unit rolls defense dice and the attacking unit\nmay cancel 1 more d result rolled by the defending unit since\nonly 2 of its original Pierce 3 have been used so far."
   },
   {
    "id": "legion_spray",
@@ -3830,7 +3830,7 @@
     "TOW",
     "CABLE"
    ],
-   "content": "Afer a Vehicle suffers 1 or more Wounds from an attack that\nhas Tow Cable in the Attack Pool, the attacking player makes a\nPivot with that Vehicle, then it gains 1 Immobilize token."
+   "content": "After a Vehicle suffers 1 or more Wounds from an attack that\nhas Tow Cable in the Attack Pool, the attacking player makes a\nPivot with that Vehicle, then it gains 1 Immobilize token."
   },
   {
    "id": "legion_versatile",
