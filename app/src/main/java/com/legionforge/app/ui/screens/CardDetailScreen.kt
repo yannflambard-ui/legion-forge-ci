@@ -1916,7 +1916,18 @@ internal fun TokenSection(tokens: List<String>, onAdd: (String) -> Unit, onRemov
         LegionToken(stringResource(R.string.legion_token_observation), Color(0xFF90CAF9), "\u25C8"),
         LegionToken(stringResource(R.string.legion_token_advantage), Color(0xFF77D9A7), "\u25B2"),
         LegionToken(stringResource(R.string.legion_token_smoke), Color(0xFF9EACBC), "\u25CF"),
-        LegionToken(stringResource(R.string.legion_token_charge), Color(0xFFFFB74D), "\u2694")
+        LegionToken(stringResource(R.string.legion_token_charge), Color(0xFFFFB74D), "\u2694"),
+        // Jetons de keywords + mécaniques (rulebook p.10) : Vehicle Damage, Order, Commander, Ion, Poison, Immobilize, Shield, Incognito, Bane, Graffiti.
+        LegionToken(stringResource(R.string.legion_token_vehicle_damage), Color(0xFFFF6B6B), "\u26A0"),
+        LegionToken(stringResource(R.string.legion_token_order), Color(0xFF4FC3F7), "\u25C6"),
+        LegionToken(stringResource(R.string.legion_token_commander), Color(0xFFFFC857), "\u2605"),
+        LegionToken(stringResource(R.string.legion_token_ion), Color(0xFF4DD0E1), "\u26A1"),
+        LegionToken(stringResource(R.string.legion_token_poison), Color(0xFF81C784), "\u2620"),
+        LegionToken(stringResource(R.string.legion_token_immobilize), Color(0xFFB388FF), "\u2696"),
+        LegionToken(stringResource(R.string.legion_token_shield), Color(0xFF4FC3F7), "\u25C9"),
+        LegionToken(stringResource(R.string.legion_token_incognito), Color(0xFF9EACBC), "\u25C7"),
+        LegionToken(stringResource(R.string.legion_token_bane), Color(0xFFB8395A), "\u2620"),
+        LegionToken(stringResource(R.string.legion_token_graffiti), Color(0xFFFF8A65), "\u270E")
     )
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(stringResource(R.string.tokens_markers), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelLarge)

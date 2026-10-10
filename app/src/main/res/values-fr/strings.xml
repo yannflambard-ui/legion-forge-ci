@@ -190,6 +190,16 @@
     <string name="legion_token_advantage">Avantage</string>
     <string name="legion_token_smoke">Fumée</string>
     <string name="legion_token_charge">Charge</string>
+    <string name="legion_token_vehicle_damage">Dégâts de véhicule</string>
+    <string name="legion_token_order">Ordre</string>
+    <string name="legion_token_commander">Commandant</string>
+    <string name="legion_token_ion">Ion</string>
+    <string name="legion_token_poison">Poison</string>
+    <string name="legion_token_immobilize">Immobilisation</string>
+    <string name="legion_token_shield">Bouclier</string>
+    <string name="legion_token_incognito">Incognito</string>
+    <string name="legion_token_bane">Fléau</string>
+    <string name="legion_token_graffiti">Graffiti</string>
     <string name="legion_suppression_label">RÉPRESSION</string>
     <string name="legion_state_wounded">Blessé</string>
     <string name="legion_state_suppressed">Supprimé</string>
