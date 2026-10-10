@@ -18,6 +18,10 @@ interface PolymorphicGameDao {
     @Query("SELECT * FROM catalog_cards WHERE gameSystem = :system ORDER BY factionId, name")
     fun observeCards(system: String): Flow<List<CatalogCardEntity>>
 
+    /** Tout le catalogue, tous systêmes, pour l'écran Ma collection (Réglages). */
+    @Query("SELECT * FROM catalog_cards ORDER BY CASE gameSystem WHEN 'LEGION_V2' THEN 0 ELSE 1 END, factionId, kind, name")
+    fun observeAllCards(): Flow<List<CatalogCardEntity>>
+
     /** Recherche globale plein texte sur name + rulesText + legionStats + shipStats.
      *  Face aux règles : cherche le terme dans le texte des cartes, des stats, des mots-clés. */
     @Query("""SELECT * FROM catalog_cards

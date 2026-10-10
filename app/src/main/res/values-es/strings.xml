@@ -94,6 +94,8 @@
 
     <!-- Settings -->
     <string name="back">Atrás</string>
+    <string name="my_collection">Mi colección</string>
+    <string name="my_collection_desc">Marca el material que posees</string>
     <string name="more_options">Más opciones próximamente</string>
 
     <!-- Search -->

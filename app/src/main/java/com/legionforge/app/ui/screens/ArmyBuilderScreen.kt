@@ -43,6 +43,9 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
     var filterMaxPts by remember { mutableStateOf<Int?>(null) }
     var filterKeyword by remember { mutableStateOf<String?>(null) }
     var filtersMenuOpen by remember { mutableStateOf(false) }
+    // Filtre "Ma collection" : n'affiche que le matériel possédé (coché dans Réglages).
+    var collectionOnly by remember { mutableStateOf(false) }
+    val ownedCards by com.legionforge.app.data.repository.CollectionRepository.owned.collectAsState()
     // Aperçu image plein écran : clic sur une carte -> affiche l'image, clic sur l'image -> referme.
     var previewCard by remember { mutableStateOf<CardDefinition?>(null) }
     // Renommage de la liste : titre cliquable + dialog avec champ texte.
@@ -95,9 +98,12 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                 .filter { it.name.contains(search, ignoreCase = true) || it.factionId.contains(search, ignoreCase = true) }
                 .let { list ->
                     val rk = filterRank; val mp = filterMaxPts; val kw = filterKeyword
-                    list.filter { rk == null || it.legionRank?.name == rk }
+                    var out = list.filter { rk == null || it.legionRank?.name == rk }
                         .filter { mp == null || it.points <= mp }
                         .filter { kw == null || it.name.contains(kw, ignoreCase = true) || (it.rulesText ?: "").contains(kw, ignoreCase = true) || (it.legionStats ?: "").contains(kw, ignoreCase = true) || (it.shipStats ?: "").contains(kw, ignoreCase = true) }
+                    // Filtre strict "Ma collection" : n'affiche que les cartes possédées (unités ET upgrades).
+                    if (collectionOnly) out = out.filter { it.id in ownedCards }
+                    out
                 }
     // Bouton play global : actif (vert) uniquement si la liste est valide.
     val listValid = validation.violations.isEmpty() && entries.isNotEmpty()
@@ -219,8 +225,8 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                     OutlinedTextField(value = search, onValueChange = { search = it }, modifier = Modifier.weight(1f), placeholder = { Text(stringResource(R.string.search_hint)) }, singleLine = true, textStyle = MaterialTheme.typography.bodyMedium)
                     // Bouton filtre compact à droite de la barre de recherche
                     Box {
-                        Surface(onClick = { filtersMenuOpen = true }, shape = RoundedCornerShape(10.dp), color = if (filterRank != null || filterMaxPts != null || filterKeyword != null) Color(0xFFFFC857) else Color(0xFF2A3A4A)) {
-                            Text("\u2699", Modifier.padding(horizontal = 12.dp, vertical = 12.dp), color = if (filterRank != null || filterMaxPts != null || filterKeyword != null) Color(0xFF0A0E15) else Color(0xFFFFC857), fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                        Surface(onClick = { filtersMenuOpen = true }, shape = RoundedCornerShape(10.dp), color = if (filterRank != null || filterMaxPts != null || filterKeyword != null || collectionOnly) Color(0xFFFFC857) else Color(0xFF2A3A4A)) {
+                            Text("\u2699", Modifier.padding(horizontal = 12.dp, vertical = 12.dp), color = if (filterRank != null || filterMaxPts != null || filterKeyword != null || collectionOnly) Color(0xFF0A0E15) else Color(0xFFFFC857), fontSize = 16.sp, fontWeight = FontWeight.Bold)
                         }
                         DropdownMenu(expanded = filtersMenuOpen, onDismissRequest = { filtersMenuOpen = false }) {
                             // Rang/type : petits chips à lettre
@@ -240,8 +246,14 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                             }
                             HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 6.dp))
                             OutlinedTextField(value = filterKeyword ?: "", onValueChange = { filterKeyword = it.ifBlank { null } }, modifier = Modifier.padding(horizontal = 12.dp).width(180.dp), placeholder = { Text(stringResource(R.string.filter_keyword), fontSize = 12.sp) }, singleLine = true, textStyle = MaterialTheme.typography.bodySmall)
-                            if (filterRank != null || filterMaxPts != null || filterKeyword != null) {
-                                TextButton(onClick = { filterRank = null; filterMaxPts = null; filterKeyword = null }, modifier = Modifier.padding(horizontal = 8.dp)) { Text(stringResource(R.string.clear_filters), color = Color(0xFFFF927F), style = MaterialTheme.typography.labelSmall) }
+                            HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 6.dp))
+                            Text(stringResource(R.string.my_collection), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp))
+                            Row(Modifier.padding(horizontal = 12.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                FilterChip(selected = collectionOnly, onClick = { collectionOnly = !collectionOnly }, label = { Text(stringResource(R.string.my_collection), fontSize = 11.sp) }, leadingIcon = if (collectionOnly) { { Text("\u2713", fontSize = 10.sp) } } else null)
+                                Text("(${ownedCards.size})", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelSmall)
+                            }
+                            if (filterRank != null || filterMaxPts != null || filterKeyword != null || collectionOnly) {
+                                TextButton(onClick = { filterRank = null; filterMaxPts = null; filterKeyword = null; collectionOnly = false }, modifier = Modifier.padding(horizontal = 8.dp)) { Text(stringResource(R.string.clear_filters), color = Color(0xFFFF927F), style = MaterialTheme.typography.labelSmall) }
                             }
                         }
                     }
@@ -321,7 +333,7 @@ contentDescription = stringResource(R.string.icon_desc, card.displayName()),
 }
 
 @Composable
-private fun factionLabel(factionId: String?): String = when (factionId) {
+internal fun factionLabel(factionId: String?): String = when (factionId) {
     "rebel" -> stringResource(R.string.faction_rebel)
     "empire" -> stringResource(R.string.faction_empire)
     "republic", "republics" -> stringResource(R.string.faction_republic)
@@ -332,7 +344,7 @@ private fun factionLabel(factionId: String?): String = when (factionId) {
 
 /** Libellé court du type de carte affiché dans le catalogue (pas la valeur de filtre). */
 @Composable
-private fun kindLabel(kind: CardKind): String = when (kind) {
+internal fun kindLabel(kind: CardKind): String = when (kind) {
     CardKind.LEGION_UNIT -> stringResource(R.string.kind_unit)
     CardKind.LEGION_UPGRADE -> stringResource(R.string.kind_upgrade)
     CardKind.ARMADA_SHIP -> stringResource(R.string.kind_ship)
@@ -343,7 +355,7 @@ private fun kindLabel(kind: CardKind): String = when (kind) {
 
 // Libellé + couleur du rang/type d'unité Legion (badge dans le catalogue).
 @Composable
-private fun rankLabel(rank: LegionRank?): String = when (rank) {
+internal fun rankLabel(rank: LegionRank?): String = when (rank) {
     LegionRank.COMMANDER -> stringResource(R.string.rank_commander)
     LegionRank.OPERATIVE -> stringResource(R.string.rank_operative)
     LegionRank.CORPS -> stringResource(R.string.rank_corps)
@@ -352,7 +364,7 @@ private fun rankLabel(rank: LegionRank?): String = when (rank) {
     LegionRank.HEAVY -> stringResource(R.string.rank_heavy)
     null -> ""
 }
-private fun rankColor(rank: LegionRank?): Color = when (rank) {
+internal fun rankColor(rank: LegionRank?): Color = when (rank) {
     LegionRank.COMMANDER -> Color(0xFFFF6B6B)      // rouge commandant
     LegionRank.OPERATIVE -> Color(0xFFB388FF)      // violet agent
     LegionRank.CORPS -> Color(0xFF4FC3F7)          // bleu corps

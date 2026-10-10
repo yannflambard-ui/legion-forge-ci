@@ -189,6 +189,21 @@ class ArmyBuilderViewModel(application: Application) : AndroidViewModel(applicat
         }
     }
 
+    // ── Ma collection (écran Réglages) ──
+    private val _allCatalog = MutableStateFlow<List<CardDefinition>>(emptyList())
+    val allCatalog: StateFlow<List<CardDefinition>> = _allCatalog.asStateFlow()
+    private var allCatalogCollector: kotlinx.coroutines.Job? = null
+
+    fun loadAllCatalogForCollection() {
+        allCatalogCollector?.cancel()
+        allCatalogCollector = viewModelScope.launch {
+            awaitCatalog()
+            repository.observeAllCards().collect { cards ->
+                _allCatalog.value = cards
+            }
+        }
+    }
+
     fun createList(name: String, system: GameSystem, factionId: String, limit: Int, onCreated: (String) -> Unit = {}) {
         viewModelScope.launch {
             awaitCatalog()

@@ -94,6 +94,8 @@
 
     <!-- Settings -->
     <string name="back">Zurück</string>
+    <string name="my_collection">Meine Sammlung</string>
+    <string name="my_collection_desc">Material ankreuzen, das Sie besitzen</string>
     <string name="more_options">Weitere Optionen folgen</string>
 
     <!-- Search -->

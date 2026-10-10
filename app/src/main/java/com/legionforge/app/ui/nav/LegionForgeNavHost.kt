@@ -15,6 +15,7 @@ import com.legionforge.app.data.model.CardKind
 import com.legionforge.app.ui.screens.ArmyBuilderScreen
 import com.legionforge.app.ui.screens.BattlefieldVetoScreen
 import com.legionforge.app.ui.screens.CardDetailScreen
+import com.legionforge.app.ui.screens.CollectionScreen
 import com.legionforge.app.ui.screens.FactionPickerScreen
 import com.legionforge.app.ui.screens.HomeScreen
 import com.legionforge.app.ui.screens.SearchScreen
@@ -31,6 +32,7 @@ object Routes {
     const val FACTION_PICKER = "faction_picker/{system}"
     const val ARMY_BUILDER = "army_builder/{listId}"
     const val SETTINGS = "settings"
+    const val COLLECTION = "collection"
     const val WIKI = "wiki"
     const val CARD_DETAIL = "card_detail/{listId}/{entryInstanceId}"
         const val BATTLEFIELD_VETO = "battlefield_veto"
@@ -97,7 +99,13 @@ fun LegionForgeNavHost(navController: NavHostController = rememberNavController(
                         })
         }
         composable(Routes.SETTINGS) {
-            SettingsScreen(onBack = { navController.popBackStack() })
+            SettingsScreen(
+                onBack = { navController.popBackStack() },
+                onCollection = { navController.navigate(Routes.COLLECTION) }
+            )
+        }
+        composable(Routes.COLLECTION) {
+            CollectionScreen(onBack = { navController.popBackStack() })
         }
         composable(Routes.CARD_DETAIL, arguments = listOf(navArgument("listId") { type = NavType.StringType }, navArgument("entryInstanceId") { type = NavType.StringType })) { entry ->
                     val lid = entry.arguments?.getString("listId") ?: return@composable

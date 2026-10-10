@@ -12,6 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.text.style.TextAlign
+import com.legionforge.app.data.repository.CollectionRepository
 import com.legionforge.app.ui.nav.LegionForgeNavHost
 import com.legionforge.app.ui.theme.LegionForgeTheme
 import com.legionforge.app.util.CrashReporter
@@ -20,6 +21,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 CrashReporter.init(applicationContext)
+        CollectionRepository.init(applicationContext)
         com.legionforge.app.data.i18n.I18n.load(applicationContext)
         // Réapplique la langue sauvegardée par l'utilisateur (Settings) à chaque ouverture.
         val savedLang = getSharedPreferences("legionforge", MODE_PRIVATE).getString("locale", "en") ?: "en"

@@ -94,6 +94,8 @@
 
     <!-- Settings -->
     <string name="back">Retour</string>
+    <string name="my_collection">Ma collection</string>
+    <string name="my_collection_desc">Cochez le matériel que vous possédez</string>
     <string name="more_options">Plus d\'options à venir</string>
 
     <!-- Search -->

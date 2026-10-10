@@ -30,7 +30,7 @@ private val languages = listOf(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(onBack: () -> Unit) {
+fun SettingsScreen(onBack: () -> Unit, onCollection: () -> Unit = {}) {
     val context = LocalContext.current
     val prefs = context.getSharedPreferences("legionforge", Context.MODE_PRIVATE)
     var currentLang by remember { mutableStateOf(prefs.getString("locale", "en") ?: "en") }
@@ -84,6 +84,27 @@ fun SettingsScreen(onBack: () -> Unit) {
                             Text("\u2713", color = Color(0xFFFFB800), fontSize = 22.sp)
                         }
                     }
+                }
+            }
+
+            Spacer(Modifier.height(12.dp))
+            Text(stringResource(R.string.my_collection),
+                color = Color(0xFFFFC857),
+                style = MaterialTheme.typography.titleMedium)
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable(onClick = onCollection),
+                colors = CardDefaults.cardColors(containerColor = Color(0xFF192331))
+            ) {
+                Row(
+                    Modifier.fillMaxWidth().padding(18.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(stringResource(R.string.my_collection_desc),
+                        color = Color.White, fontSize = 16.sp)
+                    Text("\u276F", color = Color(0xFFFFC857), fontSize = 18.sp)
                 }
             }
 
