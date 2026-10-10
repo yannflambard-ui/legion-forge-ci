@@ -157,6 +157,12 @@ fun CardDetailScreen(entries: List<ListEntry>, initialIndex: Int = 0, onBack: ()
     // Charge la liste dans CE vm (scopé à l'écran play) : sinon currentList est null et la
     // synchro 2 joueurs ne peut pas envoyer la liste adverse.
     if (listId != null) androidx.compose.runtime.LaunchedEffect(listId) { vm.openList(listId) }
+    // Charge le catalogue COMPLET du système (toutes factions) pour résoudre l'armée adverse :
+    // openList ne charge que le catalogue filtré par MA faction (observeCards(system, factionId)),
+    // or l'adversaire est d'une faction DIFFÉRENTE -> ses cartes seraient introuvables (0 unité reçue).
+    LaunchedEffect(vm.currentList.value?.gameSystem) {
+        vm.currentList.value?.gameSystem?.let { vm.loadAllCatalog(GameSystem.valueOf(it)) }
+    }
     val playable = entries.filter { e ->
         e.parentInstanceId == null && (e.card.kind == CardKind.LEGION_UNIT || e.card.kind == CardKind.ARMADA_SHIP || e.card.kind == CardKind.ARMADA_SQUADRON || e.card.kind == CardKind.COMMANDER)
     }
