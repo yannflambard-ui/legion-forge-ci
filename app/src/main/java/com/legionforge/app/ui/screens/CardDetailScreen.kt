@@ -619,7 +619,7 @@ internal fun BattleDeckSheet(
     val order = listOf("objective" to "OBJECTIVE + MAP", "secondary" to "SECONDARY OBJECTIVE", "advantage" to "ADVANTAGE")
     var zoomCard by remember { mutableStateOf<LegionBattleCard?>(null) }
     ModalBottomSheet(onDismissRequest = onClose, containerColor = Color(0xFF111827)) {
-        Column(Modifier.fillMaxWidth().padding(horizontal = 16.dp).padding(bottom = 24.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        Column(Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp).padding(bottom = 24.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Text("BATTLE DECK (9 cartes)", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
             Text("Officiel : 3 Objective(+Map) + 3 Secondary + 3 Advantage, sans doublon.", color = Color(0xFF9EACBC), style = MaterialTheme.typography.bodySmall)
             Box(Modifier.fillMaxWidth().height(2.dp).background(Color(0xFF2A3A4A)))
@@ -684,7 +684,7 @@ internal fun CommandDeckSheet(
     fun selectedCount(pip: String): Int = cards.count { it.pip == pip && it.id in hand }
     var zoomCard by remember { mutableStateOf<LegionCommandCard?>(null) }
     ModalBottomSheet(onDismissRequest = onClose, containerColor = Color(0xFF111827)) {
-        Column(Modifier.fillMaxWidth().padding(horizontal = 16.dp).padding(bottom = 24.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        Column(Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp).padding(bottom = 24.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Text("MAIN DE COMMANDEMENT", color = Color(0xFFFFC857), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
             Text("Officielle : 2×1-pip + 2×2-pip + 2×3-pip + Standing Orders (4-pip).  ${hand.size}/7", color = Color(0xFF9EACBC), style = MaterialTheme.typography.bodySmall)
             // Standing Orders : toujours incluse, verrouillée.
