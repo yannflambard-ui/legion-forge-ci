@@ -77,6 +77,7 @@ data class CardDefinition(
         val cardSubtype: String? = null,
         val title: String? = null,
         val forceAffinity: String? = null,
+        val affiliation: String? = null,
         val mercenaryFactions: List<String> = emptyList()
             ) {
     fun displayName(locale: String = java.util.Locale.getDefault().language): String {
@@ -130,13 +131,14 @@ data class CatalogCardEntity(
     val cardSubtype: String? = null,
     val title: String? = null,
     val forceAffinity: String? = null,
+    val affiliation: String? = null,
     val mercenaryFactions: String? = null
 ) {
     fun toDefinition() = CardDefinition(
         id, GameSystem.valueOf(gameSystem), CardKind.valueOf(kind), name, points, factionId,
         legionRank?.let(LegionRank::valueOf), parseSlots(upgradeSlots), parseSlots(allowedUpgradeSlots),
         commander, unique, imageUrl, imageAssetPath, rulesText, parseJsonNames(names), shipStats, linkedUnit, legionStats,
-        cardSubtype, title, forceAffinity, parseFactions(mercenaryFactions)
+        cardSubtype, title, forceAffinity, affiliation, parseFactions(mercenaryFactions)
     )
 
     companion object {
@@ -145,7 +147,7 @@ data class CatalogCardEntity(
             card.legionRank?.name, card.upgradeSlots.joinToString(",") { it.name },
             card.allowedUpgradeSlots.joinToString(",") { it.name }, card.commander, card.unique,
             card.imageUrl, card.imageAssetPath, card.rulesText, toJsonNames(card.names), card.shipStats, card.linkedUnit, card.legionStats,
-            card.cardSubtype, card.title, card.forceAffinity, (card.mercenaryFactions ?: emptyList()).joinToString(",")
+            card.cardSubtype, card.title, card.forceAffinity, card.affiliation, (card.mercenaryFactions ?: emptyList()).joinToString(",")
         )
         private fun parseSlots(value: String) = value.split(',').filter(String::isNotBlank).map(ArmadaSlot::valueOf)
         private fun parseFactions(value: String?) = value?.split(',')?.filter(String::isNotBlank) ?: emptyList()

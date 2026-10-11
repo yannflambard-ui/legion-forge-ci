@@ -118,6 +118,8 @@ def build():
         "commander": c.get("rank") == "commander", "unique": bool(c.get("isUnique")),
         "imageUrl": None, "imageAssetPath": f"cards/swl/{slug(fac)}/{slug(name)}.webp",
         "rulesText": None, "legionStats": json.dumps(make_legion_stats(c), ensure_ascii=False, separators=(",", ":")),
+        "cardSubtype": c.get("cardSubtype"), "title": c.get("title"),
+        "affiliation": c.get("affiliation") or c.get("affiliations"),
             })
         counts["units"] += 1
     for c in upgrades:

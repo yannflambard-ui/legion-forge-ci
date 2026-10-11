@@ -6,13 +6,17 @@ import org.json.JSONObject
 
 /**
  * Évalue les `requirements` d'une carte upgrade Legion (stockés dans `rulesText`
- * sous forme JSON, ex. `{"requirements": ["OR", {"cardName": "Rebel Agent"}, ...]}`)
+ * sous forme JSON, ex. `{"requirements": [{"cardName": "Rebel Agent"}, ...]}`)
  * contre une unité cible. Retourne true si l'unité peut porter l'upgrade.
  *
  * Formes gérées (source : bundle LegionHQ V2) :
- *  - condition simple : {"cardName"|"faction"|"rank"|"cardSubtype"|"title"|"forceAffinity"|"upgradeBar"|"stats": ...}
+ *  - condition simple : {"cardName"|"faction"|"rank"|"cardSubtype"|"title"|"forceAffinity"|"affiliation"|"keywords"|"defense"|"upgradeBar"|"stats": ...}
  *  - combinateurs : ["OR", ...], ["AND", ...], ["NOT", ...]
- * Une condition inconnue / non évaluable est considérée satisfaite (ne bloque pas).
+ *  - un objet requirement avec PLUSIEURS clés = TOUTES doivent être satisfaites (AND),
+ *    ex. {"cardSubtype": "clone trooper", "rank": "corps"} = unité clone trooper DE rang corps.
+ * Une condition inconnue / non évaluable est considérée satisfaite (ne bloque pas),
+ * MAIS une condition connue dont le champ cible est absent/null est considérée NON satisfaite
+ * (on ne peut pas confirmer le match → on bloque, comportement conservateur).
  */
 object LegionRequirements {
 
@@ -35,15 +39,21 @@ object LegionRequirements {
             }
         }
         if (node is JSONObject) {
-            if (node.has("cardName")) return nameMatches(node.optString("cardName"), target)
-            if (node.has("faction")) return factionMatches(node.optString("faction"), target)
-            if (node.has("rank")) return rankMatches(node.optString("rank"), target)
-            if (node.has("cardSubtype")) return subtypeMatches(node.optString("cardSubtype"), target)
-            if (node.has("title")) return titleMatches(node.optString("title"), target)
-            if (node.has("forceAffinity")) return affinityMatches(node.optString("forceAffinity"), target)
-            if (node.has("upgradeBar")) return upgradeBarMatches(node.optJSONArray("upgradeBar"), target)
-            if (node.has("stats")) return statsMatches(node.optJSONObject("stats"), target)
-            return true // condition inconnue -> ne bloque pas
+            // Toutes les conditions présentes doivent être satisfaites (AND).
+            val results = mutableListOf<Boolean>()
+            if (node.has("cardName")) results.add(nameMatches(node.optString("cardName"), target))
+            if (node.has("faction")) results.add(factionMatches(node.optString("faction"), target))
+            if (node.has("rank")) results.add(rankMatches(node.optString("rank"), target))
+            if (node.has("cardSubtype")) results.add(subtypeMatches(node.optString("cardSubtype"), target))
+            if (node.has("title")) results.add(titleMatches(node.optString("title"), target))
+            if (node.has("forceAffinity")) results.add(affinityMatches(node.optString("forceAffinity"), target))
+            if (node.has("affiliation")) results.add(affiliationMatches(node.optString("affiliation"), target))
+            if (node.has("keywords")) results.add(keywordsMatches(node.optJSONArray("keywords"), target))
+            if (node.has("defense")) results.add(defenseMatches(node.optString("defense"), target))
+            if (node.has("upgradeBar")) results.add(upgradeBarMatches(node.optJSONArray("upgradeBar"), target))
+            if (node.has("stats")) results.add(statsMatches(node.optJSONObject("stats"), target))
+            if (results.isEmpty()) return true // condition inconnue -> ne bloque pas
+            return results.all { it }
         }
         return true
     }
@@ -97,6 +107,27 @@ object LegionRequirements {
     private fun affinityMatches(a: String, target: CardDefinition): Boolean =
         target.forceAffinity?.trim()?.lowercase() == a.trim().lowercase()
 
+    private fun affiliationMatches(a: String, target: CardDefinition): Boolean {
+        val req = a.trim().lowercase()
+        val aff = target.affiliation?.trim()?.lowercase()
+        if (aff == null) return false // champ absent -> on ne peut pas confirmer -> bloque
+        return aff == req || aff.split(',').any { it.trim().lowercase() == req }
+    }
+
+    private fun keywordsMatches(kw: JSONArray?, target: CardDefinition): Boolean {
+        if (kw == null || kw.length() == 0) return true
+        val targetKw = parseKeywords(target.legionStats)
+        return (0 until kw.length()).all { i -> kw.optString(i).lowercase() in targetKw }
+    }
+
+    private fun parseKeywords(legionStats: String?): Set<String> {
+        if (legionStats.isNullOrBlank()) return emptySet()
+        return try {
+            val a = JSONObject(legionStats).optJSONArray("keywords") ?: return emptySet()
+            (0 until a.length()).map { a.optString(it).lowercase() }.toSet()
+        } catch (_: Exception) { emptySet() }
+    }
+
     private fun upgradeBarMatches(bar: JSONArray?, target: CardDefinition): Boolean {
         if (bar == null || bar.length() == 0) return true
         val targetBar = parseUpgradeBar(target.legionStats)
@@ -109,6 +140,12 @@ object LegionRequirements {
             val a = JSONObject(legionStats).optJSONArray("upgradeBar") ?: return emptySet()
             (0 until a.length()).map { a.optString(it).lowercase() }.toSet()
         } catch (_: Exception) { emptySet() }
+    }
+
+    private fun defenseMatches(d: String, target: CardDefinition): Boolean {
+        val req = d.trim().lowercase()
+        val got = parseDefense(target.legionStats)?.lowercase()
+        return got != null && got == req
     }
 
     private fun statsMatches(stats: JSONObject?, target: CardDefinition): Boolean {
