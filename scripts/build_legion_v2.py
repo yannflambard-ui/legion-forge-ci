@@ -97,6 +97,15 @@ def unique_id(c, seen, name):
     while cand in seen: cand=f"{base}:{digest}:{k}"; k+=1
     seen.add(cand); return cand
 
+
+def _affiliation(c):
+    """Affiliation de l'unite (String). Le bundle a parfois 'affiliations' (liste,
+    ex. The Bad Batch = ['rebels']) -> on joint en CSV pour rester un String (Gson)."""
+    v = c.get("affiliation") or c.get("affiliations")
+    if isinstance(v, list):
+        return ",".join(str(x) for x in v)
+    return v
+
 def build():
     cards = json.loads(BUNDLE.read_text())
     units = [c for c in cards if c.get("cardType") == "unit"]
@@ -119,7 +128,7 @@ def build():
         "imageUrl": None, "imageAssetPath": f"cards/swl/{slug(fac)}/{slug(name)}.webp",
         "rulesText": None, "legionStats": json.dumps(make_legion_stats(c), ensure_ascii=False, separators=(",", ":")),
         "cardSubtype": c.get("cardSubtype"), "title": c.get("title"),
-        "affiliation": c.get("affiliation") or c.get("affiliations"),
+        "affiliation": _affiliation(c),
             })
         counts["units"] += 1
     for c in upgrades:

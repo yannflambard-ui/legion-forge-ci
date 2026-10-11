@@ -2979,9 +2979,7 @@
       "legionStats": "{\"health\":2,\"courage\":3,\"speed\":2,\"defenseDie\":\"r\",\"surgeAttack\":\"\",\"surgeDefense\":\"\",\"miniCount\":0,\"keywords\":[\"Mercenary\",\"Equip\",\"Impervious\",\"Scale\",\"Steady\",\"Sharpshooter\",\"We're Not Regs\"],\"weapons\":[{\"name\":\"Advanced Combat Training\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":1,\"black\":0,\"white\":0}},{\"name\":\"DC-17 Hand Blaster\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":0,\"black\":1,\"white\":1}}],\"upgradeBar\":[\"heavy weapon\",\"heavy weapon\",\"heavy weapon\",\"heavy weapon\"]}",
       "cardSubtype": "clone trooper",
       "title": "Clone Force 99",
-      "affiliation": [
-        "rebels"
-      ]
+      "affiliation": "rebels"
     },
     {
       "id": "legion_v2:lhq2/rebel-sleeper-cell-ready-to-strike",
