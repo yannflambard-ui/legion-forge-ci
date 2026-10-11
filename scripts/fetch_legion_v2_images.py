@@ -12,9 +12,10 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 CDN = "https://d2maxvwz12z6fm.cloudfront.net"
-BUNDLE = Path("/tmp/legionhq_v2_full.json")
-CATALOG = Path("/opt/projects/swlegion-army-builder/app/src/main/assets/catalog.json")
-ASSETS = Path("/opt/projects/swlegion-army-builder/app/src/main/assets/cards/swl")
+BUNDLE = Path("/tmp/legionhq_v2_fused.json")
+CATALOG = Path("/root/legion-forge-ci/app/src/main/assets/catalog.json")
+ASSETS = Path("/root/legion-forge-ci/app/src/main/assets/cards/swl")
+HEADERS = {"User-Agent": "Mozilla/5.0", "Referer": "https://legionhq2.com/"}
 
 def slug(s): return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", (s or "").lower())).strip("-") or "x"
 
@@ -44,7 +45,7 @@ def main():
         dest = ASSETS / fac / f"{slug(c['name'])}.webp"
         dest.parent.mkdir(parents=True, exist_ok=True)
         try:
-            r = requests.get(f"{CDN}/{'unit' if typ=='unit' else 'upgrade'}Cards/{urllib.parse.quote(nm)}", timeout=20)
+            r = requests.get(f"{CDN}/{'unit' if typ=='unit' else 'upgrade'}Cards/{urllib.parse.quote(nm)}", timeout=20, headers=HEADERS)
             if r.status_code != 200 or "image" not in r.headers.get("content-type", ""):
                 return c["name"], f"HTTP{r.status_code}", None
             dest.write_bytes(r.content)

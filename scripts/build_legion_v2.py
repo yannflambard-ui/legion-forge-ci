@@ -11,9 +11,9 @@ import json, re, hashlib
 from collections import Counter
 from pathlib import Path
 
-BUNDLE = Path("/tmp/legionhq_v2_full.json")
-CATALOG = Path("/opt/projects/swlegion-army-builder/app/src/main/assets/catalog.json")
-OUT = Path("/opt/projects/swlegion-army-builder/app/src/main/assets/catalog.json")
+BUNDLE = Path("/tmp/legionhq_v2_fused.json")
+CATALOG = Path("/root/legion-forge-ci/app/src/main/assets/catalog.json")
+OUT = Path("/root/legion-forge-ci/app/src/main/assets/catalog.json")
 
 # faction maps (bundle -> app catalog factionId)
 FACTION = {
@@ -114,7 +114,7 @@ def build():
         "id": unique_id(c, seen, name), "gameSystem": "LEGION_V2", "kind": "LEGION_UNIT",
         "name": name, "points": int(c.get("cost") or 0),
         "factionId": fac, "legionRank": RANK.get(c.get("rank")),
-        "upgradeSlots": [], "allowedUpgradeSlots": sorted({SLOT.get(s, "OTHER") for s in c.get("upgradeBar", [])}),
+        "upgradeSlots": [], "allowedUpgradeSlots": [SLOT.get(s, "OTHER") for s in c.get("upgradeBar", [])],
         "commander": c.get("rank") == "commander", "unique": bool(c.get("isUnique")),
         "imageUrl": None, "imageAssetPath": f"cards/swl/{slug(fac)}/{slug(name)}.webp",
         "rulesText": None, "legionStats": json.dumps(make_legion_stats(c), ensure_ascii=False, separators=(",", ":")),
