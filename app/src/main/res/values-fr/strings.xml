@@ -96,6 +96,7 @@
     <string name="back">Retour</string>
     <string name="my_collection">Ma collection</string>
     <string name="my_collection_desc">Cochez le matériel que vous possédez</string>
+    <string name="collection_only_catalog">Afficher uniquement mon matériel dans le catalogue</string>
     <string name="my_collection_packs">Packs</string>
     <string name="my_collection_cards">Cartes (%1$d)</string>
     <string name="no_packs">Aucun pack chargé</string>

@@ -96,6 +96,7 @@
     <string name="back">Back</string>
     <string name="my_collection">My collection</string>
     <string name="my_collection_desc">Check the material you own</string>
+    <string name="collection_only_catalog">Show only my owned material in the catalogue</string>
     <string name="my_collection_packs">Packs</string>
     <string name="my_collection_cards">Cards (%1$d)</string>
     <string name="no_packs">No packs loaded yet</string>

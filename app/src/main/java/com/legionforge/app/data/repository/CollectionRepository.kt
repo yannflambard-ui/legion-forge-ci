@@ -33,11 +33,17 @@ object CollectionRepository {
     private const val PREFS = "legionforge"
     private const val KEY_PACKS = "owned_packs"
     private const val KEY_CARDS = "owned_cards" // cartes cochées individuellement (onglet Cartes)
+    private const val KEY_COLLECTION_ONLY = "collection_only" // filtre catalogue "ma collection"
     private const val TAG = "CollectionRepo"
 
     private lateinit var prefs: SharedPreferences
     private val _ownedPacks = MutableStateFlow<Set<String>>(emptySet())
     val ownedPacks: StateFlow<Set<String>> = _ownedPacks.asStateFlow()
+
+    /** Filtre catalogue « Ma collection » : n'afficher que le matériel possédé.
+     *  Persistant (Réglages + menu ⚙ du builder). */
+    private val _collectionOnly = MutableStateFlow(false)
+    val collectionOnly: StateFlow<Boolean> = _collectionOnly.asStateFlow()
 
     /** Cartes possédées = union des cartes des packs cochés (mise à jour à chaque
      *  changement de ownedPacks, dérivé à la volée. */
@@ -61,6 +67,7 @@ object CollectionRepository {
         prefs = context.applicationContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
         _ownedPacks.value = prefs.getStringSet(KEY_PACKS, emptySet()) ?: emptySet()
         _individualCards.value = prefs.getStringSet(KEY_CARDS, emptySet()) ?: emptySet()
+        _collectionOnly.value = prefs.getBoolean(KEY_COLLECTION_ONLY, false)
         loadPacks(context.applicationContext)
     }
 
@@ -103,6 +110,12 @@ object CollectionRepository {
         _individualCards.value = current
         recalcOwned()
         prefs.edit().putStringSet(KEY_CARDS, current).apply()
+    }
+
+    /** Active/désactive le filtre catalogue « Ma collection » (persistant). */
+    fun setCollectionOnly(enabled: Boolean) {
+        _collectionOnly.value = enabled
+        prefs.edit().putBoolean(KEY_COLLECTION_ONLY, enabled).apply()
     }
 
     private fun recalcOwned() {

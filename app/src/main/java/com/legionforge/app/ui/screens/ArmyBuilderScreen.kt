@@ -44,7 +44,8 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
     var filterKeyword by remember { mutableStateOf<String?>(null) }
     var filtersMenuOpen by remember { mutableStateOf(false) }
     // Filtre "Ma collection" : n'affiche que le matériel possédé (coché dans Réglages).
-    var collectionOnly by remember { mutableStateOf(false) }
+    // Persistant : activable depuis Réglages ET le menu ⚙ du builder.
+    val collectionOnly by com.legionforge.app.data.repository.CollectionRepository.collectionOnly.collectAsState()
     val ownedCards by com.legionforge.app.data.repository.CollectionRepository.owned.collectAsState()
     // Aperçu image plein écran : clic sur une carte -> affiche l'image, clic sur l'image -> referme.
     var previewCard by remember { mutableStateOf<CardDefinition?>(null) }
@@ -255,11 +256,11 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                             HorizontalDivider(color = Color(0xFF2A3A4A), modifier = Modifier.padding(vertical = 6.dp))
                             Text(stringResource(R.string.my_collection), color = Color(0xFF9EACBC), style = MaterialTheme.typography.labelSmall, modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp))
                             Row(Modifier.padding(horizontal = 12.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                FilterChip(selected = collectionOnly, onClick = { collectionOnly = !collectionOnly }, label = { Text(stringResource(R.string.my_collection), fontSize = 11.sp) }, leadingIcon = if (collectionOnly) { { Text("\u2713", fontSize = 10.sp) } } else null)
+                                FilterChip(selected = collectionOnly, onClick = { com.legionforge.app.data.repository.CollectionRepository.setCollectionOnly(!collectionOnly) }, label = { Text(stringResource(R.string.my_collection), fontSize = 11.sp) }, leadingIcon = if (collectionOnly) { { Text("\u2713", fontSize = 10.sp) } } else null)
                                 Text("(${ownedCards.size})", color = Color(0xFFFFC857), style = MaterialTheme.typography.labelSmall)
                             }
                             if (filterRank != null || filterMaxPts != null || filterKeyword != null || collectionOnly) {
-                                TextButton(onClick = { filterRank = null; filterMaxPts = null; filterKeyword = null; collectionOnly = false }, modifier = Modifier.padding(horizontal = 8.dp)) { Text(stringResource(R.string.clear_filters), color = Color(0xFFFF927F), style = MaterialTheme.typography.labelSmall) }
+                                TextButton(onClick = { filterRank = null; filterMaxPts = null; filterKeyword = null; com.legionforge.app.data.repository.CollectionRepository.setCollectionOnly(false) }, modifier = Modifier.padding(horizontal = 8.dp)) { Text(stringResource(R.string.clear_filters), color = Color(0xFFFF927F), style = MaterialTheme.typography.labelSmall) }
                             }
                         }
                     }

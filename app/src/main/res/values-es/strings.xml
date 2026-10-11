@@ -96,6 +96,7 @@
     <string name="back">Atrás</string>
     <string name="my_collection">Mi colección</string>
     <string name="my_collection_desc">Marca el material que posees</string>
+    <string name="collection_only_catalog">Mostrar solo mi material en el catálogo</string>
     <string name="my_collection_packs">Paquetes</string>
     <string name="my_collection_cards">Cartas (%1$d)</string>
     <string name="no_packs">Aún no hay paquetes</string>

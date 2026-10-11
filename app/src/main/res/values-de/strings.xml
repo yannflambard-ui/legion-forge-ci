@@ -96,6 +96,7 @@
     <string name="back">Zurück</string>
     <string name="my_collection">Meine Sammlung</string>
     <string name="my_collection_desc">Material ankreuzen, das Sie besitzen</string>
+    <string name="collection_only_catalog">Nur mein eigenes Material im Katalog anzeigen</string>
     <string name="my_collection_packs">Packs</string>
     <string name="my_collection_cards">Karten (%1$d)</string>
     <string name="no_packs">Noch keine Packs geladen</string>

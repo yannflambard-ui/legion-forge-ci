@@ -17,6 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.legionforge.app.R
+import com.legionforge.app.data.repository.CollectionRepository
 import java.util.Locale
 
 private data class LangOption(val code: String, val flag: String, val label: String)
@@ -105,6 +106,28 @@ fun SettingsScreen(onBack: () -> Unit, onCollection: () -> Unit = {}) {
                     Text(stringResource(R.string.my_collection_desc),
                         color = Color.White, fontSize = 16.sp)
                     Text("\u276F", color = Color(0xFFFFC857), fontSize = 18.sp)
+                }
+            }
+
+            // Case à cocher : n'afficher dans le catalogue que le matériel possédé.
+            val collectionOnly by CollectionRepository.collectionOnly.collectAsState()
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { CollectionRepository.setCollectionOnly(!collectionOnly) },
+                colors = CardDefaults.cardColors(containerColor = Color(0xFF192331))
+            ) {
+                Row(
+                    Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 6.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Checkbox(
+                        checked = collectionOnly,
+                        onCheckedChange = { CollectionRepository.setCollectionOnly(it) },
+                        colors = CheckboxDefaults.colors(checkedColor = Color(0xFFFFC857), checkmarkColor = Color.Black)
+                    )
+                    Text(stringResource(R.string.collection_only_catalog),
+                        color = Color.White, fontSize = 15.sp)
                 }
             }
 
