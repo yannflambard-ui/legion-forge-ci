@@ -68,7 +68,7 @@ fun CollectionScreen(onBack: () -> Unit, vm: ArmyBuilderViewModel = viewModel())
                     textStyle = MaterialTheme.typography.bodyMedium
                 )
                 Text(
-                    "$ownedPacks packs",
+                    "${ownedPacks.size} ${stringResource(R.string.my_collection_packs).lowercase()}",
                     color = Color(0xFFFFC857),
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.Bold
