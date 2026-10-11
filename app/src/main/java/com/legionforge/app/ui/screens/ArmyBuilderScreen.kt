@@ -79,7 +79,11 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
                     game == GameSystem.LEGION_V2 && c.kind == CardKind.LEGION_UPGRADE ->
                         c.upgradeSlots.any { it in selectedParent.card.allowedUpgradeSlots } && c.upgradeSlots.none { it in fullSlots } &&
                         // Règle Legion : une unité ne peut pas équiper 2× la même amélioration.
-                        !parentChildren.any { it.card.id == c.id }
+                        !parentChildren.any { it.card.id == c.id } &&
+                        // Restriction d'unité (requirements cardName) : ex. RPS-6 ARF Trooper = ARF Troopers only,
+                        // Radiation Cannon B1 = B1 Battle Droids only. Sans ce check, ces upgrades apparaissent
+                        // sur toutes les unités partageant le même slot (ex. Snowtroopers).
+                        com.legionforge.app.domain.LegionRequirements.matches(c.rulesText, selectedParent.card)
                     game == GameSystem.ARMADA_V15 && c.kind == CardKind.ARMADA_UPGRADE ->
                         c.upgradeSlots.any { it in selectedParent.card.allowedUpgradeSlots } && upgradeFitsShip(c, selectedParent.card) &&
                         c.upgradeSlots.none { it in fullSlots } &&
