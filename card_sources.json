@@ -1,0 +1,368 @@
+{
+  "schemaVersion": 1,
+  "generated": "2026-10-12",
+  "purpose": "Golden sources des illustrations de cartes SW Legion par langue. Traquer la date de chaque source (erratas frequents). Re-verifier quand une source est mise a jour.",
+  "languages": {
+    "fr": {
+      "source": "iron-squadron.fr",
+      "sourceUrl": "https://iron-squadron.fr/ressources-star-wars-legion/regles-cartes-et-erratas/",
+      "type": "community (Iron Squadron, FRAMG)",
+      "note": "PDF print&play officiels AMG traduits en FR, heberges sur Google Drive. Dates dans les noms de fichiers (ex. MAJ23.02.2026, 17.06.26). Les docs sans date = version courante non datee.",
+      "lastChecked": "2026-10-12",
+      "documents": [
+        {
+          "name": "Battle Cards FR MAJ23.02.2026",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": "MAJ23.02.2026",
+          "size": "14.4 Mo",
+          "driveId": "1VDTJR14wBHrFfvnoSEaTqsU7EqQgkZ59",
+          "url": "https://drive.google.com/file/d/1VDTJR14wBHrFfvnoSEaTqsU7EqQgkZ59/view?usp=drivesdk"
+        },
+        {
+          "name": "BattleForces FR 17.06.2026",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": "17.06.2026",
+          "size": "34.3 Mo",
+          "driveId": "1JuYRPszQfjPYamH40aPMoUyfYDnaka3h",
+          "url": "https://drive.google.com/file/d/1JuYRPszQfjPYamH40aPMoUyfYDnaka3h/view?usp=drivesdk"
+        },
+        {
+          "name": "Errata Reference FR 17.06.26",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": "17.06.26",
+          "size": "13.3 Mo",
+          "driveId": "1bxNoWVtTVv-i11NCD72DnKQsCOXbI1r6",
+          "url": "https://drive.google.com/file/d/1bxNoWVtTVv-i11NCD72DnKQsCOXbI1r6/view?usp=drivesdk"
+        },
+        {
+          "name": "Galactic Empire Commands FR",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": null,
+          "size": "13.3 Mo",
+          "driveId": "1Yx7hi1kuGAgrlhVzYeYbAzdau5wrRdQA",
+          "url": "https://drive.google.com/file/d/1Yx7hi1kuGAgrlhVzYeYbAzdau5wrRdQA/view?usp=drivesdk"
+        },
+        {
+          "name": "Galactic Empire Units FR",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": null,
+          "size": "29.9 Mo",
+          "driveId": "1E81zbWQmMkhOYf2deSnV97qOO9hr2Dm0",
+          "url": "https://drive.google.com/file/d/1E81zbWQmMkhOYf2deSnV97qOO9hr2Dm0/view?usp=drivesdk"
+        },
+        {
+          "name": "Galactic Empire Upgrades FR",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": null,
+          "size": "22.3 Mo",
+          "driveId": "1mKruQHpnhdEdZFq4pMeD4QijjR4d-zDr",
+          "url": "https://drive.google.com/file/d/1mKruQHpnhdEdZFq4pMeD4QijjR4d-zDr/view?usp=drivesdk"
+        },
+        {
+          "name": "Galactic Republic Commands FR MAJ23.02.2026",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": "MAJ23.02.2026",
+          "size": "12.2 Mo",
+          "driveId": "1zoXBptRXODn43-S23nGR-GnlNzyJvOiG",
+          "url": "https://drive.google.com/file/d/1zoXBptRXODn43-S23nGR-GnlNzyJvOiG/view?usp=drivesdk"
+        },
+        {
+          "name": "Galactic Republic Units FR",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": null,
+          "size": "24.6 Mo",
+          "driveId": "1IgfeY-5Z1zbhQElh4ZqVGV_K494UiyRO",
+          "url": "https://drive.google.com/file/d/1IgfeY-5Z1zbhQElh4ZqVGV_K494UiyRO/view?usp=drivesdk"
+        },
+        {
+          "name": "Galactic Republic Upgrades FR",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": null,
+          "size": "18.7 Mo",
+          "driveId": "1qJ63cNwDlwTazZrdot-Zt33mullSZ4EN",
+          "url": "https://drive.google.com/file/d/1qJ63cNwDlwTazZrdot-Zt33mullSZ4EN/view?usp=drivesdk"
+        },
+        {
+          "name": "Generic Upgrades FR",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": null,
+          "size": "36.6 Mo",
+          "driveId": "1ht63cC5Pm3SWbnPydgU_w4QqHZ4W3b0G",
+          "url": "https://drive.google.com/file/d/1ht63cC5Pm3SWbnPydgU_w4QqHZ4W3b0G/view?usp=drivesdk"
+        },
+        {
+          "name": "Mandalorian BattleForce Cards FR",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": null,
+          "size": "13.5 Mo",
+          "driveId": "1mo2k0Y6jcl1mfOu6cqfVBsdxldSBpBz5",
+          "url": "https://drive.google.com/file/d/1mo2k0Y6jcl1mfOu6cqfVBsdxldSBpBz5/view?usp=drivesdk"
+        },
+        {
+          "name": "Mercenary Commands FR",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": null,
+          "size": "11.5 Mo",
+          "driveId": "1roqACbRlq96vn9QrMkMY8XLbKAvercFf",
+          "url": "https://drive.google.com/file/d/1roqACbRlq96vn9QrMkMY8XLbKAvercFf/view?usp=drivesdk"
+        },
+        {
+          "name": "Mercenary Ewoks FR",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": null,
+          "size": "13.5 Mo",
+          "driveId": "12jfsg86NswkUFCizJhyi3r7ONBIYFlFo",
+          "url": "https://drive.google.com/file/d/12jfsg86NswkUFCizJhyi3r7ONBIYFlFo/view?usp=drivesdk"
+        },
+        {
+          "name": "Mercenary Units FR",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": null,
+          "size": "18 Mo",
+          "driveId": "1_OUQuHDPy4rAmuu1GV6kxUFhPhXuQhxo",
+          "url": "https://drive.google.com/file/d/1_OUQuHDPy4rAmuu1GV6kxUFhPhXuQhxo/view?usp=drivesdk"
+        },
+        {
+          "name": "Mercenary Upgrades FR",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": null,
+          "size": "12.3 Mo",
+          "driveId": "1UQ9DYcuxyffBY3jkY-UQtmklraNOSoNx",
+          "url": "https://drive.google.com/file/d/1UQ9DYcuxyffBY3jkY-UQtmklraNOSoNx/view?usp=drivesdk"
+        },
+        {
+          "name": "Nouvelles cartes VF 21.11.25",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": "21.11.25",
+          "size": "3.5 Mo",
+          "driveId": "1TjwCXagDLoFNXV8-c6_CmQjI-IcE6o5r",
+          "url": "https://drive.google.com/file/d/1TjwCXagDLoFNXV8-c6_CmQjI-IcE6o5r/view?usp=drivesdk"
+        },
+        {
+          "name": "Nouvelles cartes amélio 07.25 VF – fantrad",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": null,
+          "size": "3.7 Mo",
+          "driveId": "193ekqcXw4pqf_YW0Z1UodAi_Blp26_A0",
+          "url": "https://drive.google.com/file/d/193ekqcXw4pqf_YW0Z1UodAi_Blp26_A0/view?usp=drivesdk"
+        },
+        {
+          "name": "Nouvelles cartes amélio FR MAJ23.02.2026",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": "MAJ23.02.2026",
+          "size": "4 Mo",
+          "driveId": "1eCNo8_r4FMKlYWyGQjc1MYl1V0Ut6IJU",
+          "url": "https://drive.google.com/file/d/1eCNo8_r4FMKlYWyGQjc1MYl1V0Ut6IJU/view?usp=drivesdk"
+        },
+        {
+          "name": "Rebel Alliance Commands FR",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": null,
+          "size": "13.5 Mo",
+          "driveId": "1dUI36nnEgl7_HGjvg_FdU2wtK8Ba8dsA",
+          "url": "https://drive.google.com/file/d/1dUI36nnEgl7_HGjvg_FdU2wtK8Ba8dsA/view?usp=drivesdk"
+        },
+        {
+          "name": "Rebel Alliance Units FR",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": null,
+          "size": "31.5 Mo",
+          "driveId": "1QIX-RC6zQ9mS9z3K1edGGd9YQlw04fUx",
+          "url": "https://drive.google.com/file/d/1QIX-RC6zQ9mS9z3K1edGGd9YQlw04fUx/view?usp=drivesdk"
+        },
+        {
+          "name": "Rebel Alliance Upgrades FR",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": null,
+          "size": "23 Mo",
+          "driveId": "1wM3WJ3PDlNJiuqj9FZzGbQ6Dg3_m9QUX",
+          "url": "https://drive.google.com/file/d/1wM3WJ3PDlNJiuqj9FZzGbQ6Dg3_m9QUX/view?usp=drivesdk"
+        },
+        {
+          "name": "Separatist Alliance Commands FR",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": null,
+          "size": "8.6 Mo",
+          "driveId": "1C_4MM_t7v49aL1MbOnDfxcF4VRvsZOBP",
+          "url": "https://drive.google.com/file/d/1C_4MM_t7v49aL1MbOnDfxcF4VRvsZOBP/view?usp=drivesdk"
+        },
+        {
+          "name": "Separatist Alliance Units FR",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": null,
+          "size": "25.3 Mo",
+          "driveId": "1WNjtVZqM-M6WgG75onFQZuXKVMWXqYzo",
+          "url": "https://drive.google.com/file/d/1WNjtVZqM-M6WgG75onFQZuXKVMWXqYzo/view?usp=drivesdk"
+        },
+        {
+          "name": "Separatist Alliance Upgrades FR",
+          "lang": "VF",
+          "category": "Règles, Cartes et Erratas",
+          "date": null,
+          "size": "20.2 Mo",
+          "driveId": "1zDoFrty3nZ122t8BtjMthDVFwpaD1DnZ",
+          "url": "https://drive.google.com/file/d/1zDoFrty3nZ122t8BtjMthDVFwpaD1DnZ/view?usp=drivesdk"
+        }
+      ],
+      "injectedCards": 98,
+      "injectedAt": "2026-10-12",
+      "injectionNote": "98 upgrades generiques FR injectees en webp haute resolution (dpi=300, ~776x1039) depuis les PDF FRAMG iron-squadron. 6 anomalies de decoupe exclues (Force Reflexes, Programmed Loyalty, R4 Astromech, Ursa Wren, Clone Engineer, Black Sun Enforcer)."
+    },
+    "de": {
+      "source": "Asmodee Deutschland (officiel)",
+      "sourceUrl": "https://www.asmodee.de/star-wars-legion",
+      "indexPdf": "https://asmodee-resources.azureedge.net/media/germanyprod/legion/uebersicht-downloadokumente-sw-legion.pdf",
+      "type": "official distributor",
+      "note": "PDF index listant tous les liens Errata + Print&Play en allemand. Cartes v1.2 par faction. Dates dans les noms (Grundregelwerk 30.05.2026, Errata-Referenz 30.05.2026, Kampftrupps 29.05.2026).",
+      "lastChecked": "2026-10-12",
+      "documents": [
+        {
+          "name": "Allgemeine Aufwertungskarten v1.2",
+          "date": null
+        },
+        {
+          "name": "Neue Aufwertungskarten v1.2",
+          "date": null
+        },
+        {
+          "name": "Allgemeine Kommandokarten v1.2",
+          "date": null
+        },
+        {
+          "name": "Galaktische Republik Aufwertungen v1.2",
+          "date": null
+        },
+        {
+          "name": "Galaktische Republik Einheiten v1.2",
+          "date": null
+        },
+        {
+          "name": "Galaktische Republik Kommando v1.2",
+          "date": null
+        },
+        {
+          "name": "Galaktisches Imperium Aufwertungen v1.2",
+          "date": null
+        },
+        {
+          "name": "Galaktisches Imperium Einheiten v1.2",
+          "date": null
+        },
+        {
+          "name": "Galaktisches Imperium Kommando v1.2",
+          "date": null
+        },
+        {
+          "name": "Gefechtskarten v3",
+          "date": null
+        },
+        {
+          "name": "Rebellenallianz Aufwertungen v1.2",
+          "date": null
+        },
+        {
+          "name": "Rebellenallianz Einheiten v1.2",
+          "date": null
+        },
+        {
+          "name": "Rebellenallianz Kommando v1.2",
+          "date": null
+        },
+        {
+          "name": "Separatistenallianz Aufwertungen v1.2",
+          "date": null
+        },
+        {
+          "name": "Separatistenallianz Einheiten v1.2",
+          "date": null
+        },
+        {
+          "name": "Separatistenallianz Kommando v1.2",
+          "date": null
+        },
+        {
+          "name": "Söldner Aufwertungen v1.2",
+          "date": null
+        },
+        {
+          "name": "Söldner Einheiten v1.2",
+          "date": null
+        },
+        {
+          "name": "Söldner Ewoks v1.2",
+          "date": null
+        },
+        {
+          "name": "Söldner Kommando v1.2",
+          "date": null
+        },
+        {
+          "name": "Errata-Referenz 30.05.2026",
+          "date": "30.05.2026"
+        }
+      ]
+    },
+    "es": {
+      "source": "heavycover.wordpress.com (communauté)",
+      "sourceUrl": "https://heavycover.wordpress.com/cartas-en-castellano/",
+      "type": "community",
+      "note": "Cartes en espagnol par factions via Google Drive + PDF mejoras-1.pdf. PAS de dates visibles -> difficile de traquer les erratas. Source fragile, a valider.",
+      "lastChecked": "2026-10-12",
+      "documents": [
+        {
+          "name": "ALIANZA REBELDE",
+          "driveFolder": "1I2a8VsMHVdadhNpfvY6UjlazJ6Xkk5gF",
+          "date": null
+        },
+        {
+          "name": "IMPERIO GALACTICO",
+          "driveFolder": "10SzAfbTADDWUvb-E3KYjsCS7cjEzI0V_",
+          "date": null
+        },
+        {
+          "name": "CONFEDERACION SISTEMAS INDEPENDIENTES",
+          "driveFolder": "1rWFyQ8X5YFP2RzKVYfqsKI1V57A9Uzfz",
+          "date": null
+        },
+        {
+          "name": "REPUBLICA GALACTICA",
+          "driveFolder": "1yXo1R40vAeHXnWlZfSK_6HtC-Yitg0bw",
+          "date": null
+        },
+        {
+          "name": "MERCENARIOS",
+          "driveFolder": "1FEpprKUmhh7or9fMtIcXnDjJO_r-g2CE",
+          "date": null
+        },
+        {
+          "name": "MEJORAS (1)",
+          "pdf": "https://heavycover.wordpress.com/wp-content/uploads/2025/06/mejoras-1.pdf",
+          "date": null
+        }
+      ]
+    }
+  }
+}
