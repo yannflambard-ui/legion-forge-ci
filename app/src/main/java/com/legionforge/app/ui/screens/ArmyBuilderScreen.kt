@@ -309,7 +309,7 @@ fun ArmyBuilderScreen(listId: String, onBack: () -> Unit, onPlayCard: (String, S
 
 @Composable
 private fun ImagePreviewDialog(card: CardDefinition, onClose: () -> Unit) {
-    val source: Any? = card.imageAssetPath?.let { "file:///android_asset/$it" } ?: card.imageUrl
+    val source: Any? = card.imagePath()?.let { "file:///android_asset/$it" } ?: card.imageUrl
     Dialog(onDismissRequest = {}, properties = DialogProperties(usePlatformDefaultWidth = false)) {
             Surface(
                 modifier = Modifier.fillMaxSize().background(Color(0xE6000000)),
@@ -519,7 +519,7 @@ private fun cardAspectRatio(card: CardDefinition): Float =
 
 @Composable
 fun CardArtwork(card: CardDefinition, modifier: Modifier = Modifier) {
-    val source: Any? = card.imageAssetPath?.let { "file:///android_asset/$it" } ?: card.imageUrl
+    val source: Any? = card.imagePath()?.let { "file:///android_asset/$it" } ?: card.imageUrl
     val ratio = cardAspectRatio(card)
     val sized = modifier.aspectRatio(ratio)
     if (source != null) AsyncImage(model = source, contentDescription = stringResource(R.string.icon_desc, card.displayName()), modifier = sized, contentScale = ContentScale.Crop)

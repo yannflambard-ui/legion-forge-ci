@@ -1380,7 +1380,7 @@ internal fun ArmadaSquadronPage(unit: ListEntry, wikiSections: List<WikiSectionE
 @Composable
 internal fun CardZoomOverlay(card: CardDefinition, show: Boolean, onDismiss: () -> Unit) {
     if (!show) return
-    val source: Any? = card.imageAssetPath?.let { "file:///android_asset/$it" } ?: card.imageUrl
+    val source: Any? = card.imagePath()?.let { "file:///android_asset/$it" } ?: card.imageUrl
     androidx.compose.ui.window.Dialog(onDismissRequest = onDismiss) {
         androidx.compose.material3.Surface(
             modifier = Modifier.fillMaxWidth(0.96f).verticalScroll(rememberScrollState()),

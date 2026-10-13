@@ -37,7 +37,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
         BuilderEntryEntity::class,
         WikiSectionEntity::class
     ],
-    version = 18,
+    version = 19,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -103,7 +103,7 @@ abstract class LegionForgeDatabase : RoomDatabase() {
 
         private val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(db: SupportSQLiteDatabase) {
-                db.execSQL("CREATE TABLE IF NOT EXISTS catalog_cards (id TEXT NOT NULL PRIMARY KEY, gameSystem TEXT NOT NULL, kind TEXT NOT NULL, name TEXT NOT NULL, points INTEGER NOT NULL, factionId TEXT NOT NULL, legionRank TEXT, upgradeSlots TEXT NOT NULL, allowedUpgradeSlots TEXT NOT NULL, commander INTEGER NOT NULL, `unique` INTEGER NOT NULL, imageUrl TEXT, imageAssetPath TEXT, rulesText TEXT, names TEXT DEFAULT NULL)")
+                db.execSQL("CREATE TABLE IF NOT EXISTS catalog_cards (id TEXT NOT NULL PRIMARY KEY, gameSystem TEXT NOT NULL, kind TEXT NOT NULL, name TEXT NOT NULL, points INTEGER NOT NULL, factionId TEXT NOT NULL, legionRank TEXT, upgradeSlots TEXT NOT NULL, allowedUpgradeSlots TEXT NOT NULL, commander INTEGER NOT NULL, `unique` INTEGER NOT NULL, imageUrl TEXT, imageAssetPath TEXT, imageAssetPaths TEXT, rulesText TEXT, names TEXT DEFAULT NULL)")
                 db.execSQL("CREATE INDEX IF NOT EXISTS index_catalog_cards_gameSystem ON catalog_cards(gameSystem)")
                 db.execSQL("CREATE INDEX IF NOT EXISTS index_catalog_cards_factionId ON catalog_cards(factionId)")
                 db.execSQL("CREATE TABLE IF NOT EXISTS builder_lists (id TEXT NOT NULL PRIMARY KEY, name TEXT NOT NULL, gameSystem TEXT NOT NULL, factionId TEXT NOT NULL, pointsLimit INTEGER NOT NULL, updatedAt INTEGER NOT NULL)")
