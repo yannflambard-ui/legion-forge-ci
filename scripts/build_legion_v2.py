@@ -14,6 +14,11 @@ from pathlib import Path
 BUNDLE = Path("/tmp/legionhq_v2_fused.json")
 CATALOG = Path("/root/legion-forge-ci/app/src/main/assets/catalog.json")
 OUT = Path("/root/legion-forge-ci/app/src/main/assets/catalog.json")
+# Textes d'effet des upgrades (nom -> texte) sourcés depuis le dataset
+# DoctorDizzee "Star Wars Legion As Text" (à jour du rulebook 21 avril 2026).
+# Le bundle LegionHQ n'embarque que les conditions d'équipement (requirements),
+# pas le texte d'effet. Injecté dans un champ `effectText` pour le mode play.
+EFFECT_TEXT = Path("/root/legion-forge-ci/scripts/upgrade_effect_text.json")
 
 # faction maps (bundle -> app catalog factionId)
 FACTION = {
@@ -108,6 +113,7 @@ def _affiliation(c):
 
 def build():
     cards = json.loads(BUNDLE.read_text())
+    effect_text = json.loads(EFFECT_TEXT.read_text()) if EFFECT_TEXT.exists() else {}
     units = [c for c in cards if c.get("cardType") == "unit"]
     upgrades = [c for c in cards if c.get("cardType") == "upgrade"]
     counterparts = [c for c in cards if c.get("cardType") == "counterpart"]
@@ -142,6 +148,7 @@ def build():
             "commander": False, "unique": False,
         "imageUrl": None, "imageAssetPath": f"cards/swl/{slug(faction_id(c.get('faction') or 'neutral'))}/{slug(name)}.webp",
             "rulesText": json.dumps({"requirements": c.get("requirements"), "tts": c.get("ttsName")}, ensure_ascii=False) if c.get("requirements") or c.get("ttsName") else None,
+            "effectText": effect_text.get(name),
             "legionStats": None,
         })
         counts["upgrades"] += 1

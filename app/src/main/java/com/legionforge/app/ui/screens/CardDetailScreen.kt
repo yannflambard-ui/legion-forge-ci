@@ -149,7 +149,7 @@ enum class ArmadaCommandOrder(val label: String, val iconFile: String, val order
 
 // ── active effect model ─────────────────────────────────
 internal enum class EffectType { COMMANDER, UPGRADE, CRIT, ABILITY }
-internal data class ActiveEffect(val type: EffectType, val label: String, val desc: String, val id: String, val used: Boolean = false, val slot: ArmadaSlot? = null, val pts: Int = 0)
+internal data class ActiveEffect(val type: EffectType, val label: String, val desc: String, val id: String, val used: Boolean = false, val slot: ArmadaSlot? = null, val pts: Int = 0, val imageAssetPath: String? = null)
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
@@ -530,6 +530,11 @@ internal fun readableUpgradeText(rulesText: String?): String? {
         "Équipable sur : $req"
     } catch (_: Exception) { null }
 }
+
+/** Texte d'effet d'une upgrade pour le mode play : effectText réel (source
+ * DoctorDizzee) prioritaire, sinon les conditions d'équipement lisibles. */
+internal fun upgradeEffectText(card: com.legionforge.app.data.model.CardDefinition): String? =
+    card.effectText?.takeIf { it.isNotBlank() } ?: readableUpgradeText(card.rulesText)
 
 private fun renderLegionRequirement(node: Any?): String? = when (node) {
     is org.json.JSONArray -> {
@@ -931,7 +936,7 @@ internal fun LegionUnitPage(unit: ListEntry, children: List<ListEntry>, allEntri
         CollapsibleSection(stringResource(R.string.active_effects), initiallyExpanded = false) {
             EffectsPanel(
                 effects = buildList {
-                    children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), readableUpgradeText(c.card.rulesText) ?: stringResource(R.string.upgrade_installed), c.instanceId, slot = c.card.upgradeSlots.firstOrNull(), pts = c.card.points).copy(used = usedUpgrades.contains(c.instanceId))) }
+                    children.forEach { c -> add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), upgradeEffectText(c.card) ?: stringResource(R.string.upgrade_installed), c.instanceId, slot = c.card.upgradeSlots.firstOrNull(), pts = c.card.points, imageAssetPath = c.card.imagePath()).copy(used = usedUpgrades.contains(c.instanceId))) }
                     activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, c.name)) }
                 },
                 onRemoveCrit = { crit -> set(state.copy(activeCrits = state.activeCrits - crit.name)) },
@@ -1252,11 +1257,11 @@ internal fun ArmadaShipPage(unit: ListEntry, children: List<ListEntry>, allEntri
         CollapsibleSection(stringResource(R.string.active_effects), initiallyExpanded = false) {
             EffectsPanel(
                 effects = buildList {
-                    if (commander != null) add(ActiveEffect(EffectType.COMMANDER, commander.card.displayName(), stripBracketName(commander.card.rulesText ?: stringResource(R.string.fleet_commander)), "cmd_${commander.instanceId}", pts = commander.card.points)
+                    if (commander != null) add(ActiveEffect(EffectType.COMMANDER, commander.card.displayName(), stripBracketName(commander.card.rulesText ?: stringResource(R.string.fleet_commander)), "cmd_${commander.instanceId}", pts = commander.card.points, imageAssetPath = commander.card.imagePath())
                         .copy(used = usedUpgrades.contains("cmd")))
                     children.forEach { c ->
                         if (c.card.kind == CardKind.COMMANDER || (c.card.kind == CardKind.ARMADA_UPGRADE && ArmadaSlot.COMMANDER in c.card.upgradeSlots)) return@forEach
-                        add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), stripBracketName(c.card.rulesText ?: stringResource(R.string.upgrade_installed)), c.instanceId, slot = c.card.upgradeSlots.firstOrNull(), pts = c.card.points)
+                        add(ActiveEffect(EffectType.UPGRADE, c.card.displayName(), stripBracketName(c.card.rulesText ?: stringResource(R.string.upgrade_installed)), c.instanceId, slot = c.card.upgradeSlots.firstOrNull(), pts = c.card.points, imageAssetPath = c.card.imagePath())
                             .copy(used = usedUpgrades.contains(c.instanceId)))
                     }
                     activeCrits.forEach { c -> add(ActiveEffect(EffectType.CRIT, c.name, c.effect, "crit_${c.name}")) }
@@ -1521,8 +1526,21 @@ internal fun EffectsPanel(
                         // Expanded description
                                                 if (selectedEffect == eff) {
                                                     Spacer(Modifier.height(8.dp))
-                                                    Surface(Modifier.fillMaxWidth(), shape = RoundedCornerShape(8.dp), color = Color(0xFF0A0E15)) {
-                                                        Text(stripLeadingName(eff.desc, eff.label), Modifier.padding(12.dp), color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall)
+                                                    if (eff.imageAssetPath != null) {
+                                                        val effSource = "file:///android_asset/${eff.imageAssetPath}"
+                                                        Surface(Modifier.fillMaxWidth().heightIn(max = 420.dp), shape = RoundedCornerShape(8.dp), color = Color(0xFF0A0E15)) {
+                                                            AsyncImage(model = effSource, contentDescription = eff.label, modifier = Modifier.fillMaxWidth().heightIn(max = 420.dp), contentScale = ContentScale.Fit)
+                                                        }
+                                                        if (eff.desc.isNotBlank()) {
+                                                            Spacer(Modifier.height(6.dp))
+                                                            Surface(Modifier.fillMaxWidth(), shape = RoundedCornerShape(8.dp), color = Color(0xFF0A0E15)) {
+                                                                Text(stripLeadingName(eff.desc, eff.label), Modifier.padding(12.dp), color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall)
+                                                            }
+                                                        }
+                                                    } else {
+                                                        Surface(Modifier.fillMaxWidth(), shape = RoundedCornerShape(8.dp), color = Color(0xFF0A0E15)) {
+                                                            Text(stripLeadingName(eff.desc, eff.label), Modifier.padding(12.dp), color = Color(0xFFB4BFCE), style = MaterialTheme.typography.bodySmall)
+                                                        }
                                                     }
                             if (eff.type == EffectType.CRIT) {
                                 Spacer(Modifier.height(4.dp))

@@ -71,6 +71,7 @@ data class CardDefinition(
         val imageAssetPath: String? = null,
         val imageAssetPaths: Map<String, String> = emptyMap(),
         val rulesText: String? = null,
+        val effectText: String? = null,
         val names: Map<String, String> = emptyMap(),
         val shipStats: String? = null,
         val linkedUnit: String? = null,
@@ -130,6 +131,7 @@ data class CatalogCardEntity(
     val imageAssetPath: String?,
     val imageAssetPaths: String? = null,
     val rulesText: String?,
+    val effectText: String? = null,
     val names: String? = null,
     val shipStats: String? = null,
     val linkedUnit: String? = null,
@@ -143,7 +145,7 @@ data class CatalogCardEntity(
     fun toDefinition() = CardDefinition(
         id, GameSystem.valueOf(gameSystem), CardKind.valueOf(kind), name, points, factionId,
         legionRank?.let(LegionRank::valueOf), parseSlots(upgradeSlots), parseSlots(allowedUpgradeSlots),
-        commander, unique, imageUrl, imageAssetPath, parseJsonNames(imageAssetPaths), rulesText, parseJsonNames(names), shipStats, linkedUnit, legionStats,
+        commander, unique, imageUrl, imageAssetPath, parseJsonNames(imageAssetPaths), rulesText, effectText, parseJsonNames(names), shipStats, linkedUnit, legionStats,
         cardSubtype, title, forceAffinity, affiliation, parseFactions(mercenaryFactions)
     )
 
@@ -152,7 +154,7 @@ data class CatalogCardEntity(
             card.id, card.gameSystem.name, card.kind.name, card.name, card.points, card.factionId,
             card.legionRank?.name, card.upgradeSlots.joinToString(",") { it.name },
             card.allowedUpgradeSlots.joinToString(",") { it.name }, card.commander, card.unique,
-            card.imageUrl, card.imageAssetPath, toJsonNames(card.imageAssetPaths), card.rulesText, toJsonNames(card.names), card.shipStats, card.linkedUnit, card.legionStats,
+            card.imageUrl, card.imageAssetPath, toJsonNames(card.imageAssetPaths), card.rulesText, card.effectText, toJsonNames(card.names), card.shipStats, card.linkedUnit, card.legionStats,
             card.cardSubtype, card.title, card.forceAffinity, card.affiliation, (card.mercenaryFactions ?: emptyList()).joinToString(",")
         )
         private fun parseSlots(value: String) = value.split(',').filter(String::isNotBlank).map(ArmadaSlot::valueOf)
