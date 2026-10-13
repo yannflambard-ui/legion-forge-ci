@@ -320,6 +320,120 @@
           "date": null
         }
       ]
+    },
+    "en": {
+      "source": "Atomic Mass Games (officiel) — starwarslegion",
+      "sourceUrl": "https://www.atomicmassgames.com/swlegiondocs/",
+      "type": "official AMG (VO englais) — source de verite des cartes EN",
+      "note": "Tous les PDF print-and-play officiels AMG en VO anglaise. 'Last Updated: June 17, 2026' sur la page. Dates dans les URLs/ci-dessous. Ce sont les golden source des IMAGES EN. Les fichiers DOC51_* (04/2026) et DOC57 (07/2026) sont les plus recents. Serveur CDN cdn.svc.asmodee.net (curl simple OK).",
+      "lastChecked": "2026-10-13",
+      "documents": [
+        {
+          "name": "Core Rulebook",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/06/DOC56_SWQ_Rulebook-2.pdf",
+          "date": "2026-06-17"
+        },
+        {
+          "name": "Errata Reference",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/06/DOC56_ErrataReference-2.pdf",
+          "date": "2026-06-17"
+        },
+        {
+          "name": "Generic Upgrade Cards",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/04/DOC51_Generic_Upgrades.pdf",
+          "date": "2026-04"
+        },
+        {
+          "name": "New Universal Upgrades",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/04/DOC51_UpgradeCards.pdf",
+          "date": "2026-04"
+        },
+        {
+          "name": "Galactic Empire Upgrade Cards",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/04/DOC51_GalacticEmpire_Upgrades.pdf",
+          "date": "2026-04"
+        },
+        {
+          "name": "Galactic Republic Upgrade Cards",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/04/DOC51_GalacticRepublic_Upgrades.pdf",
+          "date": "2026-04"
+        },
+        {
+          "name": "Rebel Alliance Upgrade Cards",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/04/DOC51_RebelAlliance_Upgrades.pdf",
+          "date": "2026-04"
+        },
+        {
+          "name": "Separatist Alliance Upgrade Cards",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/04/DOC51_SeparatistAlliance_Upgrades.pdf",
+          "date": "2026-04"
+        },
+        {
+          "name": "Mercenary Upgrade Cards",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2025/04/DOC13_Mercenary_Upgrades.pdf",
+          "date": "2025-04"
+        },
+        {
+          "name": "Mandalorian Cards (BattleForce)",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/07/DOC56_Mandalorian_BattleForceCards-3.pdf",
+          "date": "2026-07"
+        },
+        {
+          "name": "Updated Battle Cards",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/07/DOC57_BattleCards.pdf",
+          "date": "2026-07"
+        },
+        {
+          "name": "Galactic Empire Unit Cards",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/04/DOC51_GalacticEmpire_Units.pdf",
+          "date": "2026-04"
+        },
+        {
+          "name": "Galactic Empire Command Cards",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2025/04/DOC13_GalacticEmpire_Commands.pdf",
+          "date": "2025-04"
+        },
+        {
+          "name": "Galactic Republic Unit Cards",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/04/DOC51_GalacticRepublic_Units.pdf",
+          "date": "2026-04"
+        },
+        {
+          "name": "Galactic Republic Command Cards",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2025/11/SWQ_GalacticRepublic_Commands.pdf",
+          "date": "2025-11"
+        },
+        {
+          "name": "Rebel Alliance Unit Cards",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/04/DOC51_RebelAlliance_Units.pdf",
+          "date": "2026-04"
+        },
+        {
+          "name": "Rebel Alliance Command Cards",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2025/04/DOC13_RebelAlliance_Commands.pdf",
+          "date": "2025-04"
+        },
+        {
+          "name": "Separatist Alliance Unit Cards",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/05/DOC51_SeparatistAlliance_Units_05-01_Update.pdf",
+          "date": "2026-05"
+        },
+        {
+          "name": "Separatist Alliance Command Cards",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2025/04/DOC13_SeparatistAlliance_Commands.pdf",
+          "date": "2025-04"
+        },
+        {
+          "name": "Mercenary Unit Cards",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2025/04/DOC13_Mercenary_Units.pdf",
+          "date": "2025-04"
+        },
+        {
+          "name": "Mercenary Command Cards",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/05/DOC51_Mercenary_Commands_05-01_Update.pdf",
+          "date": "2026-05"
+        }
+      ]
     }
   }
 }
