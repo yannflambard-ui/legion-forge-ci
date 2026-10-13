@@ -5094,7 +5094,10 @@
       "imageAssetPath": "cards/swl/neutral/clone-trooper-marksmen-squad.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Clone Trooper Marksmen\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/clone-trooper-marksmen-squad.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/clone-trooper-marksman",
@@ -5874,7 +5877,10 @@
       "imageAssetPath": "cards/swl/neutral/plo-koon.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Saber-Class Tank\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/plo-koon.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/ki-adi-mundi",
@@ -5914,7 +5920,10 @@
       "imageAssetPath": "cards/swl/neutral/sabine-wren.webp",
       "rulesText": "{\"requirements\": [{\"affiliation\": \"Clan Wren\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/sabine-wren.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/whipcord-launcher",
@@ -5954,7 +5963,11 @@
       "imageAssetPath": "cards/swl/neutral/improvised-orders.webp",
       "rulesText": null,
       "effectText": "During the Activation Phase, after you draw an Order token from your Order Pool, you may [exhaust] this card. If you do, draw a second Order token from your Order Pool and choose 1 of the drawn Order tokens to use. Then shuffle the other Order token back into your Order Pool.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/improvised-orders.webp",
+        "fr": "cards/swl/neutral/fr/improvised-orders.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/strict-orders",
@@ -5974,7 +5987,11 @@
       "imageAssetPath": "cards/swl/neutral/strict-orders.webp",
       "rulesText": null,
       "effectText": "During the Activation Phase, when an allied unit that has a faceup Order token starts its Rally step, it may choose to remove 1 Suppression token instead of rolling dice.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/strict-orders.webp",
+        "fr": "cards/swl/neutral/fr/strict-orders.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/recon-intel",
@@ -5994,7 +6011,11 @@
       "imageAssetPath": "cards/swl/neutral/recon-intel.webp",
       "rulesText": null,
       "effectText": "This unit gains Scout 1.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/recon-intel.webp",
+        "fr": "cards/swl/neutral/fr/recon-intel.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/emergency-stims",
@@ -6014,7 +6035,11 @@
       "imageAssetPath": "cards/swl/neutral/emergency-stims.webp",
       "rulesText": null,
       "effectText": "When this unit would suffer 1 or more Wounds from an enemy attack, you may exhaust this card to prevent suffering up to 2 of those Wounds and place an equal number of Wound tokens on this card instead. If you do, at the end of this unit's next Activation, this unit removes each Wound token from this card and suffers Wounds equal to the number of Wound tokens removed.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/emergency-stims.webp",
+        "fr": "cards/swl/neutral/fr/emergency-stims.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/targeting-scopes",
@@ -6034,7 +6059,11 @@
       "imageAssetPath": "cards/swl/neutral/targeting-scopes.webp",
       "rulesText": null,
       "effectText": "This unit gains Precise 1.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/targeting-scopes.webp",
+        "fr": "cards/swl/neutral/fr/targeting-scopes.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/grappling-hooks",
@@ -6094,7 +6123,11 @@
       "imageAssetPath": "cards/swl/neutral/tenacity.webp",
       "rulesText": null,
       "effectText": "When this unit makes a Melee attack, during the Form Attack Pool step, if it has 1 or more Wound tokens or if it has had 1 or more of its miniatures be defeated, it may add 1 red attack die to its Attack Pools.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/tenacity.webp",
+        "fr": "cards/swl/neutral/fr/tenacity.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/on-the-hunt",
@@ -6114,7 +6147,11 @@
       "imageAssetPath": "cards/swl/neutral/on-the-hunt.webp",
       "rulesText": null,
       "effectText": "When this unit is attacking a Trooper unit that has 1 or more Wound tokens, during the Roll Attack Dice step, this unit may gain 1 Aim token.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/on-the-hunt.webp",
+        "fr": "cards/swl/neutral/fr/on-the-hunt.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/duck-and-cover",
@@ -6134,7 +6171,11 @@
       "imageAssetPath": "cards/swl/neutral/duck-and-cover.webp",
       "rulesText": null,
       "effectText": "When this unit is defending against a Ranged attack, at the start of the Apply Dodge and Cover step, it may gain 1 Suppression token.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/duck-and-cover.webp",
+        "fr": "cards/swl/neutral/fr/duck-and-cover.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/endurance",
@@ -6154,7 +6195,11 @@
       "imageAssetPath": "cards/swl/neutral/endurance.webp",
       "rulesText": null,
       "effectText": "This unit may remove 1 Suppression token at the end of the Activation Phase.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/endurance.webp",
+        "fr": "cards/swl/neutral/fr/endurance.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/fragmentation-grenades",
@@ -6234,7 +6279,11 @@
       "imageAssetPath": "cards/swl/neutral/hq-uplink.webp",
       "rulesText": null,
       "effectText": "During the Issue Orders step of the Command Phase, you may exhaust this card. If you do, this unit may issue an Order to itself.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/hq-uplink.webp",
+        "fr": "cards/swl/neutral/fr/hq-uplink.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/comms-jammer",
@@ -6254,7 +6303,11 @@
       "imageAssetPath": "cards/swl/neutral/comms-jammer.webp",
       "rulesText": null,
       "effectText": "Enemy units within 1 of this unit cannot be issued Orders, unless they are issuing an Order to themselves.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/comms-jammer.webp",
+        "fr": "cards/swl/neutral/fr/comms-jammer.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/overcharged-generator",
@@ -6334,7 +6387,10 @@
       "imageAssetPath": "cards/swl/neutral/force-reflexes.webp",
       "rulesText": null,
       "effectText": "exhaust_free: This unit gains 1 Dodge token.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/force-reflexes.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/saber-throw",
@@ -6374,7 +6430,11 @@
       "imageAssetPath": "cards/swl/neutral/jedi-mind-trick.webp",
       "rulesText": "{\"requirements\": [{\"forceAffinity\": \"light side\"}], \"tts\": null}",
       "effectText": "exhaust_free: Choose a non-[commander], non-[operative] enemy Trooper unit within 2 of this unit. The chosen unit gains 2 Suppression tokens.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/jedi-mind-trick.webp",
+        "fr": "cards/swl/neutral/fr/jedi-mind-trick.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/anger",
@@ -6394,7 +6454,11 @@
       "imageAssetPath": "cards/swl/neutral/anger.webp",
       "rulesText": "{\"requirements\": [{\"forceAffinity\": \"dark side\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/anger.webp",
+        "fr": "cards/swl/neutral/fr/anger.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/force-choke",
@@ -6414,7 +6478,11 @@
       "imageAssetPath": "cards/swl/neutral/force-choke.webp",
       "rulesText": "{\"requirements\": [{\"forceAffinity\": \"dark side\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/force-choke.webp",
+        "fr": "cards/swl/neutral/fr/force-choke.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/the-darksaber-gar",
@@ -6434,7 +6502,10 @@
       "imageAssetPath": "cards/swl/neutral/the-darksaber-gar.webp",
       "rulesText": "{\"requirements\": [{\"title\": \"Head of Clan Saxon\"}], \"tts\": \"The Darksaber (Gar)\"}",
       "effectText": "This unit gains Dauntless and Immune: Melee Pierce.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/the-darksaber-gar.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/mpl-57-ion-trooper",
@@ -6474,7 +6545,10 @@
       "imageAssetPath": "cards/swl/neutral/z-6-trooper.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Rebel Troopers\"}], \"tts\": null}",
       "effectText": "Add 1 Z-6 Trooper miniature.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/z-6-trooper.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/bowcaster-wookiee",
@@ -6494,7 +6568,10 @@
       "imageAssetPath": "cards/swl/neutral/bowcaster-wookiee.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Wookiee Warriors\"}], \"tts\": null}",
       "effectText": "Add 1 Bowcaster Wookiee miniature.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/bowcaster-wookiee.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/proton-charge-saboteur",
@@ -6634,7 +6711,10 @@
       "imageAssetPath": "cards/swl/neutral/dlt-19x-sniper.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Scout Troopers\", \"title\": \"Strike Team\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/dlt-19x-sniper.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/sonic-charge-saboteur",
@@ -6714,7 +6794,10 @@
       "imageAssetPath": "cards/swl/neutral/rebel-comms-technician.webp",
       "rulesText": "{\"requirements\": [{\"faction\": \"rebels\", \"rank\": \"corps\", \"cardSubtype\": \"trooper\"}], \"tts\": null}",
       "effectText": "Add 1 Rebel Comms Technician miniature.\nThis unit gains 1 [comms] upgrade icon. This unit must equip at least 1 [comms] upgrade.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/rebel-comms-technician.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/rebel-trooper",
@@ -6734,7 +6817,10 @@
       "imageAssetPath": "cards/swl/neutral/rebel-trooper.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Rebel Troopers\"}], \"tts\": null}",
       "effectText": "Add 1 Rebel Trooper miniature.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/rebel-trooper.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/astromech-droid",
@@ -6794,7 +6880,10 @@
       "imageAssetPath": "cards/swl/neutral/fleet-trooper.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Fleet Troopers\"}], \"tts\": null}",
       "effectText": "Add 1 Fleet Trooper miniature.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/fleet-trooper.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/stormtrooper",
@@ -6814,7 +6903,10 @@
       "imageAssetPath": "cards/swl/neutral/stormtrooper.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Stormtroopers\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/stormtrooper.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/imperial-comms-technician",
@@ -6854,7 +6946,10 @@
       "imageAssetPath": "cards/swl/neutral/fx-9-medical-droid.webp",
       "rulesText": "{\"requirements\": [{\"faction\": \"empire\", \"rank\": \"corps\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/fx-9-medical-droid.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/r4-astromech",
@@ -6894,7 +6989,10 @@
       "imageAssetPath": "cards/swl/neutral/snowtrooper.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Snowtroopers\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/snowtrooper.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/at-rt-rotary-blaster",
@@ -6914,7 +7012,10 @@
       "imageAssetPath": "cards/swl/neutral/at-rt-rotary-blaster.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"AT-RT\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/at-rt-rotary-blaster.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/at-rt-flamethrower",
@@ -6934,7 +7035,10 @@
       "imageAssetPath": "cards/swl/neutral/at-rt-flamethrower.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"AT-RT\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/at-rt-flamethrower.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/at-rt-laser-cannon",
@@ -7054,7 +7158,10 @@
       "imageAssetPath": "cards/swl/neutral/wedge-antilles.webp",
       "rulesText": "{\"requirements\": [{\"cardSubtype\": \"repulsor vehicle\", \"faction\": \"rebels\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/wedge-antilles.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/general-weiss",
@@ -7074,7 +7181,10 @@
       "imageAssetPath": "cards/swl/neutral/general-weiss.webp",
       "rulesText": "{\"requirements\": [{\"cardSubtype\": \"ground vehicle\", \"faction\": \"empire\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/general-weiss.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/fear",
@@ -7094,7 +7204,11 @@
       "imageAssetPath": "cards/swl/neutral/fear.webp",
       "rulesText": "{\"requirements\": [{\"forceAffinity\": \"dark side\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/fear.webp",
+        "fr": "cards/swl/neutral/fr/fear.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/barc-ion-gunner",
@@ -7134,7 +7248,10 @@
       "imageAssetPath": "cards/swl/neutral/barc-rps-6-gunner.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"BARC Speeder\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/barc-rps-6-gunner.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/t-21b-shoretrooper",
@@ -7234,7 +7351,11 @@
       "imageAssetPath": "cards/swl/neutral/overwatch.webp",
       "rulesText": null,
       "effectText": "This unit gains Sentinel.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/overwatch.webp",
+        "fr": "cards/swl/neutral/fr/overwatch.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/dt-f16",
@@ -7254,7 +7375,10 @@
       "imageAssetPath": "cards/swl/neutral/dt-f16.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Imperial Death Troopers\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/dt-f16.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/dlt-19d-trooper",
@@ -7274,7 +7398,10 @@
       "imageAssetPath": "cards/swl/neutral/dlt-19d-trooper.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Imperial Death Troopers\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/dlt-19d-trooper.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/e-11d-focused-fire-config",
@@ -7354,7 +7481,10 @@
       "imageAssetPath": "cards/swl/neutral/rps-6-rocket-gunner.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"X-34 Landspeeder\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/rps-6-rocket-gunner.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/a-300-rifle-gunner",
@@ -7394,7 +7524,10 @@
       "imageAssetPath": "cards/swl/neutral/rebel-veteran.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Rebel Veterans\"}], \"tts\": null}",
       "effectText": "Add 1 Rebel Veteran miniature.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/rebel-veteran.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/first-sergeant-arbmab",
@@ -7514,7 +7647,10 @@
       "imageAssetPath": "cards/swl/neutral/shoretrooper.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Shoretroopers\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/shoretrooper.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/b1-battle-droid",
@@ -7654,7 +7790,11 @@
       "imageAssetPath": "cards/swl/neutral/force-guidance.webp",
       "rulesText": null,
       "effectText": "exhaust_free: Choose up to 2 allied units within 2 of this unit. Each chosen unit gains 1 Surge token.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/force-guidance.webp",
+        "fr": "cards/swl/neutral/fr/force-guidance.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/electrobinoculars",
@@ -7714,7 +7854,11 @@
       "imageAssetPath": "cards/swl/neutral/smoke-grenades.webp",
       "rulesText": null,
       "effectText": "During this unit's Activation, you may discard this card. If you do, this unit makes a free Smoke 1 action.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/smoke-grenades.webp",
+        "fr": "cards/swl/neutral/fr/smoke-grenades.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/barc-twin-laser-gunner",
@@ -7734,7 +7878,10 @@
       "imageAssetPath": "cards/swl/neutral/barc-twin-laser-gunner.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"BARC Speeder\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/barc-twin-laser-gunner.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/cm-0-93-trooper",
@@ -7774,7 +7921,10 @@
       "imageAssetPath": "cards/swl/neutral/ryder-azadi.webp",
       "rulesText": "{\"requirements\": [{\"cardSubtype\": \"repulsor vehicle\", \"faction\": \"rebels\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/ryder-azadi.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/hope",
@@ -7794,7 +7944,11 @@
       "imageAssetPath": "cards/swl/neutral/hope.webp",
       "rulesText": "{\"requirements\": [{\"forceAffinity\": \"light side\"}], \"tts\": null}",
       "effectText": "This unit gains Inspire 1.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/hope.webp",
+        "fr": "cards/swl/neutral/fr/hope.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/b2-super-battle-droid",
@@ -7834,7 +7988,10 @@
       "imageAssetPath": "cards/swl/neutral/aayla-secura.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Saber-Class Tank\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/aayla-secura.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/t-series-tactical-droid-pilot",
@@ -7854,7 +8011,10 @@
       "imageAssetPath": "cards/swl/neutral/t-series-tactical-droid-pilot.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"AAT Battle Tank\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/t-series-tactical-droid-pilot.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/b1-security-droid",
@@ -7994,7 +8154,10 @@
       "imageAssetPath": "cards/swl/neutral/sx-21-trooper.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Rebel Troopers\"}], \"tts\": null}",
       "effectText": "Add 1 SX-21 Trooper miniature.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/sx-21-trooper.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/t-21-stormtrooper",
@@ -8034,7 +8197,11 @@
       "imageAssetPath": "cards/swl/neutral/offensive-push.webp",
       "rulesText": null,
       "effectText": "exhaust: During its next Move action this Activation, this unit has Tactical 1.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/offensive-push.webp",
+        "fr": "cards/swl/neutral/fr/offensive-push.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/stormtrooper-captain",
@@ -8074,7 +8241,10 @@
       "imageAssetPath": "cards/swl/neutral/rebel-trooper-captain.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Rebel Troopers\"}], \"tts\": null}",
       "effectText": "Add 1 Rebel Trooper Captain miniature.\nLeader.\nThis unit gains 1 [training] upgrade icon.\nAt the start of this unit's Activation, you may [tap] this card. If you do, this unit cannot remove Suppression tokens or be Suppressed during this Activation.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/rebel-trooper-captain.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/rebel-trooper-specialist",
@@ -8174,7 +8344,10 @@
       "imageAssetPath": "cards/swl/neutral/clone-captain.webp",
       "rulesText": "{\"requirements\": [{\"cardSubtype\": \"clone trooper\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/clone-captain.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/clone-specialist",
@@ -8194,7 +8367,10 @@
       "imageAssetPath": "cards/swl/neutral/clone-specialist.webp",
       "rulesText": "{\"requirements\": [{\"cardSubtype\": \"clone trooper\", \"rank\": \"corps\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/clone-specialist.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/b2-acm-battle-droid",
@@ -8254,7 +8430,10 @@
       "imageAssetPath": "cards/swl/neutral/veteran-clone-pilot.webp",
       "rulesText": "{\"requirements\": [{\"faction\": \"republic\", \"rank\": \"heavy\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/veteran-clone-pilot.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/beam-turret",
@@ -8274,7 +8453,10 @@
       "imageAssetPath": "cards/swl/neutral/beam-turret.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Saber-Class Tank\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/beam-turret.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/armor-piercing-shells",
@@ -8354,7 +8536,10 @@
       "imageAssetPath": "cards/swl/neutral/lok-durd.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"AAT Battle Tank\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/lok-durd.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/twin-laser-turret",
@@ -8374,7 +8559,10 @@
       "imageAssetPath": "cards/swl/neutral/twin-laser-turret.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Saber-Class Tank\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/twin-laser-turret.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/high-energy-shells",
@@ -8494,7 +8682,10 @@
       "imageAssetPath": "cards/swl/neutral/fives.webp",
       "rulesText": "{\"requirements\": [{\"cardSubtype\": \"clone trooper\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/fives.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/situational-awareness",
@@ -8554,7 +8745,10 @@
       "imageAssetPath": "cards/swl/neutral/electro-gauntlets.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Cad Bane\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/electro-gauntlets.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/command-control-array",
@@ -8594,7 +8788,11 @@
       "imageAssetPath": "cards/swl/neutral/ascension-cables.webp",
       "rulesText": null,
       "effectText": "exhaust_free: This unit gains Scale until the end of its Activation.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/ascension-cables.webp",
+        "fr": "cards/swl/neutral/fr/ascension-cables.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/dioxis-mine-saboteur",
@@ -8614,7 +8812,10 @@
       "imageAssetPath": "cards/swl/neutral/dioxis-mine-saboteur.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"BX-Series Droid Commandos\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/dioxis-mine-saboteur.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/portable-scanner",
@@ -8654,7 +8855,11 @@
       "imageAssetPath": "cards/swl/neutral/offensive-stance.webp",
       "rulesText": "{\"requirements\": [{\"upgradeBar\": [\"force\"]}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/offensive-stance.webp",
+        "fr": "cards/swl/neutral/fr/offensive-stance.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/t-21-special-forces-trooper",
@@ -8694,7 +8899,11 @@
       "imageAssetPath": "cards/swl/neutral/force-barrier.webp",
       "rulesText": null,
       "effectText": "When another allied Trooper unit within 1 of this unit defends against a Ranged attack, during the Modify Attack Dice step, you may exhaust this card to cancel either 1 [critical] result or up to 2 [hit] results.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/force-barrier.webp",
+        "fr": "cards/swl/neutral/fr/force-barrier.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/seize-the-initiative",
@@ -8734,7 +8943,11 @@
       "imageAssetPath": "cards/swl/neutral/inspiring-presence.webp",
       "rulesText": null,
       "effectText": "Allied units within 4 of this unit may use its [courage] when checking if they are Panicked. This range can be reduced by other effects.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/inspiring-presence.webp",
+        "fr": "cards/swl/neutral/fr/inspiring-presence.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/vigilance",
@@ -8754,7 +8967,11 @@
       "imageAssetPath": "cards/swl/neutral/vigilance.webp",
       "rulesText": null,
       "effectText": "At the start of the Remove Tokens step, choose either 1 allied Trooper unit within 2 of this unit or up to 2 allied [Corps] Trooper units within 2 of this unit. Each chosen unit does not remove up to 1 Dodge token.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/vigilance.webp",
+        "fr": "cards/swl/neutral/fr/vigilance.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/clone-comms-technician",
@@ -8814,7 +9031,10 @@
       "imageAssetPath": "cards/swl/neutral/clone-medic.webp",
       "rulesText": "{\"requirements\": [{\"cardSubtype\": \"clone trooper\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/clone-medic.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/clone-commander",
@@ -8834,7 +9054,10 @@
       "imageAssetPath": "cards/swl/neutral/clone-commander.webp",
       "rulesText": "{\"requirements\": [{\"cardSubtype\": \"clone trooper\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/clone-commander.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/viper-recon-droid",
@@ -8914,7 +9137,10 @@
       "imageAssetPath": "cards/swl/neutral/heavy-laser-retrofit.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"A-A5 Speeder Truck\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/heavy-laser-retrofit.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/shriv-suurgav",
@@ -8934,7 +9160,10 @@
       "imageAssetPath": "cards/swl/neutral/shriv-suurgav.webp",
       "rulesText": "{\"requirements\": [{\"faction\": \"rebels\", \"rank\": \"heavy\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/shriv-suurgav.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/governor-pryce",
@@ -8954,7 +9183,10 @@
       "imageAssetPath": "cards/swl/neutral/governor-pryce.webp",
       "rulesText": "{\"requirements\": [{\"faction\": \"empire\", \"rank\": \"heavy\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/governor-pryce.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/clone-commander-fox",
@@ -9034,7 +9266,10 @@
       "imageAssetPath": "cards/swl/neutral/hotshot-pilot.webp",
       "rulesText": "{\"requirements\": [{\"faction\": \"rebels\", \"cardSubtype\": \"repulsor vehicle\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/hotshot-pilot.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/backworld-medic",
@@ -9054,7 +9289,10 @@
       "imageAssetPath": "cards/swl/neutral/backworld-medic.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"A-A5 Speeder Truck\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/backworld-medic.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/unstable-astromech",
@@ -9074,7 +9312,10 @@
       "imageAssetPath": "cards/swl/neutral/unstable-astromech.webp",
       "rulesText": "{\"requirements\": [\"OR\", {\"cardName\": \"X-34 Landspeeder\"}, {\"cardName\": \"A-A5 Speeder Truck\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/unstable-astromech.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/unorthodox-tactician",
@@ -9094,7 +9335,10 @@
       "imageAssetPath": "cards/swl/neutral/unorthodox-tactician.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"A-A5 Speeder Truck\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/unorthodox-tactician.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/baron-rudor",
@@ -9114,7 +9358,10 @@
       "imageAssetPath": "cards/swl/neutral/baron-rudor.webp",
       "rulesText": "{\"requirements\": [{\"faction\": \"empire\", \"cardSubtype\": \"repulsor vehicle\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/baron-rudor.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/hound-grizzer",
@@ -9154,7 +9401,10 @@
       "imageAssetPath": "cards/swl/neutral/imperial-tie-pilot.webp",
       "rulesText": "{\"requirements\": [{\"faction\": \"empire\", \"cardSubtype\": \"repulsor vehicle\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/imperial-tie-pilot.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/clone-shock-trooper-pilot",
@@ -9194,7 +9444,10 @@
       "imageAssetPath": "cards/swl/neutral/battle-shield-wookiee-offensive.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Wookiee Warriors\"}], \"tts\": \"Battle Shield Wookiee (Offensive)\"}",
       "effectText": "Add 1 Battle Shield Wookiee miniature.\nAt the start of this unit's Activation, you may flip this card.\n[Side B]: This unit reduces its maximum Speed by 1. This unit gains Armor 1.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/battle-shield-wookiee-offensive.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/long-gun-wookiee",
@@ -9254,7 +9507,11 @@
       "imageAssetPath": "cards/swl/neutral/into-the-fray.webp",
       "rulesText": null,
       "effectText": "During the Activation Phase, when an enemy unit starts its Activation within 1 of this unit, this unit may gain 1 Surge token.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/into-the-fray.webp",
+        "fr": "cards/swl/neutral/fr/into-the-fray.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/protector",
@@ -9274,7 +9531,11 @@
       "imageAssetPath": "cards/swl/neutral/protector.webp",
       "rulesText": null,
       "effectText": "When this unit uses Guardian X, you may exhaust this card to cancel [critical] results with Guardian X as if they were [hit] results.\n\nReady this card during the End Phase.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/protector.webp",
+        "fr": "cards/swl/neutral/fr/protector.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/electro-whip-magnaguard",
@@ -9394,7 +9655,11 @@
       "imageAssetPath": "cards/swl/neutral/defense-protocols.webp",
       "rulesText": "{\"requirements\": [{\"cardSubtype\": \"ground vehicle\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/defense-protocols.webp",
+        "fr": "cards/swl/neutral/fr/defense-protocols.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/attack-protocols",
@@ -9414,7 +9679,11 @@
       "imageAssetPath": "cards/swl/neutral/attack-protocols.webp",
       "rulesText": "{\"requirements\": [{\"cardSubtype\": \"ground vehicle\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/attack-protocols.webp",
+        "fr": "cards/swl/neutral/fr/attack-protocols.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/nose-mounted-flamethrower",
@@ -9534,7 +9803,10 @@
       "imageAssetPath": "cards/swl/separatists/twin-blaster-cannons.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"LM-432 Crab Droid\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/separatists/fr/twin-blaster-cannons.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/twin-beam-cannons",
@@ -9554,7 +9826,10 @@
       "imageAssetPath": "cards/swl/neutral/twin-beam-cannons.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Infantry Support Platform\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/twin-beam-cannons.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/twin-missile-pods",
@@ -9674,7 +9949,10 @@
       "imageAssetPath": "cards/swl/neutral/pyke-syndicate-capo.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Pyke Syndicate Foot Soldiers\"}], \"tts\": null}",
       "effectText": "Add 1 Pyke Syndicate Capo miniature.\nLeader.\nThis unit increases its [courage] by 1 and gains Independent: Surge 1.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/pyke-syndicate-capo.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/black-sun-enforcer",
@@ -9714,7 +9992,10 @@
       "imageAssetPath": "cards/swl/neutral/black-sun-vigo.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Black Sun Enforcers\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/black-sun-vigo.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/mag-det-enforcer",
@@ -9774,7 +10055,11 @@
       "imageAssetPath": "cards/swl/neutral/prepared-supplies.webp",
       "rulesText": null,
       "effectText": "Cache: Dodge 1.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/prepared-supplies.webp",
+        "fr": "cards/swl/neutral/fr/prepared-supplies.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/sonic-imploders",
@@ -9794,7 +10079,11 @@
       "imageAssetPath": "cards/swl/neutral/sonic-imploders.webp",
       "rulesText": null,
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/sonic-imploders.webp",
+        "fr": "cards/swl/neutral/fr/sonic-imploders.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/the-darksaber-maul",
@@ -9834,7 +10123,11 @@
       "imageAssetPath": "cards/swl/neutral/up-close-and-personal.webp",
       "rulesText": null,
       "effectText": "When this unit makes a Ranged attack against an enemy unit within 2, after that attack is resolved, this unit gains 1 Dodge token.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/up-close-and-personal.webp",
+        "fr": "cards/swl/neutral/fr/up-close-and-personal.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/lead-by-example",
@@ -9854,7 +10147,11 @@
       "imageAssetPath": "cards/swl/neutral/lead-by-example.webp",
       "rulesText": null,
       "effectText": "This unit gains Inspire 2.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "de": "cards/swl/neutral/de/lead-by-example.webp",
+        "fr": "cards/swl/neutral/fr/lead-by-example.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/mandalorian-super-commando",
@@ -10394,7 +10691,10 @@
       "imageAssetPath": "cards/swl/neutral/geonosian-warrior.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Geonosian Warriors\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/geonosian-warrior.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/dc-17m-icws-config",
@@ -10454,7 +10754,10 @@
       "imageAssetPath": "cards/swl/neutral/range-trooper.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Range Troopers\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/range-trooper.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/dlt-20a-range-trooper",
@@ -10494,7 +10797,10 @@
       "imageAssetPath": "cards/swl/neutral/t-21a-range-trooper.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Range Troopers\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/t-21a-range-trooper.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/echo-clone-force-99",
@@ -10714,7 +11020,10 @@
       "imageAssetPath": "cards/swl/neutral/astromech.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"Rebel Sleeper Cell\"}], \"tts\": null}",
       "effectText": "Add 1 Astromech miniature.\nNoncombatant.\nWhen this unit ends a Move within 1 of 1 or more Objective tokens, it gains 1 Dodge token.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/astromech.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/ewok-skirmisher-squad",
@@ -11394,7 +11703,10 @@
       "imageAssetPath": "cards/swl/neutral/ig-100-magnaguard-pilot.webp",
       "rulesText": "{\"requirements\": [{\"cardName\": \"TSMEU-6 Wheel Bikes\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/ig-100-magnaguard-pilot.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/logistical-prowess",
@@ -11834,7 +12146,10 @@
       "imageAssetPath": "cards/swl/neutral/clan-kryze.webp",
       "rulesText": "{\"requirements\": [{\"cardSubtype\": \"mandalorian trooper\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/clan-kryze.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/clan-wren",
@@ -11854,7 +12169,10 @@
       "imageAssetPath": "cards/swl/neutral/clan-wren.webp",
       "rulesText": "{\"requirements\": [{\"cardSubtype\": \"mandalorian trooper\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/clan-wren.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/children-of-the-watch",
@@ -11934,7 +12252,10 @@
       "imageAssetPath": "cards/swl/neutral/combat-shields.webp",
       "rulesText": "{\"requirements\": [\"AND\", {\"cardSubtype\": \"mandalorian trooper\"}, [\"OR\", {\"rank\": \"special\"}, {\"rank\": \"support\"}, {\"rank\": \"corps\"}]], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/combat-shields.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/jetpack-rockets",
@@ -11954,7 +12275,10 @@
       "imageAssetPath": "cards/swl/neutral/jetpack-rockets.webp",
       "rulesText": "{\"requirements\": [\"AND\", {\"cardSubtype\": \"mandalorian trooper\"}, [\"NOT\", {\"cardName\": \"Mandalorian Initiates\"}]], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/jetpack-rockets.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/flame-projector",
@@ -11974,7 +12298,10 @@
       "imageAssetPath": "cards/swl/neutral/flame-projector.webp",
       "rulesText": "{\"requirements\": [{\"cardSubtype\": \"mandalorian trooper\"}], \"tts\": null}",
       "effectText": null,
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/flame-projector.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/tristan-wren",
@@ -11994,7 +12321,10 @@
       "imageAssetPath": "cards/swl/neutral/tristan-wren.webp",
       "rulesText": "{\"requirements\": [\"OR\", {\"affiliation\": \"Clan Saxon\"}, {\"affiliation\": \"Clan Wren\"}], \"tts\": null}",
       "effectText": "Add 1 Tristan Wren miniature.",
-      "legionStats": null
+      "legionStats": null,
+      "imageAssetPaths": {
+        "fr": "cards/swl/neutral/fr/tristan-wren.webp"
+      }
     },
     {
       "id": "legion_v2:lhq2/guild-member",

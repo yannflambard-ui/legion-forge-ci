@@ -173,6 +173,18 @@ def build():
     final = new_legion + armada
     doc = {"schemaVersion": 1, "cards": final}
     OUT.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n")
+
+    # Injecte imageAssetPaths (map par langue) depuis les images localisées déjà
+    # présentes sur disque (assets/cards/swl/<faction>/<locale>/*.webp).
+    import importlib.util
+    from pathlib import Path as _P
+    _inj = _P(__file__).parent / "inject_localized_image_paths.py"
+    if _inj.exists():
+        spec = importlib.util.spec_from_file_location("inject_localized", _inj)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        mod.main()
+
     print(json.dumps({"legion_units": counts["units"], "legion_upgrades": counts["upgrades"],
                       "counterparts_skipped": counts["counterparts_skipped"],
                       "armada_kept": len(armada), "total": len(final)}, indent=2))

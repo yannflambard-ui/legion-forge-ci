@@ -64,3 +64,16 @@
 - Nouvelles cles string (4 locales EN/FR/DE/ES) : legion_token_{aim,dodge,surge,standby,suppression}, legion_suppression_label, legion_state_{wounded,suppressed,panicked}.
 - Est-ce que la recherche globale + glossaire cliquable + filtres catalogue etaient DEJÀ implémentes (P0 roadmaps non coches) : voir ROADMAP.md — marques FAIT.
 - Version 0.9.27 / code 78
+
+### 0.9.72-0.9.73 — Descriptions d'effet des upgrades + images localisées DE
+- **effet d'upgrade en mode play** : le bundle LegionHQ n'embarque que les conditions
+  d'équipement (requirements), pas le texte d'effet. Ajout champ catalog `effectText`
+  sourcé du dataset DoctorDizzee "Legion As Text" (à jour du rulebook 21/04/2026),
+  mapping committé scripts/upgrade_effect_text.json (115 génériques). En mode play le
+  paneau d'effets affiche l'IMAGE de la carte (texte official localisé) + effectText
+  quand dispo, fallback conditions lisibles. ActiveEffect.imageAssetPath ; Room v20→21.
+- **images localisées** : architecture imageAssetPaths (map par langue) + imagePath(locale)
+  avec fallback EN. Les images DE (34, Asmodee) et FR (98) extraites restaient NON
+  référencées (map vide). scripts/inject_localized_image_paths.py scanne le disque
+  (assets/cards/swl/<faction>/<locale>/*.webp) et remplit imageAssetPaths — appelé en
+  fin de build_legion_v2.py (reproductible). Version 0.9.73 / code 124.

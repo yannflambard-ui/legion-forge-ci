@@ -236,7 +236,7 @@
       "sourceUrl": "https://www.asmodee.de/star-wars-legion",
       "indexPdf": "https://asmodee-resources.azureedge.net/media/germanyprod/legion/uebersicht-downloadokumente-sw-legion.pdf",
       "type": "official distributor",
-      "note": "Source officielle Asmodee Deutschland. PDF index (Stand 07.10.2026) listant tous les liens. Cartes v1.2 par faction. 34 upgrades generiques DE extraites et matchées (dpi=300) mais non injectées. RESOLU par e8013a2: imageAssetPaths (map par langue) + imagePath(locale) avec fallback EN -> injecter les DE ne peut plus ecraser les FR, elles ne s'affichent qu'en langue app 'de'. Re-injectables quand on veut; extraction ponctuelle non commitee (a re-telecharger depuis ces PDF).",
+      "note": "Source officielle Asmodee Deutschland. PDF index (Stand 07.10.2026) listant tous les liens. Cartes v1.2 par faction. 34 upgrades generiques DE extraites (dpi=300) et INJECTEES via imageAssetPaths['de'] (map par langue, fallback EN) - inject_localized_image_paths.py + appel en fin de build_legion_v2.py. L'app en langue 'de' affiche ces cartes DE, les autres locales gardent la base. Images dans assets/cards/swl/neutral/de/.",
       "lastChecked": "2026-10-12",
       "documents": [
         {
