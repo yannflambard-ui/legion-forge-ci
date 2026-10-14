@@ -6083,7 +6083,10 @@
    "imageAssetPath": "cards/swl/neutral/grappling-hooks.webp",
    "rulesText": null,
    "effectText": "This unit gains Expert Climber.",
-   "legionStats": null
+   "legionStats": null,
+   "imageAssetPaths": {
+    "fr": "cards/swl/neutral/fr/grappling-hooks.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/environmental-gear",
