@@ -3089,207 +3089,323 @@
   {
    "slug": "arf-troopers.webp",
    "name": "ARF Troopers",
-   "faction": "republic"
+   "faction": "republic",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "admiral-trench-fleet-commander.webp",
    "name": "Admiral Trench (Fleet Commander)",
-   "faction": "separatists"
+   "faction": "separatists",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "ahsoka-tano-padawan-commander.webp",
    "name": "Ahsoka Tano (Padawan Commander)",
-   "faction": "republic"
+   "faction": "republic",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "aqua-droids.webp",
    "name": "Aqua Droids",
-   "faction": "separatists"
+   "faction": "separatists",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "axe-woves-cunning-warrior.webp",
    "name": "Axe Woves (Cunning Warrior)",
-   "faction": "mercenary"
+   "faction": "mercenary",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "b2-super-rocket-battle-droids.webp",
    "name": "B2 Super Rocket Battle Droids",
-   "faction": "separatists"
+   "faction": "separatists",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "bo-katan-kryze-savior-of-mandalore.webp",
    "name": "Bo-Katan Kryze (Savior of Mandalore)",
-   "faction": "mercenary"
+   "faction": "mercenary",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "clone-trooper-marksmen.webp",
    "name": "Clone Trooper Marksmen",
-   "faction": "republic"
+   "faction": "republic",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "general-tagge-imperial-high-command.webp",
    "name": "General Tagge (Imperial High Command)",
-   "faction": "empire"
+   "faction": "empire",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "geonosian-warriors-geonosian-engineers.webp",
    "name": "Geonosian Warriors (Geonosian Engineers)",
-   "faction": "separatists"
+   "faction": "separatists",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "grand-admiral-thrawn-imperial-high-command.webp",
    "name": "Grand Admiral Thrawn (Imperial High Command)",
-   "faction": "empire"
+   "faction": "empire",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "grand-moff-tarkin-imperial-high-command.webp",
    "name": "Grand Moff Tarkin (Imperial High Command)",
-   "faction": "empire"
+   "faction": "empire",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "han-solo-reluctant-hero.webp",
    "name": "Han Solo (Reluctant Hero)",
-   "faction": "rebel"
+   "faction": "rebel",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "hondo-ohnaka-trustworthy-compatriot.webp",
    "name": "Hondo Ohnaka (Trustworthy Compatriot)",
-   "faction": "mercenary"
+   "faction": "mercenary",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "ig-100-magnaguard-prototype-assassin-droids.webp",
    "name": "IG-100 MagnaGuard (Prototype Assassin Droids)",
-   "faction": "separatists"
+   "faction": "separatists",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "imperial-agent-bringing-order-to-the-galaxy.webp",
    "name": "Imperial Agent (Bringing Order to the Galaxy)",
-   "faction": "empire"
+   "faction": "empire",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "imperial-officer-ruthless-efficiency.webp",
    "name": "Imperial Officer (Ruthless Efficiency)",
-   "faction": "empire"
+   "faction": "empire",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "jedi-knight-keeper-of-the-peace.webp",
    "name": "Jedi Knight (Keeper of the Peace)",
-   "faction": "republic"
+   "faction": "republic",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "jedi-knight-general-strong-in-the-force.webp",
    "name": "Jedi Knight General (Strong in the Force)",
-   "faction": "republic"
+   "faction": "republic",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "ki-adi-mundi-jedi-council.webp",
    "name": "Ki-Adi-Mundi (Jedi Council)",
-   "faction": "republic"
+   "faction": "republic",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "lm-432-crab-droid.webp",
    "name": "LM-432 Crab Droid",
-   "faction": "separatists"
+   "faction": "separatists",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "luke-skywalker-commander-skywalker.webp",
    "name": "Luke Skywalker (Commander Skywalker)",
-   "faction": "rebel"
+   "faction": "rebel",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "mace-windu-jedi-council.webp",
    "name": "Mace Windu (Jedi Council)",
-   "faction": "republic"
+   "faction": "republic",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "mandalorian-hunter.webp",
    "name": "Mandalorian Hunter",
-   "faction": "mercenary"
+   "faction": "mercenary",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "mandalorian-initiates.webp",
    "name": "Mandalorian Initiates",
-   "faction": "mercenary"
+   "faction": "mercenary",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "mandalorian-leader.webp",
    "name": "Mandalorian Leader",
-   "faction": "mercenary"
+   "faction": "mercenary",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "mandalorian-warriors.webp",
    "name": "Mandalorian Warriors",
-   "faction": "mercenary"
+   "faction": "mercenary",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "mandalorian-warriors-fire-support.webp",
    "name": "Mandalorian Warriors (Fire Support)",
-   "faction": "mercenary"
+   "faction": "mercenary",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "paz-vizsla-proud-warrior.webp",
    "name": "Paz Vizsla (Proud Warrior)",
-   "faction": "mercenary"
+   "faction": "mercenary",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "persuader-class-tank-droid.webp",
    "name": "Persuader-Class Tank Droid",
-   "faction": "separatists"
+   "faction": "separatists",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "plo-koon-jedi-council.webp",
    "name": "Plo Koon (Jedi Council)",
-   "faction": "republic"
+   "faction": "republic",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "rebel-agent-defender-of-democracy.webp",
    "name": "Rebel Agent (Defender of Democracy)",
-   "faction": "rebel"
+   "faction": "rebel",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "rebel-officer-fighting-for-freedom.webp",
    "name": "Rebel Officer (Fighting for Freedom)",
-   "faction": "rebel"
+   "faction": "rebel",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "savage-opress-dooku-s-apprentice.webp",
    "name": "Savage Opress (Dooku's Apprentice)",
-   "faction": "separatists"
+   "faction": "separatists",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "savage-opress-maul-s-enforcer.webp",
    "name": "Savage Opress (Maul's Enforcer)",
-   "faction": "mercenary"
+   "faction": "mercenary",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "shaak-ti-jedi-council.webp",
    "name": "Shaak Ti (Jedi Council)",
-   "faction": "republic"
+   "faction": "republic",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "super-tactical-command-droid-auxiliary-command-droid.webp",
    "name": "Super Tactical Command Droid (Auxiliary Command Droid)",
-   "faction": "separatists"
+   "faction": "separatists",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "tsmeu-6-wheel-bikes.webp",
    "name": "TSMEU-6 Wheel Bikes",
-   "faction": "separatists"
+   "faction": "separatists",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "the-armorer-forging-the-future.webp",
    "name": "The Armorer (Forging the Future)",
-   "faction": "mercenary"
+   "faction": "mercenary",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "wlo-5-speeder-tank.webp",
    "name": "WLO-5 Speeder Tank",
-   "faction": "mercenary"
+   "faction": "mercenary",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   },
   {
    "slug": "weequay-pirates.webp",
    "name": "Weequay Pirates",
-   "faction": "mercenary"
+   "faction": "mercenary",
+   "sourceFr": "non identifiée",
+   "piste": "textless (carte EN dispo) ou autre source FR"
   }
- ]
+ ],
+ "sourcesVerifieesPourTrous": {
+  "date": "2026-10-15",
+  "pdfsControles": [
+   {
+    "name": "Units FR (5 factions)",
+    "result": "extraits, 394 cartes, 15 unités trouvées"
+   },
+   {
+    "name": "Commands FR (5 factions)",
+    "result": "command cards uniquement, pas d'unités"
+   },
+   {
+    "name": "Nouvelles cartes VF 21.11.25",
+    "result": "upgrades + operations, pas les trous"
+   },
+   {
+    "name": "Nouvelles cartes amélio FR",
+    "result": "upgrades, pas les trous"
+   },
+   {
+    "name": "Mandalorian BattleForce Cards FR",
+    "result": "Ursa Wren/Grogu/Din Djarin, pas les trous Mandalorian"
+   },
+   {
+    "name": "pack SEPA 1zljZoV (EN)",
+    "result": "unités SEPA en anglais, pas FR"
+   },
+   {
+    "name": "pack SEPA 1zDoFrty (Upgrades)",
+    "result": "upgrades B1, pas les trous"
+   }
+  ],
+  "conclusion": "Les 41 trous restants (High Command, Jedi Council, Mandalorians, nouvelles génériques) n'ont pas de source FR identifiée dans les PDFs iron-squadron disponibles. Nécessitent : pipeline textless (carte EN + texte FR superposé) ou identification d'une autre source FR."
+ }
 }
