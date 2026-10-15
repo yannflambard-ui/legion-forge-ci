@@ -1,0 +1,3295 @@
+{
+ "schemaVersion": 2,
+ "generated": "2026-10-15",
+ "purpose": "Base de données de traçabilité des cartes SW Legion par langue. Référence la version, le PDF source, le nb de fichiers et le site web de chaque carte pour éviter le travail en double et identifier les trous. Garder dans l'app la DERNIÈRE version de chaque carte dans chaque langue (erratas fréquents).",
+ "stats": {
+  "totalUnits": 169,
+  "withFrenchImage": 128,
+  "verifiedThisBatch": 15,
+  "gaps": 41,
+  "coveragePct": 75.7
+ },
+ "sources": {
+  "empire": {
+   "name": "Galactic Empire Units FR",
+   "driveId": "1E81zbWQmMkhOYf2deSnV97qOO9hr2Dm0",
+   "url": "https://drive.google.com/file/d/1E81zbWQmMkhOYf2deSnV97qOO9hr2Dm0/view?usp=drivesdk",
+   "date": null
+  },
+  "republic": {
+   "name": "Galactic Republic Units FR",
+   "driveId": "1IgfeY-5Z1zbhQElh4ZqVGV_K494UiyRO",
+   "url": "https://drive.google.com/file/d/1IgfeY-5Z1zbhQElh4ZqVGV_K494UiyRO/view?usp=drivesdk",
+   "date": null
+  },
+  "mercenary": {
+   "name": "Mercenary Units FR",
+   "driveId": "1_OUQuHDPy4rAmuu1GV6kxUFhPhXuQhxo",
+   "url": "https://drive.google.com/file/d/1_OUQuHDPy4rAmuu1GV6kxUFhPhXuQhxo/view?usp=drivesdk",
+   "date": null
+  },
+  "rebel": {
+   "name": "Rebel Alliance Units FR",
+   "driveId": "1QIX-RC6zQ9mS9z3K1edGGd9YQlw04fUx",
+   "url": "https://drive.google.com/file/d/1QIX-RC6zQ9mS9z3K1edGGd9YQlw04fUx/view?usp=drivesdk",
+   "date": null
+  },
+  "separatists": {
+   "name": "Separatist Alliance Units FR",
+   "driveId": "1WNjtVZqM-M6WgG75onFQZuXKVMWXqYzo",
+   "url": "https://drive.google.com/file/d/1WNjtVZqM-M6WgG75onFQZuXKVMWXqYzo/view?usp=drivesdk",
+   "date": null
+  }
+ },
+ "cards": {
+  "leia-organa-fearless-and-inventive.webp": {
+   "name": "Leia Organa (Fearless and Inventive)",
+   "faction": "rebel",
+   "slug": "leia-organa-fearless-and-inventive.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/leia-organa-fearless-and-inventive.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/leia-organa-fearless-and-inventive.webp"
+   }
+  },
+  "han-solo-unorthodox-general.webp": {
+   "name": "Han Solo (Unorthodox General)",
+   "faction": "rebel",
+   "slug": "han-solo-unorthodox-general.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/han-solo-unorthodox-general.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/han-solo-unorthodox-general.webp"
+   }
+  },
+  "luke-skywalker-hero-of-the-rebellion.webp": {
+   "name": "Luke Skywalker (Hero of the Rebellion)",
+   "faction": "rebel",
+   "slug": "luke-skywalker-hero-of-the-rebellion.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/luke-skywalker-hero-of-the-rebellion.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/luke-skywalker-hero-of-the-rebellion.webp"
+   }
+  },
+  "jyn-erso-stardust.webp": {
+   "name": "Jyn Erso (Stardust)",
+   "faction": "rebel",
+   "slug": "jyn-erso-stardust.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/jyn-erso-stardust.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/jyn-erso-stardust.webp"
+   }
+  },
+  "chewbacca-walking-carpet.webp": {
+   "name": "Chewbacca (Walking Carpet)",
+   "faction": "rebel",
+   "slug": "chewbacca-walking-carpet.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/chewbacca-walking-carpet.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/chewbacca-walking-carpet.webp"
+   }
+  },
+  "sabine-wren-explosive-artist.webp": {
+   "name": "Sabine Wren (Explosive Artist)",
+   "faction": "rebel",
+   "slug": "sabine-wren-explosive-artist.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/sabine-wren-explosive-artist.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/sabine-wren-explosive-artist.webp"
+   }
+  },
+  "rebel-troopers.webp": {
+   "name": "Rebel Troopers",
+   "faction": "rebel",
+   "slug": "rebel-troopers.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/rebel-troopers.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/rebel-troopers.webp"
+   }
+  },
+  "fleet-troopers.webp": {
+   "name": "Fleet Troopers",
+   "faction": "rebel",
+   "slug": "fleet-troopers.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/fleet-troopers.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/fleet-troopers.webp"
+   }
+  },
+  "wookiee-warriors-freedom-fighters.webp": {
+   "name": "Wookiee Warriors (Freedom Fighters)",
+   "faction": "rebel",
+   "slug": "wookiee-warriors-freedom-fighters.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/wookiee-warriors-freedom-fighters.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/wookiee-warriors-freedom-fighters.webp"
+   }
+  },
+  "rebel-commandos.webp": {
+   "name": "Rebel Commandos",
+   "faction": "rebel",
+   "slug": "rebel-commandos.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/rebel-commandos.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/rebel-commandos.webp"
+   }
+  },
+  "rebel-commandos-strike-team.webp": {
+   "name": "Rebel Commandos (Strike Team)",
+   "faction": "rebel",
+   "slug": "rebel-commandos-strike-team.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/rebel-commandos-strike-team.webp",
+    "sourcePdf": "Rebel Alliance Units FR",
+    "sourceUrl": "https://drive.google.com/file/d/1QIX-RC6zQ9mS9z3K1edGGd9YQlw04fUx/view?usp=drivesdk",
+    "sourceDate": null,
+    "extractedFile": "card_0184.webp",
+    "verified": true
+   },
+   "en": {
+    "path": "cards/swl/rebel/rebel-commandos-strike-team.webp"
+   }
+  },
+  "1-4-fd-laser-cannon-team.webp": {
+   "name": "1.4 FD Laser Cannon Team",
+   "faction": "rebel",
+   "slug": "1-4-fd-laser-cannon-team.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/1-4-fd-laser-cannon-team.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/1-4-fd-laser-cannon-team.webp"
+   }
+  },
+  "at-rt.webp": {
+   "name": "AT-RT",
+   "faction": "republic",
+   "slug": "at-rt.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/at-rt.webp",
+    "sourcePdf": "Galactic Republic Units FR",
+    "sourceUrl": "https://drive.google.com/file/d/1IgfeY-5Z1zbhQElh4ZqVGV_K494UiyRO/view?usp=drivesdk",
+    "sourceDate": null,
+    "extractedFile": "card_0264.webp",
+    "verified": true
+   },
+   "en": {
+    "path": "cards/swl/republic/at-rt.webp"
+   }
+  },
+  "t-47-airspeeder.webp": {
+   "name": "T-47 Airspeeder",
+   "faction": "rebel",
+   "slug": "t-47-airspeeder.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/t-47-airspeeder.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/t-47-airspeeder.webp"
+   }
+  },
+  "x-34-landspeeder.webp": {
+   "name": "X-34 Landspeeder",
+   "faction": "rebel",
+   "slug": "x-34-landspeeder.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/x-34-landspeeder.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/x-34-landspeeder.webp"
+   }
+  },
+  "darth-vader-dark-lord-of-the-sith.webp": {
+   "name": "Darth Vader (Dark Lord of the Sith)",
+   "faction": "empire",
+   "slug": "darth-vader-dark-lord-of-the-sith.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/darth-vader-dark-lord-of-the-sith.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/darth-vader-dark-lord-of-the-sith.webp"
+   }
+  },
+  "general-veers-master-tactician.webp": {
+   "name": "General Veers (Master Tactician)",
+   "faction": "empire",
+   "slug": "general-veers-master-tactician.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/general-veers-master-tactician.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/general-veers-master-tactician.webp"
+   }
+  },
+  "director-orson-krennic-architect-of-terror.webp": {
+   "name": "Director Orson Krennic (Architect of Terror)",
+   "faction": "empire",
+   "slug": "director-orson-krennic-architect-of-terror.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/director-orson-krennic-architect-of-terror.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/director-orson-krennic-architect-of-terror.webp"
+   }
+  },
+  "boba-fett-infamous-bounty-hunter.webp": {
+   "name": "Boba Fett (Infamous Bounty Hunter)",
+   "faction": "mercenary",
+   "slug": "boba-fett-infamous-bounty-hunter.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/boba-fett-infamous-bounty-hunter.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/boba-fett-infamous-bounty-hunter.webp"
+   }
+  },
+  "bossk-trandoshan-terror.webp": {
+   "name": "Bossk (Trandoshan Terror)",
+   "faction": "mercenary",
+   "slug": "bossk-trandoshan-terror.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/bossk-trandoshan-terror.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/bossk-trandoshan-terror.webp"
+   }
+  },
+  "stormtroopers.webp": {
+   "name": "Stormtroopers",
+   "faction": "empire",
+   "slug": "stormtroopers.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/stormtroopers.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/stormtroopers.webp"
+   }
+  },
+  "snowtroopers.webp": {
+   "name": "Snowtroopers",
+   "faction": "empire",
+   "slug": "snowtroopers.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/snowtroopers.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/snowtroopers.webp"
+   }
+  },
+  "scout-troopers.webp": {
+   "name": "Scout Troopers",
+   "faction": "empire",
+   "slug": "scout-troopers.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/scout-troopers.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/scout-troopers.webp"
+   }
+  },
+  "scout-troopers-strike-team.webp": {
+   "name": "Scout Troopers (Strike Team)",
+   "faction": "empire",
+   "slug": "scout-troopers-strike-team.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/scout-troopers-strike-team.webp",
+    "sourcePdf": "Galactic Empire Units FR",
+    "sourceUrl": "https://drive.google.com/file/d/1E81zbWQmMkhOYf2deSnV97qOO9hr2Dm0/view?usp=drivesdk",
+    "sourceDate": null,
+    "extractedFile": "card_0040.webp",
+    "verified": true
+   },
+   "en": {
+    "path": "cards/swl/empire/scout-troopers-strike-team.webp"
+   }
+  },
+  "imperial-death-troopers.webp": {
+   "name": "Imperial Death Troopers",
+   "faction": "empire",
+   "slug": "imperial-death-troopers.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/imperial-death-troopers.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/imperial-death-troopers.webp"
+   }
+  },
+  "e-web-heavy-blaster-team.webp": {
+   "name": "E-Web Heavy Blaster Team",
+   "faction": "empire",
+   "slug": "e-web-heavy-blaster-team.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/e-web-heavy-blaster-team.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/e-web-heavy-blaster-team.webp"
+   }
+  },
+  "74-z-speeder-bikes.webp": {
+   "name": "74-Z Speeder Bikes",
+   "faction": "empire",
+   "slug": "74-z-speeder-bikes.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/74-z-speeder-bikes.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/74-z-speeder-bikes.webp"
+   }
+  },
+  "at-st.webp": {
+   "name": "AT-ST",
+   "faction": "empire",
+   "slug": "at-st.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/at-st.webp",
+    "sourcePdf": "Galactic Empire Units FR",
+    "sourceUrl": "https://drive.google.com/file/d/1E81zbWQmMkhOYf2deSnV97qOO9hr2Dm0/view?usp=drivesdk",
+    "sourceDate": null,
+    "extractedFile": "card_0066.webp",
+    "verified": true
+   },
+   "en": {
+    "path": "cards/swl/empire/at-st.webp"
+   }
+  },
+  "tx-225-gavw-occupier-tank.webp": {
+   "name": "TX-225 GAVw Occupier Tank",
+   "faction": "empire",
+   "slug": "tx-225-gavw-occupier-tank.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/tx-225-gavw-occupier-tank.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/tx-225-gavw-occupier-tank.webp"
+   }
+  },
+  "luke-skywalker-jedi-knight.webp": {
+   "name": "Luke Skywalker (Jedi Knight)",
+   "faction": "rebel",
+   "slug": "luke-skywalker-jedi-knight.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/luke-skywalker-jedi-knight.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/luke-skywalker-jedi-knight.webp"
+   }
+  },
+  "darth-vader-the-emperor-s-apprentice.webp": {
+   "name": "Darth Vader (The Emperor's Apprentice)",
+   "faction": "empire",
+   "slug": "darth-vader-the-emperor-s-apprentice.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/darth-vader-the-emperor-s-apprentice.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/darth-vader-the-emperor-s-apprentice.webp"
+   }
+  },
+  "df-90-mortar-trooper.webp": {
+   "name": "DF-90 Mortar Trooper",
+   "faction": "empire",
+   "slug": "df-90-mortar-trooper.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/df-90-mortar-trooper.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/df-90-mortar-trooper.webp"
+   }
+  },
+  "count-dooku-darth-tyranus.webp": {
+   "name": "Count Dooku (Darth Tyranus)",
+   "faction": "separatists",
+   "slug": "count-dooku-darth-tyranus.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/separatists/fr/count-dooku-darth-tyranus.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/count-dooku-darth-tyranus.webp"
+   }
+  },
+  "clone-captain-rex-honorable-soldier.webp": {
+   "name": "Clone Captain Rex (Honorable Soldier)",
+   "faction": "republic",
+   "slug": "clone-captain-rex-honorable-soldier.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/clone-captain-rex-honorable-soldier.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/clone-captain-rex-honorable-soldier.webp"
+   }
+  },
+  "clone-trooper-infantry.webp": {
+   "name": "Clone Trooper Infantry",
+   "faction": "republic",
+   "slug": "clone-trooper-infantry.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/clone-trooper-infantry.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/clone-trooper-infantry.webp"
+   }
+  },
+  "b2-super-battle-droids.webp": {
+   "name": "B2 Super Battle Droids",
+   "faction": "separatists",
+   "slug": "b2-super-battle-droids.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/separatists/fr/b2-super-battle-droids.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/b2-super-battle-droids.webp"
+   }
+  },
+  "saber-class-tank.webp": {
+   "name": "Saber-Class Tank",
+   "faction": "republic",
+   "slug": "saber-class-tank.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/saber-class-tank.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/saber-class-tank.webp"
+   }
+  },
+  "aat-battle-tank.webp": {
+   "name": "AAT Battle Tank",
+   "faction": "separatists",
+   "slug": "aat-battle-tank.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/separatists/fr/aat-battle-tank.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/aat-battle-tank.webp"
+   }
+  },
+  "rebel-veterans.webp": {
+   "name": "Rebel Veterans",
+   "faction": "rebel",
+   "slug": "rebel-veterans.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/rebel-veterans.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/rebel-veterans.webp"
+   }
+  },
+  "obi-wan-kenobi-civilized-warrior.webp": {
+   "name": "Obi-Wan Kenobi (Civilized Warrior)",
+   "faction": "republic",
+   "slug": "obi-wan-kenobi-civilized-warrior.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/obi-wan-kenobi-civilized-warrior.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/obi-wan-kenobi-civilized-warrior.webp"
+   }
+  },
+  "b1-battle-droids.webp": {
+   "name": "B1 Battle Droids",
+   "faction": "separatists",
+   "slug": "b1-battle-droids.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/separatists/fr/b1-battle-droids.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/b1-battle-droids.webp"
+   }
+  },
+  "tauntaun-riders.webp": {
+   "name": "Tauntaun Riders",
+   "faction": "rebel",
+   "slug": "tauntaun-riders.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/tauntaun-riders.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/tauntaun-riders.webp"
+   }
+  },
+  "dewback-rider.webp": {
+   "name": "Dewback Rider",
+   "faction": "empire",
+   "slug": "dewback-rider.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/dewback-rider.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/dewback-rider.webp"
+   }
+  },
+  "shoretroopers.webp": {
+   "name": "Shoretroopers",
+   "faction": "empire",
+   "slug": "shoretroopers.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/shoretroopers.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/shoretroopers.webp"
+   }
+  },
+  "barc-speeder.webp": {
+   "name": "BARC Speeder",
+   "faction": "republic",
+   "slug": "barc-speeder.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/barc-speeder.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/barc-speeder.webp"
+   }
+  },
+  "droidekas.webp": {
+   "name": "Droidekas",
+   "faction": "separatists",
+   "slug": "droidekas.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/separatists/fr/droidekas.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/droidekas.webp"
+   }
+  },
+  "mark-ii-medium-blaster-trooper.webp": {
+   "name": "Mark II Medium Blaster Trooper",
+   "faction": "rebel",
+   "slug": "mark-ii-medium-blaster-trooper.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/mark-ii-medium-blaster-trooper.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/mark-ii-medium-blaster-trooper.webp"
+   }
+  },
+  "r2-d2-hero-of-a-thousand-devices.webp": {
+   "name": "R2-D2 (Hero of a Thousand Devices)",
+   "faction": "rebel",
+   "slug": "r2-d2-hero-of-a-thousand-devices.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/r2-d2-hero-of-a-thousand-devices.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/r2-d2-hero-of-a-thousand-devices.webp"
+   }
+  },
+  "r2-d2-independent-astromech.webp": {
+   "name": "R2-D2 (Independent Astromech)",
+   "faction": "republic",
+   "slug": "r2-d2-independent-astromech.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/r2-d2-independent-astromech.webp",
+    "sourcePdf": "Galactic Republic Units FR",
+    "sourceUrl": "https://drive.google.com/file/d/1IgfeY-5Z1zbhQElh4ZqVGV_K494UiyRO/view?usp=drivesdk",
+    "sourceDate": null,
+    "extractedFile": "card_0312.webp",
+    "verified": true
+   },
+   "en": {
+    "path": "cards/swl/republic/r2-d2-independent-astromech.webp"
+   }
+  },
+  "cassian-andor-capable-intelligence-agent.webp": {
+   "name": "Cassian Andor (Capable Intelligence Agent)",
+   "faction": "rebel",
+   "slug": "cassian-andor-capable-intelligence-agent.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/cassian-andor-capable-intelligence-agent.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/cassian-andor-capable-intelligence-agent.webp"
+   }
+  },
+  "iden-versio-inferno-squad-leader.webp": {
+   "name": "Iden Versio (Inferno Squad Leader)",
+   "faction": "empire",
+   "slug": "iden-versio-inferno-squad-leader.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/iden-versio-inferno-squad-leader.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/iden-versio-inferno-squad-leader.webp"
+   }
+  },
+  "padme-amidala-spirited-senator.webp": {
+   "name": "Padme Amidala (Spirited Senator)",
+   "faction": "republic",
+   "slug": "padme-amidala-spirited-senator.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/padme-amidala-spirited-senator.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/padme-amidala-spirited-senator.webp"
+   }
+  },
+  "cad-bane-needs-no-introduction.webp": {
+   "name": "Cad Bane (Needs No Introduction)",
+   "faction": "mercenary",
+   "slug": "cad-bane-needs-no-introduction.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/cad-bane-needs-no-introduction.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/cad-bane-needs-no-introduction.webp"
+   }
+  },
+  "arc-troopers-strike-team.webp": {
+   "name": "ARC Troopers (Strike Team)",
+   "faction": "republic",
+   "slug": "arc-troopers-strike-team.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/arc-troopers-strike-team.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/arc-troopers-strike-team.webp"
+   }
+  },
+  "arc-troopers.webp": {
+   "name": "ARC Troopers",
+   "faction": "republic",
+   "slug": "arc-troopers.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/arc-troopers.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/arc-troopers.webp"
+   }
+  },
+  "bx-series-droid-commandos.webp": {
+   "name": "BX-Series Droid Commandos",
+   "faction": "separatists",
+   "slug": "bx-series-droid-commandos.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/separatists/fr/bx-series-droid-commandos.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/bx-series-droid-commandos.webp"
+   }
+  },
+  "bx-series-droid-commandos-strike-team.webp": {
+   "name": "BX-Series Droid Commandos (Strike Team)",
+   "faction": "separatists",
+   "slug": "bx-series-droid-commandos-strike-team.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/separatists/fr/bx-series-droid-commandos-strike-team.webp",
+    "sourcePdf": "Separatist Alliance Units FR",
+    "sourceUrl": "https://drive.google.com/file/d/1WNjtVZqM-M6WgG75onFQZuXKVMWXqYzo/view?usp=drivesdk",
+    "sourceDate": null,
+    "extractedFile": "card_0340.webp",
+    "verified": true
+   },
+   "en": {
+    "path": "cards/swl/separatists/bx-series-droid-commandos-strike-team.webp"
+   }
+  },
+  "k-2so-sardonic-security-droid.webp": {
+   "name": "K-2SO (Sardonic Security Droid)",
+   "faction": "rebel",
+   "slug": "k-2so-sardonic-security-droid.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/k-2so-sardonic-security-droid.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/k-2so-sardonic-security-droid.webp"
+   }
+  },
+  "stap-riders.webp": {
+   "name": "STAP Riders",
+   "faction": "separatists",
+   "slug": "stap-riders.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/separatists/fr/stap-riders.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/stap-riders.webp"
+   }
+  },
+  "imperial-special-forces.webp": {
+   "name": "Imperial Special Forces",
+   "faction": "empire",
+   "slug": "imperial-special-forces.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/imperial-special-forces.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/imperial-special-forces.webp"
+   }
+  },
+  "imperial-special-forces-inferno-squad.webp": {
+   "name": "Imperial Special Forces (Inferno Squad)",
+   "faction": "empire",
+   "slug": "imperial-special-forces-inferno-squad.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/imperial-special-forces-inferno-squad.webp",
+    "sourcePdf": "Galactic Empire Units FR",
+    "sourceUrl": "https://drive.google.com/file/d/1E81zbWQmMkhOYf2deSnV97qOO9hr2Dm0/view?usp=drivesdk",
+    "sourceDate": null,
+    "extractedFile": "card_0048.webp",
+    "verified": true
+   },
+   "en": {
+    "path": "cards/swl/empire/imperial-special-forces-inferno-squad.webp"
+   }
+  },
+  "anakin-skywalker-the-chosen-one.webp": {
+   "name": "Anakin Skywalker (The Chosen One)",
+   "faction": "republic",
+   "slug": "anakin-skywalker-the-chosen-one.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/anakin-skywalker-the-chosen-one.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/anakin-skywalker-the-chosen-one.webp"
+   }
+  },
+  "maul-impatient-apprentice.webp": {
+   "name": "Maul (Impatient Apprentice)",
+   "faction": "separatists",
+   "slug": "maul-impatient-apprentice.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/separatists/fr/maul-impatient-apprentice.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/maul-impatient-apprentice.webp"
+   }
+  },
+  "drk-1-sith-probe-droids.webp": {
+   "name": "DRK-1 Sith Probe Droids",
+   "faction": "separatists",
+   "slug": "drk-1-sith-probe-droids.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/separatists/fr/drk-1-sith-probe-droids.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/drk-1-sith-probe-droids.webp"
+   }
+  },
+  "lando-calrissian-canny-general.webp": {
+   "name": "Lando Calrissian (Canny General)",
+   "faction": "rebel",
+   "slug": "lando-calrissian-canny-general.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/lando-calrissian-canny-general.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/lando-calrissian-canny-general.webp"
+   }
+  },
+  "agent-kallus-hunter-of-spectres.webp": {
+   "name": "Agent Kallus (Hunter of Spectres)",
+   "faction": "empire",
+   "slug": "agent-kallus-hunter-of-spectres.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/agent-kallus-hunter-of-spectres.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/agent-kallus-hunter-of-spectres.webp"
+   }
+  },
+  "t-series-tactical-droid-programmed-for-strategy.webp": {
+   "name": "T-Series Tactical Droid (Programmed for Strategy)",
+   "faction": "separatists",
+   "slug": "t-series-tactical-droid-programmed-for-strategy.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/separatists/fr/t-series-tactical-droid-programmed-for-strategy.webp",
+    "sourcePdf": "Separatist Alliance Units FR",
+    "sourceUrl": "https://drive.google.com/file/d/1WNjtVZqM-M6WgG75onFQZuXKVMWXqYzo/view?usp=drivesdk",
+    "sourceDate": null,
+    "extractedFile": "card_0378.webp",
+    "verified": true
+   },
+   "en": {
+    "path": "cards/swl/separatists/t-series-tactical-droid-programmed-for-strategy.webp"
+   }
+  },
+  "clone-commander-trained-for-leadership.webp": {
+   "name": "Clone Commander (Trained For Leadership)",
+   "faction": "republic",
+   "slug": "clone-commander-trained-for-leadership.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/clone-commander-trained-for-leadership.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/clone-commander-trained-for-leadership.webp"
+   }
+  },
+  "yoda-grand-master-of-the-jedi-order.webp": {
+   "name": "Yoda (Grand Master of the Jedi Order)",
+   "faction": "republic",
+   "slug": "yoda-grand-master-of-the-jedi-order.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/yoda-grand-master-of-the-jedi-order.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/yoda-grand-master-of-the-jedi-order.webp"
+   }
+  },
+  "a-a5-speeder-truck.webp": {
+   "name": "A-A5 Speeder Truck",
+   "faction": "mercenary",
+   "slug": "a-a5-speeder-truck.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/a-a5-speeder-truck.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/a-a5-speeder-truck.webp"
+   }
+  },
+  "laat-le-patrol-transport.webp": {
+   "name": "LAAT/le Patrol Transport",
+   "faction": "republic",
+   "slug": "laat-le-patrol-transport.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/laat-le-patrol-transport.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/laat-le-patrol-transport.webp"
+   }
+  },
+  "wookiee-warriors-kashyyyk-defenders.webp": {
+   "name": "Wookiee Warriors (Kashyyyk Defenders)",
+   "faction": "republic",
+   "slug": "wookiee-warriors-kashyyyk-defenders.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/wookiee-warriors-kashyyyk-defenders.webp",
+    "sourcePdf": "Galactic Republic Units FR",
+    "sourceUrl": "https://drive.google.com/file/d/1IgfeY-5Z1zbhQElh4ZqVGV_K494UiyRO/view?usp=drivesdk",
+    "sourceDate": null,
+    "extractedFile": "card_0255.webp",
+    "verified": true
+   },
+   "en": {
+    "path": "cards/swl/republic/wookiee-warriors-kashyyyk-defenders.webp"
+   }
+  },
+  "wookiee-chieftain-clan-leader.webp": {
+   "name": "Wookiee Chieftain (Clan Leader)",
+   "faction": "republic",
+   "slug": "wookiee-chieftain-clan-leader.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/wookiee-chieftain-clan-leader.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/wookiee-chieftain-clan-leader.webp"
+   }
+  },
+  "wookiee-warriors-kashyyyk-resistance.webp": {
+   "name": "Wookiee Warriors (Kashyyyk Resistance)",
+   "faction": "rebel",
+   "slug": "wookiee-warriors-kashyyyk-resistance.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/wookiee-warriors-kashyyyk-resistance.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/wookiee-warriors-kashyyyk-resistance.webp"
+   }
+  },
+  "wookiee-warriors-noble-fighters.webp": {
+   "name": "Wookiee Warriors (Noble Fighters)",
+   "faction": "republic",
+   "slug": "wookiee-warriors-noble-fighters.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/wookiee-warriors-noble-fighters.webp",
+    "sourcePdf": "Galactic Republic Units FR",
+    "sourceUrl": "https://drive.google.com/file/d/1IgfeY-5Z1zbhQElh4ZqVGV_K494UiyRO/view?usp=drivesdk",
+    "sourceDate": null,
+    "extractedFile": "card_0270.webp",
+    "verified": true
+   },
+   "en": {
+    "path": "cards/swl/republic/wookiee-warriors-noble-fighters.webp"
+   }
+  },
+  "chewbacca-hero-of-kashyyyk.webp": {
+   "name": "Chewbacca (Hero of Kashyyyk)",
+   "faction": "republic",
+   "slug": "chewbacca-hero-of-kashyyyk.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/chewbacca-hero-of-kashyyyk.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/chewbacca-hero-of-kashyyyk.webp"
+   }
+  },
+  "ig-100-magnaguard.webp": {
+   "name": "IG-100 MagnaGuard",
+   "faction": "separatists",
+   "slug": "ig-100-magnaguard.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/separatists/fr/ig-100-magnaguard.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/ig-100-magnaguard.webp"
+   }
+  },
+  "raddaugh-gnasp-fluttercraft.webp": {
+   "name": "Raddaugh Gnasp Fluttercraft",
+   "faction": "republic",
+   "slug": "raddaugh-gnasp-fluttercraft.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/raddaugh-gnasp-fluttercraft.webp",
+    "sourcePdf": "Galactic Republic Units FR",
+    "sourceUrl": "https://drive.google.com/file/d/1IgfeY-5Z1zbhQElh4ZqVGV_K494UiyRO/view?usp=drivesdk",
+    "sourceDate": null,
+    "extractedFile": "card_0274.webp",
+    "verified": true
+   },
+   "en": {
+    "path": "cards/swl/republic/raddaugh-gnasp-fluttercraft.webp"
+   }
+  },
+  "dsd1-dwarf-spider-droid.webp": {
+   "name": "DSD1 Dwarf Spider Droid",
+   "faction": "separatists",
+   "slug": "dsd1-dwarf-spider-droid.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/separatists/fr/dsd1-dwarf-spider-droid.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/dsd1-dwarf-spider-droid.webp"
+   }
+  },
+  "infantry-support-platform.webp": {
+   "name": "Infantry Support Platform",
+   "faction": "republic",
+   "slug": "infantry-support-platform.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/infantry-support-platform.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/infantry-support-platform.webp"
+   }
+  },
+  "persuader-class-tank-droid.webp": {
+   "name": "Persuader-Class Tank Droid",
+   "faction": "separatists",
+   "slug": "persuader-class-tank-droid.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/persuader-class-tank-droid.webp"
+   }
+  },
+  "pyke-syndicate-capo.webp": {
+   "name": "Pyke Syndicate Capo",
+   "faction": "mercenary",
+   "slug": "pyke-syndicate-capo.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/pyke-syndicate-capo.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/pyke-syndicate-capo.webp"
+   }
+  },
+  "pyke-syndicate-foot-soldiers.webp": {
+   "name": "Pyke Syndicate Foot Soldiers",
+   "faction": "mercenary",
+   "slug": "pyke-syndicate-foot-soldiers.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/pyke-syndicate-foot-soldiers.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/pyke-syndicate-foot-soldiers.webp"
+   }
+  },
+  "black-sun-vigo.webp": {
+   "name": "Black Sun Vigo",
+   "faction": "mercenary",
+   "slug": "black-sun-vigo.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/black-sun-vigo.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/black-sun-vigo.webp"
+   }
+  },
+  "black-sun-enforcers.webp": {
+   "name": "Black Sun Enforcers",
+   "faction": "mercenary",
+   "slug": "black-sun-enforcers.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/black-sun-enforcers.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/black-sun-enforcers.webp"
+   }
+  },
+  "maul-a-rival.webp": {
+   "name": "Maul (A Rival)",
+   "faction": "mercenary",
+   "slug": "maul-a-rival.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/maul-a-rival.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/maul-a-rival.webp"
+   }
+  },
+  "gar-saxon-militant-commando.webp": {
+   "name": "Gar Saxon (Militant Commando)",
+   "faction": "mercenary",
+   "slug": "gar-saxon-militant-commando.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/gar-saxon-militant-commando.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/gar-saxon-militant-commando.webp"
+   }
+  },
+  "mandalorian-super-commandos.webp": {
+   "name": "Mandalorian Super Commandos",
+   "faction": "mercenary",
+   "slug": "mandalorian-super-commandos.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/mandalorian-super-commandos.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/mandalorian-super-commandos.webp"
+   }
+  },
+  "swoop-bike-riders.webp": {
+   "name": "Swoop Bike Riders",
+   "faction": "mercenary",
+   "slug": "swoop-bike-riders.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/swoop-bike-riders.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/swoop-bike-riders.webp"
+   }
+  },
+  "stormtroopers-heavy-response-unit.webp": {
+   "name": "Stormtroopers (Heavy Response Unit)",
+   "faction": "empire",
+   "slug": "stormtroopers-heavy-response-unit.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/stormtroopers-heavy-response-unit.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/stormtroopers-heavy-response-unit.webp"
+   }
+  },
+  "ig-88-notorious-assassin-droid.webp": {
+   "name": "IG-88 (Notorious Assassin Droid)",
+   "faction": "mercenary",
+   "slug": "ig-88-notorious-assassin-droid.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/ig-88-notorious-assassin-droid.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/ig-88-notorious-assassin-droid.webp"
+   }
+  },
+  "ig-11-nurse-and-protect.webp": {
+   "name": "IG-11 (Nurse and Protect)",
+   "faction": "mercenary",
+   "slug": "ig-11-nurse-and-protect.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/ig-11-nurse-and-protect.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/ig-11-nurse-and-protect.webp"
+   }
+  },
+  "din-djarin-cotw-the-mandalorian.webp": {
+   "name": "Din Djarin (CotW) The Mandalorian",
+   "faction": "mercenary",
+   "slug": "din-djarin-cotw-the-mandalorian.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/din-djarin-cotw-the-mandalorian.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/din-djarin-cotw-the-mandalorian.webp"
+   }
+  },
+  "boba-fett-daimyo-of-mos-espa.webp": {
+   "name": "Boba Fett (Daimyo of Mos Espa)",
+   "faction": "mercenary",
+   "slug": "boba-fett-daimyo-of-mos-espa.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/boba-fett-daimyo-of-mos-espa.webp",
+    "sourcePdf": "Mercenary Units FR",
+    "sourceUrl": "https://drive.google.com/file/d/1_OUQuHDPy4rAmuu1GV6kxUFhPhXuQhxo/view?usp=drivesdk",
+    "sourceDate": null,
+    "extractedFile": "card_0128.webp",
+    "verified": true
+   },
+   "en": {
+    "path": "cards/swl/mercenary/boba-fett-daimyo-of-mos-espa.webp"
+   }
+  },
+  "imperial-dark-troopers.webp": {
+   "name": "Imperial Dark Troopers",
+   "faction": "empire",
+   "slug": "imperial-dark-troopers.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/imperial-dark-troopers.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/imperial-dark-troopers.webp"
+   }
+  },
+  "clone-commander-cody-leader-of-the-212th.webp": {
+   "name": "Clone Commander Cody (Leader of the 212th)",
+   "faction": "republic",
+   "slug": "clone-commander-cody-leader-of-the-212th.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/clone-commander-cody-leader-of-the-212th.webp",
+    "sourcePdf": "Galactic Republic Units FR",
+    "sourceUrl": "https://drive.google.com/file/d/1IgfeY-5Z1zbhQElh4ZqVGV_K494UiyRO/view?usp=drivesdk",
+    "sourceDate": null,
+    "extractedFile": "card_0314.webp",
+    "verified": true
+   },
+   "en": {
+    "path": "cards/swl/republic/clone-commander-cody-leader-of-the-212th.webp"
+   }
+  },
+  "moff-gideon-long-live-the-empire.webp": {
+   "name": "Moff Gideon (Long Live the Empire)",
+   "faction": "empire",
+   "slug": "moff-gideon-long-live-the-empire.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/moff-gideon-long-live-the-empire.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/moff-gideon-long-live-the-empire.webp"
+   }
+  },
+  "asajj-ventress-separatist-assassin.webp": {
+   "name": "Asajj Ventress (Separatist Assassin)",
+   "faction": "separatists",
+   "slug": "asajj-ventress-separatist-assassin.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/separatists/fr/asajj-ventress-separatist-assassin.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/asajj-ventress-separatist-assassin.webp"
+   }
+  },
+  "ahsoka-tano-fulcrum.webp": {
+   "name": "Ahsoka Tano (Fulcrum)",
+   "faction": "rebel",
+   "slug": "ahsoka-tano-fulcrum.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/ahsoka-tano-fulcrum.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/ahsoka-tano-fulcrum.webp"
+   }
+  },
+  "wicket-hero-of-bright-tree.webp": {
+   "name": "Wicket (Hero of Bright Tree)",
+   "faction": "mercenary",
+   "slug": "wicket-hero-of-bright-tree.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/wicket-hero-of-bright-tree.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/wicket-hero-of-bright-tree.webp"
+   }
+  },
+  "chewbacca-let-the-wookiee-win.webp": {
+   "name": "Chewbacca (Let the Wookiee Win)",
+   "faction": "mercenary",
+   "slug": "chewbacca-let-the-wookiee-win.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/chewbacca-let-the-wookiee-win.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/chewbacca-let-the-wookiee-win.webp"
+   }
+  },
+  "ewok-skirmishers.webp": {
+   "name": "Ewok Skirmishers",
+   "faction": "mercenary",
+   "slug": "ewok-skirmishers.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/ewok-skirmishers.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/ewok-skirmishers.webp"
+   }
+  },
+  "ewok-slingers.webp": {
+   "name": "Ewok Slingers",
+   "faction": "mercenary",
+   "slug": "ewok-slingers.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/ewok-slingers.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/ewok-slingers.webp"
+   }
+  },
+  "c-3p0-golden-god.webp": {
+   "name": "C-3P0 (Golden God)",
+   "faction": "mercenary",
+   "slug": "c-3p0-golden-god.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/c3p0-golden-god.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/c-3p0-golden-god.webp"
+   }
+  },
+  "logray-superstitious-shaman.webp": {
+   "name": "Logray (Superstitious Shaman)",
+   "faction": "mercenary",
+   "slug": "logray-superstitious-shaman.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/logray-superstitious-shaman.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/logray-superstitious-shaman.webp"
+   }
+  },
+  "major-marquand-tempest-scout-2.webp": {
+   "name": "Major Marquand (Tempest Scout 2)",
+   "faction": "empire",
+   "slug": "major-marquand-tempest-scout-2.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/major-marquand-tempest-scout-2.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/major-marquand-tempest-scout-2.webp"
+   }
+  },
+  "fifth-brother-the-kill-is-mine.webp": {
+   "name": "Fifth Brother (The Kill is Mine)",
+   "faction": "empire",
+   "slug": "fifth-brother-the-kill-is-mine.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/fifth-brother-the-kill-is-mine.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/fifth-brother-the-kill-is-mine.webp"
+   }
+  },
+  "seventh-sister-compelled-to-inflict-pain.webp": {
+   "name": "Seventh Sister (Compelled to Inflict Pain)",
+   "faction": "empire",
+   "slug": "seventh-sister-compelled-to-inflict-pain.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/seventh-sister-compelled-to-inflict-pain.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/seventh-sister-compelled-to-inflict-pain.webp"
+   }
+  },
+  "poggle-the-lesser-public-leader-of-the-geonosians.webp": {
+   "name": "Poggle the Lesser (Public Leader of the Geonosians)",
+   "faction": "separatists",
+   "slug": "poggle-the-lesser-public-leader-of-the-geonosians.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/separatists/fr/poggle-the-lesser-public-leader-of-the-geonosians.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/poggle-the-lesser-public-leader-of-the-geonosians.webp"
+   }
+  },
+  "sun-fac-ruthless-lieutenant.webp": {
+   "name": "Sun Fac (Ruthless Lieutenant)",
+   "faction": "separatists",
+   "slug": "sun-fac-ruthless-lieutenant.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/separatists/fr/sun-fac-ruthless-lieutenant.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/sun-fac-ruthless-lieutenant.webp"
+   }
+  },
+  "geonosian-warriors-soldiers-of-the-hive.webp": {
+   "name": "Geonosian Warriors (Soldiers of the Hive)",
+   "faction": "separatists",
+   "slug": "geonosian-warriors-soldiers-of-the-hive.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/separatists/fr/geonosian-warriors-soldiers-of-the-hive.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/geonosian-warriors-soldiers-of-the-hive.webp"
+   }
+  },
+  "ig-100-magnaguard-prototype-assassin-droids.webp": {
+   "name": "IG-100 MagnaGuard (Prototype Assassin Droids)",
+   "faction": "separatists",
+   "slug": "ig-100-magnaguard-prototype-assassin-droids.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/ig-100-magnaguard-prototype-assassin-droids.webp"
+   }
+  },
+  "persuader-class-tank-droid-prototype-tank-droid.webp": {
+   "name": "Persuader-Class Tank Droid (Prototype Tank Droid)",
+   "faction": "separatists",
+   "slug": "persuader-class-tank-droid-prototype-tank-droid.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/separatists/fr/persuader-class-tank-droid-prototype-tank-droid.webp",
+    "sourcePdf": "Separatist Alliance Units FR",
+    "sourceUrl": "https://drive.google.com/file/d/1WNjtVZqM-M6WgG75onFQZuXKVMWXqYzo/view?usp=drivesdk",
+    "sourceDate": null,
+    "extractedFile": "card_0366.webp",
+    "verified": true
+   },
+   "en": {
+    "path": "cards/swl/separatists/persuader-class-tank-droid-prototype-tank-droid.webp"
+   }
+  },
+  "raddaugh-gnasp-fluttercraft-attack-craft.webp": {
+   "name": "Raddaugh Gnasp Fluttercraft (Attack Craft)",
+   "faction": "republic",
+   "slug": "raddaugh-gnasp-fluttercraft-attack-craft.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/raddaugh-gnasp-fluttercraft-attack-craft.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/raddaugh-gnasp-fluttercraft-attack-craft.webp"
+   }
+  },
+  "range-troopers.webp": {
+   "name": "Range Troopers",
+   "faction": "empire",
+   "slug": "range-troopers.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/range-troopers.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/range-troopers.webp"
+   }
+  },
+  "the-bad-batch-clone-force-99.webp": {
+   "name": "The Bad Batch (Clone Force 99)",
+   "faction": "mercenary",
+   "slug": "the-bad-batch-clone-force-99.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/the-bad-batch-clone-force-99.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/the-bad-batch-clone-force-99.webp"
+   }
+  },
+  "clone-commandos.webp": {
+   "name": "Clone Commandos",
+   "faction": "republic",
+   "slug": "clone-commandos.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/clone-commandos.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/clone-commandos.webp"
+   }
+  },
+  "clone-commandos-delta-squad.webp": {
+   "name": "Clone Commandos (Delta Squad)",
+   "faction": "republic",
+   "slug": "clone-commandos-delta-squad.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/republic/fr/clone-commandos-delta-squad.webp",
+    "sourcePdf": "Galactic Republic Units FR",
+    "sourceUrl": "https://drive.google.com/file/d/1IgfeY-5Z1zbhQElh4ZqVGV_K494UiyRO/view?usp=drivesdk",
+    "sourceDate": null,
+    "extractedFile": "card_0284.webp",
+    "verified": true
+   },
+   "en": {
+    "path": "cards/swl/republic/clone-commandos-delta-squad.webp"
+   }
+  },
+  "rebel-sleeper-cell-ready-to-strike.webp": {
+   "name": "Rebel Sleeper Cell (Ready to Strike)",
+   "faction": "rebel",
+   "slug": "rebel-sleeper-cell-ready-to-strike.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/rebel/fr/rebel-sleeper-cell-ready-to-strike.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/rebel-sleeper-cell-ready-to-strike.webp"
+   }
+  },
+  "stormtrooper-riot-squad.webp": {
+   "name": "Stormtrooper Riot Squad",
+   "faction": "empire",
+   "slug": "stormtrooper-riot-squad.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/stormtrooper-riot-squad.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/stormtrooper-riot-squad.webp"
+   }
+  },
+  "lm-432-crab-droid.webp": {
+   "name": "LM-432 Crab Droid",
+   "faction": "separatists",
+   "slug": "lm-432-crab-droid.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/lm-432-crab-droid.webp"
+   }
+  },
+  "aqua-droids.webp": {
+   "name": "Aqua Droids",
+   "faction": "separatists",
+   "slug": "aqua-droids.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/aqua-droids.webp"
+   }
+  },
+  "arf-troopers.webp": {
+   "name": "ARF Troopers",
+   "faction": "republic",
+   "slug": "arf-troopers.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/arf-troopers.webp"
+   }
+  },
+  "ahsoka-tano-padawan-commander.webp": {
+   "name": "Ahsoka Tano (Padawan Commander)",
+   "faction": "republic",
+   "slug": "ahsoka-tano-padawan-commander.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/ahsoka-tano-padawan-commander.webp"
+   }
+  },
+  "clone-trooper-marksmen.webp": {
+   "name": "Clone Trooper Marksmen",
+   "faction": "republic",
+   "slug": "clone-trooper-marksmen.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/clone-trooper-marksmen.webp"
+   }
+  },
+  "hondo-ohnaka-trustworthy-compatriot.webp": {
+   "name": "Hondo Ohnaka (Trustworthy Compatriot)",
+   "faction": "mercenary",
+   "slug": "hondo-ohnaka-trustworthy-compatriot.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/hondo-ohnaka-trustworthy-compatriot.webp"
+   }
+  },
+  "rebel-agent-defender-of-democracy.webp": {
+   "name": "Rebel Agent (Defender of Democracy)",
+   "faction": "rebel",
+   "slug": "rebel-agent-defender-of-democracy.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/rebel-agent-defender-of-democracy.webp"
+   }
+  },
+  "rebel-officer-fighting-for-freedom.webp": {
+   "name": "Rebel Officer (Fighting for Freedom)",
+   "faction": "rebel",
+   "slug": "rebel-officer-fighting-for-freedom.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/rebel-officer-fighting-for-freedom.webp"
+   }
+  },
+  "imperial-agent-bringing-order-to-the-galaxy.webp": {
+   "name": "Imperial Agent (Bringing Order to the Galaxy)",
+   "faction": "empire",
+   "slug": "imperial-agent-bringing-order-to-the-galaxy.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/imperial-agent-bringing-order-to-the-galaxy.webp"
+   }
+  },
+  "imperial-officer-ruthless-efficiency.webp": {
+   "name": "Imperial Officer (Ruthless Efficiency)",
+   "faction": "empire",
+   "slug": "imperial-officer-ruthless-efficiency.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/imperial-officer-ruthless-efficiency.webp"
+   }
+  },
+  "jedi-knight-general-strong-in-the-force.webp": {
+   "name": "Jedi Knight General (Strong in the Force)",
+   "faction": "republic",
+   "slug": "jedi-knight-general-strong-in-the-force.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/jedi-knight-general-strong-in-the-force.webp"
+   }
+  },
+  "jedi-knight-keeper-of-the-peace.webp": {
+   "name": "Jedi Knight (Keeper of the Peace)",
+   "faction": "republic",
+   "slug": "jedi-knight-keeper-of-the-peace.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/jedi-knight-keeper-of-the-peace.webp"
+   }
+  },
+  "super-tactical-command-droid-command-and-control-droid.webp": {
+   "name": "Super Tactical Command Droid (Command and Control Droid)",
+   "faction": "separatists",
+   "slug": "super-tactical-command-droid-command-and-control-droid.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/separatists/fr/super-tactical-command-droid-command-and-control-droid.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/super-tactical-command-droid-command-and-control-droid.webp"
+   }
+  },
+  "super-tactical-command-droid-auxiliary-command-droid.webp": {
+   "name": "Super Tactical Command Droid (Auxiliary Command Droid)",
+   "faction": "separatists",
+   "slug": "super-tactical-command-droid-auxiliary-command-droid.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/super-tactical-command-droid-auxiliary-command-droid.webp"
+   }
+  },
+  "general-grievous-wheel-bike-warlord.webp": {
+   "name": "General Grievous (Wheel Bike Warlord)",
+   "faction": "separatists",
+   "slug": "general-grievous-wheel-bike-warlord.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/separatists/fr/general-grievous-wheel-bike-warlord.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/general-grievous-wheel-bike-warlord.webp"
+   }
+  },
+  "tsmeu-6-wheel-bikes.webp": {
+   "name": "TSMEU-6 Wheel Bikes",
+   "faction": "separatists",
+   "slug": "tsmeu-6-wheel-bikes.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/tsmeu-6-wheel-bikes.webp"
+   }
+  },
+  "imperial-probe-droid.webp": {
+   "name": "Imperial Probe Droid",
+   "faction": "empire",
+   "slug": "imperial-probe-droid.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/empire/fr/imperial-probe-droid.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/imperial-probe-droid.webp"
+   }
+  },
+  "luke-skywalker-commander-skywalker.webp": {
+   "name": "Luke Skywalker (Commander Skywalker)",
+   "faction": "rebel",
+   "slug": "luke-skywalker-commander-skywalker.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/luke-skywalker-commander-skywalker.webp"
+   }
+  },
+  "han-solo-reluctant-hero.webp": {
+   "name": "Han Solo (Reluctant Hero)",
+   "faction": "rebel",
+   "slug": "han-solo-reluctant-hero.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/rebel/han-solo-reluctant-hero.webp"
+   }
+  },
+  "weequay-pirates.webp": {
+   "name": "Weequay Pirates",
+   "faction": "mercenary",
+   "slug": "weequay-pirates.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/weequay-pirates.webp"
+   }
+  },
+  "wlo-5-speeder-tank.webp": {
+   "name": "WLO-5 Speeder Tank",
+   "faction": "mercenary",
+   "slug": "wlo-5-speeder-tank.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/wlo-5-speeder-tank.webp"
+   }
+  },
+  "grand-admiral-thrawn-imperial-high-command.webp": {
+   "name": "Grand Admiral Thrawn (Imperial High Command)",
+   "faction": "empire",
+   "slug": "grand-admiral-thrawn-imperial-high-command.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/grand-admiral-thrawn-imperial-high-command.webp"
+   }
+  },
+  "grand-moff-tarkin-imperial-high-command.webp": {
+   "name": "Grand Moff Tarkin (Imperial High Command)",
+   "faction": "empire",
+   "slug": "grand-moff-tarkin-imperial-high-command.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/grand-moff-tarkin-imperial-high-command.webp"
+   }
+  },
+  "mace-windu-jedi-council.webp": {
+   "name": "Mace Windu (Jedi Council)",
+   "faction": "republic",
+   "slug": "mace-windu-jedi-council.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/mace-windu-jedi-council.webp"
+   }
+  },
+  "general-tagge-imperial-high-command.webp": {
+   "name": "General Tagge (Imperial High Command)",
+   "faction": "empire",
+   "slug": "general-tagge-imperial-high-command.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/empire/general-tagge-imperial-high-command.webp"
+   }
+  },
+  "shaak-ti-jedi-council.webp": {
+   "name": "Shaak Ti (Jedi Council)",
+   "faction": "republic",
+   "slug": "shaak-ti-jedi-council.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/shaak-ti-jedi-council.webp"
+   }
+  },
+  "ki-adi-mundi-jedi-council.webp": {
+   "name": "Ki-Adi-Mundi (Jedi Council)",
+   "faction": "republic",
+   "slug": "ki-adi-mundi-jedi-council.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/ki-adi-mundi-jedi-council.webp"
+   }
+  },
+  "plo-koon-jedi-council.webp": {
+   "name": "Plo Koon (Jedi Council)",
+   "faction": "republic",
+   "slug": "plo-koon-jedi-council.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/republic/plo-koon-jedi-council.webp"
+   }
+  },
+  "savage-opress-maul-s-enforcer.webp": {
+   "name": "Savage Opress (Maul's Enforcer)",
+   "faction": "mercenary",
+   "slug": "savage-opress-maul-s-enforcer.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/savage-opress-maul-s-enforcer.webp"
+   }
+  },
+  "savage-opress-dooku-s-apprentice.webp": {
+   "name": "Savage Opress (Dooku's Apprentice)",
+   "faction": "separatists",
+   "slug": "savage-opress-dooku-s-apprentice.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/savage-opress-dooku-s-apprentice.webp"
+   }
+  },
+  "mandalorian-initiates.webp": {
+   "name": "Mandalorian Initiates",
+   "faction": "mercenary",
+   "slug": "mandalorian-initiates.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/mandalorian-initiates.webp"
+   }
+  },
+  "mandalorian-warriors.webp": {
+   "name": "Mandalorian Warriors",
+   "faction": "mercenary",
+   "slug": "mandalorian-warriors.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/mandalorian-warriors.webp"
+   }
+  },
+  "mandalorian-warriors-fire-support.webp": {
+   "name": "Mandalorian Warriors (Fire Support)",
+   "faction": "mercenary",
+   "slug": "mandalorian-warriors-fire-support.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/mandalorian-warriors-fire-support.webp"
+   }
+  },
+  "clan-kryze-veterans.webp": {
+   "name": "Clan Kryze Veterans",
+   "faction": "mercenary",
+   "slug": "clan-kryze-veterans.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/clan-kryze-veterans.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/clan-kryze-veterans.webp"
+   }
+  },
+  "mandalorian-leader.webp": {
+   "name": "Mandalorian Leader",
+   "faction": "mercenary",
+   "slug": "mandalorian-leader.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/mandalorian-leader.webp"
+   }
+  },
+  "mandalorian-hunter.webp": {
+   "name": "Mandalorian Hunter",
+   "faction": "mercenary",
+   "slug": "mandalorian-hunter.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/mandalorian-hunter.webp"
+   }
+  },
+  "bo-katan-kryze-savior-of-mandalore.webp": {
+   "name": "Bo-Katan Kryze (Savior of Mandalore)",
+   "faction": "mercenary",
+   "slug": "bo-katan-kryze-savior-of-mandalore.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/bo-katan-kryze-savior-of-mandalore.webp"
+   }
+  },
+  "axe-woves-cunning-warrior.webp": {
+   "name": "Axe Woves (Cunning Warrior)",
+   "faction": "mercenary",
+   "slug": "axe-woves-cunning-warrior.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/axe-woves-cunning-warrior.webp"
+   }
+  },
+  "the-armorer-forging-the-future.webp": {
+   "name": "The Armorer (Forging the Future)",
+   "faction": "mercenary",
+   "slug": "the-armorer-forging-the-future.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/the-armorer-forging-the-future.webp"
+   }
+  },
+  "paz-vizsla-proud-warrior.webp": {
+   "name": "Paz Vizsla (Proud Warrior)",
+   "faction": "mercenary",
+   "slug": "paz-vizsla-proud-warrior.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/paz-vizsla-proud-warrior.webp"
+   }
+  },
+  "clan-wren-veterans.webp": {
+   "name": "Clan Wren Veterans",
+   "faction": "mercenary",
+   "slug": "clan-wren-veterans.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/clan-wren-veterans.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/clan-wren-veterans.webp"
+   }
+  },
+  "geonosian-warriors-geonosian-engineers.webp": {
+   "name": "Geonosian Warriors (Geonosian Engineers)",
+   "faction": "separatists",
+   "slug": "geonosian-warriors-geonosian-engineers.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/geonosian-warriors-geonosian-engineers.webp"
+   }
+  },
+  "ursa-wren-leader-of-clan-wren.webp": {
+   "name": "Ursa Wren (Leader of Clan Wren)",
+   "faction": "mercenary",
+   "slug": "ursa-wren-leader-of-clan-wren.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mercenary/fr/ursa-wren-leader-of-clan-wren.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mercenary/ursa-wren-leader-of-clan-wren.webp"
+   }
+  },
+  "sabine-wren-back-in-the-fold.webp": {
+   "name": "Sabine Wren (Back in the Fold)",
+   "faction": "mandalorians",
+   "slug": "sabine-wren-back-in-the-fold.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mandalorians/fr/sabine-wren-back-in-the-fold.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mandalorians/sabine-wren-back-in-the-fold.webp"
+   }
+  },
+  "gar-saxon-head-of-clan-saxon.webp": {
+   "name": "Gar Saxon (Head of Clan Saxon)",
+   "faction": "mandalorians",
+   "slug": "gar-saxon-head-of-clan-saxon.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mandalorians/fr/gar-saxon-head-of-clan-saxon.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mandalorians/gar-saxon-head-of-clan-saxon.webp"
+   }
+  },
+  "rook-kast-devoted-to-the-cause.webp": {
+   "name": "Rook Kast (Devoted to the Cause)",
+   "faction": "mandalorians",
+   "slug": "rook-kast-devoted-to-the-cause.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mandalorians/fr/rook-kast-devoted-to-the-cause.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mandalorians/rook-kast-devoted-to-the-cause.webp"
+   }
+  },
+  "super-commandos.webp": {
+   "name": "Super Commandos",
+   "faction": "mandalorians",
+   "slug": "super-commandos.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": true,
+    "path": "cards/swl/mandalorians/fr/super-commandos.webp",
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/mandalorians/super-commandos.webp"
+   }
+  },
+  "admiral-trench-fleet-commander.webp": {
+   "name": "Admiral Trench (Fleet Commander)",
+   "faction": "separatists",
+   "slug": "admiral-trench-fleet-commander.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/admiral-trench-fleet-commander.webp"
+   }
+  },
+  "b2-super-rocket-battle-droids.webp": {
+   "name": "B2 Super Rocket Battle Droids",
+   "faction": "separatists",
+   "slug": "b2-super-rocket-battle-droids.webp",
+   "kind": "LEGION_UNIT",
+   "fr": {
+    "hasImage": false,
+    "path": null,
+    "sourcePdf": null,
+    "sourceUrl": null,
+    "sourceDate": null,
+    "extractedFile": null,
+    "verified": false
+   },
+   "en": {
+    "path": "cards/swl/separatists/b2-super-rocket-battle-droids.webp"
+   }
+  }
+ },
+ "gaps": [
+  {
+   "slug": "arf-troopers.webp",
+   "name": "ARF Troopers",
+   "faction": "republic"
+  },
+  {
+   "slug": "admiral-trench-fleet-commander.webp",
+   "name": "Admiral Trench (Fleet Commander)",
+   "faction": "separatists"
+  },
+  {
+   "slug": "ahsoka-tano-padawan-commander.webp",
+   "name": "Ahsoka Tano (Padawan Commander)",
+   "faction": "republic"
+  },
+  {
+   "slug": "aqua-droids.webp",
+   "name": "Aqua Droids",
+   "faction": "separatists"
+  },
+  {
+   "slug": "axe-woves-cunning-warrior.webp",
+   "name": "Axe Woves (Cunning Warrior)",
+   "faction": "mercenary"
+  },
+  {
+   "slug": "b2-super-rocket-battle-droids.webp",
+   "name": "B2 Super Rocket Battle Droids",
+   "faction": "separatists"
+  },
+  {
+   "slug": "bo-katan-kryze-savior-of-mandalore.webp",
+   "name": "Bo-Katan Kryze (Savior of Mandalore)",
+   "faction": "mercenary"
+  },
+  {
+   "slug": "clone-trooper-marksmen.webp",
+   "name": "Clone Trooper Marksmen",
+   "faction": "republic"
+  },
+  {
+   "slug": "general-tagge-imperial-high-command.webp",
+   "name": "General Tagge (Imperial High Command)",
+   "faction": "empire"
+  },
+  {
+   "slug": "geonosian-warriors-geonosian-engineers.webp",
+   "name": "Geonosian Warriors (Geonosian Engineers)",
+   "faction": "separatists"
+  },
+  {
+   "slug": "grand-admiral-thrawn-imperial-high-command.webp",
+   "name": "Grand Admiral Thrawn (Imperial High Command)",
+   "faction": "empire"
+  },
+  {
+   "slug": "grand-moff-tarkin-imperial-high-command.webp",
+   "name": "Grand Moff Tarkin (Imperial High Command)",
+   "faction": "empire"
+  },
+  {
+   "slug": "han-solo-reluctant-hero.webp",
+   "name": "Han Solo (Reluctant Hero)",
+   "faction": "rebel"
+  },
+  {
+   "slug": "hondo-ohnaka-trustworthy-compatriot.webp",
+   "name": "Hondo Ohnaka (Trustworthy Compatriot)",
+   "faction": "mercenary"
+  },
+  {
+   "slug": "ig-100-magnaguard-prototype-assassin-droids.webp",
+   "name": "IG-100 MagnaGuard (Prototype Assassin Droids)",
+   "faction": "separatists"
+  },
+  {
+   "slug": "imperial-agent-bringing-order-to-the-galaxy.webp",
+   "name": "Imperial Agent (Bringing Order to the Galaxy)",
+   "faction": "empire"
+  },
+  {
+   "slug": "imperial-officer-ruthless-efficiency.webp",
+   "name": "Imperial Officer (Ruthless Efficiency)",
+   "faction": "empire"
+  },
+  {
+   "slug": "jedi-knight-keeper-of-the-peace.webp",
+   "name": "Jedi Knight (Keeper of the Peace)",
+   "faction": "republic"
+  },
+  {
+   "slug": "jedi-knight-general-strong-in-the-force.webp",
+   "name": "Jedi Knight General (Strong in the Force)",
+   "faction": "republic"
+  },
+  {
+   "slug": "ki-adi-mundi-jedi-council.webp",
+   "name": "Ki-Adi-Mundi (Jedi Council)",
+   "faction": "republic"
+  },
+  {
+   "slug": "lm-432-crab-droid.webp",
+   "name": "LM-432 Crab Droid",
+   "faction": "separatists"
+  },
+  {
+   "slug": "luke-skywalker-commander-skywalker.webp",
+   "name": "Luke Skywalker (Commander Skywalker)",
+   "faction": "rebel"
+  },
+  {
+   "slug": "mace-windu-jedi-council.webp",
+   "name": "Mace Windu (Jedi Council)",
+   "faction": "republic"
+  },
+  {
+   "slug": "mandalorian-hunter.webp",
+   "name": "Mandalorian Hunter",
+   "faction": "mercenary"
+  },
+  {
+   "slug": "mandalorian-initiates.webp",
+   "name": "Mandalorian Initiates",
+   "faction": "mercenary"
+  },
+  {
+   "slug": "mandalorian-leader.webp",
+   "name": "Mandalorian Leader",
+   "faction": "mercenary"
+  },
+  {
+   "slug": "mandalorian-warriors.webp",
+   "name": "Mandalorian Warriors",
+   "faction": "mercenary"
+  },
+  {
+   "slug": "mandalorian-warriors-fire-support.webp",
+   "name": "Mandalorian Warriors (Fire Support)",
+   "faction": "mercenary"
+  },
+  {
+   "slug": "paz-vizsla-proud-warrior.webp",
+   "name": "Paz Vizsla (Proud Warrior)",
+   "faction": "mercenary"
+  },
+  {
+   "slug": "persuader-class-tank-droid.webp",
+   "name": "Persuader-Class Tank Droid",
+   "faction": "separatists"
+  },
+  {
+   "slug": "plo-koon-jedi-council.webp",
+   "name": "Plo Koon (Jedi Council)",
+   "faction": "republic"
+  },
+  {
+   "slug": "rebel-agent-defender-of-democracy.webp",
+   "name": "Rebel Agent (Defender of Democracy)",
+   "faction": "rebel"
+  },
+  {
+   "slug": "rebel-officer-fighting-for-freedom.webp",
+   "name": "Rebel Officer (Fighting for Freedom)",
+   "faction": "rebel"
+  },
+  {
+   "slug": "savage-opress-dooku-s-apprentice.webp",
+   "name": "Savage Opress (Dooku's Apprentice)",
+   "faction": "separatists"
+  },
+  {
+   "slug": "savage-opress-maul-s-enforcer.webp",
+   "name": "Savage Opress (Maul's Enforcer)",
+   "faction": "mercenary"
+  },
+  {
+   "slug": "shaak-ti-jedi-council.webp",
+   "name": "Shaak Ti (Jedi Council)",
+   "faction": "republic"
+  },
+  {
+   "slug": "super-tactical-command-droid-auxiliary-command-droid.webp",
+   "name": "Super Tactical Command Droid (Auxiliary Command Droid)",
+   "faction": "separatists"
+  },
+  {
+   "slug": "tsmeu-6-wheel-bikes.webp",
+   "name": "TSMEU-6 Wheel Bikes",
+   "faction": "separatists"
+  },
+  {
+   "slug": "the-armorer-forging-the-future.webp",
+   "name": "The Armorer (Forging the Future)",
+   "faction": "mercenary"
+  },
+  {
+   "slug": "wlo-5-speeder-tank.webp",
+   "name": "WLO-5 Speeder Tank",
+   "faction": "mercenary"
+  },
+  {
+   "slug": "weequay-pirates.webp",
+   "name": "Weequay Pirates",
+   "faction": "mercenary"
+  }
+ ]
+}

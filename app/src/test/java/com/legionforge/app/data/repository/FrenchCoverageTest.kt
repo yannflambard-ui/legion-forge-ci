@@ -80,10 +80,10 @@ class FrenchCoverageTest {
         println("Couverture FR unités: ${Math.round(withFr.size * 100.0 / units.size)}%")
 
         // Barre de non-régression : on ne doit pas perdre de couverture par rapport à l'existant.
-        // (113/172 au moment de l'écriture du test.)
+        // (128/172 après injection 15 cartes vérifiées, 2026-10-15.)
         assertTrue(
-            "Couverture FR unités en régression: ${withFr.size} (attendu >= 113)",
-            withFr.size >= 113
+            "Couverture FR unités en régression: ${withFr.size} (attendu >= 128)",
+            withFr.size >= 128
         )
 
         // Le gap restant est listé pour piloter le chantier d'amélioration.

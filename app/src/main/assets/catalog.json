@@ -304,7 +304,10 @@
    "legionStats": "{\"health\":1,\"courage\":2,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"c\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Detachment\",\"Heavy Weapon Team\",\"Low Profile\",\"Incognito\",\"Prepared Position\"],\"weapons\":[{\"name\":\"Unarmed\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":1,\"white\":0}},{\"name\":\"A-200 Blaster Rifle\",\"range\":{\"min\":1,\"max\":3},\"dice\":{\"red\":0,\"black\":1,\"white\":0}}],\"upgradeBar\":[\"heavy weapon\",\"training\",\"comms\",\"gear\",\"grenades\"]}",
    "cardSubtype": "trooper",
    "title": "Strike Team",
-   "affiliation": null
+   "affiliation": null,
+   "imageAssetPaths": {
+    "fr": "cards/swl/rebel/fr/rebel-commandos-strike-team.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/1-4-fd-laser-cannon-team",
@@ -353,7 +356,8 @@
    "legionStats": "{\"health\":6,\"courage\":4,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"h\",\"surgeDefense\":\"\",\"miniCount\":1,\"keywords\":[\"Armor\",\"Climbing Vehicle\",\"Expert Climber\",\"Scout\"],\"weapons\":[{\"name\":\"Grappling Claws\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":3,\"black\":0,\"white\":0}}],\"upgradeBar\":[\"hardpoint\",\"comms\"]}",
    "cardSubtype": "ground vehicle",
    "title": null,
-   "affiliation": null
+   "affiliation": null,
+   "imageAssetPaths": {}
   },
   {
    "id": "legion_v2:lhq2/t-47-airspeeder",
@@ -658,7 +662,10 @@
    "legionStats": "{\"health\":1,\"courage\":2,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"c\",\"surgeDefense\":\"b\",\"miniCount\":4,\"keywords\":[\"Detachment\",\"Heavy Weapon Team\",\"Low Profile\",\"Incognito\",\"Prepared Position\"],\"weapons\":[{\"name\":\"Unarmed\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":1,\"white\":0}},{\"name\":\"EC-17 Hold-Out Blaster\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":0,\"black\":2,\"white\":0}}],\"upgradeBar\":[\"heavy weapon\",\"training\",\"comms\",\"gear\",\"grenades\"]}",
    "cardSubtype": "trooper",
    "title": "Strike Team",
-   "affiliation": null
+   "affiliation": null,
+   "imageAssetPaths": {
+    "fr": "cards/swl/empire/fr/scout-troopers-strike-team.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/imperial-death-troopers",
@@ -765,7 +772,10 @@
    "legionStats": "{\"health\":11,\"courage\":8,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Armor\",\"Arsenal\",\"Weak Point\"],\"weapons\":[{\"name\":\"Fence-Cutting Blades\",\"range\":{\"min\":null,\"max\":null},\"dice\":{\"red\":4,\"black\":0,\"white\":0}},{\"name\":\"MS-4 Twin Blaster\",\"range\":{\"min\":1,\"max\":4},\"dice\":{\"red\":2,\"black\":2,\"white\":2}}],\"upgradeBar\":[\"pilot\",\"hardpoint\",\"hardpoint\",\"hardpoint\",\"comms\"]}",
    "cardSubtype": "ground vehicle",
    "title": null,
-   "affiliation": null
+   "affiliation": null,
+   "imageAssetPaths": {
+    "fr": "cards/swl/empire/fr/at-st.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/tx-225-gavw-occupier-tank",
@@ -1334,7 +1344,10 @@
    "legionStats": "{\"health\":4,\"courage\":2,\"speed\":1,\"defenseDie\":\"w\",\"surgeAttack\":\"h\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Repair\",\"Secret Mission\",\"Inconspicuous\",\"Suppressive\"],\"weapons\":[{\"name\":\"Electro-Shock\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":0,\"white\":3}}],\"upgradeBar\":[\"comms\"]}",
    "cardSubtype": "droid trooper",
    "title": "Independent Astromech",
-   "affiliation": null
+   "affiliation": null,
+   "imageAssetPaths": {
+    "fr": "cards/swl/republic/fr/r2-d2-independent-astromech.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/cassian-andor-capable-intelligence-agent",
@@ -1564,7 +1577,10 @@
    "legionStats": "{\"health\":1,\"courage\":2,\"speed\":2,\"defenseDie\":\"r\",\"surgeAttack\":\"c\",\"surgeDefense\":\"\",\"miniCount\":1,\"keywords\":[\"AI\",\"Detachment\",\"Heavy Weapon Team\",\"Impervious\",\"Incognito\",\"Prepared Position\"],\"weapons\":[{\"name\":\"Unarmed\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":1,\"white\":0}},{\"name\":\"Commando E-5 Blaster\",\"range\":{\"min\":1,\"max\":3},\"dice\":{\"red\":0,\"black\":0,\"white\":2}}],\"upgradeBar\":[\"heavy weapon\",\"training\",\"grenades\",\"armament\",\"comms\"]}",
    "cardSubtype": "droid trooper",
    "title": "Strike Team",
-   "affiliation": null
+   "affiliation": null,
+   "imageAssetPaths": {
+    "fr": "cards/swl/separatists/fr/bx-series-droid-commandos-strike-team.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/k-2so-sardonic-security-droid",
@@ -1613,7 +1629,10 @@
    "legionStats": "{\"health\":6,\"courage\":4,\"speed\":2,\"defenseDie\":\"r\",\"surgeAttack\":\"h\",\"surgeDefense\":\"\",\"miniCount\":1,\"keywords\":[\"Armor\",\"Climbing Vehicle\",\"Expert Climber\",\"Scout\"],\"weapons\":[{\"name\":\"Grappling Claws\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":3,\"black\":0,\"white\":0}},{\"name\":\"Rocket Launcher\",\"range\":{\"min\":1,\"max\":3},\"dice\":{\"red\":0,\"black\":1,\"white\":2}}],\"upgradeBar\":[\"hardpoint\",\"comms\"]}",
    "cardSubtype": "ground vehicle",
    "title": null,
-   "affiliation": null
+   "affiliation": null,
+   "imageAssetPaths": {
+    "fr": "cards/swl/republic/fr/at-rt.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/stap-riders",
@@ -1696,7 +1715,10 @@
    "legionStats": "{\"health\":2,\"courage\":2,\"speed\":2,\"defenseDie\":\"r\",\"surgeAttack\":\"h\",\"surgeDefense\":\"\",\"miniCount\":1,\"keywords\":[\"Equip\",\"Infiltrate\",\"Marksman\",\"Reliable\",\"Retinue\"],\"weapons\":[{\"name\":\"Close Quarters Combat\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":1,\"black\":0,\"white\":0}},{\"name\":\"Inferno Squad E-11 Blaster Rifle\",\"range\":{\"min\":1,\"max\":3},\"dice\":{\"red\":0,\"black\":2,\"white\":0}}],\"upgradeBar\":[\"heavy weapon\",\"heavy weapon\",\"training\",\"training\",\"comms\",\"gear\",\"grenades\"]}",
    "cardSubtype": "trooper",
    "title": "Inferno Squad",
-   "affiliation": null
+   "affiliation": null,
+   "imageAssetPaths": {
+    "fr": "cards/swl/empire/fr/imperial-special-forces-inferno-squad.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/anakin-skywalker-the-chosen-one",
@@ -1855,7 +1877,10 @@
    "legionStats": "{\"health\":4,\"courage\":2,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Bolster\",\"Direct\",\"Exemplar\"],\"weapons\":[{\"name\":\"Bludgeon\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":0,\"white\":1}},{\"name\":\"Blaster Rifle\",\"range\":{\"min\":1,\"max\":3},\"dice\":{\"red\":0,\"black\":2,\"white\":0}}],\"upgradeBar\":[\"command\",\"comms\",\"gear\"]}",
    "cardSubtype": "droid trooper",
    "title": "Programmed for Strategy",
-   "affiliation": null
+   "affiliation": null,
+   "imageAssetPaths": {
+    "fr": "cards/swl/separatists/fr/t-series-tactical-droid-programmed-for-strategy.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/clone-commander-trained-for-leadership",
@@ -1989,7 +2014,10 @@
    "legionStats": "{\"health\":3,\"courage\":2,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"h\",\"surgeDefense\":\"\",\"miniCount\":3,\"keywords\":[\"Indomitable\",\"Scale\",\"Sharpshooter\"],\"weapons\":[{\"name\":\"Combat Training\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":1,\"white\":1}},{\"name\":\"X1 Carbine\",\"range\":{\"min\":1,\"max\":3},\"dice\":{\"red\":0,\"black\":0,\"white\":2}}],\"upgradeBar\":[\"heavy weapon\",\"training\",\"gear\",\"grenades\"]}",
    "cardSubtype": "wookiee trooper",
    "title": "Kashyyyk Defenders",
-   "affiliation": null
+   "affiliation": null,
+   "imageAssetPaths": {
+    "fr": "cards/swl/republic/fr/wookiee-warriors-kashyyyk-defenders.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/wookiee-chieftain-clan-leader",
@@ -2071,7 +2099,10 @@
    "legionStats": "{\"health\":3,\"courage\":2,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"h\",\"surgeDefense\":\"\",\"miniCount\":3,\"keywords\":[\"Charge\",\"Duelist\",\"Indomitable\",\"Scale\"],\"weapons\":[{\"name\":\"Ryyk Blade\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":2,\"white\":0}},{\"name\":\"Kashyyyk Pistol\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":0,\"black\":1,\"white\":1}}],\"upgradeBar\":[\"heavy weapon\",\"training\",\"training\",\"gear\",\"grenades\"]}",
    "cardSubtype": "wookiee trooper",
    "title": "Noble Fighters",
-   "affiliation": null
+   "affiliation": null,
+   "imageAssetPaths": {
+    "fr": "cards/swl/republic/fr/wookiee-warriors-noble-fighters.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/chewbacca-hero-of-kashyyyk",
@@ -2150,7 +2181,10 @@
    "legionStats": "{\"health\":6,\"courage\":3,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"h\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Cover\",\"Immune: Blast\",\"Immune: Melee\",\"Immune: Range 1 Weapons\",\"Reposition\",\"Speeder\"],\"weapons\":[{\"name\":\"Pilot's Kashyyyk Pistol\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":0,\"black\":1,\"white\":1}}],\"upgradeBar\":[\"crew\",\"comms\"]}",
    "cardSubtype": "repulsor vehicle",
    "title": null,
-   "affiliation": null
+   "affiliation": null,
+   "imageAssetPaths": {
+    "fr": "cards/swl/republic/fr/raddaugh-gnasp-fluttercraft.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/dsd1-dwarf-spider-droid",
@@ -2617,7 +2651,10 @@
    "legionStats": "{\"health\":5,\"courage\":3,\"speed\":2,\"defenseDie\":\"r\",\"surgeAttack\":\"c\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Mercenary\",\"Jump\",\"Arsenal\",\"Impervious\",\"Independent\",\"Sentinel\",\"Sharpshooter\",\"Tactical\"],\"weapons\":[{\"name\":\"Fett's Gaderffii Stick\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":3,\"black\":1,\"white\":0}},{\"name\":\"Fett's EE-3 Carbine\",\"range\":{\"min\":1,\"max\":3},\"dice\":{\"red\":0,\"black\":3,\"white\":0}}],\"upgradeBar\":[\"training\",\"training\",\"gear\",\"gear\"]}",
    "cardSubtype": "mandalorian trooper",
    "title": "Daimyo of Mos Espa",
-   "affiliation": "rogue"
+   "affiliation": "rogue",
+   "imageAssetPaths": {
+    "fr": "cards/swl/mercenary/fr/boba-fett-daimyo-of-mos-espa.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/imperial-dark-troopers",
@@ -2669,7 +2706,10 @@
    "legionStats": "{\"health\":5,\"courage\":2,\"speed\":2,\"defenseDie\":\"r\",\"surgeAttack\":\"c\",\"surgeDefense\":\"\",\"miniCount\":1,\"keywords\":[\"Observe\",\"Jump\",\"Take Cover\",\"Direct\",\"Target\"],\"weapons\":[{\"name\":\"Advanced Combat Training\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":2,\"black\":0,\"white\":0}},{\"name\":\"Cody's DC-15A Blaster Rifle\",\"range\":{\"min\":1,\"max\":4},\"dice\":{\"red\":2,\"black\":1,\"white\":1}}],\"upgradeBar\":[\"command\",\"training\",\"gear\"]}",
    "cardSubtype": "clone trooper",
    "title": "Leader of the 212th",
-   "affiliation": null
+   "affiliation": null,
+   "imageAssetPaths": {
+    "fr": "cards/swl/republic/fr/clone-commander-cody-leader-of-the-212th.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/moff-gideon-long-live-the-empire",
@@ -3118,7 +3158,10 @@
    "legionStats": "{\"health\":11,\"courage\":7,\"speed\":1,\"defenseDie\":\"w\",\"surgeAttack\":\"\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Armor\",\"Arsenal\",\"Direct\",\"Programmed\",\"Reposition\",\"Special Issue\",\"Weak Point\"],\"weapons\":[{\"name\":\"Ion Cannons\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":1,\"black\":1,\"white\":0}},{\"name\":\"Heavy Blasters\",\"range\":{\"min\":1,\"max\":4},\"dice\":{\"red\":1,\"black\":2,\"white\":2}}],\"upgradeBar\":[\"programming\",\"ordnance\",\"ordnance\",\"comms\"]}",
    "cardSubtype": "ground vehicle",
    "title": "Prototype Tank Droid",
-   "affiliation": null
+   "affiliation": null,
+   "imageAssetPaths": {
+    "fr": "cards/swl/separatists/fr/persuader-class-tank-droid-prototype-tank-droid.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/raddaugh-gnasp-fluttercraft-attack-craft",
@@ -3254,7 +3297,10 @@
    "legionStats": "{\"health\":1,\"courage\":0,\"speed\":2,\"defenseDie\":\"r\",\"surgeAttack\":\"\",\"surgeDefense\":\"\",\"miniCount\":4,\"keywords\":[\"Complete the Mission\",\"Equip\",\"Infiltrate\",\"Independent\",\"Recharge\",\"Target\",\"Shielded\"],\"weapons\":[{\"name\":\"Gauntlet Vibroblade\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":2,\"white\":0}},{\"name\":\"DC-17m ICWS Blaster Carbine\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":0,\"black\":2,\"white\":0}}],\"upgradeBar\":[\"training\",\"training\",\"gear\",\"grenades\",\"comms\",\"armament\"]}",
    "cardSubtype": "clone trooper",
    "title": "Delta Squad",
-   "affiliation": null
+   "affiliation": null,
+   "imageAssetPaths": {
+    "fr": "cards/swl/republic/fr/clone-commandos-delta-squad.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/the-bad-batch-clone-force-99:ceb1e2b1",
