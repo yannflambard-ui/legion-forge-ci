@@ -2,7 +2,6 @@ package com.legionforge.app.data.repository
 
 import com.google.gson.Gson
 import com.legionforge.app.data.model.CatalogDocument
-import com.legionforge.app.data.model.CardDefinition
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -78,7 +77,7 @@ class FrenchCoverageTest {
         val withoutFr = units.filter { it.imageAssetPaths?.get("fr") == null }
 
         println("Unités Legion: ${units.size} | avec FR: ${withFr.size} | sans FR: ${withoutFr.size}")
-        println("Couverture FR unités: ${(withFr.size * 100.0 / units.size).roundToInt()}%")
+        println("Couverture FR unités: ${Math.round(withFr.size * 100.0 / units.size)}%")
 
         // Barre de non-régression : on ne doit pas perdre de couverture par rapport à l'existant.
         // (113/172 au moment de l'écriture du test.)
@@ -102,6 +101,4 @@ class FrenchCoverageTest {
             .filter { (_, p) -> !p.contains("/fr/") }
         assertEquals("Toute image FR doit être sous un dossier /fr/", 0, bad.size)
     }
-
-    private fun Int.roundToInt(): Int = Math.round(this.toFloat())
 }
