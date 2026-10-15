@@ -1,0 +1,29 @@
+{
+ "description": "Cartes unités FR extraites des PDFs Units officiels (iron-squadron.fr / AMG). Découpage logique 3x3 + rotation CCW -> format paysage 1039x726.",
+ "method": "extract_units_fr.py (bbox conteneur -> grille 3x3 -> rotation 90° CCW)",
+ "format": "webp quality=85, 1039x726 (W/H 1.431)",
+ "total_cards": 394,
+ "pdfs": {
+  "empire.pdf": {
+   "driveId": "1E81zbWQmMkhOYf2deSnV97qOO9hr2Dm0",
+   "cards": 98
+  },
+  "republic.pdf": {
+   "driveId": "1IgfeY-5Z1zbhQElh4ZqVGV_K494UiyRO",
+   "cards": 74
+  },
+  "mercenary.pdf": {
+   "driveId": "1_OUQuHDPy4rAmuu1GV6kxUFhPhXuQhxo",
+   "cards": 54
+  },
+  "rebel.pdf": {
+   "driveId": "1QIX-RC6zQ9mS9z3K1edGGd9YQlw04fUx",
+   "cards": 94
+  },
+  "separatist.pdf": {
+   "driveId": "1WNjtVZqM-M6WgG75onFQZuXKVMWXqYzo",
+   "cards": 74
+  }
+ },
+ "extraction_date": "2026-10-15"
+}
