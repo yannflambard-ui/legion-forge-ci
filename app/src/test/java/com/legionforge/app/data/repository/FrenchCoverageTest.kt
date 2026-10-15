@@ -53,7 +53,7 @@ class FrenchCoverageTest {
         val missing = mutableListOf<String>()
         var referenced = 0
         doc.cards.forEach { card ->
-            val fr = card.imageAssetPaths.get("fr")
+            val fr = card.imageAssetPaths?.get("fr")
             if (fr != null) {
                 referenced++
                 if (!File(root, fr).isFile) {
@@ -73,8 +73,8 @@ class FrenchCoverageTest {
     fun legionUnitsFrenchCoverageDoesNotRegress() {
         val doc = loadCatalog()
         val units = doc.cards.filter { it.kind.name == "LEGION_UNIT" }
-        val withFr = units.filter { it.imageAssetPaths.get("fr") != null }
-        val withoutFr = units.filter { it.imageAssetPaths.get("fr") == null }
+        val withFr = units.filter { it.imageAssetPaths?.get("fr") != null }
+        val withoutFr = units.filter { it.imageAssetPaths?.get("fr") == null }
 
         println("Unités Legion: ${units.size} | avec FR: ${withFr.size} | sans FR: ${withoutFr.size}")
         println("Couverture FR unités: ${Math.round(withFr.size * 100.0 / units.size)}%")
@@ -97,7 +97,7 @@ class FrenchCoverageTest {
     fun everyFrenchImagePathIsUnderFrFolder() {
         val doc = loadCatalog()
         val bad = doc.cards
-            .mapNotNull { it.imageAssetPaths.get("fr")?.let { p -> it.name to p } }
+            .mapNotNull { it.imageAssetPaths?.get("fr")?.let { p -> it.name to p } }
             .filter { (_, p) -> !p.contains("/fr/") }
         assertEquals("Toute image FR doit être sous un dossier /fr/", 0, bad.size)
     }
