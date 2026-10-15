@@ -2778,7 +2778,10 @@
    "legionStats": "{\"health\":5,\"courage\":2,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"c\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Mercenary\",\"Independent\",\"Low Profile\",\"Nimble\",\"Relentless\",\"Scout\",\"Scouting Party\",\"Unhindered\"],\"weapons\":[{\"name\":\"Spear\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":2,\"black\":1,\"white\":0}},{\"name\":\"Sling\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":0,\"black\":1,\"white\":0}}],\"upgradeBar\":[\"training\",\"training\",\"training\"]}",
    "cardSubtype": "trooper",
    "title": "Hero of Bright Tree",
-   "affiliation": "ewok"
+   "affiliation": "ewok",
+   "imageAssetPaths": {
+    "fr": "cards/swl/mercenary/fr/wicket-hero-of-bright-tree.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/chewbacca-let-the-wookiee-win",
@@ -2798,7 +2801,10 @@
    "legionStats": "{\"health\":11,\"courage\":8,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"c\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Armor\",\"Arsenal\",\"Inspire\",\"Incognito\",\"Weak Point\"],\"weapons\":[{\"name\":\"Grenade Launcher\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":2,\"white\":0}},{\"name\":\"88 Twin Light Blaster\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":1,\"black\":1,\"white\":1}},{\"name\":\"MS-4 Twin Blaster\",\"range\":{\"min\":1,\"max\":4},\"dice\":{\"red\":2,\"black\":0,\"white\":0}}],\"upgradeBar\":[]}",
    "cardSubtype": "ground vehicle",
    "title": "Let the Wookiee Win",
-   "affiliation": "ewok"
+   "affiliation": "ewok",
+   "imageAssetPaths": {
+    "fr": "cards/swl/mercenary/fr/chewbacca-let-the-wookiee-win.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/ewok-skirmishers",
@@ -2823,7 +2829,10 @@
    "legionStats": "{\"health\":1,\"courage\":1,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"\",\"surgeDefense\":\"\",\"miniCount\":6,\"keywords\":[\"Mercenary\",\"Low Profile\",\"Unhindered\"],\"weapons\":[{\"name\":\"Spear\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":1,\"white\":0}}],\"upgradeBar\":[\"heavy weapon\",\"personnel\",\"personnel\",\"training\"]}",
    "cardSubtype": "trooper",
    "title": null,
-   "affiliation": "ewok"
+   "affiliation": "ewok",
+   "imageAssetPaths": {
+    "fr": "cards/swl/mercenary/fr/ewok-skirmishers.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/ewok-slingers",
@@ -2848,7 +2857,10 @@
    "legionStats": "{\"health\":1,\"courage\":1,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"\",\"surgeDefense\":\"\",\"miniCount\":6,\"keywords\":[\"Mercenary\",\"Independent\",\"Low Profile\",\"Target\"],\"weapons\":[{\"name\":\"Stones\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":0,\"white\":1}},{\"name\":\"Slings\",\"range\":{\"min\":1,\"max\":2},\"dice\":{\"red\":0,\"black\":1,\"white\":0}}],\"upgradeBar\":[\"heavy weapon\",\"personnel\",\"personnel\",\"training\"]}",
    "cardSubtype": "trooper",
    "title": null,
-   "affiliation": "ewok"
+   "affiliation": "ewok",
+   "imageAssetPaths": {
+    "fr": "cards/swl/mercenary/fr/ewok-slingers.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/c-3p0-golden-god",
@@ -2868,7 +2880,10 @@
    "legionStats": "{\"health\":3,\"courage\":2,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Master Storyteller\",\"Compel\",\"Infiltrate\",\"Divine Influence\"],\"weapons\":[],\"upgradeBar\":[]}",
    "cardSubtype": "droid trooper",
    "title": "Golden God",
-   "affiliation": "ewok"
+   "affiliation": "ewok",
+   "imageAssetPaths": {
+    "fr": "cards/swl/mercenary/fr/c3p0-golden-god.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/logray-superstitious-shaman",
@@ -2893,7 +2908,10 @@
    "legionStats": "{\"health\":4,\"courage\":3,\"speed\":2,\"defenseDie\":\"w\",\"surgeAttack\":\"\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Aid\",\"Independent\",\"Inspire\",\"Low Profile\",\"Nimble\"],\"weapons\":[{\"name\":\"Staff\",\"range\":{\"min\":0,\"max\":0},\"dice\":{\"red\":0,\"black\":2,\"white\":0}}],\"upgradeBar\":[\"command\",\"training\",\"training\",\"training\"]}",
    "cardSubtype": "trooper",
    "title": "Superstitious Shaman",
-   "affiliation": "ewok"
+   "affiliation": "ewok",
+   "imageAssetPaths": {
+    "fr": "cards/swl/mercenary/fr/logray-superstitious-shaman.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/major-marquand-tempest-scout-2",
@@ -4201,7 +4219,10 @@
    "legionStats": "{\"health\":1,\"courage\":2,\"speed\":3,\"defenseDie\":\"r\",\"surgeAttack\":\"h\",\"surgeDefense\":\"b\",\"miniCount\":5,\"keywords\":[\"Mercenary\",\"Jump\",\"Impervious\",\"Mandalorians Are Stronger Together\",\"Tactical\"],\"weapons\":[{\"name\":\"Blaster Pistols\",\"range\":{\"min\":0,\"max\":2},\"dice\":{\"red\":1,\"black\":0,\"white\":1}},{\"name\":\"GALAAR-15 Carbines\",\"range\":{\"min\":1,\"max\":3},\"dice\":{\"red\":0,\"black\":1,\"white\":0}}],\"upgradeBar\":[\"personnel\",\"heavy weapon\",\"training\",\"grenades\",\"gear\"]}",
    "cardSubtype": "mandalorian trooper",
    "title": null,
-   "affiliation": "Clan Kryze"
+   "affiliation": "Clan Kryze",
+   "imageAssetPaths": {
+    "fr": "cards/swl/mercenary/fr/clan-kryze-veterans.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/mandalorian-leader",
@@ -4390,7 +4411,10 @@
    "legionStats": "{\"health\":1,\"courage\":2,\"speed\":3,\"defenseDie\":\"r\",\"surgeAttack\":\"h\",\"surgeDefense\":\"b\",\"miniCount\":3,\"keywords\":[\"Mercenary\",\"Jump\",\"Dauntless\",\"Impervious\",\"Nimble\",\"We Fight for Our Family\"],\"weapons\":[{\"name\":\"Blaster Pistols\",\"range\":{\"min\":0,\"max\":2},\"dice\":{\"red\":1,\"black\":0,\"white\":1}},{\"name\":\"Galar-15 Carbines\",\"range\":{\"min\":1,\"max\":3},\"dice\":{\"red\":0,\"black\":1,\"white\":0}}],\"upgradeBar\":[\"heavy weapon\",\"personnel\",\"training\",\"gear\",\"grenades\"]}",
    "cardSubtype": "mandalorian trooper",
    "title": null,
-   "affiliation": "Clan Wren"
+   "affiliation": "Clan Wren",
+   "imageAssetPaths": {
+    "fr": "cards/swl/mercenary/fr/clan-wren-veterans.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/geonosian-warriors-geonosian-engineers",
@@ -4437,7 +4461,10 @@
    "legionStats": "{\"health\":5,\"courage\":2,\"speed\":3,\"defenseDie\":\"r\",\"surgeAttack\":\"h\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Bolster\",\"Jump\",\"Mercenary\",\"Entourage\",\"Impervious\",\"Inspire\",\"Nimble\",\"We Fight for Our Family\"],\"weapons\":[{\"name\":\"Blaster Pistols\",\"range\":{\"min\":0,\"max\":2},\"dice\":{\"red\":2,\"black\":2,\"white\":0}}],\"upgradeBar\":[\"command\",\"training\",\"training\",\"gear\",\"gear\",\"grenades\"]}",
    "cardSubtype": "mandalorian trooper",
    "title": "Leader of Clan Wren",
-   "affiliation": "Clan Wren"
+   "affiliation": "Clan Wren",
+   "imageAssetPaths": {
+    "fr": "cards/swl/mercenary/fr/ursa-wren-leader-of-clan-wren.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/sabine-wren-back-in-the-fold",
@@ -4463,7 +4490,10 @@
    "legionStats": "{\"health\":5,\"courage\":2,\"speed\":3,\"defenseDie\":\"r\",\"surgeAttack\":\"c\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Jump\",\"Gunslinger\",\"Impervious\",\"Nimble\",\"We Fight for Our Family\"],\"weapons\":[{\"name\":\"Pistols & Grenades\",\"range\":{\"min\":0,\"max\":2},\"dice\":{\"red\":2,\"black\":2,\"white\":0}}],\"upgradeBar\":[\"armament\",\"training\",\"gear\",\"gear\",\"grenades\"]}",
    "cardSubtype": "mandalorian trooper",
    "title": "Back in the Fold",
-   "affiliation": "Clan Wren"
+   "affiliation": "Clan Wren",
+   "imageAssetPaths": {
+    "fr": "cards/swl/mandalorians/fr/sabine-wren-back-in-the-fold.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/gar-saxon-head-of-clan-saxon",
@@ -4491,7 +4521,10 @@
    "legionStats": "{\"health\":5,\"courage\":2,\"speed\":3,\"defenseDie\":\"r\",\"surgeAttack\":\"c\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Jump\",\"Advanced Targeting\",\"Allies of Convenience\",\"Compel\",\"Impervious\",\"Marksman\",\"Victory or Death\"],\"weapons\":[{\"name\":\"Dual Pistols\",\"range\":{\"min\":0,\"max\":2},\"dice\":{\"red\":2,\"black\":2,\"white\":0}},{\"name\":\"GALAR-90 Sniper Rifle\",\"range\":{\"min\":1,\"max\":5},\"dice\":{\"red\":2,\"black\":1,\"white\":0}}],\"upgradeBar\":[\"command\",\"armament\",\"training\",\"training\",\"gear\",\"gear\",\"grenades\"]}",
    "cardSubtype": "mandalorian trooper",
    "title": "Head of Clan Saxon",
-   "affiliation": "Clan Saxon"
+   "affiliation": "Clan Saxon",
+   "imageAssetPaths": {
+    "fr": "cards/swl/mandalorians/fr/gar-saxon-head-of-clan-saxon.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/rook-kast-devoted-to-the-cause",
@@ -4517,7 +4550,10 @@
    "legionStats": "{\"health\":5,\"courage\":2,\"speed\":3,\"defenseDie\":\"r\",\"surgeAttack\":\"c\",\"surgeDefense\":\"b\",\"miniCount\":1,\"keywords\":[\"Jump\",\"Coordinate\",\"Impervious\",\"Retinue\",\"Target\",\"Victory or Death\"],\"weapons\":[{\"name\":\"Dual Pistols\",\"range\":{\"min\":0,\"max\":2},\"dice\":{\"red\":2,\"black\":2,\"white\":0}}],\"upgradeBar\":[\"command\",\"training\",\"comms\",\"gear\",\"grenades\"]}",
    "cardSubtype": "mandalorian trooper",
    "title": "Devoted to the Cause",
-   "affiliation": "Clan Saxon"
+   "affiliation": "Clan Saxon",
+   "imageAssetPaths": {
+    "fr": "cards/swl/mandalorians/fr/rook-kast-devoted-to-the-cause.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/super-commandos",
@@ -4543,7 +4579,10 @@
    "legionStats": "{\"health\":1,\"courage\":2,\"speed\":3,\"defenseDie\":\"r\",\"surgeAttack\":\"h\",\"surgeDefense\":\"b\",\"miniCount\":4,\"keywords\":[\"Jump\",\"Defend\",\"Impervious\",\"Independent\",\"Victory or Death\"],\"weapons\":[{\"name\":\"Combat Expertise\",\"range\":{\"min\":0,\"max\":2},\"dice\":{\"red\":1,\"black\":0,\"white\":1}},{\"name\":\"Blaster Rifles\",\"range\":{\"min\":1,\"max\":3},\"dice\":{\"red\":0,\"black\":1,\"white\":0}}],\"upgradeBar\":[\"heavy weapon\",\"personnel\",\"training\",\"gear\",\"grenades\"]}",
    "cardSubtype": "mandalorian trooper",
    "title": null,
-   "affiliation": "Clan Saxon"
+   "affiliation": "Clan Saxon",
+   "imageAssetPaths": {
+    "fr": "cards/swl/mandalorians/fr/super-commandos.webp"
+   }
   },
   {
    "id": "legion_v2:lhq2/admiral-trench-fleet-commander",
