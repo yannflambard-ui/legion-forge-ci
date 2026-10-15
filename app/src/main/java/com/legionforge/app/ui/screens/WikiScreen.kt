@@ -20,6 +20,15 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.withStyle
 import androidx.compose.foundation.text.ClickableText
+import android.graphics.BitmapFactory
+import androidx.compose.foundation.Image
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.foundation.text.InlineTextContent
+import androidx.compose.ui.text.Placeholder
+import androidx.compose.ui.text.PlaceholderVerticalAlign
 import com.legionforge.app.data.model.GameSystem
 import com.legionforge.app.data.model.WikiSectionEntity
 import com.legionforge.app.ui.viewmodel.ArmyBuilderViewModel
@@ -149,6 +158,29 @@ fun RulePopup(section: WikiSectionEntity, onClose: () -> Unit) {
 /** Texte de règles avec mots-clés du wiki cliquables : clic sur un mot-clé
  *  (ex: "boucliers", "activation", "attaque") -> onRuleClick(section) pour
  *  afficher le point de règle officiel dans une popup superposée. */
+// Icônes de mots-clés Armada (kw_*.webp) injectées inline AVANT le mot-clé,
+// comme sur les vraies cartes. Map mot-clé (minuscule) -> asset.
+private val KEYWORD_ICON_ASSETS = mapOf(
+    "adept" to "icons/kw_adept.webp",
+    "ai" to "icons/kw_ai.webp",
+    "assault" to "icons/kw_assault.webp",
+    "bomber" to "icons/kw_bomber.webp",
+    "cloak" to "icons/kw_cloak.webp",
+    "counter" to "icons/kw_counter.webp",
+    "dodge" to "icons/kw_dodge.webp",
+    "escort" to "icons/kw_escort.webp",
+    "grit" to "icons/kw_grit.webp",
+    "heavy" to "icons/kw_heavy.webp",
+    "intel" to "icons/kw_intel.webp",
+    "relay" to "icons/kw_relay.webp",
+    "rogue" to "icons/kw_rogue.webp",
+    "scout" to "icons/kw_scout.webp",
+    "screen" to "icons/kw_screen.webp",
+    "snipe" to "icons/kw_snipe.webp",
+    "strategic" to "icons/kw_strategic.webp",
+    "swarm" to "icons/kw_swarm.webp"
+)
+
 @Composable
 fun ClickableRulesText(
     text: String,
@@ -171,6 +203,25 @@ fun ClickableRulesText(
             }
         }
     }
+    // Charger les icônes de mots-clés présents dans le texte (ImageBitmap, pas AsyncImage).
+    val context = LocalContext.current
+    val iconBitmaps = remember(text) {
+        val present = KEYWORD_ICON_ASSETS.keys.filter { text.lowercase().contains(it) }
+        present.associateWith { kw ->
+            try {
+                context.assets.open(KEYWORD_ICON_ASSETS.getValue(kw)).use { BitmapFactory.decodeStream(it)?.asImageBitmap() }
+            } catch (_: Exception) { null }
+        }.filterValues { it != null }
+    }
+    val inlineContent = remember(iconBitmaps) {
+        buildMap {
+            iconBitmaps.forEach { (kw, bmp) ->
+                put(kw, InlineTextContent(Placeholder(width = 12.sp, height = 12.sp, placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter)) {
+                    Image(bitmap = bmp!!, contentDescription = null, modifier = Modifier.size(12.dp), contentScale = ContentScale.Fit)
+                })
+            }
+        }
+    }
     val annotated = buildAnnotatedString {
         // Découper le texte en tokens (mots + ponctuation) pour détecter les mots-clés.
         val regex = Regex("""[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ'\-]*""")
@@ -178,7 +229,12 @@ fun ClickableRulesText(
         regex.findAll(text).forEach { m ->
             if (m.range.first > last) append(text.substring(last, m.range.first))
             val word = m.value
-            val section = kwToSection[word.lowercase()]
+            val lower = word.lowercase()
+            val section = kwToSection[lower]
+            // Icône inline AVANT le mot-clé (règle user : comme sur les cartes).
+            if (iconBitmaps.containsKey(lower)) {
+                appendInlineContent(lower, word)
+            }
             if (section != null) {
                 pushStringAnnotation(tag = "rule", annotation = section.id)
                 withStyle(SpanStyle(color = Color(0xFFFFC857), fontWeight = FontWeight.Bold)) {
@@ -196,6 +252,7 @@ fun ClickableRulesText(
         text = annotated,
         style = style.copy(color = color),
         maxLines = maxLines,
+        inlineContent = inlineContent,
         modifier = modifier,
         onClick = { offset ->
             annotated.getStringAnnotations(tag = "rule", start = offset, end = offset)
