@@ -3406,6 +3406,11 @@
     "result": "upgrades B1, pas les trous"
    }
   ],
-  "conclusion": "Les 41 trous restants (High Command, Jedi Council, Mandalorians, nouvelles génériques) n'ont pas de source FR identifiée dans les PDFs iron-squadron disponibles. Nécessitent : pipeline textless (carte EN + texte FR superposé) ou identification d'une autre source FR."
+  "conclusion": "Les 41 trous restants (High Command, Jedi Council, Mandalorians, nouvelles génériques) n'ont pas de source FR identifiée dans les PDFs iron-squadron disponibles. Nécessitent : pipeline textless (carte EN + texte FR superposé) ou identification d'une autre source FR.",
+  "reVerificationPDFsUnits": {
+   "date": "2026-10-15",
+   "note": "Re-scan complet des PDFs Units FR pointés par le user (Empire 1E81, Rebel 1QIX). Les 37 cartes OCR vides ont été vérifiées par vision : toutes des unités déjà couvertes (Veers, Jyn Erso, Luke Chevalier Jedi, Sabine Wren, Chewbacca). Aucun High Command (Thrawn/Tarkin/Tagge), Jedi Council, Han Solo Reluctant Hero, Luke Commander, Rebel/Imperial Agent/Officer dans les PDFs Units FR.",
+   "conclusion": "Les 41 trous restants ne sont PAS dans les PDFs Units FR. Ce sont des extensions AMG récentes (2026) sans traduction FR communautaire disponible (iron-squadron ne les a pas encore)."
+  }
  }
 }
