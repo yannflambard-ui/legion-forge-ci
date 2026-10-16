@@ -4,6 +4,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.text.TextLayoutResult
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,7 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.withStyle
-import androidx.compose.foundation.text.ClickableText
+import androidx.compose.foundation.text.appendInlineContent
 import android.graphics.BitmapFactory
 import androidx.compose.foundation.Image
 import androidx.compose.ui.graphics.asImageBitmap
@@ -222,6 +226,7 @@ fun ClickableRulesText(
             }
         }
     }
+    var layoutResult by remember { mutableStateOf<TextLayoutResult?>(null) }
     val annotated = buildAnnotatedString {
         // Découper le texte en tokens (mots + ponctuation) pour détecter les mots-clés.
         val regex = Regex("""[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ'\-]*""")
@@ -248,17 +253,23 @@ fun ClickableRulesText(
         }
         if (last < text.length) append(text.substring(last))
     }
-    ClickableText(
+    Text(
         text = annotated,
         style = style.copy(color = color),
         maxLines = maxLines,
         inlineContent = inlineContent,
-        modifier = modifier,
-        onClick = { offset ->
-            annotated.getStringAnnotations(tag = "rule", start = offset, end = offset)
-                .firstOrNull()?.let { ann ->
-                    kwToSection.values.firstOrNull { it.id == ann.item }?.let(onRuleClick)
-                }
+        softWrap = true,
+        overflow = TextOverflow.Clip,
+        onTextLayout = { layoutResult = it },
+        modifier = modifier.pointerInput(annotated) {
+            detectTapGestures { pos ->
+                val lr = layoutResult ?: return@detectTapGestures
+                val offset = lr.getOffsetForPosition(pos)
+                annotated.getStringAnnotations(tag = "rule", start = offset, end = offset)
+                    .firstOrNull()?.let { ann ->
+                        kwToSection.values.firstOrNull { it.id == ann.item }?.let(onRuleClick)
+                    }
+            }
         }
     )
 }
